@@ -3,10 +3,11 @@ import * as humanDate from 'human-date';
 
 import Home from './pages/Home';
 import Contribute from "./pages/Contribute";
+import SgbUnit from './pages/SgbUnit';
 
 namespace Site {
   export interface Props {
-    pageId: string;
+    pageType: string;
     title: string;
     pageProps: any;
   }
@@ -20,11 +21,15 @@ class Site extends React.Component<Site.Props, {}> {
     )
   }
   renderPage() {
-    switch (this.props.pageId) {
+    switch (this.props.pageType) {
       case 'index':
-        return React.createElement(Home, this.props.pageProps);
+        return <Home {...this.props.pageProps} />
       case 'contribute':
-        return React.createElement(Contribute, this.props.pageProps);
+        return <Contribute {...this.props.pageProps} />
+      case 'sgb-unit':
+        return <SgbUnit {...this.props.pageProps} />
+      default:
+        return null;
     }
   }
   render() {
@@ -36,7 +41,7 @@ class Site extends React.Component<Site.Props, {}> {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>{this.props.title}</title>
           <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700" />
-          <link rel="stylesheet" href="static/gbhwdb.css" />
+          <link rel="stylesheet" href="/static/gbhwdb.css" />
         </head>
         <body>
           <header id="site-header">
@@ -89,7 +94,7 @@ function renderStats() {
     <aside id="site-stats">
       {`Last updated: ${humanDate.prettyPrint()}`}
       <br />
-      <a href="contribute.html">Want to contribute?</a>
+      <a href="/contribute.html">Want to contribute?</a>
     </aside>
   );
 }

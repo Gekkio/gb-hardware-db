@@ -3,6 +3,7 @@
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
@@ -11,8 +12,10 @@ const exec = require('child_process').exec;
 const tsProject = ts.createProject('tsconfig.json')
 gulp.task('scripts', function() {
   return tsProject.src()
+    .pipe(sourcemaps.init())
     .pipe(tsProject())
     .js
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('build'));
 });
 

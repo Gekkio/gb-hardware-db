@@ -12,6 +12,9 @@ install:
   - npm update
   - npm prune
 
+before_script:
+  - git lfs pull
+
 script:
   - npm run build
 

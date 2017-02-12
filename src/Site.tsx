@@ -13,64 +13,64 @@ namespace Site {
   }
 }
 
-class Site extends React.Component<Site.Props, {}> {
-  renderNavigation() {
-    return (
-      <nav>
-      </nav>
-    )
-  }
-  renderPage() {
-    switch (this.props.pageType) {
-      case 'index':
-        return <Home {...this.props.pageProps} />
-      case 'contribute':
-        return <Contribute {...this.props.pageProps} />
-      case 'sgb-unit':
-        return <SgbUnit {...this.props.pageProps} />
-      default:
-        return null;
-    }
-  }
-  render() {
-    return (
-      <html lang="en">
-        <head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>{this.props.title}</title>
-          <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700" />
-          <link rel="stylesheet" href="/static/gbhwdb.css" />
-        </head>
-        <body>
-          <header id="site-header">
-            <h1>
-              <a href="/">
-                Game Boy hardware database
-                <aside>by Gekkio and contributors</aside>
-              </a>
-            </h1>
-            {this.renderNavigation()}
-          </header>
-          <main id="site-content">
-            <div className="content">
-              {this.renderPage()}
-            </div>
-          </main>
-          <footer id="site-footer">
-            <div className="content">
-              {renderLicense()}
-              {renderStats()}
-            </div>
-          </footer>
-        </body>
-      </html>
-    );
+export default function Site(props: Site.Props) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{props.title}</title>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700" />
+        <link rel="stylesheet" href="/static/gbhwdb.css" />
+      </head>
+      <body>
+        <header id="site-header">
+          <h1>
+            <a href="/">
+              Game Boy hardware database
+              <aside>by Gekkio and contributors</aside>
+            </a>
+          </h1>
+          <Navigation />
+        </header>
+        <main id="site-content">
+          <div className="content">
+            {renderPage(props.pageType, props.pageProps)}
+          </div>
+        </main>
+        <footer id="site-footer">
+          <div className="content">
+            <License />
+            <Stats />
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
+
+function renderPage(type: string, props: any) {
+  switch (type) {
+    case 'index':
+      return <Home {...props} />
+    case 'contribute':
+      return <Contribute {...props} />
+    case 'sgb-unit':
+      return <SgbUnit {...props} />
+    default:
+      return null;
   }
 }
 
-function renderLicense() {
+function Navigation() {
+  return (
+    <nav>
+    </nav>
+  )
+}
+
+function License() {
   return (
     <aside id="site-license">
       <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" className="badge">
@@ -89,7 +89,7 @@ function renderLicense() {
   );
 }
 
-function renderStats() {
+function Stats() {
   return (
     <aside id="site-stats">
       {`Last updated: ${humanDate.prettyPrint()}`}
@@ -98,5 +98,3 @@ function renderStats() {
     </aside>
   );
 }
-
-export default Site;

@@ -1,32 +1,21 @@
 import * as React from 'react';
 
-import {SgbSubmission} from '../crawler';
+import {Photo, SgbSubmission} from '../crawler';
 
-namespace SgbUnit {
-  export interface Props {
-    submission: SgbSubmission;
-  }
+export default function SgbUnit({submission}: {submission: SgbSubmission}) {
+  return (
+    <article>
+      <h2>{`SGB: ${submission.title}`}</h2>
+      {renderPhoto(submission, submission.photos.front)}
+    </article>
+  )
 }
 
-class SgbUnit extends React.Component<SgbUnit.Props, {}> {
-  renderMainPhoto() {
-    const submission = this.props.submission;
-    const {front} = this.props.submission.photos
-    if (!front) {
-      return null
-    }
-    return (
-      <img src={`/static/sgb/${submission.slug}_${front.name}`} />
-    )
+function renderPhoto(submission: SgbSubmission, photo: Photo | undefined) {
+  if (!photo) {
+    return null;
   }
-  render() {
-    return (
-      <article>
-        <h2>{`SGB: ${this.props.submission.title}`}</h2>
-        {this.renderMainPhoto()}
-      </article>
-    )
-  }
+  return (
+      <img src={`/static/sgb/${submission.slug}_${photo.name}`} />
+  )
 }
-
-export default SgbUnit;

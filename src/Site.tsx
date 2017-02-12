@@ -13,6 +13,12 @@ namespace Site {
 }
 
 class Site extends React.Component<Site.Props, {}> {
+  renderNavigation() {
+    return (
+      <nav>
+      </nav>
+    )
+  }
   renderPage() {
     switch (this.props.pageId) {
       case 'index':
@@ -40,6 +46,7 @@ class Site extends React.Component<Site.Props, {}> {
                 <aside>by Gekkio and contributors</aside>
               </a>
             </h1>
+            {this.renderNavigation()}
           </header>
           <main id="site-content">
             <div className="content">

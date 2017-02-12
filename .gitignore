@@ -1,0 +1,6 @@
+*.log
+*.swp
+*~
+.idea/**
+build/**
+node_modules/**

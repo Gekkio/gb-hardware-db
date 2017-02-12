@@ -1,0 +1,186 @@
+@import '../../node_modules/normalize.css/normalize';
+@import '_media';
+
+$main-color: #234e8e;
+$main-color-1: #aec5e7;
+$main-color-2: #4f74a9;
+$main-color-3: #0b2c5d;
+$main-color-4: #010813;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+}
+
+body {
+  font-family: 'Lora', sans-serif;
+  color: #000;
+  background-color: $main-color-1;
+}
+
+#site-header, #site-footer {
+  color: white;
+  background-color: $main-color;
+}
+
+#site-header {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 10px 10px 0;
+
+  h1 {
+    font-size: 20px;
+    margin: 5px 0;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    aside {
+      font-size: 10px;
+    }
+
+    @include media(desktop) {
+      font-size: 26px;
+    }
+  }
+
+  nav {
+    border-bottom: 5px solid $main-color-2;
+    margin-top: 10px;
+    color: #fff;
+    background-color: $main-color-3;
+    @include media(tablet) {
+      border-radius: 5px 5px 0 0;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      @include media(tablet) {
+        flex-wrap: nowrap;
+      }
+    }
+    li {
+      flex: 0 1 auto;
+      text-align: center;
+      @include media(tablet) {
+        border-radius: 5px 5px 0 0;
+      }
+
+      &.active {
+        background-color: $main-color-2;
+      }
+
+      strong {
+        display: block;
+        font-size: 14px;
+
+        @include media(desktop) {
+          font-size: 16px;
+        }
+      }
+
+      .name {
+        display: none;
+        font-size: 10px;
+
+        @include media(tablet) {
+          display: block;
+        }
+        @include media(desktop) {
+          font-size: 12px;
+        }
+      }
+
+      a {
+        display: block;
+        padding: 5px 10px;
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#site-content {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 10px;
+
+  .content {
+    padding: 20px 10px;
+    background-color: #fff;
+    color: $main-color-4;
+    overflow-x: auto;
+
+    @include media(desktop) {
+      overflow-x: inherit;
+    }
+
+    box-shadow: 0 2px 5px 2px $main-color-2;
+  }
+}
+
+#site-footer {
+  border-top: 2px solid $main-color-2;
+  font-size: 10px;
+  .content {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 10px;
+    justify-content: space-between;
+
+    @include media(tablet) {
+      display: flex;
+    }
+  }
+  a {
+    color: $main-color-1;
+  }
+}
+
+#site-stats {
+  flex: 0 1 auto;
+  @include media(tablet) {
+    text-align: right;
+  }
+}
+
+#site-license {
+  flex: 0 1 auto;
+  .badge {
+    display: inline-block;
+    img: {
+      border: none;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  font-size: 12px;
+  margin: 15px 0;
+  border-collapse: collapse;
+  border: 1px $main-color-2 solid;
+  box-shadow: 0 1px 2px $main-color-2;
+}
+td, th {
+  padding: 5px;
+  text-align: left;
+}
+thead > tr {
+  color: #fff;
+  background-color: $main-color-3;
+}
+tbody > tr:nth-child(even) {
+  background-color: $main-color-1;
+}

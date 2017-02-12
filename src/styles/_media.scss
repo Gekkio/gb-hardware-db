@@ -1,0 +1,12 @@
+@mixin media($type) {
+  @if $type == tablet {
+    @media only screen and (min-width: 600px) {
+      @content;
+    }
+  }
+  @else if $type == desktop {
+    @media only screen and (min-width: 1000px) {
+      @content;
+    }
+  }
+}

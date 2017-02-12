@@ -1,0 +1,35 @@
+{
+  "name": "gb-hardware-db",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -r build",
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "start": "gulp watch & node devserver"
+  },
+  "devDependencies": {
+    "@types/joi": "10.0.0",
+    "@types/node": "7.0.5",
+    "@types/ramda": "0.0.3",
+    "@types/react": "15.0.9",
+    "@types/react-dom": "0.14.23",
+    "autoprefixer": "6.7.2",
+    "express": "4.14.1",
+    "gulp": "3.9.1",
+    "gulp-postcss": "6.3.0",
+    "gulp-sass": "3.1.0",
+    "gulp-typescript": "3.1.4",
+    "nodemon": "1.11.0",
+    "normalize.css": "5.0.0",
+    "postcss-csso": "1.1.2",
+    "typescript": "2.1.6"
+  },
+  "dependencies": {
+    "human-date": "1.4.0",
+    "joi": "10.2.2",
+    "ramda": "0.23.0",
+    "react": "15.4.2",
+    "react-dom": "15.4.2"
+  }
+}

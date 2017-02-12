@@ -1,6 +1,19 @@
 language: node_js
 node_js:
-  - "6"
+  - '6'
 
 script:
   - npm run build
+
+deploy:
+  provider: s3
+  access_key_id:
+    secure: ssptofcQt3+nzon3SVCtcCE/BccsySPwdZ1rbnxJgn6IX9BKZU5qsyDEAIaghkmO4p/vQzvKGzqDXgycpnGSUJ6gn9blT7lLbqr7wV6eOCnROpTjNJdV5lsu3QxHaEi5eIzqSfLlu5wTfHORbSupzYMQHxJkVAmXRwO38fzUvCsUEd4SaI3kwl8Gn5Nz6Bb+MENA0u/sKQ0MhZBIRPHqdO3GZwSORHJPY+Z1NzSmJg1m6Ut4VLC6Gr+oIXlFnp+6gUoQAEZkOIQOqXLaeqs0HmqqqTQ0De0tkoSGMF8YWR51dc4EnuXJt/mvVls+5ZZhdmb4iXL2raDhgakkjjHnFYVLQ2F74StGbCVE2J26BeIgQPlT/LJt/Pdu+Sp/DLT8b07jhB0y+S2YnCUmsQFtDn8HnDymph0V2OVUKUu4a7/nl74Ija0ErXJ1AwcfV8cc/zexd2p0qWjEAtzECZVKbU/nlg9DCj4ChMCc71+My8goNsp18BX9lsZQLklwgrEwYCaS9qb1+pJ953CvKwnIMYJbmVRu4jpLXGS1fzTsfe5KVvG6NFTYJO7grfHNgqmTs4bLQBD9/3aovI0LfxXjd1XPiHh9veMG07PhUxP7Q1D9dMR8IfpLJsL4Scop79//7LIihztTsOkYqL0DrwDJHRKh7uMl5A/HufY13PYVH08=
+  secret_access_key:
+    secure: qOYHHweUUf59w9wVP0Mb2RO+wwuyg6j3/AVJggZ+yMf1FFFgZ1tFXW3oWlY7LbHMVPkyXHfrgBIIukObXF8fzkSkU2vaOnXBiVvHfsmF+3ZFRUwEOFerAxx9Ep5b0nyf533RAecro0HN6z+F+4nd2o/4KrFcBLUDfeH3xRQSIF8Gxf/yQHzlnbehNnpeAptIENh28EJrzd90UUbhEMckJZqM4nqgeId/oJJUAhx1tqYP214lsjR+SjH7nrs2S1DsgZ3pladakOgne7taznUrG2Lz7q/5mYj6w3Z1HUYmrLNfoUONO89I1NF75BYRs06rw9VTp9LNXnT6MIzstor8V+YprRfNi24CA0rTxAlEzbql5cKtko0Rk4wVfal3eghjiqUhc74LvUiKlk0bssOUP6rYEGMEE3zsRy18JhIyGQOkrU6qQDQRj+c19Wiv591/jLYmJwWAPQuR8jZCBuPeYq3CjaZ0i3mxNiMF/n0gt8OJjQhrq9c1/Y9eBQHdXZtb/y/6EJE/PCNTFXBs6P52ADyU+MJtucbfscpYs45lqqChtKpJI0i6YT6mHdIYxqTqvWauND3BImKHKLiAgtDooXcXfDU/Afae11nPG36LlaadXDJmgpWUl13isVc92o7vE1NWyqjc/i2xXgao+3dv0jnBJ8lHBDBZYVoY7SaU5so=
+  bucket: gbhwdb.gekkio.fi
+  region: eu-west-1
+  skip_cleanup: true
+  local_dir: build/site
+  on:
+    branch: master

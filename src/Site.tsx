@@ -21,7 +21,7 @@ export default function Site(props: Site.Props) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{props.title}</title>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,700" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
       </head>
       <body>

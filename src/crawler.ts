@@ -1,7 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import * as Joi from 'joi';
 import * as R from 'ramda';
 import * as urlSlug from 'url-slug';
+
+import {Metadata, SgbMetadata} from './metadata';
 
 export interface FsEntry {
   absolutePath: string;
@@ -37,12 +40,13 @@ export interface SgbSubmission {
   title: string;
   slug: string;
   contributor: string;
+  metadata: SgbMetadata;
   photos: {
     front?: Photo;
     back?: Photo;
     pcbFront?: Photo;
     pcbBack?: Photo;
-  }
+  };
 }
 
 const modelsByCode = ['SGB'];
@@ -55,7 +59,10 @@ export function crawlDataDirectory(path: string): Submission[] {
         let submission: Submission | undefined = undefined;
         switch(model.name) {
           case 'SGB': {
-            submission = crawlSGB(contributor.name, unit);
+            const metadata = readMetadata<SgbMetadata>(unit, SgbMetadata.schema);
+            if (metadata) {
+              submission = crawlSGB(contributor.name, unit, metadata);
+            }
             break;
           }
           default: {
@@ -71,7 +78,18 @@ export function crawlDataDirectory(path: string): Submission[] {
   return submissions;
 }
 
-function crawlSGB(contributor: string, unit: FsEntry): SgbSubmission {
+function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema): T | undefined {
+  const metadataPath = path.resolve(unit.absolutePath, 'metadata.json');
+  const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+  const validationResult = Joi.validate(metadata, schema);
+  if (validationResult.error) {
+    console.error(validationResult.error.annotate());
+    return undefined;
+  }
+  return validationResult.value;
+}
+
+function crawlSGB(contributor: string, unit: FsEntry, metadata: SgbMetadata): SgbSubmission {
   const title = `Unit #${unit.name} by ${contributor}`;
   const slug = urlSlug(`${contributor}-${unit.name}`);
   const photos = {
@@ -81,7 +99,7 @@ function crawlSGB(contributor: string, unit: FsEntry): SgbSubmission {
     pcbBack: fetchPhoto(unit, '04_pcb_back.jpg'),
   };
 
-  return {type: 'sgb', title, slug, contributor, photos};
+  return {type: 'sgb', title, slug, contributor, metadata, photos};
 }
 
 function fetchPhoto(entry: FsEntry, name: string): Photo | undefined {

@@ -48,7 +48,7 @@ submissions.forEach(submission => {
 
     photos.forEach(photo => {
       const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
-      fs.copySync(photo.path, target);
+      fs.copySync(photo.path, target, {preserveTimestamps: true});
       console.log(`Copied ${target}`);
     })
   }

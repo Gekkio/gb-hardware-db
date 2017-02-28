@@ -1,22 +1,14 @@
 import * as React from 'react';
-import * as humanDate from 'human-date';
 
 import {Photo, SgbSubmission} from '../../crawler';
 import {Chip, SgbMetadata} from '../../metadata';
+import {formatYearMonth, formatYearWeek} from '../format';
 
-function formatYearWeek<T extends {year?: number, week?: number}>({year, week}: T): string {
-  return `Week ${week || '??'}/${year || '????'}`
-}
-function formatYearMonth<T extends {year?: number, month?: number}>({year, month}: T): string {
-  const monthName = (month && humanDate.monthName(month)) || '??';
-  return `${monthName}/${year || '????'}`;
-}
-
-export default function SgbUnit({submission}: {submission: SgbSubmission}) {
+export default function SgbConsole({submission}: {submission: SgbSubmission}) {
   return (
-    <article className="sgb unit">
+    <article className="page-sgb-console">
       <h2>{`SGB: ${submission.title}`}</h2>
-      <div className="unit-photo-big">
+      <div className="page-sgb-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
@@ -25,7 +17,7 @@ export default function SgbUnit({submission}: {submission: SgbSubmission}) {
         <dd>{submission.metadata.stamp || '??'}</dd>
       </dl>
       <h3>Mainboard</h3>
-      <div className="unit-photo-big">
+      <div className="page-sgb-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>

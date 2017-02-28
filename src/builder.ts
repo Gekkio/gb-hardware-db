@@ -1,13 +1,12 @@
 import 'source-map-support/register';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import * as Joi from 'joi';
 import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
 import Site from './site/Site';
-import {Photo, crawlDataDirectory} from './crawler';
+import {Photo, crawlDataDirectory, SgbSubmission} from './crawler';
 
 interface PageDeclaration {
   type: string;
@@ -21,14 +20,18 @@ const submissions = crawlDataDirectory('data');
 function resolvePages(): PageDeclaration[] {
   const pages: PageDeclaration[] = [
     {type: 'index', title: 'Home', props: {}},
-    {type: 'contribute', title: 'Contribute', props: {}}
+    {type: 'contribute', title: 'Contribute', props: {}},
+    {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
+    {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
+      submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]
+    }}
   ]
   submissions.forEach(submission => {
     if (submission.type === 'sgb') {
       pages.push({
-        type: 'sgb-unit',
-        path: ['sgb', submission.slug],
-        title: submission.title,
+        type: 'sgb-console',
+        path: ['consoles', 'sgb', submission.slug],
+        title: `SGB: ${submission.title}`,
         props: {submission}
       });
     }

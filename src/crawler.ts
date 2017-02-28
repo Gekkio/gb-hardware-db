@@ -90,7 +90,7 @@ function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema): T 
 }
 
 function crawlSGB(contributor: string, unit: FsEntry, metadata: SgbMetadata): SgbSubmission {
-  const title = `Unit #${unit.name} by ${contributor}`;
+  const title = `Console #${unit.name} [${contributor}]`;
   const slug = urlSlug(`${contributor}-${unit.name}`);
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),

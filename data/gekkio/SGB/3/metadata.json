@@ -1,0 +1,47 @@
+{
+  "type": "SGB",
+  "stamp": "20B",
+  "mainboard": {
+    "type": "SGB-R-10",
+    "circled_letters": "Y",
+    "letter_at_top_right": "D",
+    "year": 1994,
+    "month": 8,
+    "cpu": {
+      "type": "SGB-CPU 01",
+      "label": "SGB-CPU-01 9432 7 D",
+      "year": 1994,
+      "week": 32
+    },
+    "icd2": {
+      "type": "ICD2-R",
+      "label": "ICD2-R 435 179",
+      "year": 1994,
+      "week": 35
+    },
+    "work_ram": {
+      "type": "LH52A64N-YL",
+      "label": "LH52A64N-YL H432 0U C",
+      "year": 1994,
+      "week": 32
+    },
+    "video_ram": {
+      "type": "LH52A64N-YL",
+      "label": "LH52A64N-YL H432 0U C",
+      "year": 1994,
+      "week": 32
+    },
+    "rom": {
+      "type": "SYS-SGB-2",
+      "label": "SYS-SGB-2 9429 R77",
+      "year": 1994,
+      "week": 29
+    },
+    "cic": {
+      "type": "F411A",
+      "label": "F411A 9428 a",
+      "year": 1994,
+      "week": 28
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import * as React from 'react';
-
 import Home from './pages/Home';
 import Contribute from './pages/Contribute';
-import SgbUnit from './pages/SgbUnit';
+import Sgb from './pages/Sgb';
+import SgbConsole from './pages/SgbConsole';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 
@@ -46,8 +46,10 @@ function renderPage(type: string, props: any) {
       return <Home {...props} />
     case 'contribute':
       return <Contribute {...props} />
-    case 'sgb-unit':
-      return <SgbUnit {...props} />
+    case 'sgb':
+      return <Sgb {...props} />
+    case 'sgb-console':
+      return <SgbConsole {...props} />
     default:
       return null;
   }

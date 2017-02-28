@@ -55,17 +55,19 @@ tbody > tr:nth-child(even) {
   background-color: $main-color-1;
 }
 
-.unit-photo-big {
-  img {
-    max-width: 50%;
-    max-height: 200px;
+.page-sgb-console {
+  &__photo {
+    img {
+      max-width: 50%;
+      max-height: 200px;
 
-    @include media(tablet) {
-      max-height: 260px;
-    }
+      @include media(tablet) {
+        max-height: 260px;
+      }
 
-    @include media(desktop) {
-      max-height: 400px;
+      @include media(desktop) {
+        max-height: 400px;
+      }
     }
   }
 }

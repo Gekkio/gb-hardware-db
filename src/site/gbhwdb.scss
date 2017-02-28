@@ -1,0 +1,71 @@
+@import '../../node_modules/normalize.css/normalize';
+@import 'common';
+@import 'components/SiteFooter';
+@import 'components/SiteHeader';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+}
+
+body {
+  font-family: 'Lora', sans-serif;
+  color: #000;
+  background-color: $main-color-1;
+}
+
+.site-main {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 10px;
+
+  &__content {
+    padding: 20px 10px;
+    background-color: #fff;
+    color: $main-color-4;
+    overflow-x: auto;
+    box-shadow: 0 2px 5px 2px $main-color-2;
+
+    @include media(desktop) {
+      overflow-x: inherit;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  font-size: 12px;
+  margin: 15px 0;
+  border-collapse: collapse;
+  border: 1px $main-color-2 solid;
+  box-shadow: 0 1px 2px $main-color-2;
+}
+td, th {
+  padding: 5px;
+  text-align: left;
+}
+thead > tr {
+  color: #fff;
+  background-color: $main-color-3;
+}
+tbody > tr:nth-child(even) {
+  background-color: $main-color-1;
+}
+
+.unit-photo-big {
+  img {
+    max-width: 50%;
+    max-height: 200px;
+
+    @include media(tablet) {
+      max-height: 260px;
+    }
+
+    @include media(desktop) {
+      max-height: 400px;
+    }
+  }
+}

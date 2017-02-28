@@ -24,7 +24,7 @@ const postcssPlugins = [
   csso()
 ];
 gulp.task('styles', function () {
-  return gulp.src('src/styles/**/*.scss')
+  return gulp.src('src/site/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postcssPlugins))
     .pipe(gulp.dest('build/site/static'));
@@ -42,7 +42,7 @@ gulp.task('html', ['scripts'], function(cb) {
 gulp.task('build', ['html', 'scripts', 'styles']);
 gulp.task('watch', ['html', 'scripts', 'styles'], function() {
   gulp.watch(['src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html']);
-  gulp.watch('src/styles/**/*.scss', ['styles']);
+  gulp.watch('src/site/**/*.scss', ['styles']);
 });
 
 gulp.task('default', ['build']);

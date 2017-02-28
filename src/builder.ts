@@ -6,7 +6,7 @@ import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
-import Site from './Site';
+import Site from './site/Site';
 import {Photo, crawlDataDirectory} from './crawler';
 
 interface PageDeclaration {

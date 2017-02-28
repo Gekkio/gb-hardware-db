@@ -1,0 +1,40 @@
+@import '../common';
+
+.site-footer {
+  border-top: 2px solid $main-color-2;
+  font-size: 10px;
+  color: white;
+  background-color: $main-color;
+
+  a {
+    color: $main-color-1;
+  }
+  &__content {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 10px;
+    justify-content: space-between;
+
+    @include media(tablet) {
+      display: flex;
+    }
+  }
+}
+
+.site-stats {
+  flex: 0 1 auto;
+  @include media(tablet) {
+    text-align: right;
+  }
+}
+
+.site-license {
+  flex: 0 1 auto;
+
+  &__badge {
+    display: inline-block;
+  }
+  &__image {
+    border: none
+  }
+}

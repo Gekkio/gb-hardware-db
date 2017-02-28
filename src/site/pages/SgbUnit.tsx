@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as humanDate from 'human-date';
 
-import {Photo, SgbSubmission} from '../crawler';
-import {Chip, SgbMetadata} from '../metadata';
+import {Photo, SgbSubmission} from '../../crawler';
+import {Chip, SgbMetadata} from '../../metadata';
 
 function formatYearWeek<T extends {year?: number, week?: number}>({year, week}: T): string {
   return `Week ${week || '??'}/${year || '????'}`

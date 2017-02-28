@@ -1,3 +1,9 @@
+$main-color: #234e8e;
+$main-color-1: #aec5e7;
+$main-color-2: #4f74a9;
+$main-color-3: #0b2c5d;
+$main-color-4: #010813;
+
 @mixin media($type) {
   @if $type == tablet {
     @media only screen and (min-width: 600px) {

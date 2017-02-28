@@ -22,6 +22,8 @@ export default function Site(props: Site.Props) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{props.title}</title>
+        <script dangerouslySetInnerHTML={{__html: googleAnalytics()}} />
+        <script async src="https://www.google-analytics.com/analytics.js" />
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
       </head>
@@ -51,3 +53,8 @@ function renderPage(type: string, props: any) {
   }
 }
 
+function googleAnalytics() {
+  return `window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-37123121-2', 'auto');
+  ga('send', 'pageview');`;
+}

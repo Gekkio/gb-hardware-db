@@ -5,7 +5,6 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import * as winston from 'winston';
 
 import Site from '../site/Site';
 import {crawlDataDirectory, SgbSubmission, OxySubmission, Sgb2Submission} from '../crawler';
@@ -65,8 +64,6 @@ function resolvePages(): PageDeclaration[] {
   return pages;
 }
 
-const copy: (src: string, dst: string, opts: fs.CopyOptions) => Bluebird<{}> = Bluebird.promisify(fs.copy) as any;
-const ensureDir: (path: string) => Bluebird<{}> = Bluebird.promisify(fs.ensureDir) as any;
 const outputFile: (file: string, data: any) => Bluebird<{}> = Bluebird.promisify(fs.outputFile) as any;
 
 const photosPromise = Bluebird.all(submissions.map(processPhotos))

@@ -13,7 +13,7 @@ const ensureDir: (path: string) => Bluebird<void> = Bluebird.promisify(fs.ensure
 export default function processPhotos<T extends Submission>(submission: T): Bluebird<any> {
   const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
   if (photos.length === 0) {
-    winston.debug(`[${submission.slug}]: no photos`);
+    winston.warn(`[${submission.type}] ${submission.slug}: no photos`);
     return Bluebird.resolve();
   }
 
@@ -22,7 +22,7 @@ export default function processPhotos<T extends Submission>(submission: T): Blue
 
   function writeThumbnail(size: number): Bluebird<void> {
     if (!thumbnailPhoto) {
-      winston.warn(`[${submission.slug}]: thumbnail source is not available`);
+      winston.warn(`[${submission.type}] ${submission.slug}: thumbnail source is not available`);
       return Bluebird.resolve();
     }
     const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_${size}.jpg`);
@@ -33,7 +33,7 @@ export default function processPhotos<T extends Submission>(submission: T): Blue
           .background(0xFFFFFFFF)
           .write(target);
       })
-      .tap(() => winston.debug(`[${submission.slug}]: wrote thumbnail ${target}`));
+      .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`));
   }
 
   return ensureDir(targetDirectory)
@@ -41,7 +41,7 @@ export default function processPhotos<T extends Submission>(submission: T): Blue
       photos.map(photo => {
         const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
         return copy(photo.path, target, {preserveTimestamps: true})
-          .tap(() => winston.debug(`[$submission.slug}]: copied photo ${target}`));
+          .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: copied photo ${target}`));
       }).concat([
         writeThumbnail(80),
         writeThumbnail(50),

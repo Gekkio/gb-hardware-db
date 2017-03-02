@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import {Photo, Sgb2Submission} from '../../crawler';
-import {formatShortYearMonth, formatShortYearWeek} from '../format';
+import {formatShortYearMonth} from '../format';
+import ConsoleListingChip from '../components/ConsoleListingChip';
 
 interface Props {
   submissions: Sgb2Submission[];
@@ -44,37 +45,16 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div><aside>{contributor}</aside></div>
       </td>
       <td>
-        <div>{metadata.mainboard && metadata.mainboard.type}</div>
+        <div>{metadata.mainboard.type}</div>
         <div>{formatShortYearMonth(metadata.mainboard)}</div>
       </td>
-      <td>
-        <div>{metadata.mainboard.cpu && metadata.mainboard.cpu.type || '????'}</div>
-        <div>{metadata.mainboard.cpu && formatShortYearWeek(metadata.mainboard.cpu)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.icd2 && metadata.mainboard.icd2.type || '????'}</div>
-        <div>{metadata.mainboard.icd2 && formatShortYearWeek(metadata.mainboard.icd2)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.work_ram && metadata.mainboard.work_ram.type || '????'}</div>
-        <div>{metadata.mainboard.work_ram && formatShortYearWeek(metadata.mainboard.work_ram)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.rom && metadata.mainboard.rom.type || '????'}</div>
-        <div>{metadata.mainboard.rom && formatShortYearWeek(metadata.mainboard.rom)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.cic && metadata.mainboard.cic.type || '????'}</div>
-        <div>{metadata.mainboard.cic && formatShortYearWeek(metadata.mainboard.cic)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.crystal && metadata.mainboard.crystal.type || '????'}</div>
-        <div>{metadata.mainboard.crystal && formatShortYearWeek(metadata.mainboard.crystal)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.coil && metadata.mainboard.coil.type || '????'}</div>
-        <div>{metadata.mainboard.coil && formatShortYearWeek(metadata.mainboard.coil)}</div>
-      </td>
+      <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.icd2} />
+      <ConsoleListingChip chip={metadata.mainboard.work_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.rom} />
+      <ConsoleListingChip chip={metadata.mainboard.cic} />
+      <ConsoleListingChip chip={metadata.mainboard.crystal} />
+      <ConsoleListingChip chip={metadata.mainboard.coil} />
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
         {renderPhoto(slug, 'Back', photos.back)}

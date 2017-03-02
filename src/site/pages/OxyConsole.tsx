@@ -1,8 +1,10 @@
+import * as R from 'ramda';
 import * as React from 'react';
 
 import {Photo, OxySubmission} from '../../crawler';
-import {Chip, OxyMetadata} from '../../metadata';
-import {formatYearMonth, formatYearWeek} from '../format';
+import {OxyMetadata} from '../../metadata';
+import {formatYearMonth, formatOptional} from '../format';
+import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function OxyConsole({submission}: {submission: OxySubmission}) {
   return (
@@ -14,7 +16,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
       </div>
       <dl>
         <dt>Color</dt>
-        <dd>{submission.metadata.color || '????'}</dd>
+        <dd>{formatOptional(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-oxy-console__photo">
@@ -25,7 +27,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
         <dt>Manufacture date</dt>
         <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{submission.metadata.mainboard.circled_letters || '??'}</dd>
+        <dd>{formatOptional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}
@@ -55,25 +57,10 @@ function renderChips({mainboard}: OxyMetadata) {
         <th>Date</th>
         <th>Label</th>
       </tr>
-      {renderChip('U1', 'CPU', mainboard.cpu)}
-      {renderChip('U2', '', mainboard.u2)}
-      {renderChip('U4', '', mainboard.u4)}
-      {renderChip('U5', '', mainboard.u5)}
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U2" title="????" chip={mainboard.u2} />
+      <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
+      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
     </table>
-  )
-}
-
-function renderChip(designator: string, title: string, chip: Chip | undefined) {
-  if (!chip) {
-    return null;
-  }
-  return (
-    <tr>
-      <td>{designator}</td>
-      <td>{title}</td>
-      <td>{chip.type || '????'}</td>
-      <td>{formatYearWeek(chip)}</td>
-      <td>{chip.label}</td>
-    </tr>
   )
 }

@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import {SgbSubmission, Photo} from '../../crawler';
-import {formatShortYearMonth, formatShortYearWeek} from '../format';
+import {formatShortYearMonth} from '../format';
+import ConsoleListingChip from '../components/ConsoleListingChip';
 
 interface Props {
   submissions: SgbSubmission[];
@@ -43,33 +44,15 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div><aside>{contributor}</aside></div>
       </td>
       <td>
-        <div>{metadata.mainboard && metadata.mainboard.type}</div>
+        <div>{metadata.mainboard.type}</div>
         <div>{formatShortYearMonth(metadata.mainboard)}</div>
       </td>
-      <td>
-        <div>{metadata.mainboard.cpu && metadata.mainboard.cpu.type || '????'}</div>
-        <div>{metadata.mainboard.cpu && formatShortYearWeek(metadata.mainboard.cpu)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.icd2 && metadata.mainboard.icd2.type || '????'}</div>
-        <div>{metadata.mainboard.icd2 && formatShortYearWeek(metadata.mainboard.icd2)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.work_ram && metadata.mainboard.work_ram.type || '????'}</div>
-        <div>{metadata.mainboard.work_ram && formatShortYearWeek(metadata.mainboard.work_ram)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.video_ram && metadata.mainboard.video_ram.type || '????'}</div>
-        <div>{metadata.mainboard.video_ram && formatShortYearWeek(metadata.mainboard.video_ram)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.rom && metadata.mainboard.rom.type || '????'}</div>
-        <div>{metadata.mainboard.rom && formatShortYearWeek(metadata.mainboard.rom)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.cic && metadata.mainboard.cic.type || '????'}</div>
-        <div>{metadata.mainboard.cic && formatShortYearWeek(metadata.mainboard.cic)}</div>
-      </td>
+      <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.icd2} />
+      <ConsoleListingChip chip={metadata.mainboard.work_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.video_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.rom} />
+      <ConsoleListingChip chip={metadata.mainboard.cic} />
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
         {renderPhoto(slug, 'Back', photos.back)}

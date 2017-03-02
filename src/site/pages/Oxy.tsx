@@ -1,6 +1,8 @@
 import * as React from 'react';
+
 import {OxySubmission, Photo} from '../../crawler';
-import {formatShortYearMonth, formatShortYearWeek} from '../format';
+import {formatShortYearMonth} from '../format';
+import ConsoleListingChip from '../components/ConsoleListingChip';
 
 interface Props {
   submissions: OxySubmission[];
@@ -40,25 +42,13 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div><aside>{contributor}</aside></div>
       </td>
       <td>
-        <div>{metadata.mainboard && metadata.mainboard.type}</div>
+        <div>{metadata.mainboard.type}</div>
         <div>{formatShortYearMonth(metadata.mainboard)}</div>
       </td>
-      <td>
-        <div>{metadata.mainboard.cpu && metadata.mainboard.cpu.type || '????'}</div>
-        <div>{metadata.mainboard.cpu && formatShortYearWeek(metadata.mainboard.cpu)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.u2 && metadata.mainboard.u2.type || '????'}</div>
-        <div>{metadata.mainboard.u2 && formatShortYearWeek(metadata.mainboard.u2)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.u4 && metadata.mainboard.u4.type || '????'}</div>
-        <div>{metadata.mainboard.u4 && formatShortYearWeek(metadata.mainboard.u4)}</div>
-      </td>
-      <td>
-        <div>{metadata.mainboard.u5 && metadata.mainboard.u5.type || '????'}</div>
-        <div>{metadata.mainboard.u5 && formatShortYearWeek(metadata.mainboard.u5)}</div>
-      </td>
+      <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.u2} />
+      <ConsoleListingChip chip={metadata.mainboard.u4} />
+      <ConsoleListingChip chip={metadata.mainboard.u5} />
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
         {renderPhoto(slug, 'Back', photos.back)}

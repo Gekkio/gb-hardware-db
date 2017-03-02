@@ -1,8 +1,10 @@
 import * as React from 'react';
+import * as R from 'ramda';
 
 import {Photo, SgbSubmission} from '../../crawler';
-import {Chip, SgbMetadata} from '../../metadata';
-import {formatYearMonth, formatYearWeek} from '../format';
+import {SgbMetadata} from '../../metadata';
+import {formatYearMonth, formatOptional} from '../format';
+import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function SgbConsole({submission}: {submission: SgbSubmission}) {
   return (
@@ -14,7 +16,7 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
       </div>
       <dl>
         <dt>Stamp on case</dt>
-        <dd>{submission.metadata.stamp || '??'}</dd>
+        <dd>{formatOptional(R.identity, submission.metadata.stamp)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-sgb-console__photo">
@@ -27,9 +29,9 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
         <dt>Manufacture date</dt>
         <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{submission.metadata.mainboard.circled_letters || '??'}</dd>
+        <dd>{formatOptional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
         <dt>Letter at top right</dt>
-        <dd>{submission.metadata.mainboard.letter_at_top_right || '?'}</dd>
+        <dd>{formatOptional(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}
@@ -59,27 +61,12 @@ function renderChips({mainboard}: SgbMetadata) {
         <th>Date</th>
         <th>Label</th>
       </tr>
-      {renderChip('U1', 'CPU', mainboard.cpu)}
-      {renderChip('U2', 'ICD2', mainboard.icd2)}
-      {renderChip('U3', 'Work RAM', mainboard.work_ram)}
-      {renderChip('U4', 'Video RAM', mainboard.video_ram)}
-      {renderChip('U5', 'ROM', mainboard.rom)}
-      {renderChip('U6', 'CIC', mainboard.cic)}
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U2" title="ICD2" chip={mainboard.icd2} />
+      <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
+      <ConsolePageChip designator="U4" title="Work RAM" chip={mainboard.video_ram} />
+      <ConsolePageChip designator="U5" title="ROM" chip={mainboard.rom} />
+      <ConsolePageChip designator="U6" title="CIC" chip={mainboard.cic} />
     </table>
-  )
-}
-
-function renderChip(designator: string, title: string, chip: Chip | undefined) {
-  if (!chip) {
-    return null;
-  }
-  return (
-    <tr>
-      <td>{designator}</td>
-      <td>{title}</td>
-      <td>{chip.type || '????'}</td>
-      <td>{formatYearWeek(chip)}</td>
-      <td>{chip.label}</td>
-    </tr>
   )
 }

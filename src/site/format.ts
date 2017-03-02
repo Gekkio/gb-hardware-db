@@ -14,3 +14,12 @@ export function formatYearMonth<T extends {year?: number, month?: number}>({year
   const monthName = (month && humanDate.monthName(month)) || '??';
   return `${monthName}/${year || '????'}`;
 }
+export function formatOptional<T>(f: (value: T) => string, value?: T): string {
+  if (value === undefined) {
+    return '????'
+  } else if (value === null) {
+    return '-'
+  } else {
+    return f(value)
+  }
+}

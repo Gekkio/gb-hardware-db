@@ -9,7 +9,7 @@ import ConsolePageChip from '../components/ConsolePageChip';
 export default function SgbConsole({submission}: {submission: SgbSubmission}) {
   return (
     <article className="page-sgb-console">
-      <h2>{`SGB: ${submission.title}`}</h2>
+      <h2>{`SGB: ${submission.title} [${submission.contributor}]`}</h2>
       <div className="page-sgb-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}

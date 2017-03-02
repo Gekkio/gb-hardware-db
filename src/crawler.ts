@@ -130,7 +130,7 @@ function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema): T 
 }
 
 function crawlSGB(contributor: string, unit: FsEntry, metadata: SgbMetadata): SgbSubmission {
-  const title = `Console #${unit.name} [${contributor}]`;
+  const title = `Submission #${unit.name}`;
   const slug = urlSlug(`${contributor}-${unit.name}`);
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),
@@ -143,7 +143,7 @@ function crawlSGB(contributor: string, unit: FsEntry, metadata: SgbMetadata): Sg
 }
 
 function crawlSGB2(contributor: string, unit: FsEntry, metadata: Sgb2Metadata): Sgb2Submission {
-  const title = `Console #${unit.name} [${contributor}]`;
+  const title = `Submission #${unit.name}`;
   const slug = urlSlug(`${contributor}-${unit.name}`);
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),
@@ -156,7 +156,7 @@ function crawlSGB2(contributor: string, unit: FsEntry, metadata: Sgb2Metadata): 
 }
 
 function crawlOXY(contributor: string, unit: FsEntry, metadata: OxyMetadata): OxySubmission {
-  const title = `${unit.name} [${contributor}]`;
+  const title = unit.name;
   const slug = unit.name;
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),

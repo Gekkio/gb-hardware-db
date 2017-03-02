@@ -35,11 +35,12 @@ export default function Sgb({submissions}: Props) {
   )
 }
 
-function Submission({submission: {slug, title, metadata, photos}}: {submission: SgbSubmission}) {
+function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: SgbSubmission}) {
   return (
     <tr>
       <td>
-        <a href={`/consoles/sgb/${slug}.html`}>{title}</a>
+        <div><a href={`/consoles/sgb/${slug}.html`}>{title}</a></div>
+        <div><aside>{contributor}</aside></div>
       </td>
       <td>
         <div>{metadata.mainboard && metadata.mainboard.type}</div>

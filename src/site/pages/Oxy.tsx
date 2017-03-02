@@ -32,11 +32,12 @@ export default function Oxy({submissions}: Props) {
   )
 }
 
-function Submission({submission: {slug, title, metadata, photos}}: {submission: OxySubmission}) {
+function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: OxySubmission}) {
   return (
     <tr>
       <td>
-        <a href={`/consoles/oxy/${slug}.html`}>{title}</a>
+        <div><a href={`/consoles/oxy/${slug}.html`}>{title}</a></div>
+        <div><aside>{contributor}</aside></div>
       </td>
       <td>
         <div>{metadata.mainboard && metadata.mainboard.type}</div>

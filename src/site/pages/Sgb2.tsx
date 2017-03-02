@@ -36,11 +36,12 @@ export default function Sgb2({submissions}: Props) {
   )
 }
 
-function Submission({submission: {slug, title, metadata, photos}}: {submission: Sgb2Submission}) {
+function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: Sgb2Submission}) {
   return (
     <tr>
       <td>
-        <a href={`/consoles/sgb2/${slug}.html`}>{title}</a>
+        <div><a href={`/consoles/sgb2/${slug}.html`}>{title}</a></div>
+        <div><aside>{contributor}</aside></div>
       </td>
       <td>
         <div>{metadata.mainboard && metadata.mainboard.type}</div>

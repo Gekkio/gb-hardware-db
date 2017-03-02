@@ -1,0 +1,48 @@
+{
+  "type": "SGB2",
+  "stamp": "07",
+  "mainboard": {
+    "type": "SHVC-SGB2-01",
+    "circled_letters": "I",
+    "letter_at_top_right": "A",
+    "year": 1998,
+    "month": 1,
+    "cpu": {
+      "type": "CPU SGB2",
+      "label": "CPU SGB2 9806 3 E",
+      "year": 1998,
+      "week": 6
+    },
+    "icd2": {
+      "type": "ICD2-R",
+      "label": "ICD2-R 9803EX003 D93128",
+      "year": 1998,
+      "week": 3
+    },
+    "work_ram": {
+      "type": "LH5164AN-10L",
+      "label": "LH5164AN-10L 9806 1 EB",
+      "year": 1998,
+      "week": 6
+    },
+    "rom": {
+      "type": "SYS-SGB2-10",
+      "label": "SYS-SGB2-10 M534011E-05 8012354"
+    },
+    "cic": {
+      "type": "F411B",
+      "label": "F411B 9802 C",
+      "year": 1998,
+      "week": 2
+    },
+    "crystal": {
+      "label": "KSS20V 8A",
+      "year": 1998
+    },
+    "coil": {
+      "type": "ZJY",
+      "label": "TDK ZJY-M4A N",
+      "year": 1994
+    }
+  }
+}

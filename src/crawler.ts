@@ -4,7 +4,7 @@ import * as Joi from 'joi';
 import * as R from 'ramda';
 import * as urlSlug from 'url-slug';
 
-import {Metadata, SgbMetadata, OxyMetadata} from './metadata';
+import {Metadata, SgbMetadata, OxyMetadata, Sgb2Metadata} from './metadata';
 
 export interface FsEntry {
   absolutePath: string;
@@ -28,7 +28,7 @@ function directories(basePath: string): FsEntry[] {
     .filter(({stats}) => stats.isDirectory());
 }
 
-export type Submission = OxySubmission | SgbSubmission;
+export type Submission = OxySubmission | SgbSubmission | Sgb2Submission;
 
 export interface Photo {
   path: string;
@@ -63,6 +63,20 @@ export interface SgbSubmission {
   };
 }
 
+export interface Sgb2Submission {
+  type: 'sgb2';
+  title: string;
+  slug: string;
+  contributor: string;
+  metadata: Sgb2Metadata;
+  photos: {
+    front?: Photo;
+    back?: Photo;
+    pcbFront?: Photo;
+    pcbBack?: Photo;
+  };
+}
+
 export function crawlDataDirectory(path: string): Submission[] {
   const submissions: Submission[] = [];
   directories(path).forEach(contributor => {
@@ -74,6 +88,13 @@ export function crawlDataDirectory(path: string): Submission[] {
             const metadata = readMetadata<SgbMetadata>(unit, SgbMetadata.schema);
             if (metadata) {
               submission = crawlSGB(contributor.name, unit, metadata);
+            }
+            break;
+          }
+          case 'SGB2': {
+            const metadata = readMetadata<Sgb2Metadata>(unit, Sgb2Metadata.schema);
+            if (metadata) {
+              submission = crawlSGB2(contributor.name, unit, metadata);
             }
             break;
           }
@@ -119,6 +140,19 @@ function crawlSGB(contributor: string, unit: FsEntry, metadata: SgbMetadata): Sg
   };
 
   return {type: 'sgb', title, slug, contributor, metadata, photos};
+}
+
+function crawlSGB2(contributor: string, unit: FsEntry, metadata: Sgb2Metadata): Sgb2Submission {
+  const title = `Console #${unit.name} [${contributor}]`;
+  const slug = urlSlug(`${contributor}-${unit.name}`);
+  const photos = {
+    front: fetchPhoto(unit, '01_front.jpg'),
+    back: fetchPhoto(unit, '02_back.jpg'),
+    pcbFront: fetchPhoto(unit, '03_pcb_front.jpg'),
+    pcbBack: fetchPhoto(unit, '04_pcb_back.jpg'),
+  };
+
+  return {type: 'sgb2', title, slug, contributor, metadata, photos};
 }
 
 function crawlOXY(contributor: string, unit: FsEntry, metadata: OxyMetadata): OxySubmission {

@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import Home from './pages/Home';
 import Contribute from './pages/Contribute';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
+import Sgb2 from './pages/Sgb2';
+import Sgb2Console from './pages/Sgb2Console';
 import Oxy from './pages/Oxy';
 import OxyConsole from './pages/OxyConsole';
 import SiteFooter from './components/SiteFooter';
@@ -52,6 +55,10 @@ function renderPage(type: string, props: any) {
       return <Sgb {...props} />
     case 'sgb-console':
       return <SgbConsole {...props} />
+    case 'sgb2':
+      return <Sgb2 {...props} />
+    case 'sgb2-console':
+      return <Sgb2Console {...props} />
     case 'oxy':
       return <Oxy {...props} />
     case 'oxy-console':

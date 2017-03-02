@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
 import Site from './site/Site';
-import {Photo, crawlDataDirectory, SgbSubmission, OxySubmission} from './crawler';
+import {Photo, crawlDataDirectory, SgbSubmission, OxySubmission, Sgb2Submission} from './crawler';
 
 interface PageDeclaration {
   type: string;
@@ -25,6 +25,9 @@ function resolvePages(): PageDeclaration[] {
     {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
       submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]
     }},
+    {type: 'sgb2', path: ['consoles', 'sgb2', 'index'], title: 'Super Game Boy 2 (SGB2)', props: {
+      submissions: submissions.filter(x => x.type === 'sgb2') as Sgb2Submission[]
+    }},
     {type: 'oxy', path: ['consoles', 'oxy', 'index'], title: 'Game Boy Micro (OXY)', props: {
       submissions: submissions.filter(x => x.type === 'oxy') as OxySubmission[]
     }}
@@ -35,6 +38,13 @@ function resolvePages(): PageDeclaration[] {
         type: 'sgb-console',
         path: ['consoles', 'sgb', submission.slug],
         title: `SGB: ${submission.title}`,
+        props: {submission}
+      });
+    } else if (submission.type === 'sgb2') {
+      pages.push({
+        type: 'sgb2-console',
+        path: ['consoles', 'sgb2', submission.slug],
+        title: `SGB2: ${submission.title}`,
         props: {submission}
       });
     } else if (submission.type === 'oxy') {

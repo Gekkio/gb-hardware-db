@@ -94,3 +94,44 @@ export namespace SgbMetadata {
     })
   });
 }
+
+export interface Sgb2Metadata extends Metadata {
+  type: "SGB2";
+  stamp?: string;
+  mainboard: {
+    type: string;
+    circled_letters?: string;
+    letter_at_top_right?: string;
+    crystal?: Chip;
+    cpu?: Chip;
+    icd2?: Chip;
+    work_ram?: Chip;
+    rom?: Chip;
+    cic?: Chip;
+    coil?: Chip;
+    year?: number;
+    month?: number;
+  };
+}
+
+export namespace Sgb2Metadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    stamp: Joi.string(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      letter_at_top_right: Joi.string(),
+      crystal: Chip.schema,
+      cpu: Chip.schema,
+      icd2: Chip.schema,
+      work_ram: Chip.schema,
+      rom: Chip.schema,
+      cic: Chip.schema,
+      coil: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number()
+    })
+  });
+}
+

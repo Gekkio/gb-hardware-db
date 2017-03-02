@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-import {SgbSubmission, Photo} from '../../crawler';
+import {Photo, Sgb2Submission} from '../../crawler';
 import {formatShortYearMonth, formatShortYearWeek} from '../format';
 
 interface Props {
-  submissions: SgbSubmission[];
+  submissions: Sgb2Submission[];
 }
 
-export default function Sgb({submissions}: Props) {
+export default function Sgb2({submissions}: Props) {
   return (
     <article>
-      <h2>Super Game Boy (SGB)</h2>
+      <h2>Super Game Boy 2 (SGB2)</h2>
       <table>
         <thead>
           <tr>
@@ -19,9 +19,10 @@ export default function Sgb({submissions}: Props) {
             <th>CPU (U1)</th>
             <th>ICD2 (U2)</th>
             <th>WRAM (U3)</th>
-            <th>VRAM (U4)</th>
-            <th>ROM (U5)</th>
-            <th>CIC (U6)</th>
+            <th>ROM (U4)</th>
+            <th>CIC (U5)</th>
+            <th>Crystal (XTAL1)</th>
+            <th>Coil (COIL1)</th>
             <th>Photos</th>
           </tr>
         </thead>
@@ -35,11 +36,11 @@ export default function Sgb({submissions}: Props) {
   )
 }
 
-function Submission({submission: {slug, title, metadata, photos}}: {submission: SgbSubmission}) {
+function Submission({submission: {slug, title, metadata, photos}}: {submission: Sgb2Submission}) {
   return (
     <tr>
       <td>
-        <a href={`/consoles/sgb/${slug}.html`}>{title}</a>
+        <a href={`/consoles/sgb2/${slug}.html`}>{title}</a>
       </td>
       <td>
         <div>{metadata.mainboard && metadata.mainboard.type}</div>
@@ -58,16 +59,20 @@ function Submission({submission: {slug, title, metadata, photos}}: {submission: 
         <div>{metadata.mainboard.work_ram && formatShortYearWeek(metadata.mainboard.work_ram)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.video_ram && metadata.mainboard.video_ram.type || '????'}</div>
-        <div>{metadata.mainboard.video_ram && formatShortYearWeek(metadata.mainboard.video_ram)}</div>
-      </td>
-      <td>
         <div>{metadata.mainboard.rom && metadata.mainboard.rom.type || '????'}</div>
         <div>{metadata.mainboard.rom && formatShortYearWeek(metadata.mainboard.rom)}</div>
       </td>
       <td>
         <div>{metadata.mainboard.cic && metadata.mainboard.cic.type || '????'}</div>
         <div>{metadata.mainboard.cic && formatShortYearWeek(metadata.mainboard.cic)}</div>
+      </td>
+      <td>
+        <div>{metadata.mainboard.crystal && metadata.mainboard.crystal.type || '????'}</div>
+        <div>{metadata.mainboard.crystal && formatShortYearWeek(metadata.mainboard.crystal)}</div>
+      </td>
+      <td>
+        <div>{metadata.mainboard.coil && metadata.mainboard.coil.type || '????'}</div>
+        <div>{metadata.mainboard.coil && formatShortYearWeek(metadata.mainboard.coil)}</div>
       </td>
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
@@ -85,7 +90,7 @@ function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
   }
   return (
     <div>
-      <a href={`/static/sgb/${slug}_${photo.name}`}>{label}</a>
+      <a href={`/static/sgb2/${slug}_${photo.name}`}>{label}</a>
     </div>
   )
 }

@@ -21,6 +21,9 @@ function resolvePages(): PageDeclaration[] {
   const pages: PageDeclaration[] = [
     {type: 'index', title: 'Home', props: {}},
     {type: 'contribute', path: ['contribute', 'index'], title: 'Contribute', props: {}},
+    {type: 'contribute-sgb', path: ['contribute', 'sgb'], title: 'Super Game Boy (SGB) contribution instructions', props: {}},
+    {type: 'contribute-sgb2', path: ['contribute', 'sgb2'], title: 'Super Game Boy 2 (SGB2) contribution instructions', props: {}},
+    {type: 'contribute-oxy', path: ['contribute', 'oxy'], title: 'Game Boy Micro (OXY) contribution instructions', props: {}},
     {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
     {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
       submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]

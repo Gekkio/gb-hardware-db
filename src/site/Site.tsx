@@ -2,6 +2,9 @@ import * as React from 'react';
 
 import Home from './pages/Home';
 import Contribute from './pages/Contribute';
+import ContributeSgb from './pages/ContributeSgb';
+import ContributeSgb2 from './pages/ContributeSgb2';
+import ContributeOxy from './pages/ContributeOxy';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
 import Sgb2 from './pages/Sgb2';
@@ -51,6 +54,12 @@ function renderPage(type: string, props: any) {
       return <Home {...props} />
     case 'contribute':
       return <Contribute {...props} />
+    case 'contribute-sgb':
+      return <ContributeSgb {...props} />
+    case 'contribute-sgb2':
+      return <ContributeSgb2 {...props} />
+    case 'contribute-oxy':
+      return <ContributeOxy {...props} />
     case 'sgb':
       return <Sgb {...props} />
     case 'sgb-console':

@@ -1,23 +1,23 @@
 import * as React from 'react';
 
-import {Photo, SgbSubmission} from '../../crawler';
-import {Chip, SgbMetadata} from '../../metadata';
+import {Photo, OxySubmission} from '../../crawler';
+import {Chip, OxyMetadata} from '../../metadata';
 import {formatYearMonth, formatYearWeek} from '../format';
 
-export default function SgbConsole({submission}: {submission: SgbSubmission}) {
+export default function OxyConsole({submission}: {submission: OxySubmission}) {
   return (
-    <article className="page-sgb-console">
-      <h2>{`SGB: ${submission.title}`}</h2>
-      <div className="page-sgb-console__photo">
+    <article className="page-oxy-console">
+      <h2>{`OXY: ${submission.title}`}</h2>
+      <div className="page-oxy-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
       <dl>
-        <dt>Stamp on case</dt>
-        <dd>{submission.metadata.stamp || '??'}</dd>
+        <dt>Color</dt>
+        <dd>{submission.metadata.color || '????'}</dd>
       </dl>
       <h3>Mainboard</h3>
-      <div className="page-sgb-console__photo">
+      <div className="page-oxy-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>
@@ -26,8 +26,6 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
         <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
         <dd>{submission.metadata.mainboard.circled_letters || '??'}</dd>
-        <dt>Letter at top right</dt>
-        <dd>{submission.metadata.mainboard.letter_at_top_right || '?'}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}
@@ -35,11 +33,11 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
   )
 }
 
-function renderPhoto(submission: SgbSubmission, photo: Photo | undefined) {
+function renderPhoto(submission: OxySubmission, photo: Photo | undefined) {
   if (!photo) {
     return null;
   }
-  const url = `/static/sgb/${submission.slug}_${photo.name}`
+  const url = `/static/oxy/${submission.slug}_${photo.name}`
   return (
     <a href={url}>
       <img src={url} />
@@ -47,7 +45,7 @@ function renderPhoto(submission: SgbSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard}: SgbMetadata) {
+function renderChips({mainboard}: OxyMetadata) {
   return (
     <table>
       <tr>
@@ -58,11 +56,9 @@ function renderChips({mainboard}: SgbMetadata) {
         <th>Label</th>
       </tr>
       {renderChip('U1', 'CPU', mainboard.cpu)}
-      {renderChip('U2', 'ICD2', mainboard.icd2)}
-      {renderChip('U3', 'Work RAM', mainboard.work_ram)}
-      {renderChip('U4', 'Video RAM', mainboard.video_ram)}
-      {renderChip('U5', 'ROM', mainboard.rom)}
-      {renderChip('U6', 'CIC', mainboard.cic)}
+      {renderChip('U2', '', mainboard.u2)}
+      {renderChip('U4', '', mainboard.u4)}
+      {renderChip('U5', '', mainboard.u5)}
     </table>
   )
 }

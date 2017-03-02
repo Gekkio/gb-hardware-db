@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import Contribute from './pages/Contribute';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
+import Oxy from './pages/Oxy';
+import OxyConsole from './pages/OxyConsole';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 
@@ -50,6 +52,10 @@ function renderPage(type: string, props: any) {
       return <Sgb {...props} />
     case 'sgb-console':
       return <SgbConsole {...props} />
+    case 'oxy':
+      return <Oxy {...props} />
+    case 'oxy-console':
+      return <OxyConsole {...props} />
     default:
       return null;
   }

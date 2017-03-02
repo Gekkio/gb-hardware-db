@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 
 import Site from './site/Site';
-import {Photo, crawlDataDirectory, SgbSubmission} from './crawler';
+import {Photo, crawlDataDirectory, SgbSubmission, OxySubmission} from './crawler';
 
 interface PageDeclaration {
   type: string;
@@ -24,6 +24,9 @@ function resolvePages(): PageDeclaration[] {
     {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
     {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
       submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]
+    }},
+    {type: 'oxy', path: ['consoles', 'oxy', 'index'], title: 'Game Boy Micro (OXY)', props: {
+      submissions: submissions.filter(x => x.type === 'oxy') as OxySubmission[]
     }}
   ]
   submissions.forEach(submission => {
@@ -32,6 +35,13 @@ function resolvePages(): PageDeclaration[] {
         type: 'sgb-console',
         path: ['consoles', 'sgb', submission.slug],
         title: `SGB: ${submission.title}`,
+        props: {submission}
+      });
+    } else if (submission.type === 'oxy') {
+      pages.push({
+        type: 'oxy-console',
+        path: ['consoles', 'oxy', submission.slug],
+        title: `OXY: ${submission.title}`,
         props: {submission}
       });
     }
@@ -47,6 +57,20 @@ submissions.forEach(submission => {
     }
 
     const targetDirectory = path.resolve('build', 'site', 'static', 'sgb');
+    fs.ensureDirSync(targetDirectory);
+
+    photos.forEach(photo => {
+      const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
+      fs.copySync(photo.path, target, {preserveTimestamps: true});
+      console.log(`Copied ${target}`);
+    })
+  } else if (submission.type === 'oxy') {
+    const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
+    if (photos.length === 0) {
+      return;
+    }
+
+    const targetDirectory = path.resolve('build', 'site', 'static', 'oxy');
     fs.ensureDirSync(targetDirectory);
 
     photos.forEach(photo => {

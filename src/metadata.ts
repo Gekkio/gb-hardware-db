@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 
 export interface Chip {
-  type: string;
+  type?: string;
   label: string;
   manufacturer?: string;
   year?: number;
@@ -11,7 +11,7 @@ export interface Chip {
 
 export namespace Chip {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string(),
     label: Joi.string().required(),
     manufacturer: Joi.string(),
     year: Joi.number(),
@@ -23,6 +23,38 @@ export namespace Chip {
 export interface Metadata {
   serial: string;
   type: string;
+}
+
+export interface OxyMetadata extends Metadata {
+  type: "OXY";
+  color?: string;
+  mainboard: {
+    type: string;
+    circled_letters?: string;
+    cpu?: Chip;
+    u2?: Chip;
+    u4?: Chip;
+    u5?: Chip;
+    year?: number;
+    month?: number;
+  };
+}
+
+export namespace OxyMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    color: Joi.string(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      cpu: Chip.schema,
+      u2: Chip.schema,
+      u4: Chip.schema,
+      u5: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number()
+    })
+  });
 }
 
 export interface SgbMetadata extends Metadata {

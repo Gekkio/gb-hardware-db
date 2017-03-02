@@ -45,27 +45,27 @@ function Submission({submission: {slug, title, metadata, photos}}: {submission: 
         <div>{formatShortYearMonth(metadata.mainboard)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.cpu && metadata.mainboard.cpu.type}</div>
+        <div>{metadata.mainboard.cpu && metadata.mainboard.cpu.type || '????'}</div>
         <div>{metadata.mainboard.cpu && formatShortYearWeek(metadata.mainboard.cpu)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.icd2 && metadata.mainboard.icd2.type}</div>
+        <div>{metadata.mainboard.icd2 && metadata.mainboard.icd2.type || '????'}</div>
         <div>{metadata.mainboard.icd2 && formatShortYearWeek(metadata.mainboard.icd2)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.work_ram && metadata.mainboard.work_ram.type}</div>
+        <div>{metadata.mainboard.work_ram && metadata.mainboard.work_ram.type || '????'}</div>
         <div>{metadata.mainboard.work_ram && formatShortYearWeek(metadata.mainboard.work_ram)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.video_ram && metadata.mainboard.video_ram.type}</div>
+        <div>{metadata.mainboard.video_ram && metadata.mainboard.video_ram.type || '????'}</div>
         <div>{metadata.mainboard.video_ram && formatShortYearWeek(metadata.mainboard.video_ram)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.rom && metadata.mainboard.rom.type}</div>
+        <div>{metadata.mainboard.rom && metadata.mainboard.rom.type || '????'}</div>
         <div>{metadata.mainboard.rom && formatShortYearWeek(metadata.mainboard.rom)}</div>
       </td>
       <td>
-        <div>{metadata.mainboard.cic && metadata.mainboard.cic.type}</div>
+        <div>{metadata.mainboard.cic && metadata.mainboard.cic.type || '????'}</div>
         <div>{metadata.mainboard.cic && formatShortYearWeek(metadata.mainboard.cic)}</div>
       </td>
       <td>

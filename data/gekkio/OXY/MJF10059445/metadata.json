@@ -1,0 +1,30 @@
+{
+  "type": "OXY",
+  "color": "purple",
+  "mainboard": {
+    "type": "OXY-CPU-01",
+    "circled_letters": "SH",
+    "cpu": {
+      "type": "CPU AGB E",
+      "label": "CPU AGB E 0525 2m",
+      "year": 2005,
+      "week": 25
+    },
+    "u2": {
+      "label": "Mitsumi 515 E PM C",
+      "year": 2005,
+      "week": 15
+    },
+    "u4": {
+      "label": "AKV 517",
+      "year": 2005,
+      "week": 17
+    },
+    "u5": {
+      "type": "CP6465",
+      "label": "CP6465 B 02 KOR0519 621982",
+      "year": 2005,
+      "week": 19
+    }
+  }
+}

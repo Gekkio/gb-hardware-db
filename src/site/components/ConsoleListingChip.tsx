@@ -1,3 +1,4 @@
+import * as classnames from 'classnames';
 import * as R from 'ramda';
 import * as React from 'react';
 
@@ -14,8 +15,9 @@ export default function ConsoleListingChip({chip}: Props) {
   } else if (chip === null) {
     return <td>-</td>
   }
+  const classes = classnames('console-listing-chip', {'console-listing-chip--outlier': !!chip.outlier});
   return (
-    <td>
+    <td className={classes}>
       <div>{formatOptional(R.identity, chip.type)}</div>
       <div>{formatShortYearWeek(chip)}</div>
     </td>

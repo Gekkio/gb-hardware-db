@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import {Chip} from '../../metadata';
 import {formatYearWeek, formatOptional} from '../format';
+import * as classnames from 'classnames';
 
 interface Props {
   designator: string;
@@ -11,8 +12,9 @@ interface Props {
 }
 
 export default function ConsolePageChip({designator, title, chip}: Props) {
+  const classes = classnames('console-page-chip', {'console-page-chip--outlier': !!(chip && chip.outlier)});
   return (
-    <tr>
+    <tr className={classes}>
       <td>{designator}</td>
       <td>{title}</td>
       <td>{formatOptional(R.identity, chip && chip.type)}</td>

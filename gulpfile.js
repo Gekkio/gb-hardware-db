@@ -31,7 +31,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('html', ['scripts'], function(cb) {
-  exec('node build/builder.js', function(err, stdout, stderr) {
+  exec('node build/builder/builder.js', function(err, stdout, stderr) {
     if (stdout) {
       console.log(stdout);
     }

@@ -1,14 +1,15 @@
 import 'source-map-support/register';
 import * as Bluebird from 'bluebird';
-import * as fs from 'fs-extra';
-import * as jimp from 'jimp';
-import * as path from 'path';
 import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
+import * as fs from 'fs-extra';
+import * as path from 'path';
+import * as winston from 'winston';
 
-import Site from './site/Site';
-import {Photo, crawlDataDirectory, SgbSubmission, OxySubmission, Sgb2Submission} from './crawler';
+import Site from '../site/Site';
+import {crawlDataDirectory, SgbSubmission, OxySubmission, Sgb2Submission} from '../crawler';
+import processPhotos from './processPhotos';
 
 interface PageDeclaration {
   type: string;
@@ -68,65 +69,7 @@ const copy: (src: string, dst: string, opts: fs.CopyOptions) => Bluebird<{}> = B
 const ensureDir: (path: string) => Bluebird<{}> = Bluebird.promisify(fs.ensureDir) as any;
 const outputFile: (file: string, data: any) => Bluebird<{}> = Bluebird.promisify(fs.outputFile) as any;
 
-function processPhotos(): Bluebird<any> {
-  return Bluebird.all<any>(submissions.map(submission => {
-    if (submission.type === 'sgb') {
-      const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
-      if (photos.length === 0) {
-        return Bluebird.resolve();
-      }
-
-      const targetDirectory = path.resolve('build', 'site', 'static', 'sgb');
-      return ensureDir(targetDirectory)
-        .then(() => Bluebird.all(photos.map(photo => {
-          const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
-          return copy(photo.path, target, {preserveTimestamps: true})
-            .tap(() => console.log(`Copied ${target}`))
-        })))
-        .then(() => {
-          if (!submission.photos.front) {
-            return Bluebird.resolve();
-          }
-          const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_80.jpg`);
-          return Bluebird.resolve(jimp.read(submission.photos.front.path))
-            .then(image => {
-              image
-                .contain(80, 80)
-                .background(0xFFFFFFFF)
-                .write(target);
-              console.info(`Wrote ${target}`);
-            })
-        })
-        .then(() => {
-          if (!submission.photos.front) {
-            return Bluebird.resolve();
-          }
-          const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_50.jpg`);
-          return Bluebird.resolve(jimp.read(submission.photos.front.path))
-            .then(image => {
-              image
-                .contain(50, 50)
-                .background(0xFFFFFFFF)
-                .write(target);
-              console.info(`Wrote ${target}`);
-            })
-        })
-    } else if (submission.type === 'oxy') {
-      const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
-      if (photos.length === 0) {
-        return Bluebird.resolve();
-      }
-
-      const targetDirectory = path.resolve('build', 'site', 'static', 'oxy');
-      return ensureDir(targetDirectory)
-        .then(() => Bluebird.all(photos.map(photo => {
-          const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
-          return copy(photo.path, target, {preserveTimestamps: true})
-            .tap(() => console.log(`Copied ${target}`))
-        })));
-    }
-  }))
-}
+const photosPromise = Bluebird.all(submissions.map(processPhotos))
 
 function processPages(): Bluebird<any> {
   return Bluebird.all(resolvePages().map(page => {
@@ -149,7 +92,7 @@ function processPages(): Bluebird<any> {
   }));
 }
 
-Bluebird.all([processPhotos(), processPages()])
+Bluebird.all([photosPromise, processPages()])
   .then(() => {
     console.info('All done :)');
     return null

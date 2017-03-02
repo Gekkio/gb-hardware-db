@@ -38,12 +38,12 @@
     "crystal": {
       "type": "KSS20V",
       "label": "KSS20V 8A",
-      "year": 1998
+      "year": 1998,
+      "month": 1
     },
     "coil": {
       "type": "ZJY",
-      "label": "TDK ZJY-M4A N",
-      "year": 1994
+      "label": "TDK ZJY-M4A N"
     }
   }
 }

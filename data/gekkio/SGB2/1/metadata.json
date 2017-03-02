@@ -40,12 +40,12 @@
     "crystal": {
       "type": "D209A8",
       "label": "D209A8",
-      "year": 1998
+      "year": 1998,
+      "month": 1
     },
     "coil": {
       "type": "ZJY",
-      "label": "TDK ZJY-M4A L",
-      "year": 1994
+      "label": "TDK ZJY-M4A L"
     }
   }
 }

@@ -41,8 +41,12 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
   return (
     <tr>
       <td>
-        <div><a href={`/consoles/sgb2/${slug}.html`}>{title}</a></div>
-        <div><aside>{contributor}</aside></div>
+        <div className="submission-list-item--id">
+          <div><a href={`/consoles/sgb2/${slug}.html`}>{title}</a></div>
+          <div><aside>{contributor}</aside></div>
+        </div>
+        <div className="submission-list-item--photo">
+        </div>
       </td>
       <td>
         <div>{metadata.mainboard.type}</div>

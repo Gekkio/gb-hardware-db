@@ -3,7 +3,7 @@ import * as R from 'ramda';
 
 import {Photo, SgbSubmission} from '../../crawler';
 import {SgbMetadata} from '../../metadata';
-import {formatYearMonth, formatOptional} from '../format';
+import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function SgbConsole({submission}: {submission: SgbSubmission}) {
@@ -16,7 +16,7 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
       </div>
       <dl>
         <dt>Stamp on case</dt>
-        <dd>{formatOptional(R.identity, submission.metadata.stamp)}</dd>
+        <dd>{format.optional(R.identity, submission.metadata.stamp)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-sgb-console__photo">
@@ -27,11 +27,11 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
         <dt>Board type</dt>
         <dd>{submission.metadata.mainboard.type}</dd>
         <dt>Manufacture date</dt>
-        <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
+        <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{formatOptional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
         <dt>Letter at top right</dt>
-        <dd>{formatOptional(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
+        <dd>{format.optional(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}

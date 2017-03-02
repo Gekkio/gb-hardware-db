@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import {Photo, OxySubmission} from '../../crawler';
 import {OxyMetadata} from '../../metadata';
-import {formatYearMonth, formatOptional} from '../format';
+import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function OxyConsole({submission}: {submission: OxySubmission}) {
@@ -16,7 +16,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
       </div>
       <dl>
         <dt>Color</dt>
-        <dd>{formatOptional(R.identity, submission.metadata.color)}</dd>
+        <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-oxy-console__photo">
@@ -25,9 +25,9 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
       </div>
       <dl>
         <dt>Manufacture date</dt>
-        <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
+        <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{formatOptional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}

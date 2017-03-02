@@ -1,11 +1,15 @@
 import * as Joi from 'joi';
 
-export interface Chip {
+export interface Calendar {
+  year?: number;
+  month?: number;
+  week?: number;
+}
+
+export interface Chip extends Calendar {
   type?: string;
   label: string;
   manufacturer?: string;
-  year?: number;
-  week?: number;
   outlier?: boolean;
 }
 
@@ -15,6 +19,7 @@ export namespace Chip {
     label: Joi.string().required(),
     manufacturer: Joi.string(),
     year: Joi.number(),
+    month: Joi.number(),
     week: Joi.number(),
     outlier: Joi.boolean()
   });

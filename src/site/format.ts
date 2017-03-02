@@ -1,20 +1,34 @@
 import * as humanDate from 'human-date';
 
-export function formatShortYearWeek<T extends {year?: number, week?: number}>({year, week}: T): string {
-  return `${week || '??'}/${year || '????'}`
+import {Calendar} from '../metadata';
+
+export namespace short {
+  export function calendar<T extends Calendar>({year, month, week}: T): string {
+    let prefix;
+    if (month) {
+      prefix = (humanDate.monthName(month).substring(0, 3));
+    } else if (week) {
+      prefix = String(week)
+    }
+
+    const yearStr = (year && String(year)) || '????';
+    return (prefix) ? `${prefix}/${yearStr}` : yearStr;
+  }
 }
-export function formatYearWeek<T extends {year?: number, week?: number}>({year, week}: T): string {
-  return `Week ${week || '??'}/${year || '????'}`
+
+export function calendar<T extends Calendar>({year, month, week}: T): string {
+  let prefix;
+  if (month) {
+    prefix = humanDate.monthName(month);
+  } else if (week) {
+    prefix = `Week ${week}`;
+  }
+
+  const yearStr = (year && String(year)) || '????';
+  return (prefix) ? `${prefix}/${yearStr}` : yearStr;
 }
-export function formatShortYearMonth<T extends {year?: number, month?: number}>({year, month}: T): string {
-  const monthName = (month && humanDate.monthName(month).substring(0, 3)) || '??';
-  return `${monthName}/${year || '????'}`;
-}
-export function formatYearMonth<T extends {year?: number, month?: number}>({year, month}: T): string {
-  const monthName = (month && humanDate.monthName(month)) || '??';
-  return `${monthName}/${year || '????'}`;
-}
-export function formatOptional<T>(f: (value: T) => string, value?: T): string {
+
+export function optional<T>(f: (value: T) => string, value?: T): string {
   if (value === undefined) {
     return '????'
   } else if (value === null) {

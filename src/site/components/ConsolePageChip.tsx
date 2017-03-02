@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import * as React from 'react';
 
 import {Chip} from '../../metadata';
-import {formatYearWeek, formatOptional} from '../format';
+import * as format from '../format';
 import * as classnames from 'classnames';
 
 interface Props {
@@ -17,9 +17,9 @@ export default function ConsolePageChip({designator, title, chip}: Props) {
     <tr className={classes}>
       <td>{designator}</td>
       <td>{title}</td>
-      <td>{formatOptional(R.identity, chip && chip.type)}</td>
-      <td>{formatOptional(formatYearWeek, chip)}</td>
-      <td>{formatOptional(R.identity, chip && chip.label)}</td>
+      <td>{format.optional(R.identity, chip && chip.type)}</td>
+      <td>{format.optional(format.calendar, chip)}</td>
+      <td>{format.optional(R.identity, chip && chip.label)}</td>
     </tr>
   )
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {Photo, Sgb2Submission} from '../../crawler';
-import {formatShortYearMonth} from '../format';
+import * as format from '../format';
 import ConsoleListingChip from '../components/ConsoleListingChip';
 
 interface Props {
@@ -46,7 +46,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
       </td>
       <td>
         <div>{metadata.mainboard.type}</div>
-        <div>{formatShortYearMonth(metadata.mainboard)}</div>
+        <div>{format.short.calendar(metadata.mainboard)}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
       <ConsoleListingChip chip={metadata.mainboard.icd2} />

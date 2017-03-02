@@ -22,6 +22,8 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>
       <dl>
+        <dt>Board type</dt>
+        <dd>{submission.metadata.mainboard.type}</dd>
         <dt>Manufacture date</dt>
         <dd>{formatYearMonth(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>

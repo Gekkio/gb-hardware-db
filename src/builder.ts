@@ -20,7 +20,7 @@ const submissions = crawlDataDirectory('data');
 function resolvePages(): PageDeclaration[] {
   const pages: PageDeclaration[] = [
     {type: 'index', title: 'Home', props: {}},
-    {type: 'contribute', title: 'Contribute', props: {}},
+    {type: 'contribute', path: ['contribute', 'index'], title: 'Contribute', props: {}},
     {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
     {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
       submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]

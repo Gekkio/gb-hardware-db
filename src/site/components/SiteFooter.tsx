@@ -36,7 +36,7 @@ function Stats() {
     <aside className="site-stats">
       {`Last updated: ${humanDate.prettyPrint()}`}
       <br />
-      <a href="/contribute.html">Want to contribute?</a>
+      <a href="/contribute/index.html">Want to contribute?</a>
     </aside>
   );
 }

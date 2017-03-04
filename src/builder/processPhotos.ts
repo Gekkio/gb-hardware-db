@@ -29,8 +29,7 @@ export default function processPhotos<T extends Submission>(submission: T): Blue
     return Bluebird.resolve(jimp.read(thumbnailPhoto.path))
       .then(image => {
         image
-          .contain(size, size)
-          .background(0xFFFFFFFF)
+          .resize(size, jimp.AUTO)
           .write(target);
       })
       .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`));

@@ -82,12 +82,6 @@ tbody > tr:nth-child(even) {
   &__id {
     flex: 0 1 auto;
   }
-  &__title {
-    display: inline-block;
-  }
-  &__contributor {
-    display: block;
-  }
   &__photo {
     flex: 0 0 auto;
     margin-right: 10px;

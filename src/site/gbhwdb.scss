@@ -57,7 +57,7 @@ tbody > tr:nth-child(even) {
   background-color: $main-color-1;
 }
 
-.page-sgb-console {
+.page-sgb-console, .page-sgb2-console, .page-oxy-console {
   &__photo {
     img {
       max-width: 50%;

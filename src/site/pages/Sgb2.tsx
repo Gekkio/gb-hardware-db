@@ -40,13 +40,23 @@ export default function Sgb2({submissions}: Props) {
 function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: Sgb2Submission}) {
   return (
     <tr>
-      <td>
-        <div className="submission-list-item--id">
-          <div><a href={`/consoles/sgb2/${slug}.html`}>{title}</a></div>
-          <div><aside>{contributor}</aside></div>
-        </div>
-        <div className="submission-list-item--photo">
-        </div>
+      <td className="submission-list-item">
+        <a className="submission-list-item__link" href={`/consoles/sgb2/${slug}.html`}>
+          <div className="submission-list-item__photo">
+            {photos.front
+              ? <img
+                src={`/static/sgb2/${slug}_thumbnail_80.jpg`}
+                srcSet={`/static/sgb2/${slug}_thumbnail_50.jpg 50w, /static/sgb2/${slug}_thumbnail_80.jpg 80w`}
+                sizes="(min-width: 1000px) 80px, 50px"
+                role="presentation" />
+              : null
+            }
+          </div>
+          <div className="submission-list-item__id">
+            <div className="submission-list-item__title">{title}</div>
+            <aside className="submission-list-item__contributor">{contributor}</aside>
+          </div>
+        </a>
       </td>
       <td>
         <div>{metadata.mainboard.type}</div>

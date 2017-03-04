@@ -3,7 +3,7 @@
     "jsx": "react",
     "module": "commonjs",
     "noImplicitAny": true,
-    "outDir": "build",
+    "outDir": "build/scripts",
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es2015"

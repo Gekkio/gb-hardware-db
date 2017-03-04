@@ -16,7 +16,7 @@ gulp.task('scripts', function() {
     .pipe(tsProject())
     .js
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build/scripts'));
 });
 
 const postcssPlugins = [
@@ -31,7 +31,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('html', ['scripts'], function(cb) {
-  exec('node build/builder/builder.js', function(err, stdout, stderr) {
+  exec('node build/scripts/builder/builder.js', function(err, stdout, stderr) {
     if (stdout) {
       console.log(stdout);
     }

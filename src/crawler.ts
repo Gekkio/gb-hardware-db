@@ -33,6 +33,7 @@ export type Submission = OxySubmission | SgbSubmission | Sgb2Submission;
 export interface Photo {
   path: string;
   name: string;
+  stats: fs.Stats;
 }
 
 export interface OxySubmission {
@@ -170,11 +171,17 @@ function crawlOXY(contributor: string, unit: FsEntry, metadata: OxyMetadata): Ox
 
 function fetchPhoto(entry: FsEntry, name: string): Photo | undefined {
   const absolutePath = path.resolve(entry.absolutePath, name);
-  if (fs.existsSync(absolutePath)) {
+  try {
+    const stats = fs.statSync(absolutePath)
     return {
       path: absolutePath,
-      name
+      name,
+      stats
     };
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      return undefined
+    }
+    throw e
   }
-  return undefined;
 }

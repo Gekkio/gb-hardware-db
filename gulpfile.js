@@ -35,6 +35,9 @@ gulp.task('html', ['scripts'], function(cb) {
     if (stdout) {
       console.log(stdout);
     }
+    if (stderr) {
+      console.error(stderr);
+    }
     cb(err);
   });
 });

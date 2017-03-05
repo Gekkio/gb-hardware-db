@@ -3,12 +3,13 @@ import * as Bluebird from 'bluebird';
 import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import * as fs from 'fs-extra';
 import * as path from 'path';
+import * as winston from 'winston';
 
 import Site from '../site/Site';
 import {crawlDataDirectory, SgbSubmission, OxySubmission, Sgb2Submission} from '../crawler';
 import processPhotos from './processPhotos';
+import * as files from '../util/files';
 
 interface PageDeclaration {
   type: string;
@@ -64,7 +65,6 @@ function resolvePages(): PageDeclaration[] {
   return pages;
 }
 
-const outputFile: (file: string, data: any) => Bluebird<{}> = Bluebird.promisify(fs.outputFile) as any;
 
 const photosPromise = Bluebird.all(submissions.map(processPhotos))
 
@@ -84,14 +84,14 @@ function processPages(): Bluebird<any> {
     const filename = R.last(page.path || []) || page.type;
     const target = path.resolve(targetDirectory, `${filename}.html`);
 
-    return outputFile(target, html)
-      .tap(() => console.log(`Wrote ${target}`));
+    return files.outputFile(target, html)
+      .tap(() => winston.debug(`Wrote HTML file ${target}`))
   }));
 }
 
 Bluebird.all([photosPromise, processPages()])
   .then(() => {
-    console.info('All done :)');
+    winston.info('Site generation finished :)');
     return null
   })
   .catch(e => {

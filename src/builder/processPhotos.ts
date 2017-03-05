@@ -1,14 +1,11 @@
 import * as Bluebird from 'bluebird';
 import * as R from 'ramda';
-import * as fs from 'fs-extra';
 import * as jimp from 'jimp';
 import * as path from 'path';
 import * as winston from 'winston';
 
+import * as files from '../util/files';
 import {Photo, Submission} from '../crawler';
-
-const copy: (src: string, dst: string, opts: fs.CopyOptions) => Bluebird<void> = Bluebird.promisify(fs.copy) as any;
-const ensureDir: (path: string) => Bluebird<void> = Bluebird.promisify(fs.ensureDir) as any;
 
 export default function processPhotos<T extends Submission>(submission: T): Bluebird<any> {
   const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
@@ -26,21 +23,26 @@ export default function processPhotos<T extends Submission>(submission: T): Blue
       return Bluebird.resolve();
     }
     const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_${size}.jpg`);
-    return Bluebird.resolve(jimp.read(thumbnailPhoto.path))
-      .then(image => {
-        image
-          .resize(size, jimp.AUTO)
-          .write(target);
-      })
-      .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`));
+    return files.doIfOutdated(target, thumbnailPhoto.stats, () => {
+      return Bluebird.resolve(jimp.read(thumbnailPhoto.path))
+        .then(image => {
+          image
+            .resize(size, jimp.AUTO)
+            .write(target);
+        })
+        .then(() => files.setModificationTime(target, thumbnailPhoto.stats.mtime))
+        .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`));
+    })
   }
 
-  return ensureDir(targetDirectory)
+  return files.ensureDir(targetDirectory)
     .then(() => Bluebird.all(
       photos.map(photo => {
         const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
-        return copy(photo.path, target, {preserveTimestamps: true})
-          .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: copied photo ${target}`));
+        return files.doIfOutdated(target, photo.stats, () => {
+          return files.copy(photo.path, target, {preserveTimestamps: true})
+            .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: copied photo ${target}`));
+        })
       }).concat([
         writeThumbnail(80),
         writeThumbnail(50),

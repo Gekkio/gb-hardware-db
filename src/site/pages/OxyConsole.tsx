@@ -50,17 +50,19 @@ function renderPhoto(submission: OxySubmission, photo: Photo | undefined) {
 function renderChips({mainboard}: OxyMetadata) {
   return (
     <table>
-      <tr>
-        <th />
-        <th>Chip</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Label</th>
-      </tr>
-      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
-      <ConsolePageChip designator="U2" title="????" chip={mainboard.u2} />
-      <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
-      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
+      <tbody>
+        <tr>
+          <th />
+          <th>Chip</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Label</th>
+        </tr>
+        <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+        <ConsolePageChip designator="U2" title="????" chip={mainboard.u2} />
+        <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
+        <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
+      </tbody>
     </table>
   )
 }

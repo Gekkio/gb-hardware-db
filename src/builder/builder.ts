@@ -42,14 +42,14 @@ function resolvePages(): PageDeclaration[] {
       pages.push({
         type: 'sgb-console',
         path: ['consoles', 'sgb', submission.slug],
-        title: `SGB: ${submission.title}`,
+        title: `SGB: ${submission.title} [${submission.contributor}]`,
         props: {submission}
       });
     } else if (submission.type === 'sgb2') {
       pages.push({
         type: 'sgb2-console',
         path: ['consoles', 'sgb2', submission.slug],
-        title: `SGB2: ${submission.title}`,
+        title: `SGB2: ${submission.title} [${submission.contributor}]`,
         props: {submission}
       });
     } else if (submission.type === 'oxy') {

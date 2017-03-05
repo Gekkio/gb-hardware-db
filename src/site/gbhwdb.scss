@@ -54,7 +54,7 @@ thead > tr {
   background-color: $main-color-3;
 }
 tbody > tr:nth-child(even) {
-  background-color: $main-color-1;
+  background-color: #f0f0f0;
 }
 
 .page-sgb-console, .page-sgb2-console, .page-oxy-console {
@@ -81,6 +81,9 @@ tbody > tr:nth-child(even) {
   }
   &__id {
     flex: 0 1 auto;
+  }
+  &__contributor {
+    font-style: italic;
   }
   &__photo {
     flex: 0 0 auto;

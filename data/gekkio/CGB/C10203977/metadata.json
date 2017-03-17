@@ -1,0 +1,12 @@
+{
+  "type": "CGB",
+  "mainboard": {
+    "type": "CGB-CPU-01",
+    "cpu": {
+      "type": "CPU CGB",
+      "label": "CPU CGB 9835 I",
+      "year": 1998,
+      "week": 35
+    }
+  }
+}

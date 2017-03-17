@@ -1,0 +1,12 @@
+{
+  "type": "CGB",
+  "mainboard": {
+    "type": "CGB-CPU-06",
+    "cpu": {
+      "type": "CPU CGB E",
+      "label": "CPU CGB E 0140 O",
+      "year": 2001,
+      "week": 40
+    }
+  }
+}

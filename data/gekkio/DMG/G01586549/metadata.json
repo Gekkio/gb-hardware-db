@@ -1,0 +1,12 @@
+{
+  "type": "DMG",
+  "mainboard": {
+    "type": "DMG-CPU-02",
+    "cpu": {
+      "type": "DMG-CPU A",
+      "label": "DMG-CPU A 8922 D",
+      "year": 1989,
+      "week": 22
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "MGB",
+  "mainboard": {
+    "type": "MGB-CPU-01",
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB 9629 D",
+      "year": 1996,
+      "week": 29
+    }
+  }
+}

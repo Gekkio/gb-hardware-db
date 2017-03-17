@@ -1,0 +1,12 @@
+{
+  "type": "DMG",
+  "mainboard": {
+    "type": "DMG-CPU-06",
+    "cpu": {
+      "type": "DMG-CPU B",
+      "label": "DMG-CPU B 9413 W",
+      "year": 1994,
+      "week": 13
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "MGB",
+  "mainboard": {
+    "type": "MGB-LCPU-01",
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB 9744 D",
+      "year": 1997,
+      "week": 44
+    }
+  }
+}

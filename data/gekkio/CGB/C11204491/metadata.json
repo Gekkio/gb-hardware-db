@@ -1,0 +1,12 @@
+{
+  "type": "CGB",
+  "mainboard": {
+    "type": "CGB-CPU-01",
+    "cpu": {
+      "type": "CPU CGB B",
+      "label": "CPU CGB B 9841 I",
+      "year": 1998,
+      "week": 41
+    }
+  }
+}

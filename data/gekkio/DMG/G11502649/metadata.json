@@ -1,0 +1,12 @@
+{
+  "type": "DMG",
+  "mainboard": {
+    "type": "DMG-CPU-04",
+    "cpu": {
+      "type": "DMG-CPU B",
+      "label": "DMG-CPU B 9038 S",
+      "year": 1990,
+      "week": 38
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "MGB",
+  "mainboard": {
+    "type": "MGB-LCPU-02",
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB 0040 DA",
+      "year": 2000,
+      "week": 40
+    }
+  }
+}

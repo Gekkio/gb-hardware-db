@@ -1,0 +1,12 @@
+{
+  "type": "CGB",
+  "mainboard": {
+    "type": "CGB-CPU-05",
+    "cpu": {
+      "type": "CPU CGB D",
+      "label": "CPU CGB D 0047 IA",
+      "year": 2000,
+      "week": 47
+    }
+  }
+}

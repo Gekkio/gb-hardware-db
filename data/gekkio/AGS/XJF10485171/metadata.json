@@ -1,0 +1,12 @@
+{
+  "type": "AGS",
+  "mainboard": {
+    "type": "C/AGS-CPU-11",
+    "cpu": {
+      "type": "CPU AGB B",
+      "label": "CPU AGB B 0420 UB",
+      "year": 2004,
+      "week": 20
+    }
+  }
+}

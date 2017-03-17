@@ -15,9 +15,9 @@ import Sgb2Console from './pages/Sgb2Console';
 import Cgb from './pages/Cgb';
 import Agb from './pages/Agb';
 import Ags from './pages/Ags';
+import Gbs from './pages/Gbs';
 import Oxy from './pages/Oxy';
 import OxyConsole from './pages/OxyConsole';
-import Gbs from './pages/Gbs';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 
@@ -68,31 +68,31 @@ function renderPage(type: string, props: any) {
     case 'contribute-oxy':
       return <ContributeOxy {...props} />
     case 'dmg':
-      return <Dmg />
+      return <Dmg {...props} />
     case 'sgb':
       return <Sgb {...props} />
     case 'sgb-console':
       return <SgbConsole {...props} />
     case 'mgb':
-      return <Mgb />
+      return <Mgb {...props} />
     case 'mgl':
-      return <Mgl />
+      return <Mgl {...props} />
     case 'sgb2':
       return <Sgb2 {...props} />
     case 'sgb2-console':
       return <Sgb2Console {...props} />
     case 'cgb':
-      return <Cgb />
+      return <Cgb {...props} />
     case 'agb':
-      return <Agb />
+      return <Agb {...props} />
     case 'ags':
-      return <Ags />
+      return <Ags {...props} />
+    case 'gbs':
+      return <Gbs {...props} />
     case 'oxy':
       return <Oxy {...props} />
     case 'oxy-console':
       return <OxyConsole {...props} />
-    case 'gbs':
-      return <Gbs />
     default:
       return null;
   }

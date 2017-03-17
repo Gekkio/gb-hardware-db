@@ -1,0 +1,12 @@
+{
+  "type": "MGB",
+  "mainboard": {
+    "type": "MGB-LCPU-02",
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB 9813 D",
+      "year": 1998,
+      "week": 13
+    }
+  }
+}

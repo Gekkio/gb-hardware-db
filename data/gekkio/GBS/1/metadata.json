@@ -1,0 +1,12 @@
+{
+  "type": "GBS",
+  "mainboard": {
+    "type": "DOL-GBS-10",
+    "cpu": {
+      "type": "CPU AGB A",
+      "label": "CPU AGB A 0320 wV",
+      "year": 2003,
+      "week": 20
+    }
+  }
+}

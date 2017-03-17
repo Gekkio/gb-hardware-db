@@ -1,0 +1,10 @@
+{
+  "type": "DMG",
+  "mainboard": {
+    "type": "DMG-CPU-08",
+    "cpu": {
+      "type": "blob",
+      "label": null
+    }
+  }
+}

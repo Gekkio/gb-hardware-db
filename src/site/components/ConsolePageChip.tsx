@@ -19,7 +19,7 @@ export default function ConsolePageChip({designator, title, chip}: Props) {
       <td>{title}</td>
       <td>{format.optional(R.identity, chip && chip.type)}</td>
       <td>{format.optional(format.calendar, chip)}</td>
-      <td>{format.optional(R.identity, chip && chip.label)}</td>
+      <td>{format.optional<string | null | undefined>(R.identity, chip && chip.label)}</td>
     </tr>
   )
 }

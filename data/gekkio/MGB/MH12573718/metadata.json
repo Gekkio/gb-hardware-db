@@ -1,0 +1,12 @@
+{
+  "type": "MGB",
+  "mainboard": {
+    "type": "MGB-ECPU-01",
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB 9706 D",
+      "year": 1997,
+      "week": 6
+    }
+  }
+}

@@ -8,7 +8,7 @@ export interface Calendar {
 
 export interface Chip extends Calendar {
   type?: string;
-  label: string;
+  label: string | null;
   manufacturer?: string;
   outlier?: boolean;
 }
@@ -16,7 +16,7 @@ export interface Chip extends Calendar {
 export namespace Chip {
   export const schema = Joi.object().keys({
     type: Joi.string(),
-    label: Joi.string().required(),
+    label: Joi.string().allow(null).required(),
     manufacturer: Joi.string(),
     year: Joi.number(),
     month: Joi.number(),
@@ -30,34 +30,20 @@ export interface Metadata {
   type: string;
 }
 
-export interface OxyMetadata extends Metadata {
-  type: "OXY";
-  color?: string;
+export interface DmgMetadata extends Metadata {
+  type: "DMG";
   mainboard: {
     type: string;
-    circled_letters?: string;
     cpu?: Chip;
-    u2?: Chip;
-    u4?: Chip;
-    u5?: Chip;
-    year?: number;
-    month?: number;
   };
 }
 
-export namespace OxyMetadata {
+export namespace DmgMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
-    color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
-      circled_letters: Joi.string(),
       cpu: Chip.schema,
-      u2: Chip.schema,
-      u4: Chip.schema,
-      u5: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
     })
   });
 }
@@ -96,6 +82,42 @@ export namespace SgbMetadata {
       cic: Chip.schema,
       year: Joi.number(),
       month: Joi.number()
+    })
+  });
+}
+
+export interface MgbMetadata extends Metadata {
+  type: "MGB";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace MgbMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
+    })
+  });
+}
+
+export interface MglMetadata extends Metadata {
+  type: "MGL";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace MglMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
     })
   });
 }
@@ -140,3 +162,106 @@ export namespace Sgb2Metadata {
   });
 }
 
+export interface CgbMetadata extends Metadata {
+  type: "CGB";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace CgbMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
+    })
+  });
+}
+
+export interface AgbMetadata extends Metadata {
+  type: "AGB";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace AgbMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
+    })
+  });
+}
+
+export interface AgsMetadata extends Metadata {
+  type: "AGS";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace AgsMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
+    })
+  });
+}
+
+export interface GbsMetadata extends Metadata {
+  type: "GBS";
+  mainboard: {
+    type: string;
+    cpu?: Chip;
+  };
+}
+
+export namespace GbsMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      cpu: Chip.schema,
+    })
+  });
+}
+
+export interface OxyMetadata extends Metadata {
+  type: "OXY";
+  color?: string;
+  mainboard: {
+    type: string;
+    circled_letters?: string;
+    cpu?: Chip;
+    u2?: Chip;
+    u4?: Chip;
+    u5?: Chip;
+    year?: number;
+    month?: number;
+  };
+}
+
+export namespace OxyMetadata {
+  export const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    color: Joi.string(),
+    mainboard: Joi.object().required().keys({
+      type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      cpu: Chip.schema,
+      u2: Chip.schema,
+      u4: Chip.schema,
+      u5: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number()
+    })
+  });
+}

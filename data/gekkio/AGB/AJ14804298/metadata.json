@@ -1,0 +1,12 @@
+{
+  "type": "AGB",
+  "mainboard": {
+    "type": "AGB-CPU-03",
+    "cpu": {
+      "type": "CPU AGB A",
+      "label": "CPU AGB A 0204 O",
+      "year": 2002,
+      "week": 4
+    }
+  }
+}

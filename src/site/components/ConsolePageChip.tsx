@@ -8,7 +8,7 @@ import * as classnames from 'classnames';
 interface Props {
   designator: string;
   title: string;
-  chip?: Chip;
+  chip?: Chip | null;
 }
 
 export default function ConsolePageChip({designator, title, chip}: Props) {
@@ -17,8 +17,8 @@ export default function ConsolePageChip({designator, title, chip}: Props) {
     <tr className={classes}>
       <td>{designator}</td>
       <td>{title}</td>
-      <td>{format.optional(R.identity, chip && chip.type)}</td>
-      <td>{format.optional(format.calendar, chip)}</td>
+      <td>{format.optional<string | null | undefined>(R.identity, chip && chip.type)}</td>
+      <td>{format.optional<Chip | null>(format.calendar, chip)}</td>
       <td>{format.optional<string | null | undefined>(R.identity, chip && chip.label)}</td>
     </tr>
   )

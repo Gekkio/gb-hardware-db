@@ -1,12 +1,43 @@
 {
   "type": "AGB",
+  "color": "platinum",
   "mainboard": {
     "type": "AGB-CPU-10",
+    "number_pair": "1-2",
+    "stamp": "322 3702",
+    "circled_letters": "CS",
+    "year": 2002,
+    "month": 7,
+    "crystal": {
+      "type": "D419",
+      "label": "D419G2I",
+      "year": 2002,
+      "month": 7
+    },
     "cpu": {
       "type": "CPU AGB A",
       "label": "CPU AGB A 0228 mE",
       "year": 2002,
       "week": 28
+    },
+    "work_ram": {
+      "type": "HY62LF16206A",
+      "label": "Hynix HY62LF16206A 0223A LT12C",
+      "year": 2002,
+      "week": 23
+    },
+    "regulator": null,
+    "amplifier": {
+      "type": "IR3R60N",
+      "label": "AMP AGB IR3R60N 0222 u",
+      "year": 2002,
+      "week": 22
+    },
+    "u4": {
+      "type": "514X",
+      "label": "227 514X",
+      "year": 2002,
+      "week": 27
     }
   }
 }

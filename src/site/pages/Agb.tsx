@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {AgbSubmission} from '../../crawler';
+import {AgbSubmission, Photo} from '../../crawler';
 import * as format from '../format';
 import ConsoleListingChip from '../components/ConsoleListingChip';
 
@@ -18,6 +18,12 @@ export default function Agb({submissions}: Props) {
           <th>ID</th>
           <th>Board</th>
           <th>CPU (U1)</th>
+          <th>WRAM (U2)</th>
+          <th>Regulator (U3)</th>
+          <th>U4</th>
+          <th>Amplifier (U6)</th>
+          <th>Crystal (X1)</th>
+          <th>Photos</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +40,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
   return (
     <tr>
       <td className="submission-list-item">
-        <a className="submission-list-item__link">
+        <a className="submission-list-item__link" href={`/consoles/agb/${slug}.html`}>
           <div className="submission-list-item__photo">
             {photos.front
               ? <img
@@ -56,6 +62,28 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div>{format.short.calendar(metadata.mainboard)}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.work_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.regulator} />
+      <ConsoleListingChip chip={metadata.mainboard.u4} />
+      <ConsoleListingChip chip={metadata.mainboard.amplifier} />
+      <ConsoleListingChip chip={metadata.mainboard.crystal} />
+      <td>
+        {renderPhoto(slug, 'Front', photos.front)}
+        {renderPhoto(slug, 'Back', photos.back)}
+        {renderPhoto(slug, 'PCB front', photos.pcbFront)}
+        {renderPhoto(slug, 'PCB back', photos.pcbBack)}
+      </td>
     </tr>
+  )
+}
+
+function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
+  if (!photo) {
+    return null;
+  }
+  return (
+    <div>
+      <a href={`/static/agb/${slug}_${photo.name}`}>{label}</a>
+    </div>
   )
 }

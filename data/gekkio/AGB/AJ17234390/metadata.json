@@ -1,12 +1,41 @@
 {
   "type": "AGB",
+  "color": "fuchsia",
   "mainboard": {
     "type": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "413 2248",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 8,
+    "crystal": {
+      "type": "D419",
+      "label": "D419J3I",
+      "year": 2003,
+      "month": 10
+    },
     "cpu": {
       "type": "CPU AGB A",
       "label": "CPU AGB A 0334 I",
       "year": 2003,
       "week": 34
+    },
+    "work_ram": {
+      "type": "D442012AGT-BC85X-MJH",
+      "label": "D442012AGT-BC85X-MJH 0329K7008",
+      "year": 2003,
+      "week": 29
+    },
+    "regulator": null,
+    "amplifier": {
+      "type": "BH7835AFS",
+      "label": "BH7835AFS 337 T22",
+      "year": 2003,
+      "week": 37
+    },
+    "u4": {
+      "type": "S6960",
+      "label": "S6960 E-U2Z C700"
     }
   }
 }

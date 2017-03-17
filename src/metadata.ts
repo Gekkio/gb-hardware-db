@@ -182,18 +182,40 @@ export namespace CgbMetadata {
 
 export interface AgbMetadata extends Metadata {
   type: "AGB";
+  color?: string;
   mainboard: {
     type: string;
+    number_pair?: string;
+    stamp?: string;
+    circled_letters?: string;
+    crystal?: Chip;
     cpu?: Chip;
+    work_ram?: Chip;
+    regulator?: Chip | null;
+    amplifier?: Chip;
+    u4?: Chip;
+    year?: number;
+    month?: number;
   };
 }
 
 export namespace AgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
+    color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
+      circled_letters: Joi.string(),
+      crystal: Chip.schema,
       cpu: Chip.schema,
+      work_ram: Chip.schema,
+      regulator: Chip.schema.allow(null),
+      amplifier: Chip.schema,
+      u4: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number()
     })
   });
 }

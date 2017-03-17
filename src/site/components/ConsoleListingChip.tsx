@@ -6,7 +6,7 @@ import {Chip} from '../../metadata';
 import * as format from '../format';
 
 interface Props {
-  chip?: Chip;
+  chip?: Chip | null;
 }
 
 export default function ConsoleListingChip({chip}: Props) {

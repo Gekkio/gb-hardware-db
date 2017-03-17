@@ -1,12 +1,47 @@
 {
   "type": "AGB",
+  "color": "indigo",
   "mainboard": {
     "type": "AGB-CPU-01",
+    "number_pair": "2-1",
+    "stamp": "061 1914",
+    "circled_letters": "A",
+    "year": 2001,
+    "month": 1,
+    "crystal": {
+      "type": "KDS 4.194",
+      "label": "KDS 0102 4.194",
+      "year": 2001,
+      "week": 2
+    },
     "cpu": {
       "type": "CPU AGB",
       "label": "CPU AGB 0103 I",
       "year": 2001,
       "week": 3
+    },
+    "work_ram": {
+      "type": "D442012AGY-BB85X-MJH",
+      "label": "D442012AGY-BB85X-MJH 0038K7020",
+      "year": 2000,
+      "week": 38
+    },
+    "regulator": {
+      "type": "IR3E09N",
+      "label": "AGB-REG IR3E09N 0053 C",
+      "year": 2000,
+      "week": 53
+    },
+    "amplifier": {
+      "type": "IR3R60N",
+      "label": "AMP AGB IR3R60N 0052 a",
+      "year": 2000,
+      "week": 52
+    },
+    "u4": {
+      "type": "514X",
+      "label": "081 514X",
+      "year": 2000
     }
   }
 }

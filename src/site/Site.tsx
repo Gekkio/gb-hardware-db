@@ -14,6 +14,7 @@ import Sgb2 from './pages/Sgb2';
 import Sgb2Console from './pages/Sgb2Console';
 import Cgb from './pages/Cgb';
 import Agb from './pages/Agb';
+import AgbConsole from './pages/AgbConsole';
 import Ags from './pages/Ags';
 import Gbs from './pages/Gbs';
 import Oxy from './pages/Oxy';
@@ -85,6 +86,8 @@ function renderPage(type: string, props: any) {
       return <Cgb {...props} />
     case 'agb':
       return <Agb {...props} />
+    case 'agb-console':
+      return <AgbConsole {...props} />
     case 'ags':
       return <Ags {...props} />
     case 'gbs':

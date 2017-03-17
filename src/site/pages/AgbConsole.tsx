@@ -24,7 +24,7 @@ export default function AgbConsole({submission}: {submission: AgbSubmission}) {
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>
       <dl>
-        <dt>Type</dt>
+        <dt>Board type</dt>
         <dd>{submission.metadata.mainboard.type}</dd>
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>

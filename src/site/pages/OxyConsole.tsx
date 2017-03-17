@@ -24,6 +24,8 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>
       <dl>
+        <dt>Board type</dt>
+        <dd>{submission.metadata.mainboard.type}</dd>
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>

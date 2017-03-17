@@ -5,12 +5,19 @@ import Contribute from './pages/Contribute';
 import ContributeSgb from './pages/ContributeSgb';
 import ContributeSgb2 from './pages/ContributeSgb2';
 import ContributeOxy from './pages/ContributeOxy';
+import Dmg from './pages/Dmg';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
+import Mgb from './pages/Mgb';
+import Mgl from './pages/Mgl';
 import Sgb2 from './pages/Sgb2';
 import Sgb2Console from './pages/Sgb2Console';
+import Cgb from './pages/Cgb';
+import Agb from './pages/Agb';
+import Ags from './pages/Ags';
 import Oxy from './pages/Oxy';
 import OxyConsole from './pages/OxyConsole';
+import Gbs from './pages/Gbs';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 
@@ -36,7 +43,7 @@ export default function Site(props: Site.Props) {
         <link rel="stylesheet" href="/static/gbhwdb.css" />
       </head>
       <body>
-        <SiteHeader />
+        <SiteHeader pageType={props.pageType} />
         <main className="site-main">
           <div className="site-main__content">
             {renderPage(props.pageType, props.pageProps)}
@@ -60,18 +67,32 @@ function renderPage(type: string, props: any) {
       return <ContributeSgb2 {...props} />
     case 'contribute-oxy':
       return <ContributeOxy {...props} />
+    case 'dmg':
+      return <Dmg />
     case 'sgb':
       return <Sgb {...props} />
     case 'sgb-console':
       return <SgbConsole {...props} />
+    case 'mgb':
+      return <Mgb />
+    case 'mgl':
+      return <Mgl />
     case 'sgb2':
       return <Sgb2 {...props} />
     case 'sgb2-console':
       return <Sgb2Console {...props} />
+    case 'cgb':
+      return <Cgb />
+    case 'agb':
+      return <Agb />
+    case 'ags':
+      return <Ags />
     case 'oxy':
       return <Oxy {...props} />
     case 'oxy-console':
       return <OxyConsole {...props} />
+    case 'gbs':
+      return <Gbs />
     default:
       return null;
   }

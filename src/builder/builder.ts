@@ -28,12 +28,19 @@ function resolvePages(): PageDeclaration[] {
     {type: 'contribute-sgb2', path: ['contribute', 'sgb2'], title: 'Super Game Boy 2 (SGB2) contribution instructions', props: {}},
     {type: 'contribute-oxy', path: ['contribute', 'oxy'], title: 'Game Boy Micro (OXY) contribution instructions', props: {}},
     {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
+    {type: 'dmg', path: ['consoles', 'dmg', 'index'], title: 'Game Boy (DMG)', props: {}},
     {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
       submissions: submissions.filter(x => x.type === 'sgb') as SgbSubmission[]
     }},
+    {type: 'mgb', path: ['consoles', 'mgb', 'index'], title: 'Game Boy Pocket (MGB)', props: {}},
+    {type: 'mgl', path: ['consoles', 'mgl', 'index'], title: 'Game Boy Light (MGL)', props: {}},
     {type: 'sgb2', path: ['consoles', 'sgb2', 'index'], title: 'Super Game Boy 2 (SGB2)', props: {
       submissions: submissions.filter(x => x.type === 'sgb2') as Sgb2Submission[]
     }},
+    {type: 'cgb', path: ['consoles', 'cgb', 'index'], title: 'Game Boy Color (CGB)', props: {}},
+    {type: 'agb', path: ['consoles', 'agb', 'index'], title: 'Game Boy Advance (AGB)', props: {}},
+    {type: 'ags', path: ['consoles', 'ags', 'index'], title: 'Game Boy Advance SP (AGS)', props: {}},
+    {type: 'gbs', path: ['consoles', 'gbs', 'index'], title: 'Game Boy Player (GGS)', props: {}},
     {type: 'oxy', path: ['consoles', 'oxy', 'index'], title: 'Game Boy Micro (OXY)', props: {
       submissions: submissions.filter(x => x.type === 'oxy') as OxySubmission[]
     }}

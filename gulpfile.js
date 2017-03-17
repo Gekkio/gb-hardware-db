@@ -23,12 +23,17 @@ const postcssPlugins = [
   autoprefixer({browsers: ['last 2 versions', 'IE >= 10', 'iOS >= 7', '> 1%']}),
   csso()
 ];
-gulp.task('styles', function () {
+gulp.task('styles', function() {
   return gulp.src('src/site/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss(postcssPlugins))
     .pipe(gulp.dest('build/site/static'));
 });
+
+gulp.task('static', function() {
+  return gulp.src('static/**/*.html')
+    .pipe(gulp.dest('build/site'));
+})
 
 gulp.task('html', ['scripts'], function(cb) {
   exec('node build/scripts/builder/builder.js', function(err, stdout, stderr) {
@@ -42,10 +47,11 @@ gulp.task('html', ['scripts'], function(cb) {
   });
 });
 
-gulp.task('build', ['html', 'scripts', 'styles']);
+gulp.task('build', ['html', 'scripts', 'styles', 'static']);
 gulp.task('watch', ['html', 'scripts', 'styles'], function() {
   gulp.watch(['src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html']);
   gulp.watch('src/site/**/*.scss', ['styles']);
+  gulp.watch('static/**/*.html', ['static']);
 });
 
 gulp.task('default', ['build']);

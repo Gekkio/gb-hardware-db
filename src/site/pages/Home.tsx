@@ -1,9 +1,12 @@
 import * as React from 'react';
+import * as ReactMarkdown from 'react-markdown';
 
-export default function Home() {
+interface Props {
+  content: string;
+}
+
+export default function Home({content}: Props) {
   return (
-    <article>
-      <h2>Welcome to the Game Boy hardware database</h2>
-    </article>
+    <ReactMarkdown source={content} containerTagName="article" />
   )
 }

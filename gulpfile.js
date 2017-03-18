@@ -49,7 +49,7 @@ gulp.task('html', ['scripts'], function(cb) {
 
 gulp.task('build', ['html', 'scripts', 'styles', 'static']);
 gulp.task('watch', ['html', 'scripts', 'styles'], function() {
-  gulp.watch(['src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html']);
+  gulp.watch(['content/**/*.markdown', 'src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html']);
   gulp.watch('src/site/**/*.scss', ['styles']);
   gulp.watch('static/**/*.html', ['static']);
 });

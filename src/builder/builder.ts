@@ -3,6 +3,7 @@ import * as Bluebird from 'bluebird';
 import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
+import * as fs from 'fs';
 import * as path from 'path';
 import * as winston from 'winston';
 
@@ -25,7 +26,9 @@ const submissions = crawlDataDirectory('data');
 
 function resolvePages(): PageDeclaration[] {
   const pages: PageDeclaration[] = [
-    {type: 'index', title: 'Home', props: {}},
+    {type: 'index', title: 'Home', props: {
+      content: fs.readFileSync('content/home.markdown', {encoding: 'utf-8'})
+    }},
     {type: 'contribute', path: ['contribute', 'index'], title: 'Contribute', props: {}},
     {type: 'contribute-sgb', path: ['contribute', 'sgb'], title: 'Super Game Boy (SGB) contribution instructions', props: {}},
     {type: 'contribute-sgb2', path: ['contribute', 'sgb2'], title: 'Super Game Boy 2 (SGB2) contribution instructions', props: {}},

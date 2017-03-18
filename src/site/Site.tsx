@@ -40,7 +40,7 @@ export default function Site(props: Site.Props) {
         <title>{props.title}</title>
         <script dangerouslySetInnerHTML={{__html: googleAnalytics()}} />
         <script async src="https://www.google-analytics.com/analytics.js" />
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
       </head>
       <body>

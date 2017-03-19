@@ -240,18 +240,44 @@ export namespace AgsMetadata {
 
 export interface GbsMetadata extends Metadata {
   type: "GBS";
+  color?: string;
   mainboard: {
     type: string;
+    number_pair?: string,
+    stamp?: string;
+    stamp_front?: string;
+    stamp_back?: string;
+    circled_letters?: string;
+    year?: number;
+    month?: number;
+    crystal?: Chip;
     cpu?: Chip;
+    work_ram?: Chip;
+    u4?: Chip;
+    u5?: Chip;
+    u6?: Chip;
   };
 }
 
 export namespace GbsMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
+    color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
+      stamp_front: Joi.string(),
+      stamp_back: Joi.string(),
+      circled_letters: Joi.string(),
+      year: Joi.number(),
+      month: Joi.number(),
+      crystal: Chip.schema,
       cpu: Chip.schema,
+      work_ram: Chip.schema,
+      u4: Chip.schema,
+      u5: Chip.schema,
+      u6: Chip.schema
     })
   });
 }

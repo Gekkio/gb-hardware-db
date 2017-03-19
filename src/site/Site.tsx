@@ -17,6 +17,7 @@ import Agb from './pages/Agb';
 import AgbConsole from './pages/AgbConsole';
 import Ags from './pages/Ags';
 import Gbs from './pages/Gbs';
+import GbsConsole from './pages/GbsConsole';
 import Oxy from './pages/Oxy';
 import OxyConsole from './pages/OxyConsole';
 import SiteFooter from './components/SiteFooter';
@@ -92,6 +93,8 @@ function renderPage(type: string, props: any) {
       return <Ags {...props} />
     case 'gbs':
       return <Gbs {...props} />
+    case 'gbs-console':
+      return <GbsConsole {...props} />
     case 'oxy':
       return <Oxy {...props} />
     case 'oxy-console':

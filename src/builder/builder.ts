@@ -87,6 +87,13 @@ function resolvePages(): PageDeclaration[] {
         title: `AGB: ${submission.title}`,
         props: {submission}
       });
+    } else if (submission.type === 'gbs') {
+      pages.push({
+        type: 'gbs-console',
+        path: ['consoles', 'gbs', submission.slug],
+        title: `GBS: ${submission.title}`,
+        props: {submission}
+      });
     } else if (submission.type === 'oxy') {
       pages.push({
         type: 'oxy-console',

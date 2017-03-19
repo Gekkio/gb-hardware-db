@@ -159,6 +159,8 @@ export interface GbsSubmission {
   photos: {
     front?: Photo;
     back?: Photo;
+    pcbFront?: Photo;
+    pcbBack?: Photo;
   };
 }
 

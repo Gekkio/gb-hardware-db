@@ -1,12 +1,49 @@
 {
   "type": "GBS",
+  "color": "platinum",
   "mainboard": {
     "type": "DOL-GBS-10",
+    "number_pair": "10-2",
+    "stamp": "2733727",
+    "stamp_front": "3624A",
+    "stamp_back": "4625B",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 5,
+    "crystal": {
+      "type": "33WKSS3DT",
+      "label": "33WKSS3DT"
+    },
     "cpu": {
       "type": "CPU AGB A",
-      "label": "CPU AGB A 0320 wV",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0320 wV",
       "year": 2003,
       "week": 20
+    },
+    "work_ram": {
+      "type": "D442012AGY-BC85X-MJH",
+      "manufacturer": "nec",
+      "label": "NEC JAPAN D442012AGY-BC85X-MJH 0320K7020",
+      "year": 2003,
+      "week": 20
+    },
+    "u4": {
+      "type": "GBS-DOL",
+      "label": "Nintendo GBS-DOL 011 0320E3095"
+    },
+    "u5": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "318 592F",
+      "year": 2003,
+      "week": 18
+    },
+    "u6": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "318 592F",
+      "year": 2003,
+      "week": 18
     }
   }
 }

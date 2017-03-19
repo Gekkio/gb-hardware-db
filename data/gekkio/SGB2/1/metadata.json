@@ -9,31 +9,32 @@
     "month": 1,
     "cpu": {
       "type": "CPU SGB2",
-      "label": "CPU SGB2 9802 1 E",
+      "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9802 1 E",
       "year": 1998,
       "week": 2
     },
     "icd2": {
       "type": "ICD2-R",
-      "label": "ICD2-R 9744EX003 D93128",
+      "label": "Nintendo ICD2-R 9744EX003 D93128",
       "year": 1997,
       "week": 44
     },
     "work_ram": {
       "type": "LH5164AN-10L",
-      "label": "LH5164AN-10L 9803 1 DB",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9803 1 DB",
       "year": 1998,
       "week": 3
     },
     "rom": {
       "type": "SYS-SGB2-10",
-      "label": "SYS-SGB2-10 LH5S4RY4 9802 D",
+      "label": "© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 9802 D",
       "year": 1998,
       "week": 2
     },
     "cic": {
       "type": "F411B",
-      "label": "F411B 9802 C",
+      "label": "F411B © 1990 Nintendo 9802 C",
       "year": 1998,
       "week": 2
     },
@@ -45,6 +46,7 @@
     },
     "coil": {
       "type": "ZJY",
+      "manufacturer": "tdk",
       "label": "TDK ZJY-M4A L"
     }
   }

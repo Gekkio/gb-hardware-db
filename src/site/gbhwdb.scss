@@ -60,6 +60,7 @@ tbody > tr:nth-child(even) {
 .page-sgb-console, .page-sgb2-console, .page-agb-console, .page-oxy-console {
   &__photo {
     img {
+      vertical-align: middle;
       max-width: 50%;
       max-height: 200px;
 
@@ -78,6 +79,11 @@ tbody > tr:nth-child(even) {
   &__link {
     display: flex;
     align-items: center;
+  }
+  &__title {
+    @include media(desktop) {
+      font-size: 16px;
+    }
   }
   &__id {
     flex: 0 1 auto;

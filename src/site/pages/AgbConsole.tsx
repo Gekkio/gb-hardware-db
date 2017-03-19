@@ -9,7 +9,7 @@ import ConsolePageChip from '../components/ConsolePageChip';
 export default function AgbConsole({submission}: {submission: AgbSubmission}) {
   return (
     <article className="page-agb-console">
-      <h2>{`OXY: ${submission.title} [${submission.contributor}]`}</h2>
+      <h2>{`AGB: ${submission.title} [${submission.contributor}]`}</h2>
       <div className="page-agb-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}

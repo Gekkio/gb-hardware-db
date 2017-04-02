@@ -387,6 +387,8 @@ function crawlGBS(contributor: string, unit: FsEntry, metadata: GbsMetadata): Gb
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),
     back: fetchPhoto(unit, '02_back.jpg'),
+    pcbFront: fetchPhoto(unit, '03_pcb_front.jpg'),
+    pcbBack: fetchPhoto(unit, '04_pcb_back.jpg'),
   };
 
   return {type: 'gbs', title, slug, contributor, metadata, photos};

@@ -6,6 +6,8 @@ export interface Calendar {
   week?: number;
 }
 
+const manufacturers = ['fujitsu', 'hynix', 'microchip', 'mitsumi', 'nec', 'rohm', 'sharp', 'tdk']
+
 export interface Chip extends Calendar {
   type?: string;
   label: string | null;
@@ -17,7 +19,7 @@ export namespace Chip {
   export const schema = Joi.object().keys({
     type: Joi.string(),
     label: Joi.string().allow(null).required(),
-    manufacturer: Joi.string(),
+    manufacturer: Joi.string().only(manufacturers),
     year: Joi.number(),
     month: Joi.number(),
     week: Joi.number(),

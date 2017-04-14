@@ -5,6 +5,7 @@ import {Photo, Sgb2Submission} from '../../crawler';
 import {Sgb2Metadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function Sgb2Console({submission}: {submission: Sgb2Submission}) {
   return (
@@ -53,23 +54,14 @@ function renderPhoto(submission: Sgb2Submission, photo: Photo | undefined) {
 
 function renderChips({mainboard}: Sgb2Metadata) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th />
-          <th>Chip</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Label</th>
-        </tr>
-        <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
-        <ConsolePageChip designator="U2" title="ICD2" chip={mainboard.icd2} />
-        <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
-        <ConsolePageChip designator="U4" title="ROM" chip={mainboard.rom} />
-        <ConsolePageChip designator="U5" title="CIC" chip={mainboard.cic} />
-        <ConsolePageChip designator="XTAL1" title="Crystal" chip={mainboard.crystal} />
-        <ConsolePageChip designator="COIL1" title="Coil" chip={mainboard.coil} />
-      </tbody>
-    </table>
+    <ConsolePageChipTable>
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U2" title="ICD2" chip={mainboard.icd2} />
+      <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
+      <ConsolePageChip designator="U4" title="ROM" chip={mainboard.rom} />
+      <ConsolePageChip designator="U5" title="CIC" chip={mainboard.cic} />
+      <ConsolePageChip designator="XTAL1" title="Crystal" chip={mainboard.crystal} />
+      <ConsolePageChip designator="COIL1" title="Coil" chip={mainboard.coil} />
+    </ConsolePageChipTable>
   )
 }

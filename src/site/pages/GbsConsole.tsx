@@ -5,6 +5,7 @@ import {Photo, GbsSubmission} from '../../crawler';
 import {GbsMetadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function GbsConsole({submission}: {submission: GbsSubmission}) {
   return (
@@ -59,22 +60,13 @@ function renderPhoto(submission: GbsSubmission, photo: Photo | undefined) {
 
 function renderChips({mainboard}: GbsMetadata) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th />
-          <th>Chip</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Label</th>
-        </tr>
-        <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
-        <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
-        <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
-        <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
-        <ConsolePageChip designator="U6" title="????" chip={mainboard.u6} />
-        <ConsolePageChip designator="Y1" title="Crystal" chip={mainboard.crystal} />
-      </tbody>
-    </table>
+    <ConsolePageChipTable>
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
+      <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
+      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
+      <ConsolePageChip designator="U6" title="????" chip={mainboard.u6} />
+      <ConsolePageChip designator="Y1" title="Crystal" chip={mainboard.crystal} />
+    </ConsolePageChipTable>
   )
 }

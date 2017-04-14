@@ -37,3 +37,26 @@ export function optional<T>(f: (value: T) => string, value: T | null | undefine
     return f(value)
   }
 }
+
+export function manufacturer(value: string): string {
+  switch (value) {
+    case 'fujitsu':
+      return 'Fujitsu';
+    case 'hynix':
+      return 'Hynix';
+    case 'microchip':
+      return 'Microchip';
+    case 'mitsumi':
+      return 'Mitsumi';
+    case 'nec':
+      return 'NEC';
+    case 'rohm':
+      return 'ROHM';
+    case 'sharp':
+      return 'Sharp';
+    case 'tdk':
+      return 'TDK';
+    default:
+      return value;
+  }
+}

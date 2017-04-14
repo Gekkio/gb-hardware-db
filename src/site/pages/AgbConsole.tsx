@@ -1,10 +1,11 @@
 import * as R from 'ramda';
 import * as React from 'react';
 
-import {Photo, AgbSubmission} from '../../crawler';
+import {AgbSubmission, Photo} from '../../crawler';
 import {AgbMetadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function AgbConsole({submission}: {submission: AgbSubmission}) {
   return (
@@ -55,22 +56,13 @@ function renderPhoto(submission: AgbSubmission, photo: Photo | undefined) {
 
 function renderChips({mainboard}: AgbMetadata) {
   return (
-    <table>
-      <tbody>
-      <tr>
-        <th />
-        <th>Chip</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Label</th>
-      </tr>
+    <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
       <ConsolePageChip designator="U2" title="Work RAM" chip={mainboard.work_ram} />
       <ConsolePageChip designator="U3" title="Regulator" chip={mainboard.regulator} />
       <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
       <ConsolePageChip designator="U6" title="Amplifier" chip={mainboard.amplifier} />
       <ConsolePageChip designator="X1" title="Crystal" chip={mainboard.crystal} />
-      </tbody>
-    </table>
+    </ConsolePageChipTable>
   )
 }

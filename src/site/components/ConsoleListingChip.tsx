@@ -20,6 +20,7 @@ export default function ConsoleListingChip({chip}: Props) {
     <td className={classes}>
       <div>{format.optional(R.identity, chip.type)}</div>
       <div>{format.short.calendar(chip)}</div>
+      <div>{format.optional(format.manufacturer, chip.manufacturer)}</div>
     </td>
   )
 }

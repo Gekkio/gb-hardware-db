@@ -16,13 +16,14 @@
     },
     "cpu": {
       "type": "CPU AGB A",
-      "label": "CPU AGB A 0240 I",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0240 I",
       "year": 2002,
       "week": 40
     },
     "work_ram": {
       "type": "82D12160-10FN",
-      "label": "82D12160-10FN 0238 M88N",
+      "manufacturer": "fujitsu",
+      "label": "JAPAN 82D12160-10FN 0238 M88N",
       "year": 2002,
       "week": 38
     },
@@ -35,6 +36,7 @@
     },
     "u4": {
       "type": "514X",
+      "manufacturer": "microchip",
       "label": "235 514X",
       "year": 2002,
       "week": 35

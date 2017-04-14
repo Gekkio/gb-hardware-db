@@ -6,16 +6,19 @@
     "circled_letters": "SH",
     "cpu": {
       "type": "CPU AGB E",
-      "label": "CPU AGB E 0530 2m",
+      "label": "0530 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM",
       "year": 2005,
       "week": 30
     },
     "u2": {
-      "label": "Mitsumi 523 H PM C",
+      "type": "PM C",
+      "label": "Mitsumi JAPAN 523 H PM C",
+      "manufacturer": "mitsumi",
       "year": 2005,
       "week": 23
     },
     "u4": {
+      "type": "AKV",
       "label": "AKV 520",
       "year": 2005,
       "week": 20

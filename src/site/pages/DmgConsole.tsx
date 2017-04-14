@@ -5,6 +5,7 @@ import {Photo, DmgSubmission} from '../../crawler';
 import {DmgMetadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function DmgConsole({submission}: {submission: DmgSubmission}) {
   return (
@@ -120,15 +121,7 @@ function renderPhoto(submission: DmgSubmission, photo: Photo | undefined) {
 
 function renderChips({mainboard, lcd_board}: DmgMetadata) {
   return (
-    <table>
-      <tbody>
-      <tr>
-        <th />
-        <th>Chip</th>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Label</th>
-      </tr>
+    <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
       <ConsolePageChip designator="U2" title="Video RAM" chip={mainboard.video_ram} />
       <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
@@ -137,7 +130,6 @@ function renderChips({mainboard, lcd_board}: DmgMetadata) {
       <ConsolePageChip designator="-" title="LCD Column Driver" chip={lcd_board && lcd_board.column_driver} />
       <ConsolePageChip designator="-" title="LCD Row Driver" chip={lcd_board && lcd_board.row_driver} />
       <ConsolePageChip designator="-" title="LCD Regulator" chip={lcd_board && lcd_board.regulator} />
-      </tbody>
-    </table>
+    </ConsolePageChipTable>
   )
 }

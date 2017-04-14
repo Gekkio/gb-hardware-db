@@ -16,13 +16,14 @@
     },
     "cpu": {
       "type": "CPU AGB",
-      "label": "CPU AGB 0103 I",
+      "label": "CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0103 I",
       "year": 2001,
       "week": 3
     },
     "work_ram": {
       "type": "D442012AGY-BB85X-MJH",
-      "label": "D442012AGY-BB85X-MJH 0038K7020",
+      "manufacturer": "nec",
+      "label": "NEC JAPAN D442012AGY-BB85X-MJH 0038K7020",
       "year": 2000,
       "week": 38
     },
@@ -40,6 +41,7 @@
     },
     "u4": {
       "type": "514X",
+      "manufacturer": "microchip",
       "label": "081 514X",
       "year": 2000
     }

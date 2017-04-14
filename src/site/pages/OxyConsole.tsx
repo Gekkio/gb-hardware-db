@@ -5,6 +5,7 @@ import {Photo, OxySubmission} from '../../crawler';
 import {OxyMetadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function OxyConsole({submission}: {submission: OxySubmission}) {
   return (
@@ -51,20 +52,11 @@ function renderPhoto(submission: OxySubmission, photo: Photo | undefined) {
 
 function renderChips({mainboard}: OxyMetadata) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th />
-          <th>Chip</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Label</th>
-        </tr>
-        <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
-        <ConsolePageChip designator="U2" title="????" chip={mainboard.u2} />
-        <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
-        <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
-      </tbody>
-    </table>
+    <ConsolePageChipTable>
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U2" title="????" chip={mainboard.u2} />
+      <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
+      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
+    </ConsolePageChipTable>
   )
 }

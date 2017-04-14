@@ -5,6 +5,7 @@ import {Photo, SgbSubmission} from '../../crawler';
 import {SgbMetadata} from '../../metadata';
 import * as format from '../format';
 import ConsolePageChip from '../components/ConsolePageChip';
+import ConsolePageChipTable from '../components/ConsolePageChipTable';
 
 export default function SgbConsole({submission}: {submission: SgbSubmission}) {
   return (
@@ -53,22 +54,13 @@ function renderPhoto(submission: SgbSubmission, photo: Photo | undefined) {
 
 function renderChips({mainboard}: SgbMetadata) {
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th />
-          <th>Chip</th>
-          <th>Type</th>
-          <th>Date</th>
-          <th>Label</th>
-        </tr>
-        <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
-        <ConsolePageChip designator="U2" title="ICD2" chip={mainboard.icd2} />
-        <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
-        <ConsolePageChip designator="U4" title="Work RAM" chip={mainboard.video_ram} />
-        <ConsolePageChip designator="U5" title="ROM" chip={mainboard.rom} />
-        <ConsolePageChip designator="U6" title="CIC" chip={mainboard.cic} />
-      </tbody>
-    </table>
+    <ConsolePageChipTable>
+      <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
+      <ConsolePageChip designator="U2" title="ICD2" chip={mainboard.icd2} />
+      <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
+      <ConsolePageChip designator="U4" title="Work RAM" chip={mainboard.video_ram} />
+      <ConsolePageChip designator="U5" title="ROM" chip={mainboard.rom} />
+      <ConsolePageChip designator="U6" title="CIC" chip={mainboard.cic} />
+    </ConsolePageChipTable>
   )
 }

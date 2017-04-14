@@ -16,13 +16,14 @@
     },
     "cpu": {
       "type": "CPU AGB A",
-      "label": "CPU AGB A 0228 mE",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0228 mE",
       "year": 2002,
       "week": 28
     },
     "work_ram": {
       "type": "HY62LF16206A",
-      "label": "Hynix HY62LF16206A 0223A LT12C",
+      "manufacturer": "hynix",
+      "label": "Hynix KOREA HY62LF16206A 0223A LT12C",
       "year": 2002,
       "week": 23
     },
@@ -35,6 +36,7 @@
     },
     "u4": {
       "type": "514X",
+      "manufacturer": "microchip",
       "label": "227 514X",
       "year": 2002,
       "week": 27

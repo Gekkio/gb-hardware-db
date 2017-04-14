@@ -16,13 +16,14 @@
     },
     "cpu": {
       "type": "CPU AGB",
-      "label": "CPU AGB 0122 I",
+      "label": "CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0122 I",
       "year": 2001,
       "week": 22
     },
     "work_ram": {
       "type": "82D12160-10FN",
-      "label": "82D12160-10FN 0119 M69V",
+      "manufacturer": "fujitsu",
+      "label": "JAPAN 82D12160-10FN 0119 M69V",
       "year": 2001,
       "week": 19
     },

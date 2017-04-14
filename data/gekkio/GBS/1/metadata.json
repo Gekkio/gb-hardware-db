@@ -11,11 +11,13 @@
     "year": 2003,
     "month": 5,
     "crystal": {
-      "type": "33WKSS3DT",
-      "label": "33WKSS3DT"
+      "type": "33WKSS",
+      "label": "33WKSS3DT",
+      "year": 2003
     },
     "cpu": {
       "type": "CPU AGB A",
+      "manufacturer": "sharp",
       "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0320 wV",
       "year": 2003,
       "week": 20
@@ -29,7 +31,9 @@
     },
     "u4": {
       "type": "GBS-DOL",
-      "label": "Nintendo GBS-DOL 011 0320E3095"
+      "label": "Nintendo GBS-DOL 011 0320E3095",
+      "year": 2003,
+      "week": 20
     },
     "u5": {
       "type": "592F",

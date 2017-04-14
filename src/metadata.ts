@@ -6,7 +6,7 @@ export interface Calendar {
   week?: number;
 }
 
-const manufacturers = ['fujitsu', 'hynix', 'microchip', 'mitsumi', 'nec', 'rohm', 'sharp', 'tdk']
+const manufacturers = ['bsi', 'fujitsu', 'hynix', 'microchip', 'mitsumi', 'nec', 'rohm', 'sharp', 'tdk']
 
 export interface Chip extends Calendar {
   type?: string;

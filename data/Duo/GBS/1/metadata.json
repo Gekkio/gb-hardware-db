@@ -1,0 +1,53 @@
+{
+  "type": "GBS",
+  "color": "platinum",
+  "mainboard": {
+    "type": "DOL-GBS-01",
+    "number_pair": "01-1",
+    "stamp": "1033727",
+    "stamp_front": "3304A",
+    "stamp_back": "4305A",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 2,
+    "crystal": {
+      "type": "33WKSS",
+      "label": "33WKSS3AT",
+      "year": 2003
+    },
+    "cpu": {
+      "type": "CPU AGB A",
+      "manufacturer": "sharp",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0252 I",
+      "year": 2002,
+      "week": 52
+    },
+    "work_ram": {
+      "type": "HY62LF16206A",
+      "manufacturer": "hynix",
+      "label": "Hynix KOREA HY62LF16206A 0241A LT12C",
+      "year": 2002,
+      "week": 41
+    },
+    "u4": {
+      "type": "GBS-DOL",
+      "label": "Nintendo GBS-DOL 011 0305E3112",
+      "year": 2003,
+      "week": 5
+    },
+    "u5": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "303 592F",
+      "year": 2003,
+      "week": 3
+    },
+    "u6": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "303 592F",
+      "year": 2003,
+      "week": 3
+    }
+  }
+}

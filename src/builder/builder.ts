@@ -58,7 +58,7 @@ function resolvePages(): PageDeclaration[] {
     {type: 'ags', path: ['consoles', 'ags', 'index'], title: 'Game Boy Advance SP (AGS)', props: {
       submissions: submissions.filter(x => x.type === 'ags') as AgsSubmission[]
     }},
-    {type: 'gbs', path: ['consoles', 'gbs', 'index'], title: 'Game Boy Player (GGS)', props: {
+    {type: 'gbs', path: ['consoles', 'gbs', 'index'], title: 'Game Boy Player (GBS)', props: {
       submissions: submissions.filter(x => x.type === 'gbs') as GbsSubmission[]
     }},
     {type: 'oxy', path: ['consoles', 'oxy', 'index'], title: 'Game Boy Micro (OXY)', props: {

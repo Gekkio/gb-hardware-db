@@ -40,6 +40,8 @@ export function optional<T>(f: (value: T) => string, value: T | null | undefine
 
 export function manufacturer(value: string): string {
   switch (value) {
+    case 'bsi':
+      return 'BSI';
     case 'fujitsu':
       return 'Fujitsu';
     case 'hynix':

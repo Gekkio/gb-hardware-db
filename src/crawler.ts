@@ -49,6 +49,14 @@ export interface DmgSubmission {
   photos: {
     front?: Photo;
     back?: Photo;
+    mainboardFront?: Photo;
+    mainboardBack?: Photo;
+    lcdBoardFront?: Photo;
+    lcdBoardBack?: Photo;
+    powerBoardFront?: Photo,
+    powerBoardBack?: Photo;
+    jackBoardFront?: Photo;
+    jackBoardBack?: Photo;
   };
 }
 
@@ -285,6 +293,14 @@ function crawlDMG(contributor: string, unit: FsEntry, metadata: DmgMetadata): Dm
   const photos = {
     front: fetchPhoto(unit, '01_front.jpg'),
     back: fetchPhoto(unit, '02_back.jpg'),
+    mainboardFront: fetchPhoto(unit, '03_mainboard_front.jpg'),
+    mainboardBack: fetchPhoto(unit, '04_mainboard_back.jpg'),
+    lcdBoardFront: fetchPhoto(unit, '05_lcd_board_front.jpg'),
+    lcdBoardBack: fetchPhoto(unit, '06_lcd_board_back.jpg'),
+    powerBoardFront: fetchPhoto(unit, '07_power_board_front.jpg'),
+    powerBoardBack: fetchPhoto(unit, '08_power_board_back.jpg'),
+    jackBoardFront: fetchPhoto(unit, '09_jack_board_front.jpg'),
+    jackBoardBack: fetchPhoto(unit, '10_jack_board_back.jpg'),
   };
 
   return {type: 'dmg', title, slug, contributor, metadata, photos};

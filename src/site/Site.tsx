@@ -6,6 +6,7 @@ import ContributeSgb from './pages/ContributeSgb';
 import ContributeSgb2 from './pages/ContributeSgb2';
 import ContributeOxy from './pages/ContributeOxy';
 import Dmg from './pages/Dmg';
+import DmgConsole from './pages/DmgConsole';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
 import Mgb from './pages/Mgb';
@@ -71,6 +72,8 @@ function renderPage(type: string, props: any) {
       return <ContributeOxy {...props} />
     case 'dmg':
       return <Dmg {...props} />
+    case 'dmg-console':
+      return <DmgConsole {...props} />
     case 'sgb':
       return <Sgb {...props} />
     case 'sgb-console':

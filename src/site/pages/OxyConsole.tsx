@@ -8,9 +8,9 @@ import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function OxyConsole({submission}: {submission: OxySubmission}) {
   return (
-    <article className="page-oxy-console">
+    <article className="page-console page-console--oxy">
       <h2>{`OXY: ${submission.title} [${submission.contributor}]`}</h2>
-      <div className="page-oxy-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
@@ -19,7 +19,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
         <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
-      <div className="page-oxy-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>

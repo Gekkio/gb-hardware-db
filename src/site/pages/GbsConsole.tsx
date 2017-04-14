@@ -8,9 +8,9 @@ import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function GbsConsole({submission}: {submission: GbsSubmission}) {
   return (
-    <article className="page-gbs-console">
+    <article className="page-console page-console--gbs">
       <h2>{`GBS: ${submission.title} [${submission.contributor}]`}</h2>
-      <div className="page-gbs-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
@@ -19,7 +19,7 @@ export default function GbsConsole({submission}: {submission: GbsSubmission}) {
         <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
-      <div className="page-gbs-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>

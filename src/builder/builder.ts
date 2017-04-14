@@ -66,7 +66,14 @@ function resolvePages(): PageDeclaration[] {
     }}
   ]
   submissions.forEach(submission => {
-    if (submission.type === 'sgb') {
+    if (submission.type === 'dmg') {
+      pages.push({
+        type: 'dmg-console',
+        path: ['consoles', 'dmg', submission.slug],
+        title: `DMG: ${submission.title} [${submission.contributor}]`,
+        props: {submission}
+      });
+    } else if (submission.type === 'sgb') {
       pages.push({
         type: 'sgb-console',
         path: ['consoles', 'sgb', submission.slug],

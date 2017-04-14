@@ -1,6 +1,7 @@
+import * as R from 'ramda';
 import * as React from 'react';
 
-import {DmgSubmission} from '../../crawler';
+import {DmgSubmission, Photo} from '../../crawler';
 import * as format from '../format';
 import ConsoleListingChip from '../components/ConsoleListingChip';
 
@@ -16,8 +17,12 @@ export default function Dmg({submissions}: Props) {
         <thead>
         <tr>
           <th>ID</th>
-          <th>Board</th>
+          <th>Mainboard</th>
           <th>CPU (U1)</th>
+          <th>LCD board</th>
+          <th>Power board</th>
+          <th>Jack board</th>
+          <th>Photos</th>
         </tr>
         </thead>
         <tbody>
@@ -30,11 +35,21 @@ export default function Dmg({submissions}: Props) {
   )
 }
 
-function Submission({submission: {contributor, slug, title, metadata}}: {submission: DmgSubmission}) {
+function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: DmgSubmission}) {
   return (
     <tr>
       <td className="submission-list-item">
-        <a className="submission-list-item__link">
+        <a className="submission-list-item__link" href={`/consoles/dmg/${slug}.html`}>
+          <div className="submission-list-item__photo">
+            {photos.front
+              ? <img
+                src={`/static/dmg/${slug}_thumbnail_80.jpg`}
+                srcSet={`/static/dmg/${slug}_thumbnail_50.jpg 50w, /static/dmg/${slug}_thumbnail_80.jpg 80w`}
+                sizes="(min-width: 1000px) 80px, 50px"
+                role="presentation" />
+              : null
+            }
+          </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>
             <aside className="submission-list-item__contributor">{contributor}</aside>
@@ -46,6 +61,35 @@ function Submission({submission: {contributor, slug, title, metadata}}: {submiss
         <div>{format.short.calendar(metadata.mainboard)}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <td>
+        <div>{format.optional(R.identity, metadata.lcd_board && metadata.lcd_board.type)}</div>
+        <div>{format.optional(format.short.calendar, metadata.lcd_board)}</div>
+      </td>
+      <td>{format.optional(R.identity, metadata.power_board && metadata.power_board.type)}</td>
+      <td>{format.optional(R.identity, metadata.jack_board && metadata.jack_board.type)}</td>
+      <td>
+        {renderPhoto(slug, 'Front', photos.front)}
+        {renderPhoto(slug, 'Back', photos.back)}
+        {renderPhoto(slug, 'Mainboard front', photos.mainboardFront)}
+        {renderPhoto(slug, 'Mainboard back', photos.mainboardBack)}
+        {renderPhoto(slug, 'LCD board front', photos.lcdBoardFront)}
+        {renderPhoto(slug, 'LCD board back', photos.lcdBoardBack)}
+        {renderPhoto(slug, 'Power board front', photos.powerBoardFront)}
+        {renderPhoto(slug, 'Power board back', photos.powerBoardBack)}
+        {renderPhoto(slug, 'Jack board front', photos.jackBoardFront)}
+        {renderPhoto(slug, 'Jack board back', photos.jackBoardBack)}
+      </td>
     </tr>
+  )
+}
+
+function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
+  if (!photo) {
+    return null;
+  }
+  return (
+    <div>
+      <a href={`/static/dmg/${slug}_${photo.name}`}>{label}</a>
+    </div>
   )
 }

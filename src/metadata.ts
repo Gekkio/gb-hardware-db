@@ -32,18 +32,76 @@ export interface Metadata {
 
 export interface DmgMetadata extends Metadata {
   type: "DMG";
+  color?: string;
+  screws?: string;
   mainboard: {
     type: string;
+    circled_letters?: string;
+    extra_label?: string;
+    stamp?: string;
+    year?: number;
+    month?: number;
     cpu?: Chip;
+    work_ram?: Chip;
+    video_ram?: Chip;
+    amplifier?: Chip;
+    crystal?: Chip;
+  };
+  lcd_board?: {
+    type: string;
+    circled_letters?: string;
+    stamp?: string;
+    year?: number;
+    month?: number;
+    column_driver?: Chip;
+    row_driver?: Chip;
+    regulator?: Chip;
+  };
+  power_board?: {
+    type: string;
+    label: string;
+  };
+  jack_board?: {
+    type: string;
+    extra_label?: string | null
   };
 }
 
 export namespace DmgMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
+    color: Joi.string(),
+    screws: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      extra_label: Joi.string(),
+      stamp: Joi.string(),
+      year: Joi.number(),
+      month: Joi.number(),
       cpu: Chip.schema,
+      work_ram: Chip.schema,
+      video_ram: Chip.schema,
+      amplifier: Chip.schema,
+      crystal: Chip.schema,
+    }),
+    lcd_board: Joi.object().keys({
+      type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      stamp: Joi.string(),
+      year: Joi.number(),
+      month: Joi.number(),
+      column_driver: Chip.schema,
+      row_driver: Chip.schema,
+      regulator: Chip.schema,
+    }),
+    power_board: Joi.object().keys({
+      type: Joi.string().required(),
+      label: Joi.string().required()
+    }),
+    jack_board: Joi.object().keys({
+      type: Joi.string().required(),
+      extra_label: Joi.string().allow(null)
     })
   });
 }

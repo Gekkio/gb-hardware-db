@@ -8,9 +8,9 @@ import ConsolePageChip from '../components/ConsolePageChip';
 
 export default function AgbConsole({submission}: {submission: AgbSubmission}) {
   return (
-    <article className="page-agb-console">
+    <article className="page-console page-console--agb">
       <h2>{`AGB: ${submission.title} [${submission.contributor}]`}</h2>
-      <div className="page-agb-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
@@ -19,7 +19,7 @@ export default function AgbConsole({submission}: {submission: AgbSubmission}) {
         <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
-      <div className="page-agb-console__photo">
+      <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>

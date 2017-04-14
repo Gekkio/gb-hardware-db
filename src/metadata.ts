@@ -36,7 +36,7 @@ export interface DmgMetadata extends Metadata {
   screws?: string;
   mainboard: {
     type: string;
-    circled_letters?: string;
+    circled_letters?: string | null;
     extra_label?: string;
     stamp?: string;
     year?: number;
@@ -74,7 +74,7 @@ export namespace DmgMetadata {
     screws: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
-      circled_letters: Joi.string(),
+      circled_letters: Joi.string().allow(null),
       extra_label: Joi.string(),
       stamp: Joi.string(),
       year: Joi.number(),

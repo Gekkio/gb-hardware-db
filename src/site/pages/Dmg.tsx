@@ -19,6 +19,8 @@ export default function Dmg({submissions}: Props) {
           <th>ID</th>
           <th>Mainboard</th>
           <th>CPU (U1)</th>
+          <th>VRAM (U2)</th>
+          <th>WRAM (U3)</th>
           <th>LCD board</th>
           <th>Power board</th>
           <th>Jack board</th>
@@ -61,6 +63,8 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div>{format.short.calendar(metadata.mainboard)}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.video_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.work_ram} />
       <td>
         <div>{format.optional(R.identity, metadata.lcd_board && metadata.lcd_board.type)}</div>
         <div>{format.optional(format.short.calendar, metadata.lcd_board)}</div>

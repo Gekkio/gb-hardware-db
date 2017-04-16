@@ -61,7 +61,9 @@
   },
   "power_board": {
     "type": "C",
-    "label": "DC CONV DMG"
+    "label": "DC CONV DMG",
+    "year": 1994,
+    "month": 5
   },
   "jack_board": {
     "type": "DMG JACK 03",

@@ -87,7 +87,9 @@ function renderPowerBoardDetails(metadata: DmgMetadata) {
   return (
     <dl>
       <dt>Board type</dt>
-      <dd>{metadata.power_board.type}</dd>
+      <dd>{`Type ${metadata.power_board.type}`}</dd>
+      <dt>Manufacture date</dt>
+      <dd>{format.calendar(metadata.power_board)}</dd>
       <dt>Label</dt>
       <dd>{format.optional(R.identity, metadata.power_board.label)}</dd>
     </dl>

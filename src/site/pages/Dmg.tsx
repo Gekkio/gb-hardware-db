@@ -69,7 +69,10 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div>{format.optional(R.identity, metadata.lcd_board && metadata.lcd_board.type)}</div>
         <div>{format.optional(format.short.calendar, metadata.lcd_board)}</div>
       </td>
-      <td>{format.optional(R.identity, metadata.power_board && metadata.power_board.type)}</td>
+      <td>
+        <div>{format.optional(v => `Type ${v}`, metadata.power_board && metadata.power_board.type)}</div>
+        <div>{format.optional(format.short.calendar, metadata.power_board)}</div>
+      </td>
       <td>{format.optional(R.identity, metadata.jack_board && metadata.jack_board.type)}</td>
       <td>
         {renderPhoto(slug, 'Front', photos.front)}

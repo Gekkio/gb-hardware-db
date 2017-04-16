@@ -62,6 +62,8 @@ export interface DmgMetadata extends Metadata {
   power_board?: {
     type: string;
     label: string;
+    year?: number;
+    month?: number;
   };
   jack_board?: {
     type: string;
@@ -99,7 +101,9 @@ export namespace DmgMetadata {
     }),
     power_board: Joi.object().keys({
       type: Joi.string().required(),
-      label: Joi.string().required()
+      label: Joi.string().required(),
+      year: Joi.number(),
+      month: Joi.number()
     }),
     jack_board: Joi.object().keys({
       type: Joi.string().required(),

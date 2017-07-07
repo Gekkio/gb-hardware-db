@@ -2,10 +2,9 @@
   "compilerOptions": {
     "jsx": "react",
     "module": "commonjs",
-    "noImplicitAny": true,
     "outDir": "build/scripts",
     "sourceMap": true,
-    "strictNullChecks": true,
+    "strict": true,
     "target": "es2015"
   },
   "include": [

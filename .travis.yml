@@ -18,7 +18,6 @@ before_install:
   - tar xvfz git-lfs-linux-amd64-2.2.0.tar.gz
   - mv git-lfs-2.2.0/git-lfs $HOME/bin/git-lfs
   - export PATH=$PATH:$HOME/bin/
-  - git config lfs.access basic
   - git lfs install
 
 install:

@@ -1,8 +1,12 @@
-sudo: true
+sudo: false
 dist: trusty
 language: node_js
 node_js:
   - '6'
+
+env:
+  global:
+    secure: IyWCw7Tcp17uG9JCVazTyCzgtBAtFQk2jPsf3zcpNqqWKJasz+CSHfuKUbqa8i20dlAtFgL/ZvgKN9cRgqmbhDDZ1lcvX8mqJtkdy5H5sQQd8VamqnI3f5Em+Qk9BquXlBx/zm0k44pNfyt2JkiaxBdoOXcAD+wTUMhBn5ozQXNBUkdoOiDBODizR/4ZuzBVZGg7zrZRNV8nvZVOglO6nQxwFNSHGjXjPT6b3TmFKhrCtQH/ZIt8Ip42nm3wc6XNLSWj5/0h/erm9vz2IZyDopysP7vhdXzLOlCXCVVgguXXRqHWNevvn5FHiL0FQnhoL8aRK40sAMTMaHhvieuRxXmEtsgV7IK5U4ST0ZOTlCLhBr5je7gcuEvxDeZ2fQTd8fFtJpXl9zGPsR/mGR11xtCXh2AFmbOwnP4iUS3u+0bQ5b+FPWtKi178aLFqdAYDeze49HdnW/4G88EU+LylwpTzR/HYMMdVinYU48pW6XPwX9WmXbSjXZ2z8wWXBjnlc8ANOHSgE7+Fhzbn4HsJCBrneDE9qbrKGykfuLzO9OGeVh1xU4qBQxXRJ6jaJ9l4MHCe5dJryfZSEnnghEjLOObCu63a+tuNsDxbFGSjSST3hpX6M1niQlLmLa8/KMjqKn88oCviQ7T+cMoxP8ZBP/acTh2ZqeQR0lM+uj6Q6Io=
 
 cache:
   directories:

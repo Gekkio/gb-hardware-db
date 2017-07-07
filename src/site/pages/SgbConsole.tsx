@@ -17,7 +17,7 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
       </div>
       <dl>
         <dt>Stamp on case</dt>
-        <dd>{format.optional(R.identity, submission.metadata.stamp)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.stamp)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">
@@ -30,9 +30,9 @@ export default function SgbConsole({submission}: {submission: SgbSubmission}) {
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
         <dt>Letter at top right</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}

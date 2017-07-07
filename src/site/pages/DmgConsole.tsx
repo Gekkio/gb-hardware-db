@@ -17,9 +17,9 @@ export default function DmgConsole({submission}: {submission: DmgSubmission}) {
       </div>
       <dl>
         <dt>Color</dt>
-        <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
         <dt>Screws</dt>
-        <dd>{format.optional(R.identity, submission.metadata.screws)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.screws)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">
@@ -32,11 +32,11 @@ export default function DmgConsole({submission}: {submission: DmgSubmission}) {
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Stamp</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.stamp)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.stamp)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
         <dt>Extra label</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.extra_label)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.extra_label)}</dd>
       </dl>
       <h3>LCD Board</h3>
       <div className="page-console__photo">
@@ -73,9 +73,9 @@ function renderLcdBoardDetails(metadata: DmgMetadata) {
       <dt>Manufacture date</dt>
       <dd>{format.calendar(metadata.lcd_board)}</dd>
       <dt>Stamp</dt>
-      <dd>{format.optional(R.identity, metadata.lcd_board.stamp)}</dd>
+      <dd>{format.optional<string>(R.identity, metadata.lcd_board.stamp)}</dd>
       <dt>Circled letter(s) on board</dt>
-      <dd>{format.optional(R.identity, metadata.lcd_board.circled_letters)}</dd>
+      <dd>{format.optional<string>(R.identity, metadata.lcd_board.circled_letters)}</dd>
     </dl>
   )
 }
@@ -91,7 +91,7 @@ function renderPowerBoardDetails(metadata: DmgMetadata) {
       <dt>Manufacture date</dt>
       <dd>{format.calendar(metadata.power_board)}</dd>
       <dt>Label</dt>
-      <dd>{format.optional(R.identity, metadata.power_board.label)}</dd>
+      <dd>{format.optional<string>(R.identity, metadata.power_board.label)}</dd>
     </dl>
   )
 }
@@ -105,7 +105,7 @@ function renderJackBoardDetails(metadata: DmgMetadata) {
       <dt>Board type</dt>
       <dd>{metadata.jack_board.type}</dd>
       <dt>Extra label</dt>
-      <dd>{format.optional(R.identity, metadata.jack_board.extra_label)}</dd>
+      <dd>{format.optional<string>(R.identity, metadata.jack_board.extra_label)}</dd>
     </dl>
   )
 }

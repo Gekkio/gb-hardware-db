@@ -17,7 +17,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
       </div>
       <dl>
         <dt>Color</dt>
-        <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">
@@ -30,7 +30,7 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}

@@ -17,7 +17,7 @@ export default function AgbConsole({submission}: {submission: AgbSubmission}) {
       </div>
       <dl>
         <dt>Color</dt>
-        <dd>{format.optional(R.identity, submission.metadata.color)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">
@@ -30,11 +30,11 @@ export default function AgbConsole({submission}: {submission: AgbSubmission}) {
         <dt>Manufacture date</dt>
         <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Number pair on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.number_pair)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.number_pair)}</dd>
         <dt>Stamp on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.stamp)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.stamp)}</dd>
         <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
+        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
       </dl>
       <h3>Chips</h3>
       {renderChips(submission.metadata)}

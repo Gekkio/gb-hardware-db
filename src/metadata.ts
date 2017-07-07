@@ -155,6 +155,8 @@ export interface MgbMetadata extends Metadata {
   mainboard: {
     type: string;
     cpu?: Chip;
+    year?: number;
+    month?: number;
   };
 }
 
@@ -164,6 +166,8 @@ export namespace MgbMetadata {
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number(),
     })
   });
 }
@@ -173,6 +177,8 @@ export interface MglMetadata extends Metadata {
   mainboard: {
     type: string;
     cpu?: Chip;
+    year?: number;
+    month?: number;
   };
 }
 
@@ -182,6 +188,8 @@ export namespace MglMetadata {
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number()
     })
   });
 }
@@ -231,6 +239,8 @@ export interface CgbMetadata extends Metadata {
   mainboard: {
     type: string;
     cpu?: Chip;
+    year?: number;
+    month?: number;
   };
 }
 
@@ -240,6 +250,8 @@ export namespace CgbMetadata {
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number(),
     })
   });
 }
@@ -289,6 +301,8 @@ export interface AgsMetadata extends Metadata {
   mainboard: {
     type: string;
     cpu?: Chip;
+    year?: number;
+    month?: number;
   };
 }
 
@@ -298,6 +312,8 @@ export namespace AgsMetadata {
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
+      year: Joi.number(),
+      month: Joi.number(),
     })
   });
 }

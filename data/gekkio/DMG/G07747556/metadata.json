@@ -1,13 +1,13 @@
 {
   "type": "DMG",
   "color": "off-white",
+  "year": 1990,
+  "month": 7,
   "mainboard": {
     "type": "DMG-CPU-04",
     "circled_letters": "W",
     "extra_label": "5",
     "stamp": "007 0100",
-    "year": 1990,
-    "month": 7,
     "cpu": {
       "type": "DMG-CPU B",
       "label": "DMG-CPU B © 1989 Nintendo JAPAN 9026 W",
@@ -45,8 +45,6 @@
     "type": "DMG-LCD-05",
     "circled_letters": "K",
     "stamp": "007 0100",
-    "year": 1990,
-    "month": 7,
     "column_driver": {
       "type": "LH5077 F",
       "manufacturer": "sharp",

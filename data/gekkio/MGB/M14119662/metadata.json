@@ -1,6 +1,8 @@
 {
   "type": "MGB",
   "color": "clear-purple",
+  "year": 1998,
+  "month": 3,
   "mainboard": {
     "type": "MGB-LCPU-02",
     "number_pair": "4-2",

@@ -18,6 +18,8 @@ export default function GbsConsole({submission}: {submission: GbsSubmission}) {
       <dl>
         <dt>Color</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
+        <dt>Assembly date</dt>
+        <dd>{format.calendar(submission.metadata)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">

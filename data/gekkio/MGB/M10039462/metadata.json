@@ -1,6 +1,8 @@
 {
   "type": "MGB",
   "color": "yellow",
+  "year": 1996,
+  "month": 6,
   "mainboard": {
     "type": "MGB-CPU-01",
     "number_pair": "1-2",

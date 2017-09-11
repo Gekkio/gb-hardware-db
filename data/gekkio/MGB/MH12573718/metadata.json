@@ -1,6 +1,8 @@
 {
   "type": "MGB",
   "color": "silver",
+  "year": 1997,
+  "month": 4,
   "mainboard": {
     "type": "MGB-ECPU-01",
     "number_pair": "1-2",

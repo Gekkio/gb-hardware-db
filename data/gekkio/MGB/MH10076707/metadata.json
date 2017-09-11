@@ -1,13 +1,15 @@
 {
   "type": "MGB",
   "color": "green",
+  "year": 1996,
+  "month": 7,
   "mainboard": {
     "type": "MGB-CPU-01",
     "number_pair": "5-2",
     "stamp": "607-3702",
     "circled_letters": "HS",
     "year": 1997,
-    "month": 6,
+    "month": 7,
     "crystal": {
       "type": "KDS 4.194",
       "manufacturer": "kds",

@@ -60,7 +60,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
       </td>
       <td>
         <div>{metadata.mainboard.type}</div>
-        <div>{format.short.calendar(metadata.mainboard)}</div>
+        <div>{`Assembled: ${format.short.calendar(metadata)}`}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
       <ConsoleListingChip chip={metadata.mainboard.video_ram} />

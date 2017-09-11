@@ -1,6 +1,8 @@
 {
   "type": "AGB",
   "color": "spice",
+  "year": 2002,
+  "week": 27,
   "mainboard": {
     "type": "AGB-CPU-04",
     "number_pair": "4-1",

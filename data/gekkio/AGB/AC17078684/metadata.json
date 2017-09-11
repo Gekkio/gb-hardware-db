@@ -1,6 +1,8 @@
 {
   "type": "AGB",
   "color": "platinum",
+  "year": 2002,
+  "week": 45,
   "mainboard": {
     "type": "AGB-CPU-10",
     "number_pair": "1-1",

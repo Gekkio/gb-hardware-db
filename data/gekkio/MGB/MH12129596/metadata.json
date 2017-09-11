@@ -1,13 +1,15 @@
 {
   "type": "MGB",
   "color": "black",
+  "year": 1997,
+  "month": 1,
   "mainboard": {
     "type": "MGB-ECPU-01",
     "number_pair": "3-1",
     "stamp": "701-8702",
     "circled_letters": "HS",
-    "year": 1997,
-    "month": 1,
+    "year": 1996,
+    "month": 12,
     "crystal": {
       "type": "KDS 4.194",
       "manufacturer": "kds",

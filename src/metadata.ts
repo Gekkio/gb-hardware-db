@@ -36,13 +36,13 @@ export interface DmgMetadata extends Metadata {
   type: "DMG";
   color?: string;
   screws?: string;
+  year?: number;
+  month?: number;
   mainboard: {
     type: string;
     circled_letters?: string | null;
     extra_label?: string;
     stamp?: string;
-    year?: number;
-    month?: number;
     cpu?: Chip;
     work_ram?: Chip;
     video_ram?: Chip;
@@ -76,13 +76,13 @@ export namespace DmgMetadata {
     type: Joi.string().required(),
     color: Joi.string(),
     screws: Joi.string(),
+    year: Joi.number(),
+    month: Joi.number(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       circled_letters: Joi.string().allow(null),
       extra_label: Joi.string(),
       stamp: Joi.string(),
-      year: Joi.number(),
-      month: Joi.number(),
       cpu: Chip.schema,
       work_ram: Chip.schema,
       video_ram: Chip.schema,
@@ -153,6 +153,8 @@ export namespace SgbMetadata {
 export interface MgbMetadata extends Metadata {
   type: "MGB";
   color?: string;
+  year?: number;
+  month?: number;
   mainboard: {
     type: string;
     circled_letters?: string | null;
@@ -176,6 +178,8 @@ export namespace MgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
     color: Joi.string(),
+    year: Joi.number(),
+    month: Joi.number(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       circled_letters: Joi.string().allow(null),
@@ -283,6 +287,8 @@ export namespace CgbMetadata {
 export interface AgbMetadata extends Metadata {
   type: "AGB";
   color?: string;
+  year?: number;
+  week?: number;
   mainboard: {
     type: string;
     number_pair?: string;
@@ -303,6 +309,8 @@ export namespace AgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
     color: Joi.string(),
+    year: Joi.number(),
+    week: Joi.number(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       number_pair: Joi.string(),
@@ -345,6 +353,8 @@ export namespace AgsMetadata {
 export interface GbsMetadata extends Metadata {
   type: "GBS";
   color?: string;
+  year?: number;
+  week?: number;
   mainboard: {
     type: string;
     number_pair?: string,
@@ -367,6 +377,8 @@ export namespace GbsMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
     color: Joi.string(),
+    year: Joi.number(),
+    week: Joi.number(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       number_pair: Joi.string(),

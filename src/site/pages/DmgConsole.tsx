@@ -20,6 +20,8 @@ export default function DmgConsole({submission}: {submission: DmgSubmission}) {
         <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
         <dt>Screws</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.screws)}</dd>
+        <dt>Assembly date</dt>
+        <dd>{format.calendar(submission.metadata)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">
@@ -29,8 +31,6 @@ export default function DmgConsole({submission}: {submission: DmgSubmission}) {
       <dl>
         <dt>Board type</dt>
         <dd>{submission.metadata.mainboard.type}</dd>
-        <dt>Manufacture date</dt>
-        <dd>{format.calendar(submission.metadata.mainboard)}</dd>
         <dt>Stamp</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.stamp)}</dd>
         <dt>Circled letter(s) on board</dt>

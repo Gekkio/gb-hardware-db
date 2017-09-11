@@ -2,13 +2,13 @@
   "type": "DMG",
   "color": "off-white",
   "screws": "philips",
+  "year": 1989,
+  "month": 9,
   "mainboard": {
     "type": "DMG-CPU-02",
     "circled_letters": "W",
     "extra_label": "5",
     "stamp": "909-23",
-    "year": 1989,
-    "month": 9,
     "cpu": {
       "type": "DMG-CPU A",
       "label": "DMG-CPU A © 1989 Nintendo JAPAN 8937 D",
@@ -46,8 +46,6 @@
     "type": "DMG-LCD-05",
     "circled_letters": "Z",
     "stamp": "909-23",
-    "year": 1989,
-    "month": 9,
     "column_driver": {
       "type": "LH5077 F",
       "manufacturer": "sharp",

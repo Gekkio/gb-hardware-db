@@ -1,6 +1,8 @@
 {
   "type": "GBS",
   "color": "platinum",
+  "year": 2003,
+  "week": 27,
   "mainboard": {
     "type": "DOL-GBS-10",
     "number_pair": "10-2",

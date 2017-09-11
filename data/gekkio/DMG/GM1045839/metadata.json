@@ -2,13 +2,13 @@
   "type": "DMG",
   "color": "off-white",
   "screws": "tri-wing",
+  "year": 1994,
+  "month": 7,
   "mainboard": {
     "type": "DMG-CPU-07",
     "circled_letters": "SYI",
     "extra_label": "Rev 1",
     "stamp": "407 3901",
-    "year": 1994,
-    "month": 7,
     "cpu": {
       "type": "blob",
       "label": null

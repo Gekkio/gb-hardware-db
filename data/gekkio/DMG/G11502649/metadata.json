@@ -1,13 +1,13 @@
 {
   "type": "DMG",
   "color": "off-white",
+  "year": 1990,
+  "month": 11,
   "mainboard": {
     "type": "DMG-CPU-04",
     "circled_letters": "K3",
     "extra_label": "2",
     "stamp": "011 0007",
-    "year": 1990,
-    "month": 11,
     "cpu": {
       "type": "DMG-CPU B",
       "label": "DMG-CPU B © 1989 Nintendo JAPAN 9038 S",

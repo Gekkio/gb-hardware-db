@@ -10,6 +10,7 @@
     "month": 5,
     "crystal": {
       "type": "KDS 4.194",
+      "manufacturer": "kds",
       "label": "KDS 6F 4.194",
       "year": 1996,
       "month": 6

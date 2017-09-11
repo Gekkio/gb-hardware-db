@@ -10,6 +10,7 @@
     "month": 1,
     "crystal": {
       "type": "KDS 4.194",
+      "manufacturer": "kds",
       "label": "KDS 0102 4.194",
       "year": 2001,
       "week": 2

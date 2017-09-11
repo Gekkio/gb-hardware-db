@@ -21,12 +21,14 @@
     },
     "work_ram": {
       "type": "LH52A64N-YL",
+      "manufacturer": "xlink",
       "label": "LH52A64N-YL H432 0U C",
       "year": 1994,
       "week": 32
     },
     "video_ram": {
       "type": "LH52A64N-YL",
+      "manufacturer": "xlink",
       "label": "LH52A64N-YL H432 0U C",
       "year": 1994,
       "week": 32

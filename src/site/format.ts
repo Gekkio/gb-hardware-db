@@ -46,6 +46,10 @@ export function manufacturer(value: string): string {
       return 'Fujitsu';
     case 'hynix':
       return 'Hynix';
+    case 'kds':
+      return 'Daishinku'
+    case 'kss':
+      return 'Kinseki'
     case 'microchip':
       return 'Microchip';
     case 'mitsumi':

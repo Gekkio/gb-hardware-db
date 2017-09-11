@@ -38,6 +38,7 @@
     },
     "crystal": {
       "type": "KSS20V",
+      "manufacturer": "kss",
       "label": "KSS20V 8A",
       "year": 1998,
       "month": 1

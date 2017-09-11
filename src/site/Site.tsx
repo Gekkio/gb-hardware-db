@@ -10,6 +10,7 @@ import DmgConsole from './pages/DmgConsole';
 import Sgb from './pages/Sgb';
 import SgbConsole from './pages/SgbConsole';
 import Mgb from './pages/Mgb';
+import MgbConsole from './pages/MgbConsole';
 import Mgl from './pages/Mgl';
 import Sgb2 from './pages/Sgb2';
 import Sgb2Console from './pages/Sgb2Console';
@@ -40,10 +41,10 @@ export default function Site(props: Site.Props) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{props.title}</title>
-        <script dangerouslySetInnerHTML={{__html: googleAnalytics()}} />
-        <script async src="https://www.google-analytics.com/analytics.js" />
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
+        <script dangerouslySetInnerHTML={{__html: googleAnalytics()}} />
+        <script async src="https://www.google-analytics.com/analytics.js" />
       </head>
       <body>
         <SiteHeader pageType={props.pageType} />
@@ -80,6 +81,8 @@ function renderPage(type: string, props: any) {
       return <SgbConsole {...props} />
     case 'mgb':
       return <Mgb {...props} />
+    case 'mgb-console':
+      return <MgbConsole {...props} />
     case 'mgl':
       return <Mgl {...props} />
     case 'sgb2':

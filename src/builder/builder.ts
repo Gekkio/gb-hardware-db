@@ -80,6 +80,13 @@ function resolvePages(): PageDeclaration[] {
         title: `SGB: ${submission.title} [${submission.contributor}]`,
         props: {submission}
       });
+    } else if (submission.type === 'mgb') {
+      pages.push({
+        type: 'mgb-console',
+        path: ['consoles', 'mgb', submission.slug],
+        title: `MGB: ${submission.title} [${submission.contributor}]`,
+        props: {submission}
+      });
     } else if (submission.type === 'sgb2') {
       pages.push({
         type: 'sgb2-console',

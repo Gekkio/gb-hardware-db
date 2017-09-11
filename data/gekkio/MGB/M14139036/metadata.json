@@ -1,43 +1,43 @@
 {
   "type": "MGB",
-  "color": "green",
+  "color": "off-white",
   "mainboard": {
     "type": "MGB-LCPU-02",
-    "number_pair": "2-2",
-    "stamp": "812-3702",
-    "circled_letters": "Cs",
+    "number_pair": "8-2",
+    "stamp": "802-2217",
+    "circled_letters": "A",
     "year": 1998,
-    "month": 11,
+    "month": 1,
     "crystal": {
-      "type": "4.1943 RVR",
-      "label": "4.1943 RVR 841",
+      "type": "KDS 4.194",
+      "label": "KDS 9803 4.194",
       "year": 1998,
-      "week": 41
+      "week": 3
     },
     "cpu": {
       "type": "CPU MGB",
-      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9813 D",
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9808 D",
       "year": 1998,
-      "week": 13
+      "week": 8
     },
     "work_ram": {
       "type": "LH5164AN-10L",
       "manufacturer": "sharp",
-      "label": "LH5164AN-10L SHARP JAPAN 9802 5 EB",
+      "label": "LH5164AN-10L SHARP JAPAN 9804 3 EB",
       "year": 1998,
-      "week": 2
+      "week": 4
     },
     "regulator": {
       "type": "IR3E02",
-      "label": "DMG-REG IR3E02 9820 n",
+      "label": "DMG-REG IR3E02 9806 p",
       "year": 1998,
-      "week": 20
+      "week": 6
     },
     "amplifier": {
       "type": "IR3R53N",
-      "label": "AMP MGB IR3R53N 9842 a",
+      "label": "AMP MGB IR3R53N 9806 a",
       "year": 1998,
-      "week": 42
+      "week": 6
     }
   },
   "lcd": {
@@ -49,9 +49,9 @@
     "row_driver": {
       "type": "LH5076 E",
       "manufacturer": "sharp",
-      "label": "LH5076 E 8170",
-      "year": 1998,
-      "week": 17
+      "label": "LH5076 E 7510",
+      "year": 1997,
+      "week": 51
     }
   }
 }

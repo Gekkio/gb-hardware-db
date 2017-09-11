@@ -6,7 +6,7 @@ export interface Calendar {
   week?: number;
 }
 
-const manufacturers = ['bsi', 'fujitsu', 'hynix', 'microchip', 'mitsumi', 'nec', 'rohm', 'sharp', 'tdk']
+const manufacturers = ['bsi', 'fujitsu', 'hynix', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink']
 
 export interface Chip extends Calendar {
   type?: string;
@@ -152,23 +152,47 @@ export namespace SgbMetadata {
 
 export interface MgbMetadata extends Metadata {
   type: "MGB";
+  color?: string;
   mainboard: {
     type: string;
-    cpu?: Chip;
+    circled_letters?: string | null;
+    number_pair?: string;
+    stamp?: string;
     year?: number;
     month?: number;
+    cpu?: Chip;
+    work_ram?: Chip;
+    amplifier?: Chip;
+    regulator?: Chip;
+    crystal?: Chip;
+  };
+  lcd?: {
+    column_driver?: Chip;
+    row_driver?: Chip;
   };
 }
 
 export namespace MgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required(),
+    color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
-      cpu: Chip.schema,
+      circled_letters: Joi.string().allow(null),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
       year: Joi.number(),
       month: Joi.number(),
-    })
+      cpu: Chip.schema,
+      work_ram: Chip.schema,
+      amplifier: Chip.schema,
+      regulator: Chip.schema,
+      crystal: Chip.schema,
+    }),
+    lcd: Joi.object().keys({
+      column_driver: Chip.schema,
+      row_driver: Chip.schema,
+    }),
   });
 }
 

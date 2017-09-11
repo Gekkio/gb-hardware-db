@@ -50,6 +50,8 @@ export function manufacturer(value: string): string {
       return 'Microchip';
     case 'mitsumi':
       return 'Mitsumi';
+    case 'mosel-vitelic':
+      return 'Mosel-Vitelic'
     case 'nec':
       return 'NEC';
     case 'rohm':
@@ -58,6 +60,8 @@ export function manufacturer(value: string): string {
       return 'Sharp';
     case 'tdk':
       return 'TDK';
+    case 'xlink':
+      return 'Xlink (?)'
     default:
       return value;
   }

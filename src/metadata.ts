@@ -6,6 +6,12 @@ export interface Calendar {
   week?: number;
 }
 
+const schemas = {
+  year: Joi.number().integer().min(1989).max(2010),
+  month: Joi.number().integer().min(1).max(12),
+  week: Joi.number().integer().min(1).max(53)
+}
+
 const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink']
 
 export interface Chip extends Calendar {
@@ -20,9 +26,9 @@ export namespace Chip {
     type: Joi.string(),
     label: Joi.string().allow(null).required(),
     manufacturer: Joi.string().only(manufacturers),
-    year: Joi.number(),
-    month: Joi.number(),
-    week: Joi.number(),
+    year: schemas.year,
+    month: schemas.month,
+    week: schemas.week,
     outlier: Joi.boolean()
   });
 }
@@ -73,11 +79,11 @@ export interface DmgMetadata extends Metadata {
 
 export namespace DmgMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('DMG'),
     color: Joi.string(),
     screws: Joi.string(),
-    year: Joi.number(),
-    month: Joi.number(),
+    year: schemas.year,
+    month: schemas.month,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       circled_letters: Joi.string().allow(null),
@@ -93,8 +99,8 @@ export namespace DmgMetadata {
       type: Joi.string().required(),
       circled_letters: Joi.string(),
       stamp: Joi.string(),
-      year: Joi.number(),
-      month: Joi.number(),
+      year: schemas.year,
+      month: schemas.month,
       column_driver: Chip.schema,
       row_driver: Chip.schema,
       regulator: Chip.schema,
@@ -102,8 +108,8 @@ export namespace DmgMetadata {
     power_board: Joi.object().keys({
       type: Joi.string().required(),
       label: Joi.string().required(),
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     }),
     jack_board: Joi.object().keys({
       type: Joi.string().required(),
@@ -132,7 +138,7 @@ export interface SgbMetadata extends Metadata {
 
 export namespace SgbMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('SGB'),
     stamp: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
@@ -144,8 +150,8 @@ export namespace SgbMetadata {
       video_ram: Chip.schema,
       rom: Chip.schema,
       cic: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     })
   });
 }
@@ -176,17 +182,17 @@ export interface MgbMetadata extends Metadata {
 
 export namespace MgbMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('MGB'),
     color: Joi.string(),
-    year: Joi.number(),
-    month: Joi.number(),
+    year: schemas.year,
+    month: schemas.month,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       circled_letters: Joi.string().allow(null),
       number_pair: Joi.string(),
       stamp: Joi.string(),
-      year: Joi.number(),
-      month: Joi.number(),
+      year: schemas.year,
+      month: schemas.month,
       cpu: Chip.schema,
       work_ram: Chip.schema,
       amplifier: Chip.schema,
@@ -212,12 +218,12 @@ export interface MglMetadata extends Metadata {
 
 export namespace MglMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('MGL'),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     })
   });
 }
@@ -243,7 +249,7 @@ export interface Sgb2Metadata extends Metadata {
 
 export namespace Sgb2Metadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('SGB2'),
     stamp: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
@@ -256,8 +262,8 @@ export namespace Sgb2Metadata {
       rom: Chip.schema,
       cic: Chip.schema,
       coil: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     })
   });
 }
@@ -274,12 +280,12 @@ export interface CgbMetadata extends Metadata {
 
 export namespace CgbMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('CGB'),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number(),
+      year: schemas.year,
+      month: schemas.month,
     })
   });
 }
@@ -307,10 +313,10 @@ export interface AgbMetadata extends Metadata {
 
 export namespace AgbMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('AGB'),
     color: Joi.string(),
-    year: Joi.number(),
-    week: Joi.number(),
+    year: schemas.year,
+    week: schemas.week,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       number_pair: Joi.string(),
@@ -322,8 +328,8 @@ export namespace AgbMetadata {
       regulator: Chip.schema.allow(null),
       amplifier: Chip.schema,
       u4: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     })
   });
 }
@@ -340,12 +346,12 @@ export interface AgsMetadata extends Metadata {
 
 export namespace AgsMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('AGS'),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       cpu: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number(),
+      year: schemas.year,
+      month: schemas.month,
     })
   });
 }
@@ -375,10 +381,10 @@ export interface GbsMetadata extends Metadata {
 
 export namespace GbsMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('GBS'),
     color: Joi.string(),
-    year: Joi.number(),
-    week: Joi.number(),
+    year: schemas.year,
+    week: schemas.week,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       number_pair: Joi.string(),
@@ -386,8 +392,8 @@ export namespace GbsMetadata {
       stamp_front: Joi.string(),
       stamp_back: Joi.string(),
       circled_letters: Joi.string(),
-      year: Joi.number(),
-      month: Joi.number(),
+      year: schemas.year,
+      month: schemas.month,
       crystal: Chip.schema,
       cpu: Chip.schema,
       work_ram: Chip.schema,
@@ -415,7 +421,7 @@ export interface OxyMetadata extends Metadata {
 
 export namespace OxyMetadata {
   export const schema = Joi.object().keys({
-    type: Joi.string().required(),
+    type: Joi.string().required().allow('OXY'),
     color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
@@ -424,8 +430,8 @@ export namespace OxyMetadata {
       u2: Chip.schema,
       u4: Chip.schema,
       u5: Chip.schema,
-      year: Joi.number(),
-      month: Joi.number()
+      year: schemas.year,
+      month: schemas.month
     })
   });
 }

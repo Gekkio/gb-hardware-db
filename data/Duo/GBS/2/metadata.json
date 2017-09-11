@@ -16,7 +16,8 @@
       "type": "33WKSS",
       "manufacturer": "kss",
       "label": "33WKSS4BT",
-      "year": 2004
+      "year": 2004,
+      "month": 2
     },
     "cpu": {
       "type": "CPU AGB A",

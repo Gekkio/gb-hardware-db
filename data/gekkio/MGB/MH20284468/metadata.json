@@ -14,7 +14,8 @@
       "type": "4194 KSS",
       "manufacturer": "kss",
       "label": "4194 KSS 0KF",
-      "year": 2000
+      "year": 2000,
+      "month": 11
     },
     "cpu": {
       "type": "CPU MGB",

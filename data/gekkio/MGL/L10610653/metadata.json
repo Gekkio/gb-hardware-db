@@ -1,0 +1,72 @@
+{
+  "type": "MGL",
+  "color": "gold",
+  "year": 1998,
+  "week": 21,
+  "mainboard": {
+    "type": "MGL-CPU-01",
+    "number_pair": "4-1",
+    "stamp": "218-2221",
+    "circled_letters": "I",
+    "year": 1998,
+    "crystal": {
+      "type": "KDS 4.194",
+      "manufacturer": "kds",
+      "label": "KDS 9811 4.194",
+      "year": 1998,
+      "week": 11
+    },
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9812 DA",
+      "year": 1998,
+      "week": 12
+    },
+    "work_ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9814 3 EB",
+      "year": 1998,
+      "week": 14
+    },
+    "work_ram": {
+      "type": "LH52A64N-YL",
+      "manufacturer": "xlink",
+      "label": "LH52A64N-YL Xlink JAPAN H435 09 C",
+      "year": 1994,
+      "week": 35
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "label": "DMG-REG IR3E02 9813 n",
+      "year": 1998,
+      "week": 13
+    },
+    "amplifier": {
+      "type": "IR3R53N",
+      "label": "AMP MGB IR3R53N 9815 a",
+      "year": 1998,
+      "week": 15
+    },
+    "t1": {
+      "type": "84Z7",
+      "manufacturer": "microchip",
+      "label": "84Z7",
+      "year": 1998
+    }
+  },
+  "lcd": {
+    "column_driver": {
+      "type": "LH5077 B1",
+      "manufacturer": "sharp",
+      "label": "LH5077 B1"
+    },
+    "row_driver": {
+      "type": "LH5076 E",
+      "manufacturer": "sharp",
+      "label": "LH5076 E 8120",
+      "year": 1998,
+      "week": 12
+    }
+  }
+}

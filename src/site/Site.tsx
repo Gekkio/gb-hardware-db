@@ -12,6 +12,7 @@ import SgbConsole from './pages/SgbConsole';
 import Mgb from './pages/Mgb';
 import MgbConsole from './pages/MgbConsole';
 import Mgl from './pages/Mgl';
+import MglConsole from './pages/MglConsole';
 import Sgb2 from './pages/Sgb2';
 import Sgb2Console from './pages/Sgb2Console';
 import Cgb from './pages/Cgb';
@@ -85,6 +86,8 @@ function renderPage(type: string, props: any) {
       return <MgbConsole {...props} />
     case 'mgl':
       return <Mgl {...props} />
+    case 'mgl-console':
+      return <MglConsole {...props} />
     case 'sgb2':
       return <Sgb2 {...props} />
     case 'sgb2-console':

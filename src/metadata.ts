@@ -208,23 +208,53 @@ export namespace MgbMetadata {
 
 export interface MglMetadata extends Metadata {
   type: "MGL";
+  color?: string;
+  year?: number;
+  week?: number;
   mainboard: {
     type: string;
-    cpu?: Chip;
+    circled_letters?: string | null;
+    number_pair?: string;
+    stamp?: string;
     year?: number;
     month?: number;
+    cpu?: Chip;
+    work_ram?: Chip;
+    amplifier?: Chip;
+    regulator?: Chip;
+    crystal?: Chip;
+    t1?: Chip;
+  };
+  lcd?: {
+    column_driver?: Chip;
+    row_driver?: Chip;
   };
 }
 
 export namespace MglMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('MGL'),
+    color: Joi.string(),
+    year: schemas.year,
+    week: schemas.week,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
-      cpu: Chip.schema,
+      circled_letters: Joi.string().allow(null),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
       year: schemas.year,
-      month: schemas.month
-    })
+      month: schemas.month,
+      cpu: Chip.schema,
+      work_ram: Chip.schema,
+      amplifier: Chip.schema,
+      regulator: Chip.schema,
+      crystal: Chip.schema,
+      t1: Chip.schema,
+    }),
+    lcd: Joi.object().keys({
+      column_driver: Chip.schema,
+      row_driver: Chip.schema,
+    }),
   });
 }
 

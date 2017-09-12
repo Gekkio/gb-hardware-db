@@ -87,6 +87,13 @@ function resolvePages(): PageDeclaration[] {
         title: `MGB: ${submission.title} [${submission.contributor}]`,
         props: {submission}
       });
+    } else if (submission.type === 'mgl') {
+      pages.push({
+        type: 'mgl-console',
+        path: ['consoles', 'mgl', submission.slug],
+        title: `MGL: ${submission.title} [${submission.contributor}]`,
+        props: {submission}
+      });
     } else if (submission.type === 'sgb2') {
       pages.push({
         type: 'sgb2-console',

@@ -300,23 +300,43 @@ export namespace Sgb2Metadata {
 
 export interface CgbMetadata extends Metadata {
   type: "CGB";
+  color?: string;
+  year?: number;
+  week?: number;
   mainboard: {
     type: string;
-    cpu?: Chip;
+    circled_letters?: string | null;
+    number_pair?: string;
+    stamp?: string;
     year?: number;
     month?: number;
+    cpu?: Chip;
+    work_ram?: Chip;
+    amplifier?: Chip;
+    regulator?: Chip;
+    crystal?: Chip;
   };
 }
 
 export namespace CgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('CGB'),
+    color: Joi.string(),
+    year: schemas.year,
+    week: schemas.week,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
-      cpu: Chip.schema,
+      circled_letters: Joi.string().allow(null),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
       year: schemas.year,
       month: schemas.month,
-    })
+      cpu: Chip.schema,
+      work_ram: Chip.schema,
+      amplifier: Chip.schema,
+      regulator: Chip.schema,
+      crystal: Chip.schema,
+    }),
   });
 }
 

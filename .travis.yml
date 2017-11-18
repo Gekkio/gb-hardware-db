@@ -2,7 +2,7 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-  - '6'
+  - '8.9.1'
 
 env:
   global:
@@ -18,15 +18,11 @@ cache:
 before_install:
   - git lfs install
 
-install:
-  - npm update
-  - npm prune
-
 before_script:
   - git lfs pull
 
 script:
-  - npm run build
+  - yarn build
 
 deploy:
   provider: s3

@@ -5,7 +5,7 @@
     "outDir": "build/scripts",
     "sourceMap": true,
     "strict": true,
-    "target": "es2015"
+    "target": "es2017"
   },
   "include": [
     "src/**/*.ts",

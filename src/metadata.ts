@@ -10,9 +10,9 @@ const schemas = {
   year: Joi.number().integer().min(1989).max(2010),
   month: Joi.number().integer().min(1).max(12),
   week: Joi.number().integer().min(1).max(53)
-}
+};
 
-const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink']
+const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink'];
 
 export interface Chip extends Calendar {
   type?: string;

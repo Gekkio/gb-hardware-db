@@ -1,5 +1,6 @@
 import * as Bluebird from 'bluebird';
 import * as R from 'ramda';
+import * as fs from 'fs-extra';
 import * as jimp from 'jimp';
 import * as path from 'path';
 import * as winston from 'winston';
@@ -7,45 +8,38 @@ import * as winston from 'winston';
 import * as files from '../util/files';
 import {Photo, Submission} from '../crawler';
 
-export default function processPhotos<T extends Submission>(submission: T): Bluebird<any> {
+export default async function processPhotos<T extends Submission>(submission: T): Promise<void> {
   const photos = R.values(submission.photos).filter(x => !!x) as Photo[];
   if (photos.length === 0) {
     winston.warn(`[${submission.type}] ${submission.slug}: no photos`);
-    return Bluebird.resolve();
+    return
   }
 
   const targetDirectory = path.resolve('build', 'site', 'static', submission.type);
   const thumbnailPhoto = submission.photos.front;
 
-  function writeThumbnail(size: number): Bluebird<void> {
+  const writeThumbnail = async (size: number) => {
     if (!thumbnailPhoto) {
       winston.warn(`[${submission.type}] ${submission.slug}: thumbnail source is not available`);
-      return Bluebird.resolve();
+      return
     }
     const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_${size}.jpg`);
-    return files.doIfOutdated(target, thumbnailPhoto.stats, () => {
-      return Bluebird.resolve(jimp.read(thumbnailPhoto.path))
-        .then(image => {
-          image
-            .resize(size, jimp.AUTO)
-            .write(target);
-        })
-        .then(() => files.setModificationTime(target, thumbnailPhoto.stats.mtime))
-        .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`));
-    })
-  }
+    if (await files.isOutdated(target, thumbnailPhoto.stats)) {
+      const image = await jimp.read(thumbnailPhoto.path);
+      await Bluebird.fromNode(cb => image.resize(size, jimp.AUTO).write(target, cb));
+      await files.setModificationTime(target, thumbnailPhoto.stats);
+      winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`);
+    }
+  };
 
-  return files.ensureDir(targetDirectory)
-    .then(() => Bluebird.all(
-      photos.map(photo => {
-        const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
-        return files.doIfOutdated(target, photo.stats, () => {
-          return files.copy(photo.path, target, {preserveTimestamps: true})
-            .tap(() => winston.debug(`[${submission.type}] ${submission.slug}: copied photo ${target}`));
-        })
-      }).concat([
-        writeThumbnail(80),
-        writeThumbnail(50),
-      ])
-    ))
+  await fs.ensureDir(targetDirectory);
+  for (const photo of photos) {
+    const target = path.resolve(targetDirectory, `${submission.slug}_${photo.name}`);
+    if (await files.isOutdated(target, photo.stats)) {
+      await fs.copy(photo.path, target, {preserveTimestamps: true});
+      winston.debug(`[${submission.type}] ${submission.slug}: copied photo ${target}`);
+    }
+  }
+  await writeThumbnail(80);
+  await writeThumbnail(50);
 }

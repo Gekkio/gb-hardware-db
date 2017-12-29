@@ -120,7 +120,7 @@ function parseUnitName({contributor, unit}: SubmissionPath) {
   if (/^[A-Z]+[0-9]+(-[0-9])?$/.test(unit.name)) {
     return {title: unit.name, slug: unit.name};
   } else if (/^[0-9]+(-[0-9])?$/.test(unit.name)) {
-    return {title: `Unit #${unit.name}`, slug: urlSlug(`${contributor}-${unit.name}`)};
+    return {title: `Unit #${unit.name}`, slug: urlSlug(`${contributor.name}-${unit.name}`)};
   } else {
     throw new Error(`Unsupported unit name format "${unit.name}"`);
   }

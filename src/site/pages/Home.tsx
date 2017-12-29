@@ -7,6 +7,6 @@ interface Props {
 
 export default function Home({content}: Props) {
   return (
-    <ReactMarkdown source={content} containerTagName="article" />
+    <ReactMarkdown source={content} renderers={{root: (props: any) => <article {...props} />}} />
   )
 }

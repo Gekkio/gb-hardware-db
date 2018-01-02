@@ -4,6 +4,7 @@
     "type": "DMG-CPU-01",
     "cpu": {
       "type": "DMG-CPU",
+      "manufacturer": "sharp",
       "label": "DMG-CPU 8911 D",
       "year": 1989,
       "week": 11

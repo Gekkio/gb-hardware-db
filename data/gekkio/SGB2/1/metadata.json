@@ -9,6 +9,7 @@
     "month": 1,
     "cpu": {
       "type": "CPU SGB2",
+      "manufacturer": "sharp",
       "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9802 1 E",
       "year": 1998,
       "week": 2
@@ -28,12 +29,14 @@
     },
     "rom": {
       "type": "SYS-SGB2-10",
+      "manufacturer": "sharp",
       "label": "© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 9802 D",
       "year": 1998,
       "week": 2
     },
     "cic": {
       "type": "F411B",
+      "manufacturer": "sharp",
       "label": "F411B © 1990 Nintendo 9802 C",
       "year": 1998,
       "week": 2
@@ -45,7 +48,7 @@
       "month": 1
     },
     "coil": {
-      "type": "ZJY",
+      "type": "ZJY-M4A",
       "manufacturer": "tdk",
       "label": "TDK ZJY-M4A L"
     }

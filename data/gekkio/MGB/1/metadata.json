@@ -19,6 +19,7 @@
     },
     "cpu": {
       "type": "CPU MGB",
+      "manufacturer": "sharp",
       "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9814 D",
       "year": 1998,
       "week": 14
@@ -32,12 +33,14 @@
     },
     "regulator": {
       "type": "IR3E02",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3E02 9811 n",
       "year": 1998,
       "week": 11
     },
     "amplifier": {
       "type": "IR3R53N",
+      "manufacturer": "sharp",
       "label": "AMP MGB IR3R53N 9807 a",
       "year": 1998,
       "week": 7

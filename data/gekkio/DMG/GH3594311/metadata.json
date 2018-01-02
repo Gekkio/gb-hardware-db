@@ -4,6 +4,7 @@
     "type": "DMG-CPU-06",
     "cpu": {
       "type": "DMG-CPU B",
+      "manufacturer": "sharp",
       "label": "DMG-CPU B 9440 W",
       "year": 1994,
       "week": 40

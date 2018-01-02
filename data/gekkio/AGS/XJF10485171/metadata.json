@@ -4,6 +4,7 @@
     "type": "C/AGS-CPU-11",
     "cpu": {
       "type": "CPU AGB B",
+      "manufacturer": "sharp",
       "label": "CPU AGB B 0420 UB",
       "year": 2004,
       "week": 20

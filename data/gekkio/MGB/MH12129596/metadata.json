@@ -19,6 +19,7 @@
     },
     "cpu": {
       "type": "CPU MGB",
+      "manufacturer": "sharp",
       "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9650 D",
       "year": 1996,
       "week": 50
@@ -32,12 +33,14 @@
     },
     "regulator": {
       "type": "IR3E02",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3E02 9648 h",
       "year": 1996,
       "week": 48
     },
     "amplifier": {
       "type": "IR3R53N",
+      "manufacturer": "sharp",
       "label": "AMP MGB IR3R53N 9647 C",
       "year": 1996,
       "week": 47

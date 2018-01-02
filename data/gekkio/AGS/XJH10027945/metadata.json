@@ -4,6 +4,7 @@
     "type": "C/AGS-CPU-01",
     "cpu": {
       "type": "CPU AGB B",
+      "manufacturer": "sharp",
       "label": "CPU AGB B 0247 D",
       "year": 2002,
       "week": 47

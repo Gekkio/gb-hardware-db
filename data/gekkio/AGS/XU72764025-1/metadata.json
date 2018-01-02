@@ -4,6 +4,7 @@
     "type": "C/AGT-CPU-01",
     "cpu": {
       "type": "CPU AGB B E",
+      "manufacturer": "sharp",
       "label": "CPU AGB B E 0541 UB",
       "year": 2005,
       "week": 41

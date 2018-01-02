@@ -18,6 +18,7 @@
     },
     "cpu": {
       "type": "CPU AGB A",
+      "manufacturer": "sharp",
       "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0306 wV",
       "year": 2003,
       "week": 6

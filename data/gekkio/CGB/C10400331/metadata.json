@@ -28,6 +28,7 @@
     },
     "cpu": {
       "type": "CPU CGB A",
+      "manufacturer": "sharp",
       "label": "CPU CGB A Ⓜ © 1998 Nintendo JAPAN 9837 I",
       "year": 1998,
       "week": 37
@@ -41,16 +42,17 @@
     },
     "regulator": {
       "type": "IR3E06N",
+      "manufacturer": "sharp",
       "label": "CGB-REG IR3E06N 9834 C",
       "year": 1998,
       "week": 34
     },
     "amplifier": {
       "type": "IR3R53N",
+      "manufacturer": "sharp",
       "label": "AMP MGB IR3R53N 9812 a",
       "year": 1998,
       "week": 12
     }
   }
 }
-

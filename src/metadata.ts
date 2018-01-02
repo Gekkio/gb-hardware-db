@@ -25,7 +25,7 @@ export namespace DateRangePart {
   })
 }
 
-const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink'];
+const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'toshiba', 'xlink'];
 
 export interface Chip extends Calendar {
   type?: string;
@@ -181,6 +181,7 @@ export interface MgbMetadata extends Metadata {
     stamp?: string;
     year?: number;
     month?: number;
+    date_range?: [DateRangePart, DateRangePart],
     cpu?: Chip;
     work_ram?: Chip;
     amplifier?: Chip;
@@ -206,6 +207,7 @@ export namespace MgbMetadata {
       stamp: Joi.string(),
       year: schemas.year,
       month: schemas.month,
+      date_range: Joi.array().ordered(DateRangePart.schema, DateRangePart.schema),
       cpu: Chip.schema,
       work_ram: Chip.schema,
       amplifier: Chip.schema,
@@ -231,6 +233,7 @@ export interface MglMetadata extends Metadata {
     stamp?: string;
     year?: number;
     month?: number;
+    date_range?: [DateRangePart, DateRangePart],
     cpu?: Chip;
     work_ram?: Chip;
     amplifier?: Chip;
@@ -257,6 +260,7 @@ export namespace MglMetadata {
       stamp: Joi.string(),
       year: schemas.year,
       month: schemas.month,
+      date_range: Joi.array().ordered(DateRangePart.schema, DateRangePart.schema),
       cpu: Chip.schema,
       work_ram: Chip.schema,
       amplifier: Chip.schema,

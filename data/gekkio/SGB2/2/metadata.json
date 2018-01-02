@@ -9,6 +9,7 @@
     "month": 1,
     "cpu": {
       "type": "CPU SGB2",
+      "manufacturer": "sharp",
       "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9806 3 E",
       "year": 1998,
       "week": 6
@@ -32,6 +33,7 @@
     },
     "cic": {
       "type": "F411B",
+      "manufacturer": "sharp",
       "label": "F411B © 1990 Nintendo 9802 C",
       "year": 1998,
       "week": 2
@@ -44,7 +46,7 @@
       "month": 1
     },
     "coil": {
-      "type": "ZJY",
+      "type": "ZJY-M4A",
       "manufacturer": "tdk",
       "label": "TDK ZJY-M4A N"
     }

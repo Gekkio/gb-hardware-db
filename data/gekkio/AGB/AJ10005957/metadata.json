@@ -19,6 +19,7 @@
     },
     "cpu": {
       "type": "CPU AGB",
+      "manufacturer": "sharp",
       "label": "CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0103 I",
       "year": 2001,
       "week": 3
@@ -32,12 +33,14 @@
     },
     "regulator": {
       "type": "IR3E09N",
+      "manufacturer": "sharp",
       "label": "AGB-REG IR3E09N 0053 C",
       "year": 2000,
       "week": 53
     },
     "amplifier": {
       "type": "IR3R60N",
+      "manufacturer": "sharp",
       "label": "AMP AGB IR3R60N 0052 a",
       "year": 2000,
       "week": 52

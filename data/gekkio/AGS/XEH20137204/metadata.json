@@ -4,6 +4,7 @@
     "type": "C/AGS-CPU-30",
     "cpu": {
       "type": "CPU AGB B E",
+      "manufacturer": "sharp",
       "label": "CPU AGB B E 0602 UB",
       "year": 2006,
       "week": 2

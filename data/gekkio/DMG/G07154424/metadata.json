@@ -10,6 +10,7 @@
     "stamp": "006 05",
     "cpu": {
       "type": "DMG-CPU B",
+      "manufacturer": "sharp",
       "label": "DMG-CPU B © 1989 Nintendo JAPAN 9023 W",
       "year": 1990,
       "week": 23
@@ -30,6 +31,7 @@
     },
     "amplifier": {
       "type": "IR3R40",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3R40 9022 A",
       "year": 1990,
       "week": 22
@@ -61,6 +63,7 @@
     },
     "regulator": {
       "type": "IR3E02",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3E02 9023 J",
       "year": 1990,
       "week": 23

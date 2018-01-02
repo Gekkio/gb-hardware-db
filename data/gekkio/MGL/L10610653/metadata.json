@@ -9,6 +9,16 @@
     "stamp": "218-2221",
     "circled_letters": "I",
     "year": 1998,
+    "date_range": [
+      {
+        "month": 2,
+        "part": 3
+      },
+      {
+        "month": 4,
+        "part": 1
+      }
+    ],
     "crystal": {
       "type": "KDS 4.194",
       "manufacturer": "kds",
@@ -18,6 +28,7 @@
     },
     "cpu": {
       "type": "CPU MGB",
+      "manufacturer": "sharp",
       "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9812 DA",
       "year": 1998,
       "week": 12
@@ -31,12 +42,14 @@
     },
     "regulator": {
       "type": "IR3E02",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3E02 9813 n",
       "year": 1998,
       "week": 13
     },
     "amplifier": {
       "type": "IR3R53N",
+      "manufacturer": "sharp",
       "label": "AMP MGB IR3R53N 9815 a",
       "year": 1998,
       "week": 15

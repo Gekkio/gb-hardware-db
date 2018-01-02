@@ -39,21 +39,22 @@
     "year": 1995,
     "month": 9,
     "column_driver": {
-      "manufacturer": "sharp",
       "type": "LH5077 BF",
+      "manufacturer": "sharp",
       "label": "LH5077 BF, 5341",
       "year": 1995,
       "week": 34
     },
     "row_driver": {
-      "manufacturer": "sharp",
       "type": "LH5076 BF",
+      "manufacturer": "sharp",
       "label": "LH5076 BF, 5321",
       "year": 1995,
       "week": 32
     },
     "regulator": {
       "type": "IR3E02",
+      "manufacturer": "sharp",
       "label": "DMG-REG IR3E02 9527 CB",
       "year": 1995,
       "week": 27

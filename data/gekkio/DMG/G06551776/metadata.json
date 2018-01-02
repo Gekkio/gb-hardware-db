@@ -4,6 +4,7 @@
     "type": "DMG-CPU-03",
     "cpu": {
       "type": "DMG-CPU B",
+      "manufacturer": "sharp",
       "label": "DMG-CPU B 9021 W",
       "year": 1990,
       "week": 21

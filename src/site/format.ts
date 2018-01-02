@@ -78,6 +78,8 @@ export function manufacturer(value: string): string {
       return 'Sharp';
     case 'tdk':
       return 'TDK';
+    case 'toshiba':
+      return 'Toshiba';
     case 'xlink':
       return 'Xlink (?)'
     default:

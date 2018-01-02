@@ -4,6 +4,7 @@
     "type": "CGB-CPU-01",
     "cpu": {
       "type": "CPU CGB B",
+      "manufacturer": "sharp",
       "label": "CPU CGB B 9840 I",
       "year": 1998,
       "week": 40

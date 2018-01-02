@@ -4,6 +4,7 @@
     "type": "DMG-CPU-02",
     "cpu": {
       "type": "DMG-CPU A",
+      "manufacturer": "sharp",
       "label": "DMG-CPU A 8947 WA",
       "year": 1989,
       "week": 47

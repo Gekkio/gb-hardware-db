@@ -4,6 +4,7 @@
     "type": "DMG-CPU-06",
     "cpu": {
       "type": "DMG-CPU C",
+      "manufacturer": "sharp",
       "label": "DMG-CPU C 9835 D",
       "year": 1998,
       "week": 35

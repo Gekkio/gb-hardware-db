@@ -4,8 +4,10 @@
   "mainboard": {
     "type": "OXY-CPU-01",
     "circled_letters": "SH",
+    "year": 2005,
     "cpu": {
       "type": "CPU AGB E",
+      "manufacturer": "sharp",
       "label": "0525 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM",
       "year": 2005,
       "week": 25

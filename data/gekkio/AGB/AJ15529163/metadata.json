@@ -19,6 +19,7 @@
     },
     "cpu": {
       "type": "CPU AGB A",
+      "manufacturer": "sharp",
       "label": "CPU AGB A 0218 wB",
       "year": 2002,
       "week": 18
@@ -31,12 +32,14 @@
     },
     "regulator": {
       "type": "IR3E09N",
+      "manufacturer": "sharp",
       "label": "AGB-REG IR3E09N 0223 8",
       "year": 2002,
       "week": 23
     },
     "amplifier": {
       "type": "IR3R60N",
+      "manufacturer": "sharp",
       "label": "AMP AGB IR3R60N 0210 u",
       "year": 2002,
       "week": 10

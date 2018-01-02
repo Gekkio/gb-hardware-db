@@ -1,0 +1,62 @@
+{
+  "type": "MGB",
+  "color": "red",
+  "year": 1998,
+  "month": 7,
+  "mainboard": {
+    "type": "MGB-LCPU-02",
+    "number_pair": "1-2",
+    "stamp": "807.3702",
+    "circled_letters": "Cs",
+    "year": 1998,
+    "month": 5,
+    "crystal": {
+      "type": "KDS 4.194",
+      "manufacturer": "kds",
+      "label": "KDS9807 4.194",
+      "year": 1998,
+      "week": 7
+    },
+    "cpu": {
+      "type": "CPU MGB",
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9814 D",
+      "year": 1998,
+      "week": 14
+    },
+    "work_ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9815 5 EB",
+      "year": 1998,
+      "week": 15
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "label": "DMG-REG IR3E02 9811 n",
+      "year": 1998,
+      "week": 11
+    },
+    "amplifier": {
+      "type": "IR3R53N",
+      "label": "AMP MGB IR3R53N 9807 a",
+      "year": 1998,
+      "week": 7
+    }
+  },
+  "lcd": {
+    "column_driver": {
+      "type": "LH5077 B1",
+      "manufacturer": "sharp",
+      "label": "LH5077 B1 8111",
+      "year": 1998,
+      "week": 11
+    },
+    "row_driver": {
+      "type": "LH5076 E",
+      "manufacturer": "sharp",
+      "label": "LH5076 E 7400",
+      "year": 1997,
+      "week": 40
+    }
+  }
+}

@@ -29,13 +29,6 @@
       "year": 1998,
       "week": 14
     },
-    "work_ram": {
-      "type": "LH52A64N-YL",
-      "manufacturer": "xlink",
-      "label": "LH52A64N-YL Xlink JAPAN H435 09 C",
-      "year": 1994,
-      "week": 35
-    },
     "regulator": {
       "type": "IR3E02",
       "label": "DMG-REG IR3E02 9813 n",

@@ -1,12 +1,46 @@
 {
   "type": "CGB",
+  "color": "neotones-ice",
+  "year": 1998,
+  "week": 42,
   "mainboard": {
     "type": "CGB-CPU-01",
+    "number_pair": "2-1",
+    "stamp": "428-0701",
+    "circled_letters": "A",
+    "year": 1998,
+    "month": 9,
+    "crystal": {
+      "type": "KDS 8.388",
+      "manufacturer": "kds",
+      "label": "KDS 9837 8.388",
+      "year": 1998,
+      "week": 37
+    },
     "cpu": {
       "type": "CPU CGB B",
-      "label": "CPU CGB B 9840 I",
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9840 I",
       "year": 1998,
       "week": 40
+    },
+    "work_ram": {
+      "type": "LH52256CVT",
+      "manufacturer": "sharp",
+      "label": "LH52256CVT SHARP JAPAN 9830 3 LN",
+      "year": 1998,
+      "week": 30
+    },
+    "regulator": {
+      "type": "IR3E06N",
+      "label": "CGB-REG IR3E06N 9834 C",
+      "year": 1998,
+      "week": 34
+    },
+    "amplifier": {
+      "type": "IR3R53N",
+      "label": "AMP MGB IR3R53N 9836 a",
+      "year": 1998,
+      "week": 36
     }
   }
 }

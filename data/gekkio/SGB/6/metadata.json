@@ -9,39 +9,39 @@
     "month": 6,
     "cpu": {
       "type": "SGB-CPU 01",
-      "label": "SGB-CPU-01 9427 3 D",
+      "label": "SGB-CPU-01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9427 3 D",
       "year": 1994,
       "week": 27
     },
     "icd2": {
       "type": "ICD2-R",
-      "label": "ICD2-R 425 168",
+      "label": "Nintendo ICD2-R 425 168",
       "year": 1994,
       "week": 25
     },
     "work_ram": {
       "type": "LH52A64N-YL",
       "manufacturer": "xlink",
-      "label": "LH52A64N-YL H420 0K C",
+      "label": "LH52A64N-YL Xlink JAPAN H420 0K C",
       "year": 1994,
       "week": 20
     },
     "video_ram": {
       "type": "LH52A64N-YL",
       "manufacturer": "xlink",
-      "label": "LH52A64N-YL H420 0K C",
+      "label": "LH52A64N-YL Xlink JAPAN H420 0K C",
       "year": 1994,
       "week": 20
     },
     "rom": {
       "type": "SYS-SGB-2",
-      "label": "SYS-SGB-2 9424 E",
+      "label": "SYS-SGB-2 © 1994 Nintendo 9424 E",
       "year": 1994,
       "week": 24
     },
     "cic": {
       "type": "F411A",
-      "label": "F411A 9425 C",
+      "label": "F411A © 1990 Nintendo 9425 C",
       "year": 1994,
       "week": 25
     }

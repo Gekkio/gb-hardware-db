@@ -4,13 +4,26 @@ export interface Calendar {
   year?: number;
   month?: number;
   week?: number;
+  date_range?: [DateRangePart, DateRangePart];
 }
 
 const schemas = {
   year: Joi.number().integer().min(1989).max(2010),
   month: Joi.number().integer().min(1).max(12),
-  week: Joi.number().integer().min(1).max(53)
+  week: Joi.number().integer().min(1).max(53),
 };
+
+export interface DateRangePart {
+  month?: number;
+  part?: number;
+}
+
+export namespace DateRangePart {
+  export const schema = Joi.object().keys({
+    month: schemas.month,
+    part: Joi.number().integer().min(1).max(3),
+  })
+}
 
 const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'xlink'];
 
@@ -310,6 +323,7 @@ export interface CgbMetadata extends Metadata {
     stamp?: string;
     year?: number;
     month?: number;
+    date_range?: [DateRangePart, DateRangePart],
     cpu?: Chip;
     work_ram?: Chip;
     amplifier?: Chip;
@@ -331,6 +345,7 @@ export namespace CgbMetadata {
       stamp: Joi.string(),
       year: schemas.year,
       month: schemas.month,
+      date_range: Joi.array().ordered(DateRangePart.schema, DateRangePart.schema),
       cpu: Chip.schema,
       work_ram: Chip.schema,
       amplifier: Chip.schema,

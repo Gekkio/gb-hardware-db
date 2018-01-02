@@ -133,6 +133,13 @@ async function main(): Promise<void> {
         title: `AGB: ${submission.title}`,
         props: {submission}
       });
+    } else if (submission.type === 'ags') {
+      pages.push({
+        type: 'ags-console',
+        path: ['consoles', 'ags', submission.slug],
+        title: `AGS: ${submission.title}`,
+        props: {submission}
+      });
     } else if (submission.type === 'gbs') {
       pages.push({
         type: 'gbs-console',

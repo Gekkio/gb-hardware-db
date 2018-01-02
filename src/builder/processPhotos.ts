@@ -26,7 +26,7 @@ export default async function processPhotos<T extends Submission>(submission: T)
     const target = path.resolve(targetDirectory, `${submission.slug}_thumbnail_${size}.jpg`);
     if (await files.isOutdated(target, thumbnailPhoto.stats)) {
       const image = await jimp.read(thumbnailPhoto.path);
-      await Bluebird.fromNode(cb => image.resize(size, jimp.AUTO).write(target, cb));
+      await Bluebird.fromNode(cb => image.resize(size, jimp.AUTO).quality(80).write(target, cb));
       await files.setModificationTime(target, thumbnailPhoto.stats);
       winston.debug(`[${submission.type}] ${submission.slug}: wrote thumbnail ${target}`);
     }

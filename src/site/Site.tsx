@@ -20,6 +20,7 @@ import CgbConsole from './pages/CgbConsole';
 import Agb from './pages/Agb';
 import AgbConsole from './pages/AgbConsole';
 import Ags from './pages/Ags';
+import AgsConsole from './pages/AgsConsole';
 import Gbs from './pages/Gbs';
 import GbsConsole from './pages/GbsConsole';
 import Oxy from './pages/Oxy';
@@ -103,6 +104,8 @@ function renderPage(type: string, props: any) {
       return <AgbConsole {...props} />
     case 'ags':
       return <Ags {...props} />
+    case 'ags-console':
+      return <AgsConsole {...props} />
     case 'gbs':
       return <Gbs {...props} />
     case 'gbs-console':

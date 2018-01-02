@@ -31,8 +31,8 @@
       "week": 29
     },
     "regulator": {
-      "type": "IR3E06",
-      "label": "CGB-REG IR3E06 9834 C",
+      "type": "IR3E06N",
+      "label": "CGB-REG IR3E06N 9834 C",
       "year": 1998,
       "week": 34
     },

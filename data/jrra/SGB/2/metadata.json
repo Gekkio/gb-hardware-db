@@ -1,52 +1,52 @@
 {
   "type": "SGB",
-  "stamp": "12B",
+  "stamp": "23",
   "mainboard": {
     "type": "SGB-R-10",
     "circled_letters": "Y",
     "letter_at_top_right": "D",
     "year": 1994,
-    "month": 8,
+    "month": 6,
     "cpu": {
       "type": "SGB-CPU 01",
       "manufacturer": "sharp",
-      "label": "SGB-CPU-01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9433 7 D",
+      "label": "SGB-CPU-01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9425 7 D",
       "year": 1994,
-      "week": 33
+      "week": 25
     },
     "icd2": {
       "type": "ICD2-R",
-      "label": "Nintendo ICD2-R 9432KX201 D93128",
+      "label": "Nintendo ICD2-R 424 154",
       "year": 1994,
-      "week": 32
+      "week": 24
     },
     "work_ram": {
       "type": "LH52A64N-YL",
       "manufacturer": "xlink",
-      "label": "LH52A64N-YL Xlink JAPAN H431 40 C",
+      "label": "LH52A64N-YL Xlink JAPAN H4 23 08 C",
       "year": 1994,
-      "week": 31
+      "week": 23
     },
     "video_ram": {
       "type": "LH52A64N-YL",
       "manufacturer": "xlink",
-      "label": "LH52A64N-YL Xlink JAPAN H431 40 C",
+      "label": "LH52A64N-YL Xlink JAPAN H4 23 08 C",
       "year": 1994,
-      "week": 31
+      "week": 23
     },
     "rom": {
       "type": "SYS-SGB-2",
-      "manufacturer": "toshiba",
-      "label": "SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI",
+      "manufacturer": "sharp",
+      "label": "SYS-SGB-2 © 1994 Nintendo 9423 E",
       "year": 1994,
-      "week": 31
+      "week": 23
     },
     "cic": {
       "type": "F411A",
       "manufacturer": "sharp",
-      "label": "F411A © 1990 Nintendo 9432 a",
+      "label": "F411A © 1990 Nintendo 9424 a",
       "year": 1994,
-      "week": 32
+      "week": 24
     }
   }
 }

@@ -1,0 +1,56 @@
+{
+  "type": "SGB2",
+  "stamp": "07",
+  "mainboard": {
+    "type": "SHVC-SGB2-01",
+    "circled_letters": "I",
+    "letter_at_top_right": "B",
+    "year": 1997,
+    "month": 12,
+    "cpu": {
+      "type": "CPU SGB2",
+      "manufacturer": "sharp",
+      "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9751 3E",
+      "year": 1997,
+      "week": 51
+    },
+    "icd2": {
+      "type": "ICD2-R",
+      "label": "Nintendo ICD2-R 9733EX001 D93128",
+      "year": 1997,
+      "week": 33
+    },
+    "work_ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9750 5 EB",
+      "year": 1997,
+      "week": 50
+    },
+    "rom": {
+      "type": "SYS-SGB2-10",
+      "label": "SYS-SGB2-10 © 1998 Nintendo M534011E-05 7502362",
+      "year": 1997,
+      "week": 50
+    },
+    "cic": {
+      "type": "F411B",
+      "manufacturer": "sharp",
+      "label": "F411B © 1990 Nintendo 9747 C",
+      "year": 1997,
+      "week": 47
+    },
+    "crystal": {
+      "type": "KSS20V",
+      "manufacturer": "kss",
+      "label": "KSS20V 7L",
+      "year": 1997,
+      "month": 12
+    },
+    "coil": {
+      "type": "ZJY-M4A",
+      "manufacturer": "tdk",
+      "label": "TDK ZJY-M4A L"
+    }
+  }
+}

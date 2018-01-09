@@ -64,6 +64,8 @@ export function manufacturer(value: string): string {
       return 'Daishinku'
     case 'kss':
       return 'Kinseki'
+    case 'lsi-logic':
+      return 'LSI Logic'
     case 'microchip':
       return 'Microchip';
     case 'mitsumi':

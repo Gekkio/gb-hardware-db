@@ -6,4 +6,6 @@ Site source code for https://gbhwdb.gekkio.fi
 
 * Duo (http://gameboy.mongenel.com)
 * gekkio (https://gekkio.fi)
+* ImATrackMan
+* jrra
 * zear

@@ -29,7 +29,9 @@
     },
     "rom": {
       "type": "SYS-SGB2-10",
-      "label": "SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354"
+      "label": "SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354",
+      "year": 1998,
+      "week": 1
     },
     "cic": {
       "type": "F411B",

@@ -1,0 +1,57 @@
+{
+  "type": "DMG",
+  "color": "off-white",
+  "screws": "tri-wing",
+  "mainboard": {
+    "type": "DMG-CPU-05",
+    "circled_letters": "K 2",
+    "stamp": "110.22",
+    "cpu": {
+      "type": "DMG-CPU B",
+      "manufacturer": "sharp",
+      "label": "DMG-CPU ©1989 Nintendo JAPAN 9138 W",
+      "year": 1991,
+      "week": 38
+    },
+    "work_ram": {
+      "type": "LH5264N4",
+      "manufacturer": "sharp",
+      "label": "LH5264N4 SHARP JAPAN 9137 3 Y",
+      "year": 1991,
+      "week": 37
+    },
+    "video_ram": {
+      "type": "LH5264N4",
+      "manufacturer": "sharp",
+      "label": "LH5264N4 SHARP JAPAN 9137 3 Y",
+      "year": 1991,
+      "week": 37
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3R40 9126 A",
+      "year": 1991,
+      "week": 26
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419J1"
+    }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "J",
+    "stamp": "110.22"
+    "column_driver": {
+      "type": "1280"
+    },
+    "row_driver": {
+      "type": "1280"
+    }
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": null
+  }
+}

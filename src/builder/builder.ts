@@ -165,6 +165,9 @@ async function main(): Promise<void> {
   await Promise.all([
     Bluebird.map(pages, processPage, {concurrency: 16}),
     Bluebird.map(submissions, processPhotos, {concurrency: 2}),
+  ]);
+
+  await([
     processCsv('dmg', DMG_CSV_COLUMNS, groupedSubmissions.dmg),
     processCsv('sgb', SGB_CSV_COLUMNS, groupedSubmissions.sgb),
     processCsv('mgb', MGB_CSV_COLUMNS, groupedSubmissions.mgb),
@@ -175,7 +178,7 @@ async function main(): Promise<void> {
     processCsv('ags', AGS_CSV_COLUMNS, groupedSubmissions.ags),
     processCsv('gbs', GBS_CSV_COLUMNS, groupedSubmissions.gbs),
     processCsv('oxy', OXY_CSV_COLUMNS, groupedSubmissions.oxy),
-  ])
+  ]);
   winston.info('Site generation finished :)');
 }
 

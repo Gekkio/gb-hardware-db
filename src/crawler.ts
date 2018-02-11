@@ -195,13 +195,12 @@ export async function crawlDataDirectory(path: string): Promise<Submission[]> {
   })));
 }
 
-async function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema): Promise<T | undefined> {
+async function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema, ): Promise<T | undefined> {
   const metadataPath = path.resolve(unit.absolutePath, 'metadata.json');
   const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
   const validationResult = Joi.validate(metadata, schema);
   if (validationResult.error) {
-    console.error(validationResult.error.annotate());
-    return undefined;
+    throw validationResult.error;
   }
   return validationResult.value;
 }

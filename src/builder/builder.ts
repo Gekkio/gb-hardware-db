@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import * as process from 'process';
 import * as winston from 'winston';
 
 import Site from '../site/Site';
@@ -185,4 +186,11 @@ async function processPage(page: PageDeclaration): Promise<void> {
 
 main()
   .then(() => null)
-  .catch(e => console.error(e.stack || e));
+  .catch(e => {
+    if (e.isJoi) {
+      console.error(e.annotate());
+    } else {
+      console.error(e.stack || e);
+    }
+    process.exit(1);
+  });

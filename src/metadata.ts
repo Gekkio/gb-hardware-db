@@ -319,6 +319,7 @@ export interface CgbMetadata extends Metadata {
   type: "CGB";
   color?: string;
   year?: number;
+  month?: number;
   week?: number;
   mainboard: {
     type: string;
@@ -341,6 +342,7 @@ export namespace CgbMetadata {
     type: Joi.string().required().allow('CGB'),
     color: Joi.string(),
     year: schemas.year,
+    month: schemas.month,
     week: schemas.week,
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),

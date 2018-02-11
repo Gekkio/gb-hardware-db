@@ -135,8 +135,8 @@ async function crawl<T extends string, M extends Metadata, P = DefaultPhotos>(
   const {contributor, unit} = path;
   const metadata = await readMetadata<M>(unit, schema);
   if (!metadata) return undefined;
-  const {title, slug} = parseUnitName(path)
-  const photos = await photoCrawler(unit)
+  const {title, slug} = parseUnitName(path);
+  const photos = await photoCrawler(unit);
   return {type, title, slug, contributor: contributor.name, metadata, photos}
 }
 

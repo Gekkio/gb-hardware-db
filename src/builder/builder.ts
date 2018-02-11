@@ -18,6 +18,7 @@ import {
   AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS, generateCsv,
   MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
 } from './csvTransform';
+import * as config from '../config';
 
 interface PageDeclaration {
   type: string;
@@ -57,109 +58,22 @@ async function main(): Promise<void> {
     {type: 'contribute-sgb2', path: ['contribute', 'sgb2'], title: 'Super Game Boy 2 (SGB2) contribution instructions', props: {}},
     {type: 'contribute-oxy', path: ['contribute', 'oxy'], title: 'Game Boy Micro (OXY) contribution instructions', props: {}},
     {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
-    {type: 'dmg', path: ['consoles', 'dmg', 'index'], title: 'Game Boy (DMG)', props: {
-      submissions: groupedSubmissions.dmg,
-    }},
-    {type: 'sgb', path: ['consoles', 'sgb', 'index'], title: 'Super Game Boy (SGB)', props: {
-      submissions: groupedSubmissions.sgb,
-    }},
-    {type: 'mgb', path: ['consoles', 'mgb', 'index'], title: 'Game Boy Pocket (MGB)', props: {
-      submissions: groupedSubmissions.mgb,
-    }},
-    {type: 'mgl', path: ['consoles', 'mgl', 'index'], title: 'Game Boy Light (MGL)', props: {
-      submissions: groupedSubmissions.mgl,
-    }},
-    {type: 'sgb2', path: ['consoles', 'sgb2', 'index'], title: 'Super Game Boy 2 (SGB2)', props: {
-      submissions: groupedSubmissions.sgb2,
-    }},
-    {type: 'cgb', path: ['consoles', 'cgb', 'index'], title: 'Game Boy Color (CGB)', props: {
-      submissions: groupedSubmissions.cgb,
-    }},
-    {type: 'agb', path: ['consoles', 'agb', 'index'], title: 'Game Boy Advance (AGB)', props: {
-      submissions: groupedSubmissions.agb,
-    }},
-    {type: 'ags', path: ['consoles', 'ags', 'index'], title: 'Game Boy Advance SP (AGS)', props: {
-      submissions: groupedSubmissions.ags,
-    }},
-    {type: 'gbs', path: ['consoles', 'gbs', 'index'], title: 'Game Boy Player (GBS)', props: {
-      submissions: groupedSubmissions.gbs,
-    }},
-    {type: 'oxy', path: ['consoles', 'oxy', 'index'], title: 'Game Boy Micro (OXY)', props: {
-      submissions: groupedSubmissions.oxy,
-    }}
+    ...config.consoles.map(type => {
+      const cfg = config.consoleCfgs[type]
+      return {type, path: ['consoles', type, 'index'], title: `${cfg.name} (${type.toUpperCase()})`, props: {
+        submissions: groupedSubmissions[type],
+      }}
+    })
   ];
   submissions.forEach(submission => {
-    if (submission.type === 'dmg') {
-      pages.push({
-        type: 'dmg-console',
-        path: ['consoles', 'dmg', submission.slug],
-        title: `DMG: ${submission.title} [${submission.contributor}]`,
-        props: {submission}
-      });
-    } else if (submission.type === 'sgb') {
-      pages.push({
-        type: 'sgb-console',
-        path: ['consoles', 'sgb', submission.slug],
-        title: `SGB: ${submission.title} [${submission.contributor}]`,
-        props: {submission}
-      });
-    } else if (submission.type === 'mgb') {
-      pages.push({
-        type: 'mgb-console',
-        path: ['consoles', 'mgb', submission.slug],
-        title: `MGB: ${submission.title} [${submission.contributor}]`,
-        props: {submission}
-      });
-    } else if (submission.type === 'mgl') {
-      pages.push({
-        type: 'mgl-console',
-        path: ['consoles', 'mgl', submission.slug],
-        title: `MGL: ${submission.title} [${submission.contributor}]`,
-        props: {submission}
-      });
-    } else if (submission.type === 'sgb2') {
-      pages.push({
-        type: 'sgb2-console',
-        path: ['consoles', 'sgb2', submission.slug],
-        title: `SGB2: ${submission.title} [${submission.contributor}]`,
-        props: {submission}
-      });
-    } else if (submission.type === 'cgb') {
-      pages.push({
-        type: 'cgb-console',
-        path: ['consoles', 'cgb', submission.slug],
-        title: `CGB: ${submission.title}`,
-        props: {submission}
-      });
-    } else if (submission.type === 'agb') {
-      pages.push({
-        type: 'agb-console',
-        path: ['consoles', 'agb', submission.slug],
-        title: `AGB: ${submission.title}`,
-        props: {submission}
-      });
-    } else if (submission.type === 'ags') {
-      pages.push({
-        type: 'ags-console',
-        path: ['consoles', 'ags', submission.slug],
-        title: `AGS: ${submission.title}`,
-        props: {submission}
-      });
-    } else if (submission.type === 'gbs') {
-      pages.push({
-        type: 'gbs-console',
-        path: ['consoles', 'gbs', submission.slug],
-        title: `GBS: ${submission.title}`,
-        props: {submission}
-      });
-    } else if (submission.type === 'oxy') {
-      pages.push({
-        type: 'oxy-console',
-        path: ['consoles', 'oxy', submission.slug],
-        title: `OXY: ${submission.title}`,
-        props: {submission}
-      });
-    }
+    const {type, slug, title, contributor} = submission
+    const cfg = config.consoleCfgs[type]
+    pages.push({
+      type: `${type}-console`,
+      path: ['consoles', type, slug],
+      title: `${type.toUpperCase()}: ${title} [${contributor}]`,
+      props: {submission}
+    });
   });
 
   await Promise.all([
@@ -167,7 +81,7 @@ async function main(): Promise<void> {
     Bluebird.map(submissions, processPhotos, {concurrency: 2}),
   ]);
 
-  await([
+  await Promise.all([
     processCsv('dmg', DMG_CSV_COLUMNS, groupedSubmissions.dmg),
     processCsv('sgb', SGB_CSV_COLUMNS, groupedSubmissions.sgb),
     processCsv('mgb', MGB_CSV_COLUMNS, groupedSubmissions.mgb),

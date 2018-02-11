@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import * as config from '../../config';
+
 interface Props {
   pageType: string;
 }
@@ -18,18 +20,7 @@ export default function SiteHeader({pageType}: Props) {
   )
 }
 
-const models = [
-  ['DMG', 'Game Boy'],
-  ['SGB', 'Super Game Boy'],
-  ['MGB', 'Game Boy Pocket'],
-  ['MGL', 'Game Boy Light'],
-  ['SGB2', 'Super Game Boy 2'],
-  ['CGB', 'Game Boy Color'],
-  ['AGB', 'Game Boy Advance'],
-  ['AGS', 'Game Boy Advance SP'],
-  ['GBS', 'Game Boy Player'],
-  ['OXY', 'Game Boy Micro'],
-].map(([model, name]) => [model, model.toLowerCase(), name]);
+const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name])
 
 function isModel(pageType: string, code: string) {
   return pageType === code || pageType === `${code}-console`

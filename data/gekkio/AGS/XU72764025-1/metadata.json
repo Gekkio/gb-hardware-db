@@ -21,6 +21,13 @@
       "year": 2005,
       "week": 41
     },
+    "work_ram": {
+      "type": "LP62S16128BW-70LLTF",
+      "manufacturer": "amic",
+      "label": "AMIC LP62S16128BW-70LLTF P4060473FB 0540A",
+      "year": 2005,
+      "week": 40
+    },
     "amplifier": {
       "type": "PM B3",
       "manufacturer": "mitsumi",

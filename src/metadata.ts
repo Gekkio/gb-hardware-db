@@ -25,7 +25,7 @@ export namespace DateRangePart {
   })
 }
 
-const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'st', 'tdk', 'toshiba', 'xlink'];
+const manufacturers = ['amic', 'bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'st', 'tdk', 'toshiba', 'xlink'];
 
 export interface Chip extends Calendar {
   type?: string;

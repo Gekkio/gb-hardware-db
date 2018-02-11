@@ -2,48 +2,48 @@
   "type": "CGB",
   "color": "atomic-purple",
   "year": 1998,
-  "month": 12,
+  "week": 44,
   "mainboard": {
     "type": "CGB-CPU-02",
     "number_pair": "1-2",
-    "stamp": "812.3702",
-    "circled_letters": "CS",
+    "stamp": "448-2240",
+    "circled_letters": "CM",
     "year": 1998,
-    "month": 11,
+    "month": 9,
     "crystal": {
-      "type": "8388 KSS",
-      "manufacturer": "kss",
-      "label": "8388 KSS 8KT",
+      "type": "KDS 8.388",
+      "manufacturer": "kds",
+      "label": "KDS 9841 8.388",
       "year": 1998,
-      "month": 11
+      "week": 41
     },
     "cpu": {
       "type": "CPU CGB B",
       "manufacturer": "sharp",
-      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9845 I",
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9842 I",
       "year": 1998,
-      "week": 45
+      "week": 42
     },
     "work_ram": {
       "type": "LH52256CVT",
       "manufacturer": "sharp",
-      "label": "LH52256CVT SHARP JAPAN 9835 1 SN",
+      "label": "LH52256CVT SHARP JAPAN 9841 3 LO",
       "year": 1998,
-      "week": 35
+      "week": 41
     },
     "regulator": {
       "type": "IR3E06N",
       "manufacturer": "sharp",
-      "label": "CGB-REG IR3E06N 9843 C",
+      "label": "CGB-REG IR3E06N 9839 C",
       "year": 1998,
-      "week": 43
+      "week": 39
     },
     "amplifier": {
       "type": "IR3R53N",
       "manufacturer": "sharp",
-      "label": "AMP MGB IR3R53N 9844 a",
+      "label": "AMP MGB IR3R53N 9829 a",
       "year": 1998,
-      "week": 44
+      "week": 29
     }
   }
 }

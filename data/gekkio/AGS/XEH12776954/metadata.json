@@ -1,13 +1,51 @@
 {
   "type": "AGS",
+  "color": "platinum",
   "mainboard": {
     "type": "C/AGS-CPU-10",
+    "number_pair": "4-2",
+    "stamp": "3933731",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 8,
+    "crystal": {
+      "type": "KDSI 4.194",
+      "label": "KDSI 0332 4.194",
+      "year": 2003,
+      "week": 32
+    },
     "cpu": {
       "type": "CPU AGB B",
       "manufacturer": "sharp",
-      "label": "CPU AGB B 0333 UB",
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0333 UB",
       "year": 2003,
       "week": 33
+    },
+    "work_ram": {
+      "type": "BS616LV2019TC-70",
+      "manufacturer": "bsi",
+      "label": "BSI BS616LV2019TC-70 S31687FZ226013.1 L0335 TAIWAN",
+      "year": 2003,
+      "week": 35
+    },
+    "amplifier": {
+      "type": "IR3R60N",
+      "manufacturer": "sharp",
+      "label": "AMP AGB IR3R60N 0333 N",
+      "year": 2003,
+      "week": 33
+    },
+    "u4": {
+      "type": "S6403",
+      "label": "S6403 CU3G3 7540",
+      "year": 2003
+    },
+    "u5": {
+      "type": "1581A",
+      "manufacturer": "microchip",
+      "label": "332 1581A",
+      "year": 2003,
+      "week": 32
     }
   }
 }

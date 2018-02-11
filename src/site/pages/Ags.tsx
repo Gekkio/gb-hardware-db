@@ -18,6 +18,11 @@ export default function Ags({submissions}: Props) {
           <th>ID</th>
           <th>Board</th>
           <th>CPU (U1)</th>
+          <th>WRAM (U2)</th>
+          <th>Amplifier (U3)</th>
+          <th>U4</th>
+          <th>U5</th>
+          <th>Crystal (X1)</th>
           <th>Photos</th>
         </tr>
         </thead>
@@ -57,8 +62,14 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
         <div>{format.short.calendar(metadata.mainboard)}</div>
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
+      <ConsoleListingChip chip={metadata.mainboard.work_ram} />
+      <ConsoleListingChip chip={metadata.mainboard.amplifier} />
+      <ConsoleListingChip chip={metadata.mainboard.u4} />
+      <ConsoleListingChip chip={metadata.mainboard.u5} />
+      <ConsoleListingChip chip={metadata.mainboard.crystal} />
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
+        {renderPhoto(slug, 'Top', photos.top)}
         {renderPhoto(slug, 'Back', photos.back)}
         {renderPhoto(slug, 'PCB front', photos.pcbFront)}
         {renderPhoto(slug, 'PCB back', photos.pcbBack)}

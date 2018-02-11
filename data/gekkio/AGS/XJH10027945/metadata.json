@@ -1,13 +1,32 @@
 {
   "type": "AGS",
+  "color": "platinum",
   "mainboard": {
     "type": "C/AGS-CPU-01",
+    "crystal": {
+      "type": "KDSI 4.194",
+      "label": "KDSI 0246 4.194",
+      "year": 2002,
+      "week": 46
+    },
     "cpu": {
       "type": "CPU AGB B",
       "manufacturer": "sharp",
-      "label": "CPU AGB B 0247 D",
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0247 D",
       "year": 2002,
       "week": 47
+    },
+    "amplifier": {
+      "type": "IR3R60N",
+      "manufacturer": "sharp",
+      "label": "AMP AGB IR3R60N 0333 N",
+      "year": 2003,
+      "week": 33
+    },
+    "u4": {
+      "type": "S6403",
+      "label": "S6403 AU2Y6 7335",
+      "year": 2002
     }
   }
 }

@@ -67,6 +67,10 @@ export interface DmgPhotos {
   jackBoardBack?: Photo;
 }
 
+export interface AgsPhotos extends DefaultPhotos {
+  top?: Photo;
+}
+
 export type DmgSubmission = SubmissionBase<'dmg', DmgMetadata, DmgPhotos>;
 export type SgbSubmission = SubmissionBase<'sgb', SgbMetadata>;
 export type MgbSubmission = SubmissionBase<'mgb', MgbMetadata>;
@@ -74,7 +78,7 @@ export type MglSubmission = SubmissionBase<'mgl', MglMetadata>;
 export type Sgb2Submission = SubmissionBase<'sgb2', Sgb2Metadata>;
 export type CgbSubmission = SubmissionBase<'cgb', CgbMetadata>;
 export type AgbSubmission = SubmissionBase<'agb', AgbMetadata>;
-export type AgsSubmission = SubmissionBase<'ags', AgsMetadata>;
+export type AgsSubmission = SubmissionBase<'ags', AgsMetadata, AgsPhotos>;
 export type GbsSubmission = SubmissionBase<'gbs', GbsMetadata>;
 export type OxySubmission = SubmissionBase<'oxy', OxyMetadata>;
 
@@ -108,6 +112,17 @@ async function crawlDmgPhotos(unit: FsEntry): Promise<DmgPhotos> {
     front, back, mainboardFront, mainboardBack, lcdBoardFront, lcdBoardBack,
     powerBoardFront, powerBoardBack, jackBoardFront, jackBoardBack
   };
+}
+
+async function crawlAgsPhotos(unit: FsEntry): Promise<AgsPhotos> {
+  const [front, top, back, pcbFront, pcbBack] = await Promise.all([
+    '01_front.jpg',
+    '02_top.jpg',
+    '03_back.jpg',
+    '04_pcb_front.jpg',
+    '05_pcb_back.jpg',
+  ].map(filename => fetchPhoto(unit, filename)));
+  return {front, top, back, pcbFront, pcbBack};
 }
 
 interface SubmissionPath {
@@ -167,7 +182,7 @@ export async function crawlDataDirectory(path: string): Promise<Submission[]> {
       case 'AGB':
         return await crawl<'agb', AgbMetadata>('agb', AgbMetadata.schema, crawlDefaultPhotos, path);
       case 'AGS':
-        return await crawl<'ags', AgsMetadata>('ags', AgsMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'ags', AgsMetadata>('ags', AgsMetadata.schema, crawlAgsPhotos, path);
       case 'GBS':
         return await crawl<'gbs', GbsMetadata>('gbs', GbsMetadata.schema, crawlDefaultPhotos, path);
       case 'OXY':

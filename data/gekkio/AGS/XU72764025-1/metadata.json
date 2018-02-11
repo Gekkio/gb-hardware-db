@@ -1,13 +1,34 @@
 {
   "type": "AGS",
+  "color": "platinum",
   "mainboard": {
     "type": "C/AGT-CPU-01",
+    "number_pair": "7-2",
+    "stamp": "17Z53734",
+    "circled_letters": "CS",
+    "year": 2005,
+    "month": 12,
+    "crystal": {
+      "type": "KDSI 4.194",
+      "label": "KDSI 0538 4.194",
+      "year": 2005,
+      "week": 38
+    },
     "cpu": {
       "type": "CPU AGB B E",
       "manufacturer": "sharp",
-      "label": "CPU AGB B E 0541 UB",
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0541 UB",
       "year": 2005,
       "week": 41
-    }
+    },
+    "amplifier": {
+      "type": "PM B3",
+      "manufacturer": "mitsumi",
+      "label": "MITSUMI JAPAN 544A PM B3",
+      "year": 2005,
+      "week": 44
+    },
+    "u4": null,
+    "u5": null
   }
 }

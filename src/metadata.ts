@@ -25,7 +25,7 @@ export namespace DateRangePart {
   })
 }
 
-const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'tdk', 'toshiba', 'xlink'];
+const manufacturers = ['bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'st', 'tdk', 'toshiba', 'xlink'];
 
 export interface Chip extends Calendar {
   type?: string;
@@ -353,7 +353,7 @@ export namespace CgbMetadata {
       month: schemas.month,
       date_range: Joi.array().ordered(DateRangePart.schema, DateRangePart.schema),
       cpu: Chip.schema,
-      work_ram: Chip.schema,
+      work_ram: Chip.schema.allow(null),
       amplifier: Chip.schema,
       regulator: Chip.schema,
       crystal: Chip.schema,
@@ -407,9 +407,18 @@ export namespace AgbMetadata {
 
 export interface AgsMetadata extends Metadata {
   type: "AGS";
+  color?: string;
   mainboard: {
     type: string;
+    number_pair?: string;
+    stamp?: string;
+    circled_letters?: string;
+    crystal?: Chip;
     cpu?: Chip;
+    work_ram?: Chip;
+    amplifier?: Chip;
+    u4?: Chip;
+    u5?: Chip;
     year?: number;
     month?: number;
   };
@@ -418,9 +427,18 @@ export interface AgsMetadata extends Metadata {
 export namespace AgsMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('AGS'),
+    color: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
+      number_pair: Joi.string(),
+      stamp: Joi.string(),
+      circled_letters: Joi.string(),
+      crystal: Chip.schema,
       cpu: Chip.schema,
+      work_ram: Chip.schema,
+      amplifier: Chip.schema,
+      u4: Chip.schema.allow(null),
+      u5: Chip.schema.allow(null),
       year: schemas.year,
       month: schemas.month,
     })

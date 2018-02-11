@@ -78,6 +78,8 @@ export function manufacturer(value: string): string {
       return 'ROHM';
     case 'sharp':
       return 'Sharp';
+    case 'st':
+      return 'STMicroelectronics';
     case 'tdk':
       return 'TDK';
     case 'toshiba':

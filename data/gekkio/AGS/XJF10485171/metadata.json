@@ -1,13 +1,49 @@
 {
   "type": "AGS",
+  "color": "onyx",
   "mainboard": {
     "type": "C/AGS-CPU-11",
+    "number_pair": "9-3",
+    "stamp": "2846001",
+    "circled_letters": "FB",
+    "year": 2003,
+    "crystal": {
+      "type": "4194 KSS",
+      "manufacturer": "kss",
+      "label": "4194 KSS 4EF",
+      "year": 2004,
+      "month": 5
+    },
     "cpu": {
       "type": "CPU AGB B",
       "manufacturer": "sharp",
-      "label": "CPU AGB B 0420 UB",
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0420 UB",
       "year": 2004,
       "week": 20
+    },
+    "work_ram": {
+      "type": "M68AS128 DL7ON6",
+      "manufacturer": "st",
+      "label": "M68AS128 DL7ON6 AANFG F6 TWN 8B 414"
+    },
+    "amplifier": {
+      "type": "IR3R60N",
+      "manufacturer": "sharp",
+      "label": "AMP AGB IR3R60N 0424 N",
+      "year": 2004,
+      "week": 24
+    },
+    "u4": {
+      "type": "S6403",
+      "label": "S6403 CU4E0 9723",
+      "year": 2004
+    },
+    "u5": {
+      "type": "1581A",
+      "manufacturer": "microchip",
+      "label": "422 1581A",
+      "year": 2004,
+      "week": 22
     }
   }
 }

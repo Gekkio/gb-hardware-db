@@ -33,6 +33,8 @@ export default function Sgb2({submissions}: Props) {
           )}
         </tbody>
       </table>
+      <h3>Data dumps</h3>
+      <a href="/static/sgb2.csv">UTF-8 encoded CSV</a>
     </article>
   )
 }

@@ -27,6 +27,12 @@
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
 
+"@types/csv-stringify@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/csv-stringify/-/csv-stringify-1.4.2.tgz#3a71c6f508ae434339e2304d36bb00177e659d95"
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@~5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-5.0.0.tgz#d3e225b35eb5c6d3a5a782c28219df365c781413"
@@ -733,6 +739,12 @@ csso@~3.3.0:
   resolved "https://registry.yarnpkg.com/csso/-/csso-3.3.1.tgz#e069a8f52adcf53685a8a7374256ccbc22c6ce3e"
   dependencies:
     css-tree "1.0.0-alpha25"
+
+csv-stringify@~2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/csv-stringify/-/csv-stringify-2.0.2.tgz#3d1459fe448a8786d86c87278c2c41961ae173ab"
+  dependencies:
+    lodash.get "~4.4.2"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -2408,6 +2420,10 @@ lodash.escape@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.escape/-/lodash.escape-3.2.0.tgz#995ee0dc18c1b48cc92effae71a10aab5b487698"
   dependencies:
     lodash._root "^3.0.0"
+
+lodash.get@~4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
 lodash.isarguments@^3.0.0:
   version "3.1.0"

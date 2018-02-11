@@ -32,6 +32,8 @@ export default function Gbs({submissions}: Props) {
         )}
         </tbody>
       </table>
+      <h3>Data dumps</h3>
+      <a href="/static/gbs.csv">UTF-8 encoded CSV</a>
     </article>
   )
 }

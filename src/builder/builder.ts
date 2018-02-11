@@ -14,6 +14,10 @@ import {
   MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission, Submission
 } from '../crawler';
 import processPhotos from './processPhotos';
+import {
+  AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS, generateCsv,
+  MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
+} from './csvTransform';
 
 interface PageDeclaration {
   type: string;
@@ -161,8 +165,26 @@ async function main(): Promise<void> {
   await Promise.all([
     Bluebird.map(pages, processPage, {concurrency: 16}),
     Bluebird.map(submissions, processPhotos, {concurrency: 2}),
+    processCsv('dmg', DMG_CSV_COLUMNS, groupedSubmissions.dmg),
+    processCsv('sgb', SGB_CSV_COLUMNS, groupedSubmissions.sgb),
+    processCsv('mgb', MGB_CSV_COLUMNS, groupedSubmissions.mgb),
+    processCsv('mgl', MGL_CSV_COLUMNS, groupedSubmissions.mgl),
+    processCsv('sgb2', SGB2_CSV_COLUMNS, groupedSubmissions.sgb2),
+    processCsv('cgb', CGB_CSV_COLUMNS, groupedSubmissions.cgb),
+    processCsv('agb', AGB_CSV_COLUMNS, groupedSubmissions.agb),
+    processCsv('ags', AGS_CSV_COLUMNS, groupedSubmissions.ags),
+    processCsv('gbs', GBS_CSV_COLUMNS, groupedSubmissions.gbs),
+    processCsv('oxy', OXY_CSV_COLUMNS, groupedSubmissions.oxy),
   ])
   winston.info('Site generation finished :)');
+}
+
+async function processCsv<T, K extends keyof GroupedSubmissions>(
+  key: K,
+  columns: CsvColumn<T>[],
+  rows: T[],
+): Promise<void> {
+  return generateCsv(columns, rows, path.resolve('build', 'site', 'static', `${key}.csv`))
 }
 
 async function processPage(page: PageDeclaration): Promise<void> {

@@ -30,6 +30,8 @@ export default function Oxy({submissions}: Props) {
           )}
         </tbody>
       </table>
+      <h3>Data dumps</h3>
+      <a href="/static/oxy.csv">UTF-8 encoded CSV</a>
     </article>
   )
 }

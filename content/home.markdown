@@ -13,4 +13,4 @@ You can
 * Check which chips were used in Game Boy devices
 * Study what improvements or cost savings were done in later board revisions of a Game Boy model
 * Laugh or cry at photos of Game Boys which are in a worse shape than yours
-* Download big CSV files for data analysis purposes (**work in progress**)
+* Download big CSV files for data analysis purposes

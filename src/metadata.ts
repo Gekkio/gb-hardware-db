@@ -27,10 +27,13 @@ export namespace DateRangePart {
 
 const manufacturers = ['amic', 'bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'st', 'tdk', 'toshiba', 'xlink'];
 
-export interface Chip extends Calendar {
+export interface Chip {
   type?: string;
   label: string | null;
   manufacturer?: string;
+  year?: number;
+  month?: number;
+  week?: number;
   outlier?: boolean;
 }
 

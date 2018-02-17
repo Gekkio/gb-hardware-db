@@ -45,7 +45,7 @@ function groupSubmissions(submissions: Submission[]): GroupedSubmissions {
 }
 
 async function main(): Promise<void> {
-  const submissions = await crawlDataDirectory('data');
+  const submissions = await crawlDataDirectory('data/consoles');
 
   const groupedSubmissions = groupSubmissions(submissions);
 

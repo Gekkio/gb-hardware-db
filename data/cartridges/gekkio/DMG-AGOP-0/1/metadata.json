@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AGOP-NOE",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 10,
+    "rom": {
+      "type": "LH531HH6",
+      "manufacturer": "sharp",
+      "label": "DMG-AGOP-0 S LH531HH6 JAPAN C1 9846 D",
+      "year": 1998,
+      "week": 46
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 8'06",
+      "year": 1998
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TR-USA",
+  "stamp": "23A",
+  "board": {
+    "type": "DMG-AAA-03",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 5,
+    "rom": {
+      "type": "DMG-TRA-1",
+      "label": "DMG-TRA-1 SHARP JAPAN A0 9018 D",
+      "year": 1990,
+      "week": 18
+    }
+  }
+}

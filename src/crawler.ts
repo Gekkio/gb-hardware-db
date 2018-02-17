@@ -26,7 +26,7 @@ async function fsEntry(basePath: string, name: string): Promise<FsEntry> {
 
 async function directories(basePath: string): Promise<FsEntry[]> {
   const names = await fs.readdir(basePath);
-  const entries = await Promise.all(names.map(name => fsEntry(basePath, name)))
+  const entries = await Promise.all(names.map(name => fsEntry(basePath, name)));
   return entries.filter(({stats}) => stats.isDirectory())
 }
 
@@ -34,9 +34,7 @@ export type ConsoleSubmission = DmgSubmission | SgbSubmission |
   MgbSubmission | MglSubmission | Sgb2Submission |
   CgbSubmission | AgbSubmission | AgsSubmission | GbsSubmission | OxySubmission;
 
-export interface CartridgeSubmission extends SubmissionBase<string, CartridgeMetadata> {
-  game: string,
-}
+export type CartridgeSubmission = SubmissionBase<string, CartridgeMetadata>
 
 export interface Photo {
   path: string;
@@ -242,7 +240,7 @@ export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> 
   })));
 }
 
-export async function crawlCartridges(path: string): Promise<any[]> {
+export async function crawlCartridges(path: string): Promise<CartridgeSubmission[]> {
   const submissions = await crawlSubmissions(path);
 
   return rejectNil(await Promise.all(submissions.map(async path => {
@@ -254,15 +252,13 @@ export async function crawlCartridges(path: string): Promise<any[]> {
       return undefined
     }
     const entry = cartridgeSubmissionEntry(path);
-    return {
-      game: cfg.name,
-      ...await crawl<string, CartridgeMetadata>(type.name, CartridgeMetadata.schema, crawlCartridgePhotos, entry),
-    }
+    return await crawl<string, CartridgeMetadata>(type.name, CartridgeMetadata.schema, crawlCartridgePhotos, entry)
   })));
 }
 
 async function readMetadata<M>(unit: FsEntry, schema: Joi.Schema, ): Promise<M | undefined> {
   const metadataPath = path.resolve(unit.absolutePath, 'metadata.json');
+  if (!await fs.pathExists(metadataPath)) return undefined;
   const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
   const validationResult = Joi.validate(metadata, schema);
   if (validationResult.error) {

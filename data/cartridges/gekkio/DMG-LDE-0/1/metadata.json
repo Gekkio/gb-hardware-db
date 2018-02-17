@@ -1,0 +1,24 @@
+{
+  "code": "DMG-LD-USA-1",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 2,
+    "rom": {
+      "type": "DMG-LDE-0",
+      "label": "DMG-LDE-0 C1 N-1001EUGW-J27 9808E7013",
+      "year": 1998,
+      "week": 8
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9750 1 A",
+      "year": 1997,
+      "week": 50
+    }
+  }
+}

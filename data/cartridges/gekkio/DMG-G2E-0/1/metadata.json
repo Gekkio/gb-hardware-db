@@ -1,0 +1,25 @@
+{
+  "code": "DMG-G2-USA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 7,
+    "rom": {
+      "type": "TC532000BF",
+      "manufacturer": "toshiba",
+      "label": "TOSHIBA 9127EAI TC532000BF DMG-G2E-0 D1 J571 JAPAN",
+      "year": 1991,
+      "week": 27
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B Nintendo S 9131 5 A",
+      "year": 1991,
+      "week": 31
+    }
+  }
+}

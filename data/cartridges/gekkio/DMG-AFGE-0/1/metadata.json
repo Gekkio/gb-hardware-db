@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AFGE-USA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 9,
+    "rom": {
+      "type": "LH531HZW",
+      "manufacturer": "sharp",
+      "label": "DMG-AFGE-0 S LH531HZW JAPAN C1 9840 E",
+      "year": 1998,
+      "week": 40
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 8'57",
+      "year": 1998
+    }
+  }
+}

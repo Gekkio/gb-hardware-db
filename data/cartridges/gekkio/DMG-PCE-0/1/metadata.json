@@ -1,0 +1,25 @@
+{
+  "code": "DMG-PC-USA",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 9,
+    "rom": {
+      "type": "LH531723",
+      "manufacturer": "sharp",
+      "label": "DMG-PCE-0 S LH531723 JAPAN B1 9842 D",
+      "year": 1998,
+      "week": 42
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9838 5 A",
+      "year": 1998,
+      "week": 38
+    }
+  }
+}

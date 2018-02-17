@@ -82,7 +82,7 @@ async function main(): Promise<void> {
     });
   });
   cartridgeSubmissions.forEach(submission => {
-    const {type, slug, title, contributor, game} = submission;
+    const {type, slug, title, contributor} = submission;
     const cfg = config.gameCfgs[type];
     pages.push({
       type: 'cartridge',

@@ -24,8 +24,7 @@
     "ram_protector": {
       "type": "6735",
       "label": "6735 0B46",
-      "year": 2000,
-      "week": 46
+      "year": 2000
     },
     "battery": "CR2025",
     "crystal": true

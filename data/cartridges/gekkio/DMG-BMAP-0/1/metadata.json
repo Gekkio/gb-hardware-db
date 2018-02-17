@@ -1,0 +1,34 @@
+{
+  "code": "DMG-BMAP-EUR",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-KFCN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 11,
+    "rom": {
+      "type": "MX23C8003-20",
+      "manufacturer": "macronix",
+      "label": "S010649-M MX23C8003-20 DMG-BMAP-0 F1 1C3876A1"
+    },
+    "mapper": {
+      "type": "MBC3B",
+      "label": "MBC-3 B BU3634K 103 H56",
+      "year": 2001
+    },
+    "ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 0043 5 EB",
+      "year": 2000,
+      "week": 43
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 0B01",
+      "year": 2000
+    },
+    "battery": "CR2025"
+  }
+}

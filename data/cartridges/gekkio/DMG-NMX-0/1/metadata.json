@@ -1,0 +1,23 @@
+{
+  "code": "DMG-NM-NOE",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "T",
+    "extra_label": "5",
+    "year": 1991,
+    "month": 8,
+    "rom": {
+      "type": "TC531001CF",
+      "manufacturer": "toshiba",
+      "label": "TOSHIBA 9136EAI TC531001CF DMG-NMX-0 C1 J597 JAPAN",
+      "year": 1991,
+      "week": 36
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1B Nintendo J9130BR",
+      "year": 1991
+    }
+  }
+}

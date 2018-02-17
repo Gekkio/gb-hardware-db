@@ -12,7 +12,7 @@ export default function Cartridge({submission, cfg}: {submission: CartridgeSubmi
   const layout = gameLayouts[cfg.layout]
   return (
     <article className="page-cartridge">
-      <h2>{`${submission.game}: ${submission.title} [${submission.contributor}]`}</h2>
+      <h2>{`${cfg.name}: ${submission.title} [${submission.contributor}]`}</h2>
       <div className="page-cartridge__photo">
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}

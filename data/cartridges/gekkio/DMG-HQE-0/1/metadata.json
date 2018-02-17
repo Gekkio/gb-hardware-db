@@ -1,0 +1,24 @@
+{
+  "code": "DMG-HQ-USA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 2,
+    "rom": {
+      "type": "DMG-HQE-0",
+      "label": "DMG-HQE-0 C1 N-1001EGW-J23 9110E9001",
+      "year": 1991,
+      "week": 10
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B Nintendo S 9109 1 A",
+      "year": 1991,
+      "week": 9
+    }
+  }
+}

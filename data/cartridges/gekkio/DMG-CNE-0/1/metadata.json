@@ -1,0 +1,25 @@
+{
+  "code": "DMG-CN-USA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 12,
+    "rom": {
+      "type": "LH5308SL",
+      "manufacturer": "sharp",
+      "label": "DMG-CNE-0 S LH5308SL JAPAN C1 9052 D",
+      "year": 1990,
+      "week": 52
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B Nintendo S 9103 5 A",
+      "year": 1991,
+      "week": 3
+    }
+  }
+}

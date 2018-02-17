@@ -1,0 +1,23 @@
+{
+  "code": "DMG-WW-UKV",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 11,
+    "rom": {
+      "type": "LH5314B4",
+      "manufacturer": "sharp",
+      "label": "DMG-WWE-0 S LH5314B4 JAPAN B1 9044 D",
+      "year": 1990,
+      "week": 44
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 0'09",
+      "year": 1990
+    }
+  }
+}

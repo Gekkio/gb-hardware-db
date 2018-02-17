@@ -69,6 +69,8 @@ function getMapper({type, metadata}: CartridgeSubmission): MapperId | undefined 
         return 'huc1';
       case 'HuC-3':
         return 'huc3';
+      case 'TAMA5':
+        return 'tama5';
       default:
         console.warn(`Unsupported mapper type ${metadata.board.mapper.type}`)
         return undefined

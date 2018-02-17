@@ -1,0 +1,25 @@
+{
+  "code": "DMG-LW-USA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "2",
+    "year": 1992,
+    "month": 2,
+    "rom": {
+      "type": "TC531001CF",
+      "manufacturer": "toshiba",
+      "label": "Toshiba 9210EAI TC531001CF DMG-LWE-0 J652 JAPAN",
+      "year": 1992,
+      "week": 10
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B Nintendo S 9204 1 AB",
+      "year": 1992,
+      "week": 4
+    }
+  }
+}

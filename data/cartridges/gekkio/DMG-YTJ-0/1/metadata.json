@@ -1,0 +1,38 @@
+{
+  "code": "DMG-YTJ-JPN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 7,
+    "rom": {
+      "type": "LH534MYE",
+      "manufacturer": "sharp",
+      "label": "DMG-YTJ-0 S LH534MYE JAPAN E1 9730 E",
+      "year": 1997,
+      "week": 30
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9729 3 A",
+      "year": 1997,
+      "week": 29
+    },
+    "ram": {
+      "type": "HY6264ALLJ-10",
+      "manufacturer": "hyundai",
+      "label": "HY6264A LLJ-10 9702B KOREA",
+      "year": 1997,
+      "week": 2
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 7727",
+      "year": 1997
+    },
+    "battery": "CR1616"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "code": "DMG-W6J",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-DEDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1994,
+    "month": 2,
+    "rom": {
+      "type": "LH534MN8",
+      "manufacturer": "sharp",
+      "label": "DMG-W6J-0 S LH534MN8 JAPAN E1 9407 D",
+      "year": 1994,
+      "week": 7
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 4'11",
+      "year": 1994
+    },
+    "ram": {
+      "type": "LH52B256NA-10TLL",
+      "manufacturer": "lsi-logic",
+      "label": "LH52B256NA-10TLL LSI LOGIC JAPAN D344 03 B",
+      "year": 1993,
+      "week": 44
+    },
+    "ram_protector": {
+      "type": "6129",
+      "label": "6129 3C86",
+      "year": 1993
+    },
+    "battery": "CR1616"
+  }
+}

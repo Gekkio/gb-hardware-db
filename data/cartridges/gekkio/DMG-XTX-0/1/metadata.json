@@ -1,0 +1,28 @@
+{
+  "code": "DMG-XT-UKV",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1993,
+    "month": 2,
+    "rom": {
+      "type": "LH532MAI",
+      "manufacturer": "sharp",
+      "label": "DMG-XTX-0 S LH532MAI JAPAN D1 9319 D",
+      "year": 1993,
+      "week": 19
+    },
+    "mapper": {
+      "type": "MBC2A",
+      "label": "Nintendo DMG MBC2A N 9126CA032"
+    },
+    "ram_protector": {
+      "type": "6129",
+      "label": "6129 3443",
+      "year": 1993
+    },
+    "battery": "CR1616"
+  }
+}

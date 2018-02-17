@@ -543,6 +543,7 @@ export interface CartridgeMetadata {
     mapper?: Chip;
     ram?: Chip;
     ram_protector?: Chip;
+    u4?: Chip,
     u5?: Chip,
     crystal?: boolean,
     battery?: Battery,
@@ -563,6 +564,7 @@ export namespace CartridgeMetadata {
       mapper: Chip.schema,
       ram: Chip.schema,
       ram_protector: Chip.schema,
+      u4: Chip.schema,
       u5: Chip.schema,
       crystal: Joi.boolean(),
       battery: schemas.battery,

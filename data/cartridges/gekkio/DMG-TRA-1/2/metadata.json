@@ -1,0 +1,14 @@
+{
+  "code": "DMG-TR-EUR",
+  "stamp": "22A",
+  "board": {
+    "type": "AAAC",
+    "circled_letters": "B",
+    "extra_label": "S 4",
+    "rom": {
+      "type": "LR0G150",
+      "label": "LR0G150 DMG-TRA-1 97516",
+      "year": 1997
+    }
+  }
+}

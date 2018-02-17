@@ -1,0 +1,35 @@
+{
+  "code": "DMG-AW2P-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-LFDN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 5,
+    "rom": {
+      "type": "LH538MND",
+      "manufacturer": "sharp",
+      "label": "DMG-AW2P-0 S LH538MND JAPAN F1 9823 D",
+      "year": 1998,
+      "week": 23
+    },
+    "mapper": {
+      "type": "MBC3",
+      "label": "MBC3 BU3631K 802 127",
+      "year": 1998,
+      "week": 2
+    },
+    "ram": {
+      "type": "BR62256F-70LL",
+      "label": "BR62256F-70LL 817 126",
+      "year": 1998,
+      "week": 17
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 8316"
+    },
+    "battery": "CR2025"
+  }
+}

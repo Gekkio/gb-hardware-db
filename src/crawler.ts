@@ -258,7 +258,10 @@ export async function crawlCartridges(path: string): Promise<CartridgeSubmission
 
 async function readMetadata<M>(unit: FsEntry, schema: Joi.Schema, ): Promise<M | undefined> {
   const metadataPath = path.resolve(unit.absolutePath, 'metadata.json');
-  if (!await fs.pathExists(metadataPath)) return undefined;
+  if (!await fs.pathExists(metadataPath)) {
+    console.warn(`Skipping directory without metadata ${unit.absolutePath}`);
+    return undefined
+  }
   const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
   const validationResult = Joi.validate(metadata, schema);
   if (validationResult.error) {

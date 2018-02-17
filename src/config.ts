@@ -76,6 +76,22 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
   }
 };
 
+export interface MapperConfig {
+  name: string,
+}
+
+export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mmm01'
+
+export const mapperCfgs: Record<MapperId, MapperConfig> = {
+  'no-mapper': {name: 'No mapper'},
+  'mbc1': {name: 'MBC1'},
+  'mbc2': {name: 'MBC2'},
+  'mbc3': {name: 'MBC3'},
+  'mbc30': {name: 'MBC30'},
+  'mbc5': {name: 'MBC5'},
+  'mmm01': {name: 'MMM01'},
+};
+
 export interface GameConfig {
   name: string,
   layout: CartLayoutId,

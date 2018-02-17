@@ -30,6 +30,7 @@ import SiteHeader from './components/SiteHeader';
 import Cartridge from './pages/Cartridge';
 import Game from './pages/Game';
 import Cartridges from './pages/Cartridges';
+import Mapper from './pages/Mapper';
 
 namespace Site {
   export interface Props {
@@ -123,6 +124,8 @@ function renderPage(type: string, props: any) {
       return <Cartridge {...props} />
     case 'game':
       return <Game {...props} />
+    case 'mapper':
+      return <Mapper {...props} />
     default:
       return null;
   }

@@ -1,35 +1,37 @@
 import * as React from 'react';
+import * as R from 'ramda';
 
 import {CartridgeSubmission, Photo} from '../../crawler';
 import * as format from '../format';
-import ConsoleListingChip from '../components/ConsoleListingChip';
-import {CartLayout, GameConfig, gameLayouts} from '../../config';
+import {gameCfgs, GameConfig, gameLayouts, mapperCfgs, MapperId} from '../../config';
 
 interface Props {
-  type: string,
-  cfg: GameConfig,
+  mapper: MapperId,
   submissions: CartridgeSubmission[];
 }
 
-export default function Game({type, cfg, submissions}: Props) {
-  const layout = gameLayouts[cfg.layout]
+export default function Mapper({mapper, submissions}: Props) {
+  const cfg = mapperCfgs[mapper]
+  const groupedSubmissions = R.groupBy(({type}) => type, submissions);
+  const games = R.sortBy(type => gameCfgs[type].name, Object.keys(groupedSubmissions));
+  const sortedSubmissions: CartridgeSubmission[] = [];
+  for (const game of games) {
+    sortedSubmissions.push(...groupedSubmissions[game])
+  }
   return (
     <article>
-      <h2>{cfg.name}</h2>
+      <h2>{`Cartridges by mapper: ${cfg.name}`}</h2>
       <table>
         <thead>
         <tr>
           <th>Entry</th>
           <th>Board</th>
-          {layout.chips.map(({designator, name}) => <th key={designator}>{`${name} (${designator})`}</th>)}
-          {layout.crystal && <th>{`Crystal (${layout.crystal})`}</th>}
-          {layout.battery && <th>Battery</th>}
           <th>Photos</th>
         </tr>
         </thead>
         <tbody>
-        {submissions.map(submission =>
-          <Submission key={submission.slug} type={type} layout={layout} submission={submission} />
+        {sortedSubmissions.map(submission =>
+          <Submission key={submission.slug} type={submission.type} cfg={gameCfgs[submission.type]} submission={submission} />
         )}
         </tbody>
       </table>
@@ -37,7 +39,8 @@ export default function Game({type, cfg, submissions}: Props) {
   )
 }
 
-function Submission({type, layout, submission: {contributor, slug, title, metadata, photos}}: {type: string, layout: CartLayout, submission: CartridgeSubmission}) {
+function Submission({type, cfg, submission: {contributor, slug, title, metadata, photos}}: {type: string, cfg: GameConfig, submission: CartridgeSubmission}) {
+  const layout = gameLayouts[cfg.layout];
   return (
     <tr>
       <td className="submission-list-item">
@@ -53,7 +56,8 @@ function Submission({type, layout, submission: {contributor, slug, title, metada
             }
           </div>
           <div className="submission-list-item__id">
-            <div className="submission-list-item__title">{title}</div>
+            <div className="submission-list-item__title">{cfg.name}</div>
+            <aside>{title}</aside>
             <aside className="submission-list-item__contributor">{contributor}</aside>
           </div>
         </a>
@@ -62,9 +66,6 @@ function Submission({type, layout, submission: {contributor, slug, title, metada
         <div>{metadata.board.type}</div>
         <div>{format.short.calendar(metadata.board)}</div>
       </td>
-      {layout.chips.map(({designator, key}) => <ConsoleListingChip key={designator} chip={metadata.board[key]} />)}
-      {layout.crystal && <td>{format.optional(x => x ? 'Y' : 'N', metadata.board.crystal)}</td>}
-      {layout.battery && <td>{format.optional(x => x, metadata.board.battery)}</td>}
       <td>
         {renderPhoto(type, slug, 'Front', photos.front)}
         {renderPhoto(type, slug, 'Back', photos.back)}

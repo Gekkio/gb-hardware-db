@@ -32,6 +32,7 @@
       "year": 1999,
       "week": 44
     },
-    "battery": "CR2025"
+    "battery": "CR2025",
+    "crystal": true
   }
 }

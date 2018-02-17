@@ -19,6 +19,9 @@ import {
 } from './csvTransform';
 import * as config from '../config';
 import processPhotos from './processPhotos';
+import {CartridgeMetadata} from '../metadata';
+import {gameCfgs, gameLayouts, MapperId} from '../config';
+import {isNullOrUndefined} from 'util';
 
 interface PageDeclaration {
   type: string;
@@ -40,6 +43,40 @@ interface GroupedConsoleSubmissions {
   oxy: OxySubmission[],
 }
 
+function getMapper({type, metadata}: CartridgeSubmission): MapperId | undefined {
+  if (metadata.board.mapper && metadata.board.mapper.type) {
+    switch (metadata.board.mapper.type) {
+      case 'MBC1':
+      case 'MBC1A':
+      case 'MBC1B':
+      case 'MBC1B1':
+        return 'mbc1';
+      case 'MBC2':
+      case 'MBC2A':
+        return 'mbc2';
+      case 'MBC3':
+      case 'MBC3A':
+      case 'MBC3B':
+        return 'mbc3';
+      case 'MMM01':
+        return 'mmm01';
+      case 'MBC30':
+        return 'mbc30';
+      case 'MBC5':
+        return 'mbc5';
+      default:
+        console.warn(`Unsupported mapper type ${metadata.board.mapper.type}`)
+        return undefined
+    }
+  }
+  const cfg = gameCfgs[type];
+  const layout = cfg && gameLayouts[cfg.layout]
+  if (!layout) return undefined;
+  return (layout.chips.some(({key}) => key === 'mapper'))
+    ? undefined
+    : 'no-mapper'
+}
+
 async function main(): Promise<void> {
   const [consoleSubmissions, cartridgeSubmissions] = await Promise.all([
     crawlConsoles('data/consoles'),
@@ -47,7 +84,15 @@ async function main(): Promise<void> {
   ]);
 
   const groupedConsoles: GroupedConsoleSubmissions = R.groupBy(({type}) => type, consoleSubmissions) as any
-  const groupedCartridges: Record<string, CartridgeSubmission[]> = R.groupBy(({type}) => type, cartridgeSubmissions)
+  const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({type}) => type, cartridgeSubmissions)
+  const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
+
+  for (const submission of cartridgeSubmissions) {
+    const mapper = getMapper(submission)
+    if (!mapper) continue
+    const submissions = cartridgesByMapper[mapper] = cartridgesByMapper[mapper] || [];
+    submissions.push(submission)
+  }
 
   const pages: PageDeclaration[] = [
     {type: 'index', title: 'Home', props: {
@@ -65,10 +110,11 @@ async function main(): Promise<void> {
       }}
     }),
     {type: 'cartridges', path: ['cartridges', 'index'], title: 'Game Boy cartridges', props: {
-      games: R.sortBy(({game}) => game, (R.toPairs(groupedCartridges) as any[]).map(([type, submissions]) => {
+      games: R.sortBy(({game}) => game, (R.toPairs(cartridgesByGame) as any[]).map(([type, submissions]) => {
         const cfg = config.gameCfgs[type];
         return {type, game: cfg.name, submissions}
-      }))
+      })),
+      mappers: Object.keys(cartridgesByMapper),
     }},
   ];
   consoleSubmissions.forEach(submission => {
@@ -78,7 +124,7 @@ async function main(): Promise<void> {
       type: `${type}-console`,
       path: ['consoles', type, slug],
       title: `${type.toUpperCase()}: ${title} [${contributor}]`,
-      props: {submission}
+      props: {submission},
     });
   });
   cartridgeSubmissions.forEach(submission => {
@@ -88,7 +134,7 @@ async function main(): Promise<void> {
       type: 'cartridge',
       path: ['cartridges', type, slug],
       title: `${cfg.name}: ${title} [${contributor}]`,
-      props: {submission, cfg}
+      props: {submission, cfg},
     });
   });
   R.forEachObjIndexed((submissions, type) => {
@@ -97,9 +143,17 @@ async function main(): Promise<void> {
       type: 'game',
       path: ['cartridges', type, 'index'],
       title: `${cfg.name}`,
-      props: {type, cfg, submissions}
+      props: {type, cfg, submissions},
     })
-  }, groupedCartridges);
+  }, cartridgesByGame);
+  R.forEachObjIndexed((submissions, mapper) => {
+    pages.push({
+      type: 'mapper',
+      path: ['cartridges', mapper],
+      title: `${mapper}`,
+      props: {mapper, submissions},
+    })
+  }, cartridgesByMapper);
 
   await Promise.all([
     Bluebird.map(pages, processPage, {concurrency: 16}),

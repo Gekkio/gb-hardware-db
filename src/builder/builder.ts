@@ -14,7 +14,8 @@ import {
   GbsSubmission, MgbSubmission, MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission
 } from '../crawler';
 import {
-  AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS, generateCsv,
+  AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CARTRIDGE_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS,
+  generateCsv,
   MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
 } from './csvTransform';
 import * as config from '../config';
@@ -172,6 +173,7 @@ async function main(): Promise<void> {
     processConsoleCsv('ags', AGS_CSV_COLUMNS, groupedConsoles.ags),
     processConsoleCsv('gbs', GBS_CSV_COLUMNS, groupedConsoles.gbs),
     processConsoleCsv('oxy', OXY_CSV_COLUMNS, groupedConsoles.oxy),
+    processCartridgeCsv(cartridgeSubmissions),
   ]);
   winston.info('Site generation finished :)');
 }
@@ -184,6 +186,12 @@ async function processConsoleCsv<T, K extends keyof GroupedConsoleSubmissions>(
   const dir = path.resolve('build', 'site', 'static', 'export', 'consoles');
   await fs.mkdirs(dir);
   return generateCsv(columns, rows, path.resolve(dir, `${key}.csv`))
+}
+
+async function processCartridgeCsv(submissions: CartridgeSubmission[]): Promise<void> {
+  const dir = path.resolve('build', 'site', 'static', 'export');
+  await fs.mkdirs(dir);
+  return generateCsv(CARTRIDGE_CSV_COLUMNS, submissions, path.resolve(dir, `cartridges.csv`))
 }
 
 async function processPage(page: PageDeclaration): Promise<void> {

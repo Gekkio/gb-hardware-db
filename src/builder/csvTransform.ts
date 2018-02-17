@@ -3,10 +3,11 @@ import * as csvStringify from 'csv-stringify';
 import {
   AgbSubmission, AgsSubmission, CgbSubmission, DmgSubmission, GbsSubmission, MgbSubmission, MglSubmission,
   OxySubmission,
-  Sgb2Submission, SgbSubmission, ConsoleSubmission
+  Sgb2Submission, SgbSubmission, ConsoleSubmission, CartridgeSubmission
 } from '../crawler';
 import {
-  AgbMetadata, AgsMetadata, CgbMetadata, Chip, DmgMetadata, GbsMetadata, MgbMetadata, MglMetadata, OxyMetadata,
+  AgbMetadata, AgsMetadata, CartridgeMetadata, CgbMetadata, Chip, DmgMetadata, GbsMetadata, MgbMetadata, MglMetadata,
+  OxyMetadata,
   Sgb2Metadata,
   SgbMetadata
 } from '../metadata';
@@ -35,7 +36,7 @@ export function generateCsv<T>(columns: CsvColumn<T>[], rows: T[], path: string)
   })
 }
 
-const SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
+const CONSOLE_SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
   field('', 'type'),
   field('', 'title'),
   field('', 'slug'),
@@ -44,7 +45,7 @@ const SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
 ];
 
 export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: DmgSubmission) => s.metadata, [
     field('', 'color'),
     field('', 'screws'),
@@ -91,7 +92,7 @@ export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
 ];
 
 export const SGB_CSV_COLUMNS: CsvColumn<SgbSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: SgbSubmission) => s.metadata, [
     field('', 'stamp'),
     ...lift((m: SgbMetadata) => m.mainboard, [
@@ -113,7 +114,7 @@ export const SGB_CSV_COLUMNS: CsvColumn<SgbSubmission>[] = [
 ];
 
 export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: MgbSubmission) => s.metadata, [
     field('', 'color'),
     generate('', 'calendar_short', format.short.calendar),
@@ -142,7 +143,7 @@ export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
 ];
 
 export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: MglSubmission) => s.metadata, [
     field('', 'color'),
     generate('', 'calendar_short', format.short.calendar),
@@ -170,7 +171,7 @@ export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
 ];
 
 export const SGB2_CSV_COLUMNS: CsvColumn<Sgb2Submission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: Sgb2Submission) => s.metadata, [
     field('', 'stamp'),
     ...lift((m: Sgb2Metadata) => m.mainboard, [
@@ -193,7 +194,7 @@ export const SGB2_CSV_COLUMNS: CsvColumn<Sgb2Submission>[] = [
 ];
 
 export const CGB_CSV_COLUMNS: CsvColumn<CgbSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: CgbSubmission) => s.metadata, [
     field('', 'color'),
     generate('', 'calendar_short', format.short.calendar),
@@ -221,7 +222,7 @@ export const CGB_CSV_COLUMNS: CsvColumn<CgbSubmission>[] = [
 ];
 
 export const AGB_CSV_COLUMNS: CsvColumn<AgbSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: AgbSubmission) => s.metadata, [
     field('', 'color'),
     generate('', 'calendar_short', format.short.calendar),
@@ -248,7 +249,7 @@ export const AGB_CSV_COLUMNS: CsvColumn<AgbSubmission>[] = [
 ];
 
 export const AGS_CSV_COLUMNS: CsvColumn<AgsSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: AgsSubmission) => s.metadata, [
     field('', 'color'),
     ...lift((m: AgsMetadata) => m.mainboard, [
@@ -271,7 +272,7 @@ export const AGS_CSV_COLUMNS: CsvColumn<AgsSubmission>[] = [
 ];
 
 export const GBS_CSV_COLUMNS: CsvColumn<GbsSubmission>[] = [
-  ...SUBMISSION_COLUMNS,
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: GbsSubmission) => s.metadata, [
     field('', 'color'),
     generate('', 'calendar_short', format.short.calendar),
@@ -299,8 +300,8 @@ export const GBS_CSV_COLUMNS: CsvColumn<GbsSubmission>[] = [
   ]),
 ];
 
-export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] =  [
-  ...SUBMISSION_COLUMNS,
+export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] = [
+  ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: OxySubmission) => s.metadata, [
     field('', 'color'),
     ...lift((m: OxyMetadata) => m.mainboard, [
@@ -315,6 +316,35 @@ export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] =  [
     ...lift((m: OxyMetadata) => m.mainboard.u2, chipColumns('u2')),
     ...lift((m: OxyMetadata) => m.mainboard.u4, chipColumns('u4')),
     ...lift((m: OxyMetadata) => m.mainboard.u5, chipColumns('u5')),
+  ]),
+];
+
+export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
+  field('', 'type'),
+  field('', 'title'),
+  field('', 'slug'),
+  generate('', 'url', s => `https://gbhwdb.gekkio.fi/cartridges/${s.type}/${s.slug}.html`),
+  field('', 'contributor'),
+  ...lift((s: CartridgeSubmission) => s.metadata, [
+    field('', 'code'),
+    field('', 'stamp'),
+    ...lift((m: CartridgeMetadata) => m.board, [
+      field('board', 'type'),
+      field('board', 'circled_letters'),
+      field('board', 'extra_label'),
+      generate('board', 'calendar_short', format.short.calendar),
+      generate('board', 'calendar', format.calendar),
+      field('board', 'year'),
+      field('board', 'month'),
+    ]),
+    ...lift((m: CartridgeMetadata) => m.board.rom, chipColumns('rom')),
+    ...lift((m: CartridgeMetadata) => m.board.mapper, chipColumns('mapper')),
+    ...lift((m: CartridgeMetadata) => m.board.ram, chipColumns('ram')),
+    ...lift((m: CartridgeMetadata) => m.board.ram_protector, chipColumns('ram_protector')),
+    ...lift((m: CartridgeMetadata) => m.board, [
+      field('', 'battery'),
+      field('', 'crystal'),
+    ]),
   ]),
 ];
 

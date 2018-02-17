@@ -1,0 +1,42 @@
+{
+  "code": "DMG-HFAJ-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-UEDT-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 9,
+    "rom": {
+      "type": "LHMN4MTI",
+      "manufacturer": "sharp",
+      "label": "DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E",
+      "year": 1998,
+      "week": 38
+    },
+    "mapper": {
+      "type": "HuC-3",
+      "label": "HuC-3 © HUDSON Nintendo 9842 A",
+      "year": 1998,
+      "week": 42
+    },
+    "ram": {
+      "type": "LH52256CT-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CT-10LL SHARP JAPAN 9824 3 SF",
+      "year": 1998,
+      "week": 24
+    },
+    "ram_protector": {
+      "type": "26A",
+      "manufacturer": "microchip",
+      "label": "837 26A",
+      "year": 1998,
+      "week": 37
+    },
+    "u5": {
+      "label": "LVX 04 8 04"
+    },
+    "battery": "CR2025"
+  }
+}

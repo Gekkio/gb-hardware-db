@@ -1,0 +1,40 @@
+{
+  "code": "DMG-AW7E-USA",
+  "stamp": "20",
+  "board": {
+    "type": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 11,
+    "rom": {
+      "type": "LH5S4MW9",
+      "manufacturer": "sharp",
+      "label": "DMG-AW7E-0 S LH5S4MW9 JAPAN E1 9751 E",
+      "year": 1997,
+      "week": 51
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9746 1 A",
+      "year": 1997,
+      "week": 46
+    },
+    "ram": {
+      "type": "LH5168N-10PL",
+      "manufacturer": "mosel-vitelic",
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N748 10 BH",
+      "year": 1997,
+      "week": 48
+    },
+    "ram_protector": {
+      "type": "26A",
+      "manufacturer": "microchip",
+      "label": "743 26A",
+      "year": 1997,
+      "week": 43
+    },
+    "battery": "CR1616"
+  }
+}

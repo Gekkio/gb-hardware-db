@@ -1,0 +1,37 @@
+{
+  "code": "DMG-ANWJ-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-KECN-SP",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 5,
+    "rom": {
+      "type": "LH532MPE",
+      "manufacturer": "sharp",
+      "label": "DMG-ANWJ-0 S LH532MPE JAPAN D1 9822 D",
+      "year": 1998,
+      "week": 22
+    },
+    "mapper": {
+      "type": "MBC3",
+      "label": "MBC3 LR385364 9743 A",
+      "year": 1997,
+      "week": 43
+    },
+    "ram": {
+      "type": "BR6265BF-10SL",
+      "label": "BR6265BF-10SL 814 136N",
+      "year": 1998,
+      "week": 14
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 8317",
+      "year": 1998
+    },
+    "battery": "CR2025",
+    "crystal": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AK2P-EUR",
+  "stamp": "20",
+  "board": {
+    "type": "DMG-M-BFAN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 10,
+    "rom": {
+      "label": "DMG-AK2P-0 F1 N-8001EJGW-J76 9742K7006",
+      "year": 1997,
+      "week": 42
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9742 1 A",
+      "year": 1997,
+      "week": 42
+    }
+  }
+}

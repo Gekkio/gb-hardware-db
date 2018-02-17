@@ -30,10 +30,10 @@ export interface CartLayout {
 export interface CartChip {
   designator: string,
   name: string,
-  key: 'rom' | 'mapper' | 'ram' | 'ram_protector'
+  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u5'
 }
 
-export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal'
+export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3'
 
 export const gameLayouts: Record<CartLayoutId, CartLayout> = {
   'rom': {
@@ -73,6 +73,17 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     ],
     crystal: 'X1',
     battery: true,
+  },
+  'huc3': {
+    chips: [
+      {designator: 'U1', name: 'ROM', key: 'rom'},
+      {designator: 'U2', name: 'Mapper', key: 'mapper'},
+      {designator: 'U3', name: 'RAM', key: 'ram'},
+      {designator: 'U4', name: 'RAM protector', key: 'ram_protector'},
+      {designator: 'U5', name: '????', key: 'u5'},
+    ],
+    crystal: 'X1',
+    battery: true,
   }
 };
 
@@ -80,7 +91,7 @@ export interface MapperConfig {
   name: string,
 }
 
-export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mmm01'
+export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mmm01' | 'huc1' | 'huc3'
 
 export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'no-mapper': {name: 'No mapper'},
@@ -90,6 +101,8 @@ export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'mbc30': {name: 'MBC30'},
   'mbc5': {name: 'MBC5'},
   'mmm01': {name: 'MMM01'},
+  'huc1': {name: 'HuC-1'},
+  'huc3': {name: 'HuC-3'},
 };
 
 export interface GameConfig {
@@ -112,7 +125,12 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-ADQJ-0': {name: 'Dragon Quest Monsters - Terry no Wonderland (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AFGE-0': {name: 'Frogger (USA)', layout: 'rom_mbc'},
   'DMG-AGOP-0': {name: 'Hugo (Europe) (SGB Enhanced)', layout: 'rom_mbc'},
+  'DMG-AK2P-0': {name: 'Mortal Kombat & Mortal Kombat II (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-AKMJ-0': {name: 'Kandume Monsters (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AM3J-0': {name: 'Momotarou Collection 2 (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AMDJ-0': {name: 'Momotarou Collection (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-ANWJ-0': {name: 'Itsudemo! Nyan to Wonderful (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
+  'DMG-AW7E-0': {name: 'James Bond 007 (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AYJ-0': {name: 'Ayakashi no Shiro (Japan)', layout: 'rom_mbc_protect'},
   'DMG-B7HJ-0': {name: 'Nakayoshi Pet Series 1 - Kawaii Hamster (Japan)', layout: 'rom_mbc_ram'},
   'DMG-BLUJ-0': {name: 'From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
@@ -133,6 +151,10 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-RWE-0': {name: 'Mega Man - Dr. Wily\'s Revenge (USA)', layout: 'rom_mbc'},
   'DMG-TRA-1': {name: 'Tetris (World) (Rev A)', layout: 'rom'},
   'DMG-YTE-0': {name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-APOJ-0': {name: 'Pocket Bomber Man (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-HFAJ-0': {name: 'Pocket Family (Japan) (SGB Enhanced)', layout: 'huc3'},
+  'DMG-APEE-0': {name: 'Pokemon - Blue Version (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
+  'DMG-APSE-0': {name: 'Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)', layout: 'rom_mbc_ram'},
   /*
   'DMG-VUA-1': {name: 'Dr. Mario (World) (Rev A)'},
   'DMG-ABUP-0': {name: 'Bust-A-Move 2 - Arcade Edition (USA, Europe)'},

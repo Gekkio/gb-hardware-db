@@ -59,12 +59,14 @@ function getMapper({type, metadata}: CartridgeSubmission): MapperId | undefined 
       case 'MBC3A':
       case 'MBC3B':
         return 'mbc3';
-      case 'MMM01':
-        return 'mmm01';
       case 'MBC30':
         return 'mbc30';
       case 'MBC5':
         return 'mbc5';
+      case 'MBC7':
+        return 'mbc7';
+      case 'MMM01':
+        return 'mmm01';
       case 'HuC-1':
         return 'huc1';
       case 'HuC-3':

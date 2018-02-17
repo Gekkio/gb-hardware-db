@@ -1,0 +1,49 @@
+{
+  "code": "CGB-B82J-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-A15-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 10,
+    "rom": {
+      "type": "MX23C3203-11A2",
+      "manufacturer": "macronix",
+      "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301",
+      "year": 2000
+    },
+    "rom2": {
+      "type": "MX23C3203-11A2",
+      "manufacturer": "macronix",
+      "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D151301",
+      "year": 2000
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P 04 1U4M"
+    },
+    "ram": {
+      "type": "GM76C256CLLFW70",
+      "manufacturer": "hyundai",
+      "label": "Hyundai GM76C256CLLFW70 0033 KOREA",
+      "year": 2000,
+      "week": 33
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "035 134A",
+      "year": 2000,
+      "week": 35
+    },
+    "line_decoder": {
+      "type": "TC7W139FU",
+      "manufacturer": "toshiba",
+      "label": "7W139 0J",
+      "year": 2000,
+      "month": 10
+    },
+    "battery": "CR1616"
+  }
+}

@@ -56,6 +56,8 @@ export function manufacturer(value: string): string {
   switch (value) {
     case 'amic':
       return 'AMIC Technology';
+    case 'analog':
+      return 'Analog Devices';
     case 'bsi':
       return 'BSI';
     case 'fujitsu':

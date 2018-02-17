@@ -1,0 +1,36 @@
+{
+  "code": "CGB-KCEJ-JPN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-A47-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 10,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "S004219-M MX23C1603-12A CGB-KCEJ-0 G2 2D275401",
+      "year": 2000
+    },
+    "mapper": {
+      "type": "MBC7",
+      "label": "MBC-7 BU3667KS 041 170",
+      "year": 2000,
+      "week": 41
+    },
+    "eeprom": {
+      "type": "LCS5",
+      "label": "LCS5 040",
+      "year": 2000,
+      "week": 40
+    },
+    "accelerometer": {
+      "type": "ADXL202JQC",
+      "manufacturer": "analog",
+      "label": "3384590167 0036 ADXL202JQC",
+      "year": 2000,
+      "week": 36
+    }
+  }
+}

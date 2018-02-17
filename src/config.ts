@@ -28,10 +28,10 @@ export interface CartLayout {
 export interface CartChip {
   designator: string,
   name: string,
-  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5'
+  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5' | 'line_decoder' | 'accelerometer' | 'eeprom' | 'rom2'
 }
 
-export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3' | 'tama'
+export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3' | 'tama' | 'mbc7' | 'a15'
 
 export const gameLayouts: Record<CartLayoutId, CartLayout> = {
   'rom': {
@@ -93,6 +93,25 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     ],
     crystal: 'X1',
     battery: true,
+  },
+  'mbc7': {
+    chips: [
+      {designator: 'U1', name: 'ROM', key: 'rom'},
+      {designator: 'U2', name: 'Mapper', key: 'mapper'},
+      {designator: 'U3', name: 'EEPROM', key: 'eeprom'},
+      {designator: 'U4', name: 'Accelerometer', key: 'accelerometer'},
+    ],
+  },
+  'a15': {
+    chips: [
+      {designator: 'U1', name: 'ROM', key: 'rom'},
+      {designator: 'U2', name: 'Mapper', key: 'mapper'},
+      {designator: 'U3', name: 'RAM', key: 'ram'},
+      {designator: 'U4', name: 'RAM protector', key: 'ram_protector'},
+      {designator: 'U5', name: 'ROM 2', key: 'rom2'},
+      {designator: 'U6', name: 'Line Decoder', key: 'line_decoder'},
+    ],
+    battery: true,
   }
 };
 
@@ -100,7 +119,7 @@ export interface MapperConfig {
   name: string,
 }
 
-export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mmm01' | 'huc1' | 'huc3' | 'tama5'
+export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mbc7' | 'mmm01' | 'huc1' | 'huc3' | 'tama5'
 
 export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'no-mapper': {name: 'No mapper'},
@@ -109,6 +128,7 @@ export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'mbc3': {name: 'MBC3'},
   'mbc30': {name: 'MBC30'},
   'mbc5': {name: 'MBC5'},
+  'mbc7': {name: 'MBC7'},
   'mmm01': {name: 'MMM01'},
   'huc1': {name: 'HuC-1'},
   'huc3': {name: 'HuC-3'},
@@ -122,12 +142,14 @@ export interface GameConfig {
 
 export const gameCfgs: Record<string, GameConfig> = {
   'CGB-AZ7J-0': {name: 'Zelda no Densetsu - Fushigi no Kimi - Daichi no Shou (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-B82J-0': {name: 'Densha de Go! 2 (Japan)', layout: 'a15'},
   'CGB-BFUP-0': {name: 'Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)', layout: 'rom_mbc'},
   'CGB-BGLJ-0': {name: 'Super Gals! Kotobuki Ran (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BHMJ-0': {name: 'Hamster Paradise 2 (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BXTJ-0': {name: 'Pocket Monsters - Crystal Version (Japan)', layout: 'rom_mbc_ram_xtal'},
   'CGB-BY3J-0': {name: 'Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BY4J-0': {name: 'Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-KCEJ-0': {name: 'Command Master (Japan)', layout: 'mbc7'},
   'DMG-A4RJ-0': {name: 'Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AAUJ-1': {name: 'Pocket Monsters Kin (Japan) (Rev A) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AD3P-1': {name: 'Donkey Kong Land III (USA, Europe) (Rev A) (SGB Enhanced)', layout: 'rom_mbc_ram'},
@@ -140,6 +162,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-AK2P-0': {name: 'Mortal Kombat & Mortal Kombat II (USA, Europe)', layout: 'rom_mbc'},
   'DMG-AKMJ-0': {name: 'Kandume Monsters (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AM3J-0': {name: 'Momotarou Collection 2 (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AM6J-0': {name: 'Daikaijuu Monogatari - The Miracle of the Zone II (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AMDJ-0': {name: 'Momotarou Collection (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-ANWJ-0': {name: 'Itsudemo! Nyan to Wonderful (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AOMJ-0': {name: 'Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced)', layout: 'tama'},

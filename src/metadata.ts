@@ -29,7 +29,7 @@ export namespace DateRangePart {
 }
 
 const manufacturers = [
-  'amic', 'bsi', 'fujitsu', 'hynix', 'hyundai', 'kds', 'kss', 'lsi-logic', 'macronix', 'microchip', 'mitsumi',
+  'amic', 'analog', 'bsi', 'fujitsu', 'hynix', 'hyundai', 'kds', 'kss', 'lsi-logic', 'macronix', 'microchip', 'mitsumi',
   'mosel-vitelic', 'nec', 'rohm', 'samsung', 'sanyo', 'sharp', 'st', 'tdk', 'texas-instruments', 'toshiba', 'winbond',
   'xlink'
 ];
@@ -540,11 +540,15 @@ export interface CartridgeMetadata {
     year?: number;
     month?: number;
     rom?: Chip;
+    rom2?: Chip;
     mapper?: Chip;
     ram?: Chip;
     ram_protector?: Chip;
     u4?: Chip,
     u5?: Chip,
+    line_decoder?: Chip,
+    eeprom?: Chip,
+    accelerometer?: Chip,
     crystal?: boolean,
     battery?: Battery,
   }
@@ -561,11 +565,15 @@ export namespace CartridgeMetadata {
       year: schemas.year,
       month: schemas.month,
       rom: Chip.schema,
+      rom2: Chip.schema,
       mapper: Chip.schema,
       ram: Chip.schema,
       ram_protector: Chip.schema,
       u4: Chip.schema,
       u5: Chip.schema,
+      line_decoder: Chip.schema,
+      eeprom: Chip.schema,
+      accelerometer: Chip.schema,
       crystal: Joi.boolean(),
       battery: schemas.battery,
     }),

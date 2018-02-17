@@ -22,7 +22,8 @@
     },
     "ram_protector": {
       "type": "6735",
-      "label": "6735 0C88"
+      "label": "6735 0C88",
+      "year": 2000
     },
     "battery": "CR1616"
   }

@@ -33,7 +33,7 @@ export interface CartChip {
   key: 'rom' | 'mapper' | 'ram' | 'ram_protector'
 }
 
-export type CartLayoutId = 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_ram_xtal'
+export type CartLayoutId = 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal'
 
 export const gameLayouts: Record<CartLayoutId, CartLayout> = {
   'rom_mbc': {
@@ -48,6 +48,14 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       {designator: 'U2', name: 'Mapper', key: 'mapper'},
       {designator: 'U3', name: 'RAM', key: 'ram'},
       {designator: 'U4', name: 'RAM protector', key: 'ram_protector'},
+    ],
+    battery: true,
+  },
+  'rom_mbc_protect': {
+    chips: [
+      {designator: 'U1', name: 'ROM', key: 'rom'},
+      {designator: 'U2', name: 'Mapper', key: 'mapper'},
+      {designator: 'U3', name: 'RAM protector', key: 'ram_protector'},
     ],
     battery: true,
   },
@@ -75,12 +83,17 @@ export const gameCfgs: Record<string, GameConfig> = {
   'CGB-BXTJ-0': {name: 'Pocket Monsters - Crystal Version (Japan)', layout: 'rom_mbc_ram_xtal'},
   'CGB-BY3J-0': {name: 'Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BY4J-0': {name: 'Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)', layout: 'rom_mbc_ram'},
+  'DMG-AD3P-1': {name: 'Donkey Kong Land III (USA, Europe) (Rev A) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-ADDJ-0': {name: 'Donkey Kong Land (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-ADDP-0': {name: 'Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AYJ-0': {name: 'Ayakashi no Shiro (Japan)', layout: 'rom_mbc_protect'},
+  'DMG-F1A-1': {name: 'F-1 Race (World) (Rev A)', layout: 'rom_mbc_protect'},
+  'DMG-HBA-0': {name: 'Bomber Boy (Japan)', layout: 'rom_mbc'},
+  'DMG-YTE-0': {name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   /*
   'DMG-A4RJ-0': {name: 'Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced)'},
   'DMG-AAUJ-1': {name: 'Pocket Monsters Kin (Japan) (Rev A) (SGB Enhanced)'},
   'DMG-ABUP-0': {name: 'Bust-A-Move 2 - Arcade Edition (USA, Europe)'},
-  'DMG-AD3P-1': {name: 'Donkey Kong Land III (USA, Europe) (Rev A) (SGB Enhanced)'},
-  'DMG-ADDP-0': {name: 'Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)'},
   'DMG-ADQJ-0': {name: 'Dragon Quest Monsters - Terry no Wonderland (Japan) (SGB Enhanced)'},
   'DMG-AFGE-0': {name: 'Frogger (USA)'},
   'DMG-AGOP-0': {name: 'Hugo (Europe) (SGB Enhanced)'},
@@ -93,7 +106,6 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-CNE-0': {name: 'Operation C (USA)'},
   'DMG-CVJ-0': {name: 'Dracula Densetsu (Japan)'},
   'DMG-DDE-0': {name: 'Double Dragon (USA, Europe)'},
-  'DMG-F1A-1': {name: 'F-1 Race (World) (Rev A)'},
   'DMG-G2E-0': {name: 'Gauntlet II (USA, Europe)'},
   'DMG-HFE-0': {name: 'Hunt for Red October, The (USA, Europe)'},
   'DMG-HQE-0': {name: 'Chase H.Q. (USA, Europe)'},
@@ -108,7 +120,6 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-SVJ-0': {name: 'Seaside Volley (Japan)'},
   'DMG-TRA-1': {name: 'Tetris (World) (Rev A)'},
   'DMG-VUA-1': {name: 'Dr. Mario (World) (Rev A)'},
-  'DMG-YTE-0': {name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)'},
   */
 };
 

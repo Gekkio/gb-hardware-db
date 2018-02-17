@@ -1,0 +1,37 @@
+{
+  "code": "DMG-YT-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-DECN-10",
+    "circled_letters": "K",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 8,
+    "rom": {
+      "type": "LH5S4MNE",
+      "manufacturer": "sharp",
+      "label": "DMG-YTE-0 S LH5S4MNE JAPAN E1 9841 D",
+      "year": 1998,
+      "week": 41
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 8'91",
+      "year": 1998
+    },
+    "ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9811 3 DB",
+      "year": 1998,
+      "week": 11
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 8912",
+      "year": 1998,
+      "week": 12
+    },
+    "battery": "CR1616"
+  }
+}

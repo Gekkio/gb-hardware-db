@@ -14,7 +14,9 @@
     },
     "mapper": {
       "type": "MBC5",
-      "label": "MBC5 LZ9GB31 9945 A"
+      "label": "MBC5 LZ9GB31 9945 A",
+      "year": 1999,
+      "week": 45
     },
     "ram": {
       "type": "LC3564BM-70",

@@ -14,7 +14,9 @@
     },
     "mapper": {
       "type": "MBC5",
-      "label": "MBC5 LZ9GB31 AL23 A"
+      "label": "MBC5 LZ9GB31 AL23 A",
+      "year": 2000,
+      "week": 23
     },
     "ram": {
       "type": "W2465S-70LL",

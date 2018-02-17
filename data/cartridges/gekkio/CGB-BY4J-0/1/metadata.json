@@ -15,7 +15,9 @@
     "mapper": {
       "type": "MBC5",
       "manufacturer": "texas-instruments",
-      "label": "08DJKXT MBC5 2417"
+      "label": "08DJKXT MBC5 2417",
+      "year": 2000,
+      "month": 8
     },
     "ram": {
       "type": "LH5164AN-10L",

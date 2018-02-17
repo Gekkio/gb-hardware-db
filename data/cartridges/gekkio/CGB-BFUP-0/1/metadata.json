@@ -15,7 +15,9 @@
     "mapper": {
       "type": "MBC5",
       "manufacturer": "texas-instruments",
-      "label": "13A0V9T MBC5 2417"
+      "label": "13A0V9T MBC5 2417",
+      "year": 2001,
+      "month": 3
     }
   }
 }

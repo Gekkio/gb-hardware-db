@@ -1,0 +1,38 @@
+{
+  "code": "DMG-ADDJ-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1996,
+    "month": 11,
+    "rom": {
+      "type": "LH534MVN",
+      "manufacturer": "sharp",
+      "label": "DMG-ADDJ-0 S LH534MVN JAPAN E1 9648 E",
+      "year": 1996,
+      "week": 48
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 6'N8",
+      "year": 1996
+    },
+    "ram": {
+      "type": "HY6264A",
+      "manufacturer": "hyundai",
+      "label": "HY6264A LLJ-10 9640B KOREA",
+      "year": 1996,
+      "week": 40
+    },
+    "ram_protector": {
+      "type": "26A",
+      "manufacturer": "microchip",
+      "label": "646 26A",
+      "year": 1996,
+      "week": 46
+    },
+    "battery": "CR1616"
+  }
+}

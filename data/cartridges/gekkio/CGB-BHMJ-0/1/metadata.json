@@ -1,0 +1,33 @@
+{
+  "code": "CGB-BHMJ-JPN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-A08-01",
+    "circled_letters": "K",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 2,
+    "rom": {
+      "type": "KM23C16120DT",
+      "manufacturer": "samsung",
+      "label": "SEC KM23C16120DT CGB-BHMJ-0 G2 K3N5C317GD"
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 LZ9GB31 9945 A"
+    },
+    "ram": {
+      "type": "LC3564BM-70",
+      "manufacturer": "sanyo",
+      "label": "SANYO LC3564BM-70 JAPAN 9MUBG"
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "004 134A",
+      "year": 2000,
+      "week": 4
+    },
+    "battery": "CR1616"
+  }
+}

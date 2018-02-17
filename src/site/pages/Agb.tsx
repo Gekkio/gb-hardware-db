@@ -33,7 +33,7 @@ export default function Agb({submissions}: Props) {
         </tbody>
       </table>
       <h3>Data dumps</h3>
-      <a href="/static/agb.csv">UTF-8 encoded CSV</a>
+      <a href="/static/export/consoles/agb.csv">UTF-8 encoded CSV</a>
     </article>
   )
 }

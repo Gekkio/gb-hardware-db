@@ -5,10 +5,12 @@ import * as Joi from 'joi';
 import * as urlSlug from 'url-slug';
 
 import {
-  AgbMetadata, AgsMetadata, CgbMetadata, DmgMetadata, GbsMetadata, Metadata, MgbMetadata, MglMetadata, OxyMetadata,
-  Sgb2Metadata, SgbMetadata
+  AgbMetadata, AgsMetadata, CartridgeMetadata, CgbMetadata, DmgMetadata, GbsMetadata, MgbMetadata, MglMetadata,
+  OxyMetadata, Sgb2Metadata,
+  SgbMetadata
 } from './metadata';
-import {rejectNil} from './util/arrays'
+import {rejectNil} from './util/arrays';
+import * as config from './config';
 
 export interface FsEntry {
   absolutePath: string;
@@ -28,9 +30,13 @@ async function directories(basePath: string): Promise<FsEntry[]> {
   return entries.filter(({stats}) => stats.isDirectory())
 }
 
-export type Submission = DmgSubmission | SgbSubmission |
+export type ConsoleSubmission = DmgSubmission | SgbSubmission |
   MgbSubmission | MglSubmission | Sgb2Submission |
   CgbSubmission | AgbSubmission | AgsSubmission | GbsSubmission | OxySubmission;
+
+export interface CartridgeSubmission extends SubmissionBase<string, CartridgeMetadata> {
+  game: string,
+}
 
 export interface Photo {
   path: string;
@@ -38,7 +44,7 @@ export interface Photo {
   stats: fs.Stats;
 }
 
-interface SubmissionBase<T extends string, M extends Metadata, P = DefaultPhotos> {
+interface SubmissionBase<T extends string, M, P = DefaultPhotos> {
   type: T;
   title: string;
   slug: string;
@@ -92,6 +98,14 @@ async function crawlDefaultPhotos(unit: FsEntry): Promise<DefaultPhotos> {
   return {front, back, pcbFront, pcbBack};
 }
 
+async function crawlCartridgePhotos(unit: FsEntry): Promise<DefaultPhotos> {
+  const [front, pcbFront, pcbBack] = await Promise.all([
+    '01_front.jpg',
+    '02_pcb_front.jpg',
+    '03_pcb_back.jpg',
+  ].map(filename => fetchPhoto(unit, filename)));
+  return {front, pcbFront, pcbBack};
+}
 async function crawlDmgPhotos(unit: FsEntry): Promise<DmgPhotos> {
   const [
     front, back, mainboardFront, mainboardBack, lcdBoardFront, lcdBoardBack,
@@ -127,75 +141,127 @@ async function crawlAgsPhotos(unit: FsEntry): Promise<AgsPhotos> {
 
 interface SubmissionPath {
   contributor: FsEntry;
-  model: FsEntry;
-  unit: FsEntry;
+  type: FsEntry;
+  entry: FsEntry;
 }
 
-function parseUnitName({contributor, unit}: SubmissionPath) {
-  if (/^[A-Z]+[0-9]+(-[0-9])?$/.test(unit.name)) {
-    return {title: unit.name, slug: unit.name};
-  } else if (/^[0-9]+(-[0-9])?$/.test(unit.name)) {
-    return {title: `Unit #${unit.name}`, slug: urlSlug(`${contributor.name}-${unit.name}`)};
+interface SubmissionEntry {
+  title: string,
+  slug: string,
+  contributor: string,
+  entry: FsEntry,
+}
+
+function consoleSubmissionEntry({contributor, entry}: SubmissionPath): SubmissionEntry {
+  if (/^[A-Z]+[0-9]+(-[0-9])?$/.test(entry.name)) {
+    return {
+      title: entry.name,
+      slug: entry.name,
+      contributor: contributor.name,
+      entry,
+    };
+  } else if (/^[0-9]+(-[0-9])?$/.test(entry.name)) {
+    return {
+      title: `Unit #${entry.name}`,
+      slug: urlSlug(`${contributor.name}-${entry.name}`),
+      contributor: contributor.name,
+      entry,
+    };
   } else {
-    throw new Error(`Unsupported unit name format "${unit.name}"`);
+    throw new Error(`Unsupported console entry name format "${entry.name}"`);
   }
 }
 
-async function crawl<T extends string, M extends Metadata, P = DefaultPhotos>(
+function cartridgeSubmissionEntry({contributor, entry}: SubmissionPath): SubmissionEntry {
+  if (/^[0-9]+(-[0-9])?$/.test(entry.name)) {
+    return {
+      title: `Entry #${entry.name}`,
+      slug: urlSlug(`${contributor.name}-${entry.name}`),
+      contributor: contributor.name,
+      entry,
+    };
+  } else {
+    throw new Error(`Unsupported cartridge entry name format "${entry.name}"`);
+  }
+}
+
+async function crawl<T extends string, M, P = DefaultPhotos>(
   type: T,
   schema: Joi.Schema,
   photoCrawler: (unit: FsEntry) => Promise<P>,
-  path: SubmissionPath
+  {title, slug, contributor, entry}: SubmissionEntry,
 ): Promise<SubmissionBase<T, M, P> | undefined> {
-  const {contributor, unit} = path;
-  const metadata = await readMetadata<M>(unit, schema);
+  const metadata = await readMetadata<M>(entry, schema);
   if (!metadata) return undefined;
-  const {title, slug} = parseUnitName(path);
-  const photos = await photoCrawler(unit);
-  return {type, title, slug, contributor: contributor.name, metadata, photos}
+  const photos = await photoCrawler(entry);
+  return {type, title, slug, contributor, metadata, photos}
 }
 
-export async function crawlDataDirectory(path: string): Promise<Submission[]> {
+async function crawlSubmissions(path: string): Promise<SubmissionPath[]> {
   const contributors = await directories(path);
-  const submissions = R.flatten<SubmissionPath>(await Promise.all(contributors.map(async contributor => {
-    const models = await directories(contributor.absolutePath);
-    return R.flatten<SubmissionPath>(await Promise.all(models.map(async model => {
-      const units = await directories(model.absolutePath);
-      return units.map(unit => ({contributor, model, unit}))
+  return R.flatten<SubmissionPath>(await Promise.all(contributors.map(async contributor => {
+    const types = await directories(contributor.absolutePath);
+    return R.flatten<SubmissionPath>(await Promise.all(types.map(async type => {
+      const entries = await directories(type.absolutePath);
+      return entries.map(entry => ({contributor, type, entry}))
     })));
   })));
+}
+
+export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> {
+  const submissions = await crawlSubmissions(path);
   return rejectNil(await Promise.all(submissions.map(async path => {
-    const {model} = path
-    switch (model.name) {
+    const {type} = path;
+    const entry = consoleSubmissionEntry(path);
+    switch (type.name) {
       case 'DMG':
-        return await crawl<'dmg', DmgMetadata, DmgPhotos>('dmg', DmgMetadata.schema, crawlDmgPhotos, path);
+        return await crawl<'dmg', DmgMetadata, DmgPhotos>('dmg', DmgMetadata.schema, crawlDmgPhotos, entry);
       case 'SGB':
-        return await crawl<'sgb', SgbMetadata>('sgb', SgbMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'sgb', SgbMetadata>('sgb', SgbMetadata.schema, crawlDefaultPhotos, entry);
       case 'MGB':
-        return await crawl<'mgb', MgbMetadata>('mgb', MgbMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'mgb', MgbMetadata>('mgb', MgbMetadata.schema, crawlDefaultPhotos, entry);
       case 'MGL':
-        return await crawl<'mgl', MglMetadata>('mgl', MglMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'mgl', MglMetadata>('mgl', MglMetadata.schema, crawlDefaultPhotos, entry);
       case 'SGB2':
-        return await crawl<'sgb2', Sgb2Metadata>('sgb2', Sgb2Metadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'sgb2', Sgb2Metadata>('sgb2', Sgb2Metadata.schema, crawlDefaultPhotos, entry);
       case 'CGB':
-        return await crawl<'cgb', CgbMetadata>('cgb', CgbMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'cgb', CgbMetadata>('cgb', CgbMetadata.schema, crawlDefaultPhotos, entry);
       case 'AGB':
-        return await crawl<'agb', AgbMetadata>('agb', AgbMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'agb', AgbMetadata>('agb', AgbMetadata.schema, crawlDefaultPhotos, entry);
       case 'AGS':
-        return await crawl<'ags', AgsMetadata>('ags', AgsMetadata.schema, crawlAgsPhotos, path);
+        return await crawl<'ags', AgsMetadata>('ags', AgsMetadata.schema, crawlAgsPhotos, entry);
       case 'GBS':
-        return await crawl<'gbs', GbsMetadata>('gbs', GbsMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'gbs', GbsMetadata>('gbs', GbsMetadata.schema, crawlDefaultPhotos, entry);
       case 'OXY':
-        return await crawl<'oxy', OxyMetadata>('oxy', OxyMetadata.schema, crawlDefaultPhotos, path);
+        return await crawl<'oxy', OxyMetadata>('oxy', OxyMetadata.schema, crawlDefaultPhotos, entry);
       default: {
-        console.warn(`Skipping unknown model directory ${model.absolutePath}`);
+        console.warn(`Skipping unknown console directory ${type.absolutePath}`);
         return undefined
       }
     }
   })));
 }
 
-async function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schema, ): Promise<T | undefined> {
+export async function crawlCartridges(path: string): Promise<any[]> {
+  const submissions = await crawlSubmissions(path);
+
+  return rejectNil(await Promise.all(submissions.map(async path => {
+    const {type} = path;
+
+    const cfg = config.gameCfgs[type.name];
+    if (!cfg) {
+      console.warn(`Skipping unknown cartridge directory ${type.absolutePath}`);
+      return undefined
+    }
+    const entry = cartridgeSubmissionEntry(path);
+    return {
+      game: cfg.name,
+      ...await crawl<string, CartridgeMetadata>(type.name, CartridgeMetadata.schema, crawlCartridgePhotos, entry),
+    }
+  })));
+}
+
+async function readMetadata<M>(unit: FsEntry, schema: Joi.Schema, ): Promise<M | undefined> {
   const metadataPath = path.resolve(unit.absolutePath, 'metadata.json');
   const metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8'));
   const validationResult = Joi.validate(metadata, schema);
@@ -208,7 +274,7 @@ async function readMetadata<T extends Metadata>(unit: FsEntry, schema: Joi.Schem
 async function fetchPhoto(entry: FsEntry, name: string): Promise<Photo | undefined> {
   const absolutePath = path.resolve(entry.absolutePath, name);
   try {
-    const stats = await fs.stat(absolutePath)
+    const stats = await fs.stat(absolutePath);
     return {
       path: absolutePath,
       name,

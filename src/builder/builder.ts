@@ -10,15 +10,15 @@ import * as winston from 'winston';
 
 import Site from '../site/Site';
 import {
-  AgbSubmission, AgsSubmission, CgbSubmission, crawlDataDirectory, DmgSubmission, GbsSubmission, MgbSubmission,
-  MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission, Submission
+  AgbSubmission, AgsSubmission, CartridgeSubmission, CgbSubmission, crawlCartridges, crawlConsoles, DmgSubmission,
+  GbsSubmission, MgbSubmission, MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission
 } from '../crawler';
-import processPhotos from './processPhotos';
 import {
   AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS, generateCsv,
   MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
 } from './csvTransform';
 import * as config from '../config';
+import processPhotos from './processPhotos';
 
 interface PageDeclaration {
   type: string;
@@ -27,7 +27,7 @@ interface PageDeclaration {
   props: any;
 }
 
-interface GroupedSubmissions {
+interface GroupedConsoleSubmissions {
   dmg: DmgSubmission[],
   sgb: SgbSubmission[],
   mgb: MgbSubmission[],
@@ -40,14 +40,14 @@ interface GroupedSubmissions {
   oxy: OxySubmission[],
 }
 
-function groupSubmissions(submissions: Submission[]): GroupedSubmissions {
-  return R.groupBy(submission => submission.type, submissions) as any
-}
-
 async function main(): Promise<void> {
-  const submissions = await crawlDataDirectory('data/consoles');
+  const [consoleSubmissions, cartridgeSubmissions] = await Promise.all([
+    crawlConsoles('data/consoles'),
+    crawlCartridges('data/cartridges'),
+  ]);
 
-  const groupedSubmissions = groupSubmissions(submissions);
+  const groupedConsoles: GroupedConsoleSubmissions = R.groupBy(({type}) => type, consoleSubmissions) as any
+  const groupedCartridges: Record<string, CartridgeSubmission[]> = R.groupBy(({type}) => type, cartridgeSubmissions)
 
   const pages: PageDeclaration[] = [
     {type: 'index', title: 'Home', props: {
@@ -57,17 +57,23 @@ async function main(): Promise<void> {
     {type: 'contribute-sgb', path: ['contribute', 'sgb'], title: 'Super Game Boy (SGB) contribution instructions', props: {}},
     {type: 'contribute-sgb2', path: ['contribute', 'sgb2'], title: 'Super Game Boy 2 (SGB2) contribution instructions', props: {}},
     {type: 'contribute-oxy', path: ['contribute', 'oxy'], title: 'Game Boy Micro (OXY) contribution instructions', props: {}},
-    {type: 'consoles', path: ['consoles'], title: 'Game Boy units', props: {}},
+    {type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {}},
     ...config.consoles.map(type => {
-      const cfg = config.consoleCfgs[type]
+      const cfg = config.consoleCfgs[type];
       return {type, path: ['consoles', type, 'index'], title: `${cfg.name} (${type.toUpperCase()})`, props: {
-        submissions: groupedSubmissions[type],
+        submissions: groupedConsoles[type],
       }}
-    })
+    }),
+    {type: 'cartridges', path: ['cartridges', 'index'], title: 'Game Boy cartridges', props: {
+      games: R.sortBy(({game}) => game, (R.toPairs(groupedCartridges) as any[]).map(([type, submissions]) => {
+        const cfg = config.gameCfgs[type];
+        return {type, game: cfg.name, submissions}
+      }))
+    }},
   ];
-  submissions.forEach(submission => {
-    const {type, slug, title, contributor} = submission
-    const cfg = config.consoleCfgs[type]
+  consoleSubmissions.forEach(submission => {
+    const {type, slug, title, contributor} = submission;
+    const cfg = config.consoleCfgs[type];
     pages.push({
       type: `${type}-console`,
       path: ['consoles', type, slug],
@@ -75,33 +81,55 @@ async function main(): Promise<void> {
       props: {submission}
     });
   });
+  cartridgeSubmissions.forEach(submission => {
+    const {type, slug, title, contributor, game} = submission;
+    const cfg = config.gameCfgs[type];
+    pages.push({
+      type: 'cartridge',
+      path: ['cartridges', type, slug],
+      title: `${cfg.name}: ${title} [${contributor}]`,
+      props: {submission, cfg}
+    });
+  });
+  R.forEachObjIndexed((submissions, type) => {
+    const cfg = config.gameCfgs[type];
+    pages.push({
+      type: 'game',
+      path: ['cartridges', type, 'index'],
+      title: `${cfg.name}`,
+      props: {type, cfg, submissions}
+    })
+  }, groupedCartridges);
 
   await Promise.all([
     Bluebird.map(pages, processPage, {concurrency: 16}),
-    Bluebird.map(submissions, processPhotos, {concurrency: 2}),
+    Bluebird.map(consoleSubmissions, processPhotos, {concurrency: 2}),
+    Bluebird.map(cartridgeSubmissions, processPhotos, {concurrency: 2}),
   ]);
 
   await Promise.all([
-    processCsv('dmg', DMG_CSV_COLUMNS, groupedSubmissions.dmg),
-    processCsv('sgb', SGB_CSV_COLUMNS, groupedSubmissions.sgb),
-    processCsv('mgb', MGB_CSV_COLUMNS, groupedSubmissions.mgb),
-    processCsv('mgl', MGL_CSV_COLUMNS, groupedSubmissions.mgl),
-    processCsv('sgb2', SGB2_CSV_COLUMNS, groupedSubmissions.sgb2),
-    processCsv('cgb', CGB_CSV_COLUMNS, groupedSubmissions.cgb),
-    processCsv('agb', AGB_CSV_COLUMNS, groupedSubmissions.agb),
-    processCsv('ags', AGS_CSV_COLUMNS, groupedSubmissions.ags),
-    processCsv('gbs', GBS_CSV_COLUMNS, groupedSubmissions.gbs),
-    processCsv('oxy', OXY_CSV_COLUMNS, groupedSubmissions.oxy),
+    processConsoleCsv('dmg', DMG_CSV_COLUMNS, groupedConsoles.dmg),
+    processConsoleCsv('sgb', SGB_CSV_COLUMNS, groupedConsoles.sgb),
+    processConsoleCsv('mgb', MGB_CSV_COLUMNS, groupedConsoles.mgb),
+    processConsoleCsv('mgl', MGL_CSV_COLUMNS, groupedConsoles.mgl),
+    processConsoleCsv('sgb2', SGB2_CSV_COLUMNS, groupedConsoles.sgb2),
+    processConsoleCsv('cgb', CGB_CSV_COLUMNS, groupedConsoles.cgb),
+    processConsoleCsv('agb', AGB_CSV_COLUMNS, groupedConsoles.agb),
+    processConsoleCsv('ags', AGS_CSV_COLUMNS, groupedConsoles.ags),
+    processConsoleCsv('gbs', GBS_CSV_COLUMNS, groupedConsoles.gbs),
+    processConsoleCsv('oxy', OXY_CSV_COLUMNS, groupedConsoles.oxy),
   ]);
   winston.info('Site generation finished :)');
 }
 
-async function processCsv<T, K extends keyof GroupedSubmissions>(
+async function processConsoleCsv<T, K extends keyof GroupedConsoleSubmissions>(
   key: K,
   columns: CsvColumn<T>[],
   rows: T[],
 ): Promise<void> {
-  return generateCsv(columns, rows, path.resolve('build', 'site', 'static', `${key}.csv`))
+  const dir = path.resolve('build', 'site', 'static', 'export', 'consoles');
+  await fs.mkdirs(dir);
+  return generateCsv(columns, rows, path.resolve(dir, `${key}.csv`))
 }
 
 async function processPage(page: PageDeclaration): Promise<void> {

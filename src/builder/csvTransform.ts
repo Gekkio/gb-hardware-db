@@ -3,7 +3,7 @@ import * as csvStringify from 'csv-stringify';
 import {
   AgbSubmission, AgsSubmission, CgbSubmission, DmgSubmission, GbsSubmission, MgbSubmission, MglSubmission,
   OxySubmission,
-  Sgb2Submission, SgbSubmission, Submission
+  Sgb2Submission, SgbSubmission, ConsoleSubmission
 } from '../crawler';
 import {
   AgbMetadata, AgsMetadata, CgbMetadata, Chip, DmgMetadata, GbsMetadata, MgbMetadata, MglMetadata, OxyMetadata,
@@ -35,7 +35,7 @@ export function generateCsv<T>(columns: CsvColumn<T>[], rows: T[], path: string)
   })
 }
 
-const SUBMISSION_COLUMNS: CsvColumn<Submission>[] = [
+const SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
   field('', 'type'),
   field('', 'title'),
   field('', 'slug'),

@@ -7,10 +7,13 @@ export interface Calendar {
   date_range?: [DateRangePart, DateRangePart];
 }
 
+export type Battery = 'CR1616' | 'CR2025'
+
 const schemas = {
   year: Joi.number().integer().min(1989).max(2010),
   month: Joi.number().integer().min(1).max(12),
   week: Joi.number().integer().min(1).max(53),
+  battery: Joi.string().allow('CR1616', 'CR2025')
 };
 
 export interface DateRangePart {
@@ -25,7 +28,11 @@ export namespace DateRangePart {
   })
 }
 
-const manufacturers = ['amic', 'bsi', 'fujitsu', 'hynix', 'kds', 'kss', 'lsi-logic', 'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'sharp', 'st', 'tdk', 'toshiba', 'xlink'];
+const manufacturers = [
+  'amic', 'bsi', 'fujitsu', 'hynix', 'hyundai', 'kds', 'kss', 'lsi-logic', 'macronix', 'microchip', 'mitsumi',
+  'mosel-vitelic', 'nec', 'rohm', 'samsung', 'sanyo', 'sharp', 'st', 'tdk', 'texas-instruments', 'toshiba', 'winbond',
+  'xlink'
+];
 
 export interface Chip {
   type?: string;
@@ -49,12 +56,7 @@ export namespace Chip {
   });
 }
 
-export interface Metadata {
-  serial: string;
-  type: string;
-}
-
-export interface DmgMetadata extends Metadata {
+export interface DmgMetadata {
   type: "DMG";
   color?: string;
   screws?: string;
@@ -134,7 +136,7 @@ export namespace DmgMetadata {
   });
 }
 
-export interface SgbMetadata extends Metadata {
+export interface SgbMetadata {
   type: "SGB";
   stamp?: string;
   mainboard: {
@@ -172,7 +174,7 @@ export namespace SgbMetadata {
   });
 }
 
-export interface MgbMetadata extends Metadata {
+export interface MgbMetadata {
   type: "MGB";
   color?: string;
   year?: number;
@@ -224,7 +226,7 @@ export namespace MgbMetadata {
   });
 }
 
-export interface MglMetadata extends Metadata {
+export interface MglMetadata {
   type: "MGL";
   color?: string;
   year?: number;
@@ -278,7 +280,7 @@ export namespace MglMetadata {
   });
 }
 
-export interface Sgb2Metadata extends Metadata {
+export interface Sgb2Metadata {
   type: "SGB2";
   stamp?: string;
   mainboard: {
@@ -318,7 +320,7 @@ export namespace Sgb2Metadata {
   });
 }
 
-export interface CgbMetadata extends Metadata {
+export interface CgbMetadata {
   type: "CGB";
   color?: string;
   year?: number;
@@ -364,7 +366,7 @@ export namespace CgbMetadata {
   });
 }
 
-export interface AgbMetadata extends Metadata {
+export interface AgbMetadata {
   type: "AGB";
   color?: string;
   year?: number;
@@ -408,7 +410,7 @@ export namespace AgbMetadata {
   });
 }
 
-export interface AgsMetadata extends Metadata {
+export interface AgsMetadata {
   type: "AGS";
   color?: string;
   mainboard: {
@@ -448,7 +450,7 @@ export namespace AgsMetadata {
   });
 }
 
-export interface GbsMetadata extends Metadata {
+export interface GbsMetadata {
   type: "GBS";
   color?: string;
   year?: number;
@@ -496,7 +498,7 @@ export namespace GbsMetadata {
   });
 }
 
-export interface OxyMetadata extends Metadata {
+export interface OxyMetadata {
   type: "OXY";
   color?: string;
   mainboard: {
@@ -527,3 +529,42 @@ export namespace OxyMetadata {
     })
   });
 }
+
+export interface CartridgeMetadata {
+  code: string;
+  stamp?: string;
+  board: {
+    type: string;
+    circled_letters?: string;
+    extra_label?: string;
+    year?: number;
+    month?: number;
+    rom?: Chip;
+    mapper?: Chip;
+    ram?: Chip;
+    ram_protector?: Chip;
+    crystal?: boolean,
+    battery?: Battery,
+  }
+}
+
+export namespace CartridgeMetadata {
+  export const schema = Joi.object().keys({
+    code: Joi.string().required(),
+    stamp: Joi.string(),
+    board: Joi.object().required().keys({
+      type: Joi.string().required(),
+      circled_letters: Joi.string(),
+      extra_label: Joi.string(),
+      year: schemas.year,
+      month: schemas.month,
+      rom: Chip.schema,
+      mapper: Chip.schema.allow(null),
+      ram: Chip.schema.allow(null),
+      ram_protector: Chip.schema.allow(null),
+      crystal: Joi.boolean(),
+      battery: schemas.battery,
+    }),
+  });
+}
+

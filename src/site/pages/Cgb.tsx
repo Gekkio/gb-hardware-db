@@ -32,7 +32,7 @@ export default function Cgb({submissions}: Props) {
         </tbody>
       </table>
       <h3>Data dumps</h3>
-      <a href="/static/cgb.csv">UTF-8 encoded CSV</a>
+      <a href="/static/export/consoles/cgb.csv">UTF-8 encoded CSV</a>
     </article>
   )
 }

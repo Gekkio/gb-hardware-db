@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ7J-JPN",
+  "stamp": "11",
+  "board": {
+    "type": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 1,
+    "rom": {
+      "type": "CGB-AZ7J-0",
+      "label": "CGB-AZ7J-0 F1 M538011E-IT 1065418"
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-2 050U2M"
+    },
+    "ram": {
+      "type": "BR6265BF-10SL",
+      "manufacturer": "rohm",
+      "label": "BR6265BF-10SL 052 115N"
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 0C88"
+    },
+    "battery": "CR1616"
+  }
+}

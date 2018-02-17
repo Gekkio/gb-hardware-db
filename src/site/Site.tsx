@@ -27,6 +27,9 @@ import Oxy from './pages/Oxy';
 import OxyConsole from './pages/OxyConsole';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
+import Cartridge from './pages/Cartridge';
+import Game from './pages/Game';
+import Cartridges from './pages/Cartridges';
 
 namespace Site {
   export interface Props {
@@ -114,6 +117,12 @@ function renderPage(type: string, props: any) {
       return <Oxy {...props} />
     case 'oxy-console':
       return <OxyConsole {...props} />
+    case 'cartridges':
+      return <Cartridges {...props} />
+    case 'cartridge':
+      return <Cartridge {...props} />
+    case 'game':
+      return <Game {...props} />
     default:
       return null;
   }

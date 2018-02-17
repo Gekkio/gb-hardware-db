@@ -55,39 +55,51 @@ export function optional<T>(f: (value: T) => string, value: T | null | undefine
 export function manufacturer(value: string): string {
   switch (value) {
     case 'amic':
-      return 'AMIC Technology'
+      return 'AMIC Technology';
     case 'bsi':
       return 'BSI';
     case 'fujitsu':
       return 'Fujitsu';
     case 'hynix':
       return 'Hynix';
+    case 'hyundai':
+      return 'Hyundai';
     case 'kds':
-      return 'Daishinku'
+      return 'Daishinku';
     case 'kss':
-      return 'Kinseki'
+      return 'Kinseki';
     case 'lsi-logic':
-      return 'LSI Logic'
+      return 'LSI Logic';
+    case 'macronix':
+      return 'Macronix';
     case 'microchip':
       return 'Microchip';
     case 'mitsumi':
       return 'Mitsumi';
     case 'mosel-vitelic':
-      return 'Mosel-Vitelic'
+      return 'Mosel-Vitelic';
     case 'nec':
       return 'NEC';
     case 'rohm':
       return 'ROHM';
+    case 'samsung':
+      return 'Samsung';
+    case 'sanyo':
+      return 'Sanyo';
     case 'sharp':
       return 'Sharp';
     case 'st':
       return 'STMicroelectronics';
     case 'tdk':
       return 'TDK';
+    case 'texas-instruments':
+      return 'Texas Instruments';
     case 'toshiba':
       return 'Toshiba';
+    case 'winbond':
+      return 'Winbond';
     case 'xlink':
-      return 'Xlink (?)'
+      return 'Xlink (?)';
     default:
       return value;
   }

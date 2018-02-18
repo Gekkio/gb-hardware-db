@@ -11,17 +11,21 @@
       "type": "MX23C3203-11A2",
       "manufacturer": "macronix",
       "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301",
-      "year": 2000
+      "year": 2000,
+      "week": 45
     },
     "rom2": {
       "type": "MX23C3203-11A2",
       "manufacturer": "macronix",
       "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D151301",
-      "year": 2000
+      "year": 2000,
+      "week": 45
     },
     "mapper": {
       "type": "MBC5",
-      "label": "MBC5 P 04 1U4M"
+      "label": "MBC5 P 04 1U4M",
+      "year": 2000,
+      "week": 41
     },
     "ram": {
       "type": "GM76C256CLLFW70",

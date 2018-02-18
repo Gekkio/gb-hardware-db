@@ -10,7 +10,9 @@
     "rom": {
       "type": "MX23C4002-20",
       "manufacturer": "macronix",
-      "label": "J9720-M MX23C4002-20 DMG-ATAJ-0 E1 43282F"
+      "label": "J9720-M MX23C4002-20 DMG-ATAJ-0 E1 43282F",
+      "year": 1997,
+      "week": 20
     },
     "mapper": {
       "type": "MBC1B1",
@@ -28,7 +30,8 @@
     },
     "ram_protector": {
       "type": "6129A",
-      "label": "6129A 7574"
+      "label": "6129A 7574",
+      "year": 1997
     },
     "battery": "CR1616"
   }

@@ -17,7 +17,8 @@
     "mapper": {
       "type": "MBC3A",
       "label": "MBC3 A P-2 824U6E",
-      "year": 1998
+      "year": 1998,
+      "week": 24
     },
     "ram": {
       "type": "LH52256CN-10LL",

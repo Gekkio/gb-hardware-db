@@ -10,10 +10,13 @@
     "rom": {
       "type": "MX23C4002-20",
       "manufacturer": "macronix",
-      "label": "J983638-M M23C4002-20 DMG-AD3P-1 E1 1P0410Y1"
+      "label": "J983638-M M23C4002-20 DMG-AD3P-1 E1 1P0410Y1",
+      "year": 1998,
+      "week": 36
     },
     "mapper": {
       "type": "MBC1B",
+      "manufacturer": "sharp",
       "label": "DMG MBC1B Nintendo S 9749 1 A",
       "year": 1997,
       "week": 49

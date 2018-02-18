@@ -15,7 +15,8 @@
     "mapper": {
       "type": "MBC5",
       "label": "MBC5 P-1 001U5M",
-      "year": 2000
+      "year": 2000,
+      "week": 1
     },
     "ram": {
       "type": "LH52256CN-10LL",
@@ -26,7 +27,8 @@
     },
     "ram_protector": {
       "type": "6735",
-      "label": "6735 9860"
+      "label": "6735 9860",
+      "year": 1999
     },
     "battery": "CR1616"
   }

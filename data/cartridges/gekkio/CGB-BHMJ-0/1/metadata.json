@@ -14,6 +14,7 @@
     },
     "mapper": {
       "type": "MBC5",
+      "manufacturer": "sharp",
       "label": "MBC5 LZ9GB31 9945 A",
       "year": 1999,
       "week": 45
@@ -21,7 +22,8 @@
     "ram": {
       "type": "LC3564BM-70",
       "manufacturer": "sanyo",
-      "label": "SANYO LC3564BM-70 JAPAN 9MUBG"
+      "label": "SANYO LC3564BM-70 JAPAN 9MUBG",
+      "year": 1999
     },
     "ram_protector": {
       "type": "134A",

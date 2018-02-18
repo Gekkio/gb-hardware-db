@@ -10,17 +10,22 @@
     "rom": {
       "type": "MX23C3203-12A2",
       "manufacturer": "macronix",
-      "label": "S012123-W MX23C3203-12A2 DMG-BLUJ-0 H2 2D781800"
+      "label": "S012123-W MX23C3203-12A2 DMG-BLUJ-0 H2 2D781800",
+      "year": 2001,
+      "week": 21
     },
     "mapper": {
       "type": "MBC5",
       "label": "MBC5 P-2 102U1M",
-      "year": 2001
+      "year": 2001,
+      "week": 2
     },
     "ram": {
       "type": "W2465S-70LL",
       "manufacturer": "winbond",
-      "label": "Winbond W2465S-70LL 115AD20484620-II1RA"
+      "label": "Winbond W2465S-70LL 115AD20484620-II1RA",
+      "year": 2001,
+      "week": 15
     },
     "ram_protector": {
       "type": "134A",

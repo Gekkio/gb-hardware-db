@@ -10,14 +10,15 @@
     "rom": {
       "type": "MX23C1603-12A",
       "manufacturer": "macronix",
-      "label": "E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1"
+      "label": "E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1",
+      "year": 2001,
+      "week": 31
     },
     "mapper": {
       "type": "MBC5",
       "manufacturer": "texas-instruments",
       "label": "13A0V9T MBC5 2417",
-      "year": 2001,
-      "month": 3
+      "year": 2001
     }
   }
 }

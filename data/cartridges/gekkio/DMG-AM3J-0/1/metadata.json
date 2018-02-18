@@ -22,6 +22,7 @@
     },
     "ram": {
       "type": "XLJ6265BF-10SL",
+      "manufacturer": "rohm",
       "label": "XLJ6265BF-10SL 640 173N",
       "year": 1996,
       "week": 40

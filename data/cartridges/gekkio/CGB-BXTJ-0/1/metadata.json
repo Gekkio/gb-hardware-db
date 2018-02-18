@@ -10,11 +10,15 @@
     "rom": {
       "type": "MX23C1603-12A",
       "manufacturer": "macronix",
-      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D369600"
+      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D369600",
+      "year": 2000,
+      "week": 47
     },
     "mapper": {
       "type": "MBC30",
-      "label": "MBC30 P 047U2M"
+      "label": "MBC30 P 047U2M",
+      "year": 2000,
+      "week": 47
     },
     "ram": {
       "type": "HY628100B",

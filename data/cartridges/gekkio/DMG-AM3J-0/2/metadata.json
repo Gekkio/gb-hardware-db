@@ -8,6 +8,8 @@
     "year": 1996,
     "month": 10,
     "rom": {
+      "type": "N-8001EJGW-J65",
+      "manufacturer": "at-t",
       "label": "DMG-AM3J-0 F1 N-8001EJGW-J65 9643K7013",
       "year": 1996,
       "week": 43
@@ -20,6 +22,7 @@
     },
     "ram": {
       "type": "XLJ6265BF-10SL",
+      "manufacturer": "rohm",
       "label": "XLJ6265BF-10SL 636 112N",
       "year": 1996,
       "week": 36

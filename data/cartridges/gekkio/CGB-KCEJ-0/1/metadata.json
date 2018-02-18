@@ -11,10 +11,12 @@
       "type": "MX23C1603-12A",
       "manufacturer": "macronix",
       "label": "S004219-M MX23C1603-12A CGB-KCEJ-0 G2 2D275401",
-      "year": 2000
+      "year": 2000,
+      "week": 42
     },
     "mapper": {
       "type": "MBC7",
+      "manufacturer": "rohm",
       "label": "MBC-7 BU3667KS 041 170",
       "year": 2000,
       "week": 41

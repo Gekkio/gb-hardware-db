@@ -16,6 +16,7 @@
     },
     "mapper": {
       "type": "HuC-3",
+      "manufacturer": "sharp",
       "label": "HuC-3 © HUDSON Nintendo 9842 A",
       "year": 1998,
       "week": 42

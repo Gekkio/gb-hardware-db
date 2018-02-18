@@ -16,19 +16,22 @@
     },
     "mapper": {
       "type": "MBC3",
+      "manufacturer": "rohm",
       "label": "MBC3 BU3631K 802 127",
       "year": 1998,
       "week": 2
     },
     "ram": {
       "type": "BR62256F-70LL",
+      "manufacturer": "rohm",
       "label": "BR62256F-70LL 817 126",
       "year": 1998,
       "week": 17
     },
     "ram_protector": {
       "type": "6129A",
-      "label": "6129A 8316"
+      "label": "6129A 8316",
+      "year": 1998
     },
     "battery": "CR2025"
   }

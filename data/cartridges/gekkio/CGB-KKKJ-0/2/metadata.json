@@ -8,10 +8,14 @@
     "year": 2000,
     "month": 6,
     "rom": {
-      "label": "CGB-KKKJ-0 F1 M538011E-P0 0355413"
+      "type": "M538011E-P0",
+      "label": "CGB-KKKJ-0 F1 M538011E-P0 0355413",
+      "year": 2000,
+      "week": 35
     },
     "mapper": {
       "type": "MBC7",
+      "manufacturer": "rohm",
       "label": "MBC-7 BU3667KS 036 147",
       "year": 2000,
       "week": 36

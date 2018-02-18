@@ -10,12 +10,15 @@
     "rom": {
       "type": "MX23C3203-12A2",
       "manufacturer": "macronix",
-      "label": "M012623-M MX23C3203-12A2 CGB-BGLJ-0 H2 2D839200"
+      "label": "M012623-M MX23C3203-12A2 CGB-BGLJ-0 H2 2D839200",
+      "year": 2001,
+      "week": 26
     },
     "mapper": {
       "type": "MBC5",
       "label": "MBC5 P-2 104U4M",
-      "year": 2001
+      "year": 2001,
+      "week": 4
     },
     "ram": {
       "type": "HY628100BLLG-70",

@@ -10,14 +10,15 @@
     "rom": {
       "type": "MX23C3203-12A2",
       "manufacturer": "macronix",
-      "label": "M004223-M MX23C3203-12A2 CGB-BY4J-0 H2 2D117500"
+      "label": "M004223-M MX23C3203-12A2 CGB-BY4J-0 H2 2D117500",
+      "year": 2000,
+      "week": 42
     },
     "mapper": {
       "type": "MBC5",
       "manufacturer": "texas-instruments",
       "label": "08DJKXT MBC5 2417",
-      "year": 2000,
-      "month": 8
+      "year": 2000
     },
     "ram": {
       "type": "LH5164AN-10L",

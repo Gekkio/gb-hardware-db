@@ -16,12 +16,14 @@
     },
     "mapper": {
       "type": "HuC-1",
+      "manufacturer": "sharp",
       "label": "HuC-1 © HUDSON Nintendo 9752 A",
       "year": 1997,
       "week": 52
     },
     "ram": {
       "type": "BR62256F-70LL",
+      "manufacturer": "rohm",
       "label": "BR62256F-70LL 906 172A",
       "year": 1999,
       "week": 6

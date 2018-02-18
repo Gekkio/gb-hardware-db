@@ -14,6 +14,7 @@
     },
     "mapper": {
       "type": "MBC3A",
+      "manufacturer": "sharp",
       "label": "MBC3 A LR38536B 9935 A",
       "year": 1999,
       "week": 35

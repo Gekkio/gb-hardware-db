@@ -16,7 +16,9 @@
     },
     "mapper": {
       "type": "MBC2A",
-      "label": "Nintendo DMG MBC2A N 9126CA032"
+      "label": "Nintendo DMG MBC2A N 9126CA032",
+      "year": 1991,
+      "week": 26
     },
     "ram_protector": {
       "type": "6129",

@@ -8,7 +8,8 @@
     "year": 1994,
     "month": 11,
     "rom": {
-      "type": "DMG-L6J-2",
+      "type": "N-4001EAGW-J11",
+      "manufacturer": "at-t",
       "label": "DMG-L6J-2 E1 N-4001EAGW-J11 9451X9208",
       "year": 1994,
       "week": 51
@@ -20,6 +21,7 @@
     },
     "ram": {
       "type": "XLJ6265AF-10SL",
+      "manufacturer": "rohm",
       "label": "XLJ6265AF-10SL 437 132",
       "year": 1994,
       "week": 37

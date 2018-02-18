@@ -17,7 +17,8 @@
     "mapper": {
       "type": "MBC5",
       "label": "MBC5 P-1 906U2L",
-      "year": 1999
+      "year": 1999,
+      "week": 6
     }
   }
 }

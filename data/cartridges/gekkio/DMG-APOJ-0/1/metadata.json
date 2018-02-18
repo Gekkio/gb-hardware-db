@@ -10,10 +10,13 @@
     "rom": {
       "type": "MX23C4002-20",
       "manufacturer": "macronix",
-      "label": "C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C"
+      "label": "C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C",
+      "year": 1997,
+      "week": 45
     },
     "mapper": {
       "type": "HuC-1",
+      "manufacturer": "sharp",
       "label": "HuC-1 © HUDSON Nintendo 9746 A",
       "year": 1997,
       "week": 46

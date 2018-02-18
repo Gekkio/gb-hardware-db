@@ -11,7 +11,8 @@
       "type": "MX23C3203-12A2",
       "manufacturer": "macronix",
       "label": "E005223-M MX23C3203-12A2 DMG-BQLJ-0 H2 2D480700",
-      "year": 2000
+      "year": 2000,
+      "week": 52
     },
     "mapper": {
       "type": "MBC5",
@@ -22,7 +23,8 @@
     "ram": {
       "type": "LC35256FM-70U",
       "manufacturer": "sanyo",
-      "label": "SANYO LC35256FM-70U JAPAN 0LK5G"
+      "label": "SANYO LC35256FM-70U JAPAN 0LK5G",
+      "year": 2000
     },
     "ram_protector": {
       "type": "134A",

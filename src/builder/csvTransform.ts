@@ -341,6 +341,13 @@ export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
     ...lift((m: CartridgeMetadata) => m.board.mapper, chipColumns('mapper')),
     ...lift((m: CartridgeMetadata) => m.board.ram, chipColumns('ram')),
     ...lift((m: CartridgeMetadata) => m.board.ram_protector, chipColumns('ram_protector')),
+    ...lift((m: CartridgeMetadata) => m.board.rom2, chipColumns('rom2')),
+    ...lift((m: CartridgeMetadata) => m.board.flash, chipColumns('flash')),
+    ...lift((m: CartridgeMetadata) => m.board.line_decoder, chipColumns('line_decoder')),
+    ...lift((m: CartridgeMetadata) => m.board.eeprom, chipColumns('eeprom')),
+    ...lift((m: CartridgeMetadata) => m.board.accelerometer, chipColumns('accelerometer')),
+    ...lift((m: CartridgeMetadata) => m.board.u4, chipColumns('u4')),
+    ...lift((m: CartridgeMetadata) => m.board.u5, chipColumns('u5')),
     ...lift((m: CartridgeMetadata) => m.board, [
       field('', 'battery'),
       field('', 'crystal'),

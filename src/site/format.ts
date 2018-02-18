@@ -58,6 +58,8 @@ export function manufacturer(value: string): string {
       return 'AMIC Technology';
     case 'analog':
       return 'Analog Devices';
+    case 'at-t':
+      return 'AT&T Technologies';
     case 'bsi':
       return 'BSI';
     case 'fujitsu':

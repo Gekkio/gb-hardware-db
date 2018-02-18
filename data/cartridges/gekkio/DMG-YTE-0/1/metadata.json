@@ -29,8 +29,7 @@
     "ram_protector": {
       "type": "6129A",
       "label": "6129A 8912",
-      "year": 1998,
-      "week": 12
+      "year": 1998
     },
     "battery": "CR1616"
   }

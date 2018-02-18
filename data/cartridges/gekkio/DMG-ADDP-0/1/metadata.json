@@ -15,7 +15,7 @@
       "week": 40
     },
     "mapper": {
-      "type": "MBC1B",
+      "type": "MBC1B1",
       "manufacturer": "sharp",
       "label": "DMG MBC1B1 Nintendo S 9639 3 A",
       "year": 1996,
@@ -31,8 +31,7 @@
     "ram_protector": {
       "type": "6129A",
       "label": "6129A 6942",
-      "year": 1996,
-      "week": 42
+      "year": 1996
     },
     "battery": "CR1616"
   }

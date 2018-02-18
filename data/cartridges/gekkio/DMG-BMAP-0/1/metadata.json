@@ -10,12 +10,16 @@
     "rom": {
       "type": "MX23C8003-20",
       "manufacturer": "macronix",
-      "label": "S010649-M MX23C8003-20 DMG-BMAP-0 F1 1C3876A1"
+      "label": "S010649-M MX23C8003-20 DMG-BMAP-0 F1 1C3876A1",
+      "year": 2001,
+      "week": 6
     },
     "mapper": {
       "type": "MBC3B",
+      "manufacturer": "rohm",
       "label": "MBC-3 B BU3634K 103 H56",
-      "year": 2001
+      "year": 2001,
+      "week": 3
     },
     "ram": {
       "type": "LH5164AN-10L",

@@ -8,16 +8,23 @@
     "year": 2001,
     "month": 5,
     "rom": {
-      "label": "CGB-BMVJ-0 F1 M538011E-6J 1212425"
+      "type": "M538011E-6J",
+      "label": "CGB-BMVJ-0 F1 M538011E-6J 1212425",
+      "year": 2001,
+      "week": 21
     },
     "mapper": {
       "type": "MBC6",
-      "label": "Nintendo MBC6 0103XPO14"
+      "label": "Nintendo MBC6 0103XPO14",
+      "year": 2001,
+      "week": 3
     },
     "ram": {
       "type": "W24257S-70LL",
       "manufacturer": "winbond",
-      "label": "Winbond W24257S-70LL 046QB202858301AC"
+      "label": "Winbond W24257S-70LL 046QB202858301AC",
+      "year": 2000,
+      "week": 46
     },
     "ram_protector": {
       "type": "134A",
@@ -29,7 +36,9 @@
     "flash": {
       "type": "29F008TC-14",
       "manufacturer": "macronix",
-      "label": "E991012 29F008TC-14 21534 TAIWAN"
+      "label": "E991012 29F008TC-14 21534 TAIWAN",
+      "year": 1999,
+      "week": 10
     },
     "battery": "CR1616"
   }

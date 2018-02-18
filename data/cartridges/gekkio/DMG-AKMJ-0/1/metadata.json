@@ -16,6 +16,7 @@
     },
     "mapper": {
       "type": "MBC3",
+      "manufacturer": "sharp",
       "label": "MBC3 LR385364 9744 A",
       "year": 1997,
       "week": 44

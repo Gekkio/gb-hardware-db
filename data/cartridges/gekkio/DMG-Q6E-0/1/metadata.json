@@ -8,10 +8,11 @@
     "year": 1993,
     "month": 11,
     "rom": {
-      "type": "DMG-Q6E-0",
+      "type": "23C1001EAGW-K37",
+      "manufacturer": "at-t",
       "label": "AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9351E9005",
-      "year": 1998,
-      "week": 42
+      "year": 1993,
+      "week": 51
     },
     "mapper": {
       "type": "MBC1B1",

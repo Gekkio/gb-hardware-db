@@ -17,7 +17,8 @@
     "mapper": {
       "type": "MBC5",
       "label": "MBC5 P-1 008U1M",
-      "year": 2000
+      "year": 2000,
+      "week": 8
     },
     "ram": {
       "type": "BR6265BF-10SL",

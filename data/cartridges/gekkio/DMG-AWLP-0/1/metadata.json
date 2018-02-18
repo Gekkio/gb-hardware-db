@@ -14,6 +14,7 @@
     },
     "mapper": {
       "type": "MBC5",
+      "manufacturer": "rohm",
       "label": "MBC-5 BU3650K 846 H48",
       "year": 1998,
       "week": 46

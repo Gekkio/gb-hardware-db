@@ -1,0 +1,18 @@
+{
+  "code": "DMG-HLA",
+  "stamp": "05A",
+  "board": {
+    "type": "DMG-AAA-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1989,
+    "month": 8,
+    "rom": {
+      "type": "DMG-HLA-1",
+      "manufacturer": "sharp",
+      "label": "DMG-HLA-1 SHARP JAPAN A0 8934 D",
+      "year": 1989,
+      "week": 34
+    }
+  }
+}

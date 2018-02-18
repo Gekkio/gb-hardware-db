@@ -1,0 +1,36 @@
+{
+  "code": "DMG-AOMJ-JPN",
+  "board": {
+    "type": "0200309E4-01-1",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 1,
+    "rom": {
+      "type": "TAMA7",
+      "label": "TAMA7 B9748 43913A TAIWAN",
+      "year": 1997,
+      "week": 48
+    },
+    "mapper": {
+      "type": "TAMA5",
+      "label": "TAMA5 9726 EAD1",
+      "year": 1997,
+      "week": 26
+    },
+    "ram": {
+      "type": "TAMA6",
+      "label": "TAMA6 JAPAN 47C243M FV61 9751H",
+      "year": 1997,
+      "week": 51
+    },
+    "ram_protector": {
+      "label": "2021 7Z0"
+    },
+    "u4": {
+      "label": "T 9749HB 8521AM"
+    },
+    "battery": "CR2016",
+    "crystal": true
+  }
+}

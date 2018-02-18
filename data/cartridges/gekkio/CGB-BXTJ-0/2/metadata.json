@@ -3,18 +3,20 @@
   "stamp": "00",
   "board": {
     "type": "DMG-MHEU-01",
-    "circled_letters": "I",
-    "extra_label": "4",
+    "circled_letters": "MB",
+    "extra_label": "3",
     "year": 2000,
     "month": 10,
     "rom": {
       "type": "MX23C1603-12A",
       "manufacturer": "macronix",
-      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D369600"
+      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D366300"
     },
     "mapper": {
       "type": "MBC30",
-      "label": "MBC30 P 047U2M"
+      "label": "MBC-30 BU3633AK 046 175",
+      "year": 2000,
+      "week": 46
     },
     "ram": {
       "type": "HY628100B",
@@ -25,7 +27,7 @@
     },
     "ram_protector": {
       "type": "6735",
-      "label": "6735 0B46",
+      "label": "6735 0B84",
       "year": 2000
     },
     "battery": "CR2025",

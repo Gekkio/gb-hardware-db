@@ -1,0 +1,22 @@
+{
+  "code": "DMG-REA",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 1,
+    "rom": {
+      "label": "DMG-REA-0 C1 N-1001EGW-J28 9106E9026",
+      "year": 1991,
+      "week": 6
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "Nintendo DMG MBC1B N 9035BA070",
+      "year": 1990,
+      "week": 35
+    }
+  }
+}

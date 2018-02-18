@@ -28,10 +28,10 @@ export interface CartLayout {
 export interface CartChip {
   designator: string,
   name: string,
-  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5' | 'line_decoder' | 'accelerometer' | 'eeprom' | 'rom2'
+  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5' | 'line_decoder' | 'flash' | 'accelerometer' | 'eeprom' | 'rom2'
 }
 
-export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3' | 'tama' | 'mbc7' | 'a15'
+export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3' | 'tama' | 'mbc6' | 'mbc7' | 'a15'
 
 export const gameLayouts: Record<CartLayoutId, CartLayout> = {
   'rom': {
@@ -94,6 +94,16 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     crystal: 'X1',
     battery: true,
   },
+  'mbc6': {
+    chips: [
+      {designator: 'U1', name: 'Mapper', key: 'mapper'},
+      {designator: 'U2', name: 'ROM', key: 'rom'},
+      {designator: 'U4', name: 'Flash', key: 'flash'},
+      {designator: 'U4', name: 'RAM', key: 'ram'},
+      {designator: 'U5', name: 'RAM protector', key: 'ram_protector'},
+    ],
+    battery: true,
+  },
   'mbc7': {
     chips: [
       {designator: 'U1', name: 'ROM', key: 'rom'},
@@ -119,7 +129,7 @@ export interface MapperConfig {
   name: string,
 }
 
-export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mbc7' | 'mmm01' | 'huc1' | 'huc3' | 'tama5'
+export type MapperId = 'no-mapper' | 'mbc1' | 'mbc2' | 'mbc3' | 'mbc30' | 'mbc5' | 'mbc6' | 'mbc7' | 'mmm01' | 'huc1' | 'huc3' | 'tama5'
 
 export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'no-mapper': {name: 'No mapper'},
@@ -128,6 +138,7 @@ export const mapperCfgs: Record<MapperId, MapperConfig> = {
   'mbc3': {name: 'MBC3'},
   'mbc30': {name: 'MBC30'},
   'mbc5': {name: 'MBC5'},
+  'mbc6': {name: 'MBC6'},
   'mbc7': {name: 'MBC7'},
   'mmm01': {name: 'MMM01'},
   'huc1': {name: 'HuC-1'},
@@ -141,18 +152,25 @@ export interface GameConfig {
 }
 
 export const gameCfgs: Record<string, GameConfig> = {
+  'CGB-AW8A-0': {name: 'Wario Land 3 (World) (En,Ja)', layout: 'rom_mbc_ram'},
   'CGB-AZ7J-0': {name: 'Zelda no Densetsu - Fushigi no Kimi - Daichi no Shou (Japan)', layout: 'rom_mbc_ram'},
   'CGB-B82J-0': {name: 'Densha de Go! 2 (Japan)', layout: 'a15'},
+  'CGB-B9AJ-0': {name: 'Mobile Trainer (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-BDSP-0': {name: 'Dinosaur\'us (Europe) (En,Fr,De,Es,It,Nl)', layout: 'rom_mbc_ram'},
   'CGB-BFUP-0': {name: 'Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)', layout: 'rom_mbc'},
   'CGB-BGLJ-0': {name: 'Super Gals! Kotobuki Ran (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BHMJ-0': {name: 'Hamster Paradise 2 (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-BMVJ-0': {name: 'Net de Get - Minigame @ 100 (Japan)', layout: 'mbc6'},
   'CGB-BXTJ-0': {name: 'Pocket Monsters - Crystal Version (Japan)', layout: 'rom_mbc_ram_xtal'},
   'CGB-BY3J-0': {name: 'Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BY4J-0': {name: 'Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-HF2J-0': {name: 'Pocket Family GB2 (Japan)', layout: 'huc3'},
   'CGB-KCEJ-0': {name: 'Command Master (Japan)', layout: 'mbc7'},
+  'CGB-KKKJ-0': {name: 'Korokoro Kirby (Japan)', layout: 'mbc7'},
   'DMG-A4RJ-0': {name: 'Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AAUJ-1': {name: 'Pocket Monsters Kin (Japan) (Rev A) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AD3P-1': {name: 'Donkey Kong Land III (USA, Europe) (Rev A) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AD4P-0': {name: 'Dropzone (Europe)', layout: 'rom_mbc'},
   'DMG-ADDJ-0': {name: 'Donkey Kong Land (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-ADDP-0': {name: 'Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-ADQJ-0': {name: 'Dragon Quest Monsters - Terry no Wonderland (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
@@ -170,12 +188,15 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-APOJ-0': {name: 'Pocket Bomber Man (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-APSE-0': {name: 'Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-ATAJ-0': {name: 'Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AVBJ-0': {name: 'Pocket Bowling (Japan)', layout: 'rom_mbc'},
   'DMG-AW2P-0': {name: 'Wario Land II (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AW7E-0': {name: 'James Bond 007 (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-AWLP-0': {name: 'Wario Land II (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AYJ-0': {name: 'Ayakashi no Shiro (Japan)', layout: 'rom_mbc_protect'},
   'DMG-B7HJ-0': {name: 'Nakayoshi Pet Series 1 - Kawaii Hamster (Japan)', layout: 'rom_mbc_ram'},
   'DMG-BLUJ-0': {name: 'From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-BMAP-0': {name: 'Mary-Kate and Ashley - Pocket Planner (USA, Europe)', layout: 'rom_mbc_ram_xtal'},
+  'DMG-BQLJ-0': {name: 'Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-CNE-0': {name: 'Operation C (USA)', layout: 'rom_mbc'},
   'DMG-DDE-0': {name: 'Double Dragon (USA, Europe)', layout: 'rom_mbc'},
   'DMG-F1A-1': {name: 'F-1 Race (World) (Rev A)', layout: 'rom_mbc_protect'},
@@ -183,7 +204,9 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-HBA-0': {name: 'Bomber Boy (Japan)', layout: 'rom_mbc'},
   'DMG-HFAJ-0': {name: 'Pocket Family (Japan) (SGB Enhanced)', layout: 'huc3'},
   'DMG-HFE-0': {name: 'Hunt for Red October, The (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-HLA-1': {name: 'Hyper Lode Runner (World) (Rev A)', layout: 'rom'},
   'DMG-HQE-0': {name: 'Chase H.Q. (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-HRCJ-0': {name: 'Robot Poncots - Star Version (Japan) (SGB Enhanced)', layout: 'huc3'},
   'DMG-L6J-2': {name: 'Super Mario Land 2 - 6-tsu no Kinka (Japan) (Rev 2)', layout: 'rom_mbc_ram'},
   'DMG-LDE-0': {name: 'Little Mermaid, The (USA)', layout: 'rom_mbc'},
   'DMG-LWE-0': {name: 'WWF Superstars (USA, Europe)', layout: 'rom_mbc'},
@@ -191,6 +214,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-NMX-0': {name: 'Nemesis (Europe)', layout: 'rom_mbc'},
   'DMG-PCE-0': {name: 'Pac-Man (USA)', layout: 'rom_mbc'},
   'DMG-Q6E-0': {name: 'NFL Quarterback Club (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-REA-0': {name: 'R-Type (Japan)', layout: 'rom_mbc'},
   'DMG-RWE-0': {name: 'Mega Man - Dr. Wily\'s Revenge (USA)', layout: 'rom_mbc'},
   'DMG-TRA-1': {name: 'Tetris (World) (Rev A)', layout: 'rom'},
   'DMG-W6J-0': {name: 'Wizardry Gaiden 3 - Yami no Seiten (Japan)', layout: 'rom_mbc_ram'},

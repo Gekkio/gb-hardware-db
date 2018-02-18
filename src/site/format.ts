@@ -70,6 +70,8 @@ export function manufacturer(value: string): string {
       return 'Daishinku';
     case 'kss':
       return 'Kinseki';
+    case 'lgs':
+      return 'Lucky GoldStar';
     case 'lsi-logic':
       return 'LSI Logic';
     case 'macronix':

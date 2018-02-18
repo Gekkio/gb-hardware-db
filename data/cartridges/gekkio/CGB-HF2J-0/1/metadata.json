@@ -1,0 +1,43 @@
+{
+  "code": "CGB-HF2J-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-UGDU-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 7,
+    "rom": {
+      "type": "LH537MTR",
+      "manufacturer": "sharp",
+      "label": "CGB-HF2J-0 S LH537MTR JAPAN G2 9929 D",
+      "year": 1999,
+      "week": 29
+    },
+    "mapper": {
+      "type": "HuC-3",
+      "label": "HuC-3 © HUDSON Nintendo 9943 A",
+      "year": 1999,
+      "week": 43
+    },
+    "ram": {
+      "type": "LH52256CT-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CT-10LL SHARP JAPAN 9918 1 SO",
+      "year": 1999,
+      "week": 18
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "915 134A",
+      "year": 1999,
+      "week": 15
+    },
+    "u5": {
+      "label": "LVX 04 9 26"
+    },
+    "battery": "CR2025",
+    "crystal": true
+  }
+}

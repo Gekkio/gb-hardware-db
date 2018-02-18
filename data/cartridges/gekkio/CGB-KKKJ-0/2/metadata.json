@@ -1,0 +1,31 @@
+{
+  "code": "CGB-KKKJ-JPN",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-A40-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 6,
+    "rom": {
+      "label": "CGB-KKKJ-0 F1 M538011E-P0 0355413"
+    },
+    "mapper": {
+      "type": "MBC7",
+      "label": "MBC-7 BU3667KS 036 147",
+      "year": 2000,
+      "week": 36
+    },
+    "eeprom": {
+      "type": "LC56",
+      "label": "LC56 W617 08"
+    },
+    "accelerometer": {
+      "type": "ADXL202JQC",
+      "manufacturer": "analog",
+      "label": "2738109451 0028 ADXL202JQC",
+      "year": 2000,
+      "week": 28
+    }
+  }
+}

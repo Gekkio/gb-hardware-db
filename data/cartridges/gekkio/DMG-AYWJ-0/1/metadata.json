@@ -1,0 +1,39 @@
+{
+  "code": "DMG-AYWJ-JPN",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-KECN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1997,
+    "month": 11,
+    "rom": {
+      "type": "LH5S4MW6",
+      "manufacturer": "sharp",
+      "label": "DMG-AYWJ-0 S LH5S4MW6 JAPAN E1 9748 D",
+      "year": 1997,
+      "week": 48
+    },
+    "mapper": {
+      "type": "MBC3",
+      "manufacturer": "sharp",
+      "label": "MBC3 LR385364 9744 A",
+      "year": 1997,
+      "week": 44
+    },
+    "ram": {
+      "type": "LH5168N-10PL",
+      "manufacturer": "mosel-vitelic",
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N745 1G Bh",
+      "year": 1997,
+      "week": 45
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 7A27",
+      "year": 1997
+    },
+    "battery": "CR2025",
+    "crystal": true
+  }
+}

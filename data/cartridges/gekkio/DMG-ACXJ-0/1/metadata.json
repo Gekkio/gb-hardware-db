@@ -1,0 +1,38 @@
+{
+  "code": "DMG-ACXJ-JPN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-TFDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 11,
+    "rom": {
+      "type": "KM23C8000DG",
+      "manufacturer": "samsung",
+      "label": "SEC KM23C8000DG DMG-ACXJ-0 F1 KFX312U"
+    },
+    "mapper": {
+      "type": "HuC-1A",
+      "manufacturer": "sharp",
+      "label": "HuC1A © HUDSON Nintendo 9845 A",
+      "year": 1998,
+      "week": 45
+    },
+    "ram": {
+      "type": "LH52256CN-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CN-10LL SHARP JAPAN 9838 1 SN",
+      "year": 1998,
+      "week": 38
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "846 134A",
+      "year": 1998,
+      "week": 46
+    },
+    "battery": "CR1616"
+  }
+}

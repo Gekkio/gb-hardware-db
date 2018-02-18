@@ -1,0 +1,33 @@
+{
+  "code": "DMG-SAJ",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-GDAN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1989,
+    "month": 3,
+    "rom": {
+      "type": "UPD23C1001EGW-J01",
+      "manufacturer": "nec",
+      "label": "NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702",
+      "year": 1990,
+      "week": 10
+    },
+    "mapper": {
+      "type": "MBC2A",
+      "manufacturer": "sharp",
+      "label": "DMG MBC2A Nintendo S 9008 5 A",
+      "year": 1990,
+      "week": 8
+    },
+    "ram_protector": {
+      "type": "26A",
+      "manufacturer": "microchip",
+      "label": "015 26A",
+      "year": 1990,
+      "week": 15
+    },
+    "battery": "CR1616"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BFVJ-JPN",
+  "stamp": "15A",
+  "board": {
+    "type": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 2002,
+    "month": 1,
+    "rom": {
+      "type": "MX23C3203-12A2",
+      "manufacturer": "macronix",
+      "label": "M020723-M MX23C3203-12A2 CGB-BFVJ-1 H2 2E037500B0",
+      "year": 2002,
+      "week": 7
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "rohm",
+      "label": "MBC5 BU3650K 150 H82",
+      "year": 2001,
+      "week": 50
+    },
+    "ram": {
+      "type": "W2465S-70LL",
+      "manufacturer": "winbond",
+      "label": "Winbond W2465S-70LL 204SD21492550-II1RA",
+      "year": 2002,
+      "week": 4
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 1A78",
+      "year": 2001
+    },
+    "battery": "CR1616"
+  }
+}

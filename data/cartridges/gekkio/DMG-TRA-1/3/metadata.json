@@ -1,5 +1,5 @@
 {
-  "code": "DMG-TR-EUR",
+  "code": "DMG-TR-SCN-1",
   "stamp": "22A",
   "board": {
     "type": "AAAC",
@@ -7,9 +7,9 @@
     "rom": {
       "type": "LR0G150",
       "manufacturer": "sharp",
-      "label": "LR0G150 DMG-TRA-1 97516",
+      "label": "LR0G150 DMG-TRA-1 97141",
       "year": 1997,
-      "week": 51
+      "week": 14
     }
   }
 }

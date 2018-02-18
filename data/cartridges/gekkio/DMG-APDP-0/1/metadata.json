@@ -1,0 +1,23 @@
+{
+  "code": "DMG-APDP-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "6",
+    "year": 1995,
+    "month": 7,
+    "rom": {
+      "type": "LH532MWV",
+      "manufacturer": "sharp",
+      "label": "DMG-APDP-0 S LH532MWV JAPAN D1 9532 D",
+      "year": 1995,
+      "week": 32
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 5'72",
+      "year": 1995
+    }
+  }
+}

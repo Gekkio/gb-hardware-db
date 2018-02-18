@@ -1,0 +1,37 @@
+{
+  "code": "DMG-VPHP-EUR",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-Z04-01",
+    "circled_letters": "MB",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 8,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503",
+      "year": 2000,
+      "week": 31
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 032U4M",
+      "year": 2000,
+      "week": 32
+    },
+    "ram": {
+      "type": "LH52256CN-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CN-10LL SHARP JAPAN 0036 5 SO",
+      "year": 2000,
+      "week": 36
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 0775",
+      "year": 2000
+    },
+    "battery": "CR1616"
+  }
+}

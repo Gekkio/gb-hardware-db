@@ -1,0 +1,39 @@
+{
+  "code": "DMG-AYMJ-JPN",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-A06-01",
+    "circled_letters": "M",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 5,
+    "rom": {
+      "type": "LH538WVN",
+      "manufacturer": "sharp",
+      "label": "DMG-AYMJ-1 S LH538WVN JAPAN F1 9920 E",
+      "year": 1999,
+      "week": 20
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 908U5L",
+      "year": 1999,
+      "week": 8
+    },
+    "ram": {
+      "type": "HY6264ALLJ-10",
+      "manufacturer": "hyundai",
+      "label": "HY6264A LLJ-10 9906B KOREA",
+      "year": 1999,
+      "week": 6
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "914 134A",
+      "year": 1999,
+      "week": 14
+    },
+    "battery": "CR1616"
+  }
+}

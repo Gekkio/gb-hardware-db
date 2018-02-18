@@ -20,25 +20,34 @@ export default function SiteHeader({pageType}: Props) {
   )
 }
 
-const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name])
+const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name]);
 
 function isModel(pageType: string, code: string) {
   return pageType === code || pageType === `${code}-console`
 }
 
+function isInCartridges(pageType: string): boolean {
+  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper';
+}
+
 function Navigation({pageType}: Props) {
   return (
     <nav className="site-navigation">
-      <ul>{
-        models.map(([model, code, name]) => (
-          <li key={code} className={(isModel(pageType, code)) ? 'active' : undefined}>
-            <a href={`/consoles/${code}`}>
-              <strong>{model}</strong>
-              <span className="name">{name}</span>
-            </a>
-          </li>
-        ))
-      }</ul>
+      <ul>
+        {
+          models.map(([model, code, name]) => (
+            <li key={code} className={(isModel(pageType, code)) ? 'active' : undefined}>
+              <a href={`/consoles/${code}`}>
+                <strong>{model}</strong>
+                <span className="name">{name}</span>
+              </a>
+            </li>
+          ))
+        }
+        <li className={isInCartridges(pageType) ? 'active' : undefined}>
+          <a href="/cartridges">Game<br />cartridges</a>
+        </li>
+      </ul>
     </nav>
   )
 }

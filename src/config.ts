@@ -161,6 +161,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'CGB-BFVJ-1': {name: 'Monster Traveler (Japan) (Rev A)', layout: 'rom_mbc_ram'},
   'CGB-BGLJ-0': {name: 'Super Gals! Kotobuki Ran (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BHMJ-0': {name: 'Hamster Paradise 2 (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-BHVE-0': {name: 'Harry Potter and the Sorcerer\'s Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)', layout: 'rom_mbc_ram'},
   'CGB-BMVJ-0': {name: 'Net de Get - Minigame @ 100 (Japan)', layout: 'mbc6'},
   'CGB-BXTJ-0': {name: 'Pocket Monsters - Crystal Version (Japan)', layout: 'rom_mbc_ram_xtal'},
   'CGB-BY3J-0': {name: 'Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)', layout: 'rom_mbc_ram'},
@@ -180,6 +181,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-AFFJ-0': {name: 'Super Chinese Fighter GB (Japan) (SGB Enhanced)', layout: 'rom_mbc'},
   'DMG-AFGE-0': {name: 'Frogger (USA)', layout: 'rom_mbc'},
   'DMG-AGOP-0': {name: 'Hugo (Europe) (SGB Enhanced)', layout: 'rom_mbc'},
+  'DMG-AGQE-0': {name: 'Game & Watch Gallery 3 (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-AK2P-0': {name: 'Mortal Kombat & Mortal Kombat II (USA, Europe)', layout: 'rom_mbc'},
   'DMG-AKMJ-0': {name: 'Kandume Monsters (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
   'DMG-AM3J-0': {name: 'Momotarou Collection 2 (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
@@ -230,6 +232,8 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-SVJ-0': {name: 'Seaside Volley (Japan)', layout: 'rom_mbc'},
   'DMG-TRA-1': {name: 'Tetris (World) (Rev A)', layout: 'rom'},
   'DMG-UHE-0': {name: 'Prehistorik Man (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-VPHE-0': {name: 'Pokemon Pinball (USA) (Rumble Version) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-VPHP-0': {name: 'Pokemon Pinball (Europe) (En,Fr,De,Es,It) (Rumble Version) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-VUA-1': {name: 'Dr. Mario (World) (Rev A)', layout: 'rom'},
   'DMG-W6J-0': {name: 'Wizardry Gaiden 3 - Yami no Seiten (Japan)', layout: 'rom_mbc_ram'},
   'DMG-WJA-0': {name: 'Wario Land - Super Mario Land 3 (World)', layout: 'rom_mbc_ram'},
@@ -238,8 +242,6 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-XTX-0': {name: 'Top Ranking Tennis (Europe)', layout: 'rom_mbc_protect'},
   'DMG-YTE-0': {name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-YTJ-0': {name: 'Super Donkey Kong GB (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
-  'DMG-VPHE-0': {name: 'Pokemon Pinball (USA) (Rumble Version) (SGB Enhanced)', layout: 'rom_mbc_ram'},
-  'DMG-VPHP-0': {name: 'Pokemon Pinball (Europe) (En,Fr,De,Es,It) (Rumble Version) (SGB Enhanced)', layout: 'rom_mbc_ram'},
 };
 
 export const games: string[] = Object.keys(gameCfgs);

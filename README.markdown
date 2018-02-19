@@ -8,4 +8,5 @@ Site source code for https://gbhwdb.gekkio.fi
 * gekkio (https://gekkio.fi)
 * ImATrackMan
 * jrra
+* Lance Kindle
 * zear

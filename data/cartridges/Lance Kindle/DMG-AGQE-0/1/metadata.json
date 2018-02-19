@@ -1,0 +1,35 @@
+{
+  "board": {
+    "type": "DMG-Z02-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 8,
+    "rom": {
+      "type": "N-8001EJGW-K14",
+      "manufacturer": "at-t",
+      "label": "DMG-AGQE-0 F1 N-8001EJGW-K14 0033K7036",
+      "year": 2000,
+      "week": 33
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "texas-instruments",
+      "label": "07D4CKT MBC5 2417",
+      "year": 2000
+    },
+    "ram": {
+      "type": "BR62256F-70LL",
+      "manufacturer": "rohm",
+      "label": "BR62256F-70LL 031 150NA",
+      "year": 2000,
+      "week": 31
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 0738",
+      "year": 2000
+    },
+    "battery": "CR1616"
+  }
+}

@@ -531,7 +531,7 @@ export namespace OxyMetadata {
 }
 
 export interface CartridgeMetadata {
-  code: string;
+  code?: string;
   stamp?: string;
   board: {
     type: string;
@@ -557,7 +557,7 @@ export interface CartridgeMetadata {
 
 export namespace CartridgeMetadata {
   export const schema = Joi.object().keys({
-    code: Joi.string().required(),
+    code: Joi.string(),
     stamp: Joi.string(),
     board: Joi.object().required().keys({
       type: Joi.string().required(),

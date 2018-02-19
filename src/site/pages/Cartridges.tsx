@@ -27,6 +27,7 @@ export default function Cartridges({games, mappers}: Props) {
         <tr>
           <th>Title</th>
           <th>ROM ID</th>
+          <th>Release(s)</th>
           <th>Board type(s)</th>
           <th>Mapper(s)</th>
           <th>Submissions</th>
@@ -44,6 +45,7 @@ export default function Cartridges({games, mappers}: Props) {
 
 function Game({game: {type, game, submissions}}: {game: GameSubmissions}) {
   const boardTypes = R.uniq(submissions.map(({metadata}) => metadata.board.type)).sort();
+  const releases = R.uniq(rejectNil(submissions.map(({metadata}) => metadata.code))).sort();
   const mappers = R.uniq(rejectNil(submissions.map(({metadata}) => metadata.board.mapper)).map(({type}) => type)).sort();
   return (
     <tr>
@@ -51,6 +53,7 @@ function Game({game: {type, game, submissions}}: {game: GameSubmissions}) {
         <a className="submission-list-item__link" href={`/cartridges/${type}/`}>{game}</a>
       </td>
       <td>{type}</td>
+      <td>{releases.join(', ')}</td>
       <td>{boardTypes.join(', ')}</td>
       <td>{mappers.join(', ')}</td>
       <td>{submissions.length}</td>

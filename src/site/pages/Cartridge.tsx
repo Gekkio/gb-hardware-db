@@ -17,6 +17,12 @@ export default function Cartridge({submission, cfg}: {submission: CartridgeSubmi
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
+      <dl>
+        <dt>Release</dt>
+        <dd>{format.optional<string>(R.identity, submission.metadata.code)}</dd>
+        <dt>Stamp on case</dt>
+        <dd>{format.optional<string>(R.identity, submission.metadata.stamp)}</dd>
+      </dl>
       <h3>Board</h3>
       <div className="page-cartridge__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}

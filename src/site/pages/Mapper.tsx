@@ -4,6 +4,7 @@ import * as R from 'ramda';
 import {CartridgeSubmission, Photo} from '../../crawler';
 import * as format from '../format';
 import {gameCfgs, GameConfig, gameLayouts, mapperCfgs, MapperId} from '../../config';
+import ConsoleListingChip from '../components/ConsoleListingChip';
 
 interface Props {
   mapper: MapperId,
@@ -25,7 +26,10 @@ export default function Mapper({mapper, submissions}: Props) {
         <thead>
         <tr>
           <th>Entry</th>
+          <th>ROM ID</th>
+          <th>Release</th>
           <th>Board</th>
+          <th>Mapper</th>
           <th>Photos</th>
         </tr>
         </thead>
@@ -62,10 +66,13 @@ function Submission({type, cfg, submission: {contributor, slug, title, metadata,
           </div>
         </a>
       </td>
+      <td>{type}</td>
+      <td>{format.optional(x => x, metadata.code)}</td>
       <td>
         <div>{metadata.board.type}</div>
         <div>{format.short.calendar(metadata.board)}</div>
       </td>
+      <ConsoleListingChip chip={metadata.board.mapper} />
       <td>
         {renderPhoto(type, slug, 'Front', photos.front)}
         {renderPhoto(type, slug, 'Back', photos.back)}

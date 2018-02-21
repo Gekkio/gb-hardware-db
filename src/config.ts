@@ -154,6 +154,8 @@ export interface GameConfig {
 export const gameCfgs: Record<string, GameConfig> = {
   'CGB-AW8A-0': {name: 'Wario Land 3 (World) (En,Ja)', layout: 'rom_mbc_ram'},
   'CGB-AZ7J-0': {name: 'Zelda no Densetsu - Fushigi no Kimi - Daichi no Shou (Japan)', layout: 'rom_mbc_ram'},
+  'CGB-AZ7P-0': {name: 'Legend of Zelda, The - Oracle of Seasons (Europe) (En,Fr,De,Es,It)', layout: 'rom_mbc_ram'},
+  'CGB-AZ8P-0': {name: 'Legend of Zelda, The - Oracle of Ages (Europe) (En,Fr,De,Es,It)', layout: 'rom_mbc_ram'},
   'CGB-B82J-0': {name: 'Densha de Go! 2 (Japan)', layout: 'a15'},
   'CGB-B9AJ-0': {name: 'Mobile Trainer (Japan)', layout: 'rom_mbc_ram'},
   'CGB-BDSP-0': {name: 'Dinosaur\'us (Europe) (En,Fr,De,Es,It,Nl)', layout: 'rom_mbc_ram'},
@@ -203,6 +205,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-AYJ-0': {name: 'Ayakashi no Shiro (Japan)', layout: 'rom_mbc_protect'},
   'DMG-AYMJ-1': {name: 'Gakkyuu Ou Yamazaki (Japan) (Rev A)', layout: 'rom_mbc_ram'},
   'DMG-AYWJ-0': {name: 'Bokujou Monogatari GB (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal'},
+  'DMG-AZLP-0': {name: 'Legend of Zelda, The - Link\'s Awakening DX (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-B7HJ-0': {name: 'Nakayoshi Pet Series 1 - Kawaii Hamster (Japan)', layout: 'rom_mbc_ram'},
   'DMG-BLUJ-0': {name: 'From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-BMAP-0': {name: 'Mary-Kate and Ashley - Pocket Planner (USA, Europe)', layout: 'rom_mbc_ram_xtal'},
@@ -242,6 +245,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-XTX-0': {name: 'Top Ranking Tennis (Europe)', layout: 'rom_mbc_protect'},
   'DMG-YTE-0': {name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram'},
   'DMG-YTJ-0': {name: 'Super Donkey Kong GB (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram'},
+  'DMG-ZLE-0': {name: 'Legend of Zelda, The - Link\'s Awakening (USA, Europe)', layout: 'rom_mbc_ram'},
 };
 
 export const games: string[] = Object.keys(gameCfgs);

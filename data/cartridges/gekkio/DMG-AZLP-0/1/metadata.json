@@ -1,0 +1,36 @@
+{
+  "code": "DMG-AZLP-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-A02-01",
+    "circled_letters": "Y",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 12,
+    "rom": {
+      "type": "LH538WYD",
+      "manufacturer": "sharp",
+      "label": "DMG-AZLP-0 S LH538WYD JAPAN F1 9853 D",
+      "year": 1998,
+      "week": 53
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 850U3L",
+      "year": 1998
+    },
+    "ram": {
+      "type": "LH52256CN-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CN-10LL SHARP JAPAN 9841 3 SO",
+      "year": 1998,
+      "week": 41
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 8B02",
+      "year": 1998
+    },
+    "battery": "CR1616"
+  }
+}

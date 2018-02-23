@@ -1,0 +1,74 @@
+{
+  "type": "DMG",
+  "color": "off-white",
+  "year": 1992,
+  "month": 7,
+  "mainboard": {
+    "type": "DMG-CPU-06",
+    "circled_letters": "N",
+    "extra_label": "6",
+    "stamp": "207 1202",
+    "cpu": {
+      "type": "DMG-CPU B",
+      "manufacturer": "sharp",
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9223 S",
+      "year": 1992,
+      "week": 23
+    },
+    "work_ram": {
+      "type": "LH5264N4T",
+      "manufacturer": "lsi-logic",
+      "label": "LH5264N4T LSI LOGIC JAPAN D223 24 C",
+      "year": 1992,
+      "week": 23
+    },
+    "video_ram": {
+      "type": "LH5264N4T",
+      "manufacturer": "lsi-logic",
+      "label": "LH5264N4T LSI LOGIC JAPAN D222 24 C",
+      "year": 1992,
+      "week": 22
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3R40 9222 AA",
+      "year": 1992,
+      "week": 22
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419E2",
+      "year": 1992,
+      "month": 5
+    }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "K1",
+    "stamp": "207-1202",
+    "year": 1992,
+    "month": 5,
+    "column_driver": {
+      "manufacturer": "sharp",
+      "label": "2200",
+      "year": 1992,
+      "week": 20
+    },
+    "row_driver": {
+      "manufacturer": "sharp",
+      "label": "2230",
+      "year": 1992,
+      "week": 23
+    }
+  },
+  "power_board": {
+    "type": "A",
+    "label": "DC CONV DMG",
+    "year": 1992
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": null
+  }
+}

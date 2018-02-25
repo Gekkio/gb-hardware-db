@@ -1,0 +1,14 @@
+[package]
+name = "gbhwdb-tools"
+version = "0.0.0"
+authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
+
+[[bin]]
+name = "gbhwdb-photo"
+path = "src/photo.rs"
+
+[dependencies]
+clap = "2.27"
+failure = "0.1"
+failure_derive = "0.1"
+image = {git = "https://github.com/Gekkio/image", branch = "gbhwdb"}

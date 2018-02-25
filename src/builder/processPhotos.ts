@@ -1,7 +1,6 @@
-import * as Bluebird from 'bluebird';
+import * as childProcess from 'child_process'
 import * as R from 'ramda';
 import * as fs from 'fs-extra';
-import * as jimp from 'jimp';
 import * as path from 'path';
 import * as winston from 'winston';
 
@@ -13,6 +12,16 @@ interface Input<P extends {front?: Photo}> {
   type: string,
   slug: string,
   photos: P,
+}
+
+function generateThumbnail(width: number, input: string, output: string) {
+  const args = [input, "--width", String(width), "--output", output];
+  return new Promise((resolve, reject) => {
+    childProcess.execFile('tools/target/release/gbhwdb-photo', args, error => {
+      if (error) return reject(error);
+      resolve();
+    })
+  });
 }
 
 export default async function processPhotos<P extends {front?: Photo}, T extends Input<P>>(input: T): Promise<void> {
@@ -32,8 +41,7 @@ export default async function processPhotos<P extends {front?: Photo}, T extends
     }
     const target = path.resolve(targetDirectory, `${input.slug}_thumbnail_${size}.jpg`);
     if (await files.isOutdated(target, thumbnailPhoto.stats)) {
-      const image = await jimp.read(thumbnailPhoto.path);
-      await Bluebird.fromNode(cb => image.resize(size, jimp.AUTO).quality(80).write(target, cb));
+      await generateThumbnail(size, thumbnailPhoto.path, target);
       await files.setModificationTime(target, thumbnailPhoto.stats);
       winston.debug(`[${input.type}] ${input.slug}: wrote thumbnail ${target}`);
     }

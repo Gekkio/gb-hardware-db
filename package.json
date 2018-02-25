@@ -29,7 +29,6 @@
     "gulp-sass": "~3.1.0",
     "gulp-sourcemaps": "~2.6.4",
     "gulp-typescript": "~4.0.1",
-    "jimp": "~0.2.28",
     "nodemon": "~1.14.12",
     "normalize.css": "~8.0.0",
     "postcss-csso": "~3.0.0",

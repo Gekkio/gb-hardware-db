@@ -1,6 +1,8 @@
 sudo: false
 dist: trusty
-language: node_js
+language:
+  - node_js
+  - rust
 node_js:
   - '8.9.1'
 
@@ -29,6 +31,7 @@ before_script:
   - git lfs pull
 
 script:
+  - cd tools && cargo build --verbose --release && cd ..
   - travis_wait yarn build
 
 deploy:

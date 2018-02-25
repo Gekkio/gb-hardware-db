@@ -25,11 +25,14 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
   - git lfs install
 
+install:
+  - yarn
+  - cd tools && cargo build --verbose --release && cd ..
+
 before_script:
   - git lfs pull
 
 script:
-  - cd tools && cargo build --verbose --release && cd ..
   - travis_wait yarn build
 
 deploy:

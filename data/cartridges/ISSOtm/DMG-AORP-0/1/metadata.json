@@ -1,0 +1,39 @@
+{
+  "code": "DMG-AORP-FAH",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-A06-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 8,
+    "rom": {
+      "type": "LH538WRK",
+      "manufacturer": "sharp",
+      "label": "DMG-AORP-0 S LH538WRK JAPAN F1 9942 D",
+      "year": 1999,
+      "week": 42
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 938U1M",
+      "year": 1999,
+      "week": 38
+    },
+    "ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9933 3 EB",
+      "year": 1999,
+      "week": 33
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "939 134A",
+      "year": 1999,
+      "week": 39
+    },
+    "battery": "CR1616"
+  }
+}

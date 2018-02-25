@@ -1,0 +1,25 @@
+{
+  "code": "DMG-H2-FAH",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 6,
+    "rom": {
+      "type": "23C1001EAGW-J62",
+      "manufacturer": "smsc",
+      "label": "STANDARD MICRO DMG-H2E-0 C1 23C1001EAGW-J62 9328E9020",
+      "year": 1993,
+      "week": 28
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9226 3 A",
+      "year": 1992,
+      "week": 26
+    }
+  }
+}

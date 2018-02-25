@@ -1,0 +1,25 @@
+{
+  "code": "CGB-AZRP-EUU",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 2,
+    "rom": {
+      "type": "MX23C8005-12",
+      "manufacturer": "macronix",
+      "label": "J001149-M MX23C8005-12 CGB-AZRP-0 F1 1B5740B1A0",
+      "year": 2000,
+      "week": 11
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "sharp",
+      "label": "MBC5 LZ9GB31 AL03 A",
+      "year": 2000,
+      "week": 3
+    }
+  }
+}

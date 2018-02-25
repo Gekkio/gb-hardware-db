@@ -1,0 +1,22 @@
+{
+  "code": "DMG-AFOP-FRA",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "1",
+    "rom": {
+      "type": "LH538WPU",
+      "manufacturer": "sharp",
+      "label": "DMG-AFOP-0 S LH538WPU JAPAN F1 9949 D",
+      "year": 1999,
+      "week": 49
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 943U7M",
+      "year": 1999,
+      "week": 43
+    }
+  }
+}

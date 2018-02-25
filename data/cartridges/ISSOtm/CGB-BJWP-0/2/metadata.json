@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BJWP-EUR",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "MBC",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 10,
+    "rom": {
+      "type": "M538011E-4D",
+      "label": "CGB-BJWP-0 F1 M538011E-4D 0475408",
+      "year": 2000,
+      "week": 47
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P 042U4M",
+      "year": 2000,
+      "week": 42
+    }
+  }
+}

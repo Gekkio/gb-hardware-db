@@ -1,0 +1,25 @@
+{
+  "code": "DMG-AUFP-FAH",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 10,
+    "rom": {
+      "type": "LH531HJY",
+      "manufacturer": "sharp",
+      "label": "DMG-AUFP-0 S LH531HJY JAPAN C1 9742 E",
+      "year": 1997,
+      "week": 42
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9741 3A",
+      "year": 1997,
+      "week": 41
+    }
+  }
+}

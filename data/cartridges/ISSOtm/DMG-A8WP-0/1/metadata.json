@@ -1,0 +1,24 @@
+{
+  "code": "DMG-A8WP-EUR",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 4,
+    "rom": {
+      "type": "LH5S4MV0",
+      "manufacturer": "sharp",
+      "label": "DMG-A8WP-0 S LH5S4MV0 JAPAN E1 9818 D",
+      "year": 1998,
+      "week": 18
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "label": "DMG MBC1B1 Nintendo S 9751 5 A",
+      "year": 1997,
+      "week": 51
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "code": "DMG-OT-FAH",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-AAA-03",
+    "circled_letters": "Y",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 8,
+    "rom": {
+      "type": "LH5359UD",
+      "manufacturer": "sharp",
+      "label": "DMG-OTX-0 S LH5359UD JAPAN A0 9139 D",
+      "year": 1991,
+      "week": 39
+    }
+  }
+}

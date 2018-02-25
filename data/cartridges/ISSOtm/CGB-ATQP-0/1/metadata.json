@@ -1,0 +1,23 @@
+{
+  "code": "CGB-ATQP-EUR",
+  "stamp": "12",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 1,
+    "rom": {
+      "type": "MX23C8005-12",
+      "manufacturer": "macronix",
+      "label": "C001249-M MX23C8005-12 CGB-ATQP-0 F1 1B6511A1",
+      "year": 2000,
+      "week": 12
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 007U5M",
+      "year": 2000
+    }
+  }
+}

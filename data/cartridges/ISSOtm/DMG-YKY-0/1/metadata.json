@@ -1,0 +1,25 @@
+{
+  "code": "DMG-YK-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 1,
+    "rom": {
+      "type": "LH531HW2",
+      "manufacturer": "sharp",
+      "label": "DMG-YKY-0 S LH531HW2 JAPAN C1 9810 E",
+      "year": 1998,
+      "week": 10
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9752 7 A",
+      "year": 1997,
+      "week": 52
+    }
+  }
+}

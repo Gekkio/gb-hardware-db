@@ -1,0 +1,22 @@
+{
+  "code": "CGB-BDQP-EUR",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "M3",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 5,
+    "rom": {
+      "type": "M538011E-6R",
+      "label": "CGB-BDQP-0 F1 M538011E-6R 1235409",
+      "year": 2001,
+      "week": 23
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "texas-instruments",
+      "label": "11CH8VT MBC5 2417",
+      "year": 2001
+    }
+  }
+}

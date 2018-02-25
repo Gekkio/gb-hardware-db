@@ -1,0 +1,23 @@
+{
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN(K)-10",
+    "circled_letters": "B",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 11,
+    "rom": {
+      "type": "TC531001CF",
+      "manufacturer": "toshiba",
+      "label": "TOSHIBA 9149EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN",
+      "year": 1991,
+      "week": 49
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "Nintendo DMG MBC1B N 9150BA048",
+      "year": 1991,
+      "week": 50
+    }
+  }
+}

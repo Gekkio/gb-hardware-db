@@ -1,0 +1,39 @@
+{
+  "code": "DMG-APSF-FRA",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-A02-01",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 4,
+    "rom": {
+      "type": "M538011E-G9",
+      "label": "DMG-APSF-0 F1 M538011E-G9 0165446",
+      "year": 2000,
+      "week": 16
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "rohm",
+      "label": "MBC-5 BU3650K 013 H30",
+      "year": 2000,
+      "week": 13
+    },
+    "ram": {
+      "type": "W24258S-70LE",
+      "manufacturer": "winbond",
+      "label": "Winbond W24258S-70LE 011MH200254401AA",
+      "year": 2000,
+      "week": 11
+    },
+    "ram_protector": {
+      "type": "134A",
+      "manufacturer": "microchip",
+      "label": "009 134A",
+      "year": 2000,
+      "week": 9
+    },
+    "battery": "CR1616"
+  }
+}

@@ -94,6 +94,8 @@ export function manufacturer(value: string): string {
       return 'Sanyo';
     case 'sharp':
       return 'Sharp';
+    case 'smsc':
+      return 'Standard Microsystems Corporation';
     case 'st':
       return 'STMicroelectronics';
     case 'tdk':

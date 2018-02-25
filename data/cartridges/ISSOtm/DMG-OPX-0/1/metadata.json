@@ -1,0 +1,18 @@
+{
+  "code": "DMG-OP-FAH",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-AAA-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1997,
+    "month": 5,
+    "rom": {
+      "type": "LH5359UZ",
+      "manufacturer": "sharp",
+      "label": "DMG-OPX-0 S LH5359UZ JAPAN A0 9722 D",
+      "year": 1997,
+      "week": 22
+    }
+  }
+}

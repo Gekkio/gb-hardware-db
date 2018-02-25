@@ -35,6 +35,6 @@
       "week": 49
     },
     "battery": "CR2025",
-    "crystal": false
+    "crystal": null
   }
 }

@@ -33,7 +33,6 @@
       "label": "6129A 8317",
       "year": 1998
     },
-    "battery": "CR2025",
-    "crystal": true
+    "battery": "CR2025"
   }
 }

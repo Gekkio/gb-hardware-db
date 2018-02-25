@@ -550,7 +550,7 @@ export interface CartridgeMetadata {
     line_decoder?: Chip,
     eeprom?: Chip,
     accelerometer?: Chip,
-    crystal?: boolean,
+    crystal?: Chip,
     battery?: Battery,
   }
 }
@@ -576,7 +576,7 @@ export namespace CartridgeMetadata {
       line_decoder: Chip.schema,
       eeprom: Chip.schema,
       accelerometer: Chip.schema,
-      crystal: Joi.boolean(),
+      crystal: Chip.schema.allow(null),
       battery: schemas.battery,
     }),
   });

@@ -39,6 +39,11 @@
       "label": "LVX 04 8 45"
     },
     "battery": "CR2025",
-    "crystal": true
+    "crystal": {
+      "manufacturer": "kds",
+      "label": "KDS8K",
+      "year": 1998,
+      "month": 11
+    }
   }
 }

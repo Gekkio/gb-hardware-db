@@ -33,7 +33,6 @@
       "label": "6735 0B84",
       "year": 2000
     },
-    "battery": "CR2025",
-    "crystal": true
+    "battery": "CR2025"
   }
 }

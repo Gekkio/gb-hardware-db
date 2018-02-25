@@ -30,7 +30,6 @@
     "u4": {
       "label": "T 9749HB 8521AM"
     },
-    "battery": "CR2016",
-    "crystal": true
+    "battery": "CR2016"
   }
 }

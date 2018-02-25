@@ -60,14 +60,6 @@ function renderChips(layout: CartLayout, {board}: CartridgeMetadata) {
     <ConsolePageChipTable>
       {layout.chips.map(({designator, name, key}) =>
         <ConsolePageChip key={designator} designator={designator} title={name} chip={board[key]} />)}
-      {layout.crystal && <tr className="console-page-chip">
-        <td>{layout.crystal}</td>
-        <td>Crystal</td>
-        <td>????</td>
-        <td />
-        <td />
-        <td />
-      </tr>}
       {layout.battery && <tr className="console-page-chip">
         <td></td>
         <td>Battery</td>

@@ -23,7 +23,6 @@ export default function Game({type, cfg, submissions}: Props) {
           <th>Release</th>
           <th>Board</th>
           {layout.chips.map(({designator, name}) => <th key={designator}>{`${name} (${designator})`}</th>)}
-          {layout.crystal && <th>{`Crystal (${layout.crystal})`}</th>}
           {layout.battery && <th>Battery</th>}
           <th>Photos</th>
         </tr>
@@ -65,7 +64,6 @@ function Submission({type, layout, submission: {contributor, slug, title, metada
         <div>{format.short.calendar(metadata.board)}</div>
       </td>
       {layout.chips.map(({designator, key}) => <ConsoleListingChip key={designator} chip={metadata.board[key]} />)}
-      {layout.crystal && <td>{format.optional(x => x ? 'Y' : 'N', metadata.board.crystal)}</td>}
       {layout.battery && <td>{format.optional(x => x, metadata.board.battery)}</td>}
       <td>
         {renderPhoto(type, slug, 'Front', photos.front)}

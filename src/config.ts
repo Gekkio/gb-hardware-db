@@ -21,14 +21,13 @@ export const consoleCfgs: Record<ConsoleType, ConsoleConfig> = {
 
 export interface CartLayout {
   chips: CartChip[],
-  crystal?: string,
   battery?: boolean,
 }
 
 export interface CartChip {
   designator: string,
   name: string,
-  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5' | 'line_decoder' | 'flash' | 'accelerometer' | 'eeprom' | 'rom2'
+  key: 'rom' | 'mapper' | 'ram' | 'ram_protector' | 'u4' | 'u5' | 'line_decoder' | 'flash' | 'accelerometer' | 'eeprom' | 'rom2' | 'crystal'
 }
 
 export type CartLayoutId = 'rom' | 'rom_mbc' | 'rom_mbc_ram' | 'rom_mbc_protect' | 'rom_mbc_ram_xtal' | 'huc3' | 'tama' | 'mbc6' | 'mbc7' | 'a15'
@@ -68,8 +67,8 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       {designator: 'U2', name: 'Mapper', key: 'mapper'},
       {designator: 'U3', name: 'RAM', key: 'ram'},
       {designator: 'U4', name: 'RAM protector', key: 'ram_protector'},
+      {designator: 'X1', name: 'Crystal', key: 'crystal'},
     ],
-    crystal: 'X1',
     battery: true,
   },
   'huc3': {
@@ -79,8 +78,8 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       {designator: 'U3', name: 'RAM', key: 'ram'},
       {designator: 'U4', name: 'RAM protector', key: 'ram_protector'},
       {designator: 'U5', name: '????', key: 'u5'},
+      {designator: 'X1', name: 'Crystal', key: 'crystal'},
     ],
-    crystal: 'X1',
     battery: true,
   },
   'tama': {
@@ -90,8 +89,8 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       {designator: 'U3', name: 'RAM', key: 'ram'},
       {designator: 'U4', name: '????', key: 'u4'},
       {designator: 'U5', name: 'RAM protector', key: 'ram_protector'},
+      {designator: 'X1', name: 'Crystal', key: 'crystal'},
     ],
-    crystal: 'X1',
     battery: true,
   },
   'mbc6': {

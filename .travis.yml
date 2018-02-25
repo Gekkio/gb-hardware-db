@@ -33,7 +33,7 @@ before_script:
   - git lfs pull
 
 script:
-  - travis_wait yarn build
+  - yarn build
 
 deploy:
   provider: script

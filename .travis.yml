@@ -17,6 +17,7 @@ cache:
   cargo: true
   directories:
     - node_modules
+    - tools/target
 
 before_install:
   - nvm install 8.9.4

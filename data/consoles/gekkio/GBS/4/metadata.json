@@ -1,57 +1,57 @@
 {
   "type": "GBS",
-  "color": "spice",
+  "color": "indigo",
   "year": 2003,
-  "week": 23,
+  "week": 12,
   "mainboard": {
     "type": "DOL-GBS-10",
     "number_pair": "10-1",
-    "stamp": "2333727",
-    "stamp_front": "10529B",
-    "stamp_back": "9529B",
+    "stamp": "1233727",
+    "stamp_front": "1315A",
+    "stamp_back": "2315A",
     "circled_letters": "CS",
     "year": 2003,
-    "month": 5,
+    "month": 3,
     "crystal": {
       "type": "33WKSS",
       "manufacturer": "kss",
-      "label": "33WKSS3DT",
+      "label": "33WKSS3AT",
       "year": 2003,
-      "month": 4
+      "month": 1
     },
     "cpu": {
       "type": "CPU AGB A",
       "manufacturer": "sharp",
-      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0315 wV",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0305 mU",
       "year": 2003,
-      "week": 15
+      "week": 5
     },
     "work_ram": {
       "type": "BS616LV2018TC-70",
       "manufacturer": "bsi",
-      "label": "BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN",
-      "year": 2003,
-      "week": 14
+      "label": "BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN",
+      "year": 2002,
+      "week": 30
     },
     "u4": {
       "type": "GBS-DOL",
-      "label": "Nintendo GBS-DOL 011 0318E3086",
+      "label": "Nintendo GBS-DOL 011 0307E3104",
       "year": 2003,
-      "week": 18
+      "week": 7
     },
     "u5": {
       "type": "592F",
       "manufacturer": "microchip",
-      "label": "316 592F",
+      "label": "303 592F",
       "year": 2003,
-      "week": 16
+      "week": 3
     },
     "u6": {
       "type": "592F",
       "manufacturer": "microchip",
-      "label": "316 592F",
+      "label": "303 592F",
       "year": 2003,
-      "week": 16
+      "week": 3
     }
   }
 }

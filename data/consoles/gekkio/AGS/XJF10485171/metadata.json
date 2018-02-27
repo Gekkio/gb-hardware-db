@@ -24,7 +24,9 @@
     "work_ram": {
       "type": "M68AS128 DL7ON6",
       "manufacturer": "st",
-      "label": "M68AS128 DL7ON6 AANFG F6 TWN 8B 414"
+      "label": "M68AS128 DL7ON6 AANFG F6 TWN 8B 414",
+      "year": 2004,
+      "week": 14
     },
     "amplifier": {
       "type": "IR3R60N",

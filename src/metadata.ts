@@ -453,6 +453,7 @@ export namespace AgsMetadata {
 export interface GbsMetadata {
   type: "GBS";
   color?: string;
+  release_code?: string;
   year?: number;
   week?: number;
   mainboard: {
@@ -477,6 +478,7 @@ export namespace GbsMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('GBS'),
     color: Joi.string(),
+    release_code: Joi.string(),
     year: schemas.year,
     week: schemas.week,
     mainboard: Joi.object().required().keys({

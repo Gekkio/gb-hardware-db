@@ -37,15 +37,7 @@ gulp.task('static', function() {
 })
 
 gulp.task('html', ['scripts'], function(cb) {
-  const node = exec('node build/scripts/builder/builder.js', function(err) {
-    if (stdout) {
-      console.log(stdout);
-    }
-    if (stderr) {
-      console.error(stderr);
-    }
-    cb(err);
-  });
+  const node = exec('node build/scripts/builder/builder.js', cb);
   node.stdout.pipe(process.stdout);
   node.stderr.pipe(process.stderr);
 });

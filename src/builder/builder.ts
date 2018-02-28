@@ -11,19 +11,22 @@ import * as winston from 'winston';
 import Site from '../site/Site';
 import {
   AgbSubmission, AgsSubmission, CartridgeSubmission, CgbSubmission, ConsoleSubmission, crawlCartridges, crawlConsoles,
-  DmgSubmission,
-  GbsSubmission, MgbSubmission, MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission
+  DmgSubmission, GbsSubmission, MgbSubmission, MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission
 } from '../crawler';
 import {
   AGB_CSV_COLUMNS, AGS_CSV_COLUMNS, CARTRIDGE_CSV_COLUMNS, CGB_CSV_COLUMNS, CsvColumn, DMG_CSV_COLUMNS, GBS_CSV_COLUMNS,
-  generateCsv,
-  MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
+  generateCsv, MGB_CSV_COLUMNS, MGL_CSV_COLUMNS, OXY_CSV_COLUMNS, SGB2_CSV_COLUMNS, SGB_CSV_COLUMNS
 } from './csvTransform';
 import * as config from '../config';
-import processPhotos from './processPhotos';
-import {CartridgeMetadata} from '../metadata';
 import {ConsoleType, gameCfgs, gameLayouts, MapperId} from '../config';
-import {isNullOrUndefined} from 'util';
+import processPhotos from './processPhotos';
+
+winston.configure({
+  level: process.env.LOG_LEVEL || 'info',
+  transports: [
+    new winston.transports.Console(),
+  ]
+});
 
 interface PageDeclaration {
   type: string;

@@ -7,6 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
+const process = require('process');
 const exec = require('child_process').exec;
 
 const tsProject = ts.createProject('tsconfig.json')
@@ -36,7 +37,7 @@ gulp.task('static', function() {
 })
 
 gulp.task('html', ['scripts'], function(cb) {
-  exec('node build/scripts/builder/builder.js', function(err, stdout, stderr) {
+  const node = exec('node build/scripts/builder/builder.js', function(err) {
     if (stdout) {
       console.log(stdout);
     }
@@ -45,6 +46,8 @@ gulp.task('html', ['scripts'], function(cb) {
     }
     cb(err);
   });
+  node.stdout.pipe(process.stdout);
+  node.stderr.pipe(process.stderr);
 });
 
 gulp.task('build', ['html', 'scripts', 'styles', 'static']);

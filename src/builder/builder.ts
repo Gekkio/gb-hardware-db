@@ -10,7 +10,8 @@ import * as winston from 'winston';
 
 import Site from '../site/Site';
 import {
-  AgbSubmission, AgsSubmission, CartridgeSubmission, CgbSubmission, crawlCartridges, crawlConsoles, DmgSubmission,
+  AgbSubmission, AgsSubmission, CartridgeSubmission, CgbSubmission, ConsoleSubmission, crawlCartridges, crawlConsoles,
+  DmgSubmission,
   GbsSubmission, MgbSubmission, MglSubmission, OxySubmission, Sgb2Submission, SgbSubmission
 } from '../crawler';
 import {
@@ -21,7 +22,7 @@ import {
 import * as config from '../config';
 import processPhotos from './processPhotos';
 import {CartridgeMetadata} from '../metadata';
-import {gameCfgs, gameLayouts, MapperId} from '../config';
+import {ConsoleType, gameCfgs, gameLayouts, MapperId} from '../config';
 import {isNullOrUndefined} from 'util';
 
 interface PageDeclaration {
@@ -89,19 +90,34 @@ function getMapper({type, metadata}: CartridgeSubmission): MapperId | undefined 
     : 'no-mapper'
 }
 
+function sortGroupComparator(a: ConsoleSubmission, b: ConsoleSubmission): number {
+  if (a.sortGroup) {
+    return b.sortGroup ? a.sortGroup.localeCompare(b.sortGroup) : -1
+  } else {
+    return b.sortGroup ? 1 : 0
+  }
+}
+const slugComparator = R.comparator((a: ConsoleSubmission, b: ConsoleSubmission) => a.slug < b.slug);
+
+function consoleSubmissionComparator(a: ConsoleSubmission, b: ConsoleSubmission): number {
+  return sortGroupComparator(a, b) || slugComparator(a, b)
+}
+
 async function main(): Promise<void> {
   const [consoleSubmissions, cartridgeSubmissions] = await Promise.all([
     crawlConsoles('data/consoles'),
     crawlCartridges('data/cartridges'),
   ]);
 
-  const groupedConsoles: GroupedConsoleSubmissions = R.groupBy(({type}) => type, consoleSubmissions) as any
-  const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({type}) => type, cartridgeSubmissions)
-  const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
+  const groupedConsoles: GroupedConsoleSubmissions = R.map(
+    R.sort(consoleSubmissionComparator),
+    R.groupBy(({type}) => type, consoleSubmissions) as Record<ConsoleType, ConsoleSubmission[]>) as any;
+  const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({type}) => type, cartridgeSubmissions);
+  const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {};
 
   for (const submission of cartridgeSubmissions) {
-    const mapper = getMapper(submission)
-    if (!mapper) continue
+    const mapper = getMapper(submission);
+    if (!mapper) continue;
     const submissions = cartridgesByMapper[mapper] = cartridgesByMapper[mapper] || [];
     submissions.push(submission)
   }

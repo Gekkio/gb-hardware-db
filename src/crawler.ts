@@ -46,6 +46,7 @@ interface SubmissionBase<T extends string, M, P = DefaultPhotos> {
   type: T;
   title: string;
   slug: string;
+  sortGroup: string | undefined;
   contributor: string;
   metadata: M;
   photos: P;
@@ -144,17 +145,20 @@ interface SubmissionPath {
 }
 
 interface SubmissionEntry {
-  title: string,
-  slug: string,
-  contributor: string,
-  entry: FsEntry,
+  title: string;
+  slug: string;
+  sortGroup: string | undefined;
+  contributor: string;
+  entry: FsEntry;
 }
 
 function consoleSubmissionEntry({contributor, entry}: SubmissionPath): SubmissionEntry {
-  if (/^[A-Z]+[0-9]+(-[0-9])?$/.test(entry.name)) {
+  const serialMatch = /^([A-Z]+)[0-9]+(-[0-9])?$/.exec(entry.name);
+  if (serialMatch) {
     return {
       title: entry.name,
       slug: entry.name,
+      sortGroup: serialMatch[1],
       contributor: contributor.name,
       entry,
     };
@@ -162,6 +166,7 @@ function consoleSubmissionEntry({contributor, entry}: SubmissionPath): Submissio
     return {
       title: `Unit #${entry.name}`,
       slug: urlSlug(`${contributor.name}-${entry.name}`),
+      sortGroup: undefined,
       contributor: contributor.name,
       entry,
     };
@@ -175,6 +180,7 @@ function cartridgeSubmissionEntry({contributor, entry}: SubmissionPath): Submiss
     return {
       title: `Entry #${entry.name}`,
       slug: urlSlug(`${contributor.name}-${entry.name}`),
+      sortGroup: undefined,
       contributor: contributor.name,
       entry,
     };
@@ -187,12 +193,12 @@ async function crawl<T extends string, M, P = DefaultPhotos>(
   type: T,
   schema: Joi.Schema,
   photoCrawler: (unit: FsEntry) => Promise<P>,
-  {title, slug, contributor, entry}: SubmissionEntry,
+  {title, slug, sortGroup, contributor, entry}: SubmissionEntry,
 ): Promise<SubmissionBase<T, M, P> | undefined> {
   const metadata = await readMetadata<M>(entry, schema);
   if (!metadata) return undefined;
   const photos = await photoCrawler(entry);
-  return {type, title, slug, contributor, metadata, photos}
+  return {type, title, slug, sortGroup, contributor, metadata, photos}
 }
 
 async function crawlSubmissions(path: string): Promise<SubmissionPath[]> {

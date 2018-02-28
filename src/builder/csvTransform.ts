@@ -117,6 +117,7 @@ export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: MgbSubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -146,6 +147,7 @@ export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: MglSubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -197,6 +199,7 @@ export const CGB_CSV_COLUMNS: CsvColumn<CgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: CgbSubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -225,6 +228,7 @@ export const AGB_CSV_COLUMNS: CsvColumn<AgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: AgbSubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -275,6 +279,7 @@ export const GBS_CSV_COLUMNS: CsvColumn<GbsSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: GbsSubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -304,6 +309,7 @@ export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: OxySubmission) => s.metadata, [
     field('', 'color'),
+    field('', 'release_code'),
     ...lift((m: OxyMetadata) => m.mainboard, [
       field('mainboard', 'type'),
       field('mainboard', 'circled_letters'),
@@ -341,6 +347,7 @@ export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
     ...lift((m: CartridgeMetadata) => m.board.mapper, chipColumns('mapper')),
     ...lift((m: CartridgeMetadata) => m.board.ram, chipColumns('ram')),
     ...lift((m: CartridgeMetadata) => m.board.ram_protector, chipColumns('ram_protector')),
+    ...lift((m: CartridgeMetadata) => m.board.crystal, chipColumns('crystal')),
     ...lift((m: CartridgeMetadata) => m.board.rom2, chipColumns('rom2')),
     ...lift((m: CartridgeMetadata) => m.board.flash, chipColumns('flash')),
     ...lift((m: CartridgeMetadata) => m.board.line_decoder, chipColumns('line_decoder')),
@@ -378,7 +385,7 @@ function generate<T>(prefix: string, name: string, get: (value: T) => any): CsvC
   return {
     name: prefix ? `${prefix}_${name}` : name,
     get: (value: T) => {
-      const result = get(value)
+      const result = get(value);
       if (result === null) {
         return '-'
       } else if (result === undefined) {

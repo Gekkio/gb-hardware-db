@@ -1,6 +1,7 @@
 {
   "type": "MGB",
   "color": "green",
+  "release_code": "C/MGB-JPN",
   "year": 1998,
   "month": 12,
   "mainboard": {

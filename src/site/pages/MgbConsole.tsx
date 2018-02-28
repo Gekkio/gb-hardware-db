@@ -18,6 +18,8 @@ export default function MgbConsole({submission}: {submission: MgbSubmission}) {
       <dl>
         <dt>Color</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
+        <dt>Release code</dt>
+        <dd>{format.optional<string>(R.identity, submission.metadata.release_code)}</dd>
         <dt>Assembly date</dt>
         <dd>{format.calendar(submission.metadata)}</dd>
       </dl>

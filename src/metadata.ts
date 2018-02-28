@@ -177,6 +177,7 @@ export namespace SgbMetadata {
 export interface MgbMetadata {
   type: "MGB";
   color?: string;
+  release_code?: string;
   year?: number;
   month?: number;
   mainboard: {
@@ -203,6 +204,7 @@ export namespace MgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('MGB'),
     color: Joi.string(),
+    release_code: Joi.string(),
     year: schemas.year,
     month: schemas.month,
     mainboard: Joi.object().required().keys({
@@ -229,6 +231,7 @@ export namespace MgbMetadata {
 export interface MglMetadata {
   type: "MGL";
   color?: string;
+  release_code?: string;
   year?: number;
   week?: number;
   mainboard: {
@@ -256,6 +259,7 @@ export namespace MglMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('MGL'),
     color: Joi.string(),
+    release_code: Joi.string(),
     year: schemas.year,
     week: schemas.week,
     mainboard: Joi.object().required().keys({
@@ -323,6 +327,7 @@ export namespace Sgb2Metadata {
 export interface CgbMetadata {
   type: "CGB";
   color?: string;
+  release_code?: string;
   year?: number;
   month?: number;
   week?: number;
@@ -346,6 +351,7 @@ export namespace CgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('CGB'),
     color: Joi.string(),
+    release_code: Joi.string(),
     year: schemas.year,
     month: schemas.month,
     week: schemas.week,
@@ -369,6 +375,7 @@ export namespace CgbMetadata {
 export interface AgbMetadata {
   type: "AGB";
   color?: string;
+  release_code?: string;
   year?: number;
   week?: number;
   mainboard: {
@@ -391,6 +398,7 @@ export namespace AgbMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('AGB'),
     color: Joi.string(),
+    release_code: Joi.string(),
     year: schemas.year,
     week: schemas.week,
     mainboard: Joi.object().required().keys({
@@ -503,6 +511,7 @@ export namespace GbsMetadata {
 export interface OxyMetadata {
   type: "OXY";
   color?: string;
+  release_code?: string;
   mainboard: {
     type: string;
     circled_letters?: string;
@@ -519,6 +528,7 @@ export namespace OxyMetadata {
   export const schema = Joi.object().keys({
     type: Joi.string().required().allow('OXY'),
     color: Joi.string(),
+    release_code: Joi.string(),
     mainboard: Joi.object().required().keys({
       type: Joi.string().required(),
       circled_letters: Joi.string(),

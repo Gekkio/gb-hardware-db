@@ -1,0 +1,57 @@
+{
+  "type": "MGB",
+  "color": "silver-black",
+  "release_code": "C/MGB-JPN",
+  "year": 1998,
+  "month": 9,
+  "mainboard": {
+    "type": "MGB-LCPU-02",
+    "number_pair": "4-1",
+    "stamp": "809 3702",
+    "circled_letters": "Cs",
+    "year": 1998,
+    "month": 8,
+    "crystal": {
+      "label": "4.1943 9823",
+      "year": 1998,
+      "week": 23
+    },
+    "cpu": {
+      "type": "CPU MGB",
+      "manufacturer": "sharp",
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9817 D",
+      "year": 1998,
+      "week": 17
+    },
+    "work_ram": {
+      "type": "LH5164AN-10L",
+      "manufacturer": "sharp",
+      "label": "LH5164AN-10L SHARP JAPAN 9820 5 EB",
+      "year": 1998,
+      "week": 20
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 9820 n",
+      "year": 1998,
+      "week": 20
+    },
+    "amplifier": {
+      "type": "IR3R53N",
+      "manufacturer": "sharp",
+      "label": "AMP MGB IR3R53N 9816 a",
+      "year": 1998,
+      "week": 16
+    }
+  },
+  "lcd": {
+    "row_driver": {
+      "type": "LH5076 E",
+      "manufacturer": "sharp",
+      "label": "LH5076 E 7480",
+      "year": 1997,
+      "week": 48
+    }
+  }
+}

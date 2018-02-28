@@ -18,6 +18,8 @@ export default function OxyConsole({submission}: {submission: OxySubmission}) {
       <dl>
         <dt>Color</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
+        <dt>Release code</dt>
+        <dd>{format.optional<string>(R.identity, submission.metadata.release_code)}</dd>
       </dl>
       <h3>Mainboard</h3>
       <div className="page-console__photo">

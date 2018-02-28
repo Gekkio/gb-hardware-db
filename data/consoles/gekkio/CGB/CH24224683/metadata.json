@@ -1,6 +1,7 @@
 {
   "type": "CGB",
   "color": "atomic-purple",
+  "release_code": "C/CGB-JPN-2",
   "year": 2001,
   "week": 45,
   "mainboard": {

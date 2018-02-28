@@ -1,6 +1,7 @@
 {
   "type": "MGB",
   "color": "yellow",
+  "release_code": "MGB-JPN",
   "year": 1996,
   "month": 6,
   "mainboard": {

@@ -1,6 +1,7 @@
 {
   "type": "AGB",
   "color": "spice",
+  "release_code": "AGB-JPN-1",
   "year": 2002,
   "week": 27,
   "mainboard": {
@@ -46,6 +47,7 @@
     },
     "u4": {
       "type": "514X",
+      "manufacturer": "microchip",
       "label": "220 514X",
       "year": 2002,
       "week": 20

@@ -1,6 +1,7 @@
 {
   "type": "OXY",
   "color": "purple",
+  "release_code": "C/OXY-JPN",
   "mainboard": {
     "type": "OXY-CPU-01",
     "circled_letters": "SH",

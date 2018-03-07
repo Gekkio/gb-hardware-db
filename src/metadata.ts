@@ -30,7 +30,7 @@ export namespace DateRangePart {
 
 const manufacturers = [
   'amic', 'analog', 'at-t', 'bsi', 'fujitsu', 'hynix', 'hyundai', 'kds', 'kss', 'lgs', 'lsi-logic', 'macronix',
-  'microchip', 'mitsumi', 'mosel-vitelic', 'nec', 'rohm', 'samsung', 'sanyo', 'sharp', 'smsc', 'st', 'tdk',
+  'microchip', 'mitsumi', 'mosel-vitelic', 'motorola', 'nec', 'rohm', 'samsung', 'sanyo', 'sharp', 'smsc', 'st', 'tdk',
   'texas-instruments', 'toshiba', 'winbond', 'xlink'
 ];
 

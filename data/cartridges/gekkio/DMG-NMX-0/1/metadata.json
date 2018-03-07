@@ -16,8 +16,10 @@
     },
     "mapper": {
       "type": "MBC1B",
+      "manufacturer": "motorola",
       "label": "DMG MBC1B Nintendo J9130BR",
-      "year": 1991
+      "year": 1991,
+      "week": 30
     }
   }
 }

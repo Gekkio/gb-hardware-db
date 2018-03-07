@@ -1,0 +1,38 @@
+{
+  "code": "DMG-MQ-UKV",
+  "stamp": "11B",
+  "board": {
+    "type": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1992,
+    "month": 12,
+    "rom": {
+      "type": "TC534000BF",
+      "manufacturer": "toshiba",
+      "label": "TOSHIBA 9301EAI TC534000BF DMG-MQE-2 E1 N516 JAPAN",
+      "year": 1993,
+      "week": 1
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "motorola",
+      "label": "DMG MBC1B Nintendo J9246BR",
+      "year": 1992,
+      "week": 46
+    },
+    "ram": {
+      "type": "HY6264ALLJ-10",
+      "manufacturer": "hyundai",
+      "label": "HYUNDAI HY6264ALLJ-10 9249A KOREA",
+      "year": 1992,
+      "week": 49
+    },
+    "ram_protector": {
+      "type": "6129",
+      "label": "6129 2B09",
+      "year": 1992
+    },
+    "battery": "CR1616"
+  }
+}

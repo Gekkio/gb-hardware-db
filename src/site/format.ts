@@ -84,6 +84,8 @@ export function manufacturer(value: string): string {
       return 'Mitsumi';
     case 'mosel-vitelic':
       return 'Mosel-Vitelic';
+    case 'motorola':
+      return 'Motorola';
     case 'nec':
       return 'NEC';
     case 'rohm':

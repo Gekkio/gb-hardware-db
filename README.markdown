@@ -9,6 +9,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * ImATrackMan
 * ISSOtm
 * jrra
+* Kai
 * Lance Kindle
 * l0k1
 * terinjokes

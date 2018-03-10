@@ -97,7 +97,7 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     chips: [
       {designator: 'U1', name: 'Mapper', key: 'mapper'},
       {designator: 'U2', name: 'ROM', key: 'rom'},
-      {designator: 'U4', name: 'Flash', key: 'flash'},
+      {designator: 'U3', name: 'Flash', key: 'flash'},
       {designator: 'U4', name: 'RAM', key: 'ram'},
       {designator: 'U5', name: 'RAM protector', key: 'ram_protector'},
     ],

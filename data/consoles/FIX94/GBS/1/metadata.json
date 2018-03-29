@@ -1,0 +1,58 @@
+{
+  "type": "GBS",
+  "color": "black",
+  "release_code": "C/L-DOL-A-GP-EUR",
+  "year": 2004,
+  "week": 37,
+  "mainboard": {
+    "type": "DOL-GBS-20",
+    "number_pair": "20-2",
+    "stamp": "3743733",
+    "stamp_front": "8824B",
+    "stamp_back": "10827A",
+    "circled_letters": "CS",
+    "year": 2004,
+    "month": 5,
+    "crystal": {
+      "type": "33WKSS",
+      "manufacturer": "kss",
+      "label": "33WKSS4ET",
+      "year": 2004,
+      "month": 5
+    },
+    "cpu": {
+      "type": "CPU AGB A",
+      "manufacturer": "sharp",
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0429 I",
+      "year": 2004,
+      "week": 29
+    },
+    "work_ram": {
+      "type": "M68AS128 DL7ON6",
+      "manufacturer": "st",
+      "label": "M68AS128 DL7ON6 AAPAN F6 TWN 8B 427",
+      "year": 2004,
+      "week": 27
+    },
+    "u4": {
+      "type": "GBS-DOL",
+      "label": "Nintendo GBS-DOL 011 0429E3022",
+      "year": 2004,
+      "week": 29
+    },
+    "u5": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "351 592F",
+      "year": 2003,
+      "week": 51
+    },
+    "u6": {
+      "type": "592F",
+      "manufacturer": "microchip",
+      "label": "351 592F",
+      "year": 2003,
+      "week": 51
+    }
+  }
+}

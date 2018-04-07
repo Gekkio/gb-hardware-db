@@ -1,13 +1,60 @@
 {
   "type": "DMG",
+  "color": "off-white",
+  "screws": "philips",
+  "year": 1989,
+  "month": 4,
   "mainboard": {
     "type": "DMG-CPU-01",
+    "circled_letters": null,
+    "extra_label": "5",
+    "stamp": "904 05",
     "cpu": {
       "type": "DMG-CPU",
       "manufacturer": "sharp",
-      "label": "DMG-CPU 8913 D",
+      "label": "DMG-CPU © 1989 Nintendo JAPAN 8913 D",
       "year": 1989,
       "week": 13
+    },
+    "work_ram": {
+      "type": "LH5164LN-10",
+      "manufacturer": "sharp",
+      "label": "LH5164LN-10 SHARP JAPAN 8911 1 D",
+      "year": 1989,
+      "week": 11
+    },
+    "video_ram": {
+      "type": "LH5164LN-10",
+      "manufacturer": "sharp",
+      "label": "LH5164LN-10 SHARP JAPAN 8911 1 D",
+      "year": 1989,
+      "week": 11
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3R40 8909 A",
+      "year": 1989,
+      "week": 9
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419B9",
+      "year": 1989,
+      "month": 2
     }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-05",
+    "circled_letters": "Z"
+  },
+  "power_board": {
+    "type": "A1",
+    "label": "DC CONV DMG",
+    "year": 1989
+  },
+  "jack_board": {
+    "type": "DMG JACK 02",
+    "extra_label": null
   }
 }

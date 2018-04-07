@@ -72,7 +72,7 @@
     }
   },
   "power_board": {
-    "type": "A",
+    "type": "A2",
     "label": "DC CONV DMG",
     "year": 1990
   },

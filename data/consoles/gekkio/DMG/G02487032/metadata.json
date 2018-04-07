@@ -71,8 +71,9 @@
     }
   },
   "power_board": {
-    "type": "A",
-    "label": "DC CONV DMG"
+    "type": "A2",
+    "label": "DC CONV DMG",
+    "year": 1989
   },
   "jack_board": {
     "type": "DMG JACK 02",

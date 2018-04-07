@@ -1,13 +1,83 @@
 {
   "type": "DMG",
+  "color": "vibrant-yellow",
+  "screws": "tri-wing",
+  "year": 1999,
+  "month": 5,
   "mainboard": {
     "type": "DMG-CPU-06",
+    "circled_letters": "CS",
+    "extra_label": "6",
+    "stamp": "905 3901",
     "cpu": {
       "type": "DMG-CPU C",
       "manufacturer": "sharp",
-      "label": "DMG-CPU C 9835 D",
+      "label": "DMG-CPU C © 1989 Nintendo JAPAN 9835 D",
       "year": 1998,
       "week": 35
+    },
+    "work_ram": {
+      "type": "LH52A64N-L",
+      "manufacturer": "sharp",
+      "label": "LH52A64N-L SHARP JAPAN 9817 1 Y",
+      "year": 1998,
+      "week": 17
+    },
+    "video_ram": {
+      "type": "LH52A64N-L",
+      "manufacturer": "sharp",
+      "label": "LH52A64N-L SHARP JAPAN 9817 1 Y",
+      "year": 1998,
+      "week": 17
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3R40 9902 CA",
+      "year": 1999,
+      "week": 2
+    },
+    "crystal": {
+      "type": "4.19C",
+      "label": "4.19C8Y",
+      "year": 1998
     }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "A",
+    "stamp": "905 3901",
+    "year": 1998,
+    "month": 8,
+    "column_driver": {
+      "type": "LH5077 BF",
+      "manufacturer": "sharp",
+      "label": "LH5077 BF, 8021",
+      "year": 1998,
+      "week": 2
+    },
+    "row_driver": {
+      "type": "LH5076 BF",
+      "manufacturer": "sharp",
+      "label": "LH5076 BF, 7511",
+      "year": 1997,
+      "week": 51
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 9906 n",
+      "year": 1999,
+      "week": 6
+    }
+  },
+  "power_board": {
+    "type": "D",
+    "label": "DC CONV2 DMG",
+    "year": 1998
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": "M12"
   }
 }

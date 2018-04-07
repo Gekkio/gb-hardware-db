@@ -1,10 +1,72 @@
 {
   "type": "DMG",
+  "color": "high-tech-transparent",
+  "screws": "tri-wing",
+  "year": 1995,
+  "month": 2,
   "mainboard": {
-    "type": "DMG-CPU-07",
+    "type": "DMG-CPU-04",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "stamp": "502 3702",
     "cpu": {
       "type": "blob",
       "label": null
+    },
+    "work_ram": {
+      "type": "blob",
+      "label": null
+    },
+    "video_ram": {
+      "type": "blob",
+      "label": null
+    },
+    "amplifier": {
+      "type": "blob",
+      "label": null
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419J4",
+      "year": 1994,
+      "month": 10
     }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "CP",
+    "stamp": "502-3702",
+    "year": 1994,
+    "month": 12,
+    "column_driver": {
+      "type": "LH5077 BF",
+      "manufacturer": "sharp",
+      "label": "LH5077 BF, 4370",
+      "year": 1994,
+      "week": 37
+    },
+    "row_driver": {
+      "type": "LH5076 BF",
+      "manufacturer": "sharp",
+      "label": "LH5076 BF, 4380",
+      "year": 1994,
+      "week": 38
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 9450 CB",
+      "year": 1994,
+      "week": 50
+    }
+  },
+  "power_board": {
+    "type": "C",
+    "label": "DC CONV DMG",
+    "year": 1994
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": "14"
   }
 }

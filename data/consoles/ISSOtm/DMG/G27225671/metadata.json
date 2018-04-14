@@ -47,7 +47,8 @@
   "power_board": {
     "type": "A3",
     "label": "DC CONV DMG",
-    "year": 1991
+    "year": 1991,
+    "month": 5
   },
   "jack_board": {
     "type": "DMG JACK 03",

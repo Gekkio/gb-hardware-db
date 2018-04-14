@@ -1,0 +1,36 @@
+{
+  "code": "DMG-WJ-SCN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "3",
+    "year": 1996,
+    "month": 1,
+    "rom": {
+      "type": "LH534M05",
+      "manufacturer": "sharp",
+      "label": "DMG-WJA-0 S LH534M05 JAPAN E1 9606 D",
+      "year": 1996,
+      "week": 6
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 5'D5",
+      "year": 1995
+    },
+    "ram": {
+      "type": "XLJ6265BF-10SL",
+      "manufacturer": "rohm",
+      "label": "XLJ6265BF-10SL 604 195N",
+      "year": 1996,
+      "week": 4
+    },
+    "ram_protector": {
+      "type": "6129A",
+      "label": "6129A 5B68",
+      "year": 1995
+    },
+    "battery": "CR1616"
+  }
+}

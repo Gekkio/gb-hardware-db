@@ -1,0 +1,24 @@
+{
+  "code": "DMG-EE-UKV",
+  "stamp": "23",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1994,
+    "month": 11,
+    "rom": {
+      "type": "TC532000BF",
+      "manufacturer": "toshiba",
+      "label": "TOSHIBA 9448EAI TC532000BF DMG-EEE-0 D1 N875 JAPAN",
+      "year": 1994,
+      "week": 48
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "Nintendo DMG MBC1B N 9423BA014",
+      "year": 1994,
+      "week": 23
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BIA",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 9,
+    "rom": {
+      "type": "23C1001EGW-J61",
+      "manufacturer": "smsc",
+      "label": "STANDARD MICRO DMG-BIA-0 C1 23C1001EGW-J61 9140E9017",
+      "year": 1991,
+      "week": 40
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 1'05",
+      "year": 1991
+    }
+  }
+}

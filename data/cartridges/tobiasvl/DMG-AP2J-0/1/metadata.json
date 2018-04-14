@@ -1,0 +1,31 @@
+{
+  "code": "DMG-AP2J-JPN",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "4",
+    "year": 1996,
+    "month": 8,
+    "rom": {
+      "type": "LH534MVD",
+      "manufacturer": "sharp",
+      "label": "DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D",
+      "year": 1996,
+      "week": 39
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 6'99",
+      "year": 1996
+    },
+    "ram": {
+      "type": "LH5268ANF-10PLL",
+      "manufacturer": "mosel-vitelic",
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N634 05 BC",
+      "year": 1996,
+      "week": 34
+    },
+    "battery": "CR1616"
+  }
+}

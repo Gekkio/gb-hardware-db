@@ -1,0 +1,33 @@
+{
+  "code": "DMG-ADDP-EUR-1",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-DECN-02",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1996,
+    "month": 10,
+    "rom": {
+      "type": "LH534MVA",
+      "manufacturer": "sharp",
+      "label": "DMG-ADDP-0 S LH534MVA JAPAN E1 9644 D",
+      "year": 1996,
+      "week": 44
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9643 7 A",
+      "year": 1996,
+      "week": 43
+    },
+    "ram": {
+      "type": "XLJ6265BF-10SL",
+      "manufacturer": "rohm",
+      "label": "XLJ6265BF-10SL 636 112N",
+      "year": 1996,
+      "week": 36
+    },
+    "battery": "CR1616"
+  }
+}

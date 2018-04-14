@@ -1,0 +1,37 @@
+{
+  "code": "DMG-ACRP-EUR",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-A08-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1999,
+    "month": 4,
+    "rom": {
+      "type": "LH537MTF",
+      "manufacturer": "sharp",
+      "label": "DMG-ACRP-0 S LH537MTF JAPAN G2 9920 D",
+      "year": 1999,
+      "week": 20
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "sharp",
+      "label": "MBC5 LZ9GB31 9837 A",
+      "year": 1998,
+      "week": 37
+    },
+    "ram": {
+      "type": "LC3564BM-70",
+      "manufacturer": "sanyo",
+      "label": "SANYO LC3564BM-70 JAPAN 8HU1G",
+      "year": 1998
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 9443",
+      "year": 1999
+    },
+    "battery": "CR1616"
+  }
+}

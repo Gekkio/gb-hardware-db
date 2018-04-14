@@ -1,0 +1,25 @@
+{
+  "code": "DMG-R4-EUR",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1995,
+    "month": 10,
+    "rom": {
+      "type": "LH534MYZ",
+      "manufacturer": "sharp",
+      "label": "DMG-R4X-0 S LH534MYZ JAPAN E1 9542 D",
+      "year": 1995,
+      "week": 42
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9542 7 A",
+      "year": 1995,
+      "week": 42
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "code": "DMG-AZLP-EUR",
+  "stamp": "12B",
+  "board": {
+    "type": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 10,
+    "rom": {
+      "type": "LHMN8MNF",
+      "manufacturer": "sharp",
+      "label": "DMG-AZLP-2 S LHMN8MNF JAPAN F1 0047 D",
+      "year": 2000,
+      "week": 47
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "texas-instruments",
+      "label": "0AC1VFT MBC5 2417",
+      "year": 2000
+    },
+    "ram": {
+      "type": "BR62256F-70LL",
+      "manufacturer": "rohm",
+      "label": "BR62256F-70LL 043 136NA",
+      "year": 2000,
+      "week": 43
+    },
+    "ram_protector": {
+      "type": "6735",
+      "label": "6735 0A55",
+      "year": 2000
+    },
+    "battery": "CR1616"
+  }
+}

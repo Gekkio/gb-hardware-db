@@ -1,0 +1,25 @@
+{
+  "code": "DMG-WM-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "1",
+    "year": 1995,
+    "month": 11,
+    "rom": {
+      "type": "LH534MWF",
+      "manufacturer": "sharp",
+      "label": "DMG-WMX-0 S LH534MWF JAPAN E1 9611 D",
+      "year": 1996,
+      "week": 11
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9546 3 A",
+      "year": 1995,
+      "week": 46
+    }
+  }
+}

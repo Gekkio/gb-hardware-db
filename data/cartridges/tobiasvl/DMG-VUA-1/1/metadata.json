@@ -1,0 +1,18 @@
+{
+  "code": "DMG-VU-UKV",
+  "stamp": "20A",
+  "board": {
+    "type": "DMG-AAA-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 8,
+    "rom": {
+      "type": "LH5359RF",
+      "manufacturer": "sharp",
+      "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9736 D",
+      "year": 1997,
+      "week": 36
+    }
+  }
+}

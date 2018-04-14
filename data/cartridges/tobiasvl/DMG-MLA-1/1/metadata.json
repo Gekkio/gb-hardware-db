@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ML-USA-1",
+  "stamp": "22A",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 7,
+    "rom": {
+      "type": "LH531720",
+      "manufacturer": "sharp",
+      "label": "DMG-MLA-1 S LH531720 JAPAN B1 9836 D",
+      "year": 1998,
+      "week": 36
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "DMG MBC1-B Nintendo P 8'59",
+      "year": 1998
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "code": "DMG-APCP-NOE",
+  "board": {
+    "type": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1995,
+    "month": 4,
+    "rom": {
+      "type": "LH532MWI",
+      "manufacturer": "sharp",
+      "label": "DMG-APCP-0 S LH532MWI JAPAN D1 9515 D",
+      "year": 1995,
+      "week": 15
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9512 1 A",
+      "year": 1995,
+      "week": 12
+    },
+    "ram": {
+      "type": "HY6264ALLJ-10",
+      "manufacturer": "hyundai",
+      "label": "HY6264A LLJ-10 9506B KOREA",
+      "year": 1995,
+      "week": 6
+    },
+    "battery": "CR1616"
+  }
+}

@@ -12,6 +12,7 @@ import {
   SgbMetadata
 } from '../metadata';
 import * as format from '../site/format';
+import {gameCfgs} from '../config';
 
 export interface CsvColumn<T> {
   name: string,
@@ -327,6 +328,7 @@ export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] = [
 
 export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
   field('', 'type'),
+  generate('', 'name', s => (gameCfgs[s.type] || {name: ''}).name),
   field('', 'title'),
   field('', 'slug'),
   generate('', 'url', s => `https://gbhwdb.gekkio.fi/cartridges/${s.type}/${s.slug}.html`),

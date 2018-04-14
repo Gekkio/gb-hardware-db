@@ -1,0 +1,63 @@
+{
+  "type": "DMG",
+  "color": "deep-black",
+  "year": 1996,
+  "month": 7,
+  "mainboard": {
+    "type": "DMG-CPU-08",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "stamp": "607.3901",
+    "cpu": {
+      "type": "blob",
+      "label": null
+    },
+    "work_ram": {
+      "type": "blob",
+      "label": null
+    },
+    "video_ram": {
+      "type": "blob",
+      "label": null
+    },
+    "amplifier": {
+      "type": "blob",
+      "label": null
+    },
+    "crystal": {
+      "type": "4.19C",
+      "label": "4.19C64",
+      "year": 1996,
+      "month": 4
+    }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "A",
+    "stamp": "607-3901",
+    "year": 1995,
+    "month": 11,
+    "column_driver": {
+      "manufacturer": "sharp",
+      "label": "6201",
+      "year": 1996,
+      "week": 20
+    },
+    "row_driver": {
+      "manufacturer": "sharp",
+      "label": "6201",
+      "year": 1996,
+      "week": 20
+    }
+  },
+  "power_board": {
+    "type": "D",
+    "label": "DC CONV2 DMG",
+    "year": 1996,
+    "month": 6
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": "M5"
+  }
+}

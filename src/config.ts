@@ -271,6 +271,7 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-PCE-0': {name: 'Pac-Man (USA)', layout: 'rom_mbc'},
   'DMG-PME-0': {name: 'Catrap (USA)', layout: 'rom'},
   'DMG-Q6E-0': {name: 'NFL Quarterback Club (USA, Europe)', layout: 'rom_mbc'},
+  'DMG-QQJ-1': {name: 'Puyo Puyo (Japan) (Rev A) (SGB Enhanced)', layout: 'rom_mbc'},
   'DMG-QXA-0': {name: 'QIX (World)', layout: 'rom_mbc'},
   'DMG-R4X-0': {name: 'Mega Man IV (Europe)', layout: 'rom_mbc'},
   'DMG-REA-0': {name: 'R-Type (Japan)', layout: 'rom_mbc'},

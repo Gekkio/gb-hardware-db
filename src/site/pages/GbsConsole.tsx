@@ -68,8 +68,8 @@ function renderChips({mainboard}: GbsMetadata) {
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />
       <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
       <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
-      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
-      <ConsolePageChip designator="U6" title="????" chip={mainboard.u6} />
+      <ConsolePageChip designator="U5" title="Regulator" chip={mainboard.u5} />
+      <ConsolePageChip designator="U6" title="Regulator" chip={mainboard.u6} />
       <ConsolePageChip designator="Y1" title="Crystal" chip={mainboard.crystal} />
     </ConsolePageChipTable>
   )

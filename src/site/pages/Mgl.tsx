@@ -22,7 +22,7 @@ export default function Mgl({submissions}: Props) {
           <th>Amplifier (U3)</th>
           <th>Regulator (U4)</th>
           <th>Crystal (X1)</th>
-          <th>T1</th>
+          <th>Transformer (T1)</th>
           <th>Photos</th>
         </tr>
         </thead>

@@ -20,8 +20,8 @@ export default function Gbs({submissions}: Props) {
           <th>CPU (U1)</th>
           <th>WRAM (U2)</th>
           <th>U4</th>
-          <th>U5</th>
-          <th>U6</th>
+          <th>Regulator (U5)</th>
+          <th>Regulator (U6)</th>
           <th>Crystal (Y1)</th>
           <th>Photos</th>
         </tr>

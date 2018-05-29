@@ -66,7 +66,7 @@ function renderChips({mainboard, lcd}: MglMetadata) {
       <ConsolePageChip designator="U3" title="Amplifier" chip={mainboard.amplifier} />
       <ConsolePageChip designator="U4" title="Regulator" chip={mainboard.regulator} />
       <ConsolePageChip designator="X1" title="Crystal" chip={mainboard.crystal} />
-      <ConsolePageChip designator="T1" title="????" chip={mainboard.t1} />
+      <ConsolePageChip designator="T1" title="Transformer" chip={mainboard.t1} />
       <ConsolePageChip designator="-" title="LCD Column Driver" chip={lcd && lcd.column_driver} />
       <ConsolePageChip designator="-" title="LCD Row Driver" chip={lcd && lcd.row_driver} />
     </ConsolePageChipTable>

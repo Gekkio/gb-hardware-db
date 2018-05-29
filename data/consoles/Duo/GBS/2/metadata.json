@@ -41,15 +41,15 @@
       "week": 7
     },
     "u5": {
-      "type": "592F",
-      "manufacturer": "microchip",
+      "type": "MM1592F",
+      "manufacturer": "mitsumi",
       "label": "345 592F",
       "year": 2003,
       "week": 45
     },
     "u6": {
-      "type": "592F",
-      "manufacturer": "microchip",
+      "type": "MM1592F",
+      "manufacturer": "mitsumi",
       "label": "345 592F",
       "year": 2003,
       "week": 45

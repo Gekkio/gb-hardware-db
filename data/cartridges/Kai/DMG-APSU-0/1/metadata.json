@@ -26,8 +26,8 @@
       "week": 32
     },
     "ram_protector": {
-      "type": "134A",
-      "manufacturer": "microchip",
+      "type": "MM1134A",
+      "manufacturer": "mitsumi",
       "label": "030 134A",
       "year": 2000,
       "week": 30

@@ -21,8 +21,8 @@
       "week": 11
     },
     "ram_protector": {
-      "type": "26A",
-      "manufacturer": "microchip",
+      "type": "MM1026A",
+      "manufacturer": "mitsumi",
       "label": "025 26A",
       "year": 1990,
       "week": 25

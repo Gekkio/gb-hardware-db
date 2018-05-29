@@ -21,7 +21,7 @@ export default function Ags({submissions}: Props) {
           <th>WRAM (U2)</th>
           <th>Amplifier (U3)</th>
           <th>U4</th>
-          <th>U5</th>
+          <th>Battery controller (U5)</th>
           <th>Crystal (X1)</th>
           <th>Photos</th>
         </tr>

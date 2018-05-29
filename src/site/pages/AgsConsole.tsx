@@ -62,7 +62,7 @@ function renderChips({mainboard}: AgsMetadata) {
       <ConsolePageChip designator="U2" title="Work RAM" chip={mainboard.work_ram} />
       <ConsolePageChip designator="U3" title="Amplifier" chip={mainboard.amplifier} />
       <ConsolePageChip designator="U4" title="????" chip={mainboard.u4} />
-      <ConsolePageChip designator="U5" title="????" chip={mainboard.u5} />
+      <ConsolePageChip designator="U5" title="Battery controller" chip={mainboard.u5} />
       <ConsolePageChip designator="X1" title="Crystal" chip={mainboard.crystal} />
     </ConsolePageChipTable>
   )

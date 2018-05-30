@@ -19,7 +19,8 @@
       "year": 1998
     },
     "ram_protector": {
-      "type": "6129A",
+      "type": "BA6129A",
+      "manufacturer": "rohm",
       "label": "6129A 8R42",
       "year": 1998
     },

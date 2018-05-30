@@ -28,7 +28,8 @@
       "week": 31
     },
     "ram_protector": {
-      "type": "6735",
+      "type": "BA6735",
+      "manufacturer": "rohm",
       "label": "6735 2681",
       "year": 2002
     },

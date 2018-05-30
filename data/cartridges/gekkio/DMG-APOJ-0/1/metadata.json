@@ -29,7 +29,8 @@
       "week": 33
     },
     "ram_protector": {
-      "type": "6129A",
+      "type": "BA6129A",
+      "manufacturer": "rohm",
       "label": "6129A 7A52",
       "year": 1997
     },

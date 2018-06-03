@@ -33,7 +33,7 @@
     "amplifier": {
       "type": "IR3R40",
       "manufacturer": "sharp",
-      "label": "DMG-REG IR3R40 9037 A",
+      "label": "DMG-AMP IR3R40 9037 A",
       "year": 1990,
       "week": 37
     },
@@ -50,6 +50,11 @@
     "stamp": "010-23Y",
     "year": 1990,
     "month": 8,
+    "lcd_panel": {
+      "label": "SY900926",
+      "year": 1990,
+      "month": 9
+    },
     "column_driver": {
       "type": "LH5077 F",
       "manufacturer": "sharp",

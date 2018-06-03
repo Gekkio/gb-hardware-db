@@ -1,13 +1,86 @@
 {
   "type": "DMG",
+  "color": "off-white",
+  "screws": "philips",
+  "year": 1989,
+  "month": 3,
   "mainboard": {
     "type": "DMG-CPU-01",
+    "circled_letters": null,
+    "extra_label": "3",
+    "stamp": "903-22",
     "cpu": {
       "type": "DMG-CPU",
       "manufacturer": "sharp",
-      "label": "DMG-CPU 8911 D",
+      "label": "DMG-CPU © 1989 Nintendo JAPAN 8911 D",
       "year": 1989,
       "week": 11
+    },
+    "work_ram": {
+      "type": "LH5164LN-10",
+      "manufacturer": "sharp",
+      "label": "LH5164LN-10 SHARP JAPAN 8903 1 D",
+      "year": 1989,
+      "week": 3
+    },
+    "video_ram": {
+      "type": "LH5164LN-10",
+      "manufacturer": "sharp",
+      "label": "LH5164LN-10 SHARP JAPAN 8903 1 D",
+      "year": 1989,
+      "week": 3
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-AMP IR3R40 8909 A",
+      "year": 1989,
+      "week": 9
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419B9",
+      "year": 1989,
+      "month": 2
     }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-01",
+    "lcd_panel": {
+      "label": "AH900327",
+      "year": 1990,
+      "month": 3
+    },
+    "column_driver": {
+      "type": "LH5077 F",
+      "manufacturer": "sharp",
+      "label": "LH5077 F, 003",
+      "year": 1990,
+      "month": 3
+    },
+    "row_driver": {
+      "type": "LH5076 F",
+      "manufacturer": "sharp",
+      "label": "LH5076 F, 003",
+      "year": 1990,
+      "month": 3
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 8909 A",
+      "year": 1989,
+      "week": 9
+    }
+  },
+  "power_board": {
+    "type": "A1",
+    "label": "DC CONV DMG",
+    "year": 1989
+  },
+  "jack_board": {
+    "type": "DMG JACK 01",
+    "extra_label": null
   }
 }
+

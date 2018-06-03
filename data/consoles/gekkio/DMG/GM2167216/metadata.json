@@ -10,8 +10,8 @@
     "extra_label": "Rev 1",
     "stamp": "511 3901",
     "cpu": {
-      "type": "blob",
-      "label": null
+      "type": "DMG-CPU C (blob)",
+      "label": "C"
     },
     "work_ram": {
       "type": "blob",

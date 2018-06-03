@@ -74,6 +74,11 @@ export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
       field('lcd_board', 'year'),
       field('lcd_board', 'month'),
     ]),
+    ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.lcd_panel, [
+      field('lcd_panel', 'label'),
+      generate('lcd_panel', 'calendar_short', format.short.calendar),
+      generate('lcd_panel', 'calendar', format.calendar),
+    ]),
     ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.column_driver, chipColumns('column_driver')),
     ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.row_driver, chipColumns('row_driver')),
     ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.regulator, chipColumns('regulator')),

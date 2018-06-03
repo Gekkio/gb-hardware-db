@@ -70,6 +70,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
       <td>
         <div>{format.optional<string>(R.identity, metadata.lcd_board && metadata.lcd_board.type)}</div>
         <div>{format.optional(format.short.calendar, metadata.lcd_board)}</div>
+        <div>{`LCD panel: ${format.optional(({lcd_panel}) => format.optional(format.short.calendar, lcd_panel), metadata.lcd_board)}`}</div>
       </td>
       <td>
         <div>{format.optional(v => `Type ${v}`, metadata.power_board && metadata.power_board.type)}</div>

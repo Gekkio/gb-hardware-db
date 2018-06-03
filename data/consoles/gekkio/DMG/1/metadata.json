@@ -1,0 +1,90 @@
+{
+  "type": "DMG",
+  "color": "off-white",
+  "screws": "philips",
+  "year": 1990,
+  "month": 10,
+  "mainboard": {
+    "type": "DMG-CPU-04",
+    "circled_letters": "W",
+    "extra_label": "5",
+    "stamp": "010-0007",
+    "cpu": {
+      "type": "DMG-CPU B",
+      "manufacturer": "sharp",
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9036 S",
+      "year": 1990,
+      "week": 36
+    },
+    "work_ram": {
+      "type": "LH5264TN-L",
+      "manufacturer": "sharp",
+      "label": "LH5264TN-L SHARP JAPAN 9036 1 Y",
+      "year": 1990,
+      "week": 36
+    },
+    "video_ram": {
+      "type": "LH5264TN-L",
+      "manufacturer": "sharp",
+      "label": "LH5264TN-L SHARP JAPAN 9036 1 Y",
+      "year": 1990,
+      "week": 36
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-AMP IR3R40 9034 A",
+      "year": 1990,
+      "week": 34
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419J0",
+      "year": 1990,
+      "month": 10
+    }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "Z",
+    "stamp": "010-0007",
+    "year": 1990,
+    "month": 9,
+    "lcd_panel": {
+      "label": "N AE901015",
+      "year": 1990,
+      "month": 10
+    },
+    "column_driver": {
+      "type": "LH5077 F",
+      "manufacturer": "sharp",
+      "label": "LH5077 F, 010",
+      "year": 1990,
+      "month": 10
+    },
+    "row_driver": {
+      "type": "LH5076 F",
+      "manufacturer": "sharp",
+      "label": "LH5076 F, 009",
+      "year": 1990,
+      "month": 9
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 9039 J",
+      "year": 1990,
+      "week": 39
+    }
+  },
+  "power_board": {
+    "type": "A2",
+    "label": "DC CONV DMG",
+    "year": 1990,
+    "month": 9
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": null
+  }
+}

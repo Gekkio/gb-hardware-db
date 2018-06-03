@@ -76,6 +76,10 @@ function renderLcdBoardDetails(metadata: DmgMetadata) {
       <dd>{format.optional<string>(R.identity, metadata.lcd_board.stamp)}</dd>
       <dt>Circled letter(s) on board</dt>
       <dd>{format.optional<string>(R.identity, metadata.lcd_board.circled_letters)}</dd>
+      <dt>LCD panel label</dt>
+      <dd>{format.optional(({label}) => label, metadata.lcd_board.lcd_panel)}</dd>
+      <dt>LCD panel date</dt>
+      <dd>{format.optional(panel => format.calendar(panel), metadata.lcd_board.lcd_panel)}</dd>
     </dl>
   )
 }

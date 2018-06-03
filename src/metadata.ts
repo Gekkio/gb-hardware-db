@@ -79,6 +79,11 @@ export interface DmgMetadata {
     stamp?: string;
     year?: number;
     month?: number;
+    lcd_panel?: {
+      label: string,
+      year?: number;
+      month?: number;
+    };
     column_driver?: Chip;
     row_driver?: Chip;
     regulator?: Chip;
@@ -119,6 +124,11 @@ export namespace DmgMetadata {
       stamp: Joi.string(),
       year: schemas.year,
       month: schemas.month,
+      lcd_panel: Joi.object().keys({
+        label: Joi.string().required(),
+        year: schemas.year,
+        month: schemas.month,
+      }),
       column_driver: Chip.schema,
       row_driver: Chip.schema,
       regulator: Chip.schema,

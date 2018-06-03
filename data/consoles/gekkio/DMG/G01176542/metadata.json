@@ -33,7 +33,7 @@
     "amplifier": {
       "type": "IR3R40",
       "manufacturer": "sharp",
-      "label": "DMG-REG IR3R40 8909 A",
+      "label": "DMG-AMP IR3R40 8909 A",
       "year": 1989,
       "week": 9
     },
@@ -46,7 +46,33 @@
   },
   "lcd_board": {
     "type": "DMG-LCD-05",
-    "circled_letters": "Z"
+    "circled_letters": "Z",
+    "lcd_panel": {
+      "label": "AE900404",
+      "year": 1990,
+      "month": 4
+    },
+    "column_driver": {
+      "type": "LH5077 F",
+      "manufacturer": "sharp",
+      "label": "LH5077 F, 004",
+      "year": 1990,
+      "month": 4
+    },
+    "row_driver": {
+      "type": "LH5076 F",
+      "manufacturer": "sharp",
+      "label": "LH5076 F, 004",
+      "year": 1990,
+      "month": 4
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 8952 A",
+      "year": 1989,
+      "week": 52
+    }
   },
   "power_board": {
     "type": "A1",

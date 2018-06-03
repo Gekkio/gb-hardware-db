@@ -1,13 +1,91 @@
 {
   "type": "DMG",
+  "color": "off-white",
+  "screws": "tri-wing",
+  "year": 1994,
+  "month": 2,
   "mainboard": {
     "type": "DMG-CPU-06",
+    "circled_letters": "K2",
+    "extra_label": "3",
+    "stamp": "402-23",
     "cpu": {
       "type": "DMG-CPU B",
       "manufacturer": "sharp",
-      "label": "DMG-CPU B 9406",
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9406 D",
       "year": 1994,
       "week": 6
+    },
+    "work_ram": {
+      "type": "LH52A64N-TL",
+      "manufacturer": "lsi-logic",
+      "label": "LH52A64N-TL LSI LOGIC JAPAN D4 06 05 C",
+      "year": 1994,
+      "week": 6
+    },
+    "video_ram": {
+      "type": "LH5264N4T",
+      "manufacturer": "lsi-logic",
+      "label": "LH5264N4T LSI LOGIC JAPAN D4 06 05 C",
+      "year": 1994,
+      "week": 6
+    },
+    "amplifier": {
+      "type": "IR3R40",
+      "manufacturer": "sharp",
+      "label": "DMG-AMP IR3R40 9403 CA",
+      "year": 1994,
+      "week": 3
+    },
+    "crystal": {
+      "type": "D419",
+      "label": "D419A4",
+      "year": 1994,
+      "month": 1
     }
+  },
+  "lcd_board": {
+    "type": "DMG-LCD-06",
+    "circled_letters": "K1",
+    "stamp": "402-23Y",
+    "year": 1993,
+    "month": 12,
+    "lcd_panel": {
+      "label": "N2AH 940120",
+      "year": 1994,
+      "month": 1
+    },
+    "column_driver": {
+      "type": "LH5077 AF",
+      "manufacturer": "sharp",
+      "label": "LH5077 AF, 3531",
+      "year": 1993,
+      "week": 53
+    },
+    "row_driver": {
+      "type": "LH5076 AF",
+      "manufacturer": "sharp",
+      "label": "LH5076 AF, 4040",
+      "year": 1994,
+      "week": 4
+    },
+    "regulator": {
+      "type": "IR3E02",
+      "manufacturer": "sharp",
+      "label": "DMG-REG IR3E02 9404 CB",
+      "year": 1994,
+      "week": 4
+    }
+  },
+  "power_board": {
+    "type": "B",
+    "label": "DC CONV DMG",
+    "year": 1993,
+    "month": 1
+  },
+  "jack_board": {
+    "type": "DMG JACK 03",
+    "extra_label": null
   }
 }
+

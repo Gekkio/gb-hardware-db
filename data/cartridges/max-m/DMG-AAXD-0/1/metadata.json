@@ -1,0 +1,39 @@
+{
+  "code": "DMG-AAXD-NOE",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 9,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "M011804-M MX23C1603-12A DMG-AAXD-0 G2 1D1124A1",
+      "year": 2001,
+      "week": 18
+    },
+    "mapper": {
+      "type": "MBC3B",
+      "label": "MBC3 B P-2 134U2D",
+      "year": 2001,
+      "week": 34
+    },
+    "ram": {
+      "type": "BS62LV256SC-70",
+      "manufacturer": "bsi",
+      "label": "BSI BS62LV256SC-70 S2828W15036 D0133 TAIWAN",
+      "year": 2001,
+      "week": 33
+    },
+    "ram_protector": {
+      "type": "MM1134A",
+      "manufacturer": "mitsumi",
+      "label": "121 134A",
+      "year": 2001,
+      "week": 21
+    },
+    "battery": "CR2025"
+  }
+}

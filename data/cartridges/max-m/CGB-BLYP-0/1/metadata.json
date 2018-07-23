@@ -1,0 +1,39 @@
+{
+  "code": "CGB-BLYP-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-A06-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 9,
+    "rom": {
+      "type": "M538011E-8D",
+      "label": "CGB-BLYP-0 F1 M538011E-8D 0475428",
+      "year": 2000,
+      "week": 47
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "rohm",
+      "label": "MBC-5 BU3650K 045 H36",
+      "year": 2000,
+      "week": 45
+    },
+    "ram": {
+      "type": "W2465S-70LL",
+      "manufacturer": "winbond",
+      "label": "Winbond W2465S-70LL 019WD20084870-II1RA",
+      "year": 2000,
+      "week": 19
+    },
+    "ram_protector": {
+      "type": "MM1134A",
+      "manufacturer": "mitsumi",
+      "label": "042 134A",
+      "year": 2000,
+      "week": 42
+    },
+    "battery": "CR1616"
+  }
+}

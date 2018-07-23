@@ -1,0 +1,25 @@
+{
+  "code": "DMG-CI-EUR",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 12,
+    "rom": {
+      "type": "N-1001EUGW-J24",
+      "manufacturer": "at-t",
+      "label": "DMG-CIE-0 C1 N-1001EUGW-J23 9804E7012",
+      "year": 1998,
+      "week": 4
+    },
+    "mapper": {
+      "type": "MBC1B1",
+      "manufacturer": "sharp",
+      "label": "DMG MBC1B1 Nintendo S 9751 5 A",
+      "year": 1997,
+      "week": 51
+    }
+  }
+}

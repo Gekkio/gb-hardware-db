@@ -1,0 +1,39 @@
+{
+  "code": "DMG-AAUD-NOE",
+  "stamp": "09",
+  "board": {
+    "type": "DMG-KGDU-10",
+    "circled_letters": "K",
+    "extra_label": "3",
+    "year": 2001,
+    "month": 1,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "E010504-M MX23C1603-12A DMG-AAUD-0 G2 1C5429A1",
+      "year": 2001,
+      "week": 5
+    },
+    "mapper": {
+      "type": "MBC3B",
+      "manufacturer": "rohm",
+      "label": "MBC-3 B BU3634K 103 H55",
+      "year": 2001,
+      "week": 3
+    },
+    "ram": {
+      "type": "GM76C256CLLFW70",
+      "manufacturer": "hyundai",
+      "label": "HYUNDAI GM76C256CLLFW70 0049 KOREA",
+      "year": 2000,
+      "week": 49
+    },
+    "ram_protector": {
+      "type": "BA6735",
+      "manufacturer": "rohm",
+      "label": "6735 0C04",
+      "year": 2000
+    },
+    "battery": "CR2025"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "code": "DMG-MQ-NOE",
+  "stamp": "00",
+  "board": {
+    "type": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1992,
+    "month": 9,
+    "rom": {
+      "type": "LH534M02",
+      "manufacturer": "sharp",
+      "label": "DMG-MQE-0 S LH534M02 JAPAN E1 9243 D",
+      "year": 1992,
+      "week": 43
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "label": "Nintendo DMG MBC1B N 9221BA041",
+      "year": 1992,
+      "week": 21
+    },
+    "ram": {
+      "type": "LH5168NFB-10TL",
+      "manufacturer": "lsi-logic",
+      "label": "LH5168NFB-10TL LSI LOGIC JAPAN D242 7 BC",
+      "year": 1992,
+      "week": 42
+    },
+    "ram_protector": {
+      "type": "MM1026A",
+      "manufacturer": "mitsumi",
+      "label": "295 26A",
+      "year": 1992
+    },
+    "battery": "CR1616"
+  }
+}

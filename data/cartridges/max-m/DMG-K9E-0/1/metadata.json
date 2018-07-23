@@ -1,0 +1,33 @@
+{
+  "code": "DMG-K9-FAH",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 12,
+    "rom": {
+      "type": "LH532MAF",
+      "manufacturer": "sharp",
+      "label": "DMG-K9E-0 S LH532MAF JAPAN D1 9352 D",
+      "year": 1993,
+      "week": 52
+    },
+    "mapper": {
+      "type": "MBC2A",
+      "manufacturer": "sharp",
+      "label": "DMG MBC2A Nintendo S 9349 5 AB",
+      "year": 1993,
+      "week": 49
+    },
+    "ram_protector": {
+      "type": "MM1026A",
+      "manufacturer": "mitsumi",
+      "label": "337 26A",
+      "year": 1993,
+      "week": 37
+    },
+    "battery": "CR1616"
+  }
+}

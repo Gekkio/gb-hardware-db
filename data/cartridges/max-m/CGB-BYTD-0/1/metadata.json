@@ -1,0 +1,46 @@
+{
+  "code": "CGB-BYTD-NOE",
+  "stamp": "34",
+  "board": {
+    "type": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 9,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "M013904-M MX23C1603-12A CGB-BYTD-0 G2 1D4403A1",
+      "year": 2001,
+      "week": 39
+    },
+    "mapper": {
+      "type": "MBC3B",
+      "manufacturer": "rohm",
+      "label": "MBC-3 B BU3634K 135 H48",
+      "year": 2001,
+      "week": 35
+    },
+    "ram": {
+      "type": "BS62LV256SC-70",
+      "manufacturer": "bsi",
+      "label": "BSI BS62LV256SC-70 S2827V53117 D0109 TAIWAN",
+      "year": 2001,
+      "week": 9
+    },
+    "ram_protector": {
+      "type": "MM1134A",
+      "manufacturer": "mitsumi",
+      "label": "131 134A",
+      "year": 2001,
+      "week": 31
+    },
+    "battery": "CR2025",
+    "crystal": {
+      "manufacturer": "kds",
+      "label": "KDS1H",
+      "year": 2001,
+      "month": 8
+    }
+  }
+}

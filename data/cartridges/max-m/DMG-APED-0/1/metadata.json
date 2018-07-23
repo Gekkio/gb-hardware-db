@@ -1,0 +1,37 @@
+{
+  "code": "DMG-APED-NOE",
+  "board": {
+    "type": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 9,
+    "rom": {
+      "type": "M538011E-73",
+      "label": "DMG-APED-0 F1 M538011E-73 9455403",
+      "year": 1999,
+      "week": 45
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 942U5M",
+      "year": 1999,
+      "week": 42
+    },
+    "ram": {
+      "type": "LH52256CN-10LL",
+      "manufacturer": "sharp",
+      "label": "LH52256CN-10LL SHARP JAPAN 9904 3 SO",
+      "year": 1999,
+      "week": 4
+    },
+    "ram_protector": {
+      "type": "MM1134A",
+      "manufacturer": "mitsumi",
+      "label": "937 134A",
+      "year": 1999,
+      "week": 37
+    },
+    "battery": "CR1616"
+  }
+}

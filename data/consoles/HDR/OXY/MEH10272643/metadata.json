@@ -1,0 +1,36 @@
+{
+  "type": "OXY",
+  "color": "silver",
+  "release_code": "C/OXY-EUR",
+  "mainboard": {
+    "type": "OXY-CPU-02",
+    "circled_letters": "SH",
+    "year": 2005,
+    "cpu": {
+      "type": "CPU AGB E",
+      "manufacturer": "sharp",
+      "label": "0529 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM",
+      "year": 2005,
+      "week": 29
+    },
+    "u2": {
+      "type": "PM C",
+      "label": "Mitsumi JAPAN 528A PM C",
+      "manufacturer": "mitsumi",
+      "year": 2005,
+      "week": 28
+    },
+    "u4": {
+      "type": "AKV",
+      "label": "AKV 522",
+      "year": 2005,
+      "week": 22
+    },
+    "u5": {
+      "type": "CP6465",
+      "label": "CP6465 B 02 KOR0531 635963",
+      "year": 2005,
+      "week": 31
+    }
+  }
+}

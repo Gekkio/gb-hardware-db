@@ -1,0 +1,39 @@
+{
+  "code": "DMG-ABEJ-JPN",
+  "stamp": "22",
+  "board": {
+    "type": "DMG-KFDN-01",
+    "circled_letters": "M",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 11,
+    "rom": {
+      "type": "LH538WNL",
+      "manufacturer": "sharp",
+      "label": "DMG-ABEJ-0 S LH538WNL JAPAN F1 9848 E",
+      "year": 1998,
+      "week": 48
+    },
+    "mapper": {
+      "type": "MBC3A",
+      "label": "MBC3 A P-2 834U4E",
+      "year": 1998,
+      "week": 34
+    },
+    "ram": {
+      "type": "BR62256F-70LL",
+      "manufacturer": "rohm",
+      "label": "BR62256F-70LL 842 166A",
+      "year": 1998,
+      "week": 42
+    },
+    "ram_protector": {
+      "type": "MM1026A",
+      "manufacturer": "mitsumi",
+      "label": "843 26A",
+      "year": 1998,
+      "week": 43
+    },
+    "battery": "CR2025"
+  }
+}

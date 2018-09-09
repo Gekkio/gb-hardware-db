@@ -1,0 +1,25 @@
+{
+  "code": "DMG-MLA",
+  "stamp": "22A",
+  "board": {
+    "type": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 7,
+    "rom": {
+      "type": "LH5314B2",
+      "manufacturer": "sharp",
+      "label": "DMG-MLA-1 S LH5314B2 JAPAN B1 9339 E",
+      "year": 1993,
+      "week": 39
+    },
+    "mapper": {
+      "type": "MBC1B",
+      "manufacturer": "mitsumi",
+      "label": "DMG MBC1B Nintendo J9330BR",
+      "year": 1993,
+      "week": 30
+    }
+  }
+}

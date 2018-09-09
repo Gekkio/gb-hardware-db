@@ -4,7 +4,7 @@
   "board": {
     "type": "DMG-UEDT-01",
     "circled_letters": "I",
-    "extra_label": "3",
+    "extra_label": "6",
     "year": 1998,
     "month": 9,
     "rom": {
@@ -17,9 +17,9 @@
     "mapper": {
       "type": "HuC-3",
       "manufacturer": "sharp",
-      "label": "HuC-3 © HUDSON Nintendo 9824 A",
+      "label": "HuC-3 © HUDSON Nintendo 9825 A",
       "year": 1998,
-      "week": 24
+      "week": 25
     },
     "ram": {
       "type": "LH52256CT-10LL",

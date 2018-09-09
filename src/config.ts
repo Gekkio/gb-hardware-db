@@ -358,6 +358,7 @@ export const gameCfgs: Record<string, GameConfig> = {
     name: 'Pokemon Pinball (Europe) (En,Fr,De,Es,It) (Rumble Version) (SGB Enhanced)',
     layout: 'rom_mbc_ram',
   },
+  'DMG-VUA-0': { name: 'Dr. Mario (World)', layout: 'rom' },
   'DMG-VUA-1': { name: 'Dr. Mario (World) (Rev A)', layout: 'rom' },
   'DMG-W2X-0': { name: 'Mega Man II (Europe)', layout: 'rom_mbc' },
   'DMG-W3X-0': { name: 'Mega Man III (Europe)', layout: 'rom_mbc' },
@@ -377,6 +378,14 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-AXFE-0': { name: 'New Adventures of Mary-Kate & Ashley, The (USA, Europe)', layout: 'rom_mbc' },
   'DMG-AXQU-0': { name: 'Pokemon Trading Card Game (USA) (SGB Enhanced)', layout: 'rom_mbc_ram' },
   'DMG-YOX-0': { name: 'Mario & Yoshi (Europe)', layout: 'rom_mbc' },
+  'DMG-AAMJ-0': {
+    name: "Mini Yonku GB Let's & Go!! - All-Star Battle Max (Japan) (SGB Enhanced)",
+    layout: 'rom_mbc_ram',
+  },
+  'DMG-ABEJ-0': { name: 'Barcode Taisen Bardigun (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram_xtal' },
+  'DMG-AWA-0': { name: 'Alleyway (World)', layout: 'rom' },
+  'DMG-FPE-0': { name: 'Flipull (USA)', layout: 'rom' },
+  'DMG-GWJ-0': { name: 'Game Boy Wars (Japan)', layout: 'rom_mbc_ram' },
 }
 
 export const games: string[] = Object.keys(gameCfgs)

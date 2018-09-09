@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TRA",
+  "stamp": "22A",
+  "board": {
+    "type": "DMG-AAA-03",
+    "circled_letters": "Y",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 5,
+    "rom": {
+      "manufacturer": "sharp",
+      "label": "DMG-TRA-1 SHARP JAPAN A0 9116 D",
+      "year": 1991,
+      "week": 16
+    }
+  }
+}

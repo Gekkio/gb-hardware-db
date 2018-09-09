@@ -1,0 +1,18 @@
+{
+  "code": "DMG-VUA",
+  "stamp": "27",
+  "board": {
+    "type": "DMG-AAA-03",
+    "circled_letters": "Y",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 4,
+    "rom": {
+      "type": "DMG-VUA-0",
+      "manufacturer": "sharp",
+      "label": "DMG-VUA-0 SHARP JAPAN A0 9011 D",
+      "year": 1990,
+      "week": 11
+    }
+  }
+}

@@ -11,4 +11,4 @@ path = "src/photo.rs"
 clap = "2.27"
 failure = "0.1"
 failure_derive = "0.1"
-image = {git = "https://github.com/Gekkio/image", branch = "gbhwdb"}
+image = "0.19"

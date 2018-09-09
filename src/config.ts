@@ -371,6 +371,12 @@ export const gameCfgs: Record<string, GameConfig> = {
   'DMG-YTE-0': { name: 'Donkey Kong Land (USA, Europe) (SGB Enhanced)', layout: 'rom_mbc_ram' },
   'DMG-YTJ-0': { name: 'Super Donkey Kong GB (Japan) (SGB Enhanced)', layout: 'rom_mbc_ram' },
   'DMG-ZLE-0': { name: "Legend of Zelda, The - Link's Awakening (USA, Europe)", layout: 'rom_mbc_ram' },
+  'CGB-AHYE-0': { name: 'Super Mario Bros. Deluxe (USA, Europe)', layout: 'rom_mbc_ram' },
+  'CGB-ATHE-0': { name: 'Tarzan (USA, Europe)', layout: 'rom_mbc' },
+  'DMG-ADYP-0': { name: 'Barbie - Ocean Discovery (Europe)', layout: 'rom_mbc' },
+  'DMG-AXFE-0': { name: 'New Adventures of Mary-Kate & Ashley, The (USA, Europe)', layout: 'rom_mbc' },
+  'DMG-AXQU-0': { name: 'Pokemon Trading Card Game (USA) (SGB Enhanced)', layout: 'rom_mbc_ram' },
+  'DMG-YOX-0': { name: 'Mario & Yoshi (Europe)', layout: 'rom_mbc' },
 }
 
 export const games: string[] = Object.keys(gameCfgs)

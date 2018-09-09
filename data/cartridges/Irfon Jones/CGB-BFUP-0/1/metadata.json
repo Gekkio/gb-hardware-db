@@ -1,0 +1,24 @@
+{
+  "code": "CGB-BFUP-EUR",
+  "stamp": "08",
+  "board": {
+    "type": "DMG-A09-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 9,
+    "rom": {
+      "type": "MX23C1603-12A",
+      "manufacturer": "macronix",
+      "label": "S013904-M MX23C1603-12A CGB-BFUP-0 G2 1D2381A1",
+      "year": 2001,
+      "week": 39
+    },
+    "mapper": {
+      "type": "MBC5",
+      "manufacturer": "texas-instruments",
+      "label": "1AAJLHT MBC5 2417",
+      "year": 2001
+    }
+  }
+}

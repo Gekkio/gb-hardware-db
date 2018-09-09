@@ -1,0 +1,24 @@
+{
+  "code": "DMG-ADYP-UKV",
+  "stamp": "20",
+  "board": {
+    "type": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "3",
+    "year": 1999,
+    "month": 10,
+    "rom": {
+      "type": "LH538WPD",
+      "manufacturer": "sharp",
+      "label": "DMG-ADYP-0 S LH538WPD JAPAN F1 9945 D",
+      "year": 1999,
+      "week": 45
+    },
+    "mapper": {
+      "type": "MBC5",
+      "label": "MBC5 P-1 942U5M",
+      "year": 1999,
+      "week": 42
+    }
+  }
+}

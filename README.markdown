@@ -9,6 +9,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * gekkio (https://gekkio.fi)
 * HDR
 * ImATrackMan
+* Irfon Jones
 * ISSOtm
 * jrra
 * Kai

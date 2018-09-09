@@ -8,10 +8,26 @@ import * as files from '../util/files';
 import {Photo} from '../crawler';
 import {rejectNil} from '../util/arrays';
 
-interface Input<P extends {front?: Photo}> {
+interface PhotoSet {
+  front?: Photo;
+  back?: Photo;
+  top?: Photo;
+  pcbFront?: Photo;
+  pcbBack?: Photo;
+  mainboardFront?: Photo;
+  mainboardBack?: Photo;
+  lcdBoardFront?: Photo;
+  lcdBoardBack?: Photo;
+  powerBoardFront?: Photo,
+  powerBoardBack?: Photo;
+  jackBoardFront?: Photo;
+  jackBoardBack?: Photo;
+}
+
+interface Input {
   type: string,
   slug: string,
-  photos: P,
+  photos: PhotoSet,
 }
 
 function generateThumbnail(width: number, input: string, output: string) {
@@ -24,7 +40,7 @@ function generateThumbnail(width: number, input: string, output: string) {
   });
 }
 
-export default async function processPhotos<P extends {front?: Photo}, T extends Input<P>>(input: T): Promise<void> {
+export default async function processPhotos(input: Input): Promise<void> {
   const photos = rejectNil(R.values(input.photos));
   if (photos.length === 0) {
     winston.warn(`[${input.type}] ${input.slug}: no photos`);

@@ -24,7 +24,9 @@ import processPhotos from './processPhotos';
 winston.configure({
   level: process.env.LOG_LEVEL || 'info',
   transports: [
-    new winston.transports.Console(),
+    new winston.transports.Console({
+      format: winston.format.simple()
+    }),
   ]
 });
 

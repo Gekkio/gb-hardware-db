@@ -383,7 +383,7 @@ function lift<T, V>(f: (t: T) => V | null | undefined, columns: CsvColumn<V>[]):
 
 function field<T, K extends keyof T>(prefix: string, key: K): CsvColumn<T> {
   return {
-    name: prefix ? `${prefix}_${key}` : key,
+    name: prefix ? `${prefix}_${key}` : String(key),
     get: (value) => value[key],
   }
 }

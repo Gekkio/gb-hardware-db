@@ -1,14 +1,14 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {Photo, Sgb2Submission} from '../../crawler';
-import * as format from '../format';
-import ConsoleListingChip from '../components/ConsoleListingChip';
+import { Photo, Sgb2Submission } from '../../crawler'
+import * as format from '../format'
+import ConsoleListingChip from '../components/ConsoleListingChip'
 
 interface Props {
-  submissions: Sgb2Submission[];
+  submissions: Sgb2Submission[]
 }
 
-export default function Sgb2({submissions}: Props) {
+export default function Sgb2({ submissions }: Props) {
   return (
     <article>
       <h2>Super Game Boy 2 (SGB2)</h2>
@@ -28,9 +28,9 @@ export default function Sgb2({submissions}: Props) {
           </tr>
         </thead>
         <tbody>
-          {submissions.map(submission =>
+          {submissions.map(submission => (
             <Submission key={submission.slug} submission={submission} />
-          )}
+          ))}
         </tbody>
       </table>
       <h3>Data dumps</h3>
@@ -39,20 +39,20 @@ export default function Sgb2({submissions}: Props) {
   )
 }
 
-function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: Sgb2Submission}) {
+function Submission({ submission: { contributor, slug, title, metadata, photos } }: { submission: Sgb2Submission }) {
   return (
     <tr>
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/consoles/sgb2/${slug}.html`}>
           <div className="submission-list-item__photo">
-            {photos.front
-              ? <img
+            {photos.front ? (
+              <img
                 src={`/static/sgb2/${slug}_thumbnail_80.jpg`}
                 srcSet={`/static/sgb2/${slug}_thumbnail_50.jpg 50w, /static/sgb2/${slug}_thumbnail_80.jpg 80w`}
                 sizes="(min-width: 1000px) 80px, 50px"
-                role="presentation" />
-              : null
-            }
+                role="presentation"
+              />
+            ) : null}
           </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>
@@ -83,7 +83,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
 
 function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   return (
     <div>

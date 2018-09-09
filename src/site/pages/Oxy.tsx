@@ -1,14 +1,14 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {OxySubmission, Photo} from '../../crawler';
-import * as format from '../format';
-import ConsoleListingChip from '../components/ConsoleListingChip';
+import { OxySubmission, Photo } from '../../crawler'
+import * as format from '../format'
+import ConsoleListingChip from '../components/ConsoleListingChip'
 
 interface Props {
-  submissions: OxySubmission[];
+  submissions: OxySubmission[]
 }
 
-export default function Oxy({submissions}: Props) {
+export default function Oxy({ submissions }: Props) {
   return (
     <article>
       <h2>Game Boy Micro (OXY)</h2>
@@ -25,9 +25,9 @@ export default function Oxy({submissions}: Props) {
           </tr>
         </thead>
         <tbody>
-          {submissions.map(submission =>
+          {submissions.map(submission => (
             <Submission key={submission.slug} submission={submission} />
-          )}
+          ))}
         </tbody>
       </table>
       <h3>Data dumps</h3>
@@ -36,20 +36,20 @@ export default function Oxy({submissions}: Props) {
   )
 }
 
-function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: OxySubmission}) {
+function Submission({ submission: { contributor, slug, title, metadata, photos } }: { submission: OxySubmission }) {
   return (
     <tr>
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/consoles/oxy/${slug}.html`}>
           <div className="submission-list-item__photo">
-            {photos.front
-              ? <img
+            {photos.front ? (
+              <img
                 src={`/static/oxy/${slug}_thumbnail_80.jpg`}
                 srcSet={`/static/oxy/${slug}_thumbnail_50.jpg 50w, /static/oxy/${slug}_thumbnail_80.jpg 80w`}
                 sizes="(min-width: 1000px) 80px, 50px"
-                role="presentation" />
-              : null
-            }
+                role="presentation"
+              />
+            ) : null}
           </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>
@@ -78,7 +78,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
 
 function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   return (
     <div>

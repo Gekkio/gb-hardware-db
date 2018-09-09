@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {Photo, MgbSubmission} from '../../crawler';
-import {MgbMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { Photo, MgbSubmission } from '../../crawler'
+import { MgbMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function MgbConsole({submission}: {submission: MgbSubmission}) {
+export default function MgbConsole({ submission }: { submission: MgbSubmission }) {
   return (
     <article className="page-console page-console--mgb">
       <h2>{`MGB: ${submission.title} [${submission.contributor}]`}</h2>
@@ -48,7 +48,7 @@ export default function MgbConsole({submission}: {submission: MgbSubmission}) {
 
 function renderPhoto(submission: MgbSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/mgb/${submission.slug}_${photo.name}`
   return (
@@ -58,7 +58,7 @@ function renderPhoto(submission: MgbSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard, lcd}: MgbMetadata) {
+function renderChips({ mainboard, lcd }: MgbMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

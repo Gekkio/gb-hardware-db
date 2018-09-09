@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {Photo, MglSubmission} from '../../crawler';
-import {MglMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { Photo, MglSubmission } from '../../crawler'
+import { MglMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function MglConsole({submission}: {submission: MglSubmission}) {
+export default function MglConsole({ submission }: { submission: MglSubmission }) {
   return (
     <article className="page-console page-console--mgl">
       <h2>{`MGL: ${submission.title} [${submission.contributor}]`}</h2>
@@ -48,7 +48,7 @@ export default function MglConsole({submission}: {submission: MglSubmission}) {
 
 function renderPhoto(submission: MglSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/mgl/${submission.slug}_${photo.name}`
   return (
@@ -58,7 +58,7 @@ function renderPhoto(submission: MglSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard, lcd}: MglMetadata) {
+function renderChips({ mainboard, lcd }: MglMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

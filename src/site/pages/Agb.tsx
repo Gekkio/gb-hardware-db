@@ -1,35 +1,35 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import {AgbSubmission, Photo} from '../../crawler';
-import * as format from '../format';
-import ConsoleListingChip from '../components/ConsoleListingChip';
+import { AgbSubmission, Photo } from '../../crawler'
+import * as format from '../format'
+import ConsoleListingChip from '../components/ConsoleListingChip'
 
 interface Props {
-  submissions: AgbSubmission[];
+  submissions: AgbSubmission[]
 }
 
-export default function Agb({submissions}: Props) {
+export default function Agb({ submissions }: Props) {
   return (
     <article>
       <h2>Game Boy Advance (AGB)</h2>
       <table>
         <thead>
-        <tr>
-          <th>ID</th>
-          <th>Board</th>
-          <th>CPU (U1)</th>
-          <th>WRAM (U2)</th>
-          <th>Regulator (U3)</th>
-          <th>U4</th>
-          <th>Amplifier (U6)</th>
-          <th>Crystal (X1)</th>
-          <th>Photos</th>
-        </tr>
+          <tr>
+            <th>ID</th>
+            <th>Board</th>
+            <th>CPU (U1)</th>
+            <th>WRAM (U2)</th>
+            <th>Regulator (U3)</th>
+            <th>U4</th>
+            <th>Amplifier (U6)</th>
+            <th>Crystal (X1)</th>
+            <th>Photos</th>
+          </tr>
         </thead>
         <tbody>
-        {submissions.map(submission =>
-          <Submission key={submission.slug} submission={submission} />
-        )}
+          {submissions.map(submission => (
+            <Submission key={submission.slug} submission={submission} />
+          ))}
         </tbody>
       </table>
       <h3>Data dumps</h3>
@@ -38,20 +38,20 @@ export default function Agb({submissions}: Props) {
   )
 }
 
-function Submission({submission: {contributor, slug, title, metadata, photos}}: {submission: AgbSubmission}) {
+function Submission({ submission: { contributor, slug, title, metadata, photos } }: { submission: AgbSubmission }) {
   return (
     <tr>
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/consoles/agb/${slug}.html`}>
           <div className="submission-list-item__photo">
-            {photos.front
-              ? <img
+            {photos.front ? (
+              <img
                 src={`/static/agb/${slug}_thumbnail_80.jpg`}
                 srcSet={`/static/agb/${slug}_thumbnail_50.jpg 50w, /static/agb/${slug}_thumbnail_80.jpg 80w`}
                 sizes="(min-width: 1000px) 80px, 50px"
-                role="presentation" />
-              : null
-            }
+                role="presentation"
+              />
+            ) : null}
           </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>
@@ -83,7 +83,7 @@ function Submission({submission: {contributor, slug, title, metadata, photos}}: 
 
 function renderPhoto(slug: string, label: string, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   return (
     <div>

@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {Photo, GbsSubmission} from '../../crawler';
-import {GbsMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { Photo, GbsSubmission } from '../../crawler'
+import { GbsMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function GbsConsole({submission}: {submission: GbsSubmission}) {
+export default function GbsConsole({ submission }: { submission: GbsSubmission }) {
   return (
     <article className="page-console page-console--gbs">
       <h2>{`GBS: ${submission.title} [${submission.contributor}]`}</h2>
@@ -52,7 +52,7 @@ export default function GbsConsole({submission}: {submission: GbsSubmission}) {
 
 function renderPhoto(submission: GbsSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/gbs/${submission.slug}_${photo.name}`
   return (
@@ -62,7 +62,7 @@ function renderPhoto(submission: GbsSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard}: GbsMetadata) {
+function renderChips({ mainboard }: GbsMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express')
 
-const app = express();
-app.use(express.static('build/site'));
+const app = express()
+app.use(express.static('build/site'))
 app.listen(8080, () => {
-  console.info("Development server listening at port 8080");
-});
+  console.info('Development server listening at port 8080')
+})

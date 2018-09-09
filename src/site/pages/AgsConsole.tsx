@@ -1,13 +1,13 @@
-import * as R from 'ramda';
-import * as React from 'react';
+import * as R from 'ramda'
+import * as React from 'react'
 
-import {AgsSubmission, Photo} from '../../crawler';
-import {AgsMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { AgsSubmission, Photo } from '../../crawler'
+import { AgsMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function AgsConsole({submission}: {submission: AgsSubmission}) {
+export default function AgsConsole({ submission }: { submission: AgsSubmission }) {
   return (
     <article className="page-console page-console--ags">
       <h2>{`AGS: ${submission.title} [${submission.contributor}]`}</h2>
@@ -45,7 +45,7 @@ export default function AgsConsole({submission}: {submission: AgsSubmission}) {
 
 function renderPhoto(submission: AgsSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/ags/${submission.slug}_${photo.name}`
   return (
@@ -55,7 +55,7 @@ function renderPhoto(submission: AgsSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard}: AgsMetadata) {
+function renderChips({ mainboard }: AgsMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

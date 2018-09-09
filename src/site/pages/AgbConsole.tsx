@@ -1,13 +1,13 @@
-import * as R from 'ramda';
-import * as React from 'react';
+import * as R from 'ramda'
+import * as React from 'react'
 
-import {AgbSubmission, Photo} from '../../crawler';
-import {AgbMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { AgbSubmission, Photo } from '../../crawler'
+import { AgbMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function AgbConsole({submission}: {submission: AgbSubmission}) {
+export default function AgbConsole({ submission }: { submission: AgbSubmission }) {
   return (
     <article className="page-console page-console--agb">
       <h2>{`AGB: ${submission.title} [${submission.contributor}]`}</h2>
@@ -48,7 +48,7 @@ export default function AgbConsole({submission}: {submission: AgbSubmission}) {
 
 function renderPhoto(submission: AgbSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/agb/${submission.slug}_${photo.name}`
   return (
@@ -58,7 +58,7 @@ function renderPhoto(submission: AgbSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard}: AgbMetadata) {
+function renderChips({ mainboard }: AgbMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

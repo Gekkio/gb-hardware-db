@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {Photo, Sgb2Submission} from '../../crawler';
-import {Sgb2Metadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { Photo, Sgb2Submission } from '../../crawler'
+import { Sgb2Metadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function Sgb2Console({submission}: {submission: Sgb2Submission}) {
+export default function Sgb2Console({ submission }: { submission: Sgb2Submission }) {
   return (
     <article className="page-console page-console--sgb2">
       <h2>{`SGB2: ${submission.title} [${submission.contributor}]`}</h2>
@@ -42,7 +42,7 @@ export default function Sgb2Console({submission}: {submission: Sgb2Submission}) 
 
 function renderPhoto(submission: Sgb2Submission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/sgb2/${submission.slug}_${photo.name}`
   return (
@@ -52,7 +52,7 @@ function renderPhoto(submission: Sgb2Submission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard}: Sgb2Metadata) {
+function renderChips({ mainboard }: Sgb2Metadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

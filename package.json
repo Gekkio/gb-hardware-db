@@ -32,6 +32,7 @@
     "nodemon": "~1.18.4",
     "normalize.css": "~8.0.0",
     "postcss-csso": "~3.0.0",
+    "prettier": "^1.14.2",
     "source-map-support": "~0.5.9",
     "typescript": "~3.0.3",
     "winston": "~3.1.0"

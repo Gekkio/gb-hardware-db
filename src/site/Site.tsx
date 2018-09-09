@@ -1,42 +1,42 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import Home from './pages/Home';
-import Contribute from './pages/Contribute';
-import ContributeSgb from './pages/ContributeSgb';
-import ContributeSgb2 from './pages/ContributeSgb2';
-import ContributeOxy from './pages/ContributeOxy';
-import Dmg from './pages/Dmg';
-import DmgConsole from './pages/DmgConsole';
-import Sgb from './pages/Sgb';
-import SgbConsole from './pages/SgbConsole';
-import Mgb from './pages/Mgb';
-import MgbConsole from './pages/MgbConsole';
-import Mgl from './pages/Mgl';
-import MglConsole from './pages/MglConsole';
-import Sgb2 from './pages/Sgb2';
-import Sgb2Console from './pages/Sgb2Console';
-import Cgb from './pages/Cgb';
-import CgbConsole from './pages/CgbConsole';
-import Agb from './pages/Agb';
-import AgbConsole from './pages/AgbConsole';
-import Ags from './pages/Ags';
-import AgsConsole from './pages/AgsConsole';
-import Gbs from './pages/Gbs';
-import GbsConsole from './pages/GbsConsole';
-import Oxy from './pages/Oxy';
-import OxyConsole from './pages/OxyConsole';
-import SiteFooter from './components/SiteFooter';
-import SiteHeader from './components/SiteHeader';
-import Cartridge from './pages/Cartridge';
-import Game from './pages/Game';
-import Cartridges from './pages/Cartridges';
-import Mapper from './pages/Mapper';
+import Home from './pages/Home'
+import Contribute from './pages/Contribute'
+import ContributeSgb from './pages/ContributeSgb'
+import ContributeSgb2 from './pages/ContributeSgb2'
+import ContributeOxy from './pages/ContributeOxy'
+import Dmg from './pages/Dmg'
+import DmgConsole from './pages/DmgConsole'
+import Sgb from './pages/Sgb'
+import SgbConsole from './pages/SgbConsole'
+import Mgb from './pages/Mgb'
+import MgbConsole from './pages/MgbConsole'
+import Mgl from './pages/Mgl'
+import MglConsole from './pages/MglConsole'
+import Sgb2 from './pages/Sgb2'
+import Sgb2Console from './pages/Sgb2Console'
+import Cgb from './pages/Cgb'
+import CgbConsole from './pages/CgbConsole'
+import Agb from './pages/Agb'
+import AgbConsole from './pages/AgbConsole'
+import Ags from './pages/Ags'
+import AgsConsole from './pages/AgsConsole'
+import Gbs from './pages/Gbs'
+import GbsConsole from './pages/GbsConsole'
+import Oxy from './pages/Oxy'
+import OxyConsole from './pages/OxyConsole'
+import SiteFooter from './components/SiteFooter'
+import SiteHeader from './components/SiteHeader'
+import Cartridge from './pages/Cartridge'
+import Game from './pages/Game'
+import Cartridges from './pages/Cartridges'
+import Mapper from './pages/Mapper'
 
 namespace Site {
   export interface Props {
-    pageType: string;
-    title: string;
-    pageProps: any;
+    pageType: string
+    title: string
+    pageProps: any
   }
 }
 
@@ -50,20 +50,18 @@ export default function Site(props: Site.Props) {
         <title>{props.title}</title>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
-        <script dangerouslySetInnerHTML={{__html: googleAnalytics()}} />
+        <script dangerouslySetInnerHTML={{ __html: googleAnalytics() }} />
         <script async src="https://www.google-analytics.com/analytics.js" />
       </head>
       <body>
         <SiteHeader pageType={props.pageType} />
         <main className="site-main">
-          <div className="site-main__content">
-            {renderPage(props.pageType, props.pageProps)}
-          </div>
+          <div className="site-main__content">{renderPage(props.pageType, props.pageProps)}</div>
         </main>
         <SiteFooter />
       </body>
     </html>
-  );
+  )
 }
 
 function renderPage(type: string, props: any) {
@@ -127,12 +125,12 @@ function renderPage(type: string, props: any) {
     case 'mapper':
       return <Mapper {...props} />
     default:
-      return null;
+      return null
   }
 }
 
 function googleAnalytics() {
   return `window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
   ga('create', 'UA-37123121-2', 'auto');
-  ga('send', 'pageview');`;
+  ga('send', 'pageview');`
 }

@@ -1,12 +1,10 @@
-import * as React from 'react';
-import * as ReactMarkdown from 'react-markdown';
+import * as React from 'react'
+import * as ReactMarkdown from 'react-markdown'
 
 interface Props {
-  content: string;
+  content: string
 }
 
-export default function Home({content}: Props) {
-  return (
-    <ReactMarkdown source={content} renderers={{root: (props: any) => <article {...props} />}} />
-  )
+export default function Home({ content }: Props) {
+  return <ReactMarkdown source={content} renderers={{ root: (props: any) => <article {...props} /> }} />
 }

@@ -9,8 +9,7 @@ $main-color-4: #010813;
     @media only screen and (min-width: 600px) {
       @content;
     }
-  }
-  @else if $type == desktop {
+  } @else if $type == desktop {
     @media only screen and (min-width: 1000px) {
       @content;
     }

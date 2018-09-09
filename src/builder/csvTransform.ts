@@ -1,39 +1,60 @@
-import * as fs from 'fs';
-import * as csvStringify from 'csv-stringify';
+import * as fs from 'fs'
+import * as csvStringify from 'csv-stringify'
 import {
-  AgbSubmission, AgsSubmission, CgbSubmission, DmgSubmission, GbsSubmission, MgbSubmission, MglSubmission,
+  AgbSubmission,
+  AgsSubmission,
+  CgbSubmission,
+  DmgSubmission,
+  GbsSubmission,
+  MgbSubmission,
+  MglSubmission,
   OxySubmission,
-  Sgb2Submission, SgbSubmission, ConsoleSubmission, CartridgeSubmission
-} from '../crawler';
+  Sgb2Submission,
+  SgbSubmission,
+  ConsoleSubmission,
+  CartridgeSubmission,
+} from '../crawler'
 import {
-  AgbMetadata, AgsMetadata, CartridgeMetadata, CgbMetadata, Chip, DmgMetadata, GbsMetadata, MgbMetadata, MglMetadata,
+  AgbMetadata,
+  AgsMetadata,
+  CartridgeMetadata,
+  CgbMetadata,
+  Chip,
+  DmgMetadata,
+  GbsMetadata,
+  MgbMetadata,
+  MglMetadata,
   OxyMetadata,
   Sgb2Metadata,
-  SgbMetadata
-} from '../metadata';
-import * as format from '../site/format';
-import {gameCfgs} from '../config';
+  SgbMetadata,
+} from '../metadata'
+import * as format from '../site/format'
+import { gameCfgs } from '../config'
 
 export interface CsvColumn<T> {
-  name: string,
-  get: (value: T) => any,
+  name: string
+  get: (value: T) => any
 }
 
 export function generateCsv<T>(columns: CsvColumn<T>[], rows: T[], path: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     const stringifier = csvStringify({
-      columns: columns.map(({name}) => name),
+      columns: columns.map(({ name }) => name),
       header: true,
-    });
-    const stream = fs.createWriteStream(path);
-    stringifier.pipe(stream, {end: true})
+    })
+    const stream = fs.createWriteStream(path)
+    stringifier
+      .pipe(
+        stream,
+        { end: true }
+      )
       .on('error', reject)
-      .on('finish', resolve);
+      .on('finish', resolve)
 
     for (const row of rows) {
-      stringifier.write(columns.map(({get}) => get(row)), 'UTF-8');
+      stringifier.write(columns.map(({ get }) => get(row)), 'UTF-8')
     }
-    stringifier.end();
+    stringifier.end()
   })
 }
 
@@ -43,7 +64,7 @@ const CONSOLE_SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
   field('', 'slug'),
   generate('', 'url', s => `https://gbhwdb.gekkio.fi/consoles/${s.type}/${s.slug}.html`),
   field('', 'contributor'),
-];
+]
 
 export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -90,12 +111,9 @@ export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
       field('power_board', 'year'),
       field('power_board', 'month'),
     ]),
-    ...lift((m: DmgMetadata) => m.jack_board, [
-      field('jack_board', 'type'),
-      field('jack_board', 'extra_label'),
-    ])
+    ...lift((m: DmgMetadata) => m.jack_board, [field('jack_board', 'type'), field('jack_board', 'extra_label')]),
   ]),
-];
+]
 
 export const SGB_CSV_COLUMNS: CsvColumn<SgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -117,7 +135,7 @@ export const SGB_CSV_COLUMNS: CsvColumn<SgbSubmission>[] = [
     ...lift((m: SgbMetadata) => m.mainboard.rom, chipColumns('rom')),
     ...lift((m: SgbMetadata) => m.mainboard.cic, chipColumns('cic')),
   ]),
-];
+]
 
 export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -147,7 +165,7 @@ export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
     ...lift((m: MgbMetadata) => m.lcd && m.lcd.column_driver, chipColumns('column_driver')),
     ...lift((m: MgbMetadata) => m.lcd && m.lcd.row_driver, chipColumns('row_driver')),
   ]),
-];
+]
 
 export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -176,7 +194,7 @@ export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
     ...lift((m: MglMetadata) => m.mainboard.crystal, chipColumns('crystal')),
     ...lift((m: MglMetadata) => m.mainboard.t1, chipColumns('t1')),
   ]),
-];
+]
 
 export const SGB2_CSV_COLUMNS: CsvColumn<Sgb2Submission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -199,7 +217,7 @@ export const SGB2_CSV_COLUMNS: CsvColumn<Sgb2Submission>[] = [
     ...lift((m: Sgb2Metadata) => m.mainboard.coil, chipColumns('coil')),
     ...lift((m: Sgb2Metadata) => m.mainboard.crystal, chipColumns('crystal')),
   ]),
-];
+]
 
 export const CGB_CSV_COLUMNS: CsvColumn<CgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -228,7 +246,7 @@ export const CGB_CSV_COLUMNS: CsvColumn<CgbSubmission>[] = [
     ...lift((m: CgbMetadata) => m.mainboard.regulator, chipColumns('regulator')),
     ...lift((m: CgbMetadata) => m.mainboard.crystal, chipColumns('crystal')),
   ]),
-];
+]
 
 export const AGB_CSV_COLUMNS: CsvColumn<AgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -256,7 +274,7 @@ export const AGB_CSV_COLUMNS: CsvColumn<AgbSubmission>[] = [
     ...lift((m: AgbMetadata) => m.mainboard.u4, chipColumns('u2')),
     ...lift((m: AgbMetadata) => m.mainboard.crystal, chipColumns('crystal')),
   ]),
-];
+]
 
 export const AGS_CSV_COLUMNS: CsvColumn<AgsSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -279,7 +297,7 @@ export const AGS_CSV_COLUMNS: CsvColumn<AgsSubmission>[] = [
     ...lift((m: AgsMetadata) => m.mainboard.u5, chipColumns('u5')),
     ...lift((m: AgsMetadata) => m.mainboard.crystal, chipColumns('crystal')),
   ]),
-];
+]
 
 export const GBS_CSV_COLUMNS: CsvColumn<GbsSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -309,7 +327,7 @@ export const GBS_CSV_COLUMNS: CsvColumn<GbsSubmission>[] = [
     ...lift((m: GbsMetadata) => m.mainboard.u6, chipColumns('u6')),
     ...lift((m: GbsMetadata) => m.mainboard.crystal, chipColumns('crystal')),
   ]),
-];
+]
 
 export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
@@ -329,11 +347,11 @@ export const OXY_CSV_COLUMNS: CsvColumn<OxySubmission>[] = [
     ...lift((m: OxyMetadata) => m.mainboard.u4, chipColumns('u4')),
     ...lift((m: OxyMetadata) => m.mainboard.u5, chipColumns('u5')),
   ]),
-];
+]
 
 export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
   field('', 'type'),
-  generate('', 'name', s => (gameCfgs[s.type] || {name: ''}).name),
+  generate('', 'name', s => (gameCfgs[s.type] || { name: '' }).name),
   field('', 'title'),
   field('', 'slug'),
   generate('', 'url', s => `https://gbhwdb.gekkio.fi/cartridges/${s.type}/${s.slug}.html`),
@@ -362,29 +380,24 @@ export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
     ...lift((m: CartridgeMetadata) => m.board.accelerometer, chipColumns('accelerometer')),
     ...lift((m: CartridgeMetadata) => m.board.u4, chipColumns('u4')),
     ...lift((m: CartridgeMetadata) => m.board.u5, chipColumns('u5')),
-    ...lift((m: CartridgeMetadata) => m.board, [
-      field('', 'battery'),
-      field('', 'crystal'),
-    ]),
+    ...lift((m: CartridgeMetadata) => m.board, [field('', 'battery'), field('', 'crystal')]),
   ]),
-];
+]
 
 function lift<T, V>(f: (t: T) => V | null | undefined, columns: CsvColumn<V>[]): CsvColumn<T>[] {
-  return columns.map(({name, get}) => ({
+  return columns.map(({ name, get }) => ({
     name,
     get: (t: T) => {
       const value = f(t)
-      return value === undefined || value === null
-        ? ''
-        : get(value)
-    }
+      return value === undefined || value === null ? '' : get(value)
+    },
   }))
 }
 
 function field<T, K extends keyof T>(prefix: string, key: K): CsvColumn<T> {
   return {
     name: prefix ? `${prefix}_${key}` : String(key),
-    get: (value) => value[key],
+    get: value => value[key],
   }
 }
 
@@ -392,7 +405,7 @@ function generate<T>(prefix: string, name: string, get: (value: T) => any): CsvC
   return {
     name: prefix ? `${prefix}_${name}` : name,
     get: (value: T) => {
-      const result = get(value);
+      const result = get(value)
       if (result === null) {
         return '-'
       } else if (result === undefined) {
@@ -400,7 +413,7 @@ function generate<T>(prefix: string, name: string, get: (value: T) => any): CsvC
       } else {
         return result
       }
-    }
+    },
   }
 }
 
@@ -413,7 +426,7 @@ function chipColumns(prefix: string): CsvColumn<Chip>[] {
     generate(prefix, 'calendar_short', format.short.calendar),
     generate(prefix, 'calendar', format.calendar),
     field(prefix, 'year'),
-    field(prefix,'month'),
+    field(prefix, 'month'),
     field(prefix, 'week'),
   ]
 }

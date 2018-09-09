@@ -1,13 +1,13 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {Photo, DmgSubmission} from '../../crawler';
-import {DmgMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
+import { Photo, DmgSubmission } from '../../crawler'
+import { DmgMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
 
-export default function DmgConsole({submission}: {submission: DmgSubmission}) {
+export default function DmgConsole({ submission }: { submission: DmgSubmission }) {
   return (
     <article className="page-console page-console--dmg">
       <h2>{`DMG: ${submission.title} [${submission.contributor}]`}</h2>
@@ -77,7 +77,7 @@ function renderLcdBoardDetails(metadata: DmgMetadata) {
       <dt>Circled letter(s) on board</dt>
       <dd>{format.optional<string>(R.identity, metadata.lcd_board.circled_letters)}</dd>
       <dt>LCD panel label</dt>
-      <dd>{format.optional(({label}) => label, metadata.lcd_board.lcd_panel)}</dd>
+      <dd>{format.optional(({ label }) => label, metadata.lcd_board.lcd_panel)}</dd>
       <dt>LCD panel date</dt>
       <dd>{format.optional(panel => format.calendar(panel), metadata.lcd_board.lcd_panel)}</dd>
     </dl>
@@ -115,7 +115,7 @@ function renderJackBoardDetails(metadata: DmgMetadata) {
 }
 function renderPhoto(submission: DmgSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
   const url = `/static/dmg/${submission.slug}_${photo.name}`
   return (
@@ -125,7 +125,7 @@ function renderPhoto(submission: DmgSubmission, photo: Photo | undefined) {
   )
 }
 
-function renderChips({mainboard, lcd_board}: DmgMetadata) {
+function renderChips({ mainboard, lcd_board }: DmgMetadata) {
   return (
     <ConsolePageChipTable>
       <ConsolePageChip designator="U1" title="CPU" chip={mainboard.cpu} />

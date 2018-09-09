@@ -1,10 +1,10 @@
-import * as React from 'react';
+import * as React from 'react'
 
 interface Props {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
-export default function ConsolePageChipTable({children}: Props) {
+export default function ConsolePageChipTable({ children }: Props) {
   return (
     <table>
       <thead>
@@ -17,9 +17,7 @@ export default function ConsolePageChipTable({children}: Props) {
           <th>Label</th>
         </tr>
       </thead>
-      <tbody>
-        {children}
-      </tbody>
+      <tbody>{children}</tbody>
     </table>
   )
 }

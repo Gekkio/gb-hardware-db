@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import * as config from '../../config';
+import * as config from '../../config'
 
 interface Props {
-  pageType: string;
+  pageType: string
 }
 
-export default function SiteHeader({pageType}: Props) {
+export default function SiteHeader({ pageType }: Props) {
   return (
     <header className="site-header">
       <h1 className="site-header__title">
@@ -20,32 +20,34 @@ export default function SiteHeader({pageType}: Props) {
   )
 }
 
-const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name]);
+const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name])
 
 function isModel(pageType: string, code: string) {
   return pageType === code || pageType === `${code}-console`
 }
 
 function isInCartridges(pageType: string): boolean {
-  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper';
+  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper'
 }
 
-function Navigation({pageType}: Props) {
+function Navigation({ pageType }: Props) {
   return (
     <nav className="site-navigation">
       <ul>
-        {
-          models.map(([model, code, name]) => (
-            <li key={code} className={(isModel(pageType, code)) ? 'active' : undefined}>
-              <a href={`/consoles/${code}`}>
-                <strong>{model}</strong>
-                <span className="name">{name}</span>
-              </a>
-            </li>
-          ))
-        }
+        {models.map(([model, code, name]) => (
+          <li key={code} className={isModel(pageType, code) ? 'active' : undefined}>
+            <a href={`/consoles/${code}`}>
+              <strong>{model}</strong>
+              <span className="name">{name}</span>
+            </a>
+          </li>
+        ))}
         <li className={isInCartridges(pageType) ? 'active' : undefined}>
-          <a href="/cartridges">Game<br />cartridges</a>
+          <a href="/cartridges">
+            Game
+            <br />
+            cartridges
+          </a>
         </li>
       </ul>
     </nav>

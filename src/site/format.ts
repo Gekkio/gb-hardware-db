@@ -1,14 +1,14 @@
-import {monthName} from 'human-date';
+import { monthName } from 'human-date'
 
-import {Calendar} from '../metadata';
+import { Calendar } from '../metadata'
 
 function shortMonth(month: number): string {
   return monthName(month).substring(0, 3)
 }
 
 export namespace short {
-  export function calendar<T extends Calendar>({year, month, week, date_range}: T): string {
-    let prefix;
+  export function calendar<T extends Calendar>({ year, month, week, date_range }: T): string {
+    let prefix
     if (month) {
       prefix = shortMonth(month)
     } else if (week) {
@@ -20,17 +20,17 @@ export namespace short {
       }
     }
 
-    const yearStr = (year && String(year)) || '????';
-    return (prefix) ? `${prefix}/${yearStr}` : yearStr;
+    const yearStr = (year && String(year)) || '????'
+    return prefix ? `${prefix}/${yearStr}` : yearStr
   }
 }
 
-export function calendar<T extends Calendar>({year, month, week, date_range}: T): string {
-  let prefix;
+export function calendar<T extends Calendar>({ year, month, week, date_range }: T): string {
+  let prefix
   if (month) {
-    prefix = monthName(month);
+    prefix = monthName(month)
   } else if (week) {
-    prefix = `Week ${week}`;
+    prefix = `Week ${week}`
   } else if (date_range) {
     const [start, end] = date_range
     if (start.month && end.month) {
@@ -38,11 +38,11 @@ export function calendar<T extends Calendar>({year, month, week, date_range}: T)
     }
   }
 
-  const yearStr = (year && String(year)) || '????';
-  return (prefix) ? `${prefix}/${yearStr}` : yearStr;
+  const yearStr = (year && String(year)) || '????'
+  return prefix ? `${prefix}/${yearStr}` : yearStr
 }
 
-export function optional<T>(f: (value: T) => string, value: T | null | undefined): string {
+export function optional<T>(f: (value: T) => string, value: T | null | undefined): string {
   if (value === undefined) {
     return '????'
   } else if (value === null) {
@@ -55,62 +55,62 @@ export function optional<T>(f: (value: T) => string, value: T | null | undefine
 export function manufacturer(value: string): string {
   switch (value) {
     case 'amic':
-      return 'AMIC Technology';
+      return 'AMIC Technology'
     case 'analog':
-      return 'Analog Devices';
+      return 'Analog Devices'
     case 'at-t':
-      return 'AT&T Technologies';
+      return 'AT&T Technologies'
     case 'bsi':
-      return 'BSI';
+      return 'BSI'
     case 'fujitsu':
-      return 'Fujitsu';
+      return 'Fujitsu'
     case 'hynix':
-      return 'Hynix';
+      return 'Hynix'
     case 'hyundai':
-      return 'Hyundai';
+      return 'Hyundai'
     case 'kds':
-      return 'Daishinku';
+      return 'Daishinku'
     case 'kss':
-      return 'Kinseki';
+      return 'Kinseki'
     case 'lgs':
-      return 'Lucky GoldStar';
+      return 'Lucky GoldStar'
     case 'lsi-logic':
-      return 'LSI Logic';
+      return 'LSI Logic'
     case 'macronix':
-      return 'Macronix';
+      return 'Macronix'
     case 'microchip':
-      return 'Microchip';
+      return 'Microchip'
     case 'mitsumi':
-      return 'Mitsumi';
+      return 'Mitsumi'
     case 'mosel-vitelic':
-      return 'Mosel-Vitelic';
+      return 'Mosel-Vitelic'
     case 'motorola':
-      return 'Motorola';
+      return 'Motorola'
     case 'nec':
-      return 'NEC';
+      return 'NEC'
     case 'rohm':
-      return 'ROHM';
+      return 'ROHM'
     case 'samsung':
-      return 'Samsung';
+      return 'Samsung'
     case 'sanyo':
-      return 'Sanyo';
+      return 'Sanyo'
     case 'sharp':
-      return 'Sharp';
+      return 'Sharp'
     case 'smsc':
-      return 'Standard Microsystems Corporation';
+      return 'Standard Microsystems Corporation'
     case 'st':
-      return 'STMicroelectronics';
+      return 'STMicroelectronics'
     case 'tdk':
-      return 'TDK';
+      return 'TDK'
     case 'texas-instruments':
-      return 'Texas Instruments';
+      return 'Texas Instruments'
     case 'toshiba':
-      return 'Toshiba';
+      return 'Toshiba'
     case 'winbond':
-      return 'Winbond';
+      return 'Winbond'
     case 'xlink':
-      return 'Xlink (?)';
+      return 'Xlink (?)'
     default:
-      return value;
+      return value
   }
 }

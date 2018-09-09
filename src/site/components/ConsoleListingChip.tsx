@@ -1,21 +1,21 @@
-import * as classnames from 'classnames';
-import * as R from 'ramda';
-import * as React from 'react';
+import * as classnames from 'classnames'
+import * as R from 'ramda'
+import * as React from 'react'
 
-import {Chip} from '../../metadata';
-import * as format from '../format';
+import { Chip } from '../../metadata'
+import * as format from '../format'
 
 interface Props {
-  chip?: Chip | null;
+  chip?: Chip | null
 }
 
-export default function ConsoleListingChip({chip}: Props) {
+export default function ConsoleListingChip({ chip }: Props) {
   if (chip === undefined) {
     return <td>????</td>
   } else if (chip === null) {
     return <td>-</td>
   }
-  const classes = classnames('console-listing-chip', {'console-listing-chip--outlier': !!chip.outlier});
+  const classes = classnames('console-listing-chip', { 'console-listing-chip--outlier': !!chip.outlier })
   return (
     <td className={classes}>
       <div>{format.optional<string>(R.identity, chip.type)}</div>

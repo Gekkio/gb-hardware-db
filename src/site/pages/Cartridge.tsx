@@ -1,14 +1,14 @@
-import * as React from 'react';
-import * as R from 'ramda';
+import * as React from 'react'
+import * as R from 'ramda'
 
-import {CartridgeSubmission, Photo} from '../../crawler';
-import {CartridgeMetadata} from '../../metadata';
-import * as format from '../format';
-import ConsolePageChip from '../components/ConsolePageChip';
-import ConsolePageChipTable from '../components/ConsolePageChipTable';
-import {CartLayout, GameConfig, gameLayouts} from '../../config';
+import { CartridgeSubmission, Photo } from '../../crawler'
+import { CartridgeMetadata } from '../../metadata'
+import * as format from '../format'
+import ConsolePageChip from '../components/ConsolePageChip'
+import ConsolePageChipTable from '../components/ConsolePageChipTable'
+import { CartLayout, GameConfig, gameLayouts } from '../../config'
 
-export default function Cartridge({submission, cfg}: {submission: CartridgeSubmission, cfg: GameConfig}) {
+export default function Cartridge({ submission, cfg }: { submission: CartridgeSubmission; cfg: GameConfig }) {
   const layout = gameLayouts[cfg.layout]
   return (
     <article className="page-cartridge">
@@ -46,29 +46,31 @@ export default function Cartridge({submission, cfg}: {submission: CartridgeSubmi
 
 function renderPhoto(submission: CartridgeSubmission, photo: Photo | undefined) {
   if (!photo) {
-    return null;
+    return null
   }
-  const url = `/static/${submission.type}/${submission.slug}_${photo.name}`;
+  const url = `/static/${submission.type}/${submission.slug}_${photo.name}`
   return (
     <a href={url}>
       <img src={url} />
     </a>
   )
 }
-function renderChips(layout: CartLayout, {board}: CartridgeMetadata) {
+function renderChips(layout: CartLayout, { board }: CartridgeMetadata) {
   return (
     <ConsolePageChipTable>
-      {layout.chips.map(({designator, name, key}) =>
-        <ConsolePageChip key={designator} designator={designator} title={name} chip={board[key]} />)}
-      {layout.battery && <tr className="console-page-chip">
-        <td></td>
-        <td>Battery</td>
-        <td>{board.battery}</td>
-        <td />
-        <td />
-        <td />
-      </tr>}
+      {layout.chips.map(({ designator, name, key }) => (
+        <ConsolePageChip key={designator} designator={designator} title={name} chip={board[key]} />
+      ))}
+      {layout.battery && (
+        <tr className="console-page-chip">
+          <td />
+          <td>Battery</td>
+          <td>{board.battery}</td>
+          <td />
+          <td />
+          <td />
+        </tr>
+      )}
     </ConsolePageChipTable>
   )
 }
-

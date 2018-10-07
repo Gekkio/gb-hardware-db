@@ -10,6 +10,16 @@ const csso = require('postcss-csso')
 const process = require('process')
 const exec = require('child_process').exec
 
+const staticPaths = [
+  'static/**/*.html',
+  'static/**/*.txt',
+  'static/**/*.ico',
+  'static/**/*.png',
+  'static/**/*.svg',
+  'static/**/*.webmanifest',
+  'static/**/*.xml'
+]
+
 const tsProject = ts.createProject('tsconfig.json')
 gulp.task('scripts', function() {
   return tsProject
@@ -30,7 +40,7 @@ gulp.task('styles', function() {
 })
 
 gulp.task('static', function() {
-  return gulp.src(['static/**/*.html', 'static/**/*.txt']).pipe(gulp.dest('build/site'))
+  return gulp.src(staticPaths).pipe(gulp.dest('build/site'))
 })
 
 gulp.task('html', ['scripts'], function(cb) {
@@ -43,7 +53,7 @@ gulp.task('build', ['html', 'scripts', 'styles', 'static'])
 gulp.task('watch', ['html', 'scripts', 'styles', 'static'], function() {
   gulp.watch(['content/**/*.markdown', 'src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html'])
   gulp.watch('src/site/**/*.scss', ['styles'])
-  gulp.watch(['static/**/*.html', 'static/**/*.txt'], ['static'])
+  gulp.watch(staticPaths, ['static'])
 })
 
 gulp.task('default', ['build'])

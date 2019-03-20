@@ -27,6 +27,9 @@
       "year": 1995,
       "week": 6
     },
+    "ram_protector": {
+      "label": "509 26A"
+    },
     "battery": "CR1616"
   }
 }

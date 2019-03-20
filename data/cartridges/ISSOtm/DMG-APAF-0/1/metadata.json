@@ -12,6 +12,8 @@
       "year": 2000,
       "week": 8
     },
+    "ram": {},
+    "mapper": {},
     "ram_protector": {
       "type": "MM1134A",
       "manufacturer": "mitsumi",

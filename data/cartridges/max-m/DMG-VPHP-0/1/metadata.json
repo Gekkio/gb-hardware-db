@@ -14,12 +14,8 @@
       "year": 2001,
       "week": 1
     },
-    "mapper": {
-      "type": "MBC5",
-      "manufacturer": "texas-instruments",
-      "label": "0CA1??? MBC5 2417",
-      "year": 2000
-    },
+    "mapper": {},
+    "ram": {},
     "ram_protector": {
       "type": "BA6735",
       "manufacturer": "rohm",

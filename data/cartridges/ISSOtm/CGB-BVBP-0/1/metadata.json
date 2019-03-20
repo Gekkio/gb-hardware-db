@@ -12,11 +12,6 @@
       "year": 2001,
       "week": 8
     },
-    "mapper": {
-      "type": "MBC5",
-      "manufacturer": "texas-instruments",
-      "label": "11A3??? MBC5 ????",
-      "year": 2001
-    }
+    "mapper": {}
   }
 }

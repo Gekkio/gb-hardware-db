@@ -2,7 +2,7 @@
   "code": "CGB-BP8P-EUR",
   "stamp": "20",
   "board": {
-    "type": "DMG-A9-10",
+    "type": "DMG-A09-10",
     "circled_letters": "I",
     "extra_label": "3",
     "rom": {

@@ -3,11 +3,11 @@ import * as R from 'ramda'
 
 import { CartridgeSubmission } from '../../crawler'
 import { rejectNil } from '../../util/arrays'
-import { mapperCfgs, MapperId } from '../../config'
+import { mapperCfgs, MapperId, GameConfig } from '../../config'
 
 interface GameSubmissions {
   type: string
-  game: string
+  cfg: GameConfig
   submissions: CartridgeSubmission[]
 }
 
@@ -33,8 +33,23 @@ export default function Cartridges({ games, mappers }: Props) {
             <th>Submissions</th>
           </tr>
         </thead>
+        <tbody className="divider">
+          <tr>
+            <th colSpan={6}>Game Boy</th>
+          </tr>
+        </tbody>
         <tbody>
-          {games.map(game => (
+          {games.filter(({ cfg }) => cfg.platform === 'gb').map(game => (
+            <Game key={game.type} game={game} />
+          ))}
+        </tbody>
+        <tbody className="divider">
+          <tr>
+            <th colSpan={6}>Game Boy Color</th>
+          </tr>
+        </tbody>
+        <tbody>
+          {games.filter(({ cfg }) => cfg.platform === 'gbc').map(game => (
             <Game key={game.type} game={game} />
           ))}
         </tbody>
@@ -45,23 +60,34 @@ export default function Cartridges({ games, mappers }: Props) {
   )
 }
 
-function Game({ game: { type, game, submissions } }: { game: GameSubmissions }) {
-  const boardTypes = R.uniq(submissions.map(({ metadata }) => metadata.board.type)).sort()
-  const releases = R.uniq(rejectNil(submissions.map(({ metadata }) => metadata.code))).sort()
-  const mappers = R.uniq(
-    rejectNil(submissions.map(({ metadata }) => metadata.board.mapper)).map(({ type }) => type)
-  ).sort()
+function multiline(lines: string[]) {
+  return R.uniq(lines)
+    .sort()
+    .map((line, idx) => (
+      <span key={idx}>
+        {line}
+        <br />
+      </span>
+    ))
+}
+
+function Game({ game: { type, cfg, submissions } }: { game: GameSubmissions }) {
+  const boardTypes = submissions.map(({ metadata }) => metadata.board.type)
+  const releases = rejectNil(submissions.map(({ metadata }) => metadata.code))
+  const mappers = rejectNil(
+    submissions.map(({ metadata }) => metadata.board.mapper).map(mapper => mapper && mapper.type)
+  )
   return (
     <tr>
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/cartridges/${type}/`}>
-          {game}
+          {cfg.name}
         </a>
       </td>
       <td>{type}</td>
-      <td>{releases.join(', ')}</td>
-      <td>{boardTypes.join(', ')}</td>
-      <td>{mappers.join(', ')}</td>
+      <td>{multiline(releases)}</td>
+      <td>{multiline(boardTypes)}</td>
+      <td>{multiline(mappers)}</td>
       <td>{submissions.length}</td>
     </tr>
   )

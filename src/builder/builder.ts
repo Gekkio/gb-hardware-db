@@ -194,10 +194,10 @@ async function main(): Promise<void> {
       title: 'Game Boy cartridges',
       props: {
         games: R.sortBy(
-          ({ game }) => game,
+          ({ cfg }) => cfg.name,
           (R.toPairs(cartridgesByGame) as any[]).map(([type, submissions]) => {
             const cfg = config.gameCfgs[type]
-            return { type, game: cfg.name, submissions }
+            return { type, cfg, submissions }
           })
         ),
         mappers: Object.keys(cartridgesByMapper),

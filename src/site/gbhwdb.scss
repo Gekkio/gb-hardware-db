@@ -50,7 +50,7 @@ th {
   padding: 5px;
   text-align: left;
 }
-thead > tr {
+thead > tr, tbody.divider > tr {
   color: #fff;
   background-color: $main-color-3;
 }

@@ -1,0 +1,837 @@
+{
+  "CGB-AHYE-0": {
+    "name": "Super Mario Bros. Deluxe (USA, Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-AQOP-0": {
+    "name": "Ready 2 Rumble Boxing (Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-ATHE-0": {
+    "name": "Tarzan (USA, Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-ATQP-0": {
+    "name": "Tonka Raceway (Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-AW8A-0": {
+    "name": "Wario Land 3 (World) (En,Ja)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-AZ7J-0": {
+    "name": "Zelda no Densetsu - Fushigi no Kinomi - Daichi no Shou (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-AZ7P-0": {
+    "name": "Legend of Zelda, The - Oracle of Seasons (Europe) (En,Fr,De,Es,It)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-AZ8P-0": {
+    "name": "Legend of Zelda, The - Oracle of Ages (Europe) (En,Fr,De,Es,It)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-AZRP-0": {
+    "name": "Mask of Zorro, The (Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-B3OP-0": {
+    "name": "SnowCross (Europe) (En,Fr,De,Es,It,Pt)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-B82J-0": {
+    "name": "Densha de Go! 2 (Japan)",
+    "platform": "gbc",
+    "layout": "type_15"
+  },
+  "CGB-B9AJ-0": {
+    "name": "Mobile Trainer (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BDQP-0": {
+    "name": "Tiny Toon Adventures - Dizzy's Candy Quest (Europe) (En,Fr,De,Es,It,Nl)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BDSP-0": {
+    "name": "Dinosaur'us (Europe) (En,Fr,De,Es,It,Nl)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BFUP-0": {
+    "name": "Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BFVJ-1": {
+    "name": "Monster Traveler (Japan) (Rev 1)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BGLJ-0": {
+    "name": "Super Gals! Kotobuki Ran (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BHMJ-0": {
+    "name": "Hamster Paradise 2 (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BHVE-0": {
+    "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BJWP-0": {
+    "name": "Jimmy White's Cueball (Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BLYP-0": {
+    "name": "LEGO Stunt Rally (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BMVJ-0": {
+    "name": "Net de Get - Minigame @ 100 (Japan)",
+    "platform": "gbc",
+    "layout": "mbc6"
+  },
+  "CGB-BP8P-0": {
+    "name": "Pooh and Tigger's Hunny Safari (Europe) (En,Fr,De,Es,It,Nl)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BTGP-0": {
+    "name": "Tony Hawk's Pro Skater 2 (USA, Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BVBP-0": {
+    "name": "Beach'n Ball (Europe) (En,Fr,De,Es,It)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "CGB-BXTJ-0": {
+    "name": "Pocket Monsters - Crystal Version (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "CGB-BY3J-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BY4J-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BYTD-0": {
+    "name": "Pokemon - Kristall-Edition (Germany)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "CGB-BYTF-0": {
+    "name": "Pokemon - Version Cristal (France)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "CGB-HF2J-0": {
+    "name": "Pocket Family GB 2 (Japan)",
+    "platform": "gbc",
+    "layout": "huc3"
+  },
+  "CGB-KCEJ-0": {
+    "name": "Command Master (Japan)",
+    "platform": "gbc",
+    "layout": "mbc7"
+  },
+  "CGB-KKKJ-0": {
+    "name": "Korokoro Kirby (Japan)",
+    "platform": "gbc",
+    "layout": "mbc7"
+  },
+  "DMG-A3GP-0": {
+    "name": "PGA Tour 96 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-A4RJ-0": {
+    "name": "Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-A6SP-0": {
+    "name": "FIFA Soccer 96 (USA, Europe) (En,Fr,De,Es) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-A6W-0": {
+    "name": "Bamse (Sweden)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-A8WP-0": {
+    "name": "World Cup 98 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AAMJ-0": {
+    "name": "Mini Yonku GB Let's & Go!! - All-Star Battle Max (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AAUD-0": {
+    "name": "Pokemon - Goldene Edition (Germany) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AAUJ-1": {
+    "name": "Pocket Monsters Kin (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AAXD-0": {
+    "name": "Pokemon - Silberne Edition (Germany) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-ABEJ-0": {
+    "name": "Barcode Taisen Bardigun (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-ABUP-0": {
+    "name": "Bust-A-Move 2 - Arcade Edition (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-ACRP-0": {
+    "name": "Conker's Pocket Tales (USA, Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ACXJ-0": {
+    "name": "Pokemon Card GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AD3P-1": {
+    "name": "Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AD4P-0": {
+    "name": "Dropzone (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-ADDJ-0": {
+    "name": "Donkey Kong Land (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ADDP-0": {
+    "name": "Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ADQJ-0": {
+    "name": "Dragon Quest Monsters - Terry no Wonderland (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ADYP-0": {
+    "name": "Barbie - Ocean Discovery (Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "DMG-AEMP-0": {
+    "name": "Madden NFL 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "DMG-AFFJ-0": {
+    "name": "Super Chinese Fighter GB (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AFGE-0": {
+    "name": "Frogger (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AFOP-0": {
+    "name": "FIFA 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "DMG-AGOP-0": {
+    "name": "Hugo (Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AGQE-0": {
+    "name": "Game & Watch Gallery 3 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AK2P-0": {
+    "name": "Mortal Kombat & Mortal Kombat II (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AKMJ-0": {
+    "name": "Kandume Monsters (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AM3J-0": {
+    "name": "Momotarou Collection 2 (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AM6J-0": {
+    "name": "Daikaijuu Monogatari - The Miracle of the Zone II (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AMDJ-0": {
+    "name": "Momotarou Collection (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ANWJ-0": {
+    "name": "Itsudemo! Nyan to Wonderful (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AODP-0": {
+    "name": "Oddworld Adventures (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AOMJ-0": {
+    "name": "Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "tama"
+  },
+  "DMG-AORP-0": {
+    "name": "Ronaldo V-Football (Europe) (En,Fr,De,Es,It,Nl,Pt) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AP2J-0": {
+    "name": "Picross 2 (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APAF-0": {
+    "name": "Pokemon - Version Rouge (France) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APBJ-1": {
+    "name": "Pocket Monsters - Midori (Japan) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APCJ-0": {
+    "name": "Mario no Picross (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APCP-0": {
+    "name": "Mario's Picross (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APDP-0": {
+    "name": "Pinball Deluxe (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-APED-0": {
+    "name": "Pokemon - Blaue Edition (Germany) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-APEE-0": {
+    "name": "Pokemon - Blue Version (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-APOJ-0": {
+    "name": "Pocket Bomber Man (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APSE-0": {
+    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APSF-0": {
+    "name": "Pokemon - Version Jaune - Edition Speciale Pikachu (France) (GBC,SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-APSU-0": {
+    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ATAJ-0": {
+    "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AUFP-0": {
+    "name": "Smurfs Travel the World, The (Europe) (En,Fr,De,Es)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AVBJ-0": {
+    "name": "Pocket Bowling (Japan) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "DMG-AVLP-0": {
+    "name": "V-Rally - Championship Edition (Europe) (En,Fr,De)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AW2J-0": {
+    "name": "Wario Land 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AW2P-0": {
+    "name": "Wario Land II (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AW7E-0": {
+    "name": "James Bond 007 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AWA-0": {
+    "name": "Alleyway (World)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-AWDJ-0": {
+    "name": "Dino Breeder (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-AWLP-0": {
+    "name": "Wario Land II (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AXFE-0": {
+    "name": "New Adventures of Mary-Kate & Ashley, The (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
+  "DMG-AXQU-0": {
+    "name": "Pokemon Trading Card Game (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AYJ-0": {
+    "name": "Ayakashi no Shiro (Japan)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-AYLP-1": {
+    "name": "Tetris Attack (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AYMJ-1": {
+    "name": "Gakkyuu Ou Yamazaki (Japan) (Rev 1) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AYNP-0": {
+    "name": "Yannick Noah Tennis (France)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AYWJ-0": {
+    "name": "Bokujou Monogatari GB (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AZLP-0": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AZLP-2": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (Rev 2) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-B7HJ-0": {
+    "name": "Nakayoshi Pet Series 1 - Kawaii Hamster (Japan) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-BIA-0": {
+    "name": "Bomber King - Scenario 2 (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-BLUJ-0": {
+    "name": "From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-BM6E-0": {
+    "name": "Mega Man Xtreme (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-BMAP-0": {
+    "name": "Mary-Kate and Ashley - Pocket Planner (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-BQLJ-0": {
+    "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-CIE-0": {
+    "name": "Yoshi's Cookie (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-CNE-0": {
+    "name": "Operation C (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-CVJ-0": {
+    "name": "Dracula Densetsu (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-DDE-0": {
+    "name": "Double Dragon (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-EEE-0": {
+    "name": "Wario Blast featuring Bomberman! (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-F1A-1": {
+    "name": "F-1 Race (World) (Rev 1)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-FPE-0": {
+    "name": "Flipull (USA)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-G2E-0": {
+    "name": "Gauntlet II (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-GWJ-0": {
+    "name": "Game Boy Wars (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-H2E-0": {
+    "name": "NBA All-Star Challenge 2 (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-HBA-0": {
+    "name": "Bomber Boy (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-HFAJ-0": {
+    "name": "Pocket Family GB (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "huc3"
+  },
+  "DMG-HFE-0": {
+    "name": "Hunt for Red October, The (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-HLA-1": {
+    "name": "Hyper Lode Runner (World) (Rev 1)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-HQE-0": {
+    "name": "Chase H.Q. (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-HRCJ-0": {
+    "name": "Robot Poncots - Star Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "huc3"
+  },
+  "DMG-K9E-0": {
+    "name": "Kirby's Pinball Land (USA, Europe)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-KYE-0": {
+    "name": "Kirby's Dream Land (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-L6J-2": {
+    "name": "Super Mario Land 2 - 6-tsu no Kinka (Japan) (Rev 2)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-LDE-0": {
+    "name": "Little Mermaid, The (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-LWE-0": {
+    "name": "WWF Superstars (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-MEA-0": {
+    "name": "Metroid II - Return of Samus (World)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-MLA-1": {
+    "name": "Super Mario Land (World) (Rev 1)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-MQE-0": {
+    "name": "Super Mario Land 2 - 6 Golden Coins (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-MQE-2": {
+    "name": "Super Mario Land 2 - 6 Golden Coins (USA, Europe) (Rev 2)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-N6X-0": {
+    "name": "Super Battletank (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-NCE-0": {
+    "name": "Nintendo World Cup (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-NMX-0": {
+    "name": "Nemesis (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-OPX-0": {
+    "name": "Pop Up (Europe)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-OTX-0": {
+    "name": "Othello (Europe)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-PBJ-0": {
+    "name": "Pinball - 66hiki no Wani Daikoushin! (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-PCE-0": {
+    "name": "Pac-Man (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-PME-0": {
+    "name": "Catrap (USA)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-Q6E-0": {
+    "name": "NFL Quarterback Club (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-QQJ-1": {
+    "name": "Puyo Puyo (Japan) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-QXA-0": {
+    "name": "QIX (World)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-R4X-0": {
+    "name": "Mega Man IV (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-REA-0": {
+    "name": "R-Type (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-RWE-0": {
+    "name": "Mega Man - Dr. Wily's Revenge (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-RWX-0": {
+    "name": "Mega Man - Dr. Wily's Revenge (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-SAJ-0": {
+    "name": "Makai Toushi Sa-Ga (Japan)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-SOE-1": {
+    "name": "Boxxle (USA, Europe) (Rev 1)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-SVJ-0": {
+    "name": "Seaside Volley (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-TRA-1": {
+    "name": "Tetris (World) (Rev 1)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-UHE-0": {
+    "name": "Prehistorik Man (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-V2A-0": {
+    "name": "Flappy Special (Japan)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-VPHE-0": {
+    "name": "Pokemon Pinball (USA, Australia) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-VPHP-0": {
+    "name": "Pokemon Pinball (Europe) (En,Fr,De,Es,It) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-VUA-0": {
+    "name": "Dr. Mario (World)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-VUA-1": {
+    "name": "Dr. Mario (World) (Rev 1)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-W2X-0": {
+    "name": "Mega Man II (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-W3X-0": {
+    "name": "Mega Man III (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-W6J-0": {
+    "name": "Wizardry Gaiden III - Yami no Seiten (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-WJA-0": {
+    "name": "Wario Land - Super Mario Land 3 (World)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-WMX-0": {
+    "name": "Mega Man V (Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-WWE-0": {
+    "name": "Wizards & Warriors X - The Fortress of Fear (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-XCA-0": {
+    "name": "Power Mission (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-XTX-0": {
+    "name": "Top Ranking Tennis (Europe)",
+    "platform": "gb",
+    "layout": "mbc2"
+  },
+  "DMG-YKY-0": {
+    "name": "Soccer (Europe, Australia) (En,Fr,De) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom"
+  },
+  "DMG-YOX-0": {
+    "name": "Mario & Yoshi (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-YTE-0": {
+    "name": "Donkey Kong Land (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-YTJ-0": {
+    "name": "Super Donkey Kong GB (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-ZLE-0": {
+    "name": "Legend of Zelda, The - Link's Awakening (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  }
+}

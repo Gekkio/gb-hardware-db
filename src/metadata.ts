@@ -73,7 +73,7 @@ const manufacturers = [
 
 export interface Chip {
   type?: string
-  label: string | null
+  label?: string | null
   manufacturer?: string
   year?: number
   month?: number
@@ -84,9 +84,7 @@ export interface Chip {
 export namespace Chip {
   export const schema = Joi.object().keys({
     type: Joi.string(),
-    label: Joi.string()
-      .allow(null)
-      .required(),
+    label: Joi.string().allow(null),
     manufacturer: Joi.string().only(manufacturers),
     year: schemas.year,
     month: schemas.month,

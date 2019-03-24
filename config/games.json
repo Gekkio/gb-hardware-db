@@ -124,6 +124,11 @@
     "platform": "gbc",
     "layout": "rom_mapper"
   },
+  "CGB-BWWJ-0": {
+    "name": "Game Boy Wars 3 (Japan)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
   "CGB-BXTJ-0": {
     "name": "Pocket Monsters - Crystal Version (Japan)",
     "platform": "gbc",
@@ -214,6 +219,11 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram_xtal"
   },
+  "DMG-ABEJ-1": {
+    "name": "Barcode Taisen Bardigun (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
   "DMG-ABUP-0": {
     "name": "Bust-A-Move 2 - Arcade Edition (USA, Europe)",
     "platform": "gb",
@@ -288,6 +298,16 @@
     "name": "Game & Watch Gallery 3 (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
     "layout": "rom_mapper_ram"
+  },
+  "DMG-AGWJ-0": {
+    "name": "Game Boy Wars Turbo (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AHHJ-0": {
+    "name": "Trade & Battle Card Hero (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
   },
   "DMG-AK2P-0": {
     "name": "Mortal Kombat & Mortal Kombat II (USA, Europe)",

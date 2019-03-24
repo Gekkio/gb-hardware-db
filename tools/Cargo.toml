@@ -2,13 +2,25 @@
 name = "gbhwdb-tools"
 version = "0.0.0"
 authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
+edition = "2018"
 
 [[bin]]
 name = "gbhwdb-photo"
 path = "src/photo.rs"
 
+[[bin]]
+name = "gbhwdb-dat"
+path = "src/gbhwdb-dat.rs"
+
 [dependencies]
 clap = "2.27"
+cursive = "0.11"
 failure = "0.1"
 failure_derive = "0.1"
-image = "0.19"
+glob = "0.3.0"
+image = "0.21"
+itertools = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+strsim = "0.8"
+xml-rs = "0.8"

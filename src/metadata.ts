@@ -7,8 +7,6 @@ export interface Calendar {
   date_range?: [DateRangePart, DateRangePart]
 }
 
-export type Battery = 'CR1616' | 'CR2025'
-
 const schemas = {
   year: Joi.number()
     .integer()
@@ -22,7 +20,6 @@ const schemas = {
     .integer()
     .min(1)
     .max(53),
-  battery: Joi.string().allow('CR1616', 'CR2025'),
 }
 
 export interface DateRangePart {
@@ -650,6 +647,5 @@ export interface CartridgeMetadata {
     eeprom?: Chip
     accelerometer?: Chip
     crystal?: Chip
-    battery?: Battery
   }
 }

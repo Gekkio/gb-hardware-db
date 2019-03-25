@@ -23,7 +23,6 @@ export const consoleCfgs: Record<ConsoleType, ConsoleConfig> = {
 
 export interface CartLayout {
   chips: CartChip[]
-  battery?: boolean
 }
 
 export interface CartChip {
@@ -70,7 +69,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U3', name: 'RAM', key: 'ram' },
       { designator: 'U4', name: 'RAM protector', key: 'ram_protector' },
     ],
-    battery: true,
   },
   rom_mapper_ram_xtal: {
     chips: [
@@ -80,7 +78,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U4', name: 'RAM protector', key: 'ram_protector' },
       { designator: 'X1', name: 'Crystal', key: 'crystal' },
     ],
-    battery: true,
   },
   mbc2: {
     chips: [
@@ -88,7 +85,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U2', name: 'Mapper', key: 'mapper' },
       { designator: 'U3', name: 'RAM protector', key: 'ram_protector' },
     ],
-    battery: true,
   },
   mbc6: {
     chips: [
@@ -98,7 +94,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U4', name: 'RAM', key: 'ram' },
       { designator: 'U5', name: 'RAM protector', key: 'ram_protector' },
     ],
-    battery: true,
   },
   mbc7: {
     chips: [
@@ -117,7 +112,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U5', name: 'ROM 2', key: 'rom2' },
       { designator: 'U6', name: 'Line Decoder', key: 'line_decoder' },
     ],
-    battery: true,
   },
   huc3: {
     chips: [
@@ -128,7 +122,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U5', name: '????', key: 'u5' },
       { designator: 'X1', name: 'Crystal', key: 'crystal' },
     ],
-    battery: true,
   },
   tama: {
     chips: [
@@ -139,7 +132,6 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U5', name: 'RAM protector', key: 'ram_protector' },
       { designator: 'X1', name: 'Crystal', key: 'crystal' },
     ],
-    battery: true,
   },
 }
 

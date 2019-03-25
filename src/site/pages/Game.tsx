@@ -25,7 +25,6 @@ export default function Game({ type, cfg, submissions }: Props) {
             {layout.chips.map(({ designator, name }) => (
               <th key={designator}>{`${name} (${designator})`}</th>
             ))}
-            {layout.battery && <th>Battery</th>}
             <th>Photos</th>
           </tr>
         </thead>
@@ -76,7 +75,6 @@ function Submission({
       {layout.chips.map(({ designator, key }) => (
         <ConsoleListingChip key={designator} chip={metadata.board[key]} />
       ))}
-      {layout.battery && <td>{format.optional(x => x, metadata.board.battery)}</td>}
       <td>
         {renderPhoto(type, slug, 'Front', photos.front)}
         {renderPhoto(type, slug, 'Back', photos.back)}

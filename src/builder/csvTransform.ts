@@ -380,7 +380,7 @@ export const CARTRIDGE_CSV_COLUMNS: CsvColumn<CartridgeSubmission>[] = [
     ...lift((m: CartridgeMetadata) => m.board.accelerometer, chipColumns('accelerometer')),
     ...lift((m: CartridgeMetadata) => m.board.u4, chipColumns('u4')),
     ...lift((m: CartridgeMetadata) => m.board.u5, chipColumns('u5')),
-    ...lift((m: CartridgeMetadata) => m.board, [field('', 'battery'), field('', 'crystal')]),
+    ...lift((m: CartridgeMetadata) => m.board, [field('', 'crystal')]),
   ]),
 ]
 

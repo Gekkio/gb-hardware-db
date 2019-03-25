@@ -387,7 +387,7 @@
   "DMG-APED-0": {
     "name": "Pokemon - Blaue Edition (Germany) (SGB Enhanced)",
     "platform": "gb",
-    "layout": "rom_mapper_ram_xtal"
+    "layout": "rom_mapper_ram"
   },
   "DMG-APEE-0": {
     "name": "Pokemon - Blue Version (USA, Europe) (SGB Enhanced)",
@@ -832,7 +832,7 @@
   "DMG-YKY-0": {
     "name": "Soccer (Europe, Australia) (En,Fr,De) (SGB Enhanced)",
     "platform": "gb",
-    "layout": "rom"
+    "layout": "rom_mapper"
   },
   "DMG-YOX-0": {
     "name": "Mario & Yoshi (Europe)",

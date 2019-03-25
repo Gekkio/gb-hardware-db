@@ -34,6 +34,7 @@ before_script:
   - git lfs pull
 
 script:
+  - cd site_generator && cargo run --verbose --release && cd ..
   - yarn build
 
 deploy:

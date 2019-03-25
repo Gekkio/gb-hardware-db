@@ -18,7 +18,6 @@ import {
   SgbMetadata,
 } from './metadata'
 import { rejectNil } from './util/arrays'
-import * as config from './config'
 
 export interface FsEntry {
   absolutePath: string
@@ -110,12 +109,6 @@ async function crawlDefaultPhotos(unit: FsEntry): Promise<DefaultPhotos> {
   return { front, back, pcbFront, pcbBack }
 }
 
-async function crawlCartridgePhotos(unit: FsEntry): Promise<DefaultPhotos> {
-  const [front, pcbFront, pcbBack] = await Promise.all(
-    ['01_front.jpg', '02_pcb_front.jpg', '03_pcb_back.jpg'].map(filename => fetchPhoto(unit, filename))
-  )
-  return { front, pcbFront, pcbBack }
-}
 async function crawlDmgPhotos(unit: FsEntry): Promise<DmgPhotos> {
   const [
     front,
@@ -202,20 +195,6 @@ function consoleSubmissionEntry({ contributor, entry }: SubmissionPath): Submiss
   }
 }
 
-function cartridgeSubmissionEntry({ contributor, entry }: SubmissionPath): SubmissionEntry {
-  if (/^[0-9]+(-[0-9])?$/.test(entry.name)) {
-    return {
-      title: `Entry #${entry.name}`,
-      slug: urlSlug(`${contributor.name}-${entry.name}`),
-      sortGroup: undefined,
-      contributor: contributor.name,
-      entry,
-    }
-  } else {
-    throw new Error(`Unsupported cartridge entry name format "${entry.name}"`)
-  }
-}
-
 async function crawl<T extends string, M, P = DefaultPhotos>(
   type: T,
   schema: Joi.Schema,
@@ -280,26 +259,6 @@ export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> 
             return undefined
           }
         }
-      })
-    )
-  )
-}
-
-export async function crawlCartridges(path: string): Promise<CartridgeSubmission[]> {
-  const submissions = await crawlSubmissions(path)
-
-  return rejectNil(
-    await Promise.all(
-      submissions.map(async path => {
-        const { type } = path
-
-        const cfg = config.gameCfgs[type.name]
-        if (!cfg) {
-          console.warn(`Skipping unknown cartridge directory ${type.absolutePath}`)
-          return undefined
-        }
-        const entry = cartridgeSubmissionEntry(path)
-        return await crawl<string, CartridgeMetadata>(type.name, CartridgeMetadata.schema, crawlCartridgePhotos, entry)
       })
     )
   )

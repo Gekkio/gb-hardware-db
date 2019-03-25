@@ -653,32 +653,3 @@ export interface CartridgeMetadata {
     battery?: Battery
   }
 }
-
-export namespace CartridgeMetadata {
-  export const schema = Joi.object().keys({
-    code: Joi.string(),
-    stamp: Joi.string(),
-    board: Joi.object()
-      .required()
-      .keys({
-        type: Joi.string().required(),
-        circled_letters: Joi.string(),
-        extra_label: Joi.string(),
-        year: schemas.year,
-        month: schemas.month,
-        rom: Chip.schema,
-        rom2: Chip.schema,
-        mapper: Chip.schema,
-        ram: Chip.schema,
-        ram_protector: Chip.schema,
-        flash: Chip.schema,
-        u4: Chip.schema,
-        u5: Chip.schema,
-        line_decoder: Chip.schema,
-        eeprom: Chip.schema,
-        accelerometer: Chip.schema,
-        crystal: Chip.schema.allow(null),
-        battery: schemas.battery,
-      }),
-  })
-}

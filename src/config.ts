@@ -1,5 +1,4 @@
 import * as fs from 'fs-extra'
-import * as path from 'path'
 
 export type ConsoleType = 'dmg' | 'sgb' | 'mgb' | 'mgl' | 'sgb2' | 'cgb' | 'agb' | 'ags' | 'gbs' | 'oxy'
 
@@ -184,5 +183,3 @@ export interface GameConfig {
 }
 
 export const gameCfgs: Record<string, GameConfig> = fs.readJsonSync('config/games.json')
-
-export const games: string[] = Object.keys(gameCfgs)

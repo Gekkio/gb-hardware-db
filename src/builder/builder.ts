@@ -130,14 +130,14 @@ function consoleSubmissionComparator(a: ConsoleSubmission, b: ConsoleSubmission)
 }
 
 async function crawlCartridges(): Promise<CartridgeSubmission[]> {
-  const data: CartridgeSubmission[] = await fs.readJson('build/data/cartridges.json');
+  const data: CartridgeSubmission[] = await fs.readJson('build/data/cartridges.json')
   return Bluebird.mapSeries(data, async submission => ({
     ...submission,
     photos: {
       front: await photoStats(submission.photos.front),
       pcbFront: await photoStats(submission.photos.pcbFront),
       pcbBack: await photoStats(submission.photos.pcbBack),
-    }
+    },
   }))
 }
 

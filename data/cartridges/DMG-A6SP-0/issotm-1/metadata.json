@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A6SP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A6SP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1995,
+    "month": 11,
+    "u1": {
+      "label": "DMG-A6SP-0 S LH534MW3 JAPAN E1 9547 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N9542B3004"
+    }
+  }
+}

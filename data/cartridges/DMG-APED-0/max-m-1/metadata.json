@@ -1,0 +1,28 @@
+{
+  "code": "DMG-APED-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APED-NOE"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 9,
+    "u1": {
+      "label": "DMG-APED-0 F1 M538011E-73 9455403"
+    },
+    "u2": {
+      "label": "MBC5 P-1 942U5M"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9904 3 SO"
+    },
+    "u4": {
+      "label": "937 134A"
+    }
+  }
+}

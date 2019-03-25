@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BP8P-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BP8P-EUR",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A09-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 10,
+    "u1": {
+      "label": "M014504-M MX23C1603-12A CGB-BP8P-0 G2 1D5395A1"
+    },
+    "u2": {
+      "label": "MBC5 P-2 142U2M"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-CVJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-CVJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1989,
+    "month": 10,
+    "u1": {
+      "label": "DMG-CVJ-0 SHARP JAPAN B0 8941 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B 8940AJ"
+    }
+  }
+}

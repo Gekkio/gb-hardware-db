@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AMDJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AMDJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-MC-DFCN-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1996,
+    "month": 7,
+    "u1": {
+      "label": "DMG-AMDJ-0 S LH538MNI JAPAN F1 9628 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'61"
+    },
+    "u3": {
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N526 0H 8C"
+    },
+    "u4": {
+      "label": "624 26A"
+    }
+  }
+}

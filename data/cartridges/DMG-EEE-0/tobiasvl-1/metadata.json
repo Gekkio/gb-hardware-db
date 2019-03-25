@@ -1,0 +1,23 @@
+{
+  "code": "DMG-EEE-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-EE-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1994,
+    "month": 11,
+    "u1": {
+      "label": "TOSHIBA 9448EAI TC532000BF DMG-EEE-0 D1 N875 JAPAN"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9423BA014"
+    }
+  }
+}

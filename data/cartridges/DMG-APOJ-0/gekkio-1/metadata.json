@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APOJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APOJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-TEDN-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C"
+    },
+    "u2": {
+      "label": "HuC-1 © HUDSON Nintendo 9746 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9733 KOREA"
+    },
+    "u4": {
+      "label": "6129A 7A52"
+    }
+  }
+}

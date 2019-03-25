@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AYLP-1",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYLP-EUR",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AYLP-1 S LH534MVB JAPAN E1 9643 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'08"
+    }
+  }
+}

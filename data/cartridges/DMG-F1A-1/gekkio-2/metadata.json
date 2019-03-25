@@ -1,0 +1,26 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-F1-EUR",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-GDAN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 5,
+    "u1": {
+      "label": "DMG-F1A-1 S LH531H2M JAPAN C1 9721 E"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9716 5 AB"
+    },
+    "u3": {
+      "label": "713 26A"
+    }
+  }
+}

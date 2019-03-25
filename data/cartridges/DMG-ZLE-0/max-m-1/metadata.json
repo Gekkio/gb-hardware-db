@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ZLE-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZL-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1993,
+    "month": 6,
+    "u1": {
+      "label": "DMG-ZLE-0 E1 N-4001EAGW-J14 9325X9700"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 3'33"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9314B KOREA"
+    },
+    "u4": {
+      "label": "346 26A"
+    }
+  }
+}

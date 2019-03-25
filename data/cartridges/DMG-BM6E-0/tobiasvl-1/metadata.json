@@ -1,0 +1,29 @@
+{
+  "code": "DMG-BM6E-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BM6E-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-Z02-01",
+    "circled_letters": "NC",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "S004449-M MX23C8005-12 DMG-BM6E-0 F1 1C3670A1"
+    },
+    "u2": {
+      "label": "09ED1LT MBC5 2417"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S282735053 F0042 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 0A53"
+    }
+  }
+}

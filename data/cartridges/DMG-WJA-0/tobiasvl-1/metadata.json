@@ -1,0 +1,29 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WJ-SCN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "3",
+    "year": 1996,
+    "month": 1,
+    "u1": {
+      "label": "DMG-WJA-0 S LH534M05 JAPAN E1 9606 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'D5"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 604 195N"
+    },
+    "u4": {
+      "label": "6129A 5B68"
+    }
+  }
+}

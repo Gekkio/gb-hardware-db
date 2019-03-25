@@ -1,0 +1,26 @@
+{
+  "code": "DMG-AGQE-0",
+  "slug": "lance-kindle-1",
+  "contributor": "Lance Kindle",
+  "index": 1,
+  "shell": {},
+  "board": {
+    "label": "DMG-Z02-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "DMG-AGQE-0 F1 N-8001EJGW-K14 0033K7036"
+    },
+    "u2": {
+      "label": "07D4CKT MBC5 2417"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 031 150NA"
+    },
+    "u4": {
+      "label": "6735 0738"
+    }
+  }
+}

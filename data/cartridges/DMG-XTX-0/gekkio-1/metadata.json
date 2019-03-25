@@ -1,0 +1,26 @@
+{
+  "code": "DMG-XTX-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-XT-UKV",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1993,
+    "month": 2,
+    "u1": {
+      "label": "DMG-XTX-0 S LH532MAI JAPAN D1 9319 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9126CA032"
+    },
+    "u3": {
+      "label": "6129 3443"
+    }
+  }
+}

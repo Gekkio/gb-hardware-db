@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-ML-ITA",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1996,
+    "month": 6,
+    "u1": {
+      "label": "DMG-MLA-1 S LH531720 JAPAN B1 9627 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9625 3 A"
+    }
+  }
+}

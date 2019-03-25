@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AVBJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AVBJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AVBJ-0 S LH5S4MVU JAPAN E1 9840 E"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9836 A"
+    }
+  }
+}

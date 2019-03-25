@@ -1,0 +1,20 @@
+{
+  "code": "DMG-AWA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-AAA-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1989,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AWA-0 SHARP JAPAN 8909 D A"
+    }
+  }
+}

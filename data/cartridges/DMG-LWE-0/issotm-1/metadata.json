@@ -1,0 +1,23 @@
+{
+  "code": "DMG-LWE-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-LW-NOE",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1992,
+    "month": 5,
+    "u1": {
+      "label": "TOSHIBA 9227EAI TC531001CF DMG-LWE-0 C1 J652 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 2'45"
+    }
+  }
+}

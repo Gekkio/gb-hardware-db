@@ -1,0 +1,21 @@
+{
+  "code": "DMG-AFOP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AFOP-FRA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "1",
+    "u1": {
+      "label": "DMG-AFOP-0 S LH538WPU JAPAN F1 9949 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 943U7M"
+    }
+  }
+}

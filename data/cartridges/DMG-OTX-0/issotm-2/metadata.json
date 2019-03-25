@@ -1,0 +1,20 @@
+{
+  "code": "DMG-OTX-0",
+  "slug": "issotm-2",
+  "contributor": "ISSOtm",
+  "index": 2,
+  "shell": {
+    "code": "DMG-OT-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 8,
+    "u1": {
+      "label": "DMG-OTX-0 S LH5359UD JAPAN A0 9139 D"
+    }
+  }
+}

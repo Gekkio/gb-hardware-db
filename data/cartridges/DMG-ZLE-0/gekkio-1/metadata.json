@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ZLE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZL-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1993,
+    "month": 6,
+    "u1": {
+      "label": "DMG-ZLE-0 E1 N-4001EAGW-J14 9329X7007"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9247BA025"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9327B KOREA"
+    },
+    "u4": {
+      "label": "6129 3748"
+    }
+  }
+}

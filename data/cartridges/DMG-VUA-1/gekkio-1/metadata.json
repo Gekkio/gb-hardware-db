@@ -1,0 +1,20 @@
+{
+  "code": "DMG-VUA-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VU-ITA",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9646 D"
+    }
+  }
+}

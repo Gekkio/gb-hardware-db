@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AUFP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AUFP-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AUFP-0 S LH531HJY JAPAN C1 9742 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9741 3 A"
+    }
+  }
+}

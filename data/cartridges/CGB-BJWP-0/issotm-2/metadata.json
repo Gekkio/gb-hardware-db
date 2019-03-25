@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BJWP-0",
+  "slug": "issotm-2",
+  "contributor": "ISSOtm",
+  "index": 2,
+  "shell": {
+    "code": "CGB-BJWP-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MBC",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "CGB-BJWP-0 F1 M538011E-4D 0475408"
+    },
+    "u2": {
+      "label": "MBC5 P 042U4M"
+    }
+  }
+}

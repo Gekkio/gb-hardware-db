@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AYWJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYWJ-JPN",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-KECN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AYWJ-0 S LH5S4MW6 JAPAN E1 9748 D"
+    },
+    "u2": {
+      "label": "MBC3 LR385364 9744 A"
+    },
+    "u3": {
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N745 1G BH"
+    },
+    "u4": {
+      "label": "6129A 7A27"
+    },
+    "x1": {
+      "label": "KDS7J"
+    }
+  }
+}

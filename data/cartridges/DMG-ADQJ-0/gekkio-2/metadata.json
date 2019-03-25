@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADQJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-ADQJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DGCU-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "DMG-ADQJ-0 S LH537MT2 JAPAN G2 9836 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'47"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9820 1 DB"
+    },
+    "u4": {
+      "label": "6129A 8Q12"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AWLP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWLP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 12,
+    "u1": {
+      "label": "SEC KM23C16120DT DMG-AWLP-0 G2 KF6409G"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 846 H48"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9846 KOREA"
+    },
+    "u4": {
+      "label": "849 134A"
+    }
+  }
+}

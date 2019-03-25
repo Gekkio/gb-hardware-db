@@ -1,0 +1,29 @@
+{
+  "code": "DMG-YTJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-YTJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 7,
+    "u1": {
+      "label": "DMG-YTJ-0 S LH534MYE JAPAN E1 9730 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9729 3 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9702B KOREA"
+    },
+    "u4": {
+      "label": "6129A 7727"
+    }
+  }
+}

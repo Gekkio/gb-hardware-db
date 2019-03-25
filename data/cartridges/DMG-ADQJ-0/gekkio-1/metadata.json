@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADQJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADQJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-DGCU-01",
+    "circled_letters": "Y",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "SEC KM23C16120T DMG-ADQJ-0 G2 KF6402G"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9829 3 A"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 821 148N"
+    },
+    "u4": {
+      "label": "748 26A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AZRP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZRP-EUU",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "J001149-M MX23C8005-12 CGB-AZRP-0 F1 1B5740B1A0"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AL03 A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-REA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-REA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 1,
+    "u1": {
+      "label": "DMG-REA-0 C1 N-1001EGW-J28 9106E9026"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9035BA070"
+    }
+  }
+}

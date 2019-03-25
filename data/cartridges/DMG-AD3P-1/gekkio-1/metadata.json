@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AD3P-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AD3P-EUR",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "J983638-M MX23C4002-20 DMG-AD3P-1 E1 1P0410Y1"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9749 1 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9821 5 DB"
+    },
+    "u4": {
+      "label": "835 26A"
+    }
+  }
+}

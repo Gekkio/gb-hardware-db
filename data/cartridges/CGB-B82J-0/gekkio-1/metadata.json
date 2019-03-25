@@ -1,0 +1,35 @@
+{
+  "code": "CGB-B82J-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B82J-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A15-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301"
+    },
+    "u2": {
+      "label": "MBC5 P 041U4M"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0033 KOREA"
+    },
+    "u4": {
+      "label": "035 134A"
+    },
+    "u5": {
+      "label": "M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D151301"
+    },
+    "u6": {
+      "label": "7W139 0J"
+    }
+  }
+}

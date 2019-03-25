@@ -1,0 +1,23 @@
+{
+  "code": "DMG-Q6E-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-Q6-NOE",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1993,
+    "month": 11,
+    "u1": {
+      "label": "Ⓜ AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9349E9004"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9341 3 A"
+    }
+  }
+}

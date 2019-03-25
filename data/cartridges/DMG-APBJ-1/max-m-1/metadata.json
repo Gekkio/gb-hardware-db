@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APBJ-1",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APBJ-JPN",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1997,
+    "month": 2,
+    "u1": {
+      "label": "DMG-APBJ-1 S LH534MV2 JAPAN E1 9716 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'10"
+    },
+    "u3": {
+      "label": "LH52B256NA-10PLL MOSEL-VITELIC JAPAN N643 0T BB"
+    },
+    "u4": {
+      "label": "6129A 7224"
+    }
+  }
+}

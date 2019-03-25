@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MQE-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MQ-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1992,
+    "month": 11,
+    "u1": {
+      "label": "DMG-MQE-0 S LH534M02 JAPAN E1 9248 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9245BA035"
+    },
+    "u3": {
+      "label": "LH5168NFB-10TL LSI LOGIC JAPAN D244 7 BC"
+    },
+    "u4": {
+      "label": "2J5 26A"
+    }
+  }
+}

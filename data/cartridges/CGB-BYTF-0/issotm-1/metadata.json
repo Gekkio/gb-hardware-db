@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BYTF-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BYTF-FRA",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 2001,
+    "month": 8,
+    "u1": {
+      "label": "M013404-M MX23C1603-12A CGB-BYTF-0 G2 1D4293A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 131 H28"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2827V52155 A0106 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 1B40"
+    },
+    "x1": {
+      "label": "KDS1C"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AD4P-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AD4P-EUR",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 3,
+    "u1": {
+      "label": "DMG-AD4P-0 S LHMN2EN2 JAPAN D1 9915 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 906U2L"
+    }
+  }
+}

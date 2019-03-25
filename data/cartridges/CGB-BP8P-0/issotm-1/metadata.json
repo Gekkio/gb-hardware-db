@@ -1,0 +1,21 @@
+{
+  "code": "CGB-BP8P-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BP8P-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A09-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "u1": {
+      "label": "M023704-M MX23C1603-12A CGB-BP8P-0 G2 1D4560A3"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 221 H50"
+    }
+  }
+}

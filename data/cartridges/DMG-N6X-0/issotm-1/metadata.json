@@ -1,0 +1,20 @@
+{
+  "code": "DMG-N6X-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-N6-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-10",
+    "extra_label": "1",
+    "u1": {
+      "label": "DMG-N6X-0 S LH531HPT JAPAN C1 9715 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'25"
+    }
+  }
+}

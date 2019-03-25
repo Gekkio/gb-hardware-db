@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RWE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RW-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1991,
+    "month": 8,
+    "u1": {
+      "label": "DMG-RWE-0 D1 N-2001EGW-J09 9136E9008"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9130 1 A"
+    }
+  }
+}

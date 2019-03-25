@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AYNP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYNP-FRA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AYNP-0 S LH5317VR JAPAN B1 9850 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'N4"
+    }
+  }
+}

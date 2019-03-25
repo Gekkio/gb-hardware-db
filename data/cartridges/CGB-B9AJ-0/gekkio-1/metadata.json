@@ -1,0 +1,29 @@
+{
+  "code": "CGB-B9AJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B9AJ-JPN",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "DMG-A03-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 12,
+    "u1": {
+      "label": "M010419-M MX23C1603-12A CGB-B9AJ-0 G2 2D547500"
+    },
+    "u2": {
+      "label": "0CCC6YT MBC5 2417"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0047 KOREA"
+    },
+    "u4": {
+      "label": "6735 0C88"
+    }
+  }
+}

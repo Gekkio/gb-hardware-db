@@ -1,0 +1,23 @@
+{
+  "code": "DMG-CNE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-CN-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 12,
+    "u1": {
+      "label": "DMG-CNE-0 S LH5308SL JAPAN C1 9052 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9103 5 A"
+    }
+  }
+}

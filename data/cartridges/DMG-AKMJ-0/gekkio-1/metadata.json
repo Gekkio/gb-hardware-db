@@ -1,0 +1,30 @@
+{
+  "code": "DMG-AKMJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKMJ-JPN",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-KECN-SP",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AKMJ-0 S LH5S4MWR JAPAN E1 9809 D"
+    },
+    "u2": {
+      "label": "MBC3 LR385364 9744 A"
+    },
+    "u3": {
+      "label": "LH5168N-10L SHARP JAPAN 9803 1 DG"
+    },
+    "u4": {
+      "label": "6129A 7062"
+    },
+    "x1": {}
+  }
+}

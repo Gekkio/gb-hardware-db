@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AYMJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYMJ-JPN",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "M",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 5,
+    "u1": {
+      "label": "DMG-AYMJ-1 S LH538WVN JAPAN F1 9920 E"
+    },
+    "u2": {
+      "label": "MBC5 P-1 908U5L"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9906B KOREA"
+    },
+    "u4": {
+      "label": "914 134A"
+    }
+  }
+}

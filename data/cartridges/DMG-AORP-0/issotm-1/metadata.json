@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AORP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AORP-FAH",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 8,
+    "u1": {
+      "label": "DMG-AORP-0 S LH538WRK JAPAN F1 9942 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 938U1M"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9933 3 EB"
+    },
+    "u4": {
+      "label": "939 134A"
+    }
+  }
+}

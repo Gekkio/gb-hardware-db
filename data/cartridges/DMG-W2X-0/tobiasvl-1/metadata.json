@@ -1,0 +1,23 @@
+{
+  "code": "DMG-W2X-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-W2-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-20",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1999,
+    "month": 2,
+    "u1": {
+      "label": "DMG-W2X-0 S LH532MNL JAPAN D1 9909 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'N0"
+    }
+  }
+}

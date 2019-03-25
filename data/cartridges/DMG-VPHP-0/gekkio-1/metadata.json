@@ -1,0 +1,29 @@
+{
+  "code": "DMG-VPHP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VPHP-EUR",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-Z04-01",
+    "circled_letters": "MB",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503"
+    },
+    "u2": {
+      "label": "MBC5 P-1 032U4M"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0036 5 SO"
+    },
+    "u4": {
+      "label": "6735 0775"
+    }
+  }
+}

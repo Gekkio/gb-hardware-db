@@ -1,0 +1,23 @@
+{
+  "code": "DMG-WWE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WW-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 11,
+    "u1": {
+      "label": "DMG-WWE-0 S LH5314B4 JAPAN B1 9044 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 0'09"
+    }
+  }
+}

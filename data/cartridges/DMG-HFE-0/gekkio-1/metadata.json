@@ -1,0 +1,23 @@
+{
+  "code": "DMG-HFE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HF-USA",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1991,
+    "month": 3,
+    "u1": {
+      "label": "DMG-HFE-0 S LH5308UO JAPAN C1 9113 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9112 5 A"
+    }
+  }
+}

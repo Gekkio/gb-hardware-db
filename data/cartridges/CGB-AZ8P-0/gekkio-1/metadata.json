@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ8P-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZ8P-EUR",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2002,
+    "month": 8,
+    "u1": {
+      "label": "E023004-M MX23C1603-12A CGB-AZ8P-0 G2 1D1315A2"
+    },
+    "u2": {
+      "label": "1CATF1T MBC5 2417"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 231 118N"
+    },
+    "u4": {
+      "label": "6735 2681"
+    }
+  }
+}

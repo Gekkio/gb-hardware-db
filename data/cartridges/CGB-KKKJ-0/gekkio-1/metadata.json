@@ -1,0 +1,29 @@
+{
+  "code": "CGB-KKKJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-KKKJ-JPN",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A40-01",
+    "circled_letters": "MB",
+    "extra_label": "1",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "CGB-KKKJ-0 F1 M538011E-P0 0365423"
+    },
+    "u2": {
+      "label": "MBC-7 BU3667KS 036 151"
+    },
+    "u3": {
+      "label": "LCS5 435 09"
+    },
+    "u4": {
+      "label": "3257920022 0032 ADXL202JQC"
+    }
+  }
+}

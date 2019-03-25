@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AK2P-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AK2P-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-M-BFAN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AK2P-0 F1 N-8001EJGW-J76 9742K7006"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9742 1 A"
+    }
+  }
+}

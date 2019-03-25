@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AFFJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AFFJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BFAN-01",
+    "circled_letters": "Y",
+    "extra_label": "5",
+    "year": 1996,
+    "month": 12,
+    "u1": {
+      "label": "DMG-AFFJ-0 S LH538MN8 JAPAN F1 9651 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'D6"
+    }
+  }
+}

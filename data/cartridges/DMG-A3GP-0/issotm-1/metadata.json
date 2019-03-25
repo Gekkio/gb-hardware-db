@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A3GP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A3GP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "TOSHIBA 9546EAI TC534000DF DMG-A3GP-0 E1 N085 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'00"
+    }
+  }
+}

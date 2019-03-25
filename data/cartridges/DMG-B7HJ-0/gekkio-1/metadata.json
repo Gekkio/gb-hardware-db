@@ -1,0 +1,29 @@
+{
+  "code": "DMG-B7HJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-B7HJ-JPN",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 3,
+    "u1": {
+      "label": "DMG-B7HJ-0 S LH538WK5 JAPAN F1 0014 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 008U1M"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 953 145N"
+    },
+    "u4": {
+      "label": "007 134A"
+    }
+  }
+}

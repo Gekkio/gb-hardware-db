@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "gekkio-3",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "code": "DMG-TR-SCN-1",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "AAAC",
+    "extra_label": "S 4",
+    "u1": {
+      "label": "LR0G150 DMG-TRA-1 97141"
+    }
+  }
+}

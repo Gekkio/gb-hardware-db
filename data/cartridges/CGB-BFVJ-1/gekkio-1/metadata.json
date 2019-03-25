@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BFVJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BFVJ-JPN",
+    "stamp": "15A"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 2002,
+    "month": 1,
+    "u1": {
+      "label": "M020723-M MX23C3203-12A2 CGB-BFVJ-1 H2 2E037500B0"
+    },
+    "u2": {
+      "label": "MBC5 BU3650K 150 H82"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 204SD21492550-II1RA"
+    },
+    "u4": {
+      "label": "6735 1A78"
+    }
+  }
+}

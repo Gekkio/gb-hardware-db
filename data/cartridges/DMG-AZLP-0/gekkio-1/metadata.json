@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AZLP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AZLP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "Y",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 12,
+    "u1": {
+      "label": "DMG-AZLP-0 S LH538WYD JAPAN F1 9853 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 850U3L"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9841 3 SO"
+    },
+    "u4": {
+      "label": "6735 8B02"
+    }
+  }
+}

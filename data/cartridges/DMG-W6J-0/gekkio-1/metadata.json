@@ -1,0 +1,29 @@
+{
+  "code": "DMG-W6J-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-W6J",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DEDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1994,
+    "month": 2,
+    "u1": {
+      "label": "DMG-W6J-0 S LH534MN8 JAPAN E1 9407 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 4'11"
+    },
+    "u3": {
+      "label": "LH52B256NA-10TLL LSI LOGIC JAPAN D344 03 B"
+    },
+    "u4": {
+      "label": "6129 3C86"
+    }
+  }
+}

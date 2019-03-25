@@ -1,0 +1,23 @@
+{
+  "code": "DMG-NCE-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NC-UKV",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 8,
+    "u1": {
+      "label": "TOSHIBA 9136EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9136 7 A"
+    }
+  }
+}

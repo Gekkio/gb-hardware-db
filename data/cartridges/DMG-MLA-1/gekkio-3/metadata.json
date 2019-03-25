@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "gekkio-3",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "code": "DMG-MLA",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 7,
+    "u1": {
+      "label": "DMG-MLA-1 S LH5314B2 JAPAN B1 9339 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9330BR"
+    }
+  }
+}

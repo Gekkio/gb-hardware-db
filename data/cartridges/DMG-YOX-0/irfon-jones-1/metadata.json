@@ -1,0 +1,23 @@
+{
+  "code": "DMG-YOX-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-YO-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "4",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "DMG-YOX-0 S LH5317NK JAPAN B1 9844 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9842 1 A"
+    }
+  }
+}

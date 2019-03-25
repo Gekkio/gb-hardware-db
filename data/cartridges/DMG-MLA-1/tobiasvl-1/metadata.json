@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ML-USA-1",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "DMG-MLA-1 S LH531720 JAPAN B1 9836 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'59"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APCJ-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APCJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "Ca",
+    "extra_label": "5",
+    "year": 1995,
+    "month": 1,
+    "u1": {
+      "label": "DMG-APCJ-0 S LH532MWO JAPAN F1 9509 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9506 1 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9434B KOREA"
+    },
+    "u4": {
+      "label": "6129A 4B28"
+    }
+  }
+}

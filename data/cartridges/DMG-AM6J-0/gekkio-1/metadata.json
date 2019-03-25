@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AM6J-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AM6J-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AM6J-0 S LH5S8MN2 JAPAN F1 9908 D"
+    },
+    "u2": {
+      "label": "HuC-1 © HUDSON Nintendo 9752 A"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 906 172A"
+    },
+    "u4": {
+      "label": "846 26A"
+    }
+  }
+}

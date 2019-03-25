@@ -1,0 +1,26 @@
+{
+  "code": "DMG-APSU-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {},
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "DMG-APSU-0 F1 M538011E-N6 0362401"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 034 H82"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0032 KOREA"
+    },
+    "u4": {
+      "label": "030 134A"
+    }
+  }
+}

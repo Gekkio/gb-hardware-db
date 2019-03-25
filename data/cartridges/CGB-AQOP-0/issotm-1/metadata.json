@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AQOP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AQOP-EUU",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A09-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "CGB-AQOP-0 S LH537MYR JAPAN G2 0009 D"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 004 H93"
+    }
+  }
+}

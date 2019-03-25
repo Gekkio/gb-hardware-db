@@ -1,0 +1,29 @@
+{
+  "code": "DMG-BLUJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BLUJ-JPN",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "YG",
+    "extra_label": "1",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "S012123-M MX23C3203-12A2 DMG-BLUJ-0 H2 2D781800"
+    },
+    "u2": {
+      "label": "MBC5 P-2 102U1M"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 115AD20484620-II1RA"
+    },
+    "u4": {
+      "label": "043 134A"
+    }
+  }
+}

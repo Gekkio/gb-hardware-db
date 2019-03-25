@@ -1,0 +1,29 @@
+{
+  "code": "DMG-VPHE-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VPHE-USA-1",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A04-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 12,
+    "u1": {
+      "label": "J011449-M MX23C8006-12 DMG-VPHE-0 F 1D0430A1"
+    },
+    "u2": {
+      "label": "11D9NYT MBC5 2417"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 111 120N"
+    },
+    "u4": {
+      "label": "102 134A"
+    }
+  }
+}

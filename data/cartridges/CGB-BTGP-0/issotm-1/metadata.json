@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BTGP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BTGP-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A09-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "S004119-M MX23C1603-12A CGB-BTGP-0 G2 2D262101"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AL36 A"
+    }
+  }
+}

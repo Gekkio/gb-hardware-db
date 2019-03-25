@@ -1,0 +1,29 @@
+{
+  "code": "DMG-BQLJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BQLJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A03-10",
+    "circled_letters": "MB",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "E005223-M MX23C3203-12A2 DMG-BQLJ-0 H2 2D480700"
+    },
+    "u2": {
+      "label": "0CA7T1T MBC5 2417"
+    },
+    "u3": {
+      "label": "SANYO LC35256FM-70U JAPAN 0LK5G"
+    },
+    "u4": {
+      "label": "044 134A"
+    }
+  }
+}

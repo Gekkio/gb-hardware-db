@@ -1,0 +1,27 @@
+{
+  "code": "DMG-AW2J-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW2J-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AW2J-0 S LH537MT3 JAPAN G2 9838 E"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9836 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9826 KOREA"
+    },
+    "u4": {}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ7P-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZ7P-EUR",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2002,
+    "month": 8,
+    "u1": {
+      "label": "S023604-M MX23C1603-12A CGB-AZ7P-0 G2 1D3283A1"
+    },
+    "u2": {
+      "label": "MBC5 BU3650K 229 H51"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 230 148N"
+    },
+    "u4": {
+      "label": "6735 2885"
+    }
+  }
+}

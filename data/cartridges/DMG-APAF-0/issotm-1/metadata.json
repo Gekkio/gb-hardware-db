@@ -1,0 +1,24 @@
+{
+  "code": "DMG-APAF-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APAF-FRA"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "DMG-APAF-0 F1 M538011E-69 0085407"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {
+      "label": "001 134A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AZLP-2",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AZLP-EUR",
+    "stamp": "12B"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AZLP-2 S LHMN8MNF JAPAN F1 0047 D"
+    },
+    "u2": {
+      "label": "0AC1VFT MBC5 2417"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 043 136NA"
+    },
+    "u4": {
+      "label": "6735 0A55"
+    }
+  }
+}

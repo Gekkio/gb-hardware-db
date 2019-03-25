@@ -1,0 +1,30 @@
+{
+  "code": "DMG-AAUJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUJ-JPN",
+    "stamp": "34A"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "K",
+    "extra_label": "4",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-AAUJ-1 F1 KFX331U"
+    },
+    "u2": {
+      "label": "MBC3 A LR38536B 9935 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9912 1 SO"
+    },
+    "u4": {
+      "label": "944 134A"
+    },
+    "x1": {}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TR-USA",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 5,
+    "u1": {
+      "label": "DMG-TRA-1 SHARP JAPAN A0 9018 D"
+    }
+  }
+}

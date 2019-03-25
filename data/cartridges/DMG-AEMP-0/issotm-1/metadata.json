@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AEMP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AEMP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 11,
+    "u1": {
+      "label": "S994649-M MX23C8005-12 DMG-AEMP-0 F1 1B2728A1"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9944 A"
+    }
+  }
+}

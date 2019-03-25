@@ -1,0 +1,23 @@
+{
+  "code": "DMG-G2E-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-G2-UKV",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1992,
+    "month": 1,
+    "u1": {
+      "label": "TOSHIBA 9205EAI TC532000BF DMG-G2E-0 D1 J571 JAPAN"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9204BA018"
+    }
+  }
+}

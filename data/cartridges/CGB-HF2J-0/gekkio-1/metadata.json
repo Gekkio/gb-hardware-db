@@ -1,0 +1,33 @@
+{
+  "code": "CGB-HF2J-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-HF2J-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-UGDU-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 7,
+    "u1": {
+      "label": "CGB-HF2J-0 S LH537MTR JAPAN G2 9929 D"
+    },
+    "u2": {
+      "label": "HuC-3 © HUDSON Nintendo 9943 A"
+    },
+    "u3": {
+      "label": "LH52256CT-10LL SHARP JAPAN 9918 1 SO"
+    },
+    "u4": {
+      "label": "915 134A"
+    },
+    "u5": {
+      "label": "LVX 04 9 26"
+    },
+    "x1": {}
+  }
+}

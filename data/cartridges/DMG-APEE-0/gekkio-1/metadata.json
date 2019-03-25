@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APEE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEE-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-KFDN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "DMG-APEE-0 S LH538MNK JAPAN F1 9836 D"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 824U6E"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9831 7 SN"
+    },
+    "u4": {
+      "label": "749 26A"
+    }
+  }
+}

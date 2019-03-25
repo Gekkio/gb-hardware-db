@@ -1,0 +1,23 @@
+{
+  "code": "DMG-HQE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HQ-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 2,
+    "u1": {
+      "label": "DMG-HQE-0 C1 N-1001EGW-J23 9110E9001"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9109 1 A"
+    }
+  }
+}

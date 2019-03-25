@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AM6J-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AM6J-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AM6J-0 F1 M538011E-36 9085401"
+    },
+    "u2": {
+      "label": "HuC-1 © HUDSON Nintendo 9750 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9849 KOREA"
+    },
+    "u4": {
+      "label": "846 26A"
+    }
+  }
+}

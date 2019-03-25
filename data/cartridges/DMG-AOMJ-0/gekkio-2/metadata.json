@@ -1,0 +1,34 @@
+{
+  "code": "DMG-AOMJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AOMJ-JPN"
+  },
+  "board": {
+    "label": "0200309E4-01-1",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 1,
+    "u1": {
+      "label": "TAMA7 B9748 43913A TAIWAN"
+    },
+    "u2": {
+      "label": "TAMA5 9726 EAD1"
+    },
+    "u3": {
+      "label": "TAMA6 JAPAN 47C243M FV61 9751H"
+    },
+    "u4": {
+      "label": "T 9749HB 8521AM"
+    },
+    "u5": {
+      "label": "2021 7Z0"
+    },
+    "x1": {
+      "label": "KDS8A"
+    }
+  }
+}

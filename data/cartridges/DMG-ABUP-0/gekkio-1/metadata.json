@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ABUP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ABUP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 1,
+    "u1": {
+      "label": "DMG-ABUP-0 S LH531HSD JAPAN C1 9807 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'D8"
+    }
+  }
+}

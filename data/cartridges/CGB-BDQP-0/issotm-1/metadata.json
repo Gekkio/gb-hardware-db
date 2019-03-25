@@ -1,0 +1,22 @@
+{
+  "code": "CGB-BDQP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BDQP-EUR"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "M3",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 5,
+    "u1": {
+      "label": "CGB-BDQP-0 F1 M538011E-6R 1235409"
+    },
+    "u2": {
+      "label": "11CH8VT MBC5 2417"
+    }
+  }
+}

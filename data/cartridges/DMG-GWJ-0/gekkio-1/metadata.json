@@ -1,0 +1,29 @@
+{
+  "code": "DMG-GWJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GWJ",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-DECN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 3,
+    "u1": {
+      "label": "TOSHIBA 9114EAI TC532000BF DMG-GWJ-0 D1 J542 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 0'D7"
+    },
+    "u3": {
+      "label": "LH5168NFA-10L SHARP JAPAN 9103 3 SA"
+    },
+    "u4": {
+      "label": "135 26A"
+    }
+  }
+}

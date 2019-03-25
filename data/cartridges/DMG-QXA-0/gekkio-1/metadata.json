@@ -1,0 +1,23 @@
+{
+  "code": "DMG-QXA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-QXA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-02",
+    "circled_letters": "B",
+    "extra_label": "4",
+    "year": 1990,
+    "month": 2,
+    "u1": {
+      "label": "DMG-QXA-0 SHARP JAPAN B0 9011 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9008BA047"
+    }
+  }
+}

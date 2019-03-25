@@ -1,0 +1,29 @@
+{
+  "code": "DMG-A4RJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A4RJ-JPN",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "A",
+    "extra_label": "5",
+    "year": 1999,
+    "month": 12,
+    "u1": {
+      "label": "DMG-A4RJ-0 S LHMN8JNU JAPAN F1 0008 E"
+    },
+    "u2": {
+      "label": "MBC5 P-1 003U6M"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A0005 3 CB"
+    },
+    "u4": {
+      "label": "6735 0122"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AHYE-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AHYE-USA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 4,
+    "u1": {
+      "label": "CGB-AHYE-0 S LH538WV9 JAPAN F1 9916 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 907U3L"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9902B KOREA"
+    },
+    "u4": {
+      "label": "6735 8C19"
+    }
+  }
+}

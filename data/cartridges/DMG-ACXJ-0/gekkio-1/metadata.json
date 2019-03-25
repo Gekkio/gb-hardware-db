@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ACXJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ACXJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-ACXJ-0 F1 KFX312U"
+    },
+    "u2": {
+      "label": "HuC1A © HUDSON Nintendo 9845 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9838 1 SN"
+    },
+    "u4": {
+      "label": "846 134A"
+    }
+  }
+}

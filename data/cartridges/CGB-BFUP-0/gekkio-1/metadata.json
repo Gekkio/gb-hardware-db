@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BFUP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BFUP-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A09-10",
+    "circled_letters": "A",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1"
+    },
+    "u2": {
+      "label": "13A0V9T MBC5 2417"
+    }
+  }
+}

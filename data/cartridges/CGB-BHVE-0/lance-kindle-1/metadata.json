@@ -1,0 +1,26 @@
+{
+  "code": "CGB-BHVE-0",
+  "slug": "lance-kindle-1",
+  "contributor": "Lance Kindle",
+  "index": 1,
+  "shell": {},
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "A",
+    "extra_label": "3",
+    "year": 2001,
+    "month": 10,
+    "u1": {
+      "label": "M014723-M MX23C3203-12A2 CGB-BHVE-0 H2 2D684000"
+    },
+    "u2": {
+      "label": "1ACX4XT MBC5 2417"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 140SD21331480-II1RA"
+    },
+    "u4": {
+      "label": "145 134A"
+    }
+  }
+}

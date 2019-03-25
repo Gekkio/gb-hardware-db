@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DDE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DD-USA",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 6,
+    "u1": {
+      "label": "DMG-DDE-0 S LH5308NH JAPAN C1 9029 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9019BA012"
+    }
+  }
+}

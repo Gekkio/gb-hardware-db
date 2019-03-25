@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AAXD-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAXD-NOE",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 9,
+    "u1": {
+      "label": "M011804-M MX23C1603-12A DMG-AAXD-0 G2 1D1124A1"
+    },
+    "u2": {
+      "label": "MBC3 B P-2 134U2D"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2828W15036 D0133 TAIWAN"
+    },
+    "u4": {
+      "label": "121 134A"
+    }
+  }
+}

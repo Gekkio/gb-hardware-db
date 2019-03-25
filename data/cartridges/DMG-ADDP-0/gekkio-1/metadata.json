@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADDP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADDP-EUR-1",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "4",
+    "year": 1996,
+    "month": 8,
+    "u1": {
+      "label": "DMG-ADDP-0 S LH534MVA JAPAN E1 9640 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9639 3 A"
+    },
+    "u3": {
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N633 0A BC"
+    },
+    "u4": {
+      "label": "6129A 6942"
+    }
+  }
+}

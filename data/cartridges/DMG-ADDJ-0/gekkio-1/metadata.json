@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADDJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADDJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ADDJ-0 S LH534MVN JAPAN E1 9648 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'N8"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9640B KOREA"
+    },
+    "u4": {
+      "label": "646 26A"
+    }
+  }
+}

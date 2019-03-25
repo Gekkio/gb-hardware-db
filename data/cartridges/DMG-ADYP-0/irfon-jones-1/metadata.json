@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ADYP-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADYP-UKV",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "3",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ADYP-0 S LH538WPD JAPAN F1 9945 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 942U5M"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-XCA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-XCA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 6,
+    "u1": {
+      "label": "DMG-XCA-0 S LH5308NJ JAPAN C1 9029 E"
+    },
+    "u2": {
+      "label": "DMG MBC1A Nintendo S 9025 1 A"
+    }
+  }
+}

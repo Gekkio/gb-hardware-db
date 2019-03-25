@@ -1,0 +1,25 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-F1-EUR"
+  },
+  "board": {
+    "label": "DMG-GDAN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "DMG-F1A-1 S LH531H2M JAPAN C1 9838 D"
+    },
+    "u2": {
+      "label": "DMG MBC2-A Nintendo P 8'73"
+    },
+    "u3": {
+      "label": "6129A 8R42"
+    }
+  }
+}

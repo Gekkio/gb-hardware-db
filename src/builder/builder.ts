@@ -15,7 +15,6 @@ import {
   CartridgeSubmission,
   CgbSubmission,
   ConsoleSubmission,
-  crawlCartridges,
   crawlConsoles,
   DmgSubmission,
   GbsSubmission,
@@ -24,6 +23,7 @@ import {
   OxySubmission,
   Sgb2Submission,
   SgbSubmission,
+  Photo,
 } from '../crawler'
 import {
   AGB_CSV_COLUMNS,
@@ -129,10 +129,31 @@ function consoleSubmissionComparator(a: ConsoleSubmission, b: ConsoleSubmission)
   return sortGroupComparator(a, b) || slugComparator(a, b)
 }
 
+async function crawlCartridges(): Promise<CartridgeSubmission[]> {
+  const data: CartridgeSubmission[] = await fs.readJson('build/data/cartridges.json');
+  return Bluebird.mapSeries(data, async submission => ({
+    ...submission,
+    photos: {
+      front: await photoStats(submission.photos.front),
+      pcbFront: await photoStats(submission.photos.pcbFront),
+      pcbBack: await photoStats(submission.photos.pcbBack),
+    }
+  }))
+}
+
+async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> {
+  if (!photo) return undefined
+  const stats = await fs.stat(photo.path)
+  return {
+    ...photo,
+    stats,
+  }
+}
+
 async function main(): Promise<void> {
   const [consoleSubmissions, cartridgeSubmissions] = await Promise.all([
     crawlConsoles('data/consoles'),
-    crawlCartridges('data/cartridges'),
+    crawlCartridges(),
   ])
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(

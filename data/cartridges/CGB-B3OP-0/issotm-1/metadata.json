@@ -1,0 +1,23 @@
+{
+  "code": "CGB-B3OP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B3OP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 9,
+    "u1": {
+      "label": "CGB-B3OP-0 F1 M538011E-9P 1395408"
+    },
+    "u2": {
+      "label": "1AAE8XT MBC5 2417"
+    }
+  }
+}

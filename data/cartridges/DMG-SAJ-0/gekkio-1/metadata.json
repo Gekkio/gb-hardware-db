@@ -1,0 +1,26 @@
+{
+  "code": "DMG-SAJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-SAJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-GDAN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1989,
+    "month": 3,
+    "u1": {
+      "label": "NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9008 5 A"
+    },
+    "u3": {
+      "label": "015 26A"
+    }
+  }
+}

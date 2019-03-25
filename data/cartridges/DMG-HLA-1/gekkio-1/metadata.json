@@ -1,0 +1,20 @@
+{
+  "code": "DMG-HLA-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HLA",
+    "stamp": "05A"
+  },
+  "board": {
+    "label": "DMG-AAA-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1989,
+    "month": 8,
+    "u1": {
+      "label": "DMG-HLA-1 SHARP JAPAN A0 8934 D"
+    }
+  }
+}

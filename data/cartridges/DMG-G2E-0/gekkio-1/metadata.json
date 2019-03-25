@@ -1,0 +1,23 @@
+{
+  "code": "DMG-G2E-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-G2-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "TOSHIBA 9127EAI TC532000BF DMG-G2E-0 D1 J571 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9131 5 A"
+    }
+  }
+}

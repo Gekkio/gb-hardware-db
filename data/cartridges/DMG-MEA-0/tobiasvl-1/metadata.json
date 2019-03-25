@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MEA-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ME-SCN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 9,
+    "u1": {
+      "label": "DMG-MEA-0 S LH532MN5 JAPAN D1 9738 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'89"
+    },
+    "u3": {
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N7 34 22 BH"
+    },
+    "u4": {
+      "label": "6129A 7979"
+    }
+  }
+}

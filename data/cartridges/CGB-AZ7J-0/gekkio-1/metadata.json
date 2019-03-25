@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ7J-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZ7J-JPN",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 1,
+    "u1": {
+      "label": "CGB-AZ7J-0 F1 M538011E-IT 1065418"
+    },
+    "u2": {
+      "label": "MBC5 P-2 050U2M"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 052 115N"
+    },
+    "u4": {
+      "label": "6735 0C88"
+    }
+  }
+}

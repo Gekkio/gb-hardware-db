@@ -1,0 +1,23 @@
+{
+  "code": "DMG-H2E-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-H2-FAH",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 6,
+    "u1": {
+      "label": "STANDARD MICRO DMG-H2E-0 C1 23C1001EAGW-J62 9328E9020"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9226 3 A"
+    }
+  }
+}

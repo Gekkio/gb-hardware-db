@@ -1,0 +1,20 @@
+{
+  "code": "DMG-PME-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-PM-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 8,
+    "u1": {
+      "label": "DMG-PME-0 SHARP JAPAN A0 9034 D"
+    }
+  }
+}

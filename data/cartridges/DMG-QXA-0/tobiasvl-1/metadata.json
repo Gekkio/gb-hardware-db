@@ -1,0 +1,23 @@
+{
+  "code": "DMG-QXA-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-QX-SCN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 7,
+    "u1": {
+      "label": "DMG-QXA-0 S LH5314HJ JAPAN B1 9028 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 0'58"
+    }
+  }
+}

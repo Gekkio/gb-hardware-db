@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BDSP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BDSP-EUR",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "1",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "CGB-BDSP-0 F1 M538011E-9E 0535402"
+    },
+    "u2": {
+      "label": "08DFK4T MBC5 2417"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A0027 1 CB"
+    },
+    "u4": {
+      "label": "047 134A"
+    }
+  }
+}

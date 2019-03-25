@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A6W-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A6-SCN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1997,
+    "month": 2,
+    "u1": {
+      "label": "DMG-A6W-0 S LH531HF8 JAPAN C1 9709 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9704 5 A"
+    }
+  }
+}

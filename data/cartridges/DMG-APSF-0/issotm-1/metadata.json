@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSF-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 4,
+    "u1": {
+      "label": "DMG-APSF-0 F1 M538011E-G9 0165446"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 013 H30"
+    },
+    "u3": {
+      "label": "Winbond W24258S-70LE 011MH200254401AA"
+    },
+    "u4": {
+      "label": "009 134A"
+    }
+  }
+}

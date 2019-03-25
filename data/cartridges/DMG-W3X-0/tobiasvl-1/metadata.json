@@ -1,0 +1,23 @@
+{
+  "code": "DMG-W3X-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-W3-SCN",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 8,
+    "u1": {
+      "label": "DMG-W3X-0 D1 N-2001EGW-J43 9337X9001"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9226 5 A"
+    }
+  }
+}

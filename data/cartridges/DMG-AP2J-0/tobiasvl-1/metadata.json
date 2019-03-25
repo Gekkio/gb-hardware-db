@@ -1,0 +1,27 @@
+{
+  "code": "DMG-AP2J-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AP2J-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "4",
+    "year": 1996,
+    "month": 8,
+    "u1": {
+      "label": "DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'99"
+    },
+    "u3": {
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N634 05 BC"
+    },
+    "u4": {}
+  }
+}

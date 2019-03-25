@@ -1,0 +1,27 @@
+{
+  "code": "DMG-ADDP-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADDP-EUR-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ADDP-0 S LH534MVA JAPAN E1 9644 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9643 7 A"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 636 112N"
+    },
+    "u4": {}
+  }
+}

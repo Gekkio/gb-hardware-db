@@ -1,0 +1,22 @@
+{
+  "code": "DMG-NCE-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-10",
+    "circled_letters": "B",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 11,
+    "u1": {
+      "label": "TOSHIBA 9149EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9150BA048"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AODP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AODP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AODP-0 S LHMN4MN7 JAPAN E1 9847 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'03"
+    }
+  }
+}

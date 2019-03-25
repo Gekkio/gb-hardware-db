@@ -1,0 +1,29 @@
+{
+  "code": "CGB-KCEJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-KCEJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A47-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "S004219-M MX23C1603-12A CGB-KCEJ-0 G2 2D275401"
+    },
+    "u2": {
+      "label": "MBC-7 BU3667KS 041 170"
+    },
+    "u3": {
+      "label": "LCS5 040"
+    },
+    "u4": {
+      "label": "3384590167 0036 ADXL202JQC"
+    }
+  }
+}

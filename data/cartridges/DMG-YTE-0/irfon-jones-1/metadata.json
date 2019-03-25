@@ -1,0 +1,29 @@
+{
+  "code": "DMG-YTE-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-YT-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "2",
+    "year": 1996,
+    "month": 1,
+    "u1": {
+      "label": "DMG-YTE-0 E1 N-4001EJGW-J16 9604K7007"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9549 3 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9540B KOREA"
+    },
+    "u4": {
+      "label": "6129A 6194"
+    }
+  }
+}

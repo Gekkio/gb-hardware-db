@@ -1,0 +1,26 @@
+{
+  "code": "DMG-K9E-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "DMG-K9-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 12,
+    "u1": {
+      "label": "DMG-K9E-0 S LH532MAF JAPAN D1 9352 D"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9349 5 AB"
+    },
+    "u3": {
+      "label": "337 26A"
+    }
+  }
+}

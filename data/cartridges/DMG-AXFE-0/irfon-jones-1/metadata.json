@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AXFE-0",
+  "slug": "irfon-jones-1",
+  "contributor": "Irfon Jones",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AXFE-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AXFE-0 F1 M538011E-C3 948237S"
+    },
+    "u2": {
+      "label": "MBC5 P-1 950U7M"
+    }
+  }
+}

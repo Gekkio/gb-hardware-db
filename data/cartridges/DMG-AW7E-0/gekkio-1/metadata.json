@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AW7E-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW7E-USA",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AW7E-0 S LH5S4MW9 JAPAN E1 9751 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9746 1 A"
+    },
+    "u3": {
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N748 10 BH"
+    },
+    "u4": {
+      "label": "743 26A"
+    }
+  }
+}

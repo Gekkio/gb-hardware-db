@@ -1,0 +1,22 @@
+{
+  "code": "DMG-YKY-0",
+  "slug": "issotm-2",
+  "contributor": "ISSOtm",
+  "index": 2,
+  "shell": {
+    "code": "DMG-YK-EUR"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-YKY-0 S LH531HW2 JAPAN C1 9744 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9743 1 A"
+    }
+  }
+}

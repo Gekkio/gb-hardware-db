@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BGLJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BGLJ-JPN",
+    "stamp": "07"
+  },
+  "board": {
+    "label": "DMG-A14-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "M012623-M MX23C3203-12A2 CGB-BGLJ-0 H2 2D839200"
+    },
+    "u2": {
+      "label": "MBC5 P-2 104U4M"
+    },
+    "u3": {
+      "label": "HYUNDAI KOREA HY628100B 0041A LLG-70"
+    },
+    "u4": {
+      "label": "112 134A"
+    }
+  }
+}

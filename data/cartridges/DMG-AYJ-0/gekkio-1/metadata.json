@@ -1,0 +1,26 @@
+{
+  "code": "DMG-AYJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-GDAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1990,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AYJ-0 S LH5314H1 JAPAN B1 9014 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9011CA005"
+    },
+    "u3": {
+      "label": "025 26A"
+    }
+  }
+}

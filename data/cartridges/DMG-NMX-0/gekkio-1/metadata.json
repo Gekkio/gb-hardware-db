@@ -1,0 +1,23 @@
+{
+  "code": "DMG-NMX-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NM-NOE",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "T",
+    "extra_label": "5",
+    "year": 1991,
+    "month": 8,
+    "u1": {
+      "label": "TOSHIBA 9136EAI TC531001CF DMG-NMX-0 C1 J597 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9130BR"
+    }
+  }
+}

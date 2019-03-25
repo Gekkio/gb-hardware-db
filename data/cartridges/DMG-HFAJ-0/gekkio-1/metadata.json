@@ -1,0 +1,33 @@
+{
+  "code": "DMG-HFAJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HFAJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-UEDT-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E"
+    },
+    "u2": {
+      "label": "HuC-3 © HUDSON Nintendo 9824 A"
+    },
+    "u3": {
+      "label": "LH52256CT-10LL SHARP JAPAN 9824 3 SF"
+    },
+    "u4": {
+      "label": "837 26A"
+    },
+    "u5": {
+      "label": "LVX 04 8 04"
+    },
+    "x1": {}
+  }
+}

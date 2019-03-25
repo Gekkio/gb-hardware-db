@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BLYP-0",
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BLYP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "CGB-BLYP-0 F1 M538011E-8D 0475428"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 045 H36"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 019WD20084870-II1RA"
+    },
+    "u4": {
+      "label": "042 134A"
+    }
+  }
+}

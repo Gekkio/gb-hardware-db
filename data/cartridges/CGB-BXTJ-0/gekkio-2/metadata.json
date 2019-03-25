@@ -1,0 +1,30 @@
+{
+  "code": "CGB-BXTJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "CGB-BXTJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-MHEU-01",
+    "circled_letters": "MB",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D366300"
+    },
+    "u2": {
+      "label": "MBC-30 BU3633AK 046 175"
+    },
+    "u3": {
+      "label": "HYUNDAI KOREA HY628100B 0037A LLG-70"
+    },
+    "u4": {
+      "label": "6735 0B84"
+    },
+    "x1": {}
+  }
+}

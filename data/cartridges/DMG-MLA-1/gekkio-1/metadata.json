@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ML-UKV",
+    "stamp": "05A"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 7,
+    "u1": {
+      "label": "DMG-MLA-1 S LH5314B2 JAPAN B1 9028 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9029BA034"
+    }
+  }
+}

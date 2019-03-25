@@ -1,0 +1,22 @@
+{
+  "code": "DMG-AVLP-0",
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AVLP-FAH"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AVLP-0 D1 N-2001EUGW-J38 9840E7004"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'70"
+    }
+  }
+}

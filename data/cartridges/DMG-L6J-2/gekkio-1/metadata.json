@@ -1,0 +1,29 @@
+{
+  "code": "DMG-L6J-2",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-L6J",
+    "stamp": "23B"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1994,
+    "month": 11,
+    "u1": {
+      "label": "DMG-L6J-2 E1 N-4001EAGW-J11 9451X9208"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 4'N6"
+    },
+    "u3": {
+      "label": "XLJ6265AF-10SL 437 132"
+    },
+    "u4": {
+      "label": "6129 4803"
+    }
+  }
+}

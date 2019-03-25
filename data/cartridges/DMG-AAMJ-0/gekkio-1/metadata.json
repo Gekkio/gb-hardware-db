@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AAMJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAMJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-LFDN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 5,
+    "u1": {
+      "label": "DMG-AAMJ-0 S LH538MNG JAPAN F1 9821 D"
+    },
+    "u2": {
+      "label": "MBC3 BU3631K 803 133"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 813 118"
+    },
+    "u4": {
+      "label": "6129A 8215"
+    }
+  }
+}

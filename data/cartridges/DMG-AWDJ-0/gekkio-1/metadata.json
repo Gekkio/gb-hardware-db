@@ -1,0 +1,26 @@
+{
+  "code": "DMG-AWDJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWDJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-GDAN-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1997,
+    "month": 7,
+    "u1": {
+      "label": "DMG-AWDJ-0 S LH532WRI JAPAN D1 9731 D"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9730 5 AB"
+    },
+    "u3": {
+      "label": "6129A 7727"
+    }
+  }
+}

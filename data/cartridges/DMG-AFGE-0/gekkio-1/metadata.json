@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AFGE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AFGE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AFGE-0 S LH531HZW JAPAN C1 9840 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'57"
+    }
+  }
+}

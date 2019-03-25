@@ -1,0 +1,29 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WJ-UKV",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "3",
+    "year": 1996,
+    "month": 3,
+    "u1": {
+      "label": "DMG-WJA-0 E1 N-4001EJGW-J14 9619K7030"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'39"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9548B KOREA"
+    },
+    "u4": {
+      "label": "6129A 6381"
+    }
+  }
+}

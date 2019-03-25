@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BMVJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "CGB-BMVJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "CGB-A32-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 5,
+    "u1": {
+      "label": "Nintendo MBC6 0103XPO06"
+    },
+    "u2": {
+      "label": "CGB-BMVJ-0 F1 M538011E-6J 1212424"
+    },
+    "u3": {
+      "label": "E991112 29F008TC-14 21726 TAIWAN"
+    },
+    "u4": {
+      "label": "Winbond W24257S-70LL 046AB202682001AC"
+    },
+    "u5": {
+      "label": "106 134A"
+    }
+  }
+}

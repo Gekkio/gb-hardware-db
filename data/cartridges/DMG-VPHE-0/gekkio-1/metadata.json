@@ -1,0 +1,29 @@
+{
+  "code": "DMG-VPHE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VPHE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A04-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 7,
+    "u1": {
+      "label": "T992949-M MX23C8006-12 DMG-VPHE-0 F 1A9225A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 923U3L"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9846 7 CB"
+    },
+    "u4": {
+      "label": "926 134A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-R4X-0",
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-R4-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "DMG-R4X-0 S LH534MYZ JAPAN E1 9542 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9542 7 A"
+    }
+  }
+}

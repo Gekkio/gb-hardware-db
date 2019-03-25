@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, year2, Manufacturer, Matcher, Year};
+use super::{week2, year2, Manufacturer, Matcher, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Flash {

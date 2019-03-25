@@ -338,7 +338,7 @@ fn p_company_mbc3b() -> Matcher<Mapper> {
 /// assert!(parse_mapper("MBC30 P 047U2M").is_ok());
 /// ```
 fn p_company_mbc30() -> Matcher<Mapper> {
-    Matcher::new(r#"^MBC30\ P\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#, move |c| {
+    Matcher::new(r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#, move |c| {
         Ok(Mapper {
             mbc_type: MapperType::Mbc30,
             manufacturer: None,
@@ -488,7 +488,7 @@ fn texas_instruments_mbc5() -> Matcher<Mapper> {
     )
 }
 
-/// Unknown MBC1B
+/// Motorola MBC1B
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
@@ -500,7 +500,7 @@ fn unknown_mbc1b() -> Matcher<Mapper> {
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc1(Mbc1Version::B),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Motorola),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })

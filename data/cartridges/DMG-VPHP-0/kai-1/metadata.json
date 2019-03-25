@@ -1,0 +1,29 @@
+{
+  "code": "DMG-VPHP-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VPHP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A11-01",
+    "circled_letters": "K",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "DMG-VPHP-0 G2 N-16019WG5-M51 0029K7039"
+    },
+    "u2": {
+      "label": "MBC5 P-1 024U6M"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A0013 5 CB"
+    },
+    "u4": {
+      "label": "6735 0543"
+    }
+  }
+}

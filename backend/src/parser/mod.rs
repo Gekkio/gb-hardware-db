@@ -38,6 +38,7 @@ pub enum Manufacturer {
     Macronix,
     Mitsumi,
     MoselVitelic,
+    Motorola,
     Nec,
     Oki,
     Rohm,

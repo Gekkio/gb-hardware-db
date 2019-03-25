@@ -420,7 +420,7 @@ fn hyundai_hy628100b() -> Matcher<Ram> {
 /// ```
 fn hyundai_hy6264a() -> Matcher<Ram> {
     Matcher::new(
-        r#"^HY6264A\ ([A-Z]{3}-[0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z]\ KOREA$"#,
+        r#"^HY6264A\ ([A-Z]{2,3}-[0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z]\ KOREA$"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Hyundai),

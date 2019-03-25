@@ -29,6 +29,7 @@ fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> 
             Manufacturer::Macronix => "macronix",
             Manufacturer::Mitsumi => "mitsumi",
             Manufacturer::MoselVitelic => "mosel-vitelic",
+            Manufacturer::Motorola => "motorola",
             Manufacturer::Nec => "nec",
             Manufacturer::Oki => "oki",
             Manufacturer::Rohm => "rohm",
@@ -339,6 +340,7 @@ fn main() -> Result<(), Error> {
         }
     }
     create_dir_all("../build/data")?;
+    submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
     let file = File::create("../build/data/cartridges.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     Ok(())

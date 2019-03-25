@@ -499,6 +499,11 @@
     "platform": "gb",
     "layout": "rom_mapper_ram_xtal"
   },
+  "DMG-AYWJ-1": {
+    "name": "Bokujou Monogatari GB (Japan) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram_xtal"
+  },
   "DMG-AZLP-0": {
     "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
@@ -626,6 +631,11 @@
   },
   "DMG-KYE-0": {
     "name": "Kirby's Dream Land (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-KYJ-0": {
+    "name": "Hoshi no Kirby (Japan)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -771,6 +781,11 @@
   },
   "DMG-VPHE-0": {
     "name": "Pokemon Pinball (USA, Australia) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-VPHJ-0": {
+    "name": "Pokemon Pinball (Japan) (Rumble Version) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
     "layout": "rom_mapper_ram"
   },

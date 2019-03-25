@@ -77,6 +77,7 @@ fn test_deserialize() {
             "code": "DMG-ASDF-0",
             "slug": "dude-1",
             "contributor": "dude",
+            "index": 1,
             "shell": {
                 "code": "DMG-123",
                 "stamp": "00A",
@@ -119,6 +120,7 @@ fn test_deserialize() {
             code: "DMG-ASDF-0".to_owned(),
             slug: "dude-1".to_owned(),
             contributor: "dude".to_owned(),
+            index: 1,
             shell: CartridgeShell {
                 code: Some("DMG-123".to_owned()),
                 stamp: Some("00A".to_owned()),
@@ -172,6 +174,7 @@ fn test_deserialize_minimal() {
             "code": "DMG-ASDF-0",
             "slug": "dude-1",
             "contributor": "dude",
+            "index": 1,
             "shell": {},
             "board": {
                 "label": "ASDF"
@@ -185,6 +188,7 @@ fn test_deserialize_minimal() {
             code: "DMG-ASDF-0".to_owned(),
             slug: "dude-1".to_owned(),
             contributor: "dude".to_owned(),
+            index: 1,
             shell: CartridgeShell {
                 code: None,
                 stamp: None,

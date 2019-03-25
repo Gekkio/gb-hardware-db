@@ -1,0 +1,29 @@
+{
+  "code": "DMG-VPHJ-0",
+  "slug": "pyroesp-1",
+  "contributor": "pyroesp",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VPHJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A04-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1999,
+    "month": 3,
+    "u1": {
+      "label": "T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2"
+    },
+    "u2": {
+      "label": "MBC5 P-1 905U2L"
+    },
+    "u3": {
+      "label": "HY6264A LJ-10 9814B KOREA"
+    },
+    "u4": {
+      "label": "6735 8C28"
+    }
+  }
+}

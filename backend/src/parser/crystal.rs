@@ -23,6 +23,16 @@ fn kds_short() -> Matcher<Crystal> {
     })
 }
 
+fn unknown() -> Matcher<Crystal> {
+    Matcher::new(r#"^32K9Y$"#, move |_| {
+        Ok(Crystal {
+            manufacturer: None,
+            year: None,
+            month: None,
+        })
+    })
+}
+
 fn kds_month(text: &str) -> Result<u8, String> {
     match text {
         "A" => Ok(1),
@@ -44,7 +54,7 @@ fn kds_month(text: &str) -> Result<u8, String> {
 
 pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Crystal>; 1] = [kds_short(),];
+        static ref MATCHERS: [Matcher<Crystal>; 2] = [kds_short(), unknown()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

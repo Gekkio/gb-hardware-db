@@ -1,0 +1,31 @@
+{
+  "code": "CGB-BXTJ-0",
+  "slug": "hdr-1",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BXTJ-JPN"
+  },
+  "board": {
+    "label": "DMG-MHEU-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "S004719-M MX23C1603-12A CGB-BXTJ-0 G2 2D366300"
+    },
+    "u2": {
+      "label": "MBC30 P 04607M"
+    },
+    "u3": {
+      "label": "HYUNDAI KOREA HY628100B 0037A LLG-70"
+    },
+    "u4": {
+      "label": "027 134A"
+    },
+    "x1": {
+      "label": "KDS0K"
+    }
+  }
+}

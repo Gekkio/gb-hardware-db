@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AYWJ-0",
+  "slug": "hdr-2",
+  "contributor": "HDR",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AYWJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-KECN-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AYWJ-0 E1 N-4001EJGW-J79 9747E7025"
+    },
+    "u2": {
+      "label": "MBC3 LR385364 9743 A"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 744 152N"
+    },
+    "u4": {
+      "label": "6129A 7A25"
+    },
+    "x1": {
+      "label": "KDS7K"
+    }
+  }
+}

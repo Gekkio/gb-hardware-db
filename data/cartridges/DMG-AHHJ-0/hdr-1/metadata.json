@@ -1,0 +1,31 @@
+{
+  "code": "DMG-AHHJ-0",
+  "slug": "hdr-1",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AHHJ-JPN"
+  },
+  "board": {
+    "label": "DMG-KGDU-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "M000795-M MX23C1603-12 1 DMG-AHHJ-0 G2 1Q6004A1"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 003U1E"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0009 1 SO"
+    },
+    "u4": {
+      "label": "002 134A"
+    },
+    "x1": {
+      "label": "32K9Y"
+    }
+  }
+}

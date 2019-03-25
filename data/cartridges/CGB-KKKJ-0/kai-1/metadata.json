@@ -1,0 +1,29 @@
+{
+  "code": "CGB-KKKJ-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {
+    "code": "CGB-KKKJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A40-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "CGB-KKKJ-0 F1 M538011E-P0 0345401"
+    },
+    "u2": {
+      "label": "MBC-7 BU3667KS 031 118"
+    },
+    "u3": {
+      "label": "LC56 W139 07"
+    },
+    "u4": {
+      "label": "2813088718 0025 ADXL202JQC"
+    }
+  }
+}

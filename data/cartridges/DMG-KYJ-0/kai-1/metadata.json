@@ -1,0 +1,23 @@
+{
+  "code": "DMG-KYJ-0",
+  "slug": "kai-1",
+  "contributor": "Kai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KYJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1992,
+    "month": 3,
+    "u1": {
+      "label": "DMG-KYJ-0 S LH532D10 JAPAN D1 9214 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9209BR"
+    }
+  }
+}

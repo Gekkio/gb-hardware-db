@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BWWJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BWWJ-JPN",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-A16-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 8,
+    "u1": {
+      "label": "CGB-BWWJ-0 F1 M538011E-8J 1335420"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 113 H31"
+    },
+    "u3": {
+      "label": "HYUNDAI KOREA HY628100B 0041A LLG-70"
+    },
+    "u4": {
+      "label": "129 134A"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ABEJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ABEJ-JPN-1",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 3,
+    "u1": {
+      "label": "DMG-ABEJ-1 S LH538WWY JAPAN F1 9914 E"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 842U3E"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9907 3 SO"
+    },
+    "u4": {
+      "label": "850 134A"
+    },
+    "x1": {
+      "label": "KDS8L"
+    }
+  }
+}

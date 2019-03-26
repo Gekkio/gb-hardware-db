@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AGWJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AGWJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 5,
+    "u1": {
+      "label": "C9721-M MX23C4002-20 DMG-AGWJ-0 E1 43340G"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9722 5 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256BLLFW70 9617 KOREA"
+    },
+    "u4": {
+      "label": "6129A 7581"
+    }
+  }
+}

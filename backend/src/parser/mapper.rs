@@ -388,6 +388,26 @@ fn rohm_mbc3() -> Matcher<Mapper> {
     )
 }
 
+/// Rohm MBC3A
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_mapper;
+/// assert!(parse_mapper("MBC-3 A BU3632K 004 H64").is_ok());
+/// ```
+fn rohm_mbc3a() -> Matcher<Mapper> {
+    Matcher::new(
+        r#"^MBC-3\ A\ BU3632K\ ([0-9])([0-9]{2})\ [[:alnum:]]{3}$"#,
+        move |c| {
+            Ok(Mapper {
+                mbc_type: MapperType::Mbc3(Mbc3Version::Original),
+                manufacturer: Some(Manufacturer::Rohm),
+                year: Some(year1(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
 /// Rohm MBC3B
 ///
 /// ```
@@ -627,7 +647,7 @@ fn mmm01() -> Matcher<Mapper> {
 
 pub fn parse_mapper(text: &str) -> Result<Mapper, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Mapper>; 29] = [
+        static ref MATCHERS: [Matcher<Mapper>; 30] = [
             sharp_mbc1a(),
             sharp_mbc1b(),
             sharp_mbc1b1(),
@@ -645,6 +665,7 @@ pub fn parse_mapper(text: &str) -> Result<Mapper, ()> {
             p_company_mbc30(),
             p_company_mbc5(),
             rohm_mbc3(),
+            rohm_mbc3a(),
             rohm_mbc3b(),
             rohm_mbc30(),
             rohm_mbc5(),

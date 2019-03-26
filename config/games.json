@@ -214,6 +214,11 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram_xtal"
   },
+  "DMG-AB6P-0": {
+    "name": "Bugs Bunny - Crazy Castle 3 (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "DMG-ABEJ-0": {
     "name": "Barcode Taisen Bardigun (Japan) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
@@ -245,8 +250,8 @@
     "layout": "rom_mapper_ram"
   },
   "DMG-AD4P-0": {
-    "name": "Dropzone (Europe)",
-    "platform": "gb",
+    "name": "Dropzone (Europe) (GB Compatible)",
+    "platform": "gbc",
     "layout": "rom_mapper"
   },
   "DMG-ADDJ-0": {
@@ -519,6 +524,11 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram"
   },
+  "DMG-BBE-0": {
+    "name": "Bugs Bunny Crazy Castle, The (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-BIA-0": {
     "name": "Bomber King - Scenario 2 (Japan)",
     "platform": "gb",
@@ -593,6 +603,11 @@
     "name": "NBA All-Star Challenge 2 (USA, Europe)",
     "platform": "gb",
     "layout": "rom_mapper"
+  },
+  "DMG-HAE-0": {
+    "name": "Heiankyo Alien (USA)",
+    "platform": "gb",
+    "layout": "rom"
   },
   "DMG-HBA-0": {
     "name": "Bomber Boy (Japan)",

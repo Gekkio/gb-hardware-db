@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AHHJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AHHJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-KCDU-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AHHJ-0 S LH537MYP JAPAN G2 0009 D"
+    },
+    "u2": {
+      "label": "MBC-3 A BU3632K 004 H64"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0009 3 SO"
+    },
+    "u4": {
+      "label": "003 134A"
+    },
+    "x1": {
+      "label": "32K9X"
+    }
+  }
+}

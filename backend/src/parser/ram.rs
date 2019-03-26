@@ -172,7 +172,7 @@ fn sharp_lh5168() -> Matcher<Ram> {
         Ok(Ram {
             manufacturer: Some(Manufacturer::Sharp),
             chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
+            year: Some(year2(&c[2])?),
             week: Some(week2(&c[3])?),
         })
     })
@@ -354,15 +354,15 @@ fn rohm_br62256f() -> Matcher<Ram> {
     )
 }
 
-/// LGS GM76C256C
+/// LGS GM76C256
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_ram;
 /// assert!(parse_ram("LGS GM76C256CLLFW70 9849 KOREA").is_ok());
 /// ```
-fn lgs_gm76c256c() -> Matcher<Ram> {
+fn lgs_gm76c256() -> Matcher<Ram> {
     Matcher::new(
-        r#"^LGS\ (GM76C256C[A-Z]{1,4}[0-9]{2}E?)\ ([0-9]{2})([0-9]{2})\ KOREA$"#,
+        r#"^LGS\ (GM76C256[ABC][A-Z]{1,4}[0-9]{2}E?)\ ([0-9]{2})([0-9]{2})\ KOREA$"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Lgs),
@@ -460,7 +460,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             hyundai_hy6264a(),
             hyundai_hy6264a_2(),
             hyundai_hy628100b(),
-            lgs_gm76c256c(),
+            lgs_gm76c256(),
             lsi_logic_lh5168(),
             lsi_logic_lh52b256(),
             mosel_vitelic_lh5168(),

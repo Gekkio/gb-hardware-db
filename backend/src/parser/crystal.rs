@@ -24,7 +24,7 @@ fn kds_short() -> Matcher<Crystal> {
 }
 
 fn unknown() -> Matcher<Crystal> {
-    Matcher::new(r#"^32K9Y$"#, move |_| {
+    Matcher::new(r#"^32K9[A-Z]$"#, move |_| {
         Ok(Crystal {
             manufacturer: None,
             year: None,

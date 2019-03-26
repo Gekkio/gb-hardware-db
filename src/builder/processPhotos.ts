@@ -33,7 +33,7 @@ interface Input {
 function generateThumbnail(width: number, input: string, output: string) {
   const args = [input, '--width', String(width), '--output', output]
   return new Promise((resolve, reject) => {
-    childProcess.execFile('tools/target/release/gbhwdb-photo', args, error => {
+    childProcess.execFile('target/release/gbhwdb-photo', args, error => {
       if (error) return reject(error)
       resolve()
     })

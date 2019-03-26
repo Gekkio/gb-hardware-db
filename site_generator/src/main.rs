@@ -288,8 +288,8 @@ fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut Leg
 }
 
 fn main() -> Result<(), Error> {
-    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("../config/games.json")?;
-    let walker = WalkDir::new("../data/cartridges").min_depth(3).max_depth(3);
+    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
+    let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
@@ -339,9 +339,9 @@ fn main() -> Result<(), Error> {
             });
         }
     }
-    create_dir_all("../build/data")?;
+    create_dir_all("build/data")?;
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
-    let file = File::create("../build/data/cartridges.json")?;
+    let file = File::create("build/data/cartridges.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     Ok(())
 }

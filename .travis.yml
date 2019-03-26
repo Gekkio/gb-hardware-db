@@ -28,13 +28,14 @@ before_install:
 
 install:
   - yarn
-  - cd tools && cargo build --verbose --release && cd ..
 
 before_script:
   - git lfs pull
 
 script:
-  - cd site_generator && cargo run --verbose --release && cd ..
+  - cargo build --all --release --verbose
+  - cargo test --all --release --verbose
+  - cargo run --release --bin gbhwdb-site-generator
   - yarn build
 
 deploy:

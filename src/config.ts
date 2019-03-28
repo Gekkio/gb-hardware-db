@@ -127,8 +127,8 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     chips: [
       { designator: 'U1', name: 'ROM', key: 'rom' },
       { designator: 'U2', name: 'Mapper', key: 'mapper' },
-      { designator: 'U3', name: 'RAM', key: 'ram' },
-      { designator: 'U4', name: '????', key: 'u4' },
+      { designator: 'U3', name: 'MCU', key: 'ram' },
+      { designator: 'U4', name: 'RTC', key: 'u4' },
       { designator: 'U5', name: 'RAM protector', key: 'ram_protector' },
       { designator: 'X1', name: 'Crystal', key: 'crystal' },
     ],

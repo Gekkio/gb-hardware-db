@@ -40,7 +40,7 @@ fn tama5() -> Matcher<Tama> {
 /// ```
 fn tama6() -> Matcher<Tama> {
     Matcher::new(
-        r#"^TAMA6\ JAPAN\ [[:alnum:]]{7}\ FV61\ ([0-9]{2})([0-9]{2})H$"#,
+        r#"^TAMA6\ JAPAN\ 47C243M\ FV61\ ([0-9]{2})([0-9]{2})H$"#,
         move |c| {
             Ok(Tama {
                 tama_type: TamaType::Tama6,

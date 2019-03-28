@@ -1,0 +1,34 @@
+{
+  "code": "DMG-AOMJ-0",
+  "slug": "miyako-1",
+  "contributor": "Miyako",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AOMJ-JPN"
+  },
+  "board": {
+    "label": "0200309E4-01-1",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "TAMA7 J9747 43891A TAIWAN"
+    },
+    "u2": {
+      "label": "TAMA5 9725 EAH1"
+    },
+    "u3": {
+      "label": "TAMA6 JAPAN 47C243M FV61 9727H"
+    },
+    "u4": {
+      "label": "T 9722HB 8521AM"
+    },
+    "u5": {
+      "label": "2021 663"
+    },
+    "x1": {
+      "label": "KDS7E"
+    }
+  }
+}

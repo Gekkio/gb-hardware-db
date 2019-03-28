@@ -27,6 +27,7 @@ fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> 
             Manufacturer::Lgs => "lgs",
             Manufacturer::LsiLogic => "lsi-logic",
             Manufacturer::Macronix => "macronix",
+            Manufacturer::Mitsubishi => "mitsubishi",
             Manufacturer::Mitsumi => "mitsumi",
             Manufacturer::MoselVitelic => "mosel-vitelic",
             Manufacturer::Motorola => "motorola",
@@ -281,7 +282,7 @@ fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut Leg
             legacy.mapper = to_legacy_tama(board.year, board.u2);
             legacy.ram = to_legacy_tama(board.year, board.u3);
             legacy.u4 = to_legacy_chip(board.u4, |_, _| ());
-            legacy.ram_protector = to_legacy_chip(board.u5, |_, _| ());
+            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u5);
             legacy.crystal = to_legacy_crystal(board.year, board.x1);
         }
     }

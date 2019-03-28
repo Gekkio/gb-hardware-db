@@ -36,6 +36,7 @@ pub enum Manufacturer {
     Lgs,
     LsiLogic,
     Macronix,
+    Mitsubishi,
     Mitsumi,
     MoselVitelic,
     Motorola,

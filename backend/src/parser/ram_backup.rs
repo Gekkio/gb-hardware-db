@@ -10,6 +10,23 @@ pub struct RamBackup {
     pub week: Option<u8>,
 }
 
+/// Mitsubishi M62021P
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram_backup;
+/// assert!(parse_ram_backup("2021 7Z2").is_ok());
+/// ```
+pub fn mitsubishi_m62021p() -> Matcher<RamBackup> {
+    Matcher::new(r#"^2021\ ([0-9])[[:alnum:]][0-9]$"#, move |c| {
+        Ok(RamBackup {
+            chip_type: "M62021P".to_owned(),
+            manufacturer: Some(Manufacturer::Mitsubishi),
+            year: Some(year1(&c[1])?),
+            week: None,
+        })
+    })
+}
+
 /// Mitsumi MM1026A
 ///
 /// ```
@@ -97,12 +114,13 @@ pub fn rohm_ba6735() -> Matcher<RamBackup> {
 
 pub fn parse_ram_backup(text: &str) -> Result<RamBackup, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<RamBackup>; 5] = [
+        static ref MATCHERS: [Matcher<RamBackup>; 6] = [
             mitsumi_mm1026a(),
             mitsumi_mm1134a(),
             rohm_ba6129(),
             rohm_ba6129a(),
             rohm_ba6735(),
+            mitsubishi_m62021p(),
         ];
     }
     for matcher in MATCHERS.iter() {

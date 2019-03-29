@@ -1,0 +1,23 @@
+{
+  "code": "CGB-ASNP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-ASNP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1999,
+    "month": 1,
+    "u1": {
+      "label": "S990149-M MX23C8005-12 CGB-ASNP-0 F1 1A3238A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 850U5L"
+    }
+  }
+}

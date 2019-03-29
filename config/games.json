@@ -9,6 +9,11 @@
     "platform": "gbc",
     "layout": "rom_mapper"
   },
+  "CGB-ASNP-0": {
+    "name": "Smurfs Nightmare, The (Europe) (En,Fr,De,Es)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "CGB-ATHE-0": {
     "name": "Tarzan (USA, Europe)",
     "platform": "gbc",

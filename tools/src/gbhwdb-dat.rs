@@ -24,12 +24,10 @@ struct Dats {
 
 impl Dats {
     pub fn get_platform(&self, name: &str) -> Option<GamePlatform> {
-        if self.gb.names.contains(name) {
-            Some(GamePlatform::Gb)
-        } else if self.gbc.names.contains(name) {
-            Some(GamePlatform::Gbc)
-        } else {
-            None
+        match (self.gb.names.contains(name), self.gbc.names.contains(name)) {
+            (true, false) => Some(GamePlatform::Gb),
+            (false, true) => Some(GamePlatform::Gbc),
+            _ => None
         }
     }
 }

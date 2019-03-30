@@ -15,17 +15,14 @@ pub struct Eeprom {
 /// assert!(parse_eeprom("LCS5 040").is_ok());
 /// ```
 fn lcs5() -> Matcher<Eeprom> {
-    Matcher::new(
-        r#"^LCS5\ ([0-9])([0-9]{2})(\ [0-9]{2})?$"#,
-        move |c| {
-            Ok(Eeprom {
-                chip_type: Some("LCS5".to_owned()),
-                manufacturer: None,
-                year: Some(year1(&c[1])?),
-                week: Some(week2(&c[2])?),
-            })
-        },
-    )
+    Matcher::new(r#"^LCS5\ ([0-9])([0-9]{2})(\ [0-9]{2})?$"#, move |c| {
+        Ok(Eeprom {
+            chip_type: Some("LCS5".to_owned()),
+            manufacturer: None,
+            year: Some(year1(&c[1])?),
+            week: Some(week2(&c[2])?),
+        })
+    })
 }
 
 /// ```
@@ -33,17 +30,14 @@ fn lcs5() -> Matcher<Eeprom> {
 /// assert!(parse_eeprom("LC56 W617 08").is_ok());
 /// ```
 fn lc56() -> Matcher<Eeprom> {
-    Matcher::new(
-        r#"^LC56\ [A-Z][0-9]{3}\ [0-9]{2}$"#,
-        move |_| {
-            Ok(Eeprom {
-                chip_type: Some("LC56".to_owned()),
-                manufacturer: None,
-                year: None,
-                week: None,
-            })
-        },
-    )
+    Matcher::new(r#"^LC56\ [A-Z][0-9]{3}\ [0-9]{2}$"#, move |_| {
+        Ok(Eeprom {
+            chip_type: Some("LC56".to_owned()),
+            manufacturer: None,
+            year: None,
+            week: None,
+        })
+    })
 }
 
 pub fn parse_eeprom(text: &str) -> Result<Eeprom, ()> {

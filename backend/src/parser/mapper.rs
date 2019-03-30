@@ -338,14 +338,17 @@ fn p_company_mbc3b() -> Matcher<Mapper> {
 /// assert!(parse_mapper("MBC30 P 047U2M").is_ok());
 /// ```
 fn p_company_mbc30() -> Matcher<Mapper> {
-    Matcher::new(r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#, move |c| {
-        Ok(Mapper {
-            mbc_type: MapperType::Mbc30,
-            manufacturer: None,
-            year: Some(year1(&c[1])?),
-            week: Some(week2(&c[2])?),
-        })
-    })
+    Matcher::new(
+        r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#,
+        move |c| {
+            Ok(Mapper {
+                mbc_type: MapperType::Mbc30,
+                manufacturer: None,
+                year: Some(year1(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
 }
 
 /// Unknown MBC5 by some "P" company?

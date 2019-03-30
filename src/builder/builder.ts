@@ -283,6 +283,27 @@ async function main(): Promise<void> {
     processCartridgeCsv(cartridgeSubmissions),
   ])
   winston.info('Site generation finished :)')
+
+  async function processPage(page: PageDeclaration): Promise<void> {
+    const props = {
+      pageType: page.type,
+      title: `${page.title} - Game Boy hardware database`,
+      pageProps: page.props,
+      consoleSubmissionCount: consoleSubmissions.length,
+      cartridgeSubmissionCount: cartridgeSubmissions.length,
+    }
+    const markup = ReactDOMServer.renderToStaticMarkup(React.createElement(Site, props))
+    const html = `<!DOCTYPE html>\n${markup}`
+
+    const directories = R.init(page.path || [])
+    const targetDirectory = path.resolve('build', 'site', ...directories)
+
+    const filename = R.last(page.path || []) || page.type
+    const target = path.resolve(targetDirectory, `${filename}.html`)
+
+    await fs.outputFile(target, html)
+    winston.debug(`Wrote HTML file ${target}`)
+  }
 }
 
 async function processConsoleCsv<T, K extends keyof GroupedConsoleSubmissions>(
@@ -299,25 +320,6 @@ async function processCartridgeCsv(submissions: CartridgeSubmission[]): Promise<
   const dir = path.resolve('build', 'site', 'static', 'export')
   await fs.mkdirs(dir)
   return generateCsv(CARTRIDGE_CSV_COLUMNS, submissions, path.resolve(dir, `cartridges.csv`))
-}
-
-async function processPage(page: PageDeclaration): Promise<void> {
-  const props = {
-    pageType: page.type,
-    title: `${page.title} - Game Boy hardware database`,
-    pageProps: page.props,
-  }
-  const markup = ReactDOMServer.renderToStaticMarkup(React.createElement(Site, props))
-  const html = `<!DOCTYPE html>\n${markup}`
-
-  const directories = R.init(page.path || [])
-  const targetDirectory = path.resolve('build', 'site', ...directories)
-
-  const filename = R.last(page.path || []) || page.type
-  const target = path.resolve(targetDirectory, `${filename}.html`)
-
-  await fs.outputFile(target, html)
-  winston.debug(`Wrote HTML file ${target}`)
 }
 
 main()

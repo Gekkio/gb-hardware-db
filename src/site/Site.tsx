@@ -37,6 +37,8 @@ namespace Site {
     pageType: string
     title: string
     pageProps: any
+    consoleSubmissionCount: number
+    cartridgeSubmissionCount: number
   }
 }
 
@@ -65,7 +67,10 @@ export default function Site(props: Site.Props) {
         <main className="site-main">
           <div className="site-main__content">{renderPage(props.pageType, props.pageProps)}</div>
         </main>
-        <SiteFooter />
+        <SiteFooter
+          consoleSubmissionCount={props.consoleSubmissionCount}
+          cartridgeSubmissionCount={props.cartridgeSubmissionCount}
+        />
       </body>
     </html>
   )

@@ -308,14 +308,12 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
         .gb
         .names
         .iter()
-        .filter(|name| !existing_names.contains(name.as_str()))
         .cloned()
         .map(|name| (GamePlatform::Gb, name));
     let gbc_games = dats
         .gbc
         .names
         .iter()
-        .filter(|name| !existing_names.contains(name.as_str()))
         .cloned()
         .map(|name| (GamePlatform::Gbc, name));
     let games = gb_games.chain(gbc_games).collect::<Vec<_>>();

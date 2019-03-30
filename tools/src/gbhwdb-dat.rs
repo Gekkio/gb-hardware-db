@@ -300,10 +300,6 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
 }
 
 fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) {
-    let existing_names = cfgs
-        .values()
-        .map(|cfg| cfg.name.clone())
-        .collect::<HashSet<_>>();
     let gb_games = dats
         .gb
         .names

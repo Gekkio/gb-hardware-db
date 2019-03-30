@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RJX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RJ-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1995,
+    "month": 4,
+    "u1": {
+      "label": "DMG-RJX-0 S LH532MW7 JAPAN D1 9518 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'34"
+    }
+  }
+}

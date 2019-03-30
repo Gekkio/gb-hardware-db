@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BAA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BA-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 4,
+    "u1": {
+      "label": "DMG-BAA-0 S LH5308N1 JAPAN C1 9016 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9016BA057"
+    }
+  }
+}

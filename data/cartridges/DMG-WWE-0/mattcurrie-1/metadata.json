@@ -1,0 +1,23 @@
+{
+  "code": "DMG-WWE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WW-AUS",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "T",
+    "extra_label": "2",
+    "year": 1991,
+    "month": 11,
+    "u1": {
+      "label": "DMG-WWE-0 S LH5314B4 JAPAN B1 9148 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9147BA076"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-GMA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GM-NOE",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 10,
+    "u1": {
+      "label": "DMG-GMA-0 S LH5314UA JAPAN B1 9142 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9140BA023"
+    }
+  }
+}

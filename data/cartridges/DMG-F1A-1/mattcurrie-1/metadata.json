@@ -1,0 +1,26 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-F1A",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-GDAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 10,
+    "u1": {
+      "label": "DMG-F1A-1 S LH5308PS JAPAN C1 9044 E"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9044 5 A"
+    },
+    "u3": {
+      "label": "0J5 26A"
+    }
+  }
+}

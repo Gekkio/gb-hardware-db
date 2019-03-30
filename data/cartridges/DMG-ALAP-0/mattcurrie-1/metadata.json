@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ALAP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ALAP-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 6,
+    "u1": {
+      "label": "DMG-ALAP-0 S LH532MYE JAPAN D1 9827 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'11"
+    }
+  }
+}

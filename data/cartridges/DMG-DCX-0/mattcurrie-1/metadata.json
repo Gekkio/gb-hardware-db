@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DCX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DC-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 5,
+    "u1": {
+      "label": "DMG-DCX-0 S LH531HZ9 JAPAN C1 9824 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'33"
+    }
+  }
+}

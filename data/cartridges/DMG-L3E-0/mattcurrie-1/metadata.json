@@ -1,0 +1,23 @@
+{
+  "code": "DMG-L3E-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-L3-AUS",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "4",
+    "year": 1992,
+    "month": 10,
+    "u1": {
+      "label": "DMG-L3E-0 S LH5308VY JAPAN C1 9303 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9252BA008"
+    }
+  }
+}

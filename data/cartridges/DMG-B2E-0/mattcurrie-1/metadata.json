@@ -1,0 +1,23 @@
+{
+  "code": "DMG-B2E-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-B2-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1991,
+    "month": 9,
+    "u1": {
+      "label": "DMG-B2E-0 C1 N-1001EGW-J30 9136E9023"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 1'93"
+    }
+  }
+}

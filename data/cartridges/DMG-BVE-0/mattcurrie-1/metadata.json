@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BVE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BV-AUS",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1992,
+    "month": 5,
+    "u1": {
+      "label": "DMG-BVE-0 C1 N-1001EAGW-J06 9221K9005"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9211BR"
+    }
+  }
+}

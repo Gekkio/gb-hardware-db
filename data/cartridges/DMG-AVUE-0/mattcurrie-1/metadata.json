@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AVUE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AVUE-USA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 8,
+    "u1": {
+      "label": "DMG-AVUE-0 S LH538WR6 JAPAN F1 9940 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9937 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9937 3 EB"
+    },
+    "u4": {
+      "label": "935 134A"
+    }
+  }
+}

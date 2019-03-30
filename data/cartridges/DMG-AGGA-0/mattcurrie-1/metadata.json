@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AGGA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AGGA-AUS",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1997,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AGGA-0 S LH531HWM JAPAN C1 9705 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9652 1 A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-HBX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HB-AUS",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 11,
+    "u1": {
+      "label": "DMG-HBX-0 S LH5308G6 JAPAN C1 9149 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9148BA054"
+    }
+  }
+}

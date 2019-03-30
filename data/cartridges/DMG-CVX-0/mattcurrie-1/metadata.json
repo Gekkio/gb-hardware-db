@@ -1,0 +1,23 @@
+{
+  "code": "DMG-CVX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-CV-NOE",
+    "stamp": "27"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 6,
+    "u1": {
+      "label": "DMG-CVX-0 S LH5314E6 JAPAN B1 9127 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9109BA007"
+    }
+  }
+}

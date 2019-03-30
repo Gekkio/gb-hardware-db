@@ -21,6 +21,7 @@ fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> 
             Manufacturer::Analog => "analog",
             Manufacturer::AtT => "at_t",
             Manufacturer::Bsi => "bsi",
+            Manufacturer::Fujitsu => "fujitsu",
             Manufacturer::Hudson => "hudson",
             Manufacturer::Hyundai => "hyundai",
             Manufacturer::Kds => "kds",
@@ -77,11 +78,9 @@ fn to_legacy_year(board_year: Option<u32>, chip_year: Option<Year>) -> Option<u1
         (Some(board_year), Some(Year::Partial(year))) => {
             let diff_90 = (board_year as i32 - 1990 - year as i32).abs();
             let diff_00 = (board_year as i32 - 2000 - year as i32).abs();
-            if diff_90 < diff_00 {
-                Some(1990 + year as u16)
-            } else {
-                Some(2000 + year as u16)
-            }
+            let year = if diff_90 < diff_00 { 1990 + year as u16 } else { 2000 + year as u16 };
+            assert!(year >= 1989 && year < 2010);
+            Some(year)
         }
         _ => None,
     }
@@ -299,6 +298,16 @@ fn main() -> Result<(), Error> {
             let file = File::open(&entry.path())?;
             let cartridge: Cartridge = serde_json::from_reader(file)?;
             let cfg = cfgs.get(&cartridge.code).unwrap();
+
+            let layout = BoardLayout::from_label(&cartridge.board.label).unwrap_or_else(|| panic!("Failed to find board layout for board {}", cartridge.board.label));
+            assert_eq!(layout, cfg.layout);
+
+            if let Some(year) = cartridge.board.year {
+                assert!(year >= 1989 && year < 2010);
+            }
+            if let Some(month) = cartridge.board.month {
+                assert!(month >= 1 && month < 13);
+            }
 
             let mut board = LegacyBoard {
                 kind: cartridge.board.label.clone(),

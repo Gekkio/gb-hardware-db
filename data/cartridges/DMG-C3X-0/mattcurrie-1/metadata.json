@@ -1,0 +1,23 @@
+{
+  "code": "DMG-C3X-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-C3-FAH",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1993,
+    "month": 10,
+    "u1": {
+      "label": "DMG-C3X-0 S LH5308WB JAPAN C1 9346 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9340BA048"
+    }
+  }
+}

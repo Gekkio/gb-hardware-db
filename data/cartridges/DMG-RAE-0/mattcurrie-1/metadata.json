@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RAE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RA-NOE",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 10,
+    "u1": {
+      "label": "NEC JAPAN DMG-RAE-0 C1 UPD23C1001EGW-J09 9046E9014"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9034BA076"
+    }
+  }
+}

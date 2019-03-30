@@ -1,0 +1,23 @@
+{
+  "code": "DMG-TSE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TS-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 10,
+    "u1": {
+      "label": "DMG-TSE-0 S LH5308HH JAPAN C1 9143 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9144 5 AA"
+    }
+  }
+}

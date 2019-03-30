@@ -1,0 +1,23 @@
+{
+  "code": "DMG-HQJ-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HQJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1990,
+    "month": 11,
+    "u1": {
+      "label": "DMG-HQJ-0 S LH5308S3 JAPAN C1 9049 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9035BA026"
+    }
+  }
+}

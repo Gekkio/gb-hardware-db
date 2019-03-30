@@ -1,0 +1,28 @@
+{
+  "code": "DMG-AD3P-1",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AD3P-AUS"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "C983638-M MX23C4002-20 DMG-AD3P-1 E1 1P0443Y1"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9837 3 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9824B KOREA"
+    },
+    "u4": {
+      "label": "836 26A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BTE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BT-FAH",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 10,
+    "u1": {
+      "label": "DMG-BTE-0 S LH5308P8 JAPAN C1 9044 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9026BA036"
+    }
+  }
+}

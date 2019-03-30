@@ -1,0 +1,20 @@
+{
+  "code": "DMG-AWA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1989,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AWA-0 SHARP JAPAN 8909 D A"
+    }
+  }
+}

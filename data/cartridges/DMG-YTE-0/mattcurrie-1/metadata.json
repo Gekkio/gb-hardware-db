@@ -1,0 +1,29 @@
+{
+  "code": "DMG-YTE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-YT-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-YTE-0 S LH5S4MNE JAPAN E1 9749 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9743 1 A"
+    },
+    "u3": {
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N745 1D BH"
+    },
+    "u4": {
+      "label": "6129A 7B23"
+    }
+  }
+}

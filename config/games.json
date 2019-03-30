@@ -1,4 +1,9 @@
 {
+  "CGB-AFIP-0": {
+    "name": "F-1 World Grand Prix (Europe) (En,Fr,De,Es)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
   "CGB-AHYE-0": {
     "name": "Super Mario Bros. Deluxe (USA, Europe)",
     "platform": "gbc",
@@ -174,6 +179,11 @@
     "platform": "gbc",
     "layout": "mbc7"
   },
+  "DMG-A2GJ-0": {
+    "name": "Beatmania GB 2 - Gotcha Mix (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "DMG-A3GP-0": {
     "name": "PGA Tour 96 (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
@@ -299,6 +309,11 @@
     "platform": "gbc",
     "layout": "rom_mapper"
   },
+  "DMG-AGGA-0": {
+    "name": "Game Boy Gallery - 5 Games in 1 (Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-AGOP-0": {
     "name": "Hugo (Europe) (SGB Enhanced)",
     "platform": "gb",
@@ -328,6 +343,11 @@
     "name": "Kandume Monsters (Japan) (SGB Enhanced)",
     "platform": "gb",
     "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-ALAP-0": {
+    "name": "Aladdin (Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
   },
   "DMG-AM3J-0": {
     "name": "Momotarou Collection 2 (Japan) (SGB Enhanced)",
@@ -424,6 +444,11 @@
     "platform": "gb",
     "layout": "rom_mapper_ram"
   },
+  "DMG-APXE-0": {
+    "name": "Bug's Life, A (USA) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "DMG-ATAJ-0": {
     "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -443,6 +468,11 @@
     "name": "V-Rally - Championship Edition (Europe) (En,Fr,De)",
     "platform": "gb",
     "layout": "rom_mapper"
+  },
+  "DMG-AVUE-0": {
+    "name": "Beauty and the Beast - A Board Game Adventure (USA) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
   },
   "DMG-AW2J-0": {
     "name": "Wario Land 2 (Japan) (SGB Enhanced) (GB Compatible)",
@@ -524,10 +554,20 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram"
   },
+  "DMG-B2E-0": {
+    "name": "Bubble Bobble (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-B7HJ-0": {
     "name": "Nakayoshi Pet Series 1 - Kawaii Hamster (Japan) (GB Compatible)",
     "platform": "gbc",
     "layout": "rom_mapper_ram"
+  },
+  "DMG-BAA-0": {
+    "name": "Batman - The Video Game (World)",
+    "platform": "gb",
+    "layout": "rom_mapper"
   },
   "DMG-BBE-0": {
     "name": "Bugs Bunny Crazy Castle, The (USA, Europe)",
@@ -559,6 +599,21 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram"
   },
+  "DMG-BTE-0": {
+    "name": "Balloon Kid (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-BVE-0": {
+    "name": "Battletoads (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-C3X-0": {
+    "name": "Alfred Chicken (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-CIE-0": {
     "name": "Yoshi's Cookie (USA, Europe)",
     "platform": "gb",
@@ -574,8 +629,23 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-CVX-0": {
+    "name": "Castlevania - The Adventure (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-DCX-0": {
+    "name": "Darkwing Duck (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-DDE-0": {
     "name": "Double Dragon (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-DTX-0": {
+    "name": "DuckTales (Europe)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -589,6 +659,11 @@
     "platform": "gb",
     "layout": "mbc2"
   },
+  "DMG-FPA-0": {
+    "name": "Flipull (USA)",
+    "platform": "gb",
+    "layout": "rom"
+  },
   "DMG-FPE-0": {
     "name": "Flipull (USA)",
     "platform": "gb",
@@ -596,6 +671,16 @@
   },
   "DMG-G2E-0": {
     "name": "Gauntlet II (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-GKX-0": {
+    "name": "B.C. Kid (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-GMA-0": {
+    "name": "BurgerTime Deluxe (World)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -619,6 +704,11 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-HBX-0": {
+    "name": "Dynablaster (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-HFAJ-0": {
     "name": "Pocket Family GB (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -639,6 +729,11 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-HQJ-0": {
+    "name": "Taito Chase H.Q. (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-HRCJ-0": {
     "name": "Robot Poncots - Star Version (Japan) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
@@ -656,6 +751,11 @@
   },
   "DMG-KYJ-0": {
     "name": "Hoshi no Kirby (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-L3E-0": {
+    "name": "Alien 3 (USA, Europe)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -739,6 +839,11 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-QDA-1": {
+    "name": "Donkey Kong (World) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
   "DMG-QQJ-1": {
     "name": "Puyo Puyo (Japan) (Rev 1) (SGB Enhanced)",
     "platform": "gb",
@@ -754,8 +859,18 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-RAE-0": {
+    "name": "Gargoyle's Quest (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-REA-0": {
     "name": "R-Type (Japan)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-RJX-0": {
+    "name": "B.C. Kid 2 (Europe) (SGB Enhanced)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -788,6 +903,11 @@
     "name": "Tetris (World) (Rev 1)",
     "platform": "gb",
     "layout": "rom"
+  },
+  "DMG-TSE-0": {
+    "name": "Bart Simpson's Escape from Camp Deadly (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
   },
   "DMG-UHE-0": {
     "name": "Prehistorik Man (USA, Europe)",

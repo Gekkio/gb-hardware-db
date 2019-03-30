@@ -1,0 +1,29 @@
+{
+  "code": "DMG-QDA-1",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-QD-USA",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1994,
+    "month": 12,
+    "u1": {
+      "label": "DMG-QDA-1 S LH534M09 JAPAN E1 9501 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9451 1 A"
+    },
+    "u3": {
+      "label": "XLJ6265AF-10SL 437 159"
+    },
+    "u4": {
+      "label": "422 26A"
+    }
+  }
+}

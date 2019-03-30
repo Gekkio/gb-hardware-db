@@ -1,0 +1,23 @@
+{
+  "code": "DMG-APXE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APXE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "DMG-APXE-0 F1 M538011E-25 846232D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 842U3L"
+    }
+  }
+}

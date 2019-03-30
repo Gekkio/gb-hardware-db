@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AFIP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AFIP-AUS",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A08-01",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 6,
+    "u1": {
+      "label": "CGB-AFIP-0 S LH537MTJ JAPAN G2 9929 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9922 A"
+    },
+    "u3": {
+      "label": "HY6264A LJ-10 9814B KOREA"
+    },
+    "u4": {
+      "label": "915 134A"
+    }
+  }
+}

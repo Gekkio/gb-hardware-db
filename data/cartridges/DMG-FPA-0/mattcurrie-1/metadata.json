@@ -1,0 +1,20 @@
+{
+  "code": "DMG-FPA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-FPA",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-AAA-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1989,
+    "month": 1,
+    "u1": {
+      "label": "DMG-FPA-0 SHARP JAPAN A0 9004 E"
+    }
+  }
+}

@@ -30,6 +30,7 @@ pub enum Manufacturer {
     Analog,
     AtT,
     Bsi,
+    Fujitsu,
     Hudson,
     Hyundai,
     Kds,

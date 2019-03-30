@@ -285,9 +285,28 @@ fn samsung2() -> Matcher<MaskRom> {
     })
 }
 
+/// Fujitsu Mask ROM
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_mask_rom;
+/// assert!(parse_mask_rom("DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
+/// ```
+fn fujitsu() -> Matcher<MaskRom> {
+    Matcher::new(r#"^JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [0-9][A-Z][0-9]\ [A-Z]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
+                 move |c| {
+                     Ok(MaskRom {
+                         rom_code: c[1].to_owned(),
+                         manufacturer: Some(Manufacturer::Fujitsu),
+                         chip_type: None,
+                         year: Some(year2(&c[3])?),
+                         week: Some(week2(&c[4])?),
+                     })
+                 })
+}
+
 pub fn parse_mask_rom(text: &str) -> Result<MaskRom, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<MaskRom>; 14] = [
+        static ref MATCHERS: [Matcher<MaskRom>; 15] = [
             sharp(),
             sharp2(),
             sharp3(),
@@ -302,6 +321,7 @@ pub fn parse_mask_rom(text: &str) -> Result<MaskRom, ()> {
             toshiba(),
             samsung(),
             samsung2(),
+            fujitsu(),
         ];
     }
     for matcher in MATCHERS.iter() {

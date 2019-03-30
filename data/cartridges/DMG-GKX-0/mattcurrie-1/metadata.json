@@ -1,0 +1,23 @@
+{
+  "code": "DMG-GKX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GK-UKV",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1993,
+    "month": 6,
+    "u1": {
+      "label": "JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9226 5 A"
+    }
+  }
+}

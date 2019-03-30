@@ -289,7 +289,7 @@ fn samsung2() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
+/// assert!(parse_mask_rom("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
 /// ```
 fn fujitsu() -> Matcher<MaskRom> {
     Matcher::new(r#"^JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [0-9][A-Z][0-9]\ [A-Z]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,

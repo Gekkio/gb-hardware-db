@@ -9,6 +9,7 @@ use itertools::Itertools;
 use std::cell::Cell;
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, HashSet};
+use std::fmt;
 use std::fs::File;
 use std::io::{BufReader, BufWriter};
 use std::path::Path;
@@ -27,7 +28,7 @@ impl Dats {
         match (self.gb.names.contains(name), self.gbc.names.contains(name)) {
             (true, false) => Some(GamePlatform::Gb),
             (false, true) => Some(GamePlatform::Gbc),
-            _ => None
+            _ => None,
         }
     }
 }
@@ -141,16 +142,28 @@ fn main() -> Result<(), Error> {
 
 #[derive(Clone, Debug)]
 struct Candidate {
+    platform: GamePlatform,
     name: String,
     rating: f64,
 }
 
 impl Candidate {
-    pub fn new(current_name: &str, name: &str) -> Candidate {
+    pub fn new(platform: GamePlatform, current_name: &str, name: &str) -> Candidate {
         Candidate {
+            platform,
             name: name.to_owned(),
             rating: jaro(&current_name.to_lowercase(), &name.to_lowercase()),
         }
+    }
+}
+
+impl fmt::Display for Candidate {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "Score {:.02}: {} [{}]",
+            self.rating, self.name, self.platform
+        )
     }
 }
 
@@ -158,6 +171,19 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     let gb_names = dats.gb.names.iter();
     let gbc_names = dats.gbc.names.iter();
     let names = gb_names.chain(gbc_names).cloned().collect::<HashSet<_>>();
+    let gb_games = dats
+        .gb
+        .names
+        .iter()
+        .cloned()
+        .map(|name| (GamePlatform::Gb, name));
+    let gbc_games = dats
+        .gbc
+        .names
+        .iter()
+        .cloned()
+        .map(|name| (GamePlatform::Gbc, name));
+    let games = gb_games.chain(gbc_games).collect::<Vec<_>>();
     let name_problems = cfgs
         .iter_mut()
         .filter(|(_, game_cfg)| !names.contains(&game_cfg.name))
@@ -165,12 +191,12 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     if name_problems.len() > 0 {
         let total = name_problems.len();
         for (idx, (code, game_cfg)) in name_problems.into_iter().enumerate() {
-            let candidates = names
+            let candidates = games
                 .iter()
-                .map(|name| Candidate::new(&game_cfg.name, &name))
+                .map(|(platform, name)| Candidate::new(*platform, &game_cfg.name, &name))
                 .sorted_by(|a, b| b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal))
                 .take(5)
-                .map(|c| (format!("Score {:.02}: {}", c.rating, c.name), Some(c.name)));
+                .map(|c| (format!("{}", c), Some(c.name)));
             let mut select = SelectView::new();
             select.add_item("(skip)", None);
             select.add_all(candidates);
@@ -295,47 +321,38 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     let games = gb_games.chain(gbc_games).collect::<Vec<_>>();
     let mut search = EditView::new();
     search.set_on_edit(move |s, text, _| {
-        s.call_on_id(
-            "search_results",
-            |results: &mut SelectView<(GamePlatform, String)>| {
-                results.clear();
-                if text.len() > 0 {
-                    let candidates = games
-                        .iter()
-                        .map(|(platform, name)| (*platform, Candidate::new(text, &name)))
-                        .sorted_by(|(_, a), (_, b)| {
-                            b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal)
-                        })
-                        .take(10)
-                        .map(|(platform, c)| {
-                            (
-                                format!("Score {:.02}: {}", c.rating, c.name),
-                                (platform, c.name),
-                            )
-                        });
-                    results.add_all(candidates);
-                }
-            },
-        );
+        s.call_on_id("search_results", |results: &mut SelectView<Candidate>| {
+            results.clear();
+            if text.len() > 0 {
+                let candidates = games
+                    .iter()
+                    .map(|(platform, name)| Candidate::new(*platform, text, &name))
+                    .sorted_by(|a, b| b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal))
+                    .take(10)
+                    .map(|c| (format!("{}", c), c));
+                results.add_all(candidates);
+            }
+        });
     });
-    let choice = Rc::new(Cell::<Option<(GamePlatform, String)>>::new(None));
+    let choice = Rc::new(Cell::<Option<Candidate>>::new(None));
     {
         let choice = choice.clone();
         search.set_on_submit(move |s, _| {
-            if let Some(Some(selection)) = s.call_on_id(
-                "search_results",
-                |results: &mut SelectView<(GamePlatform, String)>| results.selection(),
-            ) {
-                choice.set(Some((selection.0, selection.1.clone())));
+            if let Some(Some(selection)) = s
+                .call_on_id("search_results", |results: &mut SelectView<Candidate>| {
+                    results.selection()
+                })
+            {
+                choice.set(Some(Clone::clone(&selection)));
                 s.quit();
             }
         });
     }
-    let mut select = SelectView::<(GamePlatform, String)>::new();
+    let mut select = SelectView::<Candidate>::new();
     {
         let choice = choice.clone();
-        select.set_on_submit(move |s, selection: &(GamePlatform, String)| {
-            choice.set(Some(selection.clone()));
+        select.set_on_submit(move |s, selection: &Candidate| {
+            choice.set(Some(Clone::clone(&selection)));
             s.quit();
         });
     }
@@ -356,6 +373,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     siv.pop_layer();
     let (platform, name) = choice
         .replace(None)
+        .map(|c| (c.platform, c.name))
         .unwrap_or((GamePlatform::Gb, String::new()));
     if name.len() == 0 || QUIT.load(atomic::Ordering::SeqCst) {
         return;

@@ -1,0 +1,23 @@
+{
+  "code": "CGB-B4QP-1",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B4QP-UKV",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2001,
+    "month": 11,
+    "u1": {
+      "label": "CGB-B4QP-1 F1 M538011E-BK 1505413"
+    },
+    "u2": {
+      "label": "MBC5 P-2 143U7M"
+    }
+  }
+}

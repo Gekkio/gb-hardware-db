@@ -452,7 +452,7 @@
   "DMG-APAU-0": {
     "name": "Pokemon - Red Version (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
-    "layout": "rom_mapper_ram"
+    "layout": "rom_mapper_ram_xtal"
   },
   "DMG-APBJ-1": {
     "name": "Pocket Monsters - Midori (Japan) (Rev 1) (SGB Enhanced)",

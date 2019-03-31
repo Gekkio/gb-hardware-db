@@ -1,0 +1,23 @@
+{
+  "code": "DMG-HUX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HU-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "2",
+    "year": 1993,
+    "month": 10,
+    "u1": {
+      "label": "DMG-HUX-0 S LH532MAZ JAPAN D1 9349 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9346 5 A"
+    }
+  }
+}

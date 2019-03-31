@@ -452,9 +452,28 @@ fn hyundai_hy6264a_2() -> Matcher<Ram> {
     )
 }
 
+/// Victronix VN4464S
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("VN4464S-08LL 95103B029").is_ok());
+/// ```
+fn victronix_vn4464s() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^Victronix\ (VN4464S-08LL)\ ([0-9]{2})([0-9]{2})[0-9][A-Z][0-9]{3}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Victronix),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 23] = [
+        static ref MATCHERS: [Matcher<Ram>; 24] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -478,6 +497,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             winbond_w24257(),
             winbond_w24258(),
             winbond_w2465(),
+            victronix_vn4464s(),
         ];
     }
     for matcher in MATCHERS.iter() {

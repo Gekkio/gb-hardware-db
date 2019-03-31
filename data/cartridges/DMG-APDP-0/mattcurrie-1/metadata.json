@@ -1,0 +1,23 @@
+{
+  "code": "DMG-APDP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APDP-EUR",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "extra_label": "1",
+    "year": 1996,
+    "month": 7,
+    "u1": {
+      "label": "DMG-APDP-0 S LH532MWV JAPAN D1 9630 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9629 1 A"
+    }
+  }
+}

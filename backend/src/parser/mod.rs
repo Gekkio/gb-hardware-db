@@ -50,6 +50,7 @@ pub enum Manufacturer {
     Smsc,
     TexasInstruments,
     Toshiba,
+    Victronix,
     Winbond,
 }
 

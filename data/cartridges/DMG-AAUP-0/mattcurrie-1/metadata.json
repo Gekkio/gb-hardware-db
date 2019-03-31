@@ -1,0 +1,30 @@
+{
+  "code": "DMG-AAUP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUP-AUS",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "S003319-M MX23C1603-12A DMG-AAUP-0 G2 2C941300"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 015U5E"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0025 KOREA"
+    },
+    "u4": {
+      "label": "028 134A"
+    },
+    "x1": {}
+  }
+}

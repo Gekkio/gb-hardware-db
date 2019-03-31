@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AMOP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AMOP-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AMOP-0 S LH534MU0 JAPAN E1 9705 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9702 1 A"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 702 157N"
+    },
+    "u4": {
+      "label": "6129A 7193"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DIJ-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DIJ",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1992,
+    "month": 5,
+    "u1": {
+      "label": "DMG-DIJ-0 S LH532D17 JAPAN D1 9223 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9217BR"
+    }
+  }
+}

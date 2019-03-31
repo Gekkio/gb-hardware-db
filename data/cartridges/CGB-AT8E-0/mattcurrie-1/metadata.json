@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AT8E-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AT8E-USA",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "DMG-A09-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1999,
+    "month": 11,
+    "u1": {
+      "label": "CGB-AT8E-0 G2 N-16019WG5-M30 9949K7026"
+    },
+    "u2": {
+      "label": "MBC5 P-1 945U5M"
+    }
+  }
+}

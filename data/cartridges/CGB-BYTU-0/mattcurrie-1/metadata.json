@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BYTU-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BYTU-AUS",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2001,
+    "month": 10,
+    "u1": {
+      "label": "M014704-M MX23C1603-12A CGB-BYTU-0 G2 1D5311J4"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 143 H10"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2B28W15022 F0140 TAIWAN"
+    },
+    "u4": {
+      "label": "144 134A"
+    },
+    "x1": {
+      "label": "KDS1J"
+    }
+  }
+}

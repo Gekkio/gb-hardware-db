@@ -1,0 +1,23 @@
+{
+  "code": "DMG-APME-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APME-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1994,
+    "month": 10,
+    "u1": {
+      "label": "DMG-APME-0 D1 N-2001EGW-J72 9441X7005"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 4'95"
+    }
+  }
+}

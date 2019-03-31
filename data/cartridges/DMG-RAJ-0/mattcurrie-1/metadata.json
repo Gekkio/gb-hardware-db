@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RAJ-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RAJ",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1990,
+    "month": 3,
+    "u1": {
+      "label": "DMG-RAJ-0 S LH5308N4 JAPAN C1 9011 E"
+    },
+    "u2": {
+      "label": "DMG MBC1A Nintendo S 9010 7 A"
+    }
+  }
+}

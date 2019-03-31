@@ -1,0 +1,23 @@
+{
+  "code": "DMG-C8E-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-C8-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "1",
+    "year": 1992,
+    "month": 10,
+    "u1": {
+      "label": "DMG-C8E-0 S LH5308KZ JAPAN C1 9243 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9223 3 A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-J7E-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-J7-AUS",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1997,
+    "month": 9,
+    "u1": {
+      "label": "DMG-J7E-0 C1 N-1001EUGW-J07 9737K7004"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9738 1 A"
+    }
+  }
+}

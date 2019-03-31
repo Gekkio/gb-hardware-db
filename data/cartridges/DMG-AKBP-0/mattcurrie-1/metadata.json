@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AKBP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKBP-AUS",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "Y",
+    "extra_label": "6",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AKBP-0 S LH534MY3 JAPAN E1 9543 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9541 3 A"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 533 114N"
+    },
+    "u4": {
+      "label": "529 26A"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "code": "DMG-APE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AP-FAH",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 11,
+    "u1": {
+      "label": "DMG-APE-0 SHARP JAPAN A0 9049 D"
+    }
+  }
+}

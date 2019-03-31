@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BH6P-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BH6P-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2002,
+    "month": 10,
+    "u1": {
+      "label": "M024123-M MX23C3203-12A2 CGB-BH6P-0 H2 2G460400"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 239 H76"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 238 113N"
+    },
+    "u4": {
+      "label": "6735 2957"
+    }
+  }
+}

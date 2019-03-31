@@ -1,0 +1,23 @@
+{
+  "code": "DMG-JQX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-JQ-AUS",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1993,
+    "month": 8,
+    "u1": {
+      "label": "DMG-JQX-0 D1 N-2001EGW-J42 9334X9007"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 3'56"
+    }
+  }
+}

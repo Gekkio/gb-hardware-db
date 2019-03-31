@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BHFE-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BHFE-USA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "C010649-M MX23C8005-12 CGB-BHFE-0 F1 1C5450LB"
+    },
+    "u2": {
+      "label": "11CE66T MBC5 2417"
+    }
+  }
+}

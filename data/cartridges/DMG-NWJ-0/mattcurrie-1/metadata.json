@@ -1,0 +1,23 @@
+{
+  "code": "DMG-NWJ-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NWJ",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1992,
+    "month": 10,
+    "u1": {
+      "label": "DMG-NWJ-0 S LH5321F3 JAPAN D1 9244 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9222 5 A"
+    }
+  }
+}

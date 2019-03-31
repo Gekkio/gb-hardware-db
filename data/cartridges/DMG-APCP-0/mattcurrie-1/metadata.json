@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APCP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APCP-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1995,
+    "month": 3,
+    "u1": {
+      "label": "DMG-APCP-0 D1 N-2001EGW-J86 9511X9010"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'23"
+    },
+    "u3": {
+      "label": "Victronix VN4464S-08LL 95103B029"
+    },
+    "u4": {
+      "label": "508 26A"
+    }
+  }
+}

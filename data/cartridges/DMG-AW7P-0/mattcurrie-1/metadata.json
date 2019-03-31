@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AW7P-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW7P-AUS",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "DMG-AW7P-0 S LH5S4MWB JAPAN E1 9837 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9830 7 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9830 5 CB"
+    },
+    "u4": {
+      "label": "6129A 8R41"
+    }
+  }
+}

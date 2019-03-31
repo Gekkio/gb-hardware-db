@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AGX-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AG-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1993,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AGX-0 S LH53080M JAPAN C1 9339 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9215 5 A"
+    }
+  }
+}

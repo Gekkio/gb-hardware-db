@@ -1,0 +1,20 @@
+{
+  "code": "DMG-HLA-1",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HLA",
+    "stamp": "05A"
+  },
+  "board": {
+    "label": "DMG-AAA-02",
+    "circled_letters": "B",
+    "extra_label": "2",
+    "year": 1989,
+    "month": 11,
+    "u1": {
+      "label": "DMG-HLA-1 SHARP JAPAN A0 8949 D"
+    }
+  }
+}

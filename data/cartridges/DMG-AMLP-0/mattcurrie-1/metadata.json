@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AMLP-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AMLP-EUR-1",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AMLP-0 S LHMN4MNB JAPAN E1 9853 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9842 5 A"
+    }
+  }
+}

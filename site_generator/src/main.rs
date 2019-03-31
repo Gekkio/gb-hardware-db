@@ -41,6 +41,7 @@ fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> 
             Manufacturer::Smsc => "smsc",
             Manufacturer::TexasInstruments => "texas-instruments",
             Manufacturer::Toshiba => "toshiba",
+            Manufacturer::Victronix => "victronix",
             Manufacturer::Winbond => "winbond",
         })
         .to_owned()

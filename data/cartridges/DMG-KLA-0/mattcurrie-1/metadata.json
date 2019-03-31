@@ -1,0 +1,20 @@
+{
+  "code": "DMG-KLA-0",
+  "slug": "mattcurrie-1",
+  "contributor": "mattcurrie",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KLA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 10,
+    "u1": {
+      "label": "DMG-KLA-0 SHARP JAPAN A0 9044 D"
+    }
+  }
+}

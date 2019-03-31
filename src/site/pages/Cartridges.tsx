@@ -27,6 +27,7 @@ export default function Cartridges({ games, mappers }: Props) {
           <tr>
             <th>Title</th>
             <th>ROM ID</th>
+            <th>Year(s)</th>
             <th>Release(s)</th>
             <th>Board type(s)</th>
             <th>Mapper(s)</th>
@@ -35,7 +36,7 @@ export default function Cartridges({ games, mappers }: Props) {
         </thead>
         <tbody className="divider">
           <tr>
-            <th colSpan={6}>Game Boy</th>
+            <th colSpan={7}>Game Boy</th>
           </tr>
         </tbody>
         <tbody>
@@ -45,7 +46,7 @@ export default function Cartridges({ games, mappers }: Props) {
         </tbody>
         <tbody className="divider">
           <tr>
-            <th colSpan={6}>Game Boy Color</th>
+            <th colSpan={7}>Game Boy Color</th>
           </tr>
         </tbody>
         <tbody>
@@ -73,6 +74,7 @@ function multiline(lines: string[]) {
 
 function Game({ game: { type, cfg, submissions } }: { game: GameSubmissions }) {
   const boardTypes = submissions.map(({ metadata }) => metadata.board.type)
+  const years = rejectNil(submissions.map(({ metadata }) => metadata.board.year)).map(String)
   const releases = rejectNil(submissions.map(({ metadata }) => metadata.code))
   const mappers = rejectNil(
     submissions.map(({ metadata }) => metadata.board.mapper).map(mapper => mapper && mapper.type)
@@ -85,6 +87,7 @@ function Game({ game: { type, cfg, submissions } }: { game: GameSubmissions }) {
         </a>
       </td>
       <td>{type}</td>
+      <td>{multiline(years)}</td>
       <td>{multiline(releases)}</td>
       <td>{multiline(boardTypes)}</td>
       <td>{multiline(mappers)}</td>

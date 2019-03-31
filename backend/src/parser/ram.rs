@@ -456,7 +456,7 @@ fn hyundai_hy6264a_2() -> Matcher<Ram> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_ram;
-/// assert!(parse_ram("VN4464S-08LL 95103B029").is_ok());
+/// assert!(parse_ram("Victronix VN4464S-08LL 95103B029").is_ok());
 /// ```
 fn victronix_vn4464s() -> Matcher<Ram> {
     Matcher::new(

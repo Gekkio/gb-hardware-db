@@ -2,7 +2,8 @@ use cursive::traits::*;
 use cursive::views::*;
 use cursive::Cursive;
 use failure::{format_err, Error};
-use gbhwdb_tools::config::{BoardLayout, GameConfig, GamePlatform};
+use gbhwdb_backend::config::cartridge::{BoardLayout, GameConfig, GamePlatform};
+use gbhwdb_tools::cursive::*;
 use gbhwdb_tools::dat::DatFile;
 use glob::glob;
 use itertools::Itertools;
@@ -21,21 +22,58 @@ use strsim::jaro;
 struct Dats {
     gb: DatFile,
     gbc: DatFile,
+    gba: DatFile,
 }
 
 impl Dats {
     pub fn get_platform(&self, name: &str) -> Option<GamePlatform> {
-        match (self.gb.names.contains(name), self.gbc.names.contains(name)) {
-            (true, false) => Some(GamePlatform::Gb),
-            (false, true) => Some(GamePlatform::Gbc),
+        match (
+            self.gb.names.contains(name),
+            self.gbc.names.contains(name),
+            self.gba.names.contains(name),
+        ) {
+            (true, false, false) => Some(GamePlatform::Gb),
+            (false, true, false) => Some(GamePlatform::Gbc),
+            (false, false, true) => Some(GamePlatform::Gba),
             _ => None,
         }
+    }
+    pub fn all_names(&self) -> HashSet<String> {
+        self.gb
+            .names
+            .iter()
+            .chain(self.gbc.names.iter())
+            .chain(self.gba.names.iter())
+            .cloned()
+            .collect()
+    }
+    pub fn all_games(&self) -> Vec<(GamePlatform, String)> {
+        let gb = self
+            .gb
+            .names
+            .iter()
+            .cloned()
+            .map(|name| (GamePlatform::Gb, name));
+        let gbc = self
+            .gbc
+            .names
+            .iter()
+            .cloned()
+            .map(|name| (GamePlatform::Gbc, name));
+        let gba = self
+            .gba
+            .names
+            .iter()
+            .cloned()
+            .map(|name| (GamePlatform::Gba, name));
+        gb.chain(gbc).chain(gba).collect()
     }
 }
 
 fn load_dats() -> Result<Dats, Error> {
     let mut gb_dat = None;
     let mut gbc_dat = None;
+    let mut gba_dat = None;
     for entry in glob("*.dat")
         .expect("Invalid glob pattern")
         .filter_map(Result::ok)
@@ -44,17 +82,17 @@ fn load_dats() -> Result<Dats, Error> {
             Ok(dat) => match dat.header.as_str() {
                 "Nintendo - Game Boy" => gb_dat = Some(dat),
                 "Nintendo - Game Boy Color" => gbc_dat = Some(dat),
+                "Nintendo - Game Boy Advance" => gba_dat = Some(dat),
                 _ => (),
             },
             Err(e) => eprintln!("Failed to read {}: {}", entry.to_string_lossy(), e),
         }
     }
-    match (gb_dat, gbc_dat) {
-        (Some(gb), Some(gbc)) => Ok(Dats { gb, gbc }),
-        (None, Some(_)) => Err(format_err!("No GB dat found")),
-        (None, None) => Err(format_err!("No GBC dat found")),
-        _ => Err(format_err!("No dats found")),
-    }
+    Ok(Dats {
+        gb: gb_dat.ok_or(format_err!("No GB dat found"))?,
+        gbc: gbc_dat.ok_or(format_err!("No GB dat found"))?,
+        gba: gba_dat.ok_or(format_err!("No GB dat found"))?,
+    })
 }
 
 fn load_cfgs<P: AsRef<Path>>(path: P) -> Result<BTreeMap<String, GameConfig>, Error> {
@@ -75,23 +113,10 @@ fn write_cfgs<P: AsRef<Path>>(path: P, cfgs: &BTreeMap<String, GameConfig>) -> R
 enum Command {
     Sync,
     Add,
-    SaveQuit,
     Quit,
 }
 
 fn main_menu(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>, dats: &Dats) -> Command {
-    let mut select = SelectView::new();
-    select.add_item("Synchronize", Command::Sync);
-    select.add_item("Add a game", Command::Add);
-    select.add_item("Save and quit", Command::SaveQuit);
-    let choice = Rc::new(Cell::new(Command::Quit));
-    {
-        let choice = choice.clone();
-        select.set_on_submit(move |s, &selected| {
-            choice.set(selected);
-            s.quit();
-        });
-    }
     siv.add_layer(
         Dialog::new().title("gbhwdb-dat").content(
             LinearLayout::vertical()
@@ -103,38 +128,58 @@ fn main_menu(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>, dats: &Dats
                     "GBC dat version: {}",
                     dats.gbc.version
                 )))
-                .child(TextView::new(format!("Number of games: {}", cfgs.len())))
+                .child(TextView::new(format!(
+                    "GBA dat version: {}",
+                    dats.gba.version
+                )))
+                .child(TextView::new(format!("Game count: {}", cfgs.len())))
                 .child(DummyView.fixed_height(1))
-                .child(select),
+                .child(
+                    SelectView::new()
+                        .item("Synchronize", Command::Sync)
+                        .item("Add a game", Command::Add)
+                        .item("Quit", Command::Quit)
+                        .on_submit(|s, _| s.quit())
+                        .with_id("cmd"),
+                ),
         ),
     );
     siv.run();
+    let cmd = siv.get_select_view_selection::<Command>("cmd");
     siv.pop_layer();
-    choice.get()
+    if should_quit() {
+        Command::Quit
+    } else {
+        cmd.unwrap_or(Command::Quit)
+    }
 }
 
 static QUIT: AtomicBool = AtomicBool::new(false);
 
+fn should_quit() -> bool {
+    QUIT.load(atomic::Ordering::SeqCst)
+}
+
 fn main() -> Result<(), Error> {
-    let mut cfgs = load_cfgs("../config/games.json")?;
+    let mut cfgs = load_cfgs("config/games.json")?;
     let dats = load_dats()?;
     let mut siv = Cursive::default();
     siv.add_global_callback('q', |s| {
         QUIT.store(true, atomic::Ordering::SeqCst);
         s.quit();
     });
-    while !QUIT.load(atomic::Ordering::SeqCst) {
+    while !should_quit() {
         let cmd = main_menu(&mut siv, &cfgs, &dats);
         match cmd {
-            Command::Sync => sync(&mut siv, &mut cfgs, &dats),
-            Command::Add => add(&mut siv, &mut cfgs, &dats),
-            Command::SaveQuit => {
-                write_cfgs("../config/games.json", &cfgs)?;
-                break;
+            Command::Sync => {
+                sync(&mut siv, &mut cfgs, &dats);
+                write_cfgs("config/games.json", &cfgs)?;
             }
-            Command::Quit => {
-                break;
+            Command::Add => {
+                add(&mut siv, &mut cfgs, &dats);
+                write_cfgs("config/games.json", &cfgs)?;
             }
+            Command::Quit => break,
         }
     }
     Ok(())
@@ -168,22 +213,8 @@ impl fmt::Display for Candidate {
 }
 
 fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) {
-    let gb_names = dats.gb.names.iter();
-    let gbc_names = dats.gbc.names.iter();
-    let names = gb_names.chain(gbc_names).cloned().collect::<HashSet<_>>();
-    let gb_games = dats
-        .gb
-        .names
-        .iter()
-        .cloned()
-        .map(|name| (GamePlatform::Gb, name));
-    let gbc_games = dats
-        .gbc
-        .names
-        .iter()
-        .cloned()
-        .map(|name| (GamePlatform::Gbc, name));
-    let games = gb_games.chain(gbc_games).collect::<Vec<_>>();
+    let names = dats.all_names();
+    let games = dats.all_games();
     let name_problems = cfgs
         .iter_mut()
         .filter(|(_, game_cfg)| !names.contains(&game_cfg.name))
@@ -196,30 +227,8 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
                 .map(|(platform, name)| Candidate::new(*platform, &game_cfg.name, &name))
                 .sorted_by(|a, b| b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal))
                 .take(5)
-                .map(|c| (format!("{}", c), Some(c.name)));
-            let mut select = SelectView::new();
-            select.add_item("(skip)", None);
-            select.add_all(candidates);
-            let choice = Rc::new(Cell::new(None));
-            {
-                let choice = choice.clone();
-                select.set_on_submit(move |s, selected| {
-                    choice.set(selected.as_ref().cloned());
-                    s.quit();
-                });
-            }
-            {
-                let current_name = game_cfg.name.clone();
-                select.set_on_select(move |s, selected| {
-                    let content = match selected {
-                        Some(candidate) => format!("After:  {}", candidate),
-                        None => format!("After:  {}", &current_name),
-                    };
-                    s.call_on_id("selection", |view: &mut TextView| {
-                        view.set_content(content);
-                    });
-                });
-            }
+                .map(|c| (format!("{}", c), Some(c)));
+            let current_name = game_cfg.name.clone();
             siv.add_layer(
                 Dialog::new()
                     .title(format!("Fix name problem {}/{}", idx + 1, total))
@@ -233,16 +242,35 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
                                     .with_id("selection"),
                             )
                             .child(DummyView.fixed_height(1))
-                            .child(select),
+                            .child(
+                                SelectView::new()
+                                    .item("(skip)", None)
+                                    .with_all(candidates)
+                                    .on_submit(|s, _| s.quit())
+                                    .on_select(move |s, selected| {
+                                        let name = selected
+                                            .as_ref()
+                                            .map(|c| &c.name)
+                                            .unwrap_or(&current_name);
+                                        s.set_text_view_content(
+                                            "selection",
+                                            format!("After:  {}", name),
+                                        );
+                                    })
+                                    .with_id("choice"),
+                            ),
                     ),
             );
             siv.run();
+            let choice = siv
+                .get_select_view_selection::<Option<Candidate>>("choice")
+                .and_then(|c| c);
             siv.pop_layer();
-            if QUIT.load(atomic::Ordering::SeqCst) {
+            if should_quit() {
                 return;
             }
-            if let Some(name) = choice.replace(None) {
-                game_cfg.name = name;
+            if let Some(c) = choice {
+                game_cfg.name = c.name;
             }
         }
     }
@@ -283,7 +311,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
             siv.add_layer(dialog);
             siv.run();
             siv.pop_layer();
-            if QUIT.load(atomic::Ordering::SeqCst) {
+            if should_quit() {
                 return;
             }
             if choice.get() {
@@ -300,19 +328,25 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
 }
 
 fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) {
-    let gb_games = dats
-        .gb
-        .names
-        .iter()
-        .cloned()
-        .map(|name| (GamePlatform::Gb, name));
-    let gbc_games = dats
-        .gbc
-        .names
-        .iter()
-        .cloned()
-        .map(|name| (GamePlatform::Gbc, name));
-    let games = gb_games.chain(gbc_games).collect::<Vec<_>>();
+    siv.add_layer(
+        Dialog::new()
+            .title("Enter game code")
+            .content(
+                LinearLayout::vertical()
+                    .child(TextView::new("Code:"))
+                    .child(EditView::new().on_submit(|s, _| s.quit()).with_id("code")),
+            )
+            .button("Ok", |s| s.quit())
+            .fixed_width(70),
+    );
+    siv.run();
+    let code = siv.get_edit_view_value("code");
+    siv.pop_layer();
+    if code.len() == 0 || cfgs.contains_key(&code) {
+        return;
+    }
+
+    let games = dats.all_games();
     let mut search = EditView::new();
     search.set_on_edit(move |s, text, _| {
         s.call_on_id("search_results", |results: &mut SelectView<Candidate>| {
@@ -326,30 +360,9 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
                     .map(|c| (format!("{}", c), c));
                 results.add_all(candidates);
             }
-        });
+        })
+        .unwrap();
     });
-    let choice = Rc::new(Cell::<Option<Candidate>>::new(None));
-    {
-        let choice = choice.clone();
-        search.set_on_submit(move |s, _| {
-            if let Some(Some(selection)) = s
-                .call_on_id("search_results", |results: &mut SelectView<Candidate>| {
-                    results.selection()
-                })
-            {
-                choice.set(Some(Clone::clone(&selection)));
-                s.quit();
-            }
-        });
-    }
-    let mut select = SelectView::<Candidate>::new();
-    {
-        let choice = choice.clone();
-        select.set_on_submit(move |s, selection: &Candidate| {
-            choice.set(Some(Clone::clone(&selection)));
-            s.quit();
-        });
-    }
     siv.add_layer(
         Dialog::new()
             .title("Select game to add")
@@ -359,44 +372,56 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
                     .child(search)
                     .child(DummyView.fixed_height(1))
                     .child(TextView::new("Results:"))
-                    .child(select.with_id("search_results").fixed_height(10)),
+                    .child(
+                        SelectView::<Candidate>::new()
+                            .on_submit(|s, _| s.quit())
+                            .with_id("search_results")
+                            .fixed_height(10),
+                    ),
             )
             .fixed_width(150),
     );
     siv.run();
-    siv.pop_layer();
-    let (platform, name) = choice
-        .replace(None)
+    let (platform, name) = siv
+        .get_select_view_selection::<Candidate>("search_results")
         .map(|c| (c.platform, c.name))
         .unwrap_or((GamePlatform::Gb, String::new()));
-    if name.len() == 0 || QUIT.load(atomic::Ordering::SeqCst) {
+    siv.pop_layer();
+    if name.len() == 0 || should_quit() {
         return;
     }
-    let code = EditView::new();
-    let mut layout = RadioGroup::new();
-    let layout_choice = Rc::new(Cell::new(BoardLayout::RomMapperRam));
+    let mut layout_radio = RadioGroup::new();
+    let default_layout = match platform {
+        GamePlatform::Gb => BoardLayout::RomMapper,
+        GamePlatform::Gbc => BoardLayout::RomMapperRam,
+        GamePlatform::Gba => BoardLayout::RomMapper,
+    };
     let layout_container = LinearLayout::vertical()
-        .child(layout.button(BoardLayout::Rom, "Rom"))
-        .child(layout.button(BoardLayout::RomMapper, "Rom + mapper"))
-        .child(
-            layout
-                .button(BoardLayout::RomMapperRam, "Rom + mapper + ram")
-                .selected(),
-        )
-        .child(layout.button(
+        .child(layout_radio.button(BoardLayout::Rom, "Rom"))
+        .child({
+            let mut button = layout_radio.button(BoardLayout::RomMapper, "Rom + mapper");
+            if default_layout == BoardLayout::RomMapper {
+                button = button.selected();
+            }
+            button
+        })
+        .child({
+            let mut button = layout_radio.button(BoardLayout::RomMapperRam, "Rom + mapper + ram");
+            if default_layout == BoardLayout::RomMapperRam {
+                button = button.selected();
+            }
+            button
+        })
+        .child(layout_radio.button(
             BoardLayout::RomMapperRamXtal,
             "Rom + mapper + ram + crystal",
         ))
-        .child(layout.button(BoardLayout::Mbc2, "MBC2"))
-        .child(layout.button(BoardLayout::Mbc6, "MBC6"))
-        .child(layout.button(BoardLayout::Mbc7, "MBC7"))
-        .child(layout.button(BoardLayout::Type15, "Type 15 (MBC5 + dual ROM)"))
-        .child(layout.button(BoardLayout::Huc3, "HuC-3"))
-        .child(layout.button(BoardLayout::Tama, "Tamagotchi 3"));
-    {
-        let layout_choice = layout_choice.clone();
-        layout.set_on_change(move |_, &layout| layout_choice.set(layout));
-    }
+        .child(layout_radio.button(BoardLayout::Mbc2, "MBC2"))
+        .child(layout_radio.button(BoardLayout::Mbc6, "MBC6"))
+        .child(layout_radio.button(BoardLayout::Mbc7, "MBC7"))
+        .child(layout_radio.button(BoardLayout::Type15, "Type 15 (MBC5 + dual ROM)"))
+        .child(layout_radio.button(BoardLayout::Huc3, "HuC-3"))
+        .child(layout_radio.button(BoardLayout::Tama, "Tamagotchi 3"));
     let mut dialog = Dialog::new().title("Add a game").content(
         LinearLayout::vertical()
             .child(TextView::new("Name:"))
@@ -404,36 +429,24 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .child(TextView::new("Platform:"))
             .child(TextView::new(format!("{}", platform)))
             .child(TextView::new("Code:"))
-            .child(code.with_id("code"))
+            .child(TextView::new(code.as_str()))
             .child(TextView::new("Board layout:"))
             .child(layout_container),
     );
-    let code_value = Rc::new(Cell::new(None));
-    {
-        let code_value = code_value.clone();
-        dialog.add_button("Ok", move |s| {
-            s.call_on_id("code", |code: &mut EditView| {
-                code_value.set(Some(code.get_content().to_string()));
-            });
-            s.quit();
-        });
-    }
+    dialog.add_button("Ok", move |s| s.quit());
     siv.add_layer(dialog.fixed_width(150));
     siv.run();
+    let layout = layout_radio.selection();
     siv.pop_layer();
-    if QUIT.load(atomic::Ordering::SeqCst) {
+    if should_quit() {
         return;
     }
-    if let Some(code) = code_value.replace(None) {
-        if code.len() > 0 {
-            cfgs.insert(
-                code,
-                GameConfig {
-                    name,
-                    platform,
-                    layout: layout_choice.get(),
-                },
-            );
-        }
-    }
+    cfgs.insert(
+        code,
+        GameConfig {
+            name,
+            platform,
+            layout: *layout,
+        },
+    );
 }

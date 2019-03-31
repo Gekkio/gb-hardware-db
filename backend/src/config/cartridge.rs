@@ -6,6 +6,7 @@ use std::collections::{BTreeMap, HashMap};
 use std::fmt;
 use std::fs::File;
 use std::io::{BufReader, BufWriter};
+use std::ops::Index;
 use std::path::Path;
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
@@ -21,6 +22,8 @@ pub enum GamePlatform {
     Gb,
     #[serde(rename = "gbc")]
     Gbc,
+    #[serde(rename = "gba")]
+    Gba,
 }
 
 impl fmt::Display for GamePlatform {
@@ -28,6 +31,7 @@ impl fmt::Display for GamePlatform {
         match self {
             GamePlatform::Gb => write!(f, "GB"),
             GamePlatform::Gbc => write!(f, "GBC"),
+            GamePlatform::Gba => write!(f, "GBA"),
         }
     }
 }
@@ -140,4 +144,138 @@ pub fn write_cfgs<P: AsRef<Path>>(
     let file = BufWriter::new(file);
     serde_json::to_writer_pretty(file, cfgs)?;
     Ok(())
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum ChipPosition {
+    U1,
+    U2,
+    U3,
+    U4,
+    U5,
+    U6,
+    U7,
+    X1,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum ChipRole {
+    Unknown,
+    Rom,
+    Mapper,
+    Ram,
+    RamBackup,
+    Crystal,
+    Flash,
+    Eeprom,
+    Accelerometer,
+    LineDecoder,
+    Tama,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Default)]
+pub struct ChipRoleConfig {
+    pub u1: Option<ChipRole>,
+    pub u2: Option<ChipRole>,
+    pub u3: Option<ChipRole>,
+    pub u4: Option<ChipRole>,
+    pub u5: Option<ChipRole>,
+    pub u6: Option<ChipRole>,
+    pub u7: Option<ChipRole>,
+    pub x1: Option<ChipRole>,
+}
+
+impl Index<ChipPosition> for ChipRoleConfig {
+    type Output = Option<ChipRole>;
+    fn index(&self, pos: ChipPosition) -> &Option<ChipRole> {
+        match pos {
+            ChipPosition::U1 => &self.u1,
+            ChipPosition::U2 => &self.u2,
+            ChipPosition::U3 => &self.u3,
+            ChipPosition::U4 => &self.u4,
+            ChipPosition::U5 => &self.u5,
+            ChipPosition::U6 => &self.u6,
+            ChipPosition::U7 => &self.u7,
+            ChipPosition::X1 => &self.x1,
+        }
+    }
+}
+
+impl ChipRoleConfig {
+    pub fn from_layout(layout: BoardLayout) -> ChipRoleConfig {
+        match layout {
+            BoardLayout::Rom => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::RomMapper => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::RomMapperRam => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Ram),
+                u4: Some(ChipRole::RamBackup),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::RomMapperRamXtal => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Ram),
+                u4: Some(ChipRole::RamBackup),
+                x1: Some(ChipRole::Crystal),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Mbc2 => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::RamBackup),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Mbc6 => ChipRoleConfig {
+                u1: Some(ChipRole::Mapper),
+                u2: Some(ChipRole::Rom),
+                u3: Some(ChipRole::Flash),
+                u4: Some(ChipRole::Ram),
+                u5: Some(ChipRole::RamBackup),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Mbc7 => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Eeprom),
+                u4: Some(ChipRole::Accelerometer),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Type15 => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Ram),
+                u4: Some(ChipRole::RamBackup),
+                u5: Some(ChipRole::Rom),
+                u6: Some(ChipRole::LineDecoder),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Huc3 => ChipRoleConfig {
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Ram),
+                u4: Some(ChipRole::RamBackup),
+                u5: Some(ChipRole::Unknown),
+                x1: Some(ChipRole::Crystal),
+                ..ChipRoleConfig::default()
+            },
+            BoardLayout::Tama => ChipRoleConfig {
+                u1: Some(ChipRole::Tama),
+                u2: Some(ChipRole::Tama),
+                u3: Some(ChipRole::Tama),
+                u4: Some(ChipRole::Unknown),
+                u5: Some(ChipRole::RamBackup),
+                x1: Some(ChipRole::Crystal),
+                ..ChipRoleConfig::default()
+            },
+        }
+    }
 }

@@ -19,6 +19,11 @@
     "platform": "gbc",
     "layout": "rom_mapper"
   },
+  "CGB-AT8E-0": {
+    "name": "Micro Machines 1 and 2 - Twin Turbo (USA, Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "CGB-ATHE-0": {
     "name": "Tarzan (USA, Europe)",
     "platform": "gbc",
@@ -59,6 +64,11 @@
     "platform": "gbc",
     "layout": "rom_mapper"
   },
+  "CGB-B4QP-1": {
+    "name": "Monsters, Inc. (Europe) (Rev 1)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
+  },
   "CGB-B82J-0": {
     "name": "Densha de Go! 2 (Japan)",
     "platform": "gbc",
@@ -93,6 +103,16 @@
     "name": "Super Gals! Kotobuki Ran (Japan)",
     "platform": "gbc",
     "layout": "rom_mapper_ram"
+  },
+  "CGB-BH6P-0": {
+    "name": "Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,Da)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram"
+  },
+  "CGB-BHFE-0": {
+    "name": "Mary-Kate and Ashley - Winners Circle (USA, Europe)",
+    "platform": "gbc",
+    "layout": "rom_mapper"
   },
   "CGB-BHMJ-0": {
     "name": "Hamster Paradise 2 (Japan)",
@@ -164,6 +184,11 @@
     "platform": "gbc",
     "layout": "rom_mapper_ram_xtal"
   },
+  "CGB-BYTU-0": {
+    "name": "Pokemon - Crystal Version (Australia)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
   "CGB-HF2J-0": {
     "name": "Pocket Family GB 2 (Japan)",
     "platform": "gbc",
@@ -186,6 +211,11 @@
   },
   "DMG-A3GP-0": {
     "name": "PGA Tour 96 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-A3ME-0": {
+    "name": "Mortal Kombat 3 (USA)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -221,6 +251,11 @@
   },
   "DMG-AAUJ-1": {
     "name": "Pocket Monsters Kin (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-AAUP-0": {
+    "name": "Pokemon - Gold Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
     "layout": "rom_mapper_ram_xtal"
   },
@@ -329,6 +364,11 @@
     "platform": "gb",
     "layout": "rom_mapper_ram"
   },
+  "DMG-AGX-0": {
+    "name": "Pang (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-AHHJ-0": {
     "name": "Trade & Battle Card Hero (Japan) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
@@ -338,6 +378,11 @@
     "name": "Mortal Kombat & Mortal Kombat II (USA, Europe)",
     "platform": "gb",
     "layout": "rom_mapper"
+  },
+  "DMG-AKBP-0": {
+    "name": "Kirby's Dream Land 2 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
   },
   "DMG-AKMJ-0": {
     "name": "Kandume Monsters (Japan) (SGB Enhanced)",
@@ -361,6 +406,16 @@
   },
   "DMG-AMDJ-0": {
     "name": "Momotarou Collection (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AMLP-0": {
+    "name": "Mulan (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-AMOP-0": {
+    "name": "Mole Mania (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
     "layout": "rom_mapper_ram"
   },
@@ -394,6 +449,11 @@
     "platform": "gb",
     "layout": "rom_mapper_ram"
   },
+  "DMG-APAU-0": {
+    "name": "Pokemon - Red Version (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
   "DMG-APBJ-1": {
     "name": "Pocket Monsters - Midori (Japan) (Rev 1) (SGB Enhanced)",
     "platform": "gb",
@@ -414,6 +474,11 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-APE-0": {
+    "name": "Kwirk - He's A-maze-ing! (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom"
+  },
   "DMG-APED-0": {
     "name": "Pokemon - Blaue Edition (Germany) (SGB Enhanced)",
     "platform": "gb",
@@ -423,6 +488,11 @@
     "name": "Pokemon - Blue Version (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
     "layout": "rom_mapper_ram_xtal"
+  },
+  "DMG-APME-0": {
+    "name": "Pagemaster, The (USA) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper"
   },
   "DMG-APOJ-0": {
     "name": "Pocket Bomber Man (Japan) (SGB Enhanced)",
@@ -485,6 +555,11 @@
     "layout": "rom_mapper_ram"
   },
   "DMG-AW7E-0": {
+    "name": "James Bond 007 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layout": "rom_mapper_ram"
+  },
+  "DMG-AW7P-0": {
     "name": "James Bond 007 (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
     "layout": "rom_mapper_ram"
@@ -614,6 +689,11 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-C8E-0": {
+    "name": "Incredible Crash Dummies, The (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-CIE-0": {
     "name": "Yoshi's Cookie (USA, Europe)",
     "platform": "gb",
@@ -641,6 +721,11 @@
   },
   "DMG-DDE-0": {
     "name": "Double Dragon (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-DIJ-0": {
+    "name": "Daiku no Gen-san - Ghost Building Company (Japan)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -739,10 +824,35 @@
     "platform": "gbc",
     "layout": "huc3"
   },
+  "DMG-HUX-0": {
+    "name": "Humans, The (Europe) (En,Fr,De,Es,It)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-J7E-0": {
+    "name": "Jungle Book, The (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-JBE-0": {
+    "name": "Jordan vs Bird - One on One (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-JQX-0": {
+    "name": "Jurassic Park (Europe) (En,Fr,De,Es,It)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-K9E-0": {
     "name": "Kirby's Pinball Land (USA, Europe)",
     "platform": "gb",
     "layout": "mbc2"
+  },
+  "DMG-KLA-0": {
+    "name": "Klax (Japan) (Hudson Soft)",
+    "platform": "gb",
+    "layout": "rom"
   },
   "DMG-KYE-0": {
     "name": "Kirby's Dream Land (USA, Europe)",
@@ -804,8 +914,18 @@
     "platform": "gb",
     "layout": "rom_mapper"
   },
+  "DMG-NME-0": {
+    "name": "Nemesis (USA)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
   "DMG-NMX-0": {
     "name": "Nemesis (Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-NWJ-0": {
+    "name": "Noobow (Japan)",
     "platform": "gb",
     "layout": "rom_mapper"
   },
@@ -861,6 +981,11 @@
   },
   "DMG-RAE-0": {
     "name": "Gargoyle's Quest (USA, Europe)",
+    "platform": "gb",
+    "layout": "rom_mapper"
+  },
+  "DMG-RAJ-0": {
+    "name": "Red Arremer - Makaimura Gaiden (Japan)",
     "platform": "gb",
     "layout": "rom_mapper"
   },

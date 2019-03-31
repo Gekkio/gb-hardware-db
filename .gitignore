@@ -1,6 +1,8 @@
+*.dat
 *.log
 *.swp
 *~
+.cache/
 .idea/**
 build/**
 node_modules/**

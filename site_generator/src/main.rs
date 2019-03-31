@@ -90,124 +90,14 @@ fn to_legacy_year(board_year: Option<u32>, chip_year: Option<Year>) -> Option<u1
     }
 }
 
-fn to_legacy_rom(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_mask_rom(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_mapper(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_mapper(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = to_legacy_mapper_type(chip.mbc_type);
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_ram(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_ram(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_ram_backup(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip = gbhwdb_backend::parser::parse_ram_backup(&label)
-            .unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = Some(chip.chip_type);
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_tama(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_tama(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = Some(
-            (match chip.tama_type {
-                TamaType::Tama5 => "TAMA5",
-                TamaType::Tama6 => "TAMA6",
-                TamaType::Tama7 => "TAMA7",
-            })
-            .to_owned(),
-        );
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_accelerometer(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip = gbhwdb_backend::parser::parse_accelerometer(&label)
-            .unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_flash(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_flash(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_eeprom(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_eeprom(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.week = chip.week.map(|week| week as u16);
-    })
-}
-
-fn to_legacy_crystal(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip =
-            gbhwdb_backend::parser::parse_crystal(&label).unwrap_or_else(|_| panic!("{}", label));
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-        legacy.month = chip.month.map(|month| month as u16);
-    })
-}
-
-fn to_legacy_line_decoder(board_year: Option<u32>, chip: Option<Chip>) -> Option<LegacyChip> {
-    to_legacy_chip(chip, |label, legacy| {
-        let chip = gbhwdb_backend::parser::parse_line_decoder(&label)
-            .unwrap_or_else(|_| panic!("{}", label));
-        legacy.kind = chip.chip_type;
-        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-        legacy.year = to_legacy_year(board_year, chip.year);
-    })
-}
-
-fn to_legacy_chip<F: FnOnce(String, &mut LegacyChip)>(
+fn to_legacy_chip(
+    board_year: Option<u32>,
+    role: Option<ChipRole>,
     chip: Option<Chip>,
-    f: F,
 ) -> Option<LegacyChip> {
+    if role == None {
+        assert_eq!(chip, None);
+    }
     chip.map(|chip| {
         let mut legacy = LegacyChip {
             kind: None,
@@ -218,75 +108,163 @@ fn to_legacy_chip<F: FnOnce(String, &mut LegacyChip)>(
             week: None,
         };
         if let Some(label) = chip.label {
-            f(label, &mut legacy);
+            match role.unwrap() {
+                ChipRole::Rom => {
+                    let chip = gbhwdb_backend::parser::parse_mask_rom(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::Mapper => {
+                    let chip = gbhwdb_backend::parser::parse_mapper(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = to_legacy_mapper_type(chip.mbc_type);
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::Ram => {
+                    let chip = gbhwdb_backend::parser::parse_ram(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::RamBackup => {
+                    let chip = gbhwdb_backend::parser::parse_ram_backup(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = Some(chip.chip_type);
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::Crystal => {
+                    let chip = gbhwdb_backend::parser::parse_crystal(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.month = chip.month.map(|month| month as u16);
+                }
+                ChipRole::Flash => {
+                    let chip = gbhwdb_backend::parser::parse_flash(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::Eeprom => {
+                    let chip = gbhwdb_backend::parser::parse_eeprom(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::Accelerometer => {
+                    let chip = gbhwdb_backend::parser::parse_accelerometer(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                ChipRole::LineDecoder => {
+                    let chip = gbhwdb_backend::parser::parse_line_decoder(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = chip.chip_type;
+                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                }
+                ChipRole::Tama => {
+                    let chip = gbhwdb_backend::parser::parse_tama(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    legacy.kind = Some(
+                        (match chip.tama_type {
+                            TamaType::Tama5 => "TAMA5",
+                            TamaType::Tama6 => "TAMA6",
+                            TamaType::Tama7 => "TAMA7",
+                        })
+                        .to_owned(),
+                    );
+                    legacy.year = to_legacy_year(board_year, chip.year);
+                    legacy.week = chip.week.map(|week| week as u16);
+                }
+                _ => (),
+            }
         }
         legacy
     })
 }
 
 fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut LegacyBoard) {
+    let roles = ChipRoleConfig::from_layout(layout);
+    let convert = |pos: ChipPosition| to_legacy_chip(board.year, roles[pos], board[pos].clone());
     match layout {
         BoardLayout::Rom => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
+            legacy.rom = convert(ChipPosition::U1);
         }
         BoardLayout::RomMapper => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
         }
         BoardLayout::RomMapperRam => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.ram = to_legacy_ram(board.year, board.u3);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u4);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram = convert(ChipPosition::U3);
+            legacy.ram_protector = convert(ChipPosition::U4);
         }
         BoardLayout::RomMapperRamXtal => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.ram = to_legacy_ram(board.year, board.u3);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u4);
-            legacy.crystal = to_legacy_crystal(board.year, board.x1);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram = convert(ChipPosition::U3);
+            legacy.ram_protector = convert(ChipPosition::U4);
+            legacy.crystal = convert(ChipPosition::X1);
         }
         BoardLayout::Mbc2 => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u3);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram_protector = convert(ChipPosition::U3);
         }
         BoardLayout::Mbc6 => {
-            legacy.mapper = to_legacy_mapper(board.year, board.u1);
-            legacy.rom = to_legacy_rom(board.year, board.u2);
-            legacy.flash = to_legacy_flash(board.year, board.u3);
-            legacy.ram = to_legacy_ram(board.year, board.u4);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u5);
+            legacy.mapper = convert(ChipPosition::U1);
+            legacy.rom = convert(ChipPosition::U2);
+            legacy.flash = convert(ChipPosition::U3);
+            legacy.ram = convert(ChipPosition::U4);
+            legacy.ram_protector = convert(ChipPosition::U5);
         }
         BoardLayout::Mbc7 => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.eeprom = to_legacy_eeprom(board.year, board.u3);
-            legacy.accelerometer = to_legacy_accelerometer(board.year, board.u4);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.eeprom = convert(ChipPosition::U3);
+            legacy.accelerometer = convert(ChipPosition::U4);
         }
         BoardLayout::Type15 => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.ram = to_legacy_ram(board.year, board.u3);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u4);
-            legacy.rom2 = to_legacy_rom(board.year, board.u5);
-            legacy.line_decoder = to_legacy_line_decoder(board.year, board.u6);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram = convert(ChipPosition::U3);
+            legacy.ram_protector = convert(ChipPosition::U4);
+            legacy.rom2 = convert(ChipPosition::U5);
+            legacy.line_decoder = convert(ChipPosition::U6);
         }
         BoardLayout::Huc3 => {
-            legacy.rom = to_legacy_rom(board.year, board.u1);
-            legacy.mapper = to_legacy_mapper(board.year, board.u2);
-            legacy.ram = to_legacy_ram(board.year, board.u3);
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u4);
-            legacy.u5 = to_legacy_chip(board.u5, |_, _| ());
-            legacy.crystal = to_legacy_crystal(board.year, board.x1);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram = convert(ChipPosition::U3);
+            legacy.ram_protector = convert(ChipPosition::U4);
+            legacy.u5 = convert(ChipPosition::U5);
+            legacy.crystal = convert(ChipPosition::X1);
         }
         BoardLayout::Tama => {
-            legacy.rom = to_legacy_tama(board.year, board.u1);
-            legacy.mapper = to_legacy_tama(board.year, board.u2);
-            legacy.ram = to_legacy_tama(board.year, board.u3);
-            legacy.u4 = to_legacy_chip(board.u4, |_, _| ());
-            legacy.ram_protector = to_legacy_ram_backup(board.year, board.u5);
-            legacy.crystal = to_legacy_crystal(board.year, board.x1);
+            legacy.rom = convert(ChipPosition::U1);
+            legacy.mapper = convert(ChipPosition::U2);
+            legacy.ram = convert(ChipPosition::U3);
+            legacy.u4 = convert(ChipPosition::U4);
+            legacy.ram_protector = convert(ChipPosition::U5);
+            legacy.crystal = convert(ChipPosition::X1);
         }
     }
 }

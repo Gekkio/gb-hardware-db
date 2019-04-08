@@ -18,7 +18,7 @@ pub struct MaskRom {
 /// assert!(parse_mask_rom("DMG-WJA-0 S LH534M05 JAPAN E1 9606 D").is_ok());
 /// ```
 fn sharp() -> Matcher<MaskRom> {
-    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ S\ (LH[[:alnum:]]{6})\ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
+    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ S\ (LH[[:alnum:]]{4})[[:alnum:]]{2} \ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),
@@ -117,7 +117,7 @@ fn macronix2() -> Matcher<MaskRom> {
 /// assert!(parse_mask_rom("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
 /// ```
 fn oki() -> Matcher<MaskRom> {
-    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M538011E-[[:alnum:]]{2})\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
+    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M538011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),
@@ -136,7 +136,7 @@ fn oki() -> Matcher<MaskRom> {
 /// assert!(parse_mask_rom("NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702").is_ok());
 /// ```
 fn nec() -> Matcher<MaskRom> {
-    Matcher::new(r#"^NEC\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (UPD23C[0-9]{4}[[:alnum:]]{3,4}-[A-Z][0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+    Matcher::new(r#"^NEC\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (UPD23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),
@@ -155,7 +155,7 @@ fn nec() -> Matcher<MaskRom> {
 /// assert!(parse_mask_rom("DMG-ZLE-0 E1 N-4001EAGW-J14 9329X7007").is_ok());
 /// ```
 fn nec_like() -> Matcher<MaskRom> {
-    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (N-[0-9]{4}[[:alnum:]]{3,4}-[A-Z][0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+    Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),
@@ -174,7 +174,7 @@ fn nec_like() -> Matcher<MaskRom> {
 /// assert!(parse_mask_rom("Ⓜ AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9351E9005").is_ok());
 /// ```
 fn at_t() -> Matcher<MaskRom> {
-    Matcher::new(r#"^Ⓜ\ AT&T\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4}-[A-Z][0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+    Matcher::new(r#"^Ⓜ\ AT&T\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),
@@ -193,7 +193,7 @@ fn at_t() -> Matcher<MaskRom> {
 /// assert!(parse_mask_rom("STANDARD MICRO DMG-BIA-0 C1 23C1001EGW-J61 9140E9017").is_ok());
 /// ```
 fn smsc() -> Matcher<MaskRom> {
-    Matcher::new(r#"^STANDARD\ MICRO\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4}-[A-Z][0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+    Matcher::new(r#"^STANDARD\ MICRO\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
     move |c| {
         Ok(MaskRom {
             rom_code: c[1].to_owned(),

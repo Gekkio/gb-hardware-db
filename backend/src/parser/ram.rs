@@ -223,16 +223,17 @@ fn sharp_lh5164an_2() -> Matcher<Ram> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_ram;
 /// assert!(parse_ram("BSI BS62LV256SC-70 S2827V52155 A0106 TAIWAN").is_ok());
+/// assert!(parse_ram("BSI BS62LV256SC-70 S2828W11075.1 F0231 TAIWAN").is_ok());
 /// ```
 fn bsi_bs62lv256sc() -> Matcher<Ram> {
     Matcher::new(
-        r#"^BSI\ (BS62LV256SC-[0-9]{2})\ [[:alnum:]]{10,11}\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
+        r#"^BSI\ (BS62LV256SC-[0-9]{2})\ [[:alnum:]]{10,11}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Bsi),
                 chip_type: Some(c[1].to_owned()),
-                year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
             })
         },
     )

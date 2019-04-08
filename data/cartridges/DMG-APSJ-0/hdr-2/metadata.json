@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSJ-0",
+  "slug": "hdr-2",
+  "contributor": "HDR",
+  "index": 2,
+  "shell": {
+    "code": "DMG-APSJ-JPN",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-KFDN-01",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-APSJ-0 F1 KFX3ALY"
+    },
+    "u2": {
+      "label": "MBC3 A LR38536B 9809 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9832 1 SN"
+    },
+    "u4": {
+      "label": "749 26A"
+    }
+  }
+}

@@ -171,7 +171,7 @@ export const mapperCfgs: Record<MapperId, MapperConfig> = {
 export interface GameConfig {
   name: string
   platform: 'gb' | 'gbc'
-  layout: CartLayoutId
+  layouts: CartLayoutId[]
 }
 
 export const gameCfgs: Record<string, GameConfig> = fs.readJsonSync('config/games.json')

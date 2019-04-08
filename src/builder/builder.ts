@@ -111,7 +111,7 @@ function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefine
     }
   }
   const cfg = gameCfgs[type]
-  const layout = cfg && gameLayouts[cfg.layout]
+  const layout = cfg && gameLayouts[cfg.layouts[0]]
   if (!layout) return undefined
   return layout.chips.some(({ key }) => key === 'mapper') ? undefined : 'no-mapper'
 }

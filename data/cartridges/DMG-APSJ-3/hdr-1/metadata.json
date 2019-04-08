@@ -1,0 +1,32 @@
+{
+  "code": "DMG-APSJ-3",
+  "slug": "hdr-1",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSJ-JPN",
+    "stamp": "00D"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2002,
+    "month": 6,
+    "u1": {
+      "label": "M023549-M MX23C8005-12 DMG-APSJ-3 F1 1D1112A3"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 146 H08"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2828W11075.1 F0231 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 2782"
+    },
+    "x1": {
+      "label": "KDS2H"
+    }
+  }
+}

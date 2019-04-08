@@ -288,7 +288,7 @@ fn main() -> Result<(), Error> {
                     cartridge.board.label
                 )
             });
-            assert_eq!(layout, cfg.layout);
+            assert!(cfg.layouts.contains(&layout));
 
             if let Some(year) = cartridge.board.year {
                 assert!(year >= 1989 && year < 2010);
@@ -317,7 +317,7 @@ fn main() -> Result<(), Error> {
                 crystal: None,
                 battery: None,
             };
-            add_legacy_chips(cfg.layout, cartridge.board, &mut board);
+            add_legacy_chips(layout, cartridge.board, &mut board);
             let metadata = LegacyMetadata {
                 code: cartridge.shell.code,
                 stamp: cartridge.shell.stamp,

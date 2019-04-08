@@ -9,7 +9,7 @@ import ConsolePageChipTable from '../components/ConsolePageChipTable'
 import { CartLayout, GameConfig, gameLayouts } from '../../config'
 
 export default function Cartridge({ submission, cfg }: { submission: CartridgeSubmission; cfg: GameConfig }) {
-  const layout = gameLayouts[cfg.layout]
+  const layout = gameLayouts[cfg.layouts[0]]
   return (
     <article className="page-cartridge">
       <h2>{`${cfg.name}: ${submission.title} [${submission.contributor}]`}</h2>

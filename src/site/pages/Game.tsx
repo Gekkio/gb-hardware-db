@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function Game({ type, cfg, submissions }: Props) {
-  const layout = gameLayouts[cfg.layout]
+  const layout = gameLayouts[cfg.layouts[0]]
   return (
     <article>
       <h2>{cfg.name}</h2>

@@ -446,7 +446,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
         GameConfig {
             name,
             platform,
-            layout: *layout,
+            layouts: vec![*layout],
         },
     );
 }

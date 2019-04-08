@@ -2,7 +2,7 @@ use cursive::traits::*;
 use cursive::views::*;
 use cursive::Cursive;
 use failure::Error;
-use gbhwdb_backend::config::cartridge::{ChipRole, ChipRoleConfig, GameConfig};
+use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig};
 use gbhwdb_backend::input::cartridge::{Cartridge, CartridgeBoard, CartridgeShell, Chip};
 use gbhwdb_tools::cursive::*;
 use slug::slugify;
@@ -226,7 +226,7 @@ fn ask_board(siv: &mut Cursive, cfg: &GameConfig) -> Option<CartridgeBoard> {
     if should_quit() {
         return None;
     }
-    let chips = ChipRoleConfig::from_layout(cfg.layout);
+    let chips = ChipRoleConfig::from_layout(BoardLayout::from_label(&label).unwrap());
     siv.add_layer(
         Dialog::new()
             .title("Enter chip details")

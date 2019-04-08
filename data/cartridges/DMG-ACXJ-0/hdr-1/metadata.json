@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ACXJ-0",
+  "slug": "hdr-1",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ACXJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "J984749-M MX23C8003-20 DMG-ACXJ-0 F1 23335ZA1"
+    },
+    "u2": {
+      "label": "HuC1A © HUDSON Nintendo 9846 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9842 KOREA"
+    },
+    "u4": {
+      "label": "847 134A"
+    }
+  }
+}

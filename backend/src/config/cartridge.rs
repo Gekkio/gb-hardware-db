@@ -13,7 +13,7 @@ use std::path::Path;
 pub struct GameConfig {
     pub name: String,
     pub platform: GamePlatform,
-    pub layout: BoardLayout,
+    pub layouts: Vec<BoardLayout>,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]

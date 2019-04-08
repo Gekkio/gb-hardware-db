@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSJ-2",
+  "slug": "hdr-2",
+  "contributor": "HDR",
+  "index": 2,
+  "shell": {
+    "code": "DMG-APSJ-JPN",
+    "stamp": "12C"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-APSJ-2 S LH538MNR JAPAN F1 9847 D"
+    },
+    "u2": {
+      "label": "MBC-3 A BU3632K 816 127"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9830 KOREA"
+    },
+    "u4": {
+      "label": "844 134A"
+    }
+  }
+}

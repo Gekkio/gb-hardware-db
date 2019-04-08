@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSJ-2",
+  "slug": "hdr-3",
+  "contributor": "HDR",
+  "index": 3,
+  "shell": {
+    "code": "DMG-APSJ-JPN",
+    "stamp": "20C"
+  },
+  "board": {
+    "label": "DMG-KFDN-01",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-APSJ-2 F1 M538011E-19 8475406"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 835U2E"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 839 130A"
+    },
+    "u4": {
+      "label": "844 26A"
+    }
+  }
+}

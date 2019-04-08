@@ -57,7 +57,7 @@ function Submission({
   cfg: GameConfig
   submission: CartridgeSubmission
 }) {
-  const layout = gameLayouts[cfg.layout]
+  const layout = gameLayouts[cfg.layouts[0]]
   return (
     <tr>
       <td className="submission-list-item">

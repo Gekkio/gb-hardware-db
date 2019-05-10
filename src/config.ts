@@ -119,7 +119,7 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
       { designator: 'U2', name: 'Mapper', key: 'mapper' },
       { designator: 'U3', name: 'RAM', key: 'ram' },
       { designator: 'U4', name: 'RAM protector', key: 'ram_protector' },
-      { designator: 'U5', name: '????', key: 'u5' },
+      { designator: 'U5', name: 'Hex inverter', key: 'u5' },
       { designator: 'X1', name: 'Crystal', key: 'crystal' },
     ],
   },

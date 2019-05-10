@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MEA-0",
+  "slug": "bruno-bertuga-1",
+  "contributor": "Bruno Bertuga",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MEA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1991,
+    "month": 12,
+    "u1": {
+      "label": "DMG-MEA-0 S LH5321G3 JAPAN D1 9204 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9203 7 AB"
+    },
+    "u3": {
+      "label": "LH5168NFB-10L SHARP JAPAN 9147 DC"
+    },
+    "u4": {
+      "label": "1L51 26A"
+    }
+  }
+}

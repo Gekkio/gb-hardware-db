@@ -165,9 +165,10 @@ fn sharp_lh52256c() -> Matcher<Ram> {
 /// # use gbhwdb_backend::parser::parse_ram;
 /// assert!(parse_ram("LH5168N-10L SHARP JAPAN 9803 1 DG").is_ok());
 /// assert!(parse_ram("LH5168NFA-10L SHARP JAPAN 9103 3 SA").is_ok());
+/// assert!(parse_ram("LH5168NFB-10L SHARP JAPAN 9147 DC").is_ok());
 /// ```
 fn sharp_lh5168() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+    Matcher::new(r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
     move |c| {
         Ok(Ram {
             manufacturer: Some(Manufacturer::Sharp),

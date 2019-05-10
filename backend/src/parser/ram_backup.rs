@@ -32,9 +32,10 @@ pub fn mitsubishi_m62021p() -> Matcher<RamBackup> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_ram_backup;
 /// assert!(parse_ram_backup("843 26A").is_ok());
+/// assert!(parse_ram_backup("1L51 26A").is_ok());
 /// ```
 pub fn mitsumi_mm1026a() -> Matcher<RamBackup> {
-    Matcher::new(r#"^([0-9])([[:alnum:]][0-9])\ 26A$"#, move |c| {
+    Matcher::new(r#"^([0-9])([[:alnum:]][0-9]{1,2})\ 26A$"#, move |c| {
         Ok(RamBackup {
             chip_type: "MM1026A".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),

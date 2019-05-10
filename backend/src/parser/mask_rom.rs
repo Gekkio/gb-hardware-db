@@ -16,6 +16,8 @@ pub struct MaskRom {
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
 /// assert!(parse_mask_rom("DMG-WJA-0 S LH534M05 JAPAN E1 9606 D").is_ok());
+/// assert!(parse_mask_rom("DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D").is_ok());
+/// assert!(parse_mask_rom("DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E").is_ok());
 /// ```
 fn sharp() -> Matcher<MaskRom> {
     Matcher::new(r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ S\ (LH[[:alnum:]]{4})[[:alnum:]]{2} \ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
@@ -77,6 +79,9 @@ fn sharp3() -> Matcher<MaskRom> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
 /// assert!(parse_mask_rom("M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503").is_ok());
+/// assert!(parse_mask_rom("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_ok());
+/// assert!(parse_mask_rom("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
+/// assert!(parse_mask_rom("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
 /// ```
 fn macronix() -> Matcher<MaskRom> {
     Matcher::new(r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-M\ (MX23C[0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,

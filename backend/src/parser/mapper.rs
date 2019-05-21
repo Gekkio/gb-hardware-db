@@ -402,7 +402,7 @@ fn rohm_mbc3a() -> Matcher<Mapper> {
         r#"^MBC-3\ A\ BU3632K\ ([0-9])([0-9]{2})\ [[:alnum:]]{3}$"#,
         move |c| {
             Ok(Mapper {
-                mbc_type: MapperType::Mbc3(Mbc3Version::Original),
+                mbc_type: MapperType::Mbc3(Mbc3Version::A),
                 manufacturer: Some(Manufacturer::Rohm),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),

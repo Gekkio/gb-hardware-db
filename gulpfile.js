@@ -30,7 +30,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('build/scripts'))
 })
 
-const postcssPlugins = [autoprefixer({ browsers: ['last 2 versions', 'IE >= 10', 'iOS >= 7', '> 1%'] }), csso()]
+const postcssPlugins = [autoprefixer(), csso()]
 gulp.task('styles', function() {
   return gulp
     .src('src/site/**/*.scss')

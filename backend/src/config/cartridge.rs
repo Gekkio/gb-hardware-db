@@ -67,7 +67,7 @@ lazy_static! {
 fn create_map() -> HashMap<&'static str, BoardLayout> {
     let mut m = HashMap::new();
     m.insert("0200309E4-01", BoardLayout::Tama);
-    m.insert("AAAC", BoardLayout::Rom);
+    m.insert("AAAC S", BoardLayout::Rom);
     m.insert("CGB-A32", BoardLayout::Mbc6);
     m.insert("DMG-A02", BoardLayout::RomMapperRam);
     m.insert("DMG-A03", BoardLayout::RomMapperRam);

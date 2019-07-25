@@ -702,14 +702,14 @@
     ]
   },
   "DMG-APSE-0": {
-    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)",
+    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB+SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
     ]
   },
   "DMG-APSF-0": {
-    "name": "Pokemon - Version Jaune - Edition Speciale Pikachu (France) (GBC,SGB Enhanced)",
+    "name": "Pokemon - Version Jaune - Edition Speciale Pikachu (France) (CGB+SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -748,7 +748,7 @@
     ]
   },
   "DMG-APSU-0": {
-    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (GBC,SGB Enhanced)",
+    "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB+SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"

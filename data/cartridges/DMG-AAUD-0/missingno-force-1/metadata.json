@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AAUD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUD-NOE",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2001,
+    "month": 2,
+    "u1": {
+      "label": "E010504-M MX23C1603-12A DMG-AAUD-0 G2 1C7351A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 103 H18"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0046 KOREA"
+    },
+    "u4": {
+      "label": "050 134A"
+    },
+    "x1": {
+      "label": "KDS0M"
+    }
+  }
+}

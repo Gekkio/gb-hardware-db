@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AD3P-1",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AD3P-EUR",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-DECN-20",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1999,
+    "month": 6,
+    "u1": {
+      "label": "C992838-M MX23C4002-20 DMG-AD3P-1 E1 1P0872A1"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 9'22"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 924 133N"
+    },
+    "u4": {
+      "label": "6735 9506"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ADYD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADYD-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "J994449-M MX23C8005-12 DMG-ADYD-0 F1 1B2129LB"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 942 H82"
+    }
+  }
+}

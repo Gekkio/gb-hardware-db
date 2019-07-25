@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSD-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 5,
+    "u1": {
+      "label": "DMG-APSD-0 F1 M538011E-G8 0215424"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 020 H77"
+    },
+    "u3": {
+      "label": "Winbond W24258S-70LE 009WH295325501AA"
+    },
+    "u4": {
+      "label": "6735 0270"
+    }
+  }
+}

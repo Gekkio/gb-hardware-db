@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AXQP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AXQP-NOE",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A03-10",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "E004419-M MX23C1603-12A DMG-AXQP-0 G2 2D317300"
+    },
+    "u2": {
+      "label": "09EEJTT MBC5 2417"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0037 KOREA"
+    },
+    "u4": {
+      "label": "026 134A"
+    }
+  }
+}

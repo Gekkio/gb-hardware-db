@@ -101,6 +101,26 @@ fn mosel_vitelic_lh5268a() -> Matcher<Ram> {
     })
 }
 
+/// Sanyo LC35256D
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("SANYO LC35256DM-70W JAPAN 0EUPG").is_ok());
+/// ```
+fn sanyo_lc35256d() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^SANYO\ (LC35256D[MT]-[0-9]{2}W)\ JAPAN\ ([0-9])[[:alnum:]]{4}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sanyo),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: None,
+            })
+        },
+    )
+}
+
 /// Sanyo LC35256F
 ///
 /// ```
@@ -475,7 +495,7 @@ fn victronix_vn4464s() -> Matcher<Ram> {
 }
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 24] = [
+        static ref MATCHERS: [Matcher<Ram>; 25] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -490,6 +510,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             rohm_br62256f(),
             rohm_br6265(),
             rohm_xlj6265(),
+            sanyo_lc35256d(),
             sanyo_lc35256f(),
             sanyo_lc3564b(),
             sharp_lh5164an(),

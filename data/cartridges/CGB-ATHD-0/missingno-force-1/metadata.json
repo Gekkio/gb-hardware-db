@@ -1,0 +1,23 @@
+{
+  "code": "CGB-ATHD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "CGB-ATHD-NOE",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A09-10",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2001,
+    "month": 2,
+    "u1": {
+      "label": "CGB-ATHD-0 G2 N-16019WG5-M21 0107K7005"
+    },
+    "u2": {
+      "label": "11ARNRT MBC5 2417"
+    }
+  }
+}

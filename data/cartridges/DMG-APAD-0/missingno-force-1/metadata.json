@@ -1,0 +1,26 @@
+{
+  "code": "DMG-APAD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {},
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1999,
+    "month": 8,
+    "u1": {
+      "label": "DMG-APAD-0 S LH538WUT JAPAN F1 9937 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 931U4L"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9930 KOREA"
+    },
+    "u4": {
+      "label": "930 134A"
+    }
+  }
+}

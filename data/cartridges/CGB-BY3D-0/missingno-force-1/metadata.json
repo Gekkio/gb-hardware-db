@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BY3D-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BY3D-NOE",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2003,
+    "month": 11,
+    "u1": {
+      "label": "E034623-M MX23C3203-12A2 CGB-BY3D-0 H2 2G513304"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 245 H93"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 315 136N"
+    },
+    "u4": {
+      "label": "6735 2933"
+    }
+  }
+}

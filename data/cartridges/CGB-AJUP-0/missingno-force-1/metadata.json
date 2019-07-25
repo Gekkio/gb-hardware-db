@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AJUP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AJUP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "C001349-M MX23C8005-12 CGB-AJUP-0 F1 1B660181"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 006 H37"
+    }
+  }
+}

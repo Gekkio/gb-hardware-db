@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSD-0",
+  "slug": "missingno-force-2",
+  "contributor": "Missingno_force",
+  "index": 2,
+  "shell": {
+    "code": "DMG-APSD-NOE",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "MB",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 6,
+    "u1": {
+      "label": "DMG-APSD-0 S LHMN8MN3 JAPAN F1 0033 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 027U4M"
+    },
+    "u3": {
+      "label": "SANYO LC35256DM-70W JAPAN 0EUPG"
+    },
+    "u4": {
+      "label": "024 134A"
+    }
+  }
+}

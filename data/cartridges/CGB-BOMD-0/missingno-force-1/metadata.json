@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BOMD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BOMD-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "Y",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 12,
+    "u1": {
+      "label": "C005349-M MX23C8005-12 CGB-BOMD-0 F1 1C5389A1"
+    },
+    "u2": {
+      "label": "0BDY96T MBC5 2417"
+    }
+  }
+}

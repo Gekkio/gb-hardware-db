@@ -13,6 +13,13 @@
       "rom_mapper_ram"
     ]
   },
+  "CGB-AJUP-0": {
+    "name": "Jeremy McGrath Supercross 2000 (USA, Europe)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "CGB-AQOP-0": {
     "name": "Ready 2 Rumble Boxing (Europe)",
     "platform": "gbc",
@@ -29,6 +36,13 @@
   },
   "CGB-AT8E-0": {
     "name": "Micro Machines 1 and 2 - Twin Turbo (USA, Europe)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "CGB-ATHD-0": {
+    "name": "Tarzan (Germany)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -195,6 +209,13 @@
       "mbc6"
     ]
   },
+  "CGB-BOMD-0": {
+    "name": "Original Moorhuhn Jagd, Die (Germany)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "CGB-BP8P-0": {
     "name": "Pooh and Tigger's Hunny Safari (Europe) (En,Fr,De,Es,It,Nl)",
     "platform": "gbc",
@@ -228,6 +249,13 @@
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
+    ]
+  },
+  "CGB-BY3D-0": {
+    "name": "Yu-Gi-Oh! - Das Dunkle Duell (Germany)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "CGB-BY3J-0": {
@@ -447,6 +475,13 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-ADYD-0": {
+    "name": "Barbie - Meeres Abenteuer (Germany) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-ADYP-0": {
     "name": "Barbie - Ocean Discovery (Europe) (GB Compatible)",
     "platform": "gbc",
@@ -622,6 +657,13 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-APAD-0": {
+    "name": "Pokemon - Rote Edition (Germany) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-APAF-0": {
     "name": "Pokemon - Version Rouge (France) (SGB Enhanced)",
     "platform": "gb",
@@ -696,6 +738,13 @@
   },
   "DMG-APOJ-0": {
     "name": "Pocket Bomber Man (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
+  "DMG-APSD-0": {
+    "name": "Pokemon - Gelbe Edition - Special Pikachu Edition (Germany) (CGB+SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -850,6 +899,13 @@
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-AXQP-0": {
+    "name": "Pokemon Trading Card Game (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-AXQU-0": {

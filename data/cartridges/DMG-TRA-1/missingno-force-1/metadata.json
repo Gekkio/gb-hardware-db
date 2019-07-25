@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TR-NOE",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "AAAC S",
+    "extra_label": "2",
+    "u1": {
+      "label": "LR0G150 DMG-TRA-1 91397"
+    }
+  }
+}

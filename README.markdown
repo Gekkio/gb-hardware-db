@@ -4,6 +4,7 @@ Site source code for https://gbhwdb.gekkio.fi
 
 ## Contributors
 
+* Bruno Bertuga
 * Duo (http://gameboy.mongenel.com)
 * FIX94
 * gekkio (https://gekkio.fi)
@@ -13,9 +14,12 @@ Site source code for https://gbhwdb.gekkio.fi
 * ISSOtm
 * jrra
 * Kai
+* l0k1
 * Lance Kindle
 * mattcurrie
-* l0k1
+* max-m
+* Miyako
+* pyroesp
 * terinjokes
 * tobiasvl
 * zear

@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::ops::Index;
 
 use crate::config::cartridge::ChipPosition;
+use crate::input::{is_not_outlier, Chip};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -71,29 +72,6 @@ impl Index<ChipPosition> for CartridgeBoard {
             ChipPosition::U6 => &self.u6,
             ChipPosition::U7 => &self.u7,
             ChipPosition::X1 => &self.x1,
-        }
-    }
-}
-
-fn is_not_outlier(outlier: &bool) -> bool {
-    !outlier
-}
-
-#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct Chip {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub label: Option<String>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
-    pub outlier: bool,
-}
-
-impl Chip {
-    pub fn from_label(label: Option<String>) -> Chip {
-        Chip {
-            label,
-            outlier: false,
         }
     }
 }

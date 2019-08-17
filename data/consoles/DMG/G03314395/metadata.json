@@ -1,0 +1,14 @@
+{
+  "slug": "G03314395",
+  "contributor": "gekkio",
+  "index": 10,
+  "shell": {
+    "serial": "G03314395"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-02",
+    "u1": {
+      "label": "DMG-CPU A 8947 WA"
+    }
+  }
+}

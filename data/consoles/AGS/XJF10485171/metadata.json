@@ -1,0 +1,34 @@
+{
+  "slug": "XJF10485171",
+  "contributor": "gekkio",
+  "index": 4,
+  "shell": {
+    "color": "onyx",
+    "serial": "XJF10485171"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-11",
+    "number_pair": "9-3",
+    "stamp": "2846001",
+    "circled_letters": "FB",
+    "year": 2003,
+    "u1": {
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0420 UB"
+    },
+    "u2": {
+      "label": "M68AS128 DL7ON6 AANFG F6 TWN 8B 414"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0424 N"
+    },
+    "u4": {
+      "label": "S6403 CU4E0 9723"
+    },
+    "u5": {
+      "label": "422 1581A"
+    },
+    "x1": {
+      "label": "4194 KSS 4EF"
+    }
+  }
+}

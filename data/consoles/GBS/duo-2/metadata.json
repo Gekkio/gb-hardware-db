@@ -1,0 +1,37 @@
+{
+  "slug": "duo-2",
+  "contributor": "Duo",
+  "index": 2,
+  "shell": {
+    "color": "black",
+    "release_code": "C/L-DOL-A-GP-1"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-20",
+    "number_pair": "20-2",
+    "stamp": "1443733",
+    "stamp_front": "3324A",
+    "stamp_back": "4324A",
+    "circled_letters": "CS",
+    "year": 2004,
+    "month": 3,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0351 I"
+    },
+    "u3": {
+      "label": "BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0407E3037"
+    },
+    "u5": {
+      "label": "345 592F"
+    },
+    "u6": {
+      "label": "345 592F"
+    },
+    "y1": {
+      "label": "33WKSS4BT"
+    }
+  }
+}

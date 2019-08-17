@@ -1,0 +1,60 @@
+{
+  "slug": "GM6058180",
+  "contributor": "gekkio",
+  "index": 34,
+  "shell": {
+    "color": "vibrant-yellow",
+    "serial": "GM6058180"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-06",
+    "stamp": "905 3901",
+    "circled_letters": "CS",
+    "extra_label": "6",
+    "u1": {
+      "label": "DMG-CPU C © 1989 Nintendo JAPAN 9835 D"
+    },
+    "u2": {
+      "label": "LH52A64N-L SHARP JAPAN 9817 1 Y"
+    },
+    "u3": {
+      "label": "LH52A64N-L SHARP JAPAN 9817 1 Y"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 9902 CA"
+    },
+    "x1": {
+      "label": "4.19C8Y"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "905 3901",
+    "circled_letters": "A",
+    "year": 1998,
+    "month": 8,
+    "chip": {
+      "label": "DMG-REG IR3E02 9906 n"
+    },
+    "screen": {
+      "label": "ST 990302",
+      "column_driver": {
+        "label": "8021",
+        "ribbon_label": "LH5077 BF"
+      },
+      "row_driver": {
+        "label": "7511",
+        "ribbon_label": "LH5076 BF"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "D",
+    "year": 1998,
+    "month": 9
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03",
+    "extra_label": "M12"
+  }
+}

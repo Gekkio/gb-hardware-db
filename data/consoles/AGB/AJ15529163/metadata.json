@@ -1,0 +1,36 @@
+{
+  "slug": "AJ15529163",
+  "contributor": "gekkio",
+  "index": 8,
+  "shell": {
+    "color": "spice",
+    "release_code": "AGB-JPN-1",
+    "serial": "AJ15529163"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-04",
+    "number_pair": "4-1",
+    "stamp": "272 0021",
+    "circled_letters": "I",
+    "year": 2002,
+    "month": 5,
+    "u1": {
+      "label": "CPU AGB A 0218 wB"
+    },
+    "u2": {
+      "label": "D442012AGY-BB85X-MJH 0043K7025"
+    },
+    "u3": {
+      "label": "AGB-REG IR3E09N 0223 8"
+    },
+    "u4": {
+      "label": "220 514X"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0210 u"
+    },
+    "x1": {
+      "label": "4194 KSS 2BF"
+    }
+  }
+}

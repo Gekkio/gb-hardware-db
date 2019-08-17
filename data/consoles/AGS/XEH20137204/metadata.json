@@ -1,0 +1,29 @@
+{
+  "slug": "XEH20137204",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "color": "pink",
+    "serial": "XEH20137204"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-30",
+    "number_pair": "1-1",
+    "stamp": "20563734",
+    "circled_letters": "CS",
+    "year": 2006,
+    "month": 4,
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0602 UB"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012AGY-BB85X-MJH 0603K7032"
+    },
+    "u3": {
+      "label": "MITSUMI JAPAN 602E PM B3"
+    },
+    "x1": {
+      "label": "KDSI 0549 4.194"
+    }
+  }
+}

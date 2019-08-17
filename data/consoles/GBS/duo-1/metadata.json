@@ -1,0 +1,37 @@
+{
+  "slug": "duo-1",
+  "contributor": "Duo",
+  "index": 1,
+  "shell": {
+    "color": "platinum",
+    "release_code": "C/L-DOL-A-GP"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-01",
+    "number_pair": "01-1",
+    "stamp": "1033727",
+    "stamp_front": "3304A",
+    "stamp_back": "4305A",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 2,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0252 I"
+    },
+    "u3": {
+      "label": "Hynix KOREA HY62LF16206A 0241A LT12C"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0305E3112"
+    },
+    "u5": {
+      "label": "303 592F"
+    },
+    "u6": {
+      "label": "303 592F"
+    },
+    "y1": {
+      "label": "33WKSS3AT"
+    }
+  }
+}

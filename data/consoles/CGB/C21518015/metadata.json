@@ -1,0 +1,29 @@
+{
+  "slug": "C21518015",
+  "contributor": "gekkio",
+  "index": 14,
+  "shell": {
+    "color": "atomic-purple",
+    "serial": "C21518015"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-06",
+    "number_pair": "5-1",
+    "stamp": "031-2240",
+    "circled_letters": "A",
+    "year": 2000,
+    "month": 12,
+    "u1": {
+      "label": "CPU CGB E Ⓜ © 2000 Nintendo JAPAN 0052 I"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R56N 0052 C"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 0052 C"
+    },
+    "x1": {
+      "label": "D838M0I"
+    }
+  }
+}

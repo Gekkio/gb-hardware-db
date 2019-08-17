@@ -1,0 +1,14 @@
+{
+  "slug": "G01440218",
+  "contributor": "gekkio",
+  "index": 6,
+  "shell": {
+    "serial": "G01440218"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-01",
+    "u1": {
+      "label": "DMG-CPU A 8919 D"
+    }
+  }
+}

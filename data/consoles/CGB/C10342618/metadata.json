@@ -1,0 +1,33 @@
+{
+  "slug": "C10342618",
+  "contributor": "gekkio",
+  "index": 5,
+  "shell": {
+    "color": "grape",
+    "release_code": "CGB-EUR",
+    "serial": "C10342618"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-01",
+    "number_pair": "2-1",
+    "stamp": "408-1302",
+    "circled_letters": "K",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9837 I D"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9829 7 LN"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9829 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9834 C"
+    },
+    "x1": {
+      "label": "KDS 9835 8.388"
+    }
+  }
+}

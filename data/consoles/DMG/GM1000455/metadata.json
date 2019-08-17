@@ -1,0 +1,12 @@
+{
+  "slug": "GM1000455",
+  "contributor": "gekkio",
+  "index": 27,
+  "shell": {
+    "serial": "GM1000455"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-07",
+    "u1": {}
+  }
+}

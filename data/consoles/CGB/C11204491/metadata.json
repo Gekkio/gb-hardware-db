@@ -1,0 +1,33 @@
+{
+  "slug": "C11204491",
+  "contributor": "gekkio",
+  "index": 9,
+  "shell": {
+    "color": "teal",
+    "release_code": "CGB-JPN-1",
+    "serial": "C11204491"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-01",
+    "number_pair": "2-1",
+    "stamp": "428-2240",
+    "circled_letters": "K",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9841 I"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9839 3 LO"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9812 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9838 C"
+    },
+    "x1": {
+      "label": "KDS 9839 8.388"
+    }
+  }
+}

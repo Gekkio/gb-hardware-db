@@ -1,0 +1,31 @@
+{
+  "slug": "CG10367283-8",
+  "contributor": "gekkio",
+  "index": 16,
+  "shell": {
+    "serial": "CG10367283-8"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-01",
+    "number_pair": "1-2",
+    "stamp": "438-2240",
+    "circled_letters": "Y",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9840 I"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9838 1 LO"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9836 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9837 C"
+    },
+    "x1": {
+      "label": "KDS 9839 8.388"
+    }
+  }
+}

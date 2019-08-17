@@ -1,0 +1,14 @@
+{
+  "slug": "G09209621",
+  "contributor": "gekkio",
+  "index": 14,
+  "shell": {
+    "serial": "G09209621"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-04",
+    "u1": {
+      "label": "DMG-CPU B 9029 W"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "berry",
+    "release_code": "CGB-JPN-1"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-03",
+    "number_pair": "1-1",
+    "stamp": "289-1243",
+    "circled_letters": "I",
+    "year": 1999,
+    "month": 4,
+    "u1": {
+      "label": "CPU CGB C Ⓜ © 1998 Nintendo JAPAN 9927 IA"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9920 7 SO"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9922 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9924 C"
+    },
+    "x1": {
+      "label": "8388 KSS 9DT"
+    }
+  }
+}

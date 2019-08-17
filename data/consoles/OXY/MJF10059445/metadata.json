@@ -1,0 +1,27 @@
+{
+  "slug": "MJF10059445",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "purple",
+    "release_code": "C/OXY-JPN",
+    "serial": "MJF10059445"
+  },
+  "mainboard": {
+    "label": "OXY-CPU-01",
+    "circled_letters": "SH",
+    "year": 2005,
+    "u1": {
+      "label": "0525 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM"
+    },
+    "u2": {
+      "label": "Mitsumi JAPAN 515 E PM C"
+    },
+    "u4": {
+      "label": "AKV 517"
+    },
+    "u5": {
+      "label": "CP6465 B 02 KOR0519 621982"
+    }
+  }
+}

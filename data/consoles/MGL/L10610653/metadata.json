@@ -1,0 +1,44 @@
+{
+  "slug": "L10610653",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "gold",
+    "release_code": "MGL-JPN",
+    "serial": "L10610653"
+  },
+  "mainboard": {
+    "label": "MGL-CPU-01",
+    "number_pair": "4-1",
+    "stamp": "218-2221",
+    "circled_letters": "I",
+    "year": 1998,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9812 DA"
+    },
+    "u2": {
+      "label": "LH5164AN-10L SHARP JAPAN 9814 3 EB"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9815 a"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9813 n"
+    },
+    "x1": {
+      "label": "KDS 9811 4.194"
+    },
+    "t1": {
+      "label": "84Z7"
+    }
+  },
+  "screen": {
+    "column_driver": {
+      "ribbon_label": "LH5077 B1"
+    },
+    "row_driver": {
+      "label": "8120",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

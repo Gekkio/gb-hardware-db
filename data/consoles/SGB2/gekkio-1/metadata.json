@@ -1,0 +1,36 @@
+{
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "stamp": "20"
+  },
+  "mainboard": {
+    "label": "SHVC-SGB2-01",
+    "letter_at_top_right": "D",
+    "circled_letters": "I",
+    "year": 1998,
+    "month": 1,
+    "u1": {
+      "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9802 1 E"
+    },
+    "u2": {
+      "label": "Nintendo ICD2-R 9744EX003 D93128"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9803 1 DB"
+    },
+    "u4": {
+      "label": "© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 9802 D"
+    },
+    "u5": {
+      "label": "F411B © 1990 Nintendo 9802 C"
+    },
+    "xtal1": {
+      "label": "D209A8"
+    },
+    "coil1": {
+      "label": "TDK ZJY-M4A L"
+    }
+  }
+}

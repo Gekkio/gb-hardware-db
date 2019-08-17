@@ -1,0 +1,48 @@
+{
+  "slug": "GM3062619",
+  "contributor": "mattcurrie",
+  "index": 2,
+  "shell": {
+    "color": "deep-black",
+    "serial": "GM3062619"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-08",
+    "stamp": "607.3901",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "u1": {
+      "label": "C"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {},
+    "x1": {
+      "label": "4.19C64"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "607-3901",
+    "circled_letters": "A",
+    "year": 1995,
+    "month": 11,
+    "screen": {
+      "column_driver": {
+        "label": "6201"
+      },
+      "row_driver": {
+        "label": "6201"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "D",
+    "year": 1996,
+    "month": 6
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03",
+    "extra_label": "M5"
+  }
+}

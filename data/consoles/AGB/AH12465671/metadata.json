@@ -1,0 +1,33 @@
+{
+  "slug": "AH12465671",
+  "contributor": "gekkio",
+  "index": 4,
+  "shell": {
+    "color": "gold",
+    "release_code": "C/AGB-JPN-1",
+    "serial": "AH12465671"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "153 2702",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 2,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0306 wV"
+    },
+    "u2": {
+      "label": "Hynix KOREA HY62LF16206A 0241A LT12C"
+    },
+    "u4": {
+      "label": "245 514X"
+    },
+    "u6": {
+      "label": "BH7835AFS 246 T58"
+    },
+    "x1": {
+      "label": "D419K2C"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "M14139036",
+  "contributor": "gekkio",
+  "index": 6,
+  "shell": {
+    "color": "off-white",
+    "serial": "M14139036"
+  },
+  "mainboard": {
+    "label": "MGB-LCPU-02",
+    "number_pair": "8-2",
+    "stamp": "802-2217",
+    "circled_letters": "A",
+    "year": 1998,
+    "month": 1,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9808 D"
+    },
+    "u2": {
+      "label": "LH5164AN-10L SHARP JAPAN 9804 3 EB"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9806 a"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9806 p"
+    },
+    "x1": {
+      "label": "KDS 9803 4.194"
+    }
+  },
+  "screen": {
+    "column_driver": {
+      "ribbon_label": "LH5077 B1"
+    },
+    "row_driver": {
+      "label": "7510",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

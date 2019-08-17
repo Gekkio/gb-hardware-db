@@ -1,0 +1,37 @@
+{
+  "slug": "gekkio-4",
+  "contributor": "gekkio",
+  "index": 4,
+  "shell": {
+    "color": "indigo",
+    "release_code": "C/L-DOL-A-GP"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-10",
+    "number_pair": "10-1",
+    "stamp": "1233727",
+    "stamp_front": "1315A",
+    "stamp_back": "2315A",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 3,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0305 mU"
+    },
+    "u3": {
+      "label": "BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0307E3104"
+    },
+    "u5": {
+      "label": "303 592F"
+    },
+    "u6": {
+      "label": "303 592F"
+    },
+    "y1": {
+      "label": "33WKSS3AT"
+    }
+  }
+}

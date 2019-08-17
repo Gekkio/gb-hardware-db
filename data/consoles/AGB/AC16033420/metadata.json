@@ -1,0 +1,33 @@
+{
+  "slug": "AC16033420",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "platinum",
+    "release_code": "C/AGB-EUR",
+    "serial": "AC16033420"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-2",
+    "stamp": "322 3702",
+    "circled_letters": "CS",
+    "year": 2002,
+    "month": 7,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0228 mE"
+    },
+    "u2": {
+      "label": "Hynix KOREA HY62LF16206A 0223A LT12C"
+    },
+    "u4": {
+      "label": "227 514X"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0222 u"
+    },
+    "x1": {
+      "label": "D419G2I"
+    }
+  }
+}

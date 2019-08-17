@@ -1,0 +1,14 @@
+{
+  "slug": "G37311091",
+  "contributor": "gekkio",
+  "index": 21,
+  "shell": {
+    "serial": "G37311091"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-06",
+    "u1": {
+      "label": "DMG-CPU B 9413 W"
+    }
+  }
+}

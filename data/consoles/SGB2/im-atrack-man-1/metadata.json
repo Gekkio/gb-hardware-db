@@ -1,0 +1,36 @@
+{
+  "slug": "im-atrack-man-1",
+  "contributor": "ImATrackMan",
+  "index": 1,
+  "shell": {
+    "stamp": "07"
+  },
+  "mainboard": {
+    "label": "SHVC-SGB2-01",
+    "letter_at_top_right": "B",
+    "circled_letters": "I",
+    "year": 1997,
+    "month": 12,
+    "u1": {
+      "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9751 3E"
+    },
+    "u2": {
+      "label": "Nintendo ICD2-R 9733EX001 D93128"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9750 5 EB"
+    },
+    "u4": {
+      "label": "SYS-SGB2-10 © 1998 Nintendo M534011E-05 7502362"
+    },
+    "u5": {
+      "label": "F411B © 1990 Nintendo 9747 C"
+    },
+    "xtal1": {
+      "label": "KSS20V 7L"
+    },
+    "coil1": {
+      "label": "TDK ZJY-M4A L"
+    }
+  }
+}

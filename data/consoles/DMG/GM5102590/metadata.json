@@ -1,0 +1,54 @@
+{
+  "slug": "GM5102590",
+  "contributor": "gekkio",
+  "index": 32,
+  "shell": {
+    "color": "vibrant-yellow",
+    "serial": "GM5102590"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-08",
+    "stamp": "709.3901",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "u1": {
+      "label": "C"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {},
+    "x1": {
+      "label": "D419G6"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "108-0007",
+    "circled_letters": "K1",
+    "year": 1991,
+    "month": 7,
+    "chip": {
+      "label": "DMG-REG IR3E02 9131 A"
+    },
+    "screen": {
+      "label": "N1 AH910730",
+      "column_driver": {
+        "label": "1170",
+        "ribbon_label": "LH5077 AF"
+      },
+      "row_driver": {
+        "label": "1160",
+        "ribbon_label": "LH5076 BF"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "D",
+    "year": 1996,
+    "month": 8
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03",
+    "extra_label": "M17"
+  }
+}

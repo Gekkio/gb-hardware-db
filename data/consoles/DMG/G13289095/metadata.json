@@ -1,0 +1,14 @@
+{
+  "slug": "G13289095",
+  "contributor": "gekkio",
+  "index": 17,
+  "shell": {
+    "serial": "G13289095"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-05",
+    "u1": {
+      "label": "DMG-CPU B 9049 W"
+    }
+  }
+}

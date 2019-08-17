@@ -1,0 +1,42 @@
+{
+  "slug": "M10280516",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "color": "red",
+    "release_code": "MGB-JPN",
+    "serial": "M10280516"
+  },
+  "mainboard": {
+    "label": "MGB-CPU-01",
+    "number_pair": "5-1",
+    "stamp": "607-2217",
+    "circled_letters": "A",
+    "year": 1996,
+    "month": 7,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9629 D"
+    },
+    "u2": {
+      "label": "LH52A64N-PL MOSEL-VITELIC JAPAN N440 04 C"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9628 C"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9626 h"
+    },
+    "x1": {
+      "label": "KDS 6E 4.194"
+    }
+  },
+  "screen": {
+    "column_driver": {
+      "ribbon_label": "LH5077 B1"
+    },
+    "row_driver": {
+      "label": "6260",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "XU72764025-1",
+  "contributor": "gekkio",
+  "index": 8,
+  "shell": {
+    "color": "platinum",
+    "serial": "XU72764025-1"
+  },
+  "mainboard": {
+    "label": "C/AGT-CPU-01",
+    "number_pair": "7-2",
+    "stamp": "17Z53734",
+    "circled_letters": "CS",
+    "year": 2005,
+    "month": 12,
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0541 UB"
+    },
+    "u2": {
+      "label": "AMIC LP62S16128BW-70LLTF P4060473FB 0540A"
+    },
+    "u3": {
+      "label": "MITSUMI JAPAN 544A PM B3"
+    },
+    "x1": {
+      "label": "KDSI 0538 4.194"
+    }
+  }
+}

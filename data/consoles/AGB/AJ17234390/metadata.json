@@ -1,0 +1,33 @@
+{
+  "slug": "AJ17234390",
+  "contributor": "gekkio",
+  "index": 9,
+  "shell": {
+    "color": "fuchsia",
+    "release_code": "AGB-JPN-1",
+    "serial": "AJ17234390"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "413 2248",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 8,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0334 I"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012AGT-BC85X-MJH 0329K7008"
+    },
+    "u4": {
+      "label": "S6960 E-U2Z C700"
+    },
+    "u6": {
+      "label": "BH7835AFS 337 T22"
+    },
+    "x1": {
+      "label": "D419J3I"
+    }
+  }
+}

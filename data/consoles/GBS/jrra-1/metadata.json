@@ -1,0 +1,37 @@
+{
+  "slug": "jrra-1",
+  "contributor": "jrra",
+  "index": 1,
+  "shell": {
+    "color": "black",
+    "release_code": "C/L-DOL-A-GP-1"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-20",
+    "number_pair": "20-2",
+    "stamp": "4033733",
+    "stamp_front": "20926C",
+    "stamp_back": "20926C",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 8,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0329 I"
+    },
+    "u3": {
+      "label": "NEC JAPAN D442012AGY-BC85X-MJH 0330K7043"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0322E3388"
+    },
+    "u5": {
+      "label": "335 592F"
+    },
+    "u6": {
+      "label": "335 592F"
+    },
+    "y1": {
+      "label": "33WKSS3JT"
+    }
+  }
+}

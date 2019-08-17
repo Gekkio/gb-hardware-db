@@ -1,0 +1,27 @@
+{
+  "slug": "XEH17807928",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "color": "pink",
+    "serial": "XEH17807928"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-21",
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0509 UB"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0333 N"
+    },
+    "u4": {
+      "label": "9753 4862"
+    },
+    "u5": {
+      "label": "508 1581A"
+    },
+    "x1": {
+      "label": "4194 KSS 4LF"
+    }
+  }
+}

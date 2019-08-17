@@ -1,0 +1,26 @@
+{
+  "slug": "C21124289",
+  "contributor": "gekkio",
+  "index": 13,
+  "shell": {
+    "serial": "C21124289"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-05",
+    "u1": {
+      "label": "CPU CGB D Ⓜ © 1998 Nintendo JAPAN 0049 IA"
+    },
+    "u2": {
+      "label": "LH51D256T-Z7 SHARP JAPAN AY033 1 J"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R56N 0047 C"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 0047 C"
+    },
+    "x1": {
+      "label": "D838K0I"
+    }
+  }
+}

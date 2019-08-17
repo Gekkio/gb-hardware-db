@@ -1,0 +1,36 @@
+{
+  "slug": "AJ14804298",
+  "contributor": "gekkio",
+  "index": 7,
+  "shell": {
+    "color": "black",
+    "release_code": "AGB-JPN-1",
+    "serial": "AJ14804298"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-03",
+    "number_pair": "2-1",
+    "stamp": "082 0111",
+    "circled_letters": "I",
+    "year": 2001,
+    "month": 12,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0204 O"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012AGY-BC85X-MJH 0143K7005"
+    },
+    "u3": {
+      "label": "AGB-REG IR3E09N 0204 d"
+    },
+    "u4": {
+      "label": "9750B 1B40"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0203 u"
+    },
+    "x1": {
+      "label": "D419L1I"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "slug": "G06551776",
+  "contributor": "gekkio",
+  "index": 11,
+  "shell": {
+    "serial": "G06551776"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-03",
+    "u1": {
+      "label": "DMG-CPU B 9021 W"
+    }
+  }
+}

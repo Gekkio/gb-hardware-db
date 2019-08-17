@@ -1,0 +1,39 @@
+{
+  "slug": "MG14476319-9",
+  "contributor": "l0k1",
+  "index": 1,
+  "shell": {
+    "color": "clear",
+    "release_code": "C/MGB-JPN",
+    "serial": "MG14476319-9"
+  },
+  "mainboard": {
+    "label": "MGB-LCPU-02",
+    "number_pair": "1-1",
+    "stamp": "808-3702",
+    "circled_letters": "Cs",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9807 DA"
+    },
+    "u2": {
+      "label": "LH5164AN-10L SHARP JAPAN 9816 3 EB"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9816 a"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9816 n"
+    },
+    "x1": {
+      "label": "KDS 9807 4.194"
+    }
+  },
+  "screen": {
+    "row_driver": {
+      "label": "8080",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

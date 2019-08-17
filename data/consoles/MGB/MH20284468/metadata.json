@@ -1,0 +1,42 @@
+{
+  "slug": "MH20284468",
+  "contributor": "gekkio",
+  "index": 11,
+  "shell": {
+    "color": "yellow",
+    "release_code": "C/MGB-JPN",
+    "serial": "MH20284468"
+  },
+  "mainboard": {
+    "label": "MGB-LCPU-02",
+    "number_pair": "2-1",
+    "stamp": "010.3702",
+    "circled_letters": "Cs",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 0040 DA"
+    },
+    "u2": {
+      "label": "LH5164AN-10L SHARP JAPAN A0039 1 CB"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R56N 0040 C"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 0040 n"
+    },
+    "x1": {
+      "label": "4194 KSS 0KF"
+    }
+  },
+  "screen": {
+    "column_driver": {
+      "ribbon_label": "LH5077 B1"
+    },
+    "row_driver": {
+      "label": "9090",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

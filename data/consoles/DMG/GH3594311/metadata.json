@@ -1,0 +1,14 @@
+{
+  "slug": "GH3594311",
+  "contributor": "gekkio",
+  "index": 25,
+  "shell": {
+    "serial": "GH3594311"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-06",
+    "u1": {
+      "label": "DMG-CPU B 9440 W"
+    }
+  }
+}

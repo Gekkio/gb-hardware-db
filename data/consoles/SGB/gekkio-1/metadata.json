@@ -1,0 +1,33 @@
+{
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "stamp": "20B"
+  },
+  "mainboard": {
+    "label": "SGB-R-10",
+    "letter_at_top_right": "C",
+    "circled_letters": "M",
+    "year": 1994,
+    "month": 8,
+    "u1": {
+      "label": "SGB-CPU-01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9434 7 D"
+    },
+    "u2": {
+      "label": "Nintendo ICD2-R 434 171"
+    },
+    "u3": {
+      "label": "LH52A64N-YL Xlink JAPAN H432 01 C"
+    },
+    "u4": {
+      "label": "LH52A64N-YL Xlink JAPAN H432 01 C"
+    },
+    "u5": {
+      "label": "SYS-SGB-2 © 1994 Nintendo 9431 R95"
+    },
+    "u6": {
+      "label": "F411A © 1990 Nintendo 9432 a"
+    }
+  }
+}

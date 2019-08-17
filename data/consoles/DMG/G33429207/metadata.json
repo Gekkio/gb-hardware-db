@@ -1,0 +1,14 @@
+{
+  "slug": "G33429207",
+  "contributor": "gekkio",
+  "index": 19,
+  "shell": {
+    "serial": "G33429207"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-06",
+    "u1": {
+      "label": "DMG-CPU B 9327 W"
+    }
+  }
+}

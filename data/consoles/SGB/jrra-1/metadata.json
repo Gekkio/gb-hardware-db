@@ -1,0 +1,33 @@
+{
+  "slug": "jrra-1",
+  "contributor": "jrra",
+  "index": 1,
+  "shell": {
+    "stamp": "22B"
+  },
+  "mainboard": {
+    "label": "SGB-N-01",
+    "letter_at_top_right": "B",
+    "circled_letters": "Y",
+    "year": 1994,
+    "month": 4,
+    "u1": {
+      "label": "SGB-CPU-01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9416 1 D"
+    },
+    "u2": {
+      "label": "Nintendo ICD2-N 9415KX226 D93115"
+    },
+    "u3": {
+      "label": "LH52A64N-TL LSI LOGIC JAPAN D413 0M C"
+    },
+    "u4": {
+      "label": "LH52A64N-TL LSI LOGIC JAPAN D413 0M C"
+    },
+    "u5": {
+      "label": "SYS-SGB-NT © 1994 Nintendo LH532KN8 9416 D"
+    },
+    "u6": {
+      "label": "F411A © 1990 Nintendo 9411 a"
+    }
+  }
+}

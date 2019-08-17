@@ -1,0 +1,31 @@
+{
+  "slug": "issotm-1",
+  "contributor": "ISSOtm",
+  "index": 1,
+  "shell": {
+    "color": "teal"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-03",
+    "number_pair": "2-1",
+    "stamp": "139 3702",
+    "circled_letters": "CS",
+    "year": 1999,
+    "month": 3,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9909 IA"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9907 7 LO"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9902 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9907 C"
+    },
+    "x1": {
+      "label": "8388 KSS 9BT"
+    }
+  }
+}

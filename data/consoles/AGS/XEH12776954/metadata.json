@@ -1,0 +1,35 @@
+{
+  "slug": "XEH12776954",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "platinum",
+    "serial": "XEH12776954"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-10",
+    "number_pair": "4-2",
+    "stamp": "3933731",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 8,
+    "u1": {
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0333 UB"
+    },
+    "u2": {
+      "label": "BSI BS616LV2019TC-70 S31687FZ226013.1 L0335 TAIWAN"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0333 N"
+    },
+    "u4": {
+      "label": "S6403 CU3G3 7540"
+    },
+    "u5": {
+      "label": "332 1581A"
+    },
+    "x1": {
+      "label": "KDSI 0332 4.194"
+    }
+  }
+}

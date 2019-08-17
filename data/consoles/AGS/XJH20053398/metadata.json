@@ -1,0 +1,29 @@
+{
+  "slug": "XJH20053398",
+  "contributor": "gekkio",
+  "index": 7,
+  "shell": {
+    "color": "pink",
+    "serial": "XJH20053398"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-30",
+    "number_pair": "9-1",
+    "stamp": "03663734",
+    "circled_letters": "CS",
+    "year": 2006,
+    "month": 4,
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0545 UB"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012AGY-BB85X-MJH 0608K7031"
+    },
+    "u3": {
+      "label": "MITSUMI JAPAN 552C PM B3"
+    },
+    "x1": {
+      "label": "4194 KSS 6CF"
+    }
+  }
+}

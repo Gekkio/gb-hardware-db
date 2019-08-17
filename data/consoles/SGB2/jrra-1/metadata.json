@@ -1,0 +1,36 @@
+{
+  "slug": "jrra-1",
+  "contributor": "jrra",
+  "index": 1,
+  "shell": {
+    "stamp": "20"
+  },
+  "mainboard": {
+    "label": "SHVC-SGB2-01",
+    "letter_at_top_right": "A",
+    "circled_letters": "I",
+    "year": 1999,
+    "month": 12,
+    "u1": {
+      "label": "CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9810 7E"
+    },
+    "u2": {
+      "label": "Nintendo ICD2-R 9808EX010 D93128"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9952 7 EB"
+    },
+    "u4": {
+      "label": "© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 0003"
+    },
+    "u5": {
+      "label": "F411B © 1990 Nintendo 9953 C"
+    },
+    "xtal1": {
+      "label": "D209A8"
+    },
+    "coil1": {
+      "label": "TDK ZJY-M4PA n"
+    }
+  }
+}

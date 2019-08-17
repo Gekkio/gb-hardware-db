@@ -1,0 +1,27 @@
+{
+  "slug": "MEH10272643",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "color": "silver",
+    "release_code": "C/OXY-EUR",
+    "serial": "MEH10272643"
+  },
+  "mainboard": {
+    "label": "OXY-CPU-02",
+    "circled_letters": "SH",
+    "year": 2005,
+    "u1": {
+      "label": "0529 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM"
+    },
+    "u2": {
+      "label": "Mitsumi JAPAN 528A PM C"
+    },
+    "u4": {
+      "label": "AKV 522"
+    },
+    "u5": {
+      "label": "CP6465 B 02 KOR0531 635963"
+    }
+  }
+}

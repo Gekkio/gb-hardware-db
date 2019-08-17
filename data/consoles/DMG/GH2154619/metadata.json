@@ -1,0 +1,12 @@
+{
+  "slug": "GH2154619",
+  "contributor": "gekkio",
+  "index": 24,
+  "shell": {
+    "serial": "GH2154619"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-07",
+    "u1": {}
+  }
+}

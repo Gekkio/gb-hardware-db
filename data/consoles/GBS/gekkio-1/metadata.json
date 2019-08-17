@@ -1,0 +1,37 @@
+{
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "color": "platinum",
+    "release_code": "C/L-DOL-A-GP-1"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-10",
+    "number_pair": "10-2",
+    "stamp": "2733727",
+    "stamp_front": "3624A",
+    "stamp_back": "4625B",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 5,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0320 wV"
+    },
+    "u3": {
+      "label": "NEC JAPAN D442012AGY-BC85X-MJH 0320K7020"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0320E3095"
+    },
+    "u5": {
+      "label": "318 592F"
+    },
+    "u6": {
+      "label": "318 592F"
+    },
+    "y1": {
+      "label": "33WKSS3DT"
+    }
+  }
+}

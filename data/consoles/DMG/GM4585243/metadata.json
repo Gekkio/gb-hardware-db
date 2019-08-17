@@ -1,0 +1,54 @@
+{
+  "slug": "GM4585243",
+  "contributor": "gekkio",
+  "index": 31,
+  "shell": {
+    "color": "high-tech-transparent",
+    "serial": "GM4585243"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-08",
+    "stamp": "706.3901",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "u1": {
+      "label": "C"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {},
+    "x1": {
+      "label": "D419C7"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "706-3901",
+    "circled_letters": "A",
+    "year": 1997,
+    "month": 4,
+    "chip": {
+      "label": "DMG-REG IR3E02 9719 h"
+    },
+    "screen": {
+      "label": "AH 970515",
+      "column_driver": {
+        "label": "7191",
+        "ribbon_label": "LH5077 BF"
+      },
+      "row_driver": {
+        "label": "7171",
+        "ribbon_label": "LH5076 BF"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "D",
+    "year": 1996,
+    "month": 4
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03",
+    "extra_label": "M20"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "gekkio-3",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "color": "atomic-purple"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-02",
+    "number_pair": "1-2",
+    "stamp": "448-2240",
+    "circled_letters": "CM",
+    "year": 1998,
+    "month": 9,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9842 I"
+    },
+    "u2": {
+      "label": "LH52256CVT SHARP JAPAN 9841 3 LO"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9829 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9839 C"
+    },
+    "x1": {
+      "label": "KDS 9841 8.388"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "XJH10027945",
+  "contributor": "gekkio",
+  "index": 5,
+  "shell": {
+    "color": "platinum",
+    "serial": "XJH10027945"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-01",
+    "u1": {
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0247 D"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0333 N"
+    },
+    "u4": {
+      "label": "S6403 AU2Y6 7335"
+    },
+    "x1": {
+      "label": "KDSI 0246 4.194"
+    }
+  }
+}

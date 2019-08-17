@@ -1,0 +1,12 @@
+{
+  "slug": "GH4420433",
+  "contributor": "gekkio",
+  "index": 26,
+  "shell": {
+    "serial": "GH4420433"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-08",
+    "u1": {}
+  }
+}

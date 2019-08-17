@@ -1,0 +1,32 @@
+{
+  "slug": "tobiasvl-1",
+  "contributor": "tobiasvl",
+  "index": 1,
+  "shell": {
+    "color": "black",
+    "release_code": "C/AGB-EUR"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "023 3702",
+    "circled_letters": "CS",
+    "year": 2002,
+    "month": 11,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0245 mU"
+    },
+    "u2": {
+      "label": "JAPAN 82D12160-10FN 0243 M93N"
+    },
+    "u4": {
+      "label": "9750B 2A69"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0245 u"
+    },
+    "x1": {
+      "label": "D419K2I"
+    }
+  }
+}

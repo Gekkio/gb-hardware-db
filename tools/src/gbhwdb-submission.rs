@@ -124,7 +124,7 @@ fn ask_cartridge(
     ask_shell(siv).and_then(|shell| {
         ask_game_code(siv, cfgs).and_then(|code| {
             cfgs.get(&code)
-                .and_then(|cfg| ask_board(siv, &cfg).map(|board| (code, shell, board)))
+                .and_then(|_| ask_board(siv).map(|board| (code, shell, board)))
         })
     })
 }
@@ -196,7 +196,7 @@ fn ask_game_code(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>) -> Opti
     }
 }
 
-fn ask_board(siv: &mut Cursive, cfg: &GameConfig) -> Option<CartridgeBoard> {
+fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     siv.add_layer(
         Dialog::new()
             .title("Enter board details")

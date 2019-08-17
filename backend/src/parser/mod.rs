@@ -72,15 +72,15 @@ pub fn year2(text: &str) -> Result<Year, String> {
         return Ok(Year::Full(2000));
     }
     match u16::from_str(text) {
-        Ok(value @ 0...87) => Ok(Year::Full(value + 2000)),
-        Ok(value @ 88...99) => Ok(Year::Full(value + 1900)),
+        Ok(value @ 0..=87) => Ok(Year::Full(value + 2000)),
+        Ok(value @ 88..=99) => Ok(Year::Full(value + 1900)),
         _ => Err(format!("Invalid 2-digit year: {}", text)),
     }
 }
 
 pub fn week2(text: &str) -> Result<u8, String> {
     match u8::from_str(text) {
-        Ok(value @ 1...53) => Ok(value),
+        Ok(value @ 1..=53) => Ok(value),
         _ => Err(format!("Invalid 2-digit week: {}", text)),
     }
 }

@@ -37,37 +37,6 @@ export namespace DateRangePart {
   })
 }
 
-const manufacturers = [
-  'amic',
-  'analog',
-  'at-t',
-  'bsi',
-  'fujitsu',
-  'hynix',
-  'hyundai',
-  'kds',
-  'kss',
-  'lgs',
-  'lsi-logic',
-  'macronix',
-  'microchip',
-  'mitsumi',
-  'mosel-vitelic',
-  'motorola',
-  'nec',
-  'rohm',
-  'samsung',
-  'sanyo',
-  'sharp',
-  'smsc',
-  'st',
-  'tdk',
-  'texas-instruments',
-  'toshiba',
-  'winbond',
-  'xlink',
-]
-
 export interface Chip {
   type?: string
   label?: string | null
@@ -82,7 +51,7 @@ export namespace Chip {
   export const schema = Joi.object().keys({
     type: Joi.string(),
     label: Joi.string().allow(null),
-    manufacturer: Joi.string().only(manufacturers),
+    manufacturer: Joi.string(),
     year: schemas.year,
     month: schemas.month,
     week: schemas.week,
@@ -150,30 +119,6 @@ export interface SgbMetadata {
     year?: number
     month?: number
   }
-}
-
-export namespace SgbMetadata {
-  export const schema = Joi.object().keys({
-    type: Joi.string()
-      .required()
-      .allow('SGB'),
-    stamp: Joi.string(),
-    mainboard: Joi.object()
-      .required()
-      .keys({
-        type: Joi.string().required(),
-        circled_letters: Joi.string(),
-        letter_at_top_right: Joi.string(),
-        cpu: Chip.schema,
-        icd2: Chip.schema,
-        work_ram: Chip.schema,
-        video_ram: Chip.schema,
-        rom: Chip.schema,
-        cic: Chip.schema,
-        year: schemas.year,
-        month: schemas.month,
-      }),
-  })
 }
 
 export interface MgbMetadata {

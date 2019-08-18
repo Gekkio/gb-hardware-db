@@ -197,7 +197,7 @@ export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> 
           case 'DMG':
             return undefined
           case 'SGB':
-            return await crawl<'sgb', SgbMetadata>('sgb', SgbMetadata.schema, crawlDefaultPhotos, entry)
+            return undefined
           case 'MGB':
             return await crawl<'mgb', MgbMetadata>('mgb', MgbMetadata.schema, crawlDefaultPhotos, entry)
           case 'MGL':

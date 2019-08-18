@@ -2,6 +2,7 @@ use regex::{Captures, Regex, RegexBuilder};
 use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
+pub use self::cic::{parse_cic, Cic};
 pub use self::crystal::{parse_crystal, Crystal};
 pub use self::dmg_amp::{parse_dmg_amp, DmgAmp};
 pub use self::dmg_cpu::{parse_dmg_cpu, DmgCpu, DmgCpuKind};
@@ -9,6 +10,7 @@ pub use self::dmg_reg::{parse_dmg_reg, DmgReg};
 pub use self::dmg_stamp::{parse_dmg_stamp, DmgStamp};
 pub use self::eeprom::{parse_eeprom, Eeprom};
 pub use self::flash::{parse_flash, Flash};
+pub use self::icd2::{parse_icd2, Icd2};
 pub use self::lcd_chip::{parse_lcd_chip, LcdChip};
 pub use self::lcd_screen::{parse_lcd_screen, LcdScreen};
 pub use self::line_decoder::{parse_line_decoder, LineDecoder};
@@ -18,9 +20,12 @@ pub use self::mapper::{
 pub use self::mask_rom::{parse_mask_rom, MaskRom};
 pub use self::ram::{parse_ram, Ram};
 pub use self::ram_backup::{parse_ram_backup, RamBackup};
+pub use self::sgb_cpu::{parse_sgb_cpu, SgbCpu};
+pub use self::sgb_rom::{parse_sgb_rom, SgbRom};
 pub use self::tama::{parse_tama, TamaType};
 
 mod accelerometer;
+mod cic;
 mod crystal;
 mod dmg_amp;
 mod dmg_cpu;
@@ -28,6 +33,7 @@ mod dmg_reg;
 mod dmg_stamp;
 mod eeprom;
 mod flash;
+mod icd2;
 mod lcd_chip;
 mod lcd_screen;
 mod line_decoder;
@@ -35,6 +41,8 @@ mod mapper;
 mod mask_rom;
 mod ram;
 mod ram_backup;
+mod sgb_cpu;
+mod sgb_rom;
 mod tama;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
@@ -42,6 +50,7 @@ pub enum Manufacturer {
     Analog,
     AtT,
     Bsi,
+    Crosslink,
     Fujitsu,
     Hudson,
     Hyundai,

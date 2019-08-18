@@ -56,60 +56,16 @@ export function manufacturer(value: string): string {
   switch (value) {
     case 'amic':
       return 'AMIC Technology'
-    case 'analog':
-      return 'Analog Devices'
-    case 'at-t':
-      return 'AT&T Technologies'
-    case 'bsi':
-      return 'BSI'
-    case 'fujitsu':
-      return 'Fujitsu'
     case 'hynix':
       return 'Hynix'
-    case 'hyundai':
-      return 'Hyundai'
-    case 'kds':
-      return 'Daishinku'
     case 'kss':
       return 'Kinseki'
-    case 'lgs':
-      return 'Lucky GoldStar'
-    case 'lsi-logic':
-      return 'LSI Logic'
-    case 'macronix':
-      return 'Macronix'
     case 'microchip':
       return 'Microchip'
-    case 'mitsumi':
-      return 'Mitsumi'
-    case 'mosel-vitelic':
-      return 'Mosel-Vitelic'
-    case 'motorola':
-      return 'Motorola'
-    case 'nec':
-      return 'NEC'
-    case 'rohm':
-      return 'ROHM'
-    case 'samsung':
-      return 'Samsung'
-    case 'sanyo':
-      return 'Sanyo'
-    case 'sharp':
-      return 'Sharp'
-    case 'smsc':
-      return 'Standard Microsystems Corporation'
     case 'st':
       return 'STMicroelectronics'
     case 'tdk':
       return 'TDK'
-    case 'texas-instruments':
-      return 'Texas Instruments'
-    case 'toshiba':
-      return 'Toshiba'
-    case 'winbond':
-      return 'Winbond'
-    case 'xlink':
-      return 'Xlink (?)'
     default:
       return value
   }

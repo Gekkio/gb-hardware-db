@@ -160,6 +160,19 @@ async function crawlDmg(): Promise<DmgSubmission[]> {
   }))
 }
 
+async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
+  const data: Exclude<ConsoleSubmission, DmgSubmission | AgsSubmission>[] = await fs.readJson(jsonFile)
+  return Bluebird.mapSeries(data, async submission => ({
+    ...submission,
+    photos: {
+      front: await photoStats(submission.photos.front),
+      back: await photoStats(submission.photos.back),
+      pcbFront: await photoStats(submission.photos.pcbFront),
+      pcbBack: await photoStats(submission.photos.pcbBack),
+    },
+  }))
+}
+
 async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> {
   if (!photo) return undefined
   const stats = await fs.stat(photo.path)
@@ -170,12 +183,13 @@ async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> 
 }
 
 async function main(): Promise<void> {
-  const [legacySubmissions, cartridgeSubmissions, dmgSubmissions] = await Promise.all([
+  const [legacySubmissions, cartridgeSubmissions, dmgSubmissions, sgbSubmissions] = await Promise.all([
     crawlConsoles('data/consoles'),
     crawlCartridges(),
     crawlDmg(),
+    crawlConsole('build/data/sgb.json')
   ])
-  const consoleSubmissions = legacySubmissions.concat(dmgSubmissions)
+  const consoleSubmissions = legacySubmissions.concat(dmgSubmissions).concat(sgbSubmissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,

@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use std::ops::Index;
 
 use crate::input::{is_not_outlier, Chip};
 

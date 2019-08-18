@@ -614,9 +614,30 @@ fn victronix_vn4464s() -> Matcher<Ram> {
         },
     )
 }
+
+/// Crosslink LH52A64N-YL
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH52A64N-YL Xlink JAPAN H432 0U C").is_ok());
+/// ```
+fn crosslink_lh52a64n_yl() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH52A64N-YL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Crosslink),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 31] = [
+        static ref MATCHERS: [Matcher<Ram>; 32] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -648,6 +669,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             sharp_lh5264tn_l(),
             sharp_lh52a64n_l(),
             lsi_logic_lh52xx(),
+            crosslink_lh52a64n_yl(),
         ];
     }
     for matcher in MATCHERS.iter() {

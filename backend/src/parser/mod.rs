@@ -2,6 +2,8 @@ use regex::{Captures, Regex, RegexBuilder};
 use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
+pub use self::cgb_cpu::{parse_cgb_cpu, CgbCpu};
+pub use self::cgb_reg::{parse_cgb_reg, CgbReg};
 pub use self::cgb_stamp::{parse_cgb_stamp, CgbStamp};
 pub use self::cic::{parse_cic, Cic};
 pub use self::coil::{parse_coil, Coil};
@@ -31,6 +33,8 @@ pub use self::tama::{parse_tama, TamaType};
 pub use self::transformer::{parse_transformer, Transformer};
 
 mod accelerometer;
+mod cgb_cpu;
+mod cgb_reg;
 mod cgb_stamp;
 mod cic;
 mod coil;

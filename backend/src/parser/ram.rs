@@ -199,6 +199,65 @@ fn sharp_lh52256c() -> Matcher<Ram> {
     })
 }
 
+/// Sharp LH52256CVT
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH52256CVT SHARP JAPAN 9841 3 LO").is_ok());
+/// ```
+fn sharp_lh52256cvt() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH52256CVT)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH52CV256
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH52CV256JT-10LL SHARP JAPAN 9814 7 SA").is_ok());
+/// ```
+fn sharp_lh52cv256() -> Matcher<Ram> {
+    Matcher::new(r#"^(LH52CV256[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+    move |c| {
+        Ok(Ram {
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: Some(c[1].to_owned()),
+            year: Some(year2(&c[2])?),
+            week: Some(week2(&c[3])?),
+        })
+    })
+}
+
+/// Sharp LH51D256T
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH51D256T-Z7 SHARP Y013 5 J").is_ok());
+/// assert!(parse_ram("LH51D256T-Z7 SHARP JAPAN Y0 47 3 JA").is_ok());
+/// ```
+fn sharp_lh51d256t() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH51D256T-Z[0-9])\ SHARP(\ JAPAN)?\ A?Y([0-9])\ ?([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
 /// Sharp LH5168
 ///
 /// ```
@@ -657,7 +716,7 @@ fn mosel_vitelic_lh52a64n_pl() -> Matcher<Ram> {
 
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 33] = [
+        static ref MATCHERS: [Matcher<Ram>; 36] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -679,6 +738,9 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             sharp_lh5164an_2(),
             sharp_lh5168(),
             sharp_lh52256c(),
+            sharp_lh52256cvt(),
+            sharp_lh51d256t(),
+            sharp_lh52cv256(),
             winbond_w24257(),
             winbond_w24258(),
             winbond_w2465(),

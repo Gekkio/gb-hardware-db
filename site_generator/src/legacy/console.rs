@@ -323,6 +323,51 @@ pub struct LegacyMglMainboard {
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
+pub struct LegacyCgbMetadata {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub color: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub release_code: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub week: Option<u8>,
+    pub mainboard: LegacyCgbMainboard,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyCgbMainboard {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub number_pair: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stamp: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cpu: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub work_ram: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amplifier: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub regulator: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crystal: Option<LegacyChip>,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct LegacyLcdPanel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub column_driver: Option<LegacyChip>,

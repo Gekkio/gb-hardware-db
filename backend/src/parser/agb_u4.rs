@@ -47,7 +47,7 @@ fn mitsumi_mm1514x_2() -> Matcher<AgbU4> {
 fn unknown() -> Matcher<AgbU4> {
     Matcher::new(r#"^S6960\ E-U2Z\ C700$"#, move |_| {
         Ok(AgbU4 {
-            kind: None,
+            kind: Some("S6960".to_owned()),
             manufacturer: None,
             year: None,
             week: None,

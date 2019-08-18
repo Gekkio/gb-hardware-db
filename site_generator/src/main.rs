@@ -41,6 +41,7 @@ fn main() -> Result<(), Error> {
     process_sgb2_submissions()?;
     process_cgb_submissions()?;
     process_agb_submissions()?;
+    process_ags_submissions()?;
     Ok(())
 }
 
@@ -596,7 +597,7 @@ fn process_cgb_submissions() -> Result<(), Error> {
             let file = File::open(&entry.path())?;
             let console: CgbConsole = serde_json::from_reader(file)?;
 
-            let year_hint = console.mainboard.year;
+            let year_hint = console.mainboard.year.or(Some(1998));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_cgb_cpu);
             let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_ram);
             let amplifier =
@@ -697,7 +698,7 @@ fn process_agb_submissions() -> Result<(), Error> {
             let file = File::open(&entry.path())?;
             let console: AgbConsole = serde_json::from_reader(file)?;
 
-            let year_hint = console.mainboard.year;
+            let year_hint = console.mainboard.year.or(Some(2001));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
             let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_ram);
             let regulator =
@@ -731,7 +732,7 @@ fn process_agb_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyAgbMetadata {
-                kind: "CGB".to_string(),
+                kind: "AGB".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
@@ -763,6 +764,79 @@ fn process_agb_submissions() -> Result<(), Error> {
     }
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/agb.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
+fn process_ags_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::ags::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: AgsConsole = serde_json::from_reader(file)?;
+
+            let year_hint = console.mainboard.year.or(Some(2003));
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_ram);
+            let amplifier =
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_amp);
+            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_ags_u4);
+            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_ags_u5);
+            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
+                .map(|chip| LegacyChip {
+                    kind: Some("4.194304 MHz".to_owned()),
+                    ..chip
+                });
+            let mainboard = LegacyAgsMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                number_pair: console.mainboard.number_pair.clone(),
+                stamp: console.mainboard.stamp.clone(),
+                year: console.mainboard.year,
+                month: console.mainboard.month,
+                cpu,
+                work_ram,
+                amplifier,
+                u4,
+                u5,
+                crystal,
+            };
+
+            let metadata = LegacyAgsMetadata {
+                kind: "AGS".to_string(),
+                color: console.shell.color.clone(),
+                release_code: console.shell.release_code.clone(),
+                mainboard,
+            };
+
+            let mut photos = LegacyAgsPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.top = get_photo(root, "02_top.jpg");
+            photos.back = get_photo(root, "03_back.jpg");
+            photos.pcb_front = get_photo(root, "04_pcb_front.jpg");
+            photos.pcb_back = get_photo(root, "05_pcb_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "ags".to_string(),
+                title: console
+                    .shell
+                    .serial
+                    .clone()
+                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                slug: console.slug,
+                sort_group: None,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
+    }
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/ags.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     Ok(())
 }

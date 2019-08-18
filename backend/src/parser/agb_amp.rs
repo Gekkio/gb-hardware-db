@@ -46,9 +46,29 @@ fn rohm_bh7835afs() -> Matcher<AgbAmp> {
     )
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_amp;
+/// assert!(parse_agb_amp("MITSUMI JAPAN 602E PM B3").is_ok());
+/// ```
+fn mitsumi_pm() -> Matcher<AgbAmp> {
+    // FIXME: Not really an amplifier
+    Matcher::new(
+        r#"^MITSUMI\ JAPAN\ ([0-9])([0-9]{2})[A-Z]\ PM\ B3$"#,
+        move |c| {
+            Ok(AgbAmp {
+                kind: "PM B3".to_owned(),
+                manufacturer: Some(Manufacturer::Mitsumi),
+                year: Some(year1(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
 pub fn parse_agb_amp(text: &str) -> Result<AgbAmp, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbAmp>; 2] = [sharp_ir3r60n(), rohm_bh7835afs()];
+        static ref MATCHERS: [Matcher<AgbAmp>; 3] =
+            [sharp_ir3r60n(), rohm_bh7835afs(), mitsumi_pm()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

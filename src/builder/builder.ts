@@ -172,6 +172,20 @@ async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
   }))
 }
 
+async function crawlAgs(): Promise<AgsSubmission[]> {
+  const data: AgsSubmission[] = await fs.readJson('build/data/ags.json')
+  return Bluebird.mapSeries(data, async submission => ({
+    ...submission,
+    photos: {
+      front: await photoStats(submission.photos.front),
+      top: await photoStats(submission.photos.top),
+      back: await photoStats(submission.photos.back),
+      pcbFront: await photoStats(submission.photos.pcbFront),
+      pcbBack: await photoStats(submission.photos.pcbBack),
+    },
+  }))
+}
+
 async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> {
   if (!photo) return undefined
   const stats = await fs.stat(photo.path)
@@ -191,6 +205,7 @@ async function main(): Promise<void> {
     sgb2Submissions,
     cgbSubmissions,
     agbSubmissions,
+    agsSubmissions,
   ] = await Promise.all([
     crawlCartridges(),
     crawlDmg(),
@@ -200,6 +215,7 @@ async function main(): Promise<void> {
     crawlConsole('build/data/sgb2.json'),
     crawlConsole('build/data/cgb.json'),
     crawlConsole('build/data/agb.json'),
+    crawlAgs(),
   ])
   const consoleSubmissions = sgbSubmissions
     .concat(dmgSubmissions)
@@ -208,6 +224,7 @@ async function main(): Promise<void> {
     .concat(sgb2Submissions)
     .concat(cgbSubmissions)
     .concat(agbSubmissions)
+    .concat(agsSubmissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,

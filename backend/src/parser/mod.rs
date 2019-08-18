@@ -7,6 +7,8 @@ pub use self::agb_cpu::{parse_agb_cpu, AgbCpu};
 pub use self::agb_ram::{parse_agb_ram, AgbRam};
 pub use self::agb_reg::{parse_agb_reg, AgbReg};
 pub use self::agb_u4::{parse_agb_u4, AgbU4};
+pub use self::ags_u4::{parse_ags_u4, AgsU4};
+pub use self::ags_u5::{parse_ags_u5, AgsU5};
 pub use self::cgb_cpu::{parse_cgb_cpu, CgbCpu};
 pub use self::cgb_reg::{parse_cgb_reg, CgbReg};
 pub use self::cgb_stamp::{parse_cgb_stamp, CgbStamp};
@@ -41,6 +43,8 @@ mod agb_cpu;
 mod agb_ram;
 mod agb_reg;
 mod agb_u4;
+mod ags_u4;
+mod ags_u5;
 mod cgb_cpu;
 mod cgb_reg;
 mod cgb_stamp;
@@ -69,6 +73,7 @@ mod transformer;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Manufacturer {
+    Amic,
     Analog,
     AtT,
     Bsi,
@@ -93,6 +98,7 @@ pub enum Manufacturer {
     Sanyo,
     Sharp,
     Smsc,
+    StMicro,
     Tdk,
     TexasInstruments,
     Toshiba,

@@ -62,6 +62,7 @@ pub struct LegacyPhoto {
 pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> {
     manufacturer.map(|manufacturer| {
         (match manufacturer {
+            Manufacturer::Amic => "AMIC Technology",
             Manufacturer::Analog => "Analog Devices",
             Manufacturer::AtT => "AT&T Technologies",
             Manufacturer::Bsi => "BSI",
@@ -86,6 +87,7 @@ pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<Stri
             Manufacturer::Sanyo => "Sanyo",
             Manufacturer::Sharp => "Sharp",
             Manufacturer::Smsc => "Standard Microsystems Corporation",
+            Manufacturer::StMicro => "STMicroelectronics",
             Manufacturer::Tdk => "TDK",
             Manufacturer::TexasInstruments => "Texas Instruments",
             Manufacturer::Toshiba => "Toshiba",

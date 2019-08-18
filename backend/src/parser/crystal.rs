@@ -29,9 +29,10 @@ fn kds_short() -> Matcher<Crystal> {
 /// # use gbhwdb_backend::parser::parse_crystal;
 /// assert!(parse_crystal("KDS 9803 4.194").is_ok());
 /// assert!(parse_crystal("KDS9807 4.194").is_ok());
+/// assert!(parse_crystal("KDSI 0549 4.194").is_ok());
 /// ```
 fn kds_4194() -> Matcher<Crystal> {
-    Matcher::new(r#"^KDS\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#, move |c| {
+    Matcher::new(r#"^KDSI?\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year2(&c[1])?),

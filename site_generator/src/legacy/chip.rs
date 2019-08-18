@@ -345,3 +345,33 @@ impl ToLegacyChip for parser::AgbAmp {
         self.week
     }
 }
+
+impl ToLegacyChip for parser::AgsU4 {
+    fn kind(&self) -> Option<String> {
+        self.kind.clone()
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}
+
+impl ToLegacyChip for parser::AgsU5 {
+    fn kind(&self) -> Option<String> {
+        self.kind.clone()
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}

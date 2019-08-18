@@ -15,7 +15,7 @@ pub struct AgbCpu {
 /// ```
 fn agb_cpu() -> Matcher<AgbCpu> {
     Matcher::new(
-        r#"^(CPU\ AGB(\ (A|B|A E|B E))?)\ Ⓜ\ ©\ 2000\ Nintendo\ JAPAN\ ARM\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
+        r#"^(CPU\ AGB(\ A(\ E)?)?)\ Ⓜ\ ©\ 2000\ Nintendo\ JAPAN\ ARM\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
             Ok(AgbCpu {
                 kind: c[1].to_owned(),
@@ -26,9 +26,26 @@ fn agb_cpu() -> Matcher<AgbCpu> {
     )
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_cpu;
+/// assert!(parse_agb_cpu("CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0602 UB").is_ok());
+/// ```
+fn agb_cpu_b() -> Matcher<AgbCpu> {
+    Matcher::new(
+        r#"^(CPU\ AGB\ B(\ E)?)\ Ⓜ\ ©\ 2002\ Nintendo\ JAPAN\ ARM\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
+        move |c| {
+            Ok(AgbCpu {
+                kind: c[1].to_owned(),
+                year: Some(year2_u16(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
 pub fn parse_agb_cpu(text: &str) -> Result<AgbCpu, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbCpu>; 1] = [agb_cpu()];
+        static ref MATCHERS: [Matcher<AgbCpu>; 2] = [agb_cpu(), agb_cpu_b()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

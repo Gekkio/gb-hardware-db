@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Manufacturer, Matcher, Year};
+use super::{week2, year1, year2, Manufacturer, Matcher, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct AgbRam {
@@ -70,9 +70,70 @@ fn hynix() -> Matcher<AgbRam> {
     )
 }
 
+/// STMicro M68AS128DL70N6
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_ram;
+/// assert!(parse_agb_ram("M68AS128 DL70N6 AANFG F6 TWN 8B 414").is_ok());
+/// ```
+fn st_micro() -> Matcher<AgbRam> {
+    Matcher::new(
+        r#"^M68AS128\ DL70N6\ [A-Z]{5}\ F6\ TWN\ [[:alnum:]]{2}\ ([0-9])([0-9]{2})$"#,
+        move |c| {
+            Ok(AgbRam {
+                kind: Some("M68AS128DL70N6".to_owned()),
+                manufacturer: Some(Manufacturer::StMicro),
+                year: Some(year1(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
+/// AMIC LP62S16128BW
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_ram;
+/// assert!(parse_agb_ram("AMIC LP62S16128BW-70LLTF P4060473FB 0540A").is_ok());
+/// ```
+fn amic() -> Matcher<AgbRam> {
+    Matcher::new(
+        r#"^AMIC\ (LP62S16128BW-[0-9]{2}[A-Z]{3,4})\ [[:alnum:]]{10}\ ([0-9]{2})([0-9]{2})[A-Z]$"#,
+        move |c| {
+            Ok(AgbRam {
+                kind: Some(c[1].to_owned()),
+                manufacturer: Some(Manufacturer::Amic),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// BSI BS616LV2019TC-70
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_ram;
+/// assert!(parse_agb_ram("BSI BS616LV2019TC-70 S31687FZ226013.1 L0335 TAIWAN").is_ok());
+/// ```
+fn bsi() -> Matcher<AgbRam> {
+    Matcher::new(
+        r#"^BSI\ (BS616LV2019TC-[0-9]{2})\ [[:alnum:]]{14}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
+        move |c| {
+            Ok(AgbRam {
+                kind: Some(c[1].to_owned()),
+                manufacturer: Some(Manufacturer::Bsi),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
 pub fn parse_agb_ram(text: &str) -> Result<AgbRam, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbRam>; 3] = [nec(), fujitsu(), hynix()];
+        static ref MATCHERS: [Matcher<AgbRam>; 6] =
+            [nec(), fujitsu(), hynix(), st_micro(), amic(), bsi()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

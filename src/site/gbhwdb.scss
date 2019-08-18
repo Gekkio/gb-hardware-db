@@ -97,4 +97,11 @@ tbody > tr:nth-child(even) {
     flex: 0 0 auto;
     margin-right: 10px;
   }
+  &__placeholder {
+    width: 50px;
+
+    @include media(desktop) {
+      width: 80px;
+    }
+  }
 }

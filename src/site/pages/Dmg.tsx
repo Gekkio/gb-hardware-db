@@ -52,7 +52,13 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
                 sizes="(min-width: 1000px) 80px, 50px"
                 role="presentation"
               />
-            ) : null}
+            ) : (
+              <img
+                src={`/dmg_placeholder.svg`}
+                className="submission-list-item__placeholder"
+                role="presentation"
+              />
+            )}
           </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>

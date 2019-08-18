@@ -2,6 +2,7 @@ use gbhwdb_backend::parser::*;
 use serde::{Deserialize, Serialize};
 
 pub mod cartridge;
+pub mod chip;
 pub mod console;
 
 #[derive(Clone, Debug, Serialize)]

@@ -2,6 +2,11 @@ use regex::{Captures, Regex, RegexBuilder};
 use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
+pub use self::agb_amp::{parse_agb_amp, AgbAmp};
+pub use self::agb_cpu::{parse_agb_cpu, AgbCpu};
+pub use self::agb_ram::{parse_agb_ram, AgbRam};
+pub use self::agb_reg::{parse_agb_reg, AgbReg};
+pub use self::agb_u4::{parse_agb_u4, AgbU4};
 pub use self::cgb_cpu::{parse_cgb_cpu, CgbCpu};
 pub use self::cgb_reg::{parse_cgb_reg, CgbReg};
 pub use self::cgb_stamp::{parse_cgb_stamp, CgbStamp};
@@ -31,6 +36,11 @@ pub use self::tama::{parse_tama, TamaType};
 pub use self::transformer::{parse_transformer, Transformer};
 
 mod accelerometer;
+mod agb_amp;
+mod agb_cpu;
+mod agb_ram;
+mod agb_reg;
+mod agb_u4;
 mod cgb_cpu;
 mod cgb_reg;
 mod cgb_stamp;
@@ -65,6 +75,7 @@ pub enum Manufacturer {
     Crosslink,
     Fujitsu,
     Hudson,
+    Hynix,
     Hyundai,
     Kds,
     Lgs,
@@ -105,6 +116,9 @@ pub fn year1(text: &str) -> Result<Year, String> {
 pub fn year2(text: &str) -> Result<Year, String> {
     if text == "AL" {
         return Ok(Year::Full(2000));
+    }
+    if text == "AA" {
+        return Ok(Year::Full(2001));
     }
     match u16::from_str(text) {
         Ok(value @ 0..=87) => Ok(Year::Full(value + 2000)),

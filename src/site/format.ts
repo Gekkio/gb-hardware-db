@@ -56,12 +56,6 @@ export function manufacturer(value: string): string {
   switch (value) {
     case 'amic':
       return 'AMIC Technology'
-    case 'hynix':
-      return 'Hynix'
-    case 'microchip':
-      return 'Microchip'
-    case 'st':
-      return 'STMicroelectronics'
     default:
       return value
   }

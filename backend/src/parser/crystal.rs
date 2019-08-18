@@ -73,9 +73,10 @@ fn kds_4194_short() -> Matcher<Crystal> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
 /// assert!(parse_crystal("D419A2").is_ok());
+/// assert!(parse_crystal("D419J3I").is_ok());
 /// ```
 fn kds_d419() -> Matcher<Crystal> {
-    Matcher::new(r#"^D419([A-Z])([0-9])$"#, move |c| {
+    Matcher::new(r#"^D419([A-Z])([0-9])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -133,9 +134,10 @@ fn kinseki_kss20() -> Matcher<Crystal> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
 /// assert!(parse_crystal("4194 KSS 0KF").is_ok());
+/// assert!(parse_crystal("4194 KSS1A").is_ok());
 /// ```
 fn kinseki_4194() -> Matcher<Crystal> {
-    Matcher::new(r#"^4194\ KSS\ ([0-9])([A-Z])[A-Z]$"#, move |c| {
+    Matcher::new(r#"^4194\ KSS\ ?([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),

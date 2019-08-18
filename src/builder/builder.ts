@@ -190,6 +190,7 @@ async function main(): Promise<void> {
     mglSubmissions,
     sgb2Submissions,
     cgbSubmissions,
+    agbSubmissions,
   ] = await Promise.all([
     crawlCartridges(),
     crawlDmg(),
@@ -198,6 +199,7 @@ async function main(): Promise<void> {
     crawlConsole('build/data/mgl.json'),
     crawlConsole('build/data/sgb2.json'),
     crawlConsole('build/data/cgb.json'),
+    crawlConsole('build/data/agb.json'),
   ])
   const consoleSubmissions = sgbSubmissions
     .concat(dmgSubmissions)
@@ -205,6 +207,7 @@ async function main(): Promise<void> {
     .concat(mglSubmissions)
     .concat(sgb2Submissions)
     .concat(cgbSubmissions)
+    .concat(agbSubmissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,

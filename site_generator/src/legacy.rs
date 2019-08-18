@@ -68,6 +68,7 @@ pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<Stri
             Manufacturer::Crosslink => "Crosslink Semiconductor",
             Manufacturer::Fujitsu => "Fujitsu",
             Manufacturer::Hudson => "Hudson",
+            Manufacturer::Hynix => "Hynix",
             Manufacturer::Hyundai => "Hyundai",
             Manufacturer::Kds => "Daishinku",
             Manufacturer::Kinseki => "Kinseki",

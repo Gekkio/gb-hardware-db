@@ -141,6 +141,25 @@ async function crawlCartridges(): Promise<CartridgeSubmission[]> {
   }))
 }
 
+async function crawlDmg(): Promise<DmgSubmission[]> {
+  const data: DmgSubmission[] = await fs.readJson('build/data/dmg.json')
+  return Bluebird.mapSeries(data, async submission => ({
+    ...submission,
+    photos: {
+      front: await photoStats(submission.photos.front),
+      back: await photoStats(submission.photos.back),
+      mainboardFront: await photoStats(submission.photos.mainboardFront),
+      mainboardBack: await photoStats(submission.photos.mainboardBack),
+      lcdBoardFront: await photoStats(submission.photos.lcdBoardFront),
+      lcdBoardBack: await photoStats(submission.photos.lcdBoardBack),
+      powerBoardFront: await photoStats(submission.photos.powerBoardFront),
+      powerBoardBack: await photoStats(submission.photos.powerBoardBack),
+      jackBoardFront: await photoStats(submission.photos.jackBoardFront),
+      jackBoardBack: await photoStats(submission.photos.jackBoardBack),
+    },
+  }))
+}
+
 async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> {
   if (!photo) return undefined
   const stats = await fs.stat(photo.path)
@@ -151,15 +170,22 @@ async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> 
 }
 
 async function main(): Promise<void> {
-  const [consoleSubmissions, cartridgeSubmissions] = await Promise.all([
+  const [legacySubmissions, cartridgeSubmissions, dmgSubmissions] = await Promise.all([
     crawlConsoles('data/consoles'),
     crawlCartridges(),
+    crawlDmg(),
   ])
+  const consoleSubmissions = legacySubmissions.concat(dmgSubmissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,
     consoleSubmissions
   ) as Record<ConsoleType, ConsoleSubmission[]>) as any
+  ['agb', 'ags', 'cgb', 'dmg', 'gbs', 'mgb', 'mgl', 'oxy', 'sgb', 'sgb2'].forEach(type => {
+    if (!(type in groupedConsoles)) {
+      (groupedConsoles as any)[type] = []
+    }
+  })
   const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({ type }) => type, cartridgeSubmissions)
   const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
 

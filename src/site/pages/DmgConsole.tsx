@@ -18,8 +18,6 @@ export default function DmgConsole({ submission }: { submission: DmgSubmission }
       <dl>
         <dt>Color</dt>
         <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
-        <dt>Screws</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.screws)}</dd>
         <dt>Assembly date</dt>
         <dd>{format.calendar(submission.metadata)}</dd>
       </dl>

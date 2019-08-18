@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::input::{is_not_outlier, Chip, LcdChip};
+use crate::input::{is_not_outlier, Chip, LcdScreen};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -66,27 +66,13 @@ pub struct DmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_label: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub year: Option<u32>,
+    pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u32>,
+    pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chip: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub screen: Option<DmgScreen>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
-    pub outlier: bool,
-}
-
-#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct DmgScreen {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub column_driver: Option<LcdChip>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub row_driver: Option<LcdChip>,
+    pub screen: Option<LcdScreen>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
@@ -97,9 +83,9 @@ pub struct DmgScreen {
 pub struct DmgPowerBoard {
     pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub year: Option<u32>,
+    pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u32>,
+    pub month: Option<u8>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,

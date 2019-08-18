@@ -109,46 +109,6 @@ async function crawlDefaultPhotos(unit: FsEntry): Promise<DefaultPhotos> {
   return { front, back, pcbFront, pcbBack }
 }
 
-async function crawlDmgPhotos(unit: FsEntry): Promise<DmgPhotos> {
-  const [
-    front,
-    back,
-    mainboardFront,
-    mainboardBack,
-    lcdBoardFront,
-    lcdBoardBack,
-    powerBoardFront,
-    powerBoardBack,
-    jackBoardFront,
-    jackBoardBack,
-  ] = await Promise.all(
-    [
-      '01_front.jpg',
-      '02_back.jpg',
-      '03_mainboard_front.jpg',
-      '04_mainboard_back.jpg',
-      '05_lcd_board_front.jpg',
-      '06_lcd_board_back.jpg',
-      '07_power_board_front.jpg',
-      '08_power_board_back.jpg',
-      '09_jack_board_front.jpg',
-      '10_jack_board_back.jpg',
-    ].map(filename => fetchPhoto(unit, filename))
-  )
-  return {
-    front,
-    back,
-    mainboardFront,
-    mainboardBack,
-    lcdBoardFront,
-    lcdBoardBack,
-    powerBoardFront,
-    powerBoardBack,
-    jackBoardFront,
-    jackBoardBack,
-  }
-}
-
 async function crawlAgsPhotos(unit: FsEntry): Promise<AgsPhotos> {
   const [front, top, back, pcbFront, pcbBack] = await Promise.all(
     ['01_front.jpg', '02_top.jpg', '03_back.jpg', '04_pcb_front.jpg', '05_pcb_back.jpg'].map(filename =>
@@ -235,7 +195,7 @@ export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> 
         const entry = consoleSubmissionEntry(path)
         switch (type.name) {
           case 'DMG':
-            return await crawl<'dmg', DmgMetadata, DmgPhotos>('dmg', DmgMetadata.schema, crawlDmgPhotos, entry)
+            return undefined
           case 'SGB':
             return await crawl<'sgb', SgbMetadata>('sgb', SgbMetadata.schema, crawlDefaultPhotos, entry)
           case 'MGB':

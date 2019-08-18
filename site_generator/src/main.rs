@@ -1,10 +1,8 @@
 use failure::Error;
 use gbhwdb_backend::config::cartridge::*;
 use gbhwdb_backend::input::cartridge::*;
-use gbhwdb_backend::parser::*;
 use std::fs::{create_dir_all, File};
 use std::path::Path;
-use std::u32;
 use walkdir::{DirEntry, WalkDir};
 
 use legacy::*;
@@ -15,262 +13,30 @@ fn is_metadata_file(entry: &DirEntry) -> bool {
     entry.file_type().is_file() && entry.file_name() == "metadata.json"
 }
 
-fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> {
-    manufacturer.map(|manufacturer| {
-        (match manufacturer {
-            Manufacturer::Analog => "analog",
-            Manufacturer::AtT => "at_t",
-            Manufacturer::Bsi => "bsi",
-            Manufacturer::Fujitsu => "fujitsu",
-            Manufacturer::Hudson => "hudson",
-            Manufacturer::Hyundai => "hyundai",
-            Manufacturer::Kds => "kds",
-            Manufacturer::Lgs => "lgs",
-            Manufacturer::LsiLogic => "lsi-logic",
-            Manufacturer::Macronix => "macronix",
-            Manufacturer::Mitsubishi => "mitsubishi",
-            Manufacturer::Mitsumi => "mitsumi",
-            Manufacturer::MoselVitelic => "mosel-vitelic",
-            Manufacturer::Motorola => "motorola",
-            Manufacturer::Nec => "nec",
-            Manufacturer::Oki => "oki",
-            Manufacturer::Rohm => "rohm",
-            Manufacturer::Samsung => "samsung",
-            Manufacturer::Sanyo => "sanyo",
-            Manufacturer::Sharp => "sharp",
-            Manufacturer::Smsc => "smsc",
-            Manufacturer::TexasInstruments => "texas-instruments",
-            Manufacturer::Toshiba => "toshiba",
-            Manufacturer::Victronix => "victronix",
-            Manufacturer::Winbond => "winbond",
+fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
+    if root.join(name).exists() {
+        Some(LegacyPhoto {
+            path: root
+                .canonicalize()
+                .unwrap()
+                .join(name)
+                .display()
+                .to_string(),
+            name: name.to_owned(),
         })
-        .to_owned()
-    })
-}
-
-fn to_legacy_mapper_type(mapper: MapperType) -> Option<String> {
-    Some(
-        (match mapper {
-            MapperType::Mbc1(Mbc1Version::Original) => "MBC1",
-            MapperType::Mbc1(Mbc1Version::A) => "MBC1A",
-            MapperType::Mbc1(Mbc1Version::B) => "MBC1B",
-            MapperType::Mbc1(Mbc1Version::B1) => "MBC1B1",
-            MapperType::Mbc2(Mbc2Version::Original) => "MBC2",
-            MapperType::Mbc2(Mbc2Version::A) => "MBC2A",
-            MapperType::Mbc3(Mbc3Version::Original) => "MBC3",
-            MapperType::Mbc3(Mbc3Version::A) => "MBC3A",
-            MapperType::Mbc3(Mbc3Version::B) => "MBC3B",
-            MapperType::Mbc30 => "MBC30",
-            MapperType::Mbc5 => "MBC5",
-            MapperType::Mbc6 => "MBC6",
-            MapperType::Mbc7 => "MBC7",
-            MapperType::Mmm01 => "MMM01",
-            MapperType::Huc3 => "HuC-3",
-            MapperType::Huc1(Huc1Version::Original) => "HuC-1",
-            MapperType::Huc1(Huc1Version::A) => "HuC-1A",
-        })
-        .to_owned(),
-    )
-}
-
-fn to_legacy_year(board_year: Option<u32>, chip_year: Option<Year>) -> Option<u16> {
-    match (board_year, chip_year) {
-        (_, Some(Year::Full(year))) => Some(year),
-        (Some(board_year), Some(Year::Partial(year))) => {
-            let diff_90 = (board_year as i32 - 1990 - year as i32).abs();
-            let diff_00 = (board_year as i32 - 2000 - year as i32).abs();
-            let year = if diff_90 < diff_00 {
-                1990 + year as u16
-            } else {
-                2000 + year as u16
-            };
-            assert!(year >= 1989 && year < 2010);
-            Some(year)
-        }
-        _ => None,
-    }
-}
-
-fn to_legacy_chip(
-    board_year: Option<u32>,
-    role: Option<ChipRole>,
-    chip: Option<Chip>,
-) -> Option<LegacyChip> {
-    if role == None {
-        assert_eq!(chip, None);
-    }
-    chip.map(|chip| {
-        let mut legacy = LegacyChip {
-            kind: None,
-            label: chip.label.clone(),
-            manufacturer: None,
-            year: None,
-            month: None,
-            week: None,
-        };
-        if let Some(label) = chip.label {
-            match role.unwrap() {
-                ChipRole::Rom => {
-                    let chip = gbhwdb_backend::parser::parse_mask_rom(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::Mapper => {
-                    let chip = gbhwdb_backend::parser::parse_mapper(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = to_legacy_mapper_type(chip.mbc_type);
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::Ram => {
-                    let chip = gbhwdb_backend::parser::parse_ram(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::RamBackup => {
-                    let chip = gbhwdb_backend::parser::parse_ram_backup(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = Some(chip.chip_type);
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::Crystal => {
-                    let chip = gbhwdb_backend::parser::parse_crystal(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.month = chip.month.map(|month| month as u16);
-                }
-                ChipRole::Flash => {
-                    let chip = gbhwdb_backend::parser::parse_flash(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::Eeprom => {
-                    let chip = gbhwdb_backend::parser::parse_eeprom(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::Accelerometer => {
-                    let chip = gbhwdb_backend::parser::parse_accelerometer(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                ChipRole::LineDecoder => {
-                    let chip = gbhwdb_backend::parser::parse_line_decoder(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = chip.chip_type;
-                    legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                }
-                ChipRole::Tama => {
-                    let chip = gbhwdb_backend::parser::parse_tama(&label)
-                        .unwrap_or_else(|_| panic!("{}", label));
-                    legacy.kind = Some(
-                        (match chip.tama_type {
-                            TamaType::Tama5 => "TAMA5",
-                            TamaType::Tama6 => "TAMA6",
-                            TamaType::Tama7 => "TAMA7",
-                        })
-                        .to_owned(),
-                    );
-                    legacy.year = to_legacy_year(board_year, chip.year);
-                    legacy.week = chip.week.map(|week| week as u16);
-                }
-                _ => (),
-            }
-        }
-        legacy
-    })
-}
-
-fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut LegacyBoard) {
-    let roles = ChipRoleConfig::from_layout(layout);
-    let convert = |pos: ChipPosition| to_legacy_chip(board.year, roles[pos], board[pos].clone());
-    match layout {
-        BoardLayout::Rom => {
-            legacy.rom = convert(ChipPosition::U1);
-        }
-        BoardLayout::RomMapper => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-        }
-        BoardLayout::RomMapperRam => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram = convert(ChipPosition::U3);
-            legacy.ram_protector = convert(ChipPosition::U4);
-        }
-        BoardLayout::RomMapperRamXtal => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram = convert(ChipPosition::U3);
-            legacy.ram_protector = convert(ChipPosition::U4);
-            legacy.crystal = convert(ChipPosition::X1);
-        }
-        BoardLayout::Mbc2 => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram_protector = convert(ChipPosition::U3);
-        }
-        BoardLayout::Mbc6 => {
-            legacy.mapper = convert(ChipPosition::U1);
-            legacy.rom = convert(ChipPosition::U2);
-            legacy.flash = convert(ChipPosition::U3);
-            legacy.ram = convert(ChipPosition::U4);
-            legacy.ram_protector = convert(ChipPosition::U5);
-        }
-        BoardLayout::Mbc7 => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.eeprom = convert(ChipPosition::U3);
-            legacy.accelerometer = convert(ChipPosition::U4);
-        }
-        BoardLayout::Type15 => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram = convert(ChipPosition::U3);
-            legacy.ram_protector = convert(ChipPosition::U4);
-            legacy.rom2 = convert(ChipPosition::U5);
-            legacy.line_decoder = convert(ChipPosition::U6);
-        }
-        BoardLayout::Huc3 => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram = convert(ChipPosition::U3);
-            legacy.ram_protector = convert(ChipPosition::U4);
-            legacy.u5 = convert(ChipPosition::U5);
-            legacy.crystal = convert(ChipPosition::X1);
-        }
-        BoardLayout::Tama => {
-            legacy.rom = convert(ChipPosition::U1);
-            legacy.mapper = convert(ChipPosition::U2);
-            legacy.ram = convert(ChipPosition::U3);
-            legacy.u4 = convert(ChipPosition::U4);
-            legacy.ram_protector = convert(ChipPosition::U5);
-            legacy.crystal = convert(ChipPosition::X1);
-        }
+    } else {
+        None
     }
 }
 
 fn main() -> Result<(), Error> {
+    process_cartridge_submissions()?;
+    process_dmg_submissions()?;
+    Ok(())
+}
+
+fn process_cartridge_submissions() -> Result<(), Error> {
+    use legacy::cartridge::*;
     let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
     let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
     let mut submissions = Vec::new();
@@ -331,6 +97,7 @@ fn main() -> Result<(), Error> {
                 code: cartridge.code,
                 title: format!("Entry #{}", cartridge.index),
                 slug: cartridge.slug,
+                sort_group: None,
                 contributor: cartridge.contributor,
                 metadata,
                 photos,
@@ -344,18 +111,259 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 
-fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
-    if root.join(name).exists() {
-        Some(LegacyPhoto {
-            path: root
-                .canonicalize()
-                .unwrap()
-                .join(name)
-                .display()
-                .to_string(),
-            name: name.to_owned(),
-        })
-    } else {
-        None
+fn process_dmg_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::dmg::*;
+    use gbhwdb_backend::parser::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/DMG").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: DmgConsole = serde_json::from_reader(file)?;
+
+            let cpu = console.mainboard.u1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let cpu = gbhwdb_backend::parser::parse_dmg_cpu(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        kind: Some(
+                            (match cpu.kind {
+                                DmgCpuKind::Original => "DMG-CPU",
+                                DmgCpuKind::A => "DMG-CPU A",
+                                DmgCpuKind::B => "DMG-CPU B",
+                                DmgCpuKind::C => "DMG-CPU C",
+                                DmgCpuKind::BlobB => "DMG-CPU B (blob)",
+                                DmgCpuKind::BlobC => "DMG-CPU C (blob)",
+                            })
+                            .to_owned(),
+                        ),
+                        label: Some(label),
+                        manufacturer: Some("sharp".to_string()),
+                        year: cpu.year,
+                        week: cpu.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        manufacturer: Some("sharp".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let year_hint = cpu.as_ref().map(|cpu| cpu.year.unwrap_or(1996));
+
+            let work_ram = console.mainboard.u2.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_ram(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: chip.chip_type,
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        kind: Some("blob".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let video_ram = console.mainboard.u3.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_ram(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: chip.chip_type,
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        kind: Some("blob".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let amplifier = console.mainboard.u4.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_dmg_amp(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("IR3R40".to_owned()),
+                        manufacturer: Some("sharp".to_owned()),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        kind: Some("blob".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let crystal = console.mainboard.x1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_crystal(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("4.194304 MHz".to_owned()),
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: None,
+                        month: chip.month,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+
+            let mainboard = LegacyDmgMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                extra_label: console.mainboard.extra_label.clone(),
+                stamp: console.mainboard.stamp.clone(),
+                cpu,
+                work_ram,
+                video_ram,
+                amplifier,
+                crystal,
+            };
+
+            let lcd_board = console.lcd_board.as_ref().map(|board| {
+                let regulator = board.chip.clone().map(|chip| {
+                    if let Some(label) = chip.label {
+                        let chip = gbhwdb_backend::parser::parse_dmg_reg(&label)
+                            .unwrap_or_else(|_| panic!("{}", label));
+                        LegacyChip {
+                            label: Some(label),
+                            kind: Some("IR3E02".to_owned()),
+                            manufacturer: Some("sharp".to_owned()),
+                            year: to_legacy_year(year_hint, chip.year),
+                            week: chip.week,
+                            month: None,
+                        }
+                    } else {
+                        LegacyChip::default()
+                    }
+                });
+                let column_driver = board
+                    .screen
+                    .as_ref()
+                    .and_then(|screen| screen.column_driver.as_ref())
+                    .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+
+                let row_driver = board
+                    .screen
+                    .as_ref()
+                    .and_then(|screen| screen.row_driver.as_ref())
+                    .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+
+                LegacyDmgLcdBoard {
+                    kind: board.label.clone(),
+                    circled_letters: board.circled_letters.clone(),
+                    stamp: board.stamp.clone(),
+                    year: board.year,
+                    month: board.month,
+                    lcd_panel: board.screen.as_ref().and_then(to_legacy_lcd_panel),
+                    column_driver,
+                    row_driver,
+                    regulator,
+                }
+            });
+
+            let power_board = console
+                .power_board
+                .as_ref()
+                .map(|board| LegacyDmgPowerBoard {
+                    kind: board.kind.clone(),
+                    label: (if board.kind == "D" {
+                        "DC CONV2 DMG"
+                    } else {
+                        "DC CONV DMG"
+                    })
+                    .to_owned(),
+                    year: board.year,
+                    month: board.month,
+                });
+
+            let jack_board = console.jack_board.as_ref().map(|board| LegacyDmgJackBoard {
+                kind: board.kind.clone(),
+                extra_label: board.extra_label.clone(),
+            });
+
+            let mainboard_stamp = console
+                .mainboard
+                .stamp
+                .as_ref()
+                .filter(|_| !console.mainboard.outlier)
+                .map(|stamp| {
+                    gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
+            let lcd_board_stamp = console
+                .lcd_board
+                .as_ref()
+                .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
+                .map(|stamp| {
+                    gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
+            let stamp = mainboard_stamp.or(lcd_board_stamp);
+
+            let metadata = LegacyDmgMetadata {
+                kind: "DMG".to_string(),
+                color: console.shell.color.clone(),
+                year: stamp
+                    .as_ref()
+                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                month: stamp.as_ref().and_then(|stamp| stamp.month),
+                mainboard,
+                lcd_board,
+                power_board,
+                jack_board,
+            };
+
+            let mut photos = LegacyDmgPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.back = get_photo(root, "02_back.jpg");
+            photos.mainboard_front = get_photo(root, "03_mainboard_front.jpg");
+            photos.mainboard_back = get_photo(root, "04_mainboard_back.jpg");
+            photos.lcd_board_front = get_photo(root, "05_lcd_board_front.jpg");
+            photos.lcd_board_back = get_photo(root, "06_lcd_board_back.jpg");
+            photos.power_board_front = get_photo(root, "07_power_board_front.jpg");
+            photos.power_board_back = get_photo(root, "08_power_board_back.jpg");
+            photos.jack_board_front = get_photo(root, "09_jack_board_front.jpg");
+            photos.jack_board_back = get_photo(root, "10_jack_board_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "dmg".to_string(),
+                title: console
+                    .shell
+                    .serial
+                    .clone()
+                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                slug: console.slug,
+                sort_group: console.shell.serial,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
     }
+    create_dir_all("build/data")?;
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/dmg.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
 }

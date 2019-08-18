@@ -6,7 +6,6 @@ use std::collections::{BTreeMap, HashMap};
 use std::fmt;
 use std::fs::File;
 use std::io::{BufReader, BufWriter};
-use std::ops::Index;
 use std::path::Path;
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
@@ -147,18 +146,6 @@ pub fn write_cfgs<P: AsRef<Path>>(
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
-pub enum ChipPosition {
-    U1,
-    U2,
-    U3,
-    U4,
-    U5,
-    U6,
-    U7,
-    X1,
-}
-
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum ChipRole {
     Unknown,
     Rom,
@@ -183,22 +170,6 @@ pub struct ChipRoleConfig {
     pub u6: Option<ChipRole>,
     pub u7: Option<ChipRole>,
     pub x1: Option<ChipRole>,
-}
-
-impl Index<ChipPosition> for ChipRoleConfig {
-    type Output = Option<ChipRole>;
-    fn index(&self, pos: ChipPosition) -> &Option<ChipRole> {
-        match pos {
-            ChipPosition::U1 => &self.u1,
-            ChipPosition::U2 => &self.u2,
-            ChipPosition::U3 => &self.u3,
-            ChipPosition::U4 => &self.u4,
-            ChipPosition::U5 => &self.u5,
-            ChipPosition::U6 => &self.u6,
-            ChipPosition::U7 => &self.u7,
-            ChipPosition::X1 => &self.x1,
-        }
-    }
 }
 
 impl ChipRoleConfig {

@@ -38,9 +38,9 @@ pub struct MglMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub year: Option<u32>,
+    pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u32>,
+    pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]

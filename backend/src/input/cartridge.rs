@@ -1,7 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::ops::Index;
 
-use crate::config::cartridge::ChipPosition;
 use crate::input::{is_not_outlier, Chip};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -36,9 +35,9 @@ pub struct CartridgeBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_label: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub year: Option<u32>,
+    pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u32>,
+    pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -58,22 +57,6 @@ pub struct CartridgeBoard {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
-}
-
-impl Index<ChipPosition> for CartridgeBoard {
-    type Output = Option<Chip>;
-    fn index(&self, pos: ChipPosition) -> &Option<Chip> {
-        match pos {
-            ChipPosition::U1 => &self.u1,
-            ChipPosition::U2 => &self.u2,
-            ChipPosition::U3 => &self.u3,
-            ChipPosition::U4 => &self.u4,
-            ChipPosition::U5 => &self.u5,
-            ChipPosition::U6 => &self.u6,
-            ChipPosition::U7 => &self.u7,
-            ChipPosition::X1 => &self.x1,
-        }
-    }
 }
 
 #[test]

@@ -134,56 +134,6 @@ export interface DmgMetadata {
   }
 }
 
-export namespace DmgMetadata {
-  export const schema = Joi.object().keys({
-    type: Joi.string()
-      .required()
-      .allow('DMG'),
-    color: Joi.string(),
-    screws: Joi.string(),
-    year: schemas.year,
-    month: schemas.month,
-    mainboard: Joi.object()
-      .required()
-      .keys({
-        type: Joi.string().required(),
-        circled_letters: Joi.string().allow(null),
-        extra_label: Joi.string(),
-        stamp: Joi.string(),
-        cpu: Chip.schema,
-        work_ram: Chip.schema,
-        video_ram: Chip.schema,
-        amplifier: Chip.schema,
-        crystal: Chip.schema,
-      }),
-    lcd_board: Joi.object().keys({
-      type: Joi.string().required(),
-      circled_letters: Joi.string(),
-      stamp: Joi.string(),
-      year: schemas.year,
-      month: schemas.month,
-      lcd_panel: Joi.object().keys({
-        label: Joi.string().required(),
-        year: schemas.year,
-        month: schemas.month,
-      }),
-      column_driver: Chip.schema,
-      row_driver: Chip.schema,
-      regulator: Chip.schema,
-    }),
-    power_board: Joi.object().keys({
-      type: Joi.string().required(),
-      label: Joi.string().required(),
-      year: schemas.year,
-      month: schemas.month,
-    }),
-    jack_board: Joi.object().keys({
-      type: Joi.string().required(),
-      extra_label: Joi.string().allow(null),
-    }),
-  })
-}
-
 export interface SgbMetadata {
   type: 'SGB'
   stamp?: string

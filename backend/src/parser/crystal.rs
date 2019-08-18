@@ -23,11 +23,39 @@ fn kds_short() -> Matcher<Crystal> {
     })
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_crystal;
+/// assert!(parse_crystal("D419A2").is_ok());
+/// ```
+fn kds_d419() -> Matcher<Crystal> {
+    Matcher::new(r#"^D419([A-Z])([0-9])$"#, move |c| {
+        Ok(Crystal {
+            manufacturer: Some(Manufacturer::Kds),
+            year: Some(year1(&c[2])?),
+            month: Some(kds_month(&c[1])?),
+        })
+    })
+}
+
 fn unknown() -> Matcher<Crystal> {
     Matcher::new(r#"^32K9[A-Z]$"#, move |_| {
         Ok(Crystal {
             manufacturer: None,
             year: None,
+            month: None,
+        })
+    })
+}
+
+/// ```
+/// # use gbhwdb_backend::parser::parse_crystal;
+/// assert!(parse_crystal("4.19C59").is_ok());
+/// ```
+fn unknown2() -> Matcher<Crystal> {
+    Matcher::new(r#"^4.19C([0-9])[[:alnum:]]$"#, move |c| {
+        Ok(Crystal {
+            manufacturer: None,
+            year: Some(year1(&c[1])?),
             month: None,
         })
     })
@@ -54,7 +82,8 @@ fn kds_month(text: &str) -> Result<u8, String> {
 
 pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Crystal>; 2] = [kds_short(), unknown()];
+        static ref MATCHERS: [Matcher<Crystal>; 4] =
+            [kds_short(), unknown(), kds_d419(), unknown2()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

@@ -3,8 +3,14 @@ use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
 pub use self::crystal::{parse_crystal, Crystal};
+pub use self::dmg_amp::{parse_dmg_amp, DmgAmp};
+pub use self::dmg_cpu::{parse_dmg_cpu, DmgCpu, DmgCpuKind};
+pub use self::dmg_reg::{parse_dmg_reg, DmgReg};
+pub use self::dmg_stamp::{parse_dmg_stamp, DmgStamp};
 pub use self::eeprom::{parse_eeprom, Eeprom};
 pub use self::flash::{parse_flash, Flash};
+pub use self::lcd_chip::{parse_lcd_chip, LcdChip};
+pub use self::lcd_screen::{parse_lcd_screen, LcdScreen};
 pub use self::line_decoder::{parse_line_decoder, LineDecoder};
 pub use self::mapper::{
     parse_mapper, Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version,
@@ -16,8 +22,14 @@ pub use self::tama::{parse_tama, TamaType};
 
 mod accelerometer;
 mod crystal;
+mod dmg_amp;
+mod dmg_cpu;
+mod dmg_reg;
+mod dmg_stamp;
 mod eeprom;
 mod flash;
+mod lcd_chip;
+mod lcd_screen;
 mod line_decoder;
 mod mapper;
 mod mask_rom;
@@ -78,10 +90,25 @@ pub fn year2(text: &str) -> Result<Year, String> {
     }
 }
 
+pub fn year2_u16(text: &str) -> Result<u16, String> {
+    match u16::from_str(text) {
+        Ok(value @ 0..=87) => Ok(value + 2000),
+        Ok(value @ 88..=99) => Ok(value + 1900),
+        _ => Err(format!("Invalid 2-digit year: {}", text)),
+    }
+}
+
 pub fn week2(text: &str) -> Result<u8, String> {
     match u8::from_str(text) {
         Ok(value @ 1..=53) => Ok(value),
         _ => Err(format!("Invalid 2-digit week: {}", text)),
+    }
+}
+
+pub fn month2(text: &str) -> Result<u8, String> {
+    match u8::from_str(text) {
+        Ok(value @ 1..=12) => Ok(value),
+        _ => Err(format!("Invalid 2-digit month: {}", text)),
     }
 }
 

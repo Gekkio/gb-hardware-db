@@ -10,6 +10,26 @@ pub struct Ram {
     pub week: Option<u8>,
 }
 
+/// LSI Logic LH52xx 64 kbit
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5264N4T LSI LOGIC JAPAN D222 24 C").is_ok());
+/// assert!(parse_ram("LH5264N4T LSI LOGIC JAPAN D4 06 05 C").is_ok());
+/// assert!(parse_ram("LH52A64N-TL LSI LOGIC JAPAN D4 06 05 C").is_ok());
+/// ```
+fn lsi_logic_lh52xx() -> Matcher<Ram> {
+    Matcher::new(r#"^(LH5264N4T|LH52A64N-TL|LH5264TN-TL)\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
+    move |c| {
+        Ok(Ram {
+            manufacturer: Some(Manufacturer::LsiLogic),
+            chip_type: Some(c[1].to_owned()),
+            year: Some(year1(&c[2])?),
+            week: Some(week2(&c[3])?),
+        })
+    })
+}
+
 /// LSI Logic LH52B256
 ///
 /// ```
@@ -228,6 +248,107 @@ fn sharp_lh5164an() -> Matcher<Ram> {
 fn sharp_lh5164an_2() -> Matcher<Ram> {
     Matcher::new(
         r#"^(LH5164AN-[0-9]{2}[A-Z]?)\ SHARP\ A([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH5164LN
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5164LN-10 SHARP JAPAN 8848 3 D").is_ok())
+/// ```
+fn sharp_lh5164ln() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH5164LN-[0-9]{2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH5264N
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5264N4 SHARP JAPAN 9204 5 Y").is_ok());
+/// assert!(parse_ram("LH5264N SHARP JAPAN 9022 7 Y").is_ok());
+/// ```
+fn sharp_lh5264n() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH5264N4?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH5264TN-L
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5264TN-L SHARP JAPAN 9038 5 Y").is_ok());
+/// ```
+fn sharp_lh5264tn_l() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH5264TN-L)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH5164N
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5164N-10L SHARP JAPAN 9043 1 DA").is_ok());
+/// ```
+fn sharp_lh5164n() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH5164N-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Sharp LH52A64N-L
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH52A64N-L SHARP JAPAN 9817 1 Y").is_ok());
+/// ```
+fn sharp_lh52a64n_l() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH52A64N-L)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Sharp),
@@ -495,7 +616,7 @@ fn victronix_vn4464s() -> Matcher<Ram> {
 }
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 25] = [
+        static ref MATCHERS: [Matcher<Ram>; 31] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -521,6 +642,12 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             winbond_w24258(),
             winbond_w2465(),
             victronix_vn4464s(),
+            sharp_lh5164ln(),
+            sharp_lh5164n(),
+            sharp_lh5264n(),
+            sharp_lh5264tn_l(),
+            sharp_lh52a64n_l(),
+            lsi_logic_lh52xx(),
         ];
     }
     for matcher in MATCHERS.iter() {

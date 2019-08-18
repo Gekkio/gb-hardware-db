@@ -46,3 +46,17 @@ pub struct LcdChip {
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
 }
+
+#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LcdScreen {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub label: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub column_driver: Option<LcdChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub row_driver: Option<LcdChip>,
+    #[serde(default)]
+    #[serde(skip_serializing_if = "is_not_outlier")]
+    pub outlier: bool,
+}

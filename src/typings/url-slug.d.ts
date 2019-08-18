@@ -1,7 +1,5 @@
 declare module 'url-slug' {
   function UrlSlug(value: string): string
-  namespace UrlSlug {
-
-  }
+  namespace UrlSlug {}
   export = UrlSlug
 }

@@ -7,17 +7,12 @@ function shortMonth(month: number): string {
 }
 
 export namespace short {
-  export function calendar<T extends Calendar>({ year, month, week, date_range }: T): string {
+  export function calendar<T extends Calendar>({ year, month, week }: T): string {
     let prefix
     if (month) {
       prefix = shortMonth(month)
     } else if (week) {
       prefix = String(week)
-    } else if (date_range) {
-      const [start, end] = date_range
-      if (start.month && end.month) {
-        prefix = `${shortMonth(start.month)}-${shortMonth(end.month)}`
-      }
     }
 
     const yearStr = (year && String(year)) || ''
@@ -25,17 +20,12 @@ export namespace short {
   }
 }
 
-export function calendar<T extends Calendar>({ year, month, week, date_range }: T): string {
+export function calendar<T extends Calendar>({ year, month, week }: T): string {
   let prefix
   if (month) {
     prefix = monthName(month)
   } else if (week) {
     prefix = `Week ${week}`
-  } else if (date_range) {
-    const [start, end] = date_range
-    if (start.month && end.month) {
-      prefix = `${monthName(start.month)}-${monthName(end.month)}`
-    }
   }
 
   const yearStr = (year && String(year)) || ''
@@ -49,14 +39,5 @@ export function optional<T>(f: (value: T) => string, value: T | null | undefined
     return '-'
   } else {
     return f(value)
-  }
-}
-
-export function manufacturer(value: string): string {
-  switch (value) {
-    case 'amic':
-      return 'AMIC Technology'
-    default:
-      return value
   }
 }

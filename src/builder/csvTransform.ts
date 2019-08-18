@@ -70,7 +70,6 @@ export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift((s: DmgSubmission) => s.metadata, [
     field('', 'color'),
-    field('', 'screws'),
     generate('', 'calendar_short', format.short.calendar),
     generate('', 'calendar', format.calendar),
     field('', 'year'),
@@ -419,10 +418,10 @@ function generate<T>(prefix: string, name: string, get: (value: T) => any): CsvC
 
 function chipColumns(prefix: string): CsvColumn<Chip>[] {
   return [
-    field(prefix, 'type'),
+    field(prefix, 'kind'),
     field(prefix, 'label'),
     field(prefix, 'manufacturer'),
-    generate(prefix, 'manufacturer_name', chip => format.manufacturer(chip.manufacturer || '')),
+    generate(prefix, 'manufacturer_name', chip => chip.manufacturer || ''),
     generate(prefix, 'calendar_short', format.short.calendar),
     generate(prefix, 'calendar', format.calendar),
     field(prefix, 'year'),

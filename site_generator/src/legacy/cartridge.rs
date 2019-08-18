@@ -166,6 +166,7 @@ pub fn to_legacy_chip(
             year: None,
             month: None,
             week: None,
+            rom_code: None,
         };
         if let Some(label) = chip.label {
             if let Some(role) = role {

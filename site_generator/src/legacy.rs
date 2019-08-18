@@ -22,19 +22,13 @@ pub struct LegacySubmission<M, P> {
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyChip {
-    #[serde(rename = "type")]
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub kind: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub manufacturer: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    pub manufacturer: Option<String>,
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<u8>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<u8>,
+    pub rom_code: Option<String>,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]

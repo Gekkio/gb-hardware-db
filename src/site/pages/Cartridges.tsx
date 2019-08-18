@@ -40,9 +40,11 @@ export default function Cartridges({ games, mappers }: Props) {
           </tr>
         </tbody>
         <tbody>
-          {games.filter(({ cfg }) => cfg.platform === 'gb').map(game => (
-            <Game key={game.type} game={game} />
-          ))}
+          {games
+            .filter(({ cfg }) => cfg.platform === 'gb')
+            .map(game => (
+              <Game key={game.type} game={game} />
+            ))}
         </tbody>
         <tbody className="divider">
           <tr>
@@ -50,9 +52,11 @@ export default function Cartridges({ games, mappers }: Props) {
           </tr>
         </tbody>
         <tbody>
-          {games.filter(({ cfg }) => cfg.platform === 'gbc').map(game => (
-            <Game key={game.type} game={game} />
-          ))}
+          {games
+            .filter(({ cfg }) => cfg.platform === 'gbc')
+            .map(game => (
+              <Game key={game.type} game={game} />
+            ))}
         </tbody>
       </table>
       <h3>Data dumps</h3>
@@ -77,7 +81,7 @@ function Game({ game: { type, cfg, submissions } }: { game: GameSubmissions }) {
   const years = rejectNil(submissions.map(({ metadata }) => metadata.board.year)).map(String)
   const releases = rejectNil(submissions.map(({ metadata }) => metadata.code))
   const mappers = rejectNil(
-    submissions.map(({ metadata }) => metadata.board.mapper).map(mapper => mapper && mapper.type)
+    submissions.map(({ metadata }) => metadata.board.mapper).map(mapper => mapper && mapper.kind)
   )
   return (
     <tr>

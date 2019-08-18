@@ -53,11 +53,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
                 role="presentation"
               />
             ) : (
-              <img
-                src={`/dmg_placeholder.svg`}
-                className="submission-list-item__placeholder"
-                role="presentation"
-              />
+              <img src={`/dmg_placeholder.svg`} className="submission-list-item__placeholder" role="presentation" />
             )}
           </div>
           <div className="submission-list-item__id">
@@ -74,12 +70,15 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       <ConsoleListingChip chip={metadata.mainboard.video_ram} />
       <ConsoleListingChip chip={metadata.mainboard.work_ram} />
       <td>
-        <div>{format.optional<string>(R.identity, metadata.lcd_board && metadata.lcd_board.type)}</div>
-        <div>{format.optional(format.short.calendar, metadata.lcd_board)}</div>
-        <div>{`LCD panel: ${format.optional(
-          ({ lcd_panel }) => format.optional(format.short.calendar, lcd_panel),
-          metadata.lcd_board
-        )}`}</div>
+        {metadata.lcd_board && (
+          <>
+            <div>{metadata.lcd_board.type}</div>
+            <div>{format.short.calendar(metadata.lcd_board)}</div>
+            {metadata.lcd_board.lcd_panel && (
+              <div>{`LCD panel: ${format.short.calendar(metadata.lcd_board.lcd_panel)}`}</div>
+            )}
+          </>
+        )}
       </td>
       <td>
         <div>{format.optional(v => `Type ${v}`, metadata.power_board && metadata.power_board.type)}</div>

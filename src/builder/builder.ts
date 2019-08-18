@@ -73,8 +73,8 @@ interface GroupedConsoleSubmissions {
 }
 
 function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefined {
-  if (metadata.board.mapper && metadata.board.mapper.type) {
-    switch (metadata.board.mapper.type) {
+  if (metadata.board.mapper && metadata.board.mapper.kind) {
+    switch (metadata.board.mapper.kind) {
       case 'MBC1':
       case 'MBC1A':
       case 'MBC1B':
@@ -105,7 +105,7 @@ function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefine
       case 'TAMA5':
         return 'tama5'
       default:
-        console.warn(`Unsupported mapper type ${metadata.board.mapper.type}`)
+        console.warn(`Unsupported mapper type ${metadata.board.mapper.kind}`)
         return undefined
     }
   }

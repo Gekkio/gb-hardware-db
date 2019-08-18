@@ -19,6 +19,9 @@ pub trait ToLegacyChip {
     fn month(&self) -> Option<u8> {
         None
     }
+    fn rom_code(&self) -> Option<String> {
+        None
+    }
 }
 
 pub fn map_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Result<T, ()>>(
@@ -44,6 +47,7 @@ pub fn to_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Result<T, ()>>(
             year: to_legacy_year(year_hint, chip.year()),
             week: chip.week(),
             month: chip.month(),
+            rom_code: chip.rom_code(),
         }
     })
 }
@@ -300,10 +304,7 @@ impl ToLegacyChip for parser::Icd2 {
 
 impl ToLegacyChip for parser::SgbRom {
     fn kind(&self) -> Option<String> {
-        Some(match &self.chip_type {
-            Some(chip_type) => format!("{} ({})", self.rom_code, chip_type),
-            None => self.rom_code.to_owned(),
-        })
+        self.chip_type.clone()
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         self.manufacturer
@@ -313,6 +314,9 @@ impl ToLegacyChip for parser::SgbRom {
     }
     fn week(&self) -> Option<u8> {
         self.week
+    }
+    fn rom_code(&self) -> Option<String> {
+        Some(self.rom_code.clone())
     }
 }
 

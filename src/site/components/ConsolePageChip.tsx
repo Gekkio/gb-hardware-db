@@ -1,4 +1,3 @@
-import * as R from 'ramda'
 import * as React from 'react'
 
 import { Chip } from '../../metadata'
@@ -17,10 +16,10 @@ export default function ConsolePageChip({ designator, title, chip }: Props) {
     <tr className={classes}>
       <td>{designator}</td>
       <td>{title}</td>
-      <td>{format.optional<string>(R.identity, chip && chip.type)}</td>
-      <td>{format.optional<string>(format.manufacturer, chip && chip.manufacturer)}</td>
-      <td>{format.optional<Chip>(format.calendar, chip)}</td>
-      <td>{format.optional<string>(R.identity, chip && chip.label)}</td>
+      <td>{chip && chip.kind}</td>
+      <td>{chip && chip.manufacturer}</td>
+      <td>{chip && format.calendar(chip)}</td>
+      <td>{chip && chip.label}</td>
     </tr>
   )
 }

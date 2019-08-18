@@ -247,7 +247,6 @@ fn process_dmg_submissions() -> Result<(), Error> {
             let stamp = mainboard_stamp.or(lcd_board_stamp);
 
             let metadata = LegacyDmgMetadata {
-                kind: "DMG".to_string(),
                 color: console.shell.color.clone(),
                 year: stamp
                     .as_ref()
@@ -325,7 +324,6 @@ fn process_sgb_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacySgbMetadata {
-                kind: "SGB".to_string(),
                 stamp: console.shell.stamp,
                 mainboard,
             };
@@ -397,7 +395,6 @@ fn process_mgb_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyMgbMetadata {
-                kind: "MGB".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
@@ -481,7 +478,6 @@ fn process_mgl_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyMglMetadata {
-                kind: "MGL".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
@@ -560,7 +556,6 @@ fn process_sgb2_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacySgb2Metadata {
-                kind: "SGB2".to_string(),
                 stamp: console.shell.stamp,
                 mainboard,
             };
@@ -653,7 +648,6 @@ fn process_cgb_submissions() -> Result<(), Error> {
                 .or(old_stamp.as_ref().and_then(|stamp| stamp.year));
 
             let metadata = LegacyCgbMetadata {
-                kind: "CGB".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: to_legacy_year(year_hint, stamp_year),
@@ -734,7 +728,6 @@ fn process_agb_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyAgbMetadata {
-                kind: "AGB".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
@@ -810,7 +803,6 @@ fn process_ags_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacyAgsMetadata {
-                kind: "AGS".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 mainboard,
@@ -889,7 +881,6 @@ fn process_gbs_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyGbsMetadata {
-                kind: "GBS".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
@@ -950,7 +941,6 @@ fn process_oxy_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacyOxyMetadata {
-                kind: "OXY".to_string(),
                 color: console.shell.color.clone(),
                 release_code: console.shell.release_code.clone(),
                 mainboard,

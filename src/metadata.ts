@@ -1,46 +1,22 @@
-import * as Joi from 'joi'
-
 export interface Calendar {
   year?: number
   month?: number
   week?: number
-  date_range?: [DateRangePart, DateRangePart]
-}
-
-const schemas = {
-  year: Joi.number()
-    .integer()
-    .min(1988)
-    .max(2010),
-  month: Joi.number()
-    .integer()
-    .min(1)
-    .max(12),
-  week: Joi.number()
-    .integer()
-    .min(1)
-    .max(53),
-}
-
-export interface DateRangePart {
-  month?: number
-  part?: number
 }
 
 export interface Chip {
-  type?: string
+  kind?: string
   label?: string | null
   manufacturer?: string
   year?: number
   month?: number
   week?: number
+  rom_code?: string
   outlier?: boolean
 }
 
 export interface DmgMetadata {
-  type: 'DMG'
   color?: string
-  screws?: string
   year?: number
   month?: number
   mainboard: {
@@ -82,7 +58,6 @@ export interface DmgMetadata {
 }
 
 export interface SgbMetadata {
-  type: 'SGB'
   stamp?: string
   mainboard: {
     type: string
@@ -100,7 +75,6 @@ export interface SgbMetadata {
 }
 
 export interface MgbMetadata {
-  type: 'MGB'
   color?: string
   release_code?: string
   year?: number
@@ -112,7 +86,6 @@ export interface MgbMetadata {
     stamp?: string
     year?: number
     month?: number
-    date_range?: [DateRangePart, DateRangePart]
     cpu?: Chip
     work_ram?: Chip
     amplifier?: Chip
@@ -126,7 +99,6 @@ export interface MgbMetadata {
 }
 
 export interface MglMetadata {
-  type: 'MGL'
   color?: string
   release_code?: string
   year?: number
@@ -138,7 +110,6 @@ export interface MglMetadata {
     stamp?: string
     year?: number
     month?: number
-    date_range?: [DateRangePart, DateRangePart]
     cpu?: Chip
     work_ram?: Chip
     amplifier?: Chip
@@ -153,7 +124,6 @@ export interface MglMetadata {
 }
 
 export interface Sgb2Metadata {
-  type: 'SGB2'
   stamp?: string
   mainboard: {
     type: string
@@ -172,7 +142,6 @@ export interface Sgb2Metadata {
 }
 
 export interface CgbMetadata {
-  type: 'CGB'
   color?: string
   release_code?: string
   year?: number
@@ -185,7 +154,6 @@ export interface CgbMetadata {
     stamp?: string
     year?: number
     month?: number
-    date_range?: [DateRangePart, DateRangePart]
     cpu?: Chip
     work_ram?: Chip
     amplifier?: Chip
@@ -195,7 +163,6 @@ export interface CgbMetadata {
 }
 
 export interface AgbMetadata {
-  type: 'AGB'
   color?: string
   release_code?: string
   year?: number
@@ -217,7 +184,6 @@ export interface AgbMetadata {
 }
 
 export interface AgsMetadata {
-  type: 'AGS'
   color?: string
   mainboard: {
     type: string
@@ -236,7 +202,6 @@ export interface AgsMetadata {
 }
 
 export interface GbsMetadata {
-  type: 'GBS'
   color?: string
   release_code?: string
   year?: number
@@ -260,7 +225,6 @@ export interface GbsMetadata {
 }
 
 export interface OxyMetadata {
-  type: 'OXY'
   color?: string
   release_code?: string
   mainboard: {

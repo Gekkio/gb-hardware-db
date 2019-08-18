@@ -58,8 +58,6 @@ pub struct LegacyAgsPhotos {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyDmgMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -156,8 +154,6 @@ pub struct LegacyDmgJackBoard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacySgbMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub mainboard: LegacySgbMainboard,
@@ -193,8 +189,6 @@ pub struct LegacySgbMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacySgb2Metadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub mainboard: LegacySgb2Mainboard,
@@ -232,8 +226,6 @@ pub struct LegacySgb2Mainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyMgbMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -277,8 +269,6 @@ pub struct LegacyMgbMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyMglMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -324,8 +314,6 @@ pub struct LegacyMglMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyCgbMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -369,8 +357,6 @@ pub struct LegacyCgbMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyAgbMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -414,8 +400,6 @@ pub struct LegacyAgbMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyAgsMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -455,8 +439,6 @@ pub struct LegacyAgsMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyGbsMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -504,8 +486,6 @@ pub struct LegacyGbsMainboard {
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyOxyMetadata {
-    #[serde(rename = "type")]
-    pub kind: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -549,15 +529,13 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
         let chip =
             gbhwdb_backend::parser::parse_lcd_chip(&label).unwrap_or_else(|_| panic!("{}", label));
         LegacyChip {
-            label: Some(match &ribbon_label {
-                Some(ribbon_label) => format!("{} {}", ribbon_label, label),
-                None => label.clone(),
-            }),
+            label: Some(label.clone()),
             kind: ribbon_label.clone(),
             manufacturer: Some("Sharp".to_owned()),
             year: to_legacy_year(year_hint, chip.year),
             week: chip.week,
             month: chip.month,
+            rom_code: None,
         }
     } else {
         LegacyChip {

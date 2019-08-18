@@ -1,5 +1,4 @@
 import * as classnames from 'classnames'
-import * as R from 'ramda'
 import * as React from 'react'
 
 import { Chip } from '../../metadata'
@@ -11,17 +10,16 @@ interface Props {
 }
 
 export default function ConsoleListingChip({ chip, hideType }: Props) {
-  if (chip === undefined) {
+  if (!chip) {
     return <td />
-  } else if (chip === null) {
-    return <td>-</td>
   }
   const classes = classnames('console-listing-chip', { 'console-listing-chip--outlier': !!chip.outlier })
   return (
     <td className={classes}>
-      {!hideType && <div>{format.optional<string>(R.identity, chip.type)}</div>}
+      {!hideType && <div>{chip.kind}</div>}
+      <div>{chip.rom_code}</div>
       <div>{format.short.calendar(chip)}</div>
-      <div>{format.optional(format.manufacturer, chip.manufacturer)}</div>
+      <div>{chip.manufacturer}</div>
     </td>
   )
 }

@@ -69,7 +69,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       <ConsoleListingChip chip={metadata.mainboard.work_ram} />
       <ConsoleListingChip chip={metadata.mainboard.rom} />
       <ConsoleListingChip chip={metadata.mainboard.cic} />
-      <ConsoleListingChip chip={metadata.mainboard.crystal} />
+      <ConsoleListingChip chip={metadata.mainboard.crystal} hideType={true} />
       <ConsoleListingChip chip={metadata.mainboard.coil} />
       <td>
         {renderPhoto(slug, 'Front', photos.front)}

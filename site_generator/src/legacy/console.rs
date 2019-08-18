@@ -190,6 +190,45 @@ pub struct LegacySgbMainboard {
     pub cic: Option<LegacyChip>,
 }
 
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacySgb2Metadata {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stamp: Option<String>,
+    pub mainboard: LegacySgb2Mainboard,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacySgb2Mainboard {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub letter_at_top_right: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cpu: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub icd2: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub work_ram: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rom: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cic: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub coil: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crystal: Option<LegacyChip>,
+}
+
 pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip {
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {

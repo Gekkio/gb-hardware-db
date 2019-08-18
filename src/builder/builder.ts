@@ -183,21 +183,25 @@ async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> 
 }
 
 async function main(): Promise<void> {
-  const [legacySubmissions, cartridgeSubmissions, dmgSubmissions, sgbSubmissions] = await Promise.all([
+  const [legacySubmissions, cartridgeSubmissions, dmgSubmissions, sgbSubmissions, sgb2Submissions] = await Promise.all([
     crawlConsoles('data/consoles'),
     crawlCartridges(),
     crawlDmg(),
-    crawlConsole('build/data/sgb.json')
+    crawlConsole('build/data/sgb.json'),
+    crawlConsole('build/data/sgb2.json'),
   ])
-  const consoleSubmissions = legacySubmissions.concat(dmgSubmissions).concat(sgbSubmissions)
+  const consoleSubmissions = legacySubmissions
+    .concat(dmgSubmissions)
+    .concat(sgbSubmissions)
+    .concat(sgb2Submissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,
     consoleSubmissions
   ) as Record<ConsoleType, ConsoleSubmission[]>) as any
-  ['agb', 'ags', 'cgb', 'dmg', 'gbs', 'mgb', 'mgl', 'oxy', 'sgb', 'sgb2'].forEach(type => {
+  ;['agb', 'ags', 'cgb', 'dmg', 'gbs', 'mgb', 'mgl', 'oxy', 'sgb', 'sgb2'].forEach(type => {
     if (!(type in groupedConsoles)) {
-      (groupedConsoles as any)[type] = []
+      ;(groupedConsoles as any)[type] = []
     }
   })
   const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({ type }) => type, cartridgeSubmissions)

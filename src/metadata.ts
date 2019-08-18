@@ -258,31 +258,6 @@ export interface Sgb2Metadata {
   }
 }
 
-export namespace Sgb2Metadata {
-  export const schema = Joi.object().keys({
-    type: Joi.string()
-      .required()
-      .allow('SGB2'),
-    stamp: Joi.string(),
-    mainboard: Joi.object()
-      .required()
-      .keys({
-        type: Joi.string().required(),
-        circled_letters: Joi.string(),
-        letter_at_top_right: Joi.string(),
-        crystal: Chip.schema,
-        cpu: Chip.schema,
-        icd2: Chip.schema,
-        work_ram: Chip.schema,
-        rom: Chip.schema,
-        cic: Chip.schema,
-        coil: Chip.schema,
-        year: schemas.year,
-        month: schemas.month,
-      }),
-  })
-}
-
 export interface CgbMetadata {
   type: 'CGB'
   color?: string

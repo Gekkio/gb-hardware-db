@@ -15,7 +15,7 @@ pub struct Cic {
 /// ```
 fn cic() -> Matcher<Cic> {
     Matcher::new(
-        r#"^(F411A|F413A|F413B)\ ©\ (1990|1992)\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Za-z]?$"#,
+        r#"^(F411A|F411B|F413A|F413B)\ ©\ (1990|1992)\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Za-z]?$"#,
         move |c| {
             Ok(Cic {
                 kind: c[1].to_owned(),

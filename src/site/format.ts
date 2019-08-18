@@ -20,7 +20,7 @@ export namespace short {
       }
     }
 
-    const yearStr = (year && String(year)) || '????'
+    const yearStr = (year && String(year)) || ''
     return prefix ? `${prefix}/${yearStr}` : yearStr
   }
 }
@@ -38,13 +38,13 @@ export function calendar<T extends Calendar>({ year, month, week, date_range }: 
     }
   }
 
-  const yearStr = (year && String(year)) || '????'
+  const yearStr = (year && String(year)) || ''
   return prefix ? `${prefix}/${yearStr}` : yearStr
 }
 
 export function optional<T>(f: (value: T) => string, value: T | null | undefined): string {
   if (value === undefined) {
-    return '????'
+    return ''
   } else if (value === null) {
     return '-'
   } else {
@@ -58,14 +58,10 @@ export function manufacturer(value: string): string {
       return 'AMIC Technology'
     case 'hynix':
       return 'Hynix'
-    case 'kss':
-      return 'Kinseki'
     case 'microchip':
       return 'Microchip'
     case 'st':
       return 'STMicroelectronics'
-    case 'tdk':
-      return 'TDK'
     default:
       return value
   }

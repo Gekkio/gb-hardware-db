@@ -203,7 +203,7 @@ export async function crawlConsoles(path: string): Promise<ConsoleSubmission[]> 
           case 'MGL':
             return await crawl<'mgl', MglMetadata>('mgl', MglMetadata.schema, crawlDefaultPhotos, entry)
           case 'SGB2':
-            return await crawl<'sgb2', Sgb2Metadata>('sgb2', Sgb2Metadata.schema, crawlDefaultPhotos, entry)
+            return undefined
           case 'CGB':
             return await crawl<'cgb', CgbMetadata>('cgb', CgbMetadata.schema, crawlDefaultPhotos, entry)
           case 'AGB':

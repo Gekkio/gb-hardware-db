@@ -13,7 +13,7 @@ pub struct CgbStamp {
 /// assert!(parse_cgb_stamp("218-2221").is_ok());
 /// ```
 fn cgb_stamp() -> Matcher<CgbStamp> {
-    Matcher::new(r#"^([0-9]{2})([0-9])[-\ .][0-9]{2,4}Y?$"#, move |c| {
+    Matcher::new(r#"^([0-9]{2})([0-9])[-\ .]?[0-9]{2,4}Y?$"#, move |c| {
         Ok(CgbStamp {
             year: Some(year1(&c[2])?),
             week: Some(week2(&c[1])?),

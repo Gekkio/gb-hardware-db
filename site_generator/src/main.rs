@@ -42,6 +42,7 @@ fn main() -> Result<(), Error> {
     process_cgb_submissions()?;
     process_agb_submissions()?;
     process_ags_submissions()?;
+    process_gbs_submissions()?;
     Ok(())
 }
 
@@ -837,6 +838,84 @@ fn process_ags_submissions() -> Result<(), Error> {
     }
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/ags.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
+fn process_gbs_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::gbs::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/GBS").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: GbsConsole = serde_json::from_reader(file)?;
+
+            let year_hint = console.mainboard.year.or(Some(2003));
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_cpu);
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_ram);
+            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_gbs_dol);
+            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_gbs_reg);
+            let u6 = map_legacy_chip(year_hint, &console.mainboard.u6, parser::parse_gbs_reg);
+            let crystal = map_legacy_chip(year_hint, &console.mainboard.y1, parser::parse_crystal)
+                .map(|chip| LegacyChip {
+                    kind: Some("33.554432 MHz".to_owned()),
+                    ..chip
+                });
+            let mainboard = LegacyGbsMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                number_pair: console.mainboard.number_pair.clone(),
+                stamp: console.mainboard.stamp.clone(),
+                stamp_front: console.mainboard.stamp_front.clone(),
+                stamp_back: console.mainboard.stamp_back.clone(),
+                year: console.mainboard.year,
+                month: console.mainboard.month,
+                cpu,
+                work_ram,
+                crystal,
+                u4,
+                u5,
+                u6,
+            };
+
+            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
+                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
+            });
+
+            let metadata = LegacyGbsMetadata {
+                kind: "GBS".to_string(),
+                color: console.shell.color.clone(),
+                release_code: console.shell.release_code.clone(),
+                year: stamp
+                    .as_ref()
+                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                week: stamp.as_ref().and_then(|stamp| stamp.week),
+                mainboard,
+            };
+
+            let mut photos = LegacyPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.back = get_photo(root, "02_back.jpg");
+            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
+            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "gbs".to_string(),
+                title: format!("Unit #{}", console.index),
+                slug: console.slug,
+                sort_group: None,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
+    }
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/gbs.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     Ok(())
 }

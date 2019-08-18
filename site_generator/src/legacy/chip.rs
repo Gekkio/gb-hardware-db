@@ -375,3 +375,33 @@ impl ToLegacyChip for parser::AgsU5 {
         self.week
     }
 }
+
+impl ToLegacyChip for parser::GbsDol {
+    fn kind(&self) -> Option<String> {
+        Some("GBS-DOL".to_owned())
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}
+
+impl ToLegacyChip for parser::GbsReg {
+    fn kind(&self) -> Option<String> {
+        Some(self.kind.clone())
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}

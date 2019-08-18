@@ -134,6 +134,21 @@ fn kinseki_kss20() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
+/// assert!(parse_crystal("33WKSS6DT").is_ok());
+/// ```
+fn kinseki_kss30() -> Matcher<Crystal> {
+    Matcher::new(r#"^33WKSS([0-9])([A-Z])T$"#, move |c| {
+        Ok(Crystal {
+            manufacturer: Some(Manufacturer::Kinseki),
+            year: Some(year1(&c[1])?),
+            month: Some(kds_month(&c[2])?),
+            week: None,
+        })
+    })
+}
+
+/// ```
+/// # use gbhwdb_backend::parser::parse_crystal;
 /// assert!(parse_crystal("4194 KSS 0KF").is_ok());
 /// assert!(parse_crystal("4194 KSS1A").is_ok());
 /// ```
@@ -240,7 +255,7 @@ fn kds_month(text: &str) -> Result<u8, String> {
 
 pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Crystal>; 14] = [
+        static ref MATCHERS: [Matcher<Crystal>; 15] = [
             kds_short(),
             unknown(),
             kds_d419(),
@@ -255,6 +270,7 @@ pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
             kds_8388(),
             kinseki_8388(),
             kds_d838(),
+            kinseki_kss30(),
         ];
     }
     for matcher in MATCHERS.iter() {

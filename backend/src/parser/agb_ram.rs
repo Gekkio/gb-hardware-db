@@ -110,15 +110,17 @@ fn amic() -> Matcher<AgbRam> {
     )
 }
 
-/// BSI BS616LV2019TC-70
+/// BSI BS616LV2018/BS616LV2019
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_ram;
 /// assert!(parse_agb_ram("BSI BS616LV2019TC-70 S31687FZ226013.1 L0335 TAIWAN").is_ok());
+/// assert!(parse_agb_ram("BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN").is_ok());
+/// assert!(parse_agb_ram("BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN").is_ok());
 /// ```
 fn bsi() -> Matcher<AgbRam> {
     Matcher::new(
-        r#"^BSI\ (BS616LV2019TC-[0-9]{2})\ [[:alnum:]]{14}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
+        r#"^BSI\ (BS616LV201[89]TC-[0-9]{2})\ [[:alnum:]]{5,6}-?[[:alnum:]]{8}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
         move |c| {
             Ok(AgbRam {
                 kind: Some(c[1].to_owned()),

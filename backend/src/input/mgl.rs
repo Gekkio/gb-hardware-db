@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::input::{is_not_outlier, Chip, LcdChip};
+use crate::input::{is_not_outlier, Chip, LcdScreen};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -10,7 +10,7 @@ pub struct MglConsole {
     pub index: u16,
     pub shell: MglShell,
     pub mainboard: MglMainboard,
-    pub screen: MglScreen,
+    pub screen: LcdScreen,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -53,18 +53,6 @@ pub struct MglMainboard {
     pub x1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub t1: Option<Chip>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
-    pub outlier: bool,
-}
-
-#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct MglScreen {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub column_driver: Option<LcdChip>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub row_driver: Option<LcdChip>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,

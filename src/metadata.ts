@@ -206,39 +206,6 @@ export interface MglMetadata {
   }
 }
 
-export namespace MglMetadata {
-  export const schema = Joi.object().keys({
-    type: Joi.string()
-      .required()
-      .allow('MGL'),
-    color: Joi.string(),
-    release_code: Joi.string(),
-    year: schemas.year,
-    week: schemas.week,
-    mainboard: Joi.object()
-      .required()
-      .keys({
-        type: Joi.string().required(),
-        circled_letters: Joi.string().allow(null),
-        number_pair: Joi.string(),
-        stamp: Joi.string(),
-        year: schemas.year,
-        month: schemas.month,
-        date_range: Joi.array().ordered(DateRangePart.schema, DateRangePart.schema),
-        cpu: Chip.schema,
-        work_ram: Chip.schema,
-        amplifier: Chip.schema,
-        regulator: Chip.schema,
-        crystal: Chip.schema,
-        t1: Chip.schema,
-      }),
-    lcd: Joi.object().keys({
-      column_driver: Chip.schema,
-      row_driver: Chip.schema,
-    }),
-  })
-}
-
 export interface Sgb2Metadata {
   type: 'SGB2'
   stamp?: string

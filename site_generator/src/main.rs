@@ -34,6 +34,8 @@ fn main() -> Result<(), Error> {
     process_cartridge_submissions()?;
     process_dmg_submissions()?;
     process_sgb_submissions()?;
+    process_mgb_submissions()?;
+    process_mgl_submissions()?;
     process_sgb2_submissions()?;
     Ok(())
 }
@@ -223,7 +225,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                         kind: Some("4.194304 MHz".to_owned()),
                         manufacturer: to_legacy_manufacturer(chip.manufacturer),
                         year: to_legacy_year(year_hint, chip.year),
-                        week: None,
+                        week: chip.week,
                         month: chip.month,
                     }
                 } else {
@@ -278,7 +280,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                     stamp: board.stamp.clone(),
                     year: board.year,
                     month: board.month,
-                    lcd_panel: board.screen.as_ref().and_then(to_legacy_lcd_panel),
+                    lcd_panel: board.screen.as_ref().and_then(to_legacy_dmg_lcd_panel),
                     column_driver,
                     row_driver,
                     regulator,
@@ -526,6 +528,331 @@ fn process_sgb_submissions() -> Result<(), Error> {
     Ok(())
 }
 
+fn process_mgb_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::mgb::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/MGB").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: MgbConsole = serde_json::from_reader(file)?;
+
+            let year_hint = console.mainboard.year;
+            let cpu = console.mainboard.u1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let cpu = gbhwdb_backend::parser::parse_mgb_cpu(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        kind: Some("CPU MGB".to_owned()),
+                        label: Some(label),
+                        manufacturer: Some("Sharp".to_string()),
+                        year: cpu.year,
+                        week: cpu.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        manufacturer: Some("Sharp".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let work_ram = console.mainboard.u2.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_ram(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: chip.chip_type,
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let amplifier = console.mainboard.u3.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_mgb_amp(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some(chip.kind),
+                        manufacturer: Some("Sharp".to_owned()),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let regulator = console.mainboard.u4.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_dmg_reg(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("IR3E02".to_owned()),
+                        manufacturer: Some("Sharp".to_owned()),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let crystal = console.mainboard.x1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_crystal(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("4.194304 MHz".to_owned()),
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: chip.month,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let mainboard = LegacyMgbMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                number_pair: console.mainboard.number_pair.clone(),
+                stamp: console.mainboard.stamp.clone(),
+                year: console.mainboard.year,
+                month: console.mainboard.month,
+                cpu,
+                work_ram,
+                amplifier,
+                regulator,
+                crystal,
+            };
+            let lcd = to_legacy_lcd_panel(year_hint, &console.screen);
+
+            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
+                gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
+            });
+
+            let metadata = LegacyMgbMetadata {
+                kind: "MGB".to_string(),
+                color: console.shell.color.clone(),
+                release_code: console.shell.release_code.clone(),
+                year: stamp
+                    .as_ref()
+                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                month: stamp.as_ref().and_then(|stamp| stamp.month),
+                mainboard,
+                lcd,
+            };
+
+            let mut photos = LegacyPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.back = get_photo(root, "02_back.jpg");
+            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
+            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "mgb".to_string(),
+                title: console
+                    .shell
+                    .serial
+                    .clone()
+                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                slug: console.slug,
+                sort_group: None,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
+    }
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/mgb.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
+fn process_mgl_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::mgl::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/MGL").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: MglConsole = serde_json::from_reader(file)?;
+
+            let year_hint = console.mainboard.year;
+            let cpu = console.mainboard.u1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let cpu = gbhwdb_backend::parser::parse_mgb_cpu(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        kind: Some("CPU MGB".to_owned()),
+                        label: Some(label),
+                        manufacturer: Some("Sharp".to_string()),
+                        year: cpu.year,
+                        week: cpu.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip {
+                        manufacturer: Some("Sharp".to_string()),
+                        ..LegacyChip::default()
+                    }
+                }
+            });
+            let work_ram = console.mainboard.u2.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_ram(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: chip.chip_type,
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let amplifier = console.mainboard.u3.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_mgb_amp(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some(chip.kind),
+                        manufacturer: Some("Sharp".to_owned()),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let regulator = console.mainboard.u4.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_dmg_reg(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("IR3E02".to_owned()),
+                        manufacturer: Some("Sharp".to_owned()),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let crystal = console.mainboard.x1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_crystal(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some("4.194304 MHz".to_owned()),
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: to_legacy_year(year_hint, chip.year),
+                        week: chip.week,
+                        month: chip.month,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let t1 = console.mainboard.t1.clone().map(|chip| {
+                if let Some(label) = chip.label {
+                    let chip = gbhwdb_backend::parser::parse_transformer(&label)
+                        .unwrap_or_else(|_| panic!("{}", label));
+                    LegacyChip {
+                        label: Some(label),
+                        kind: Some(chip.kind),
+                        manufacturer: to_legacy_manufacturer(chip.manufacturer),
+                        year: None,
+                        week: None,
+                        month: None,
+                    }
+                } else {
+                    LegacyChip::default()
+                }
+            });
+            let mainboard = LegacyMglMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                number_pair: console.mainboard.number_pair.clone(),
+                stamp: console.mainboard.stamp.clone(),
+                year: console.mainboard.year,
+                month: console.mainboard.month,
+                cpu,
+                work_ram,
+                amplifier,
+                regulator,
+                crystal,
+                t1,
+            };
+            let lcd = to_legacy_lcd_panel(year_hint, &console.screen);
+
+            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
+                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
+            });
+
+            let metadata = LegacyMglMetadata {
+                kind: "MGL".to_string(),
+                color: console.shell.color.clone(),
+                release_code: console.shell.release_code.clone(),
+                year: stamp
+                    .as_ref()
+                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                week: stamp.as_ref().and_then(|stamp| stamp.week),
+                mainboard,
+                lcd,
+            };
+
+            let mut photos = LegacyPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.back = get_photo(root, "02_back.jpg");
+            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
+            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "mgl".to_string(),
+                title: console
+                    .shell
+                    .serial
+                    .clone()
+                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                slug: console.slug,
+                sort_group: None,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
+    }
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/mgl.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
 fn process_sgb2_submissions() -> Result<(), Error> {
     use gbhwdb_backend::input::sgb2::*;
     use legacy::console::*;
@@ -650,7 +977,7 @@ fn process_sgb2_submissions() -> Result<(), Error> {
                         kind: Some("20.971520 MHz".to_owned()),
                         manufacturer: to_legacy_manufacturer(chip.manufacturer),
                         year: to_legacy_year(year_hint, chip.year),
-                        week: None,
+                        week: chip.week,
                         month: chip.month,
                     }
                 } else {

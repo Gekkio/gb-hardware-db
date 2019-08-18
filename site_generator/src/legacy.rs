@@ -95,46 +95,30 @@ pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<Stri
 }
 
 pub fn to_legacy_year(year_hint: Option<u16>, chip_year: Option<Year>) -> Option<u16> {
-    match (year_hint, chip_year) {
+    (match (year_hint, chip_year) {
         (_, Some(Year::Full(year))) => Some(year),
-        (Some(year_hint), Some(Year::Partial(year))) => {
-            let adjust_80 = (
-                (year_hint as i32 - (1980 + year as i32)).abs(),
-                1980 + year as u16,
-            );
-            let adjust_90 = (
-                (year_hint as i32 - (1990 + year as i32)).abs(),
-                1990 + year as u16,
-            );
-            let adjust_00 = (
-                (year_hint as i32 - (2000 + year as i32)).abs(),
-                2000 + year as u16,
-            );
-            let candidates = [adjust_80, adjust_90, adjust_00];
-            candidates
-                .iter()
-                .min_by_key(|(score, _)| score)
-                .map(|&(_, year)| {
-                    assert!(year >= 1989 && year < 2010);
-                    year
-                })
-        }
+        (Some(year_hint), Some(Year::Partial(year))) => Some(guess_full_year(year_hint, year)),
         _ => None,
-    }
+    })
+    .map(|year| {
+        assert!(year >= 1988 && year < 2010);
+        year
+    })
+}
+
+pub fn guess_full_year(hint: u16, partial_year: u8) -> u16 {
+    let decades = [1980, 1990, 2000];
+    decades
+        .into_iter()
+        .map(|decade| (decade, (hint as i32 - (decade + partial_year as i32)).abs()))
+        .min_by_key(|&(_, distance)| distance)
+        .map(|(&decade, _)| decade as u16 + partial_year as u16)
+        .unwrap_or(0)
 }
 
 #[test]
-fn test_to_legacy_year() {
-    assert_eq!(
-        to_legacy_year(Some(1992), Some(Year::Partial(2))),
-        Some(1992)
-    );
-    assert_eq!(
-        to_legacy_year(Some(1989), Some(Year::Partial(9))),
-        Some(1989)
-    );
-    assert_eq!(
-        to_legacy_year(Some(1998), Some(Year::Partial(9))),
-        Some(1999)
-    );
+fn test_guess_full_year() {
+    assert_eq!(1992, guess_full_year(1992, 2));
+    assert_eq!(1989, guess_full_year(1989, 9));
+    assert_eq!(1999, guess_full_year(1998, 9));
 }

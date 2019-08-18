@@ -227,7 +227,7 @@ fn sharp_lh5168() -> Matcher<Ram> {
 /// ```
 fn sharp_lh5164an() -> Matcher<Ram> {
     Matcher::new(
-        r#"^(LH5164AN-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        r#"^(LH5164AN-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ A?([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Sharp),
@@ -635,9 +635,29 @@ fn crosslink_lh52a64n_yl() -> Matcher<Ram> {
     )
 }
 
+/// Mosel-Vitelic LH52A64N-PL
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH52A64N-PL MOSEL-VITELIC JAPAN N651 0F C").is_ok());
+/// ```
+fn mosel_vitelic_lh52a64n_pl() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^(LH52A64N-PL)\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{1,2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::MoselVitelic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 32] = [
+        static ref MATCHERS: [Matcher<Ram>; 33] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -670,6 +690,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             sharp_lh52a64n_l(),
             lsi_logic_lh52xx(),
             crosslink_lh52a64n_yl(),
+            mosel_vitelic_lh52a64n_pl(),
         ];
     }
     for matcher in MATCHERS.iter() {

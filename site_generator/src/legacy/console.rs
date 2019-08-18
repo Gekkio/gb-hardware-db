@@ -112,7 +112,7 @@ pub struct LegacyDmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub lcd_panel: Option<LegacyLcdPanel>,
+    pub lcd_panel: Option<LegacyDmgLcdPanel>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub column_driver: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +123,7 @@ pub struct LegacyDmgLcdBoard {
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct LegacyLcdPanel {
+pub struct LegacyDmgLcdPanel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -229,6 +229,107 @@ pub struct LegacySgb2Mainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyMgbMetadata {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub color: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub release_code: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    pub mainboard: LegacyMgbMainboard,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lcd: Option<LegacyLcdPanel>,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyMgbMainboard {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub number_pair: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stamp: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cpu: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub work_ram: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amplifier: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub regulator: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crystal: Option<LegacyChip>,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyMglMetadata {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub color: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub release_code: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub week: Option<u8>,
+    pub mainboard: LegacyMglMainboard,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lcd: Option<LegacyLcdPanel>,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyMglMainboard {
+    #[serde(rename = "type")]
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub number_pair: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stamp: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cpu: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub work_ram: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub amplifier: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub regulator: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crystal: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub t1: Option<LegacyChip>,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyLcdPanel {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub column_driver: Option<LegacyChip>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub row_driver: Option<LegacyChip>,
+}
+
 pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip {
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {
@@ -240,7 +341,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
                 None => label.clone(),
             }),
             kind: ribbon_label.clone(),
-            manufacturer: Some("sharp".to_owned()),
+            manufacturer: Some("Sharp".to_owned()),
             year: to_legacy_year(year_hint, chip.year),
             week: chip.week,
             month: chip.month,
@@ -249,20 +350,35 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
         LegacyChip {
             label: ribbon_label.clone(),
             kind: ribbon_label.clone(),
-            manufacturer: Some("sharp".to_owned()),
+            manufacturer: Some("Sharp".to_owned()),
             ..LegacyChip::default()
         }
     }
 }
 
-pub fn to_legacy_lcd_panel(screen: &LcdScreen) -> Option<LegacyLcdPanel> {
+pub fn to_legacy_dmg_lcd_panel(screen: &LcdScreen) -> Option<LegacyDmgLcdPanel> {
     screen.label.as_ref().map(|label| {
         let screen =
             gbhwdb_backend::parser::parse_lcd_screen(label).unwrap_or_else(|_| panic!("{}", label));
-        LegacyLcdPanel {
+        LegacyDmgLcdPanel {
             label: Some(label.clone()),
             year: screen.year,
             month: screen.month,
         }
+    })
+}
+
+pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option<LegacyLcdPanel> {
+    let column_driver = screen
+        .column_driver
+        .as_ref()
+        .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+    let row_driver = screen
+        .row_driver
+        .as_ref()
+        .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+    Some(LegacyLcdPanel {
+        column_driver,
+        row_driver,
     })
 }

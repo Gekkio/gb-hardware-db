@@ -2,6 +2,7 @@ use regex::{Captures, Regex, RegexBuilder};
 use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
+pub use self::cgb_stamp::{parse_cgb_stamp, CgbStamp};
 pub use self::cic::{parse_cic, Cic};
 pub use self::coil::{parse_coil, Coil};
 pub use self::crystal::{parse_crystal, Crystal};
@@ -19,14 +20,18 @@ pub use self::mapper::{
     parse_mapper, Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version,
 };
 pub use self::mask_rom::{parse_mask_rom, MaskRom};
+pub use self::mgb_amp::{parse_mgb_amp, MgbAmp};
+pub use self::mgb_cpu::{parse_mgb_cpu, MgbCpu};
 pub use self::ram::{parse_ram, Ram};
 pub use self::ram_backup::{parse_ram_backup, RamBackup};
 pub use self::sgb2_cpu::{parse_sgb2_cpu, Sgb2Cpu};
 pub use self::sgb_cpu::{parse_sgb_cpu, SgbCpu};
 pub use self::sgb_rom::{parse_sgb_rom, SgbRom};
 pub use self::tama::{parse_tama, TamaType};
+pub use self::transformer::{parse_transformer, Transformer};
 
 mod accelerometer;
+mod cgb_stamp;
 mod cic;
 mod coil;
 mod crystal;
@@ -42,12 +47,15 @@ mod lcd_screen;
 mod line_decoder;
 mod mapper;
 mod mask_rom;
+mod mgb_amp;
+mod mgb_cpu;
 mod ram;
 mod ram_backup;
 mod sgb2_cpu;
 mod sgb_cpu;
 mod sgb_rom;
 mod tama;
+mod transformer;
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Manufacturer {

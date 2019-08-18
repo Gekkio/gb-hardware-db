@@ -43,9 +43,26 @@ fn agb_cpu_b() -> Matcher<AgbCpu> {
     )
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_cpu;
+/// assert!(parse_agb_cpu("0529 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM").is_ok());
+/// ```
+fn agb_cpu_e() -> Matcher<AgbCpu> {
+    Matcher::new(
+        r#"^([0-9]{2})([0-9]{2})\ 2m\ (CPU\ AGB\ E)\ Ⓜ\ ©\ 2004\ Nintendo\ JAPAN\ ARM$"#,
+        move |c| {
+            Ok(AgbCpu {
+                kind: c[3].to_owned(),
+                year: Some(year2_u16(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
 pub fn parse_agb_cpu(text: &str) -> Result<AgbCpu, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbCpu>; 2] = [agb_cpu(), agb_cpu_b()];
+        static ref MATCHERS: [Matcher<AgbCpu>; 3] = [agb_cpu(), agb_cpu_b(), agb_cpu_e()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

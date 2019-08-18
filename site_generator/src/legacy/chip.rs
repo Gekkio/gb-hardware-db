@@ -405,3 +405,48 @@ impl ToLegacyChip for parser::GbsReg {
         self.week
     }
 }
+
+impl ToLegacyChip for parser::OxyU2 {
+    fn kind(&self) -> Option<String> {
+        Some(self.kind.clone())
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}
+
+impl ToLegacyChip for parser::OxyU4 {
+    fn kind(&self) -> Option<String> {
+        Some(self.kind.clone())
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}
+
+impl ToLegacyChip for parser::OxyU5 {
+    fn kind(&self) -> Option<String> {
+        Some(self.kind.clone())
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}

@@ -43,6 +43,7 @@ fn main() -> Result<(), Error> {
     process_agb_submissions()?;
     process_ags_submissions()?;
     process_gbs_submissions()?;
+    process_oxy_submissions()?;
     Ok(())
 }
 
@@ -916,6 +917,67 @@ fn process_gbs_submissions() -> Result<(), Error> {
     }
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/gbs.json")?;
+    serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
+fn process_oxy_submissions() -> Result<(), Error> {
+    use gbhwdb_backend::input::oxy::*;
+    use legacy::console::*;
+    let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);
+    let mut submissions = Vec::new();
+    for entry in walker.into_iter().filter_entry(is_metadata_file) {
+        let entry = entry?;
+        if let Some(root) = entry.path().parent() {
+            println!("{}", entry.path().display());
+            let file = File::open(&entry.path())?;
+            let console: OxyConsole = serde_json::from_reader(file)?;
+
+            let year_hint = console.mainboard.year.or(Some(2005));
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
+            let u2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_oxy_u2);
+            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_oxy_u4);
+            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_oxy_u5);
+            let mainboard = LegacyOxyMainboard {
+                kind: console.mainboard.label.clone(),
+                circled_letters: console.mainboard.circled_letters.clone(),
+                year: console.mainboard.year,
+                month: console.mainboard.month,
+                cpu,
+                u2,
+                u4,
+                u5,
+            };
+
+            let metadata = LegacyOxyMetadata {
+                kind: "OXY".to_string(),
+                color: console.shell.color.clone(),
+                release_code: console.shell.release_code.clone(),
+                mainboard,
+            };
+
+            let mut photos = LegacyPhotos::default();
+            photos.front = get_photo(root, "01_front.jpg");
+            photos.back = get_photo(root, "02_back.jpg");
+            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
+            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            submissions.push(LegacySubmission {
+                code: "oxy".to_string(),
+                title: console
+                    .shell
+                    .serial
+                    .clone()
+                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                slug: console.slug,
+                sort_group: None,
+                contributor: console.contributor,
+                metadata,
+                photos,
+            });
+        }
+    }
+    submissions.sort_by_key(|submission| (submission.slug.clone()));
+    let file = File::create("build/data/oxy.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     Ok(())
 }

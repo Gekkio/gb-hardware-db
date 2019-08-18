@@ -196,8 +196,8 @@ async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> 
 }
 
 async function main(): Promise<void> {
+  const cartridgeSubmissions = await crawlCartridges()
   const [
-    cartridgeSubmissions,
     dmgSubmissions,
     sgbSubmissions,
     mgbSubmissions,
@@ -207,8 +207,8 @@ async function main(): Promise<void> {
     agbSubmissions,
     agsSubmissions,
     gbsSubmissions,
-  ] = await Promise.all([
-    crawlCartridges(),
+    oxySubmissions,
+  ] = await Promise.all<ConsoleSubmission[]>([
     crawlDmg(),
     crawlConsole('build/data/sgb.json'),
     crawlConsole('build/data/mgb.json'),
@@ -218,6 +218,7 @@ async function main(): Promise<void> {
     crawlConsole('build/data/agb.json'),
     crawlAgs(),
     crawlConsole('build/data/gbs.json'),
+    crawlConsole('build/data/oxy.json'),
   ])
   const consoleSubmissions = sgbSubmissions
     .concat(dmgSubmissions)
@@ -228,6 +229,7 @@ async function main(): Promise<void> {
     .concat(agbSubmissions)
     .concat(agsSubmissions)
     .concat(gbsSubmissions)
+    .concat(oxySubmissions)
 
   const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
     ({ type }) => type,

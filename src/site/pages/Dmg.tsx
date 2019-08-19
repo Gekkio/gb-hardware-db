@@ -1,4 +1,3 @@
-import * as R from 'ramda'
 import * as React from 'react'
 
 import { DmgSubmission, Photo } from '../../crawler'
@@ -64,7 +63,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       </td>
       <td>
         <div>{metadata.mainboard.type}</div>
-        <div>{`Assembled: ${format.short.calendar(metadata)}`}</div>
+        {metadata.year && <div>{`Assembled: ${format.short.calendar(metadata)}`}</div>}
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />
       <ConsoleListingChip chip={metadata.mainboard.video_ram} />

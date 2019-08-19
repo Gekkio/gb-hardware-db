@@ -61,7 +61,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       <td>
         <div>{metadata.mainboard.type}</div>
         <div>{format.short.calendar(metadata.mainboard)}</div>
-        <div>{`Assembled: ${format.short.calendar(metadata)}`}</div>
+        {metadata.year && <div>{`Assembled: ${format.short.calendar(metadata)}`}</div>}
         {metadata.release_code && <div>{`Release: ${metadata.release_code}`}</div>}
       </td>
       <ConsoleListingChip chip={metadata.mainboard.cpu} />

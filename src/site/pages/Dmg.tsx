@@ -81,10 +81,14 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
         )}
       </td>
       <td>
-        <div>{format.optional(v => `Type ${v}`, metadata.power_board && metadata.power_board.type)}</div>
-        <div>{format.optional(format.short.calendar, metadata.power_board)}</div>
+        {metadata.power_board && (
+          <>
+            <div>{`Type ${metadata.power_board.type}`}</div>
+            <div>{format.short.calendar(metadata.power_board)}</div>
+          </>
+        )}
       </td>
-      <td>{format.optional<string>(R.identity, metadata.jack_board && metadata.jack_board.type)}</td>
+      <td>{metadata.jack_board && metadata.jack_board.type}</td>
       <td>
         {renderPhoto(slug, 'Front', photos.front)}
         {renderPhoto(slug, 'Back', photos.back)}

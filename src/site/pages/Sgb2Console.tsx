@@ -1,11 +1,11 @@
 import * as React from 'react'
-import * as R from 'ramda'
 
 import { Photo, Sgb2Submission } from '../../crawler'
 import { Sgb2Metadata } from '../../metadata'
-import * as format from '../format'
 import ConsolePageChip from '../components/ConsolePageChip'
 import ConsolePageChipTable from '../components/ConsolePageChipTable'
+import ConsolePageShell from '../components/ConsolePageShell'
+import ConsolePageMainboard from '../components/ConsolePageMainboard'
 
 export default function Sgb2Console({ submission }: { submission: Sgb2Submission }) {
   return (
@@ -15,25 +15,13 @@ export default function Sgb2Console({ submission }: { submission: Sgb2Submission
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
-      <dl>
-        <dt>Stamp on case</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.stamp)}</dd>
-      </dl>
+      <ConsolePageShell submission={submission} />
       <h3>Mainboard</h3>
       <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.pcbFront)}
         {renderPhoto(submission, submission.photos.pcbBack)}
       </div>
-      <dl>
-        <dt>Board type</dt>
-        <dd>{submission.metadata.mainboard.type}</dd>
-        <dt>Manufacture date</dt>
-        <dd>{format.calendar(submission.metadata.mainboard)}</dd>
-        <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
-        <dt>Letter at top right</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.letter_at_top_right)}</dd>
-      </dl>
+      <ConsolePageMainboard submission={submission} />
       <h3>Chips</h3>
       {renderChips(submission.metadata)}
     </article>

@@ -1,11 +1,12 @@
 import * as React from 'react'
-import * as R from 'ramda'
 
-import { Photo, DmgSubmission } from '../../crawler'
+import { DmgSubmission, Photo } from '../../crawler'
 import { DmgMetadata } from '../../metadata'
 import * as format from '../format'
 import ConsolePageChip from '../components/ConsolePageChip'
 import ConsolePageChipTable from '../components/ConsolePageChipTable'
+import ConsolePageMainboard from '../components/ConsolePageMainboard'
+import ConsolePageShell from '../components/ConsolePageShell'
 
 export default function DmgConsole({ submission }: { submission: DmgSubmission }) {
   return (
@@ -15,27 +16,13 @@ export default function DmgConsole({ submission }: { submission: DmgSubmission }
         {renderPhoto(submission, submission.photos.front)}
         {renderPhoto(submission, submission.photos.back)}
       </div>
-      <dl>
-        <dt>Color</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.color)}</dd>
-        <dt>Assembly date</dt>
-        <dd>{format.calendar(submission.metadata)}</dd>
-      </dl>
+      <ConsolePageShell submission={submission} />
       <h3>Mainboard</h3>
       <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.mainboardFront)}
         {renderPhoto(submission, submission.photos.mainboardBack)}
       </div>
-      <dl>
-        <dt>Board type</dt>
-        <dd>{submission.metadata.mainboard.type}</dd>
-        <dt>Stamp</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.stamp)}</dd>
-        <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.circled_letters)}</dd>
-        <dt>Extra label</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.mainboard.extra_label)}</dd>
-      </dl>
+      <ConsolePageMainboard submission={submission} />
       <h3>LCD Board</h3>
       <div className="page-console__photo">
         {renderPhoto(submission, submission.photos.lcdBoardFront)}
@@ -61,53 +48,88 @@ export default function DmgConsole({ submission }: { submission: DmgSubmission }
 }
 
 function renderLcdBoardDetails(metadata: DmgMetadata) {
-  if (!metadata.lcd_board) {
+  const { lcd_board } = metadata
+  if (!lcd_board) {
     return null
   }
   return (
     <dl>
       <dt>Board type</dt>
-      <dd>{metadata.lcd_board.type}</dd>
-      <dt>Manufacture date</dt>
-      <dd>{format.calendar(metadata.lcd_board)}</dd>
-      <dt>Stamp</dt>
-      <dd>{format.optional<string>(R.identity, metadata.lcd_board.stamp)}</dd>
-      <dt>Circled letter(s) on board</dt>
-      <dd>{format.optional<string>(R.identity, metadata.lcd_board.circled_letters)}</dd>
-      <dt>LCD panel label</dt>
-      <dd>{format.optional(({ label }) => label, metadata.lcd_board.lcd_panel)}</dd>
-      <dt>LCD panel date</dt>
-      <dd>{format.optional(panel => format.calendar(panel), metadata.lcd_board.lcd_panel)}</dd>
+      <dd>{lcd_board.type}</dd>
+      {lcd_board.year && (
+        <>
+          <dt>Manufacture date</dt>
+          <dd>{format.calendar(lcd_board)}</dd>
+        </>
+      )}
+      {lcd_board.stamp && (
+        <>
+          <dt>Stamp</dt>
+          <dd>{lcd_board.stamp}</dd>
+        </>
+      )}
+      {lcd_board.circled_letters && (
+        <>
+          <dt>Circled letter(s) on board</dt>
+          <dd>{lcd_board.circled_letters}</dd>
+        </>
+      )}
+      {lcd_board.lcd_panel && lcd_board.lcd_panel.label && (
+        <>
+          <dt>LCD panel label</dt>
+          <dd>{lcd_board.lcd_panel.label}</dd>
+        </>
+      )}
+      {lcd_board.lcd_panel && lcd_board.lcd_panel.year && (
+        <>
+          <dt>LCD panel date</dt>
+          <dd>{format.calendar(lcd_board.lcd_panel)}</dd>
+        </>
+      )}
     </dl>
   )
 }
 
 function renderPowerBoardDetails(metadata: DmgMetadata) {
-  if (!metadata.power_board) {
+  const { power_board } = metadata
+  if (!power_board) {
     return null
   }
   return (
     <dl>
       <dt>Board type</dt>
-      <dd>{`Type ${metadata.power_board.type}`}</dd>
-      <dt>Manufacture date</dt>
-      <dd>{format.calendar(metadata.power_board)}</dd>
-      <dt>Label</dt>
-      <dd>{format.optional<string>(R.identity, metadata.power_board.label)}</dd>
+      <dd>{`Type ${power_board.type}`}</dd>
+      {power_board.year && (
+        <>
+          <dt>Manufacture date</dt>
+          <dd>{format.calendar(power_board)}</dd>
+        </>
+      )}
+      {power_board.label && (
+        <>
+          <dt>Label</dt>
+          <dd>{power_board.label}</dd>
+        </>
+      )}
     </dl>
   )
 }
 
 function renderJackBoardDetails(metadata: DmgMetadata) {
-  if (!metadata.jack_board) {
+  const { jack_board } = metadata
+  if (!jack_board) {
     return null
   }
   return (
     <dl>
       <dt>Board type</dt>
-      <dd>{metadata.jack_board.type}</dd>
-      <dt>Extra label</dt>
-      <dd>{format.optional<string>(R.identity, metadata.jack_board.extra_label)}</dd>
+      <dd>{jack_board.type}</dd>
+      {jack_board.extra_label && (
+        <>
+          <dt>Extra label</dt>
+          <dd>{jack_board.extra_label}</dd>
+        </>
+      )}
     </dl>
   )
 }

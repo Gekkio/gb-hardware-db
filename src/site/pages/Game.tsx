@@ -67,7 +67,7 @@ function Submission({
           </div>
         </a>
       </td>
-      <td>{format.optional(x => x, metadata.code)}</td>
+      <td>{metadata.code}</td>
       <td>
         <div>{metadata.board.type}</div>
         <div>{format.short.calendar(metadata.board)}</div>

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as R from 'ramda'
 
 import { CartridgeSubmission, Photo } from '../../crawler'
 import { CartridgeMetadata } from '../../metadata'
@@ -9,6 +8,7 @@ import ConsolePageChipTable from '../components/ConsolePageChipTable'
 import { CartLayout, GameConfig, gameLayouts } from '../../config'
 
 export default function Cartridge({ submission, cfg }: { submission: CartridgeSubmission; cfg: GameConfig }) {
+  const { metadata } = submission
   const layout = gameLayouts[cfg.layouts[0]]
   return (
     <article className="page-cartridge">
@@ -18,10 +18,18 @@ export default function Cartridge({ submission, cfg }: { submission: CartridgeSu
         {renderPhoto(submission, submission.photos.back)}
       </div>
       <dl>
-        <dt>Release</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.code)}</dd>
-        <dt>Stamp on case</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.stamp)}</dd>
+        {metadata.code && (
+          <>
+            <dt>Release</dt>
+            <dd>{metadata.code}</dd>
+          </>
+        )}
+        {metadata.stamp && (
+          <>
+            <dt>Stamp on case</dt>
+            <dd>{metadata.stamp}</dd>
+          </>
+        )}
       </dl>
       <h3>Board</h3>
       <div className="page-cartridge__photo">
@@ -30,13 +38,25 @@ export default function Cartridge({ submission, cfg }: { submission: CartridgeSu
       </div>
       <dl>
         <dt>Board type</dt>
-        <dd>{submission.metadata.board.type}</dd>
-        <dt>Manufacture date</dt>
-        <dd>{format.calendar(submission.metadata.board)}</dd>
-        <dt>Circled letter(s) on board</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.board.circled_letters)}</dd>
-        <dt>Extra label</dt>
-        <dd>{format.optional<string>(R.identity, submission.metadata.board.extra_label)}</dd>
+        <dd>{metadata.board.type}</dd>
+        {metadata.board.year && (
+          <>
+            <dt>Manufacture date</dt>
+            <dd>{format.calendar(metadata.board)}</dd>
+          </>
+        )}
+        {metadata.board.circled_letters && (
+          <>
+            <dt>Circled letter(s) on board</dt>
+            <dd>{metadata.board.circled_letters}</dd>
+          </>
+        )}
+        {metadata.board.extra_label && (
+          <>
+            <dt>Extra label</dt>
+            <dd>{metadata.board.extra_label}</dd>
+          </>
+        )}
       </dl>
       <h3>Chips</h3>
       {renderChips(layout, submission.metadata)}

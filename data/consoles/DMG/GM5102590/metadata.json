@@ -40,7 +40,8 @@
         "label": "1160",
         "ribbon_label": "LH5076 BF"
       }
-    }
+    },
+    "outlier": true
   },
   "power_board": {
     "kind": "D",

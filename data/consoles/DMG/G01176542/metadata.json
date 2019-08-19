@@ -42,7 +42,8 @@
         "label": "004",
         "ribbon_label": "LH5076 F"
       }
-    }
+    },
+    "outlier": true
   },
   "power_board": {
     "kind": "A1",

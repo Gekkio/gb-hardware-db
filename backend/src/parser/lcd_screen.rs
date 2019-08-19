@@ -1,10 +1,10 @@
 use lazy_static::lazy_static;
 
-use super::{month2, year2_u16, Matcher};
+use super::{month2, year1, Matcher, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LcdScreen {
-    pub year: Option<u16>,
+    pub year: Option<Year>,
     pub month: Option<u8>,
 }
 
@@ -13,36 +13,17 @@ pub struct LcdScreen {
 /// assert!(parse_lcd_screen("S890220").is_ok());
 /// ```
 fn lcd_screen() -> Matcher<LcdScreen> {
-    Matcher::new(
-        r#"^(AE|AH|S|ST|SY)?\ ?([0-9]{2})([0-9]{2})[0-9]{2}$"#,
-        move |c| {
-            Ok(LcdScreen {
-                year: Some(year2_u16(&c[2])?),
-                month: Some(month2(&c[3])?),
-            })
-        },
-    )
-}
-
-/// ```
-/// # use gbhwdb_backend::parser::parse_lcd_screen;
-/// assert!(parse_lcd_screen("S890220").is_ok());
-/// ```
-fn lcd_screen2() -> Matcher<LcdScreen> {
-    Matcher::new(
-        r#"^[[:alnum:]]{1,3}\ ?(AE|AH|S|ST|SY)\ ?([0-9]{2})([0-9]{2})[0-9]{2}$"#,
-        move |c| {
-            Ok(LcdScreen {
-                year: Some(year2_u16(&c[2])?),
-                month: Some(month2(&c[3])?),
-            })
-        },
-    )
+    Matcher::new(r#"^.*[0-9]([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
+        Ok(LcdScreen {
+            year: Some(year1(&c[1])?),
+            month: Some(month2(&c[2])?),
+        })
+    })
 }
 
 pub fn parse_lcd_screen(text: &str) -> Result<LcdScreen, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<LcdScreen>; 2] = [lcd_screen(), lcd_screen2()];
+        static ref MATCHERS: [Matcher<LcdScreen>; 1] = [lcd_screen()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

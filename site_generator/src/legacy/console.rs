@@ -110,24 +110,9 @@ pub struct LegacyDmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub lcd_panel: Option<LegacyDmgLcdPanel>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub column_driver: Option<LegacyChip>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub row_driver: Option<LegacyChip>,
+    pub lcd_panel: Option<LegacyLcdPanel>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyChip>,
-}
-
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct LegacyDmgLcdPanel {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -236,7 +221,7 @@ pub struct LegacyMgbMetadata {
     pub month: Option<u8>,
     pub mainboard: LegacyMgbMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub lcd: Option<LegacyLcdPanel>,
+    pub lcd_panel: Option<LegacyLcdPanel>,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -279,7 +264,7 @@ pub struct LegacyMglMetadata {
     pub week: Option<u8>,
     pub mainboard: LegacyMglMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub lcd: Option<LegacyLcdPanel>,
+    pub lcd_panel: Option<LegacyLcdPanel>,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -518,6 +503,12 @@ pub struct LegacyOxyMainboard {
 #[serde(deny_unknown_fields)]
 pub struct LegacyLcdPanel {
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub label: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub year: Option<u16>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub month: Option<u8>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub column_driver: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub row_driver: Option<LegacyChip>,
@@ -529,7 +520,10 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
         let chip =
             gbhwdb_backend::parser::parse_lcd_chip(&label).unwrap_or_else(|_| panic!("{}", label));
         LegacyChip {
-            label: Some(label.clone()),
+            label: Some(match &ribbon_label {
+                Some(ribbon_label) => format!("{} {}", ribbon_label, label),
+                None => label.to_owned(),
+            }),
             kind: ribbon_label.clone(),
             manufacturer: Some("Sharp".to_owned()),
             year: to_legacy_year(year_hint, chip.year),
@@ -547,18 +541,6 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
     }
 }
 
-pub fn to_legacy_dmg_lcd_panel(screen: &LcdScreen) -> Option<LegacyDmgLcdPanel> {
-    screen.label.as_ref().map(|label| {
-        let screen =
-            gbhwdb_backend::parser::parse_lcd_screen(label).unwrap_or_else(|_| panic!("{}", label));
-        LegacyDmgLcdPanel {
-            label: Some(label.clone()),
-            year: screen.year,
-            month: screen.month,
-        }
-    })
-}
-
 pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option<LegacyLcdPanel> {
     let column_driver = screen
         .column_driver
@@ -568,7 +550,16 @@ pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option
         .row_driver
         .as_ref()
         .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+    let label = screen.label.clone();
+    let screen = screen.label.as_ref().map(|label| {
+        gbhwdb_backend::parser::parse_lcd_screen(label).unwrap_or_else(|_| panic!("{}", label))
+    });
     Some(LegacyLcdPanel {
+        label,
+        year: screen
+            .as_ref()
+            .and_then(|screen| to_legacy_year(year_hint, screen.year)),
+        month: screen.as_ref().and_then(|screen| screen.month),
         column_driver,
         row_driver,
     })

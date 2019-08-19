@@ -73,7 +73,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
           <>
             <div>{metadata.lcd_board.type}</div>
             <div>{format.short.calendar(metadata.lcd_board)}</div>
-            {metadata.lcd_board.lcd_panel && (
+            {metadata.lcd_board.lcd_panel && metadata.lcd_board.lcd_panel.year && (
               <div>{`LCD panel: ${format.short.calendar(metadata.lcd_board.lcd_panel)}`}</div>
             )}
           </>

@@ -22,6 +22,7 @@ import {
   Chip,
   DmgMetadata,
   GbsMetadata,
+  LcdPanel,
   MgbMetadata,
   MglMetadata,
   OxyMetadata,
@@ -98,9 +99,9 @@ export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
       field('lcd_panel', 'label'),
       generate('lcd_panel', 'calendar_short', format.short.calendar),
       generate('lcd_panel', 'calendar', format.calendar),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.column_driver, chipColumns('column_driver')),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.row_driver, chipColumns('row_driver')),
     ]),
-    ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.column_driver, chipColumns('column_driver')),
-    ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.row_driver, chipColumns('row_driver')),
     ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.regulator, chipColumns('regulator')),
     ...lift((m: DmgMetadata) => m.power_board, [
       field('power_board', 'type'),
@@ -161,8 +162,13 @@ export const MGB_CSV_COLUMNS: CsvColumn<MgbSubmission>[] = [
     ...lift((m: MgbMetadata) => m.mainboard.amplifier, chipColumns('amplifier')),
     ...lift((m: MgbMetadata) => m.mainboard.regulator, chipColumns('regulator')),
     ...lift((m: MgbMetadata) => m.mainboard.crystal, chipColumns('crystal')),
-    ...lift((m: MgbMetadata) => m.lcd && m.lcd.column_driver, chipColumns('column_driver')),
-    ...lift((m: MgbMetadata) => m.lcd && m.lcd.row_driver, chipColumns('row_driver')),
+    ...lift((m: MgbMetadata) => m.lcd_panel, [
+      field('lcd_panel', 'label'),
+      generate('lcd_panel', 'calendar_short', format.short.calendar),
+      generate('lcd_panel', 'calendar', format.calendar),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.column_driver, chipColumns('column_driver')),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.row_driver, chipColumns('row_driver')),
+    ]),
   ]),
 ]
 
@@ -192,6 +198,13 @@ export const MGL_CSV_COLUMNS: CsvColumn<MglSubmission>[] = [
     ...lift((m: MglMetadata) => m.mainboard.regulator, chipColumns('regulator')),
     ...lift((m: MglMetadata) => m.mainboard.crystal, chipColumns('crystal')),
     ...lift((m: MglMetadata) => m.mainboard.t1, chipColumns('t1')),
+    ...lift((m: MglMetadata) => m.lcd_panel, [
+      field('lcd_panel', 'label'),
+      generate('lcd_panel', 'calendar_short', format.short.calendar),
+      generate('lcd_panel', 'calendar', format.calendar),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.column_driver, chipColumns('column_driver')),
+      ...lift((lcd_panel: LcdPanel) => lcd_panel.row_driver, chipColumns('row_driver')),
+    ]),
   ]),
 ]
 

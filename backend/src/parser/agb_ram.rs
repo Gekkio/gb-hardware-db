@@ -154,8 +154,15 @@ fn toshiba() -> Matcher<AgbRam> {
 
 pub fn parse_agb_ram(text: &str) -> Result<AgbRam, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbRam>; 7] =
-            [nec(), fujitsu(), hynix(), st_micro(), amic(), bsi(), toshiba()];
+        static ref MATCHERS: [Matcher<AgbRam>; 7] = [
+            nec(),
+            fujitsu(),
+            hynix(),
+            st_micro(),
+            amic(),
+            bsi(),
+            toshiba()
+        ];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

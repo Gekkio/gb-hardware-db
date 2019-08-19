@@ -15,6 +15,14 @@ export interface Chip {
   outlier?: boolean
 }
 
+export interface LcdPanel {
+  label?: string
+  year?: number
+  month?: number
+  column_driver?: Chip
+  row_driver?: Chip
+}
+
 export interface DmgMetadata {
   color?: string
   year?: number
@@ -36,13 +44,7 @@ export interface DmgMetadata {
     stamp?: string
     year?: number
     month?: number
-    lcd_panel?: {
-      label: string
-      year?: number
-      month?: number
-    }
-    column_driver?: Chip
-    row_driver?: Chip
+    lcd_panel?: LcdPanel
     regulator?: Chip
   }
   power_board?: {
@@ -92,10 +94,7 @@ export interface MgbMetadata {
     regulator?: Chip
     crystal?: Chip
   }
-  lcd?: {
-    column_driver?: Chip
-    row_driver?: Chip
-  }
+  lcd_panel?: LcdPanel
 }
 
 export interface MglMetadata {
@@ -117,10 +116,7 @@ export interface MglMetadata {
     crystal?: Chip
     t1?: Chip
   }
-  lcd?: {
-    column_driver?: Chip
-    row_driver?: Chip
-  }
+  lcd_panel?: LcdPanel
 }
 
 export interface Sgb2Metadata {

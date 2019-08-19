@@ -182,17 +182,10 @@ fn process_dmg_submissions() -> Result<(), Error> {
 
             let lcd_board = console.lcd_board.as_ref().map(|board| {
                 let regulator = map_legacy_chip(year_hint, &board.chip, parser::parse_dmg_reg);
-                let column_driver = board
+                let lcd_panel = board
                     .screen
                     .as_ref()
-                    .and_then(|screen| screen.column_driver.as_ref())
-                    .map(|chip| to_legacy_lcd_chip(year_hint, chip));
-
-                let row_driver = board
-                    .screen
-                    .as_ref()
-                    .and_then(|screen| screen.row_driver.as_ref())
-                    .map(|chip| to_legacy_lcd_chip(year_hint, chip));
+                    .and_then(|screen| to_legacy_lcd_panel(year_hint, screen));
 
                 LegacyDmgLcdBoard {
                     kind: board.label.clone(),
@@ -200,9 +193,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                     stamp: board.stamp.clone(),
                     year: board.year,
                     month: board.month,
-                    lcd_panel: board.screen.as_ref().and_then(to_legacy_dmg_lcd_panel),
-                    column_driver,
-                    row_driver,
+                    lcd_panel,
                     regulator,
                 }
             });
@@ -387,7 +378,7 @@ fn process_mgb_submissions() -> Result<(), Error> {
                 regulator,
                 crystal,
             };
-            let lcd = to_legacy_lcd_panel(year_hint, &console.screen);
+            let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
@@ -402,7 +393,7 @@ fn process_mgb_submissions() -> Result<(), Error> {
                     .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
                 month: stamp.as_ref().and_then(|stamp| stamp.month),
                 mainboard,
-                lcd,
+                lcd_panel,
             };
 
             let mut photos = LegacyPhotos::default();
@@ -470,7 +461,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
                 crystal,
                 t1,
             };
-            let lcd = to_legacy_lcd_panel(year_hint, &console.screen);
+            let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
@@ -485,7 +476,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
                     .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
                 week: stamp.as_ref().and_then(|stamp| stamp.week),
                 mainboard,
-                lcd,
+                lcd_panel,
             };
 
             let mut photos = LegacyPhotos::default();

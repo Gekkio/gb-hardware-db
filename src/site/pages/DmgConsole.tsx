@@ -153,8 +153,16 @@ function renderChips({ mainboard, lcd_board }: DmgMetadata) {
       <ConsolePageChip designator="U3" title="Work RAM" chip={mainboard.work_ram} />
       <ConsolePageChip designator="U4" title="Amplifier" chip={mainboard.amplifier} />
       <ConsolePageChip designator="X1" title="Crystal" chip={mainboard.crystal} />
-      <ConsolePageChip designator="-" title="LCD Column Driver" chip={lcd_board && lcd_board.column_driver} />
-      <ConsolePageChip designator="-" title="LCD Row Driver" chip={lcd_board && lcd_board.row_driver} />
+      <ConsolePageChip
+        designator="-"
+        title="LCD Column Driver"
+        chip={lcd_board && lcd_board.lcd_panel && lcd_board.lcd_panel.column_driver}
+      />
+      <ConsolePageChip
+        designator="-"
+        title="LCD Row Driver"
+        chip={lcd_board && lcd_board.lcd_panel && lcd_board.lcd_panel.row_driver}
+      />
       <ConsolePageChip designator="-" title="LCD Regulator" chip={lcd_board && lcd_board.regulator} />
     </ConsolePageChipTable>
   )

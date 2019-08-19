@@ -1,0 +1,32 @@
+{
+  "slug": "AJ16889117",
+  "contributor": "gekkio",
+  "index": 11,
+  "shell": {
+    "color": "black",
+    "serial": "AJ16889117"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "512 0111",
+    "circled_letters": "I",
+    "year": 2002,
+    "month": 11,
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0249 O"
+    },
+    "u2": {
+      "label": "JAPAN 82D12160-10FN 0243 M31N"
+    },
+    "u4": {
+      "label": "S6960 E-U2X C410"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0248 N"
+    },
+    "x1": {
+      "label": "4194 KSS 2LF"
+    }
+  }
+}

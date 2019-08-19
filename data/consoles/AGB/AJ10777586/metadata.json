@@ -1,0 +1,36 @@
+{
+  "slug": "AJ10777586",
+  "contributor": "gekkio",
+  "index": 10,
+  "shell": {
+    "color": "arctic",
+    "release_code": "AGB-JPN",
+    "serial": "AJ10777586"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-02",
+    "number_pair": "6-2",
+    "stamp": "111 2217",
+    "circled_letters": "I",
+    "year": 2001,
+    "month": 2,
+    "u1": {
+      "label": "CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0109 I"
+    },
+    "u2": {
+      "label": "K13529 JAPAN 0106 MAD TC55V200 FT-70"
+    },
+    "u3": {
+      "label": "AGB-REG IR3E09N 0108 C"
+    },
+    "u4": {
+      "label": "108 514X"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0108 a"
+    },
+    "x1": {
+      "label": "KDS 0108 4.194"
+    }
+  }
+}

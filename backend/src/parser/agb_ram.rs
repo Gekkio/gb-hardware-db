@@ -132,10 +132,30 @@ fn bsi() -> Matcher<AgbRam> {
     )
 }
 
+/// Toshiba TC55V200
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_ram;
+/// assert!(parse_agb_ram("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_ok());
+/// ```
+fn toshiba() -> Matcher<AgbRam> {
+    Matcher::new(
+        r#"^K13529\ JAPAN\ ([0-9]{2})([0-9]{2})\ MAD\ TC55V200\ (FT-70)$"#,
+        move |c| {
+            Ok(AgbRam {
+                kind: Some(format!("TC55V200{}", &c[3])),
+                manufacturer: Some(Manufacturer::Toshiba),
+                year: Some(year2(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
 pub fn parse_agb_ram(text: &str) -> Result<AgbRam, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbRam>; 6] =
-            [nec(), fujitsu(), hynix(), st_micro(), amic(), bsi()];
+        static ref MATCHERS: [Matcher<AgbRam>; 7] =
+            [nec(), fujitsu(), hynix(), st_micro(), amic(), bsi(), toshiba()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

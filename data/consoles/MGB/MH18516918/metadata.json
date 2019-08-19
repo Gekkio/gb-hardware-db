@@ -1,0 +1,43 @@
+{
+  "slug": "MH18516918",
+  "contributor": "gekkio",
+  "index": 12,
+  "shell": {
+    "color": "clear-purple",
+    "release_code": "C/MGB-JPN",
+    "serial": "MH18516918"
+  },
+  "mainboard": {
+    "label": "MGB-LCPU-02",
+    "number_pair": "3-2",
+    "stamp": "811-3702",
+    "circled_letters": "Cs",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9814 DA"
+    },
+    "u2": {
+      "label": "LH52A64N-L SHARP JAPAN 9803 5 Y"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9839 a"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9822 n"
+    },
+    "x1": {
+      "label": "KDS 9815 4.194"
+    }
+  },
+  "screen": {
+    "label": "080901",
+    "column_driver": {
+      "ribbon_label": "LH5077 B1"
+    },
+    "row_driver": {
+      "label": "8170",
+      "ribbon_label": "LH5076 E"
+    }
+  }
+}

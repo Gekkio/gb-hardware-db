@@ -43,13 +43,14 @@ fn mitsumi_mm1514x_2() -> Matcher<AgbU4> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_u4;
 /// assert!(parse_agb_u4("S6960 E-U2Z C700").is_ok());
+/// assert!(parse_agb_u4("S6960 E-U2X C410").is_ok());
 /// ```
 fn unknown() -> Matcher<AgbU4> {
-    Matcher::new(r#"^S6960\ E-U2Z\ C700$"#, move |_| {
+    Matcher::new(r#"^S6960\ E-U([0-9])[A-Z]\ C[0-9]{3}$"#, move |c| {
         Ok(AgbU4 {
             kind: Some("S6960".to_owned()),
             manufacturer: None,
-            year: None,
+            year: Some(year1(&c[1])?),
             week: None,
         })
     })

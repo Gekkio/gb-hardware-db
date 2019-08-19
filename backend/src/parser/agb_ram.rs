@@ -78,13 +78,13 @@ fn hynix() -> Matcher<AgbRam> {
 /// ```
 fn st_micro() -> Matcher<AgbRam> {
     Matcher::new(
-        r#"^M68AS128\ DL70N6\ [A-Z]{5}\ F6\ TWN\ [[:alnum:]]{2}\ ([0-9])([0-9]{2})$"#,
+        r#"^([A-Z]\ )?M68AS128\ DL70N6\ [A-Z]{5}\ F6\ TWN\ [[:alnum:]]{2}\ ([0-9])([0-9]{2})$"#,
         move |c| {
             Ok(AgbRam {
                 kind: Some("M68AS128DL70N6".to_owned()),
                 manufacturer: Some(Manufacturer::StMicro),
-                year: Some(year1(&c[1])?),
-                week: Some(week2(&c[2])?),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
             })
         },
     )

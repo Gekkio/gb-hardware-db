@@ -1,0 +1,37 @@
+{
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "color": "black",
+    "release_code": "C/L-DOL-A-GP-EUR"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-10",
+    "number_pair": "10-2",
+    "stamp": "1633727",
+    "stamp_front": "3412A",
+    "stamp_back": "4413B",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 3,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0246 mU"
+    },
+    "u3": {
+      "label": "Hynix KOREA HY62LF16206A 0235A LT12C"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0313E3032"
+    },
+    "u5": {
+      "label": "304 592F"
+    },
+    "u6": {
+      "label": "304 592F"
+    },
+    "y1": {
+      "label": "33WKSS3BT"
+    }
+  }
+}

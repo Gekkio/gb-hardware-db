@@ -53,10 +53,10 @@ fn rohm_bh7835afs() -> Matcher<AgbAmp> {
 fn mitsumi_pm() -> Matcher<AgbAmp> {
     // FIXME: Not really an amplifier
     Matcher::new(
-        r#"^MITSUMI\ JAPAN\ ([0-9])([0-9]{2})[A-Z]\ PM\ B3$"#,
+        r#"^MITSUMI\ JAPAN\ ([0-9])([0-9]{2})[A-Z]\ (PM\ B[0-9])$"#,
         move |c| {
             Ok(AgbAmp {
-                kind: "PM B3".to_owned(),
+                kind: c[3].to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),

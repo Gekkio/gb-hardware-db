@@ -1,0 +1,30 @@
+{
+  "slug": "XU30426483-2",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "color": "pearl-blue",
+    "release_code": "C/AGT-USA",
+    "serial": "XU30426483-2"
+  },
+  "mainboard": {
+    "label": "C/AGT-CPU-01",
+    "number_pair": "6-2",
+    "stamp": "31853732",
+    "circled_letters": "GB",
+    "year": 2005,
+    "month": 7,
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0521 UB"
+    },
+    "u2": {
+      "label": "E M68AS128 DL70N6 AAPTB F6 TWN AL 441"
+    },
+    "u3": {
+      "label": "MITSUMI JAPAN 523E PM B4"
+    },
+    "x1": {
+      "label": "4194 KSS 5FF"
+    }
+  }
+}

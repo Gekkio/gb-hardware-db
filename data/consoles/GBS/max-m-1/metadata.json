@@ -1,0 +1,34 @@
+{
+  "slug": "max-m-1",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "color": "black",
+    "release_code": "C/L-DOL-A-GP-EUR"
+  },
+  "mainboard": {
+    "label": "DOL-GBS-20",
+    "number_pair": "20-2",
+    "stamp": "4333733",
+    "stamp_front": "3J21A",
+    "stamp_back": "4J21A",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 10,
+    "u2": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0338 I"
+    },
+    "u3": {
+      "label": "Hynix KOREA HY62LF16206A 0315B LT12C"
+    },
+    "u4": {
+      "label": "Nintendo GBS-DOL 011 0337E9062"
+    },
+    "u5": {
+      "label": "337 592F"
+    },
+    "u6": {
+      "label": "337 592F"
+    }
+  }
+}

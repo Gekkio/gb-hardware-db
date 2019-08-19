@@ -58,7 +58,7 @@ fn fujitsu() -> Matcher<AgbRam> {
 /// ```
 fn hynix() -> Matcher<AgbRam> {
     Matcher::new(
-        r#"^Hynix\ KOREA\ HY62LF16206A\ ([0-9]{2})([0-9]{2})A\ LT12C$"#,
+        r#"^Hynix\ KOREA\ HY62LF16206A\ ([0-9]{2})([0-9]{2})[A-Z]\ LT12C$"#,
         move |c| {
             Ok(AgbRam {
                 kind: Some("HY62LF16206A-LT12C".to_owned()),

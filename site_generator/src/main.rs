@@ -58,6 +58,10 @@ fn process_cartridge_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let cartridge: Cartridge = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(cartridge.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
             let cfg = cfgs.get(&cartridge.code).unwrap();
 
             let layout = BoardLayout::from_label(&cartridge.board.label).unwrap_or_else(|| {
@@ -133,6 +137,13 @@ fn process_dmg_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: DmgConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let cpu = console.mainboard.u1.as_ref().map(|chip| {
                 to_legacy_chip(None, chip, parser::parse_gen1_cpu).unwrap_or_else(|| LegacyChip {
@@ -292,6 +303,10 @@ fn process_sgb_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: SgbConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
 
             let year_hint = console.mainboard.year;
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen1_cpu);
@@ -352,6 +367,13 @@ fn process_mgb_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: MgbConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year;
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
@@ -433,6 +455,13 @@ fn process_mgl_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: MglConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year;
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
@@ -516,6 +545,10 @@ fn process_sgb2_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: Sgb2Console = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
 
             let year_hint = console.mainboard.year;
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
@@ -584,6 +617,13 @@ fn process_cgb_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: CgbConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year.or(Some(1998));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_cgb_cpu);
@@ -684,6 +724,13 @@ fn process_agb_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: AgbConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year.or(Some(2001));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
@@ -765,6 +812,13 @@ fn process_ags_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: AgsConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year.or(Some(2003));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
@@ -837,6 +891,10 @@ fn process_gbs_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: GbsConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
 
             let year_hint = console.mainboard.year.or(Some(2003));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_cpu);
@@ -914,6 +972,13 @@ fn process_oxy_submissions() -> Result<(), Error> {
             println!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: OxyConsole = serde_json::from_reader(file)?;
+            assert_eq!(
+                Some(console.slug.as_str()),
+                root.file_name().and_then(|name| name.to_str())
+            );
+            if let Some(serial) = &console.shell.serial {
+                assert_eq!(&console.slug, serial);
+            }
 
             let year_hint = console.mainboard.year.or(Some(2005));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);

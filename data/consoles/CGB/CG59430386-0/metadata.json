@@ -1,0 +1,31 @@
+{
+  "slug": "CG59430386-0",
+  "contributor": "Jacob Tender",
+  "index": 5,
+  "shell": {
+    "color": "dandelion",
+    "release_code": "C/CGB-JPN-2",
+    "serial": "CG59430386-0"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-05",
+    "number_pair": "2-2",
+    "stamp": "520 3702",
+    "circled_letters": "CS",
+    "year": 2000,
+    "month": 11,
+    "u1": {},
+    "u2": {
+      "label": "LH51D256T-Z7 SHARP Y0 50 3 J"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R56N 0048 C"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 0049 C"
+    },
+    "x1": {
+      "label": "8388 KSS 0LF"
+    }
+  }
+}

@@ -46,7 +46,7 @@ fn dmg_cpu_lr35902() -> Matcher<Gen1Cpu> {
 /// ```
 fn dmg_cpu() -> Matcher<Gen1Cpu> {
     Matcher::new(
-        r#"^DMG-CPU(\ [ABC])?\ ©\ 1989\ Nintendo\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
+        r#"^DMG-CPU(\ [ABC])?\ ©\ 1989\ Nintendo\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Gen1Cpu {
                 kind: (match c.get(1).map(|m| m.as_str()) {

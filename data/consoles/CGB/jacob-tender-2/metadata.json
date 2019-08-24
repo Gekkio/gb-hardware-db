@@ -1,0 +1,29 @@
+{
+  "slug": "jacob-tender-2",
+  "contributor": "Jacob Tender",
+  "index": 2,
+  "shell": {
+    "color": "grape"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-01",
+    "number_pair": "1-1",
+    "stamp": "810.3702",
+    "circled_letters": "CS",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9838 I"
+    },
+    "u2": {},
+    "u3": {
+      "label": "AMP MGB IR3R53N 9836 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9835 C"
+    },
+    "x1": {
+      "label": "KDS 9835 8.388"
+    }
+  }
+}

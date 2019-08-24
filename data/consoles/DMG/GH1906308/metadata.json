@@ -1,0 +1,45 @@
+{
+  "slug": "GH1906308",
+  "contributor": "Jacob Tender",
+  "index": 2,
+  "shell": {
+    "color": "vibrant-yellow",
+    "serial": "GH1906308"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-07",
+    "stamp": "501 3702",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "u1": {
+      "label": "B"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {},
+    "x1": {}
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "501-3702",
+    "circled_letters": "K1",
+    "year": 1994,
+    "month": 8,
+    "screen": {
+      "column_driver": {
+        "label": "4390"
+      },
+      "row_driver": {
+        "label": "4370"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "C",
+    "year": 1994,
+    "month": 10
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03"
+  }
+}

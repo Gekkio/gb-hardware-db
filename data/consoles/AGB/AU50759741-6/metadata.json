@@ -1,0 +1,27 @@
+{
+  "slug": "AU50759741-6",
+  "contributor": "Jacob Tender",
+  "index": 2,
+  "shell": {
+    "color": "indigo",
+    "release_code": "C/AGB-USA",
+    "serial": "AU50759741-6"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-02",
+    "number_pair": "7-1",
+    "stamp": "191 8702",
+    "u1": {
+      "label": "CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0115 I"
+    },
+    "u2": {},
+    "u3": {
+      "label": "AGB-REG IR3E09N AA12 A"
+    },
+    "u4": {},
+    "u6": {},
+    "x1": {
+      "label": "4194 KSS 1DF"
+    }
+  }
+}

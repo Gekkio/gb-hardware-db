@@ -1,0 +1,24 @@
+{
+  "slug": "AU61806447-0",
+  "contributor": "Jacob Tender",
+  "index": 4,
+  "shell": {
+    "color": "arctic",
+    "release_code": "C/AGB-USA-1",
+    "serial": "AU61806447-0"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "1-1",
+    "stamp": "422 3702",
+    "u1": {},
+    "u2": {},
+    "u4": {},
+    "u6": {
+      "label": "AMP AGB IR3R60N 0237 B"
+    },
+    "x1": {
+      "label": "D419J2I"
+    }
+  }
+}

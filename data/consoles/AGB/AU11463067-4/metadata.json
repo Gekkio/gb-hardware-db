@@ -1,0 +1,30 @@
+{
+  "slug": "AU11463067-4",
+  "contributor": "Jacob Tender",
+  "index": 1,
+  "shell": {
+    "color": "black",
+    "release_code": "AGB-USA",
+    "serial": "AU11463067-4"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-10",
+    "number_pair": "2-1",
+    "stamp": "412 2033",
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0239 UU"
+    },
+    "u2": {
+      "label": "JAPAN 82D12160-10FN 0234 M29N"
+    },
+    "u4": {
+      "label": "9750B 2917"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0236 B"
+    },
+    "x1": {
+      "label": "4194 KSS 2HF"
+    }
+  }
+}

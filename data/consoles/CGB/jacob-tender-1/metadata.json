@@ -1,0 +1,29 @@
+{
+  "slug": "jacob-tender-1",
+  "contributor": "Jacob Tender",
+  "index": 1,
+  "shell": {
+    "color": "atomic-purple"
+  },
+  "mainboard": {
+    "label": "CGB-CPU-03",
+    "number_pair": "1-1",
+    "stamp": "079X0108",
+    "circled_letters": "CM",
+    "year": 1999,
+    "month": 1,
+    "u1": {
+      "label": "CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9905 IA"
+    },
+    "u2": {},
+    "u3": {
+      "label": "AMP MGB IR3R53N 9905 a"
+    },
+    "u4": {
+      "label": "CGB-REG IR3E06N 9852 C"
+    },
+    "x1": {
+      "label": "KDS 9904 8.388"
+    }
+  }
+}

@@ -258,6 +258,24 @@ fn sharp_lh51d256t() -> Matcher<Ram> {
     )
 }
 
+/// Sharp LH5160
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5160N-10L SHARP JAPAN 9007 5 DA").is_ok());
+/// ```
+fn sharp_lh5160() -> Matcher<Ram> {
+    Matcher::new(r#"^(LH5160[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
+    move |c| {
+        Ok(Ram {
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: Some(c[1].to_owned()),
+            year: Some(year2(&c[2])?),
+            week: Some(week2(&c[3])?),
+        })
+    })
+}
+
 /// Sharp LH5168
 ///
 /// ```
@@ -716,7 +734,7 @@ fn mosel_vitelic_lh52a64n_pl() -> Matcher<Ram> {
 
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 36] = [
+        static ref MATCHERS: [Matcher<Ram>; 37] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -736,6 +754,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             sanyo_lc3564b(),
             sharp_lh5164an(),
             sharp_lh5164an_2(),
+            sharp_lh5160(),
             sharp_lh5168(),
             sharp_lh52256c(),
             sharp_lh52256cvt(),

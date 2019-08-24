@@ -1,0 +1,34 @@
+{
+  "slug": "MG10718164-0",
+  "contributor": "Jacob Tender",
+  "index": 2,
+  "shell": {
+    "color": "yellow",
+    "release_code": "C/MGB-JPN",
+    "serial": "MG10718164-0"
+  },
+  "mainboard": {
+    "label": "MGB-ECPU-01",
+    "number_pair": "3-2",
+    "stamp": "704.3702",
+    "circled_letters": "Cs",
+    "year": 1997,
+    "month": 3,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9706 D"
+    },
+    "u2": {
+      "label": "LH52A64N-PL MOSEL-VITELIC JAPAN N651 0G C"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9705 C"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9648 h"
+    },
+    "x1": {
+      "label": "4.1943 RVR 709"
+    }
+  },
+  "screen": {}
+}

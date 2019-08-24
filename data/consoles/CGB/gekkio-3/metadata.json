@@ -3,7 +3,8 @@
   "contributor": "gekkio",
   "index": 3,
   "shell": {
-    "color": "AtomicPurple"
+    "color": "AtomicPurple",
+    "release_code": "CGB-JPN-1"
   },
   "mainboard": {
     "label": "CGB-CPU-02",

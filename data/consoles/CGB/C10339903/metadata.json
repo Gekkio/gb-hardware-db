@@ -3,6 +3,8 @@
   "contributor": "gekkio",
   "index": 4,
   "shell": {
+    "color": "Grape",
+    "release_code": "CGB-EUR",
     "serial": "C10339903"
   },
   "mainboard": {

@@ -166,9 +166,10 @@ fn kinseki_4194() -> Matcher<Crystal> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
 /// assert!(parse_crystal("8388 KSS 1CF").is_ok());
+/// assert!(parse_crystal("8388 KSS 9J").is_ok());
 /// ```
 fn kinseki_8388() -> Matcher<Crystal> {
-    Matcher::new(r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]$"#, move |c| {
+    Matcher::new(r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),

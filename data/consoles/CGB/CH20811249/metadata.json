@@ -3,10 +3,17 @@
   "contributor": "gekkio",
   "index": 18,
   "shell": {
+    "color": "AtomicPurple",
+    "release_code": "C/CGB-JPN-2",
     "serial": "CH20811249"
   },
   "mainboard": {
     "label": "CGB-CPU-05",
+    "number_pair": "2-6",
+    "stamp": "490.8702",
+    "circled_letters": "CS",
+    "year": 2000,
+    "month": 10,
     "u1": {
       "label": "CPU CGB D Ⓜ © 1998 Nintendo JAPAN 0047 IA"
     },

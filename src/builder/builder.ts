@@ -116,10 +116,10 @@ function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefine
 }
 
 function sortGroupComparator(a: ConsoleSubmission, b: ConsoleSubmission): number {
-  if (a.sortGroup) {
-    return b.sortGroup ? a.sortGroup.localeCompare(b.sortGroup) : -1
+  if (a.sort_group) {
+    return b.sort_group ? a.sort_group.localeCompare(b.sort_group) : -1
   } else {
-    return b.sortGroup ? 1 : 0
+    return b.sort_group ? 1 : 0
   }
 }
 const slugComparator = R.comparator((a: ConsoleSubmission, b: ConsoleSubmission) => a.slug < b.slug)

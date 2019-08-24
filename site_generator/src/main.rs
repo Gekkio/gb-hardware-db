@@ -260,6 +260,30 @@ fn process_dmg_submissions() -> Result<(), Error> {
                 jack_board,
             };
 
+            let has_outliers = console.shell.outlier
+                || console.mainboard.outlier
+                || console
+                    .lcd_board
+                    .as_ref()
+                    .map(|board| {
+                        board.outlier
+                            || board
+                                .screen
+                                .as_ref()
+                                .map(|screen| screen.outlier)
+                                .unwrap_or(false)
+                    })
+                    .unwrap_or(false)
+                || console
+                    .power_board
+                    .as_ref()
+                    .map(|board| board.outlier)
+                    .unwrap_or(false)
+                || console
+                    .jack_board
+                    .as_ref()
+                    .map(|board| board.outlier)
+                    .unwrap_or(false);
             let mut photos = LegacyDmgPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
@@ -279,7 +303,15 @@ fn process_dmg_submissions() -> Result<(), Error> {
                     .clone()
                     .unwrap_or_else(|| format!("Unit #{}", console.index)),
                 slug: console.slug,
-                sort_group: console.shell.serial,
+                sort_group: Some(
+                    (match (console.shell.serial.is_some(), has_outliers) {
+                        (true, false) => "A",
+                        (false, false) => "B",
+                        (true, true) => "C",
+                        (false, true) => "D",
+                    })
+                    .to_owned(),
+                ),
                 contributor: console.contributor,
                 metadata,
                 photos,

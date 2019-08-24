@@ -38,7 +38,7 @@ interface SubmissionBase<T extends string, M, P = DefaultPhotos> {
   type: T
   title: string
   slug: string
-  sortGroup: string | undefined
+  sort_group: string | undefined
   contributor: string
   metadata: M
   photos: P

@@ -44,14 +44,16 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/consoles/mgl/${slug}.html`}>
           <div className="submission-list-item__photo">
-            {photos.front ? (
+            {photos.front && false ? (
               <img
                 src={`/static/mgl/${slug}_thumbnail_80.jpg`}
                 srcSet={`/static/mgl/${slug}_thumbnail_50.jpg 50w, /static/mgl/${slug}_thumbnail_80.jpg 80w`}
                 sizes="(min-width: 1000px) 80px, 50px"
                 role="presentation"
               />
-            ) : null}
+            ) : (
+              <img src={`/mgl_placeholder.svg`} className="submission-list-item__placeholder" role="presentation" />
+            )}
           </div>
           <div className="submission-list-item__id">
             <div className="submission-list-item__title">{title}</div>

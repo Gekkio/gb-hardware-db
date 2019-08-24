@@ -21,9 +21,22 @@ fn lcd_screen() -> Matcher<LcdScreen> {
     })
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_lcd_screen;
+/// assert!(parse_lcd_screen("T61102S T61104").is_ok());
+/// ```
+fn lcd_screen2() -> Matcher<LcdScreen> {
+    Matcher::new(r#"^.*([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
+        Ok(LcdScreen {
+            year: Some(year1(&c[1])?),
+            month: Some(month2(&c[2])?),
+        })
+    })
+}
+
 pub fn parse_lcd_screen(text: &str) -> Result<LcdScreen, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<LcdScreen>; 1] = [lcd_screen()];
+        static ref MATCHERS: [Matcher<LcdScreen>; 2] = [lcd_screen(), lcd_screen2()];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

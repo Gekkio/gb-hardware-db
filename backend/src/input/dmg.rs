@@ -22,12 +22,24 @@ pub struct DmgConsole {
 #[serde(deny_unknown_fields)]
 pub struct DmgShell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    pub color: Option<DmgShellColor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub serial: Option<String>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+pub enum DmgShellColor {
+    OffWhite,
+    DeepBlack,
+    GorgeousGreen,
+    RadiantRed,
+    VibrantYellow,
+    HighTechTransparent,
+    TraditionalWhite,
+    CoolBlue,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

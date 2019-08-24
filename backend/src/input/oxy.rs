@@ -16,7 +16,7 @@ pub struct OxyConsole {
 #[serde(deny_unknown_fields)]
 pub struct OxyShell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    pub color: Option<OxyShellColor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -24,6 +24,18 @@ pub struct OxyShell {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+pub enum OxyShellColor {
+    Silver,
+    Black,
+    Purple,
+    PearlBlue,
+    Pink,
+    Green,
+    Blue,
+    Red,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

@@ -16,7 +16,7 @@ pub struct CgbConsole {
 #[serde(deny_unknown_fields)]
 pub struct CgbShell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    pub color: Option<CgbShellColor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -24,6 +24,17 @@ pub struct CgbShell {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+pub enum CgbShellColor {
+    Grape,
+    Teal,
+    Kiwi,
+    Berry,
+    Dandelion,
+    AtomicPurple,
+    NeotonesIce,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

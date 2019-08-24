@@ -16,7 +16,7 @@ pub struct AgbConsole {
 #[serde(deny_unknown_fields)]
 pub struct AgbShell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    pub color: Option<AgbShellColor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -24,6 +24,18 @@ pub struct AgbShell {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+pub enum AgbShellColor {
+    Indigo,
+    Arctic,
+    Glacier,
+    Fuchsia,
+    Spice,
+    Black,
+    Platinum,
+    Gold,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

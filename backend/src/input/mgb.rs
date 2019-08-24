@@ -17,7 +17,7 @@ pub struct MgbConsole {
 #[serde(deny_unknown_fields)]
 pub struct MgbShell {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub color: Option<String>,
+    pub color: Option<MgbShellColor>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -25,6 +25,20 @@ pub struct MgbShell {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+pub enum MgbShellColor {
+    Silver,
+    Black,
+    Green,
+    Blue,
+    Red,
+    Yellow,
+    Clear,
+    Pink,
+    ClearPurple,
+    OffWhite,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

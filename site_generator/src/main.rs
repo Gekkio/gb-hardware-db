@@ -249,7 +249,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
             let stamp = mainboard_stamp.or(lcd_board_stamp);
 
             let metadata = LegacyDmgMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 year: stamp
                     .as_ref()
                     .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
@@ -408,7 +408,7 @@ fn process_mgb_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyMgbMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
@@ -498,7 +498,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyMglMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
@@ -679,7 +679,7 @@ fn process_cgb_submissions() -> Result<(), Error> {
                 .or(old_stamp.as_ref().and_then(|stamp| stamp.year));
 
             let metadata = LegacyCgbMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 year: to_legacy_year(year_hint, stamp_year),
                 month: old_stamp.as_ref().and_then(|stamp| stamp.month),
@@ -766,7 +766,7 @@ fn process_agb_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyAgbMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
@@ -848,7 +848,7 @@ fn process_ags_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacyAgsMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 mainboard,
             };
@@ -930,7 +930,7 @@ fn process_gbs_submissions() -> Result<(), Error> {
             });
 
             let metadata = LegacyGbsMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
@@ -997,7 +997,7 @@ fn process_oxy_submissions() -> Result<(), Error> {
             };
 
             let metadata = LegacyOxyMetadata {
-                color: console.shell.color.clone(),
+                color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
                 mainboard,
             };

@@ -16,7 +16,7 @@ pub struct DmgStamp {
 /// assert!(parse_dmg_stamp("202-0007").is_ok());
 /// ```
 fn dmg_stamp() -> Matcher<DmgStamp> {
-    Matcher::new(r#"^([0-9])([0-9]{2})[-\ .][0-9]{2,4}Y?$"#, move |c| {
+    Matcher::new(r#"^([0-9])([0-9]{2})[-\ .][0-9-]{2,4}Y?$"#, move |c| {
         Ok(DmgStamp {
             year: Some(year1(&c[1])?),
             month: Some(month2(&c[2])?),

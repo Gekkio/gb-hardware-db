@@ -1,0 +1,47 @@
+{
+  "slug": "GH4220172",
+  "contributor": "Laszlo Dobrovolszki",
+  "index": 1,
+  "shell": {
+    "color": "HighTechTransparent",
+    "serial": "GH4220172"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-08",
+    "stamp": "607-3702",
+    "circled_letters": "SRI",
+    "extra_label": "Rev 1",
+    "u1": {
+      "label": "C"
+    },
+    "u2": {},
+    "u3": {},
+    "u4": {},
+    "x1": {}
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "607-3702",
+    "circled_letters": "A",
+    "year": 1996,
+    "month": 7,
+    "chip": {},
+    "screen": {
+      "column_driver": {
+        "label": "5431"
+      },
+      "row_driver": {
+        "label": "5422"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "D",
+    "year": 1996,
+    "month": 6
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03",
+    "extra_label": "2"
+  }
+}

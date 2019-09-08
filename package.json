@@ -6,7 +6,7 @@
     "clean": "rm -r build",
     "build": "gulp build",
     "watch": "gulp watch",
-    "start": "gulp watch & node devserver"
+    "start": "gulp build && (gulp watch & node devserver & wait)"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.27",
@@ -37,7 +37,6 @@
     "gulp-typescript": "^5.0.1",
     "nodemon": "^1.19.2",
     "normalize.css": "^8.0.1",
-    "postcss-csso": "^3.0.0",
     "prettier": "^1.18.2",
     "source-map-support": "^0.5.13",
     "typescript": "~3.5.3",
@@ -45,6 +44,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "cssnano": "^4.1.10",
     "csv-stringify": "^5.3.3",
     "human-date": "^1.4.0",
     "postcss-preset-env": "^6.7.0",
@@ -68,8 +68,8 @@
   },
   "postcss": {
     "plugins": {
-      "postcss-preset-env": true,
-      "postcss-csso": true
+      "cssnano": true,
+      "postcss-preset-env": true
     }
   },
   "eslintConfig": {

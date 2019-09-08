@@ -40,7 +40,7 @@ import {
   SGB_CSV_COLUMNS,
 } from './csvTransform'
 import * as config from '../config'
-import { ConsoleType, gameCfgs, gameLayouts, MapperId } from '../config'
+import { gameCfgs, gameLayouts, MapperId } from '../config'
 import processPhotos from './processPhotos'
 
 winston.configure({

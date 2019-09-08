@@ -20,7 +20,7 @@ const staticPaths = [
 ]
 
 const tsProject = ts.createProject('tsconfig.json')
-const scripts = async () =>
+const scripts = () =>
   tsProject
     .src()
     .pipe(sourcemaps.init())
@@ -28,21 +28,22 @@ const scripts = async () =>
     .js.pipe(sourcemaps.write())
     .pipe(gulp.dest('build/scripts'))
 
-const lint = async () =>
-  tsProject
+const lintProject = ts.createProject('tsconfig.json')
+const lint = () =>
+  lintProject
     .src()
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError())
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 
-const styles = async () =>
+const styles = () =>
   gulp
     .src('src/site/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss())
     .pipe(gulp.dest('build/site/static'))
 
-const staticFiles = async () => gulp.src(staticPaths).pipe(gulp.dest('build/site'))
+const staticFiles = () => gulp.src(staticPaths).pipe(gulp.dest('build/site'))
 
 const html = done => {
   const node = exec('node build/scripts/builder/builder.js', done)
@@ -63,7 +64,7 @@ module.exports = {
   html,
   styles,
   scripts,
-  'static': staticFiles,
+  static: staticFiles,
   build,
   watch,
   lint,

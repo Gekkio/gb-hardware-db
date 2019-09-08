@@ -4,8 +4,8 @@ const gulp = require('gulp')
 const postcss = require('gulp-postcss')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
+const eslint = require('gulp-eslint')
 const ts = require('gulp-typescript')
-const autoprefixer = require('autoprefixer')
 const process = require('process')
 const exec = require('child_process').exec
 
@@ -27,6 +27,13 @@ const scripts = async () =>
     .pipe(tsProject())
     .js.pipe(sourcemaps.write())
     .pipe(gulp.dest('build/scripts'))
+
+const lint = async () =>
+  tsProject
+    .src()
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
 
 const styles = async () =>
   gulp
@@ -59,5 +66,6 @@ module.exports = {
   'static': staticFiles,
   build,
   watch,
+  lint,
   default: build,
 }

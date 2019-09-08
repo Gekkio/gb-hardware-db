@@ -115,16 +115,16 @@ function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefine
   return layout.chips.some(({ key }) => key === 'mapper') ? undefined : 'no-mapper'
 }
 
-function sortGroupComparator(a: ConsoleSubmission, b: ConsoleSubmission): number {
+function sortGroupComparator<T extends ConsoleSubmission>(a: T, b: T): number {
   if (a.sort_group) {
     return b.sort_group ? a.sort_group.localeCompare(b.sort_group) : -1
   } else {
     return b.sort_group ? 1 : 0
   }
 }
-const slugComparator = R.comparator((a: ConsoleSubmission, b: ConsoleSubmission) => a.slug < b.slug)
+const slugComparator = R.comparator((a: { slug: string }, b: { slug: string }) => a.slug < b.slug)
 
-function consoleSubmissionComparator(a: ConsoleSubmission, b: ConsoleSubmission): number {
+function consoleSubmissionComparator<T extends ConsoleSubmission>(a: T, b: T): number {
   return sortGroupComparator(a, b) || slugComparator(a, b)
 }
 
@@ -208,7 +208,7 @@ async function main(): Promise<void> {
     agsSubmissions,
     gbsSubmissions,
     oxySubmissions,
-  ] = await Promise.all<ConsoleSubmission[]>([
+  ] = await Promise.all([
     crawlDmg(),
     crawlConsole('build/data/sgb.json'),
     crawlConsole('build/data/mgb.json'),
@@ -231,15 +231,18 @@ async function main(): Promise<void> {
     .concat(gbsSubmissions)
     .concat(oxySubmissions)
 
-  const groupedConsoles: GroupedConsoleSubmissions = R.map(R.sort(consoleSubmissionComparator), R.groupBy(
-    ({ type }) => type,
-    consoleSubmissions
-  ) as Record<ConsoleType, ConsoleSubmission[]>) as any
-  ;['agb', 'ags', 'cgb', 'dmg', 'gbs', 'mgb', 'mgl', 'oxy', 'sgb', 'sgb2'].forEach(type => {
-    if (!(type in groupedConsoles)) {
-      ;(groupedConsoles as any)[type] = []
-    }
-  })
+  const groupedConsoles: GroupedConsoleSubmissions = {
+    agb: R.sort(consoleSubmissionComparator, agbSubmissions as any),
+    ags: R.sort(consoleSubmissionComparator, agsSubmissions as any),
+    cgb: R.sort(consoleSubmissionComparator, cgbSubmissions as any),
+    dmg: R.sort(consoleSubmissionComparator, dmgSubmissions as any),
+    gbs: R.sort(consoleSubmissionComparator, gbsSubmissions as any),
+    mgb: R.sort(consoleSubmissionComparator, mgbSubmissions as any),
+    mgl: R.sort(consoleSubmissionComparator, mglSubmissions as any),
+    oxy: R.sort(consoleSubmissionComparator, oxySubmissions as any),
+    sgb: R.sort(consoleSubmissionComparator, sgbSubmissions as any),
+    sgb2: R.sort(consoleSubmissionComparator, sgb2Submissions as any),
+  }
   const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({ type }) => type, cartridgeSubmissions)
   const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
 
@@ -307,7 +310,6 @@ async function main(): Promise<void> {
   ]
   consoleSubmissions.forEach(submission => {
     const { type, slug, title, contributor } = submission
-    const cfg = config.consoleCfgs[type]
     pages.push({
       type: `${type}-console`,
       path: ['consoles', type, slug],

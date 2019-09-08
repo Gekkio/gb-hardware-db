@@ -44,7 +44,7 @@ function Submission({ submission: { contributor, slug, title, metadata, photos }
       <td className="submission-list-item">
         <a className="submission-list-item__link" href={`/consoles/mgl/${slug}.html`}>
           <div className="submission-list-item__photo">
-            {photos.front && false ? (
+            {photos.front ? (
               <img
                 src={`/static/mgl/${slug}_thumbnail_80.jpg`}
                 srcSet={`/static/mgl/${slug}_thumbnail_50.jpg 50w, /static/mgl/${slug}_thumbnail_80.jpg 80w`}

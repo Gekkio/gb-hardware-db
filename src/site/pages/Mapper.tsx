@@ -3,7 +3,7 @@ import * as R from 'ramda'
 
 import { CartridgeSubmission, Photo } from '../../crawler'
 import * as format from '../format'
-import { gameCfgs, GameConfig, gameLayouts, mapperCfgs, MapperId } from '../../config'
+import { gameCfgs, GameConfig, mapperCfgs, MapperId } from '../../config'
 import ConsoleListingChip from '../components/ConsoleListingChip'
 
 interface Props {
@@ -57,7 +57,6 @@ function Submission({
   cfg: GameConfig
   submission: CartridgeSubmission
 }) {
-  const layout = gameLayouts[cfg.layouts[0]]
   return (
     <tr>
       <td className="submission-list-item">

@@ -6,7 +6,6 @@ const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const ts = require('gulp-typescript')
 const autoprefixer = require('autoprefixer')
-const csso = require('postcss-csso')
 const process = require('process')
 const exec = require('child_process').exec
 
@@ -17,43 +16,48 @@ const staticPaths = [
   'static/**/*.png',
   'static/**/*.svg',
   'static/**/*.webmanifest',
-  'static/**/*.xml'
+  'static/**/*.xml',
 ]
 
 const tsProject = ts.createProject('tsconfig.json')
-gulp.task('scripts', function() {
-  return tsProject
+const scripts = async () =>
+  tsProject
     .src()
     .pipe(sourcemaps.init())
     .pipe(tsProject())
     .js.pipe(sourcemaps.write())
     .pipe(gulp.dest('build/scripts'))
-})
 
-const postcssPlugins = [autoprefixer(), csso()]
-gulp.task('styles', function() {
-  return gulp
+const styles = async () =>
+  gulp
     .src('src/site/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(postcssPlugins))
+    .pipe(postcss())
     .pipe(gulp.dest('build/site/static'))
-})
 
-gulp.task('static', function() {
-  return gulp.src(staticPaths).pipe(gulp.dest('build/site'))
-})
+const staticFiles = async () => gulp.src(staticPaths).pipe(gulp.dest('build/site'))
 
-gulp.task('html', ['scripts'], function(cb) {
-  const node = exec('node build/scripts/builder/builder.js', cb)
+const html = done => {
+  const node = exec('node build/scripts/builder/builder.js', done)
   node.stdout.pipe(process.stdout)
   node.stderr.pipe(process.stderr)
-})
+}
+const scriptsAndHtml = gulp.series(scripts, html)
 
-gulp.task('build', ['html', 'scripts', 'styles', 'static'])
-gulp.task('watch', ['html', 'scripts', 'styles', 'static'], function() {
-  gulp.watch(['content/**/*.markdown', 'src/**/*.ts', 'src/**/*.tsx', 'data/**/*.json', 'data/**/*.jpg'], ['html'])
-  gulp.watch('src/site/**/*.scss', ['styles'])
-  gulp.watch(staticPaths, ['static'])
-})
+const build = gulp.parallel(scriptsAndHtml, styles, staticFiles)
+const watch = async () => {
+  gulp.watch(['src/**/*.ts', 'src/**/*.tsx'], scripts)
+  gulp.watch(['build/scripts/**/*.js', 'content/**/*.markdown', 'data/**/*.json', 'data/**/*.jpg'], html)
+  gulp.watch('src/site/**/*.scss', styles)
+  gulp.watch(staticPaths, staticFiles)
+}
 
-gulp.task('default', ['build'])
+module.exports = {
+  html,
+  styles,
+  scripts,
+  'static': staticFiles,
+  build,
+  watch,
+  default: build,
+}

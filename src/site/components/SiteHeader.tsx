@@ -9,13 +9,16 @@ interface Props {
 export default function SiteHeader({ pageType }: Props) {
   return (
     <header className="site-header">
-      <h1 className="site-header__title">
-        <a href="/">
-          Game Boy hardware database
-          <aside>by Gekkio and contributors</aside>
-        </a>
-      </h1>
-      <Navigation pageType={pageType} />
+      <div className="site-header__primary">
+        <h1 className="site-header__title">
+          <a href="/">
+            Game Boy hardware database
+            <aside>by Gekkio and contributors</aside>
+          </a>
+        </h1>
+        <PrimaryNav pageType={pageType} />
+      </div>
+      <SecondaryNav pageType={pageType} />
     </header>
   )
 }
@@ -30,9 +33,25 @@ function isInCartridges(pageType: string): boolean {
   return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper'
 }
 
-function Navigation({ pageType }: Props) {
+function PrimaryNav({ pageType }: Props) {
   return (
-    <nav className="site-navigation">
+    <nav className="site-primary-nav">
+      <ul>
+        <li className={isInCartridges(pageType) ? undefined : 'active'}>
+          <a href="/consoles">Consoles</a>
+        </li>
+        <li className={isInCartridges(pageType) ? 'active' : undefined}>
+          <a href="/cartridges">Game cartridges</a>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+function SecondaryNav({ pageType }: Props) {
+  if (isInCartridges(pageType)) return <nav className="site-secondary-nav" />
+  return (
+    <nav className="site-secondary-nav">
       <ul>
         {models.map(([model, code, name]) => (
           <li key={code} className={isModel(pageType, code) ? 'active' : undefined}>
@@ -42,13 +61,6 @@ function Navigation({ pageType }: Props) {
             </a>
           </li>
         ))}
-        <li className={isInCartridges(pageType) ? 'active' : undefined}>
-          <a href="/cartridges">
-            Game
-            <br />
-            cartridges
-          </a>
-        </li>
       </ul>
     </nav>
   )

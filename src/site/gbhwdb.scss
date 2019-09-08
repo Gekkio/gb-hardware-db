@@ -25,7 +25,8 @@ body {
   padding: 0 10px;
 
   &__content {
-    padding: 20px 10px;
+    min-height: 50px;
+    padding: 1px 10px 20px;
     background-color: #fff;
     color: $main-color-4;
     overflow-x: auto;

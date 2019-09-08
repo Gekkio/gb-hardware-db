@@ -3,13 +3,14 @@
 .site-header {
   margin: 0 auto;
   max-width: 1440px;
-  padding: 10px 10px 0;
+  padding: 0 10px;
   color: white;
   background-color: $main-color;
 
   &__title {
     font-size: 20px;
-    margin: 5px 0;
+    padding: 10px 0 0 0;
+    margin: 0;
     @include media(desktop) {
       font-size: 26px;
     }
@@ -21,22 +22,78 @@
       font-size: 10px;
     }
   }
+  &__primary {
+    @include media(tablet) {
+      display: flex;
+    }
+  }
 }
 
-.site-navigation {
-  border-bottom: 5px solid $main-color-2;
-  margin-top: 10px;
-  color: #fff;
-  background-color: $main-color-3;
-  @include media(tablet) {
-    border-radius: 5px 5px 0 0;
-  }
+.site-primary-nav, .site-secondary-nav {
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: stretch;
+    color: #fff;
+    background-color: $main-color-3;
+  }
+  li {
+    flex: 1 1 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+
+    &.active {
+      background-color: $main-color-2;
+    }
+
+    a {
+      flex: 1 1 auto;
+      display: block;
+      padding: 5px 10px;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+.site-primary-nav {
+  margin-top: 10px;
+  @include media(tablet) {
+    margin: 0 40px;
+    align-self: flex-start;
+  }
+
+  ul {
+    @include media(tablet) {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+  li {
+    @include media(tablet) {
+      border-radius: 0 0 5px 5px;
+    }
+    a {
+      display: block;
+      font-size: 20px;
+      padding: 10px 20px;
+
+      @include media(desktop) {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+.site-secondary-nav {
+  border-bottom: 5px solid $main-color-2;
+  margin-top: 10px;
+  @include media(tablet) {
+    border-radius: 5px 5px 0 0;
+  }
+  ul {
     flex-wrap: wrap;
 
     @include media(tablet) {
@@ -44,14 +101,8 @@
     }
   }
   li {
-    flex: 0 1 auto;
-    text-align: center;
     @include media(tablet) {
       border-radius: 5px 5px 0 0;
-    }
-
-    &.active {
-      background-color: $main-color-2;
     }
 
     strong {
@@ -73,13 +124,6 @@
       @include media(desktop) {
         font-size: 12px;
       }
-    }
-
-    a {
-      display: block;
-      padding: 5px 10px;
-      color: inherit;
-      text-decoration: none;
     }
   }
 }

@@ -38,7 +38,7 @@ function PrimaryNav({ pageType }: Props) {
     <nav className="site-primary-nav">
       <ul>
         <li className={isInCartridges(pageType) ? undefined : 'active'}>
-          <a href="/consoles">Consoles</a>
+          <a href="/">Consoles</a>
         </li>
         <li className={isInCartridges(pageType) ? 'active' : undefined}>
           <a href="/cartridges">Game cartridges</a>

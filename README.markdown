@@ -8,6 +8,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Duo (http://gameboy.mongenel.com)
 * FIX94
 * gekkio (https://gekkio.fi)
+* @hej.luxom
 * HDR
 * ImATrackMan
 * Irfon Jones

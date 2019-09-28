@@ -1,0 +1,50 @@
+{
+  "slug": "G01009132",
+  "contributor": "@hej.luxom",
+  "index": 2,
+  "shell": {
+    "color": "OffWhite",
+    "serial": "G01009132"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-01",
+    "stamp": "903-22",
+    "extra_label": "4",
+    "u1": {
+      "label": "DMG-CPU LR35902 8908 D"
+    },
+    "u2": {
+      "label": "LH5164LN-10 SHARP JAPAN 8849 5 D"
+    },
+    "u3": {
+      "label": "LH5164LN-10 SHARP JAPAN 8849 5 D"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 8906 A"
+    },
+    "x1": {
+      "label": "D419A9"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-01",
+    "stamp": "903-22",
+    "circled_letters": "Z",
+    "chip": {},
+    "screen": {
+      "column_driver": {
+        "label": "902"
+      },
+      "row_driver": {
+        "label": "902"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "A1",
+    "year": 1989
+  },
+  "jack_board": {
+    "kind": "DMG JACK 01"
+  }
+}

@@ -181,6 +181,7 @@ export interface AgbMetadata {
 
 export interface AgsMetadata {
   color?: string
+  release_code?: string
   mainboard: {
     type: string
     number_pair?: string

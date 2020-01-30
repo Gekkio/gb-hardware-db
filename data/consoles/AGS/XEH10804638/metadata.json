@@ -1,0 +1,35 @@
+{
+  "slug": "XEH10804638",
+  "contributor": "max-m",
+  "index": 1,
+  "shell": {
+    "color": "Platinum",
+    "serial": "XEH10804638"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-01",
+    "number_pair": "3-1",
+    "stamp": "2233702",
+    "circled_letters": "CS",
+    "year": 2003,
+    "month": 3,
+    "u1": {
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0311 mB"
+    },
+    "u2": {
+      "label": "JAPAN 82D12160-10FN 0315 M54N"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0317 N"
+    },
+    "u4": {
+      "label": "S6403 AU3C5 8831"
+    },
+    "u5": {
+      "label": "2253B 3129"
+    },
+    "x1": {
+      "label": "KDSI 0314 4.194"
+    }
+  }
+}

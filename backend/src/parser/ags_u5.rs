@@ -25,9 +25,24 @@ fn mitsumi_mm1581a() -> Matcher<AgsU5> {
     })
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_ags_u5;
+/// assert!(parse_ags_u5("2253B 3129").is_ok());
+/// ```
+fn unknown() -> Matcher<AgsU5> {
+    Matcher::new(r#"^2253B\ ([0-9])([0-9]{2})[0-9]$"#, move |c| {
+        Ok(AgsU5 {
+            kind: None,
+            manufacturer: None,
+            year: Some(year1(&c[1])?),
+            week: Some(week2(&c[2])?),
+        })
+    })
+}
+
 pub fn parse_ags_u5(text: &str) -> Result<AgsU5, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgsU5>; 1] = [mitsumi_mm1581a(),];
+        static ref MATCHERS: [Matcher<AgsU5>; 2] = [mitsumi_mm1581a(), unknown(),];
     }
     for matcher in MATCHERS.iter() {
         if let Some(chip) = matcher.apply(text) {

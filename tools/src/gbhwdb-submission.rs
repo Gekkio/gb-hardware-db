@@ -69,7 +69,7 @@ fn ask_contributor_name(siv: &mut Cursive) -> String {
             .content(
                 LinearLayout::vertical()
                     .child(TextView::new("Name:"))
-                    .child(EditView::new().on_submit(|s, _| s.quit()).with_id("name")),
+                    .child(EditView::new().on_submit(|s, _| s.quit()).with_name("name")),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(70),
@@ -137,9 +137,9 @@ fn ask_shell(siv: &mut Cursive) -> Option<CartridgeShell> {
             .content(
                 LinearLayout::vertical()
                     .child(TextView::new("Code:"))
-                    .child(EditView::new().with_id("code"))
+                    .child(EditView::new().with_name("code"))
                     .child(TextView::new("Stamp:"))
-                    .child(EditView::new().with_id("stamp")),
+                    .child(EditView::new().with_name("stamp")),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(70),
@@ -171,7 +171,7 @@ fn ask_game_code(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>) -> Opti
                         EditView::new()
                             .on_submit(|s, _| s.quit())
                             .on_edit(move |siv, content, _| {
-                                siv.call_on_id("title", |title: &mut TextView| {
+                                siv.call_on_name("title", |title: &mut TextView| {
                                     match cfgs.get(content) {
                                         Some(cfg) => title.set_content(cfg.name.to_owned()),
                                         None => title.set_content(""),
@@ -179,10 +179,10 @@ fn ask_game_code(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>) -> Opti
                                 })
                                 .unwrap();
                             })
-                            .with_id("code"),
+                            .with_name("code"),
                     )
                     .child(DummyView.fixed_height(1))
-                    .child(TextView::new("").with_id("title").fixed_height(1)),
+                    .child(TextView::new("").with_name("title").fixed_height(1)),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(150),
@@ -204,15 +204,15 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
             .content(
                 LinearLayout::vertical()
                     .child(TextView::new("Label:"))
-                    .child(EditView::new().with_id("label"))
+                    .child(EditView::new().with_name("label"))
                     .child(TextView::new("Circled letters:"))
-                    .child(EditView::new().with_id("circled_letters"))
+                    .child(EditView::new().with_name("circled_letters"))
                     .child(TextView::new("Extra label:"))
-                    .child(EditView::new().with_id("extra_label"))
+                    .child(EditView::new().with_name("extra_label"))
                     .child(TextView::new("Year:"))
-                    .child(EditView::new().with_id("year"))
+                    .child(EditView::new().with_name("year"))
                     .child(TextView::new("Month:"))
-                    .child(EditView::new().with_id("month")),
+                    .child(EditView::new().with_name("month")),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(70),
@@ -277,7 +277,7 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
     if let Some(role) = role {
         result.add_child(TextView::new(id));
         let details = TextView::new("")
-            .with_id(details_id.clone())
+            .with_name(details_id.clone())
             .fixed_height(2);
         use gbhwdb_backend::parser::*;
         match role {
@@ -297,7 +297,7 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
             ChipRole::Tama => add_details_callback(&mut editor, &details_id, parse_tama),
             _ => (),
         }
-        result.add_child(editor.with_id(id));
+        result.add_child(editor.with_name(id));
         result.add_child(details);
     }
     result
@@ -310,7 +310,7 @@ fn add_details_callback<T: fmt::Debug, F: Fn(&str) -> Result<T, ()> + 'static>(
 ) {
     let details_id = details_id.to_owned();
     editor.set_on_edit(move |siv, content, _| {
-        siv.call_on_id(&details_id, |view: &mut TextView| match f(&content).ok() {
+        siv.call_on_name(&details_id, |view: &mut TextView| match f(&content).ok() {
             Some(chip) => view.set_content(format!("{:?}", chip)),
             None => view.set_content(""),
         })

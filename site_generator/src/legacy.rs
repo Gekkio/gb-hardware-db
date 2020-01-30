@@ -107,7 +107,7 @@ pub fn to_legacy_year(year_hint: Option<u16>, chip_year: Option<Year>) -> Option
 pub fn guess_full_year(hint: u16, partial_year: u8) -> u16 {
     let decades = [1980, 1990, 2000];
     decades
-        .into_iter()
+        .iter()
         .map(|decade| (decade, (hint as i32 - (decade + partial_year as i32)).abs()))
         .min_by_key(|&(_, distance)| distance)
         .map(|(&decade, _)| decade as u16 + partial_year as u16)

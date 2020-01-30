@@ -1,4 +1,5 @@
 use cursive::traits::*;
+use cursive::view::Margins;
 use cursive::views::*;
 use cursive::Cursive;
 use failure::{format_err, Error};
@@ -140,7 +141,7 @@ fn main_menu(siv: &mut Cursive, cfgs: &BTreeMap<String, GameConfig>, dats: &Dats
                         .item("Add a game", Command::Add)
                         .item("Quit", Command::Quit)
                         .on_submit(|s, _| s.quit())
-                        .with_id("cmd"),
+                        .with_name("cmd"),
                 ),
         ),
     );
@@ -232,14 +233,14 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
             siv.add_layer(
                 Dialog::new()
                     .title(format!("Fix name problem {}/{}", idx + 1, total))
-                    .padding((2, 2, 1, 1))
+                    .padding(Margins::lrtb(2, 2, 1, 1))
                     .content(
                         LinearLayout::vertical()
                             .child(TextView::new(format!("Game code: {}", code)))
                             .child(TextView::new(format!("Before: {}", game_cfg.name)))
                             .child(
                                 TextView::new(format!("After:  {}", game_cfg.name))
-                                    .with_id("selection"),
+                                    .with_name("selection"),
                             )
                             .child(DummyView.fixed_height(1))
                             .child(
@@ -257,7 +258,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
                                             format!("After:  {}", name),
                                         );
                                     })
-                                    .with_id("choice"),
+                                    .with_name("choice"),
                             ),
                     ),
             );
@@ -334,7 +335,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .content(
                 LinearLayout::vertical()
                     .child(TextView::new("Code:"))
-                    .child(EditView::new().on_submit(|s, _| s.quit()).with_id("code")),
+                    .child(EditView::new().on_submit(|s, _| s.quit()).with_name("code")),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(70),
@@ -349,7 +350,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     let games = dats.all_games();
     let mut search = EditView::new();
     search.set_on_edit(move |s, text, _| {
-        s.call_on_id("search_results", |results: &mut SelectView<Candidate>| {
+        s.call_on_name("search_results", |results: &mut SelectView<Candidate>| {
             results.clear();
             if text.len() > 0 {
                 let candidates = games
@@ -375,7 +376,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
                     .child(
                         SelectView::<Candidate>::new()
                             .on_submit(|s, _| s.quit())
-                            .with_id("search_results")
+                            .with_name("search_results")
                             .fixed_height(10),
                     ),
             )

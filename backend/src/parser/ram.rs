@@ -19,15 +19,17 @@ pub struct Ram {
 /// assert!(parse_ram("LH52A64N-TL LSI LOGIC JAPAN D4 06 05 C").is_ok());
 /// ```
 fn lsi_logic_lh52xx() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5264N4T|LH52A64N-TL|LH5264TN-TL)\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::LsiLogic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5264N4T|LH52A64N-TL|LH5264TN-TL)\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::LsiLogic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// LSI Logic LH52B256
@@ -37,15 +39,17 @@ fn lsi_logic_lh52xx() -> Matcher<Ram> {
 /// assert!(parse_ram("LH52B256NA-10TLL LSI LOGIC JAPAN D344 03 B").is_ok());
 /// ```
 fn lsi_logic_lh52b256() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::LsiLogic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::LsiLogic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// LSI Logic LH5168
@@ -55,15 +59,17 @@ fn lsi_logic_lh52b256() -> Matcher<Ram> {
 /// assert!(parse_ram("LH5168NFB-10TL LSI LOGIC JAPAN D242 7 BC").is_ok());
 /// ```
 fn lsi_logic_lh5168() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [0-9]\ [[:alnum:]]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::LsiLogic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [0-9]\ [[:alnum:]]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::LsiLogic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Mosel-Vitelic LH52B256
@@ -73,15 +79,17 @@ fn lsi_logic_lh5168() -> Matcher<Ram> {
 /// assert!(parse_ram("LH52B256NA-10PLL MOSEL-VITELIC JAPAN N643 0T BB").is_ok());
 /// ```
 fn mosel_vitelic_lh52b256() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{1,2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::MoselVitelic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{1,2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::MoselVitelic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Mosel-Vitelic LH5168
@@ -92,15 +100,17 @@ fn mosel_vitelic_lh52b256() -> Matcher<Ram> {
 /// assert!(parse_ram("LH5168N-10PL MOSEL-VITELIC JAPAN N7 34 22 BH").is_ok());
 /// ```
 fn mosel_vitelic_lh5168() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5168[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::MoselVitelic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5168[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::MoselVitelic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Mosel-Vitelic LH5268A
@@ -110,15 +120,17 @@ fn mosel_vitelic_lh5168() -> Matcher<Ram> {
 /// assert!(parse_ram("LH5268ANF-10PLL MOSEL-VITELIC JAPAN N633 0A BC").is_ok());
 /// ```
 fn mosel_vitelic_lh5268a() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5268A[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::MoselVitelic),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5268A[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::MoselVitelic),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Sanyo LC35256D
@@ -188,15 +200,17 @@ fn sanyo_lc3564b() -> Matcher<Ram> {
 /// assert!(parse_ram("LH52256CT-10LL SHARP JAPAN 9824 3 SF").is_ok());
 /// ```
 fn sharp_lh52256c() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH52256C[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year2(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH52256C[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Sharp LH52256CVT
@@ -226,15 +240,17 @@ fn sharp_lh52256cvt() -> Matcher<Ram> {
 /// assert!(parse_ram("LH52CV256JT-10LL SHARP JAPAN 9814 7 SA").is_ok());
 /// ```
 fn sharp_lh52cv256() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH52CV256[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year2(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH52CV256[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Sharp LH51D256T
@@ -265,15 +281,17 @@ fn sharp_lh51d256t() -> Matcher<Ram> {
 /// assert!(parse_ram("LH5160N-10L SHARP JAPAN 9007 5 DA").is_ok());
 /// ```
 fn sharp_lh5160() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5160[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year2(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5160[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Sharp LH5168
@@ -285,15 +303,17 @@ fn sharp_lh5160() -> Matcher<Ram> {
 /// assert!(parse_ram("LH5168NFB-10L SHARP JAPAN 9147 DC").is_ok());
 /// ```
 fn sharp_lh5168() -> Matcher<Ram> {
-    Matcher::new(r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year2(&c[2])?),
-            week: Some(week2(&c[3])?),
-        })
-    })
+    Matcher::new(
+        r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
 }
 
 /// Sharp LH5164AN
@@ -485,15 +505,17 @@ fn winbond_w2465() -> Matcher<Ram> {
 /// assert!(parse_ram("Winbond W24257S-70LL 046QB202858301AC").is_ok());
 /// ```
 fn winbond_w24257() -> Matcher<Ram> {
-    Matcher::new(r#"^Winbond\ (W24257[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Winbond),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[3])?),
-            week: Some(week2(&c[4])?),
-        })
-    })
+    Matcher::new(
+        r#"^Winbond\ (W24257[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Winbond),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
 }
 
 /// Winbond W24258
@@ -503,15 +525,17 @@ fn winbond_w24257() -> Matcher<Ram> {
 /// assert!(parse_ram("Winbond W24258S-70LE 011MH200254401AA").is_ok());
 /// ```
 fn winbond_w24258() -> Matcher<Ram> {
-    Matcher::new(r#"^Winbond\ (W24258[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Winbond),
-            chip_type: Some(c[1].to_owned()),
-            year: Some(year1(&c[3])?),
-            week: Some(week2(&c[4])?),
-        })
-    })
+    Matcher::new(
+        r#"^Winbond\ (W24258[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Winbond),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
 }
 
 /// Rohm XLJ6265
@@ -621,15 +645,17 @@ fn hyundai_gm76c256c() -> Matcher<Ram> {
 /// assert!(parse_ram("HYUNDAI KOREA HY628100B 0041A LLG-70").is_ok());
 /// ```
 fn hyundai_hy628100b() -> Matcher<Ram> {
-    Matcher::new(r#"^HYUNDAI\ KOREA\ HY628100B\ ([0-9]{2})([0-9]{2})[A-Z]\ ([[:alnum:]]{2,4}-[0-9]{2}[EI]?)$"#,
-    move |c| {
-        Ok(Ram {
-            manufacturer: Some(Manufacturer::Hyundai),
-            chip_type: Some(format!("HY628100B{}", &c[3])),
-            year: Some(year2(&c[1])?),
-            week: Some(week2(&c[2])?),
-        })
-    })
+    Matcher::new(
+        r#"^HYUNDAI\ KOREA\ HY628100B\ ([0-9]{2})([0-9]{2})[A-Z]\ ([[:alnum:]]{2,4}-[0-9]{2}[EI]?)$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Hyundai),
+                chip_type: Some(format!("HY628100B{}", &c[3])),
+                year: Some(year2(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
 }
 
 /// Hyundai HY6264A

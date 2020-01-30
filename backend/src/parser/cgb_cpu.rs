@@ -19,8 +19,8 @@ fn cgb_cpu() -> Matcher<CgbCpu> {
         move |c| {
             Ok(CgbCpu {
                 kind: c[1].to_owned(),
-            year: Some(year2_u16(&c[4])?),
-            week: Some(week2(&c[5])?),
+                year: Some(year2_u16(&c[4])?),
+                week: Some(week2(&c[5])?),
             })
         },
     )

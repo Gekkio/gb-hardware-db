@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BBE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BB-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "DMG-BBE-0 S LH5317V5 JAPAN B1 9845 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'01"
+    }
+  }
+}

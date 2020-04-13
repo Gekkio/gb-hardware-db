@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BBE-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-BB-FAH",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1991,
+    "month": 11,
+    "u1": {
+      "label": "DMG-BBE-0 S LH5314GY JAPAN B1 9148 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9146BA067"
+    }
+  }
+}

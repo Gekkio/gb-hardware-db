@@ -1,0 +1,32 @@
+{
+  "code": "DMG-BMAE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BMAE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-KFCN-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "DMG-BMAE-0 F1 M538011E-2C 0455414"
+    },
+    "u2": {
+      "label": "MBC3 A LR38536B 9948 A"
+    },
+    "u3": {
+      "label": "SANYO LC3564BM-70 JAPAN 0JUBG"
+    },
+    "u4": {
+      "label": "039 134A"
+    },
+    "x1": {
+      "label": "KDS0J"
+    }
+  }
+}

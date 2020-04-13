@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AB6P-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AB6P-EUR",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "4",
+    "year": 1999,
+    "month": 4,
+    "u1": {
+      "label": "DMG-AB6P-0 S LH538WY5 JAPAN F1 9923 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 914U5L"
+    }
+  }
+}

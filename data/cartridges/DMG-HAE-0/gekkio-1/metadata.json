@@ -1,0 +1,20 @@
+{
+  "code": "DMG-HAE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HA-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 3,
+    "u1": {
+      "label": "DMG-HAE-0 SHARP JAPAN A0 9009 E"
+    }
+  }
+}

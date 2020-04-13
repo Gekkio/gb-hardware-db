@@ -1,0 +1,22 @@
+{
+  "code": "DMG-SLE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "DMG-SLE-0 S LH5308GB JAPAN C1 9129 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9109BA085"
+    }
+  }
+}

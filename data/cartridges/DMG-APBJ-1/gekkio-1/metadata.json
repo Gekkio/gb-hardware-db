@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APBJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APBJ-JPN",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 3,
+    "u1": {
+      "label": "DMG-APBJ-1 S LH534MV2 JAPAN E1 9716 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9711 7 A"
+    },
+    "u3": {
+      "label": "LH52B256NA-10PLL MOSEL-VITELIC JAPAN N641 0K BB"
+    },
+    "u4": {
+      "label": "650 26A"
+    }
+  }
+}

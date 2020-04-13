@@ -1,0 +1,30 @@
+{
+  "code": "CGB-BHTJ-1",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BHTJ-JPN",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "C004549-M MX23C8005-12 CGB-BHTJ-1 F1 1C4215A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 042 H88"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0041 3 SO"
+    },
+    "u4": {
+      "label": "041 134A"
+    },
+    "x1": {}
+  }
+}

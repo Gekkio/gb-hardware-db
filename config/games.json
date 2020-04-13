@@ -181,6 +181,13 @@
       "rom_mapper_ram"
     ]
   },
+  "CGB-BHTJ-1": {
+    "name": "Tottoko Hamutarou - Tomodachi Daisakusen Dechu (Japan) (Rev 1)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram_xtal"
+    ]
+  },
   "CGB-BHVE-0": {
     "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
     "platform": "gbc",
@@ -810,6 +817,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-APYJ-0": {
+    "name": "Pocket Puyo Puyo Tsuu (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-ATAJ-0": {
     "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -1018,6 +1032,13 @@
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
+    ]
+  },
+  "DMG-BMAE-0": {
+    "name": "Mary-Kate and Ashley - Pocket Planner (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram_xtal"
     ]
   },
   "DMG-BMAP-0": {
@@ -1508,6 +1529,13 @@
     "platform": "gb",
     "layouts": [
       "mbc2"
+    ]
+  },
+  "DMG-SLE-0": {
+    "name": "InfoGenius Productivity Pak - Spell Checker and Calculator (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
     ]
   },
   "DMG-SOE-1": {

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-APYJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APYJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "extra_label": "1",
+    "year": 1997,
+    "month": 2,
+    "u1": {
+      "label": "DMG-APYJ-0 D1 N-2001EUGW-J15 9711K7018"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'13"
+    }
+  }
+}

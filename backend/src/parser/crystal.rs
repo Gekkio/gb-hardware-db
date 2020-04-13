@@ -179,11 +179,16 @@ fn kinseki_8388() -> Matcher<Crystal> {
     })
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_crystal;
+/// assert!(parse_crystal("32K9Y").is_ok());
+/// assert!(parse_crystal("32K0Z").is_ok());
+/// ```
 fn unknown() -> Matcher<Crystal> {
-    Matcher::new(r#"^32K9[A-Z]$"#, move |_| {
+    Matcher::new(r#"^32K([0-9])[A-Z]$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
-            year: None,
+            year: Some(year1(&c[1])?),
             month: None,
             week: None,
         })

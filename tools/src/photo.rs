@@ -5,21 +5,12 @@ extern crate image;
 
 use clap::{App, Arg, ArgMatches};
 use failure::Error;
-use image::jpeg::JPEGEncoder;
-use image::{DynamicImage, FilterType, GenericImageView};
+use image::imageops::FilterType;
+use image::ImageOutputFormat;
 use std::fs::File;
-use std::io::{self, Write};
+use std::io;
 use std::process;
 use std::u32;
-
-fn write_jpeg<W: Write>(w: &mut W, img: &DynamicImage) -> Result<(), Error> {
-    let mut encoder = JPEGEncoder::new_with_quality(w, 80);
-    let bytes = img.raw_pixels();
-    let (width, height) = img.dimensions();
-    let color = img.color();
-    encoder.encode(&bytes, width, height, color)?;
-    Ok(())
-}
 
 fn run(matches: &ArgMatches) -> Result<(), Error> {
     let width = value_t!(matches, "width", u32).unwrap_or(u32::MAX);
@@ -27,13 +18,15 @@ fn run(matches: &ArgMatches) -> Result<(), Error> {
     let input = matches.value_of_os("INPUT").expect("Missing input file");
     let output = matches.value_of_os("output").expect("Missing output file");
     let img = image::open(&input)?.resize(width, height, FilterType::Lanczos3);
+    let format = ImageOutputFormat::Jpeg(80);
     if output == "-" {
         let mut w = io::stdout();
-        write_jpeg(&mut w, &img)
+        img.write_to(&mut w, format)?;
     } else {
         let mut w = File::create(output)?;
-        write_jpeg(&mut w, &img)
+        img.write_to(&mut w, format)?;
     }
+    Ok(())
 }
 
 fn main() {

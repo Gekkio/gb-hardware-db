@@ -1,0 +1,10 @@
+import * as React from 'react'
+import * as ReactMarkdown from 'react-markdown'
+
+interface Props {
+  content: string
+}
+
+export default function MarkdownPage({ content }: Props) {
+  return <ReactMarkdown source={content} renderers={{ root: (props: any) => <article {...props} /> }} />
+}

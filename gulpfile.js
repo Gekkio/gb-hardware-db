@@ -13,6 +13,7 @@ const staticPaths = [
   'static/**/*.html',
   'static/**/*.txt',
   'static/**/*.ico',
+  'static/**/*.jpg',
   'static/**/*.png',
   'static/**/*.svg',
   'static/**/*.webmanifest',

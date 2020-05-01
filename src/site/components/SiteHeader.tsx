@@ -30,7 +30,7 @@ function isModel(pageType: string, code: string) {
 }
 
 function isInCartridges(pageType: string): boolean {
-  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper'
+  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper' || pageType === "contribute-cartridges"
 }
 
 function PrimaryNav({ pageType }: Props) {

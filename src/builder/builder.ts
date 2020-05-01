@@ -275,6 +275,14 @@ async function main(): Promise<void> {
       props: {},
     },
     {
+      type: 'contribute-cartridges',
+      path: ['contribute', 'cartridges'],
+      title: 'Game cartridge contribution instructions',
+      props: {
+        content: await fs.readFile('content/contribute-cartridges.markdown', { encoding: 'utf-8' }),
+      }
+    },
+    {
       type: 'contribute-oxy',
       path: ['contribute', 'oxy'],
       title: 'Game Boy Micro (OXY) contribution instructions',

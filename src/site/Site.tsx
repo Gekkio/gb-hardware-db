@@ -31,6 +31,7 @@ import Cartridge from './pages/Cartridge'
 import Game from './pages/Game'
 import Cartridges from './pages/Cartridges'
 import Mapper from './pages/Mapper'
+import MarkdownPage from './pages/MarkdownPage'
 
 namespace Site {
   export interface Props {
@@ -88,6 +89,8 @@ function renderPage(type: string, props: any) {
       return <ContributeSgb2 {...props} />
     case 'contribute-oxy':
       return <ContributeOxy {...props} />
+    case 'contribute-cartridges':
+      return <MarkdownPage {...props} />
     case 'dmg':
       return <Dmg {...props} />
     case 'dmg-console':

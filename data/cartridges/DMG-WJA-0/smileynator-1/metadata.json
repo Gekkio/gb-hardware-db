@@ -1,0 +1,28 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "smileynator-1",
+  "contributor": "Smileynator",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WJ-USA"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1993,
+    "month": 12,
+    "u1": {
+      "label": "JAPAN DMG-WJA-0 E1 3NH AK 9401 R17"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9353 1 A"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9349B KOREA"
+    },
+    "u4": {
+      "label": "338 26A"
+    }
+  }
+}

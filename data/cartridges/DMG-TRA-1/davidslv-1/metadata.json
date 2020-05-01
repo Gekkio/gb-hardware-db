@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TR-UKV",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "AAAC S",
+    "extra_label": "2",
+    "u1": {
+      "label": "LR0G150 DMG-TRA-1 92022"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "smileynator-2",
+  "contributor": "Smileynator",
+  "index": 2,
+  "shell": {
+    "code": "DMG-WJ-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "K",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 9,
+    "u1": {
+      "label": "C9737-M MX23C4002-20 DMG-WJA-0 E1 43470P"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'98"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 738 187N"
+    },
+    "u4": {}
+  }
+}

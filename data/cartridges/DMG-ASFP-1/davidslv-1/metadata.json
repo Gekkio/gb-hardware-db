@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ASFP-1",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ASFP-EUR",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-10",
+    "circled_letters": "Cs",
+    "extra_label": "3",
+    "year": 1997,
+    "month": 7,
+    "u1": {
+      "label": "DMG-ASFP-1 S LH534MYN JAPAN E1 9731 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'75"
+    }
+  }
+}

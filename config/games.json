@@ -824,6 +824,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-ASFP-1": {
+    "name": "Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-ATAJ-0": {
     "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -1349,6 +1356,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-MCE-0": {
+    "name": "Mickey's Dangerous Chase (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-MEA-0": {
     "name": "Metroid II - Return of Samus (World)",
     "platform": "gb",
@@ -1491,6 +1505,13 @@
   },
   "DMG-RAJ-0": {
     "name": "Red Arremer - Makaimura Gaiden (Japan)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "DMG-RCE-0": {
+    "name": "Super R.C. Pro-Am (USA, Europe)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

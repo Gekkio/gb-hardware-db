@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ML-UKV",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1992,
+    "month": 2,
+    "u1": {
+      "label": "DMG-MLA-1 S LH5314B2 JAPAN B1 9209 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9207BA033"
+    }
+  }
+}

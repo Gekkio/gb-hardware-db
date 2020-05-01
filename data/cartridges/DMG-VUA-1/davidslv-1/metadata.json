@@ -1,0 +1,20 @@
+{
+  "code": "DMG-VUA-1",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VU-UKV",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1996,
+    "month": 6,
+    "u1": {
+      "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9625 D"
+    }
+  }
+}

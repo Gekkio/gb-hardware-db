@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MQE-2",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MQ-UKV",
+    "stamp": "05B"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1992,
+    "month": 12,
+    "u1": {
+      "label": "TOSHIBA 9301EAI TC534000BF DMG-MQE-2 E1 N516 JAPAN"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9251BA083"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9249A KOREA"
+    },
+    "u4": {
+      "label": "6129 2C71"
+    }
+  }
+}

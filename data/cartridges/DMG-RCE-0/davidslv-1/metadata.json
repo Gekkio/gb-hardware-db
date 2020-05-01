@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RCE-0",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RC-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "DMG-RCE-0 S LH531HHT JAPAN C1 9838 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9837 3 A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WJ-UKV",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "extra_label": "1",
+    "year": 1996,
+    "month": 3,
+    "u1": {
+      "label": "TOSHIBA 9614EAI TC534000DF DMG-WJA-0 E1 N750 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'28"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9544B KOREA"
+    },
+    "u4": {
+      "label": "6129A 6350"
+    }
+  }
+}

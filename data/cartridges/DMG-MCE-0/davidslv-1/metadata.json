@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MCE-0",
+  "slug": "davidslv-1",
+  "contributor": "davidslv",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MC-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 5,
+    "u1": {
+      "label": "DMG-MCE-0 S LH5308UY JAPAN C1 9123 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9123 5 A"
+    }
+  }
+}

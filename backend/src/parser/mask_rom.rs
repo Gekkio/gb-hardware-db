@@ -26,7 +26,7 @@ fn sharp() -> Matcher<MaskRom> {
             Ok(MaskRom {
                 rom_code: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[3].to_owned()),
+                chip_type: Some(map_sharp_mask_rom(&c[3]).unwrap_or(&c[3]).to_owned()),
                 year: Some(year2(&c[4])?),
                 week: Some(week2(&c[5])?),
             })
@@ -332,6 +332,40 @@ fn fujitsu() -> Matcher<MaskRom> {
             })
         },
     )
+}
+
+fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
+    match code {
+        "LH5359" => Some("LH53259"),   // Sharp Memory Data Book 1992
+        "LH5317" => Some("LH53517"),   // Unknown mask ROM listing scan
+        "LH531H" => Some("LH530800A"), // Sharp Memory Data Book 1992
+        // reasonable guesses
+        "LH5308" => Some("LH530800"), // unknown 1Mb JEDEC, compatible with LH530800A
+        "LH5314" => Some("LH53514"),  // unknown 512Kb JEDEC, compatible with LH53517
+        "LH5321" => Some("LH532100"), // unknown 2Mb JEDEC
+        // unknown 2Mb JEDEC
+        // maybe: LH532100 series / LH532300 / LH532700 series
+        "LH532D" => None,
+        "LH532M" => None,
+        "LH532W" => None,
+        "LHMN2E" => None,
+        // Unknown 4Mb JEDEC
+        // maybe: LH534100 series / LH534300 series / LH534R00
+        "LH534M" => None,
+        "LH5S4M" => None,
+        "LHMN4M" => None,
+        // Unknown 8Mb JEDEC
+        // maybe: LH538300 series / LH538400 series / LH538700 / LH538R00 series
+        "LH538M" => None,
+        "LH538W" => None,
+        "LH5S8M" => None,
+        "LHMN8J" => None,
+        "LHMN8M" => None,
+        // Unknown 16 Mb
+        // maybe: LH5316400 / LH5316500 series / LH5316P00 series
+        "LH537M" => None,
+        _ => None,
+    }
 }
 
 pub fn parse_mask_rom(text: &str) -> Result<MaskRom, ()> {

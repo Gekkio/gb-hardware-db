@@ -91,8 +91,8 @@ fn load_dats() -> Result<Dats, Error> {
     }
     Ok(Dats {
         gb: gb_dat.ok_or(format_err!("No GB dat found"))?,
-        gbc: gbc_dat.ok_or(format_err!("No GB dat found"))?,
-        gba: gba_dat.ok_or(format_err!("No GB dat found"))?,
+        gbc: gbc_dat.ok_or(format_err!("No GBC dat found"))?,
+        gba: gba_dat.ok_or(format_err!("No GBA dat found"))?,
     })
 }
 

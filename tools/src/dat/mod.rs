@@ -11,7 +11,8 @@ pub struct DatFile {
 }
 
 pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
-    let dat_reader = DatReader::from_file(path)?;
+    let mut dat_reader = DatReader::from_file(path)?;
+    dat_reader.set_strict(false);
     let data_file = dat_reader.read_all()?;
     let names = data_file
         .games

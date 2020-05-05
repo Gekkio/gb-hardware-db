@@ -5,6 +5,7 @@ Site source code for https://gbhwdb.gekkio.fi
 ## Contributors
 
 * Bruno Bertuga
+* curbsideaudio
 * davidslv
 * Duo (http://gameboy.mongenel.com)
 * FIX94

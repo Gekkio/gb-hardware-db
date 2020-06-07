@@ -1,0 +1,54 @@
+{
+  "slug": "G01085686",
+  "contributor": "gekkio",
+  "shell": {
+    "color": "OffWhite",
+    "serial": "G01085686"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-01",
+    "stamp": "903-23",
+    "extra_label": "6",
+    "u1": {
+      "label": "DMG-CPU LR35902 8909 D"
+    },
+    "u2": {
+      "label": "LH5164LN-10 SHARP JAPAN 8902 5 D"
+    },
+    "u3": {
+      "label": "LH5164LN-10 SHARP JAPAN 8902 5 D"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 8908 A"
+    },
+    "x1": {
+      "label": "D419B9"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-01",
+    "stamp": "903-23",
+    "circled_letters": "Z",
+    "chip": {
+      "label": "DMG-REG IR3E02 8908 A"
+    },
+    "screen": {
+      "label": "S890118",
+      "column_driver": {
+        "label": "902",
+        "ribbon_label": "LH5077 F"
+      },
+      "row_driver": {
+        "label": "902",
+        "ribbon_label": "LH5076 F"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "A1",
+    "year": 1989
+  },
+  "jack_board": {
+    "kind": "DMG JACK 01"
+  }
+}

@@ -1,17 +1,17 @@
 {
-  "slug": "G13289095",
+  "slug": "gekkio-3",
   "contributor": "gekkio",
+  "index": 3,
   "shell": {
-    "color": "OffWhite",
-    "serial": "G13289095"
+    "color": "OffWhite"
   },
   "mainboard": {
     "label": "DMG-CPU-05",
-    "stamp": "101-0007",
-    "circled_letters": "K3",
-    "extra_label": "1",
+    "stamp": "011-1202",
+    "circled_letters": "W",
+    "extra_label": "2",
     "u1": {
-      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9049 W"
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9042 W"
     },
     "u2": {
       "label": "LH5264TN-L SHARP JAPAN 9049 7 Y"
@@ -23,26 +23,26 @@
       "label": "DMG-AMP IR3R40 9049 A"
     },
     "x1": {
-      "label": "D419M0"
+      "label": "D419K0"
     }
   },
   "lcd_board": {
-    "label": "DMG-LCD-05",
-    "stamp": "101-0007",
-    "circled_letters": "Z",
+    "label": "DMG-LCD-06",
+    "stamp": "010-1202",
+    "circled_letters": "A",
     "year": 1990,
-    "month": 12,
+    "month": 8,
     "chip": {
       "label": "DMG-REG IR3E02 9049 J"
     },
     "screen": {
-      "label": "N AE901222",
+      "label": "SY901011",
       "column_driver": {
-        "label": "011",
+        "label": "009",
         "ribbon_label": "LH5077 F"
       },
       "row_driver": {
-        "label": "011",
+        "label": "009",
         "ribbon_label": "LH5076 F"
       }
     }
@@ -50,7 +50,7 @@
   "power_board": {
     "kind": "A2",
     "year": 1990,
-    "month": 11
+    "month": 9
   },
   "jack_board": {
     "kind": "DMG JACK 03"

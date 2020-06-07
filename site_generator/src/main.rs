@@ -301,7 +301,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: Some(
                     (match (console.shell.serial.is_some(), has_outliers) {
@@ -461,7 +461,7 @@ fn process_mgb_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -551,7 +551,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -730,7 +730,7 @@ fn process_cgb_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -818,7 +818,7 @@ fn process_agb_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -897,7 +897,7 @@ fn process_ags_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1045,7 +1045,7 @@ fn process_oxy_submissions() -> Result<(), Error> {
                     .shell
                     .serial
                     .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index)),
+                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,

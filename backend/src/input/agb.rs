@@ -7,7 +7,8 @@ use crate::input::{is_not_outlier, Chip};
 pub struct AgbConsole {
     pub slug: String,
     pub contributor: String,
-    pub index: u16,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub index: Option<u16>,
     pub shell: AgbShell,
     pub mainboard: AgbMainboard,
 }

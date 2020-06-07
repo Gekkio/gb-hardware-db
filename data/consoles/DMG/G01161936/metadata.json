@@ -1,0 +1,60 @@
+{
+  "slug": "G01161936",
+  "contributor": "gekkio",
+  "index": 35,
+  "shell": {
+    "color": "OffWhite",
+    "serial": "G01161936",
+    "outlier": true
+  },
+  "mainboard": {
+    "label": "DMG-CPU-04",
+    "stamp": "008-2700",
+    "circled_letters": "W",
+    "extra_label": "5",
+    "u1": {
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9029 W"
+    },
+    "u2": {
+      "label": "LH5160N-10L SHARP JAPAN 9009 5 DA"
+    },
+    "u3": {
+      "label": "LH5160N-10L SHARP JAPAN 9009 5 DA"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 9028 A"
+    },
+    "x1": {
+      "label": "D419F0"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "008.270-",
+    "circled_letters": "Z",
+    "year": 1990,
+    "month": 7,
+    "chip": {
+      "label": "DMG-REG IR3E02 9029 J"
+    },
+    "screen": {
+      "label": "N AE900724",
+      "column_driver": {
+        "label": "007",
+        "ribbon_label": "LH5077 F"
+      },
+      "row_driver": {
+        "label": "007",
+        "ribbon_label": "LH5076 F"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "A2",
+    "year": 1990,
+    "month": 5
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03"
+  }
+}

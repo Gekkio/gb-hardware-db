@@ -1,0 +1,57 @@
+{
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 38,
+  "shell": {
+    "color": "OffWhite"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-06",
+    "stamp": "206-0100",
+    "circled_letters": "N",
+    "u1": {
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9222 D"
+    },
+    "u2": {
+      "label": "LH5264N4T LSI LOGIC JAPAN D219 58 C"
+    },
+    "u3": {
+      "label": "LH5264N4T LSI LOGIC JAPAN D219 91 C"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 9221 AA"
+    },
+    "x1": {
+      "label": "D419E2"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "206-0100",
+    "circled_letters": "Z",
+    "year": 1992,
+    "month": 5,
+    "chip": {
+      "label": "DMG-REG IR3E02 9219 AB"
+    },
+    "screen": {
+      "label": "N1 AH 020515",
+      "column_driver": {
+        "label": "204",
+        "ribbon_label": "LH5077 F"
+      },
+      "row_driver": {
+        "label": "203",
+        "ribbon_label": "LH5076 F"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "A3",
+    "year": 1991,
+    "month": 4
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03"
+  }
+}

@@ -1,14 +1,59 @@
 {
   "slug": "G33429207",
   "contributor": "gekkio",
-  "index": 19,
+  "index": 39,
   "shell": {
+    "color": "OffWhite",
     "serial": "G33429207"
   },
   "mainboard": {
     "label": "DMG-CPU-06",
+    "stamp": "307-3200",
+    "circled_letters": "KC",
+    "extra_label": "2",
     "u1": {
-      "label": "DMG-CPU B 9327 W"
+      "label": "DMG-CPU B © 1989 Nintendo JAPAN 9327 W"
+    },
+    "u2": {
+      "label": "LH5264N4T LSI LOGIC JAPAN D320 0D C"
+    },
+    "u3": {
+      "label": "LH5264N4T LSI LOGIC JAPAN D320 0D C"
+    },
+    "u4": {
+      "label": "DMG-AMP IR3R40 9328 CA"
+    },
+    "x1": {
+      "label": "D419E3"
     }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-06",
+    "stamp": "307-3200",
+    "circled_letters": "Z",
+    "year": 1993,
+    "month": 6,
+    "chip": {
+      "label": "DMG-REG IR3E02 9328 CB"
+    },
+    "screen": {
+      "label": "ST 930703",
+      "column_driver": {
+        "label": "2500",
+        "ribbon_label": "LH5077 AF"
+      },
+      "row_driver": {
+        "label": "3070",
+        "ribbon_label": "LH5076 AF"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "B",
+    "year": 1993,
+    "month": 6
+  },
+  "jack_board": {
+    "kind": "DMG JACK 03"
   }
 }

@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{year1, Manufacturer, Matcher, Year};
+use super::{year1, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LineDecoder {
@@ -13,10 +13,10 @@ pub struct LineDecoder {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_line_decoder;
-/// assert!(parse_line_decoder("7W139 0J").is_ok());
+/// assert!(parse_line_decoder("7W139 0J").is_some());
 /// ```
-fn toshiba_tc7w139f() -> Matcher<LineDecoder> {
-    Matcher::new(r#"^(7W139F?)\ ([0-9])[A-Z]$"#, move |c| {
+fn toshiba_tc7w139f() -> MatcherDef<LineDecoder> {
+    MatcherDef(r#"^(7W139F?)\ ([0-9])[A-Z]$"#, move |c| {
         Ok(LineDecoder {
             chip_type: Some(
                 (match &c[1] {
@@ -31,14 +31,9 @@ fn toshiba_tc7w139f() -> Matcher<LineDecoder> {
     })
 }
 
-pub fn parse_line_decoder(text: &str) -> Result<LineDecoder, ()> {
+pub fn parse_line_decoder(text: &str) -> Option<LineDecoder> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<LineDecoder>; 1] = [toshiba_tc7w139f(),];
+        static ref MATCHER: Matcher<LineDecoder> = toshiba_tc7w139f().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

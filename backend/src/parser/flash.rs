@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Manufacturer, Matcher, Year};
+use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Flash {
@@ -14,10 +14,10 @@ pub struct Flash {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_flash;
-/// assert!(parse_flash("E991012 29F008TC-14 21534 TAIWAN").is_ok());
+/// assert!(parse_flash("E991012 29F008TC-14 21534 TAIWAN").is_some());
 /// ```
-fn macronix() -> Matcher<Flash> {
-    Matcher::new(
+fn macronix() -> MatcherDef<Flash> {
+    MatcherDef(
         r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}\ (29F008[A-Z]{2}-[0-9]{2})\ [0-9]{5}\ TAIWAN$"#,
         move |c| {
             Ok(Flash {
@@ -30,14 +30,9 @@ fn macronix() -> Matcher<Flash> {
     )
 }
 
-pub fn parse_flash(text: &str) -> Result<Flash, ()> {
+pub fn parse_flash(text: &str) -> Option<Flash> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Flash>; 1] = [macronix(),];
+        static ref MATCHER: Matcher<Flash> = macronix().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

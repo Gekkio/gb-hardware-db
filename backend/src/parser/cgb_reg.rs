@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Matcher, Year};
+use super::{week2, year2, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CgbReg {
@@ -10,10 +10,10 @@ pub struct CgbReg {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_cgb_reg;
-/// assert!(parse_cgb_reg("CGB-REG IR3E06N 9839 C").is_ok());
+/// assert!(parse_cgb_reg("CGB-REG IR3E06N 9839 C").is_some());
 /// ```
-fn cgb_reg() -> Matcher<CgbReg> {
-    Matcher::new(
+fn cgb_reg() -> MatcherDef<CgbReg> {
+    MatcherDef(
         r#"^CGB-REG\ IR3E06N\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(CgbReg {
@@ -24,14 +24,9 @@ fn cgb_reg() -> Matcher<CgbReg> {
     )
 }
 
-pub fn parse_cgb_reg(text: &str) -> Result<CgbReg, ()> {
+pub fn parse_cgb_reg(text: &str) -> Option<CgbReg> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<CgbReg>; 1] = [cgb_reg()];
+        static ref MATCHER: Matcher<CgbReg> = cgb_reg().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

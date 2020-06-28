@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, year2, Manufacturer, Matcher, Year};
+use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MaskRom {
@@ -15,12 +15,12 @@ pub struct MaskRom {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-WJA-0 S LH534M05 JAPAN E1 9606 D").is_ok());
-/// assert!(parse_mask_rom("DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D").is_ok());
-/// assert!(parse_mask_rom("DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E").is_ok());
+/// assert!(parse_mask_rom("DMG-WJA-0 S LH534M05 JAPAN E1 9606 D").is_some());
+/// assert!(parse_mask_rom("DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D").is_some());
+/// assert!(parse_mask_rom("DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E").is_some());
 /// ```
-fn sharp() -> Matcher<MaskRom> {
-    Matcher::new(
+fn sharp() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ S\ (LH[[:alnum:]]{4})[[:alnum:]]{2} \ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(MaskRom {
@@ -38,10 +38,10 @@ fn sharp() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-TRA-1 SHARP JAPAN A0 9019 D").is_ok());
+/// assert!(parse_mask_rom("DMG-TRA-1 SHARP JAPAN A0 9019 D").is_some());
 /// ```
-fn sharp2() -> Matcher<MaskRom> {
-    Matcher::new(
+fn sharp2() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^(DMG-[[:alnum:]]{3}-[0-9])\ SHARP\ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(MaskRom {
@@ -59,10 +59,10 @@ fn sharp2() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-AWA-0 SHARP JAPAN 8909 D A").is_ok());
+/// assert!(parse_mask_rom("DMG-AWA-0 SHARP JAPAN 8909 D A").is_some());
 /// ```
-fn sharp3() -> Matcher<MaskRom> {
-    Matcher::new(
+fn sharp3() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^(DMG-[[:alnum:]]{3}-[0-9])\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]\ [A-Z]$"#,
         move |c| {
             Ok(MaskRom {
@@ -80,13 +80,13 @@ fn sharp3() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503").is_ok());
-/// assert!(parse_mask_rom("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_ok());
-/// assert!(parse_mask_rom("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
-/// assert!(parse_mask_rom("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
+/// assert!(parse_mask_rom("M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503").is_some());
+/// assert!(parse_mask_rom("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_some());
+/// assert!(parse_mask_rom("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_some());
+/// assert!(parse_mask_rom("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_some());
 /// ```
-fn macronix() -> Matcher<MaskRom> {
-    Matcher::new(
+fn macronix() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-M\ (MX23C[0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
         move |c| {
             Ok(MaskRom {
@@ -104,10 +104,10 @@ fn macronix() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C").is_ok());
+/// assert!(parse_mask_rom("C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C").is_some());
 /// ```
-fn macronix2() -> Matcher<MaskRom> {
-    Matcher::new(
+fn macronix2() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^[A-Z]([0-9]{2})([0-9]{2})-M\ (MX23C[0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]?\ [[:alnum:]]{6}$"#,
         move |c| {
             Ok(MaskRom {
@@ -125,10 +125,10 @@ fn macronix2() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
+/// assert!(parse_mask_rom("DMG-AM6J-0 F1 M538011E-36 9085401").is_some());
 /// ```
-fn oki() -> Matcher<MaskRom> {
-    Matcher::new(
+fn oki() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M538011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(MaskRom {
@@ -146,10 +146,10 @@ fn oki() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702").is_ok());
+/// assert!(parse_mask_rom("NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702").is_some());
 /// ```
-fn nec() -> Matcher<MaskRom> {
-    Matcher::new(
+fn nec() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^NEC\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (UPD23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(MaskRom {
@@ -167,10 +167,10 @@ fn nec() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("DMG-ZLE-0 E1 N-4001EAGW-J14 9329X7007").is_ok());
+/// assert!(parse_mask_rom("DMG-ZLE-0 E1 N-4001EAGW-J14 9329X7007").is_some());
 /// ```
-fn nec_like() -> Matcher<MaskRom> {
-    Matcher::new(
+fn nec_like() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(MaskRom {
@@ -188,10 +188,10 @@ fn nec_like() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("Ⓜ AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9351E9005").is_ok());
+/// assert!(parse_mask_rom("Ⓜ AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9351E9005").is_some());
 /// ```
-fn at_t() -> Matcher<MaskRom> {
-    Matcher::new(
+fn at_t() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^Ⓜ\ AT&T\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(MaskRom {
@@ -209,10 +209,10 @@ fn at_t() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("STANDARD MICRO DMG-BIA-0 C1 23C1001EGW-J61 9140E9017").is_ok());
+/// assert!(parse_mask_rom("STANDARD MICRO DMG-BIA-0 C1 23C1001EGW-J61 9140E9017").is_some());
 /// ```
-fn smsc() -> Matcher<MaskRom> {
-    Matcher::new(
+fn smsc() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^STANDARD\ MICRO\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(MaskRom {
@@ -232,10 +232,10 @@ fn smsc() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("LR0G150 DMG-TRA-1 97141").is_ok());
+/// assert!(parse_mask_rom("LR0G150 DMG-TRA-1 97141").is_some());
 /// ```
-fn glop_top() -> Matcher<MaskRom> {
-    Matcher::new(
+fn glop_top() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^(LR0G150)\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9]{2})([0-9]{2})[0-9]$"#,
         move |c| {
             Ok(MaskRom {
@@ -253,10 +253,10 @@ fn glop_top() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("TOSHIBA 9136EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN").is_ok());
+/// assert!(parse_mask_rom("TOSHIBA 9136EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN").is_some());
 /// ```
-fn toshiba() -> Matcher<MaskRom> {
-    Matcher::new(
+fn toshiba() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^TOSHIBA\ ([0-9]{2})([0-9]{2})EAI\ (TC53[0-9]{4}[A-Z]{2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [A-Z][0-9]{3}\ JAPAN$"#,
         move |c| {
             Ok(MaskRom {
@@ -274,10 +274,10 @@ fn toshiba() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("SEC KM23C16120DT CGB-BHMJ-0 G2 K3N5C317GD").is_ok());
+/// assert!(parse_mask_rom("SEC KM23C16120DT CGB-BHMJ-0 G2 K3N5C317GD").is_some());
 /// ```
-fn samsung() -> Matcher<MaskRom> {
-    Matcher::new(
+fn samsung() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^SEC\ (KM23C[0-9]{4,5}[A-Z]{1,2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [[:alnum:]]{10}$"#,
         move |c| {
             Ok(MaskRom {
@@ -295,10 +295,10 @@ fn samsung() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("SEC KM23C8000DG DMG-AAUJ-1 F1 KFX331U").is_ok());
+/// assert!(parse_mask_rom("SEC KM23C8000DG DMG-AAUJ-1 F1 KFX331U").is_some());
 /// ```
-fn samsung2() -> Matcher<MaskRom> {
-    Matcher::new(
+fn samsung2() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^SEC\ (KM23C[0-9]{4,5}[A-Z]{1,2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ KF[[:alnum:]]{4}[A-Z]$"#,
         move |c| {
             Ok(MaskRom {
@@ -316,11 +316,11 @@ fn samsung2() -> Matcher<MaskRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
-/// assert!(parse_mask_rom("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
-/// assert!(parse_mask_rom("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
+/// assert!(parse_mask_rom("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_some());
+/// assert!(parse_mask_rom("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_some());
 /// ```
-fn fujitsu() -> Matcher<MaskRom> {
-    Matcher::new(
+fn fujitsu() -> MatcherDef<MaskRom> {
+    MatcherDef(
         r#"^JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [0-9][A-Z][[:alnum:]]\ [A-Z]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
         move |c| {
             Ok(MaskRom {
@@ -368,9 +368,9 @@ fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
     }
 }
 
-pub fn parse_mask_rom(text: &str) -> Result<MaskRom, ()> {
+pub fn parse_mask_rom(text: &str) -> Option<MaskRom> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<MaskRom>; 15] = [
+        static ref MATCHER: MatcherSet<MaskRom> = MatcherSet::new(&[
             sharp(),
             sharp2(),
             sharp3(),
@@ -386,12 +386,7 @@ pub fn parse_mask_rom(text: &str) -> Result<MaskRom, ()> {
             samsung(),
             samsung2(),
             fujitsu(),
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

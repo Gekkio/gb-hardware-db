@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Manufacturer, Matcher, Year};
+use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct OxyU5 {
@@ -12,10 +12,10 @@ pub struct OxyU5 {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_oxy_u5;
-/// assert!(parse_oxy_u5("CP6465 B 02 KOR0531 635963").is_ok());
+/// assert!(parse_oxy_u5("CP6465 B 02 KOR0531 635963").is_some());
 /// ```
-fn unknown() -> Matcher<OxyU5> {
-    Matcher::new(
+fn unknown() -> MatcherDef<OxyU5> {
+    MatcherDef(
         r#"^CP6465\ B\ 02\ KOR([0-9]{2})([0-9]{2})\ [0-9]{6}$"#,
         move |c| {
             Ok(OxyU5 {
@@ -28,14 +28,9 @@ fn unknown() -> Matcher<OxyU5> {
     )
 }
 
-pub fn parse_oxy_u5(text: &str) -> Result<OxyU5, ()> {
+pub fn parse_oxy_u5(text: &str) -> Option<OxyU5> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<OxyU5>; 1] = [unknown()];
+        static ref MATCHER: Matcher<OxyU5> = unknown().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

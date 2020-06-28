@@ -236,7 +236,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                 .filter(|_| !console.mainboard.outlier)
                 .map(|stamp| {
                     gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                        .unwrap_or_else(|_| panic!("{}", stamp))
+                        .unwrap_or_else(|| panic!("{}", stamp))
                 });
             let lcd_board_stamp = console
                 .lcd_board
@@ -244,7 +244,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
                 .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
                 .map(|stamp| {
                     gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                        .unwrap_or_else(|_| panic!("{}", stamp))
+                        .unwrap_or_else(|| panic!("{}", stamp))
                 });
             let stamp = mainboard_stamp.or(lcd_board_stamp);
 
@@ -436,7 +436,7 @@ fn process_mgb_submissions() -> Result<(), Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
+                    .unwrap_or_else(|| panic!("{}", stamp))
             });
 
             let metadata = LegacyMgbMetadata {
@@ -526,7 +526,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
+                    .unwrap_or_else(|| panic!("{}", stamp))
             });
 
             let metadata = LegacyMglMetadata {
@@ -689,7 +689,7 @@ fn process_cgb_submissions() -> Result<(), Error> {
                         (
                             Some(
                                 gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                                    .unwrap_or_else(|_| panic!("{}", stamp)),
+                                    .unwrap_or_else(|| panic!("{}", stamp)),
                             ),
                             None,
                         )
@@ -698,7 +698,7 @@ fn process_cgb_submissions() -> Result<(), Error> {
                             None,
                             Some(
                                 gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                                    .unwrap_or_else(|_| panic!("{}", stamp)),
+                                    .unwrap_or_else(|| panic!("{}", stamp)),
                             ),
                         )
                     }
@@ -766,7 +766,11 @@ fn process_agb_submissions() -> Result<(), Error> {
 
             let year_hint = console.mainboard.year.or(Some(2001));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_ram);
+            let work_ram = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u2,
+                parser::parse_sram_tsop1_48,
+            );
             let regulator =
                 map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_reg);
             let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_agb_u4);
@@ -794,7 +798,7 @@ fn process_agb_submissions() -> Result<(), Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
+                    .unwrap_or_else(|| panic!("{}", stamp))
             });
 
             let metadata = LegacyAgbMetadata {
@@ -854,7 +858,11 @@ fn process_ags_submissions() -> Result<(), Error> {
 
             let year_hint = console.mainboard.year.or(Some(2003));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_ram);
+            let work_ram = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u2,
+                parser::parse_sram_tsop1_48,
+            );
             let amplifier =
                 map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_amp);
             let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_ags_u4);
@@ -930,7 +938,11 @@ fn process_gbs_submissions() -> Result<(), Error> {
 
             let year_hint = console.mainboard.year.or(Some(2003));
             let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_ram);
+            let work_ram = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u3,
+                parser::parse_sram_tsop1_48,
+            );
             let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_gbs_dol);
             let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_gbs_reg);
             let u6 = map_legacy_chip(year_hint, &console.mainboard.u6, parser::parse_gbs_reg);
@@ -958,7 +970,7 @@ fn process_gbs_submissions() -> Result<(), Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
+                    .unwrap_or_else(|| panic!("{}", stamp))
             });
 
             let metadata = LegacyGbsMetadata {

@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, year2, Manufacturer, Matcher, Year};
+use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SgbRom {
@@ -13,10 +13,10 @@ pub struct SgbRom {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9429 R77").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9429 R77").is_some());
 /// ```
-fn unknown() -> Matcher<SgbRom> {
-    Matcher::new(
+fn unknown() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
         move |c| {
             Ok(SgbRom {
@@ -32,10 +32,10 @@ fn unknown() -> Matcher<SgbRom> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9423 E").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9423 E").is_some());
 /// ```
-fn unknown2() -> Matcher<SgbRom> {
-    Matcher::new(
+fn unknown2() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -51,10 +51,10 @@ fn unknown2() -> Matcher<SgbRom> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 JAPAN © 1994 Nintendo 427A2 A04 NND").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB-2 JAPAN © 1994 Nintendo 427A2 A04 NND").is_some());
 /// ```
-fn unknown3() -> Matcher<SgbRom> {
-    Matcher::new(
+fn unknown3() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-(NT|2))\ JAPAN\ ©\ 1994\ Nintendo\ [[:alnum:]]{5}\ [[:alnum:]]{3}\ [A-Z]{3}$"#,
         move |c| {
             Ok(SgbRom {
@@ -72,10 +72,10 @@ fn unknown3() -> Matcher<SgbRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI").is_some());
 /// ```
-fn toshiba() -> Matcher<SgbRom> {
-    Matcher::new(
+fn toshiba() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ (TC53[0-9]{4}[A-Z]{2})-[A-Z][0-9]{3}\ JAPAN\ ([0-9]{2})([0-9]{2})EAI$"#,
         move |c| {
             Ok(SgbRom {
@@ -93,10 +93,10 @@ fn toshiba() -> Matcher<SgbRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo LH532M0M 9432 E").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo LH532M0M 9432 E").is_some());
 /// ```
-fn sharp_sgb() -> Matcher<SgbRom> {
-    Matcher::new(
+fn sharp_sgb() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-NT|SYS-SGB-2)\ ©\ 1994\ Nintendo\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -114,10 +114,10 @@ fn sharp_sgb() -> Matcher<SgbRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 0003 D").is_ok());
+/// assert!(parse_sgb_rom("© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 0003 D").is_some());
 /// ```
-fn sharp_sgb2() -> Matcher<SgbRom> {
-    Matcher::new(
+fn sharp_sgb2() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^©\ 1998\ Nintendo\ (SYS-SGB2-10)\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -135,10 +135,10 @@ fn sharp_sgb2() -> Matcher<SgbRom> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_ok());
+/// assert!(parse_sgb_rom("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_some());
 /// ```
-fn oki() -> Matcher<SgbRom> {
-    Matcher::new(
+fn oki() -> MatcherDef<SgbRom> {
+    MatcherDef(
         r#"^(SYS-SGB-NT|SYS-SGB-2|SYS-SGB2-10)\ ©\ 1998\ Nintendo\ (M534011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(SgbRom {
@@ -152,9 +152,9 @@ fn oki() -> Matcher<SgbRom> {
     )
 }
 
-pub fn parse_sgb_rom(text: &str) -> Result<SgbRom, ()> {
+pub fn parse_sgb_rom(text: &str) -> Option<SgbRom> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<SgbRom>; 7] = [
+        static ref MATCHER: MatcherSet<SgbRom> = MatcherSet::new(&[
             toshiba(),
             sharp_sgb(),
             sharp_sgb2(),
@@ -162,12 +162,7 @@ pub fn parse_sgb_rom(text: &str) -> Result<SgbRom, ()> {
             unknown(),
             unknown2(),
             unknown3(),
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

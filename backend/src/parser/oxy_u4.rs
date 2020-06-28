@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, Manufacturer, Matcher, Year};
+use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct OxyU4 {
@@ -12,10 +12,10 @@ pub struct OxyU4 {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_oxy_u4;
-/// assert!(parse_oxy_u4("AKV 522").is_ok());
+/// assert!(parse_oxy_u4("AKV 522").is_some());
 /// ```
-fn unknown() -> Matcher<OxyU4> {
-    Matcher::new(r#"^AKV\ ([0-9])([0-9]{2})$"#, move |c| {
+fn unknown() -> MatcherDef<OxyU4> {
+    MatcherDef(r#"^AKV\ ([0-9])([0-9]{2})$"#, move |c| {
         Ok(OxyU4 {
             kind: "AKV".to_owned(),
             manufacturer: None,
@@ -25,14 +25,9 @@ fn unknown() -> Matcher<OxyU4> {
     })
 }
 
-pub fn parse_oxy_u4(text: &str) -> Result<OxyU4, ()> {
+pub fn parse_oxy_u4(text: &str) -> Option<OxyU4> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<OxyU4>; 1] = [unknown()];
+        static ref MATCHER: Matcher<OxyU4> = unknown().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

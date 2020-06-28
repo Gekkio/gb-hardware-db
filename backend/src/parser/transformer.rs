@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{Manufacturer, Matcher};
+use super::{Manufacturer, Matcher, MatcherDef};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Transformer {
@@ -10,10 +10,10 @@ pub struct Transformer {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_transformer;
-/// assert!(parse_transformer("84Z7").is_ok());
+/// assert!(parse_transformer("84Z7").is_some());
 /// ```
-fn mitsumi() -> Matcher<Transformer> {
-    Matcher::new(r#"^(84Z7)$"#, move |c| {
+fn mitsumi() -> MatcherDef<Transformer> {
+    MatcherDef(r#"^(84Z7)$"#, move |c| {
         Ok(Transformer {
             kind: c[1].to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -21,14 +21,9 @@ fn mitsumi() -> Matcher<Transformer> {
     })
 }
 
-pub fn parse_transformer(text: &str) -> Result<Transformer, ()> {
+pub fn parse_transformer(text: &str) -> Option<Transformer> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Transformer>; 1] = [mitsumi(),];
+        static ref MATCHER: Matcher<Transformer> = mitsumi().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

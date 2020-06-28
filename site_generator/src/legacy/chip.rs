@@ -24,7 +24,7 @@ pub trait ToLegacyChip {
     }
 }
 
-pub fn map_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Result<T, ()>>(
+pub fn map_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Option<T>>(
     year_hint: Option<u16>,
     chip: &Option<Chip>,
     f: F,
@@ -33,13 +33,13 @@ pub fn map_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Result<T, ()>>(
         .map(|chip| to_legacy_chip(year_hint, chip, f).unwrap_or_default())
 }
 
-pub fn to_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Result<T, ()>>(
+pub fn to_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Option<T>>(
     year_hint: Option<u16>,
     chip: &Chip,
     f: F,
 ) -> Option<LegacyChip> {
     chip.label.as_ref().map(|label| {
-        let chip = f(label).unwrap_or_else(|_| panic!("{}", label));
+        let chip = f(label).unwrap_or_else(|| panic!("{}", label));
         LegacyChip {
             label: Some(label.to_owned()),
             kind: chip.kind(),
@@ -146,9 +146,9 @@ impl ToLegacyChip for parser::Ram {
     }
 }
 
-impl ToLegacyChip for parser::AgbRam {
+impl ToLegacyChip for parser::StaticRam {
     fn kind(&self) -> Option<String> {
-        self.kind.clone()
+        self.part.clone()
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         self.manufacturer

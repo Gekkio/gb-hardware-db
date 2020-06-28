@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Matcher, Year};
+use super::{week2, year2, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgReg {
@@ -10,12 +10,12 @@ pub struct DmgReg {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_dmg_reg;
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9527 CB").is_ok());
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9820 n").is_ok());
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9024 J").is_ok());
+/// assert!(parse_dmg_reg("DMG-REG IR3E02 9527 CB").is_some());
+/// assert!(parse_dmg_reg("DMG-REG IR3E02 9820 n").is_some());
+/// assert!(parse_dmg_reg("DMG-REG IR3E02 9024 J").is_some());
 /// ```
-fn dmg_reg() -> Matcher<DmgReg> {
-    Matcher::new(
+fn dmg_reg() -> MatcherDef<DmgReg> {
+    MatcherDef(
         r#"^DMG-REG\ IR3E02\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
             Ok(DmgReg {
@@ -26,14 +26,9 @@ fn dmg_reg() -> Matcher<DmgReg> {
     )
 }
 
-pub fn parse_dmg_reg(text: &str) -> Result<DmgReg, ()> {
+pub fn parse_dmg_reg(text: &str) -> Option<DmgReg> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<DmgReg>; 1] = [dmg_reg()];
+        static ref MATCHER: Matcher<DmgReg> = dmg_reg().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

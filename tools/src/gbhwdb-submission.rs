@@ -302,14 +302,14 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
     result
 }
 
-fn add_details_callback<T: fmt::Debug, F: Fn(&str) -> Result<T, ()> + 'static>(
+fn add_details_callback<T: fmt::Debug, F: Fn(&str) -> Option<T> + 'static>(
     editor: &mut EditView,
     details_id: &str,
     f: F,
 ) {
     let details_id = details_id.to_owned();
     editor.set_on_edit(move |siv, content, _| {
-        siv.call_on_name(&details_id, |view: &mut TextView| match f(&content).ok() {
+        siv.call_on_name(&details_id, |view: &mut TextView| match f(&content) {
             Some(chip) => view.set_content(format!("{:?}", chip)),
             None => view.set_content(""),
         })

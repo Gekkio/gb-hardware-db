@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, Manufacturer, Matcher, Year};
+use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct GbsReg {
@@ -12,10 +12,10 @@ pub struct GbsReg {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gbs_reg;
-/// assert!(parse_gbs_reg("548 592F").is_ok());
+/// assert!(parse_gbs_reg("548 592F").is_some());
 /// ```
-fn mitsumi_1592f() -> Matcher<GbsReg> {
-    Matcher::new(r#"^([0-9])([0-9]{2})\ 592F$"#, move |c| {
+fn mitsumi_1592f() -> MatcherDef<GbsReg> {
+    MatcherDef(r#"^([0-9])([0-9]{2})\ 592F$"#, move |c| {
         Ok(GbsReg {
             kind: "MM1592F".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -25,14 +25,9 @@ fn mitsumi_1592f() -> Matcher<GbsReg> {
     })
 }
 
-pub fn parse_gbs_reg(text: &str) -> Result<GbsReg, ()> {
+pub fn parse_gbs_reg(text: &str) -> Option<GbsReg> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<GbsReg>; 1] = [mitsumi_1592f()];
+        static ref MATCHER: Matcher<GbsReg> = mitsumi_1592f().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, year2, Manufacturer, Matcher, Year};
+use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Mbc1Version {
@@ -55,10 +55,10 @@ pub struct Mapper {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1A Nintendo S 9025 1 A").is_ok());
+/// assert!(parse_mapper("DMG MBC1A Nintendo S 9025 1 A").is_some());
 /// ```
-fn sharp_mbc1a() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc1a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC1A\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -75,10 +75,10 @@ fn sharp_mbc1a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B Nintendo S 9107 5 A").is_ok());
+/// assert!(parse_mapper("DMG MBC1B Nintendo S 9107 5 A").is_some());
 /// ```
-fn sharp_mbc1b() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc1b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC1B\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -95,10 +95,10 @@ fn sharp_mbc1b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B1 Nintendo S 9838 5 A").is_ok());
+/// assert!(parse_mapper("DMG MBC1B1 Nintendo S 9838 5 A").is_some());
 /// ```
-fn sharp_mbc1b1() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc1b1() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC1B1\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -115,10 +115,10 @@ fn sharp_mbc1b1() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC2A Nintendo S 9730 5 AB").is_ok());
+/// assert!(parse_mapper("DMG MBC2A Nintendo S 9730 5 AB").is_some());
 /// ```
-fn sharp_mbc2a() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc2a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC2A\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -135,10 +135,10 @@ fn sharp_mbc2a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 LR385364 9743 A").is_ok());
+/// assert!(parse_mapper("MBC3 LR385364 9743 A").is_some());
 /// ```
-fn sharp_mbc3() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc3() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC3\ LR385364\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -155,10 +155,10 @@ fn sharp_mbc3() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 A LR38536B 9935 A").is_ok());
+/// assert!(parse_mapper("MBC3 A LR38536B 9935 A").is_some());
 /// ```
-fn sharp_mbc3a() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc3a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC3\ A\ LR38536B\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -175,10 +175,10 @@ fn sharp_mbc3a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 LZ9GB31 AL23 A").is_ok());
+/// assert!(parse_mapper("MBC5 LZ9GB31 AL23 A").is_some());
 /// ```
-fn sharp_mbc5() -> Matcher<Mapper> {
-    Matcher::new(
+fn sharp_mbc5() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC5\ LZ9GB31\ ([[:alnum:]]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -195,10 +195,10 @@ fn sharp_mbc5() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B N 9019BA012").is_ok());
+/// assert!(parse_mapper("Nintendo DMG MBC1B N 9019BA012").is_some());
 /// ```
-fn nec_like_mbc1b() -> Matcher<Mapper> {
-    Matcher::new(
+fn nec_like_mbc1b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^Nintendo\ DMG\ MBC1B\ N\ ([0-9]{2})([0-9]{2})BA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -215,10 +215,10 @@ fn nec_like_mbc1b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC2A N 9011CA005").is_ok());
+/// assert!(parse_mapper("Nintendo DMG MBC2A N 9011CA005").is_some());
 /// ```
-fn nec_like_mbc2a() -> Matcher<Mapper> {
-    Matcher::new(
+fn nec_like_mbc2a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^Nintendo\ DMG\ MBC2A\ N\ ([0-9]{2})([0-9]{2})CA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -235,10 +235,10 @@ fn nec_like_mbc2a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo MBC6 0103XPO14").is_ok());
+/// assert!(parse_mapper("Nintendo MBC6 0103XPO14").is_some());
 /// ```
-fn nec_like_mbc6() -> Matcher<Mapper> {
-    Matcher::new(
+fn nec_like_mbc6() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^Nintendo\ MBC6\ ([0-9]{2})([0-9]{2})XPO[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -255,10 +255,10 @@ fn nec_like_mbc6() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1-B Nintendo P 0'D7").is_ok());
+/// assert!(parse_mapper("DMG MBC1-B Nintendo P 0'D7").is_some());
 /// ```
-fn p_company_mbc1b() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc1b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC1-B\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
@@ -275,10 +275,10 @@ fn p_company_mbc1b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC2-A Nintendo P 8'73").is_ok());
+/// assert!(parse_mapper("DMG MBC2-A Nintendo P 8'73").is_some());
 /// ```
-fn p_company_mbc2a() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc2a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC2-A\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
@@ -295,10 +295,10 @@ fn p_company_mbc2a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 A P-2 834U4E").is_ok());
+/// assert!(parse_mapper("MBC3 A P-2 834U4E").is_some());
 /// ```
-fn p_company_mbc3a() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc3a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC3\ A\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -315,10 +315,10 @@ fn p_company_mbc3a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 B P-2 134U2D").is_ok());
+/// assert!(parse_mapper("MBC3 B P-2 134U2D").is_some());
 /// ```
-fn p_company_mbc3b() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc3b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC3\ B\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -335,10 +335,10 @@ fn p_company_mbc3b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC30 P 047U2M").is_ok());
+/// assert!(parse_mapper("MBC30 P 047U2M").is_some());
 /// ```
-fn p_company_mbc30() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc30() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -355,10 +355,10 @@ fn p_company_mbc30() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 P 041U7M").is_ok());
+/// assert!(parse_mapper("MBC5 P 041U7M").is_some());
 /// ```
-fn p_company_mbc5() -> Matcher<Mapper> {
-    Matcher::new(
+fn p_company_mbc5() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC5\ P(-[0-9])?\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -375,10 +375,10 @@ fn p_company_mbc5() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 BU3631K 802 127").is_ok());
+/// assert!(parse_mapper("MBC3 BU3631K 802 127").is_some());
 /// ```
-fn rohm_mbc3() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc3() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC3\ BU3631K\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -395,10 +395,10 @@ fn rohm_mbc3() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-3 A BU3632K 004 H64").is_ok());
+/// assert!(parse_mapper("MBC-3 A BU3632K 004 H64").is_some());
 /// ```
-fn rohm_mbc3a() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc3a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC-3\ A\ BU3632K\ ([0-9])([0-9]{2})\ [[:alnum:]]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -415,10 +415,10 @@ fn rohm_mbc3a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-3 B BU3634K 135 H48").is_ok());
+/// assert!(parse_mapper("MBC-3 B BU3634K 135 H48").is_some());
 /// ```
-fn rohm_mbc3b() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc3b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC-3\ B\ BU3634K\ ([0-9])([0-9]{2})\ H[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -435,10 +435,10 @@ fn rohm_mbc3b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-30 BU3633AK 046 175").is_ok());
+/// assert!(parse_mapper("MBC-30 BU3633AK 046 175").is_some());
 /// ```
-fn rohm_mbc30() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc30() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC-30\ BU3633AK\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -455,10 +455,10 @@ fn rohm_mbc30() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 BU3650K 229 H51").is_ok());
+/// assert!(parse_mapper("MBC5 BU3650K 229 H51").is_some());
 /// ```
-fn rohm_mbc5() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc5() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC-?5\ BU3650K\ ([0-9])([0-9]{2})\ H[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -475,10 +475,10 @@ fn rohm_mbc5() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-7 BU3667KS 041 170").is_ok());
+/// assert!(parse_mapper("MBC-7 BU3667KS 041 170").is_some());
 /// ```
-fn rohm_mbc7() -> Matcher<Mapper> {
-    Matcher::new(
+fn rohm_mbc7() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^MBC-7\ BU3667KS\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -495,10 +495,10 @@ fn rohm_mbc7() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("11CH8VT MBC5 2417").is_ok());
+/// assert!(parse_mapper("11CH8VT MBC5 2417").is_some());
 /// ```
-fn texas_instruments_mbc5() -> Matcher<Mapper> {
-    Matcher::new(
+fn texas_instruments_mbc5() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^([0-9])[[:alnum:]][A-Z][[:alnum:]]{3}T\ MBC5\ 2417$"#,
         move |c| {
             Ok(Mapper {
@@ -515,10 +515,10 @@ fn texas_instruments_mbc5() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B Nintendo J9130BR").is_ok());
+/// assert!(parse_mapper("DMG MBC1B Nintendo J9130BR").is_some());
 /// ```
-fn unknown_mbc1b() -> Matcher<Mapper> {
-    Matcher::new(
+fn unknown_mbc1b() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^DMG\ MBC1B\ Nintendo\ J([0-9]{2})([0-9]{2})BR$"#,
         move |c| {
             Ok(Mapper {
@@ -535,10 +535,10 @@ fn unknown_mbc1b() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B 8940AJ").is_ok());
+/// assert!(parse_mapper("Nintendo DMG MBC1B 8940AJ").is_some());
 /// ```
-fn unknown_mbc1b_2() -> Matcher<Mapper> {
-    Matcher::new(
+fn unknown_mbc1b_2() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^Nintendo\ DMG\ MBC1B\ ([0-9]{2})([0-9]{2})AJ$"#,
         move |c| {
             Ok(Mapper {
@@ -555,10 +555,10 @@ fn unknown_mbc1b_2() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B N9542B3004").is_ok());
+/// assert!(parse_mapper("Nintendo DMG MBC1B N9542B3004").is_some());
 /// ```
-fn unknown_mbc1b_3() -> Matcher<Mapper> {
-    Matcher::new(
+fn unknown_mbc1b_3() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^Nintendo\ DMG\ MBC1B\ N([0-9]{2})([0-9]{2})B[0-9]{4}$"#,
         move |c| {
             Ok(Mapper {
@@ -575,10 +575,10 @@ fn unknown_mbc1b_3() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC-1 © HUDSON Nintendo 9752 A").is_ok());
+/// assert!(parse_mapper("HuC-1 © HUDSON Nintendo 9752 A").is_some());
 /// ```
-fn huc1() -> Matcher<Mapper> {
-    Matcher::new(
+fn huc1() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^HuC-1\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -595,10 +595,10 @@ fn huc1() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC1A © HUDSON Nintendo 9845 A").is_ok());
+/// assert!(parse_mapper("HuC1A © HUDSON Nintendo 9845 A").is_some());
 /// ```
-fn huc1a() -> Matcher<Mapper> {
-    Matcher::new(
+fn huc1a() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^HuC1A\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -615,10 +615,10 @@ fn huc1a() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC-3 © HUDSON Nintendo 9943 A").is_ok());
+/// assert!(parse_mapper("HuC-3 © HUDSON Nintendo 9943 A").is_some());
 /// ```
-fn huc3() -> Matcher<Mapper> {
-    Matcher::new(
+fn huc3() -> MatcherDef<Mapper> {
+    MatcherDef(
         r#"^HuC-3\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -635,10 +635,10 @@ fn huc3() -> Matcher<Mapper> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MMM01 645 113").is_ok());
+/// assert!(parse_mapper("MMM01 645 113").is_some());
 /// ```
-fn mmm01() -> Matcher<Mapper> {
-    Matcher::new(r#"^MMM01\ ([0-9])([0-9]{2})\ [0-9]{3}$"#, move |c| {
+fn mmm01() -> MatcherDef<Mapper> {
+    MatcherDef(r#"^MMM01\ ([0-9])([0-9]{2})\ [0-9]{3}$"#, move |c| {
         Ok(Mapper {
             mbc_type: MapperType::Mmm01,
             manufacturer: None,
@@ -648,9 +648,9 @@ fn mmm01() -> Matcher<Mapper> {
     })
 }
 
-pub fn parse_mapper(text: &str) -> Result<Mapper, ()> {
+pub fn parse_mapper(text: &str) -> Option<Mapper> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Mapper>; 30] = [
+        static ref MATCHER: MatcherSet<Mapper> = MatcherSet::new(&[
             sharp_mbc1a(),
             sharp_mbc1b(),
             sharp_mbc1b1(),
@@ -681,12 +681,7 @@ pub fn parse_mapper(text: &str) -> Result<Mapper, ()> {
             huc1a(),
             huc3(),
             mmm01(),
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

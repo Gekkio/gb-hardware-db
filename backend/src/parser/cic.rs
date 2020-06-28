@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2_u16, Matcher};
+use super::{week2, year2_u16, Matcher, MatcherDef};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Cic {
@@ -11,10 +11,10 @@ pub struct Cic {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_cic;
-/// assert!(parse_cic("F411A © 1990 Nintendo 9428 a").is_ok());
+/// assert!(parse_cic("F411A © 1990 Nintendo 9428 a").is_some());
 /// ```
-fn cic() -> Matcher<Cic> {
-    Matcher::new(
+fn cic() -> MatcherDef<Cic> {
+    MatcherDef(
         r#"^(F411A|F411B|F413A|F413B)\ ©\ (1990|1992)\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Za-z]?$"#,
         move |c| {
             Ok(Cic {
@@ -26,14 +26,9 @@ fn cic() -> Matcher<Cic> {
     )
 }
 
-pub fn parse_cic(text: &str) -> Result<Cic, ()> {
+pub fn parse_cic(text: &str) -> Option<Cic> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Cic>; 1] = [cic()];
+        static ref MATCHER: Matcher<Cic> = cic().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

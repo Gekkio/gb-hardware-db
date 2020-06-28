@@ -1,10 +1,9 @@
-use regex::{Captures, Regex, RegexBuilder};
+use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::str::FromStr;
 
 pub use self::accelerometer::{parse_accelerometer, Accelerometer};
 pub use self::agb_amp::{parse_agb_amp, AgbAmp};
 pub use self::agb_cpu::{parse_agb_cpu, AgbCpu};
-pub use self::agb_ram::{parse_agb_ram, AgbRam};
 pub use self::agb_reg::{parse_agb_reg, AgbReg};
 pub use self::agb_u4::{parse_agb_u4, AgbU4};
 pub use self::ags_u4::{parse_ags_u4, AgsU4};
@@ -39,13 +38,13 @@ pub use self::oxy_u5::{parse_oxy_u5, OxyU5};
 pub use self::ram::{parse_ram, Ram};
 pub use self::ram_backup::{parse_ram_backup, RamBackup};
 pub use self::sgb_rom::{parse_sgb_rom, SgbRom};
+pub use self::sram_tsop1_48::parse_sram_tsop1_48;
 pub use self::tama::{parse_tama, TamaType};
 pub use self::transformer::{parse_transformer, Transformer};
 
 mod accelerometer;
 mod agb_amp;
 mod agb_cpu;
-mod agb_ram;
 mod agb_reg;
 mod agb_u4;
 mod ags_u4;
@@ -78,6 +77,7 @@ mod oxy_u5;
 mod ram;
 mod ram_backup;
 mod sgb_rom;
+mod sram_tsop1_48;
 mod tama;
 mod transformer;
 
@@ -165,26 +165,67 @@ pub fn month2(text: &str) -> Result<u8, String> {
     }
 }
 
-pub struct Matcher<T> {
-    regex: Regex,
-    f: Box<dyn Fn(Captures) -> Result<T, String> + Sync>,
+pub struct MatcherDef<T>(&'static str, fn(Captures) -> Result<T, String>);
+
+impl<T> Copy for MatcherDef<T> {}
+impl<T> Clone for MatcherDef<T> {
+    fn clone(&self) -> MatcherDef<T> {
+        *self
+    }
 }
 
-impl<T> Matcher<T> {
-    pub fn new<F: Fn(Captures) -> Result<T, String> + Sync + 'static>(
-        regex: &'static str,
-        f: F,
-    ) -> Matcher<T> {
-        let regex = RegexBuilder::new(regex)
+#[derive(Clone)]
+pub struct Matcher<T> {
+    regex: Regex,
+    f: fn(Captures) -> Result<T, String>,
+}
+
+impl<T> From<MatcherDef<T>> for Matcher<T> {
+    fn from(def: MatcherDef<T>) -> Matcher<T> {
+        let regex = RegexBuilder::new(def.0)
             .ignore_whitespace(true)
             .build()
             .unwrap();
-        Matcher {
-            regex,
-            f: Box::new(f),
+        Matcher { regex, f: def.1 }
+    }
+}
+
+impl<T> Matcher<T> {
+    pub fn apply(&self, text: &str) -> Option<T> {
+        self.regex.captures(text).map(|c| (self.f)(c).unwrap())
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct StaticRam {
+    pub family: Option<&'static str>,
+    pub part: Option<String>,
+    pub manufacturer: Option<Manufacturer>,
+    pub year: Option<Year>,
+    pub week: Option<u8>,
+}
+
+#[derive(Clone)]
+pub struct MatcherSet<T> {
+    matchers: Vec<Matcher<T>>,
+    regex_set: RegexSet,
+}
+
+impl<T> MatcherSet<T> {
+    pub fn new(defs: &[MatcherDef<T>]) -> MatcherSet<T> {
+        MatcherSet {
+            matchers: defs.iter().copied().map(|def| def.into()).collect(),
+            regex_set: RegexSetBuilder::new(defs.iter().map(|m| m.0))
+                .ignore_whitespace(true)
+                .build()
+                .unwrap(),
         }
     }
     pub fn apply(&self, text: &str) -> Option<T> {
-        self.regex.captures(text).map(|c| (self.f)(c).unwrap())
+        let matches = self.regex_set.matches(text);
+        if matches.iter().count() > 1 {
+            eprintln!("Warning: multiple matches for {}", text);
+        }
+        matches.iter().find_map(|m| self.matchers[m].apply(text))
     }
 }

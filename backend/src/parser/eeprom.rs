@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, Manufacturer, Matcher, Year};
+use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Eeprom {
@@ -12,10 +12,10 @@ pub struct Eeprom {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_eeprom;
-/// assert!(parse_eeprom("LCS5 040").is_ok());
+/// assert!(parse_eeprom("LCS5 040").is_some());
 /// ```
-fn lcs5() -> Matcher<Eeprom> {
-    Matcher::new(r#"^LCS5\ ([0-9])([0-9]{2})(\ [0-9]{2})?$"#, move |c| {
+fn lcs5() -> MatcherDef<Eeprom> {
+    MatcherDef(r#"^LCS5\ ([0-9])([0-9]{2})(\ [0-9]{2})?$"#, move |c| {
         Ok(Eeprom {
             chip_type: Some("LCS5".to_owned()),
             manufacturer: None,
@@ -27,10 +27,10 @@ fn lcs5() -> Matcher<Eeprom> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_eeprom;
-/// assert!(parse_eeprom("LC56 W617 08").is_ok());
+/// assert!(parse_eeprom("LC56 W617 08").is_some());
 /// ```
-fn lc56() -> Matcher<Eeprom> {
-    Matcher::new(r#"^LC56\ [A-Z][0-9]{3}\ [0-9]{2}$"#, move |_| {
+fn lc56() -> MatcherDef<Eeprom> {
+    MatcherDef(r#"^LC56\ [A-Z][0-9]{3}\ [0-9]{2}$"#, move |_| {
         Ok(Eeprom {
             chip_type: Some("LC56".to_owned()),
             manufacturer: None,
@@ -40,14 +40,9 @@ fn lc56() -> Matcher<Eeprom> {
     })
 }
 
-pub fn parse_eeprom(text: &str) -> Result<Eeprom, ()> {
+pub fn parse_eeprom(text: &str) -> Option<Eeprom> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Eeprom>; 2] = [lcs5(), lc56()];
+        static ref MATCHER: MatcherSet<Eeprom> = MatcherSet::new(&[lcs5(), lc56()]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Matcher, Year};
+use super::{week2, year2, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgAmp {
@@ -10,11 +10,11 @@ pub struct DmgAmp {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_dmg_amp;
-/// assert!(parse_dmg_amp("DMG-AMP IR3R40 9222 AA").is_ok());
-/// assert!(parse_dmg_amp("DMG-AMP IR3R40 8909 A").is_ok());
+/// assert!(parse_dmg_amp("DMG-AMP IR3R40 9222 AA").is_some());
+/// assert!(parse_dmg_amp("DMG-AMP IR3R40 8909 A").is_some());
 /// ```
-fn dmg_amp() -> Matcher<DmgAmp> {
-    Matcher::new(
+fn dmg_amp() -> MatcherDef<DmgAmp> {
+    MatcherDef(
         r#"^DMG-AMP\ IR3R40\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(DmgAmp {
@@ -25,14 +25,9 @@ fn dmg_amp() -> Matcher<DmgAmp> {
     )
 }
 
-pub fn parse_dmg_amp(text: &str) -> Result<DmgAmp, ()> {
+pub fn parse_dmg_amp(text: &str) -> Option<DmgAmp> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<DmgAmp>; 1] = [dmg_amp()];
+        static ref MATCHER: Matcher<DmgAmp> = dmg_amp().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

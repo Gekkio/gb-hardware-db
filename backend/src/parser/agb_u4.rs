@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, Manufacturer, Matcher, Year};
+use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct AgbU4 {
@@ -12,10 +12,10 @@ pub struct AgbU4 {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_u4;
-/// assert!(parse_agb_u4("105 514X").is_ok());
+/// assert!(parse_agb_u4("105 514X").is_some());
 /// ```
-fn mitsumi_mm1514x() -> Matcher<AgbU4> {
-    Matcher::new(r#"^([0-9])([0-5][0-9])\ 514X$"#, move |c| {
+fn mitsumi_mm1514x() -> MatcherDef<AgbU4> {
+    MatcherDef(r#"^([0-9])([0-5][0-9])\ 514X$"#, move |c| {
         Ok(AgbU4 {
             kind: Some("MM1514X".to_owned()),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -27,10 +27,10 @@ fn mitsumi_mm1514x() -> Matcher<AgbU4> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_u4;
-/// assert!(parse_agb_u4("081 514X").is_ok());
+/// assert!(parse_agb_u4("081 514X").is_some());
 /// ```
-fn mitsumi_mm1514x_2() -> Matcher<AgbU4> {
-    Matcher::new(r#"^([0-9])[0-9]{2}\ 514X$"#, move |c| {
+fn mitsumi_mm1514x_2() -> MatcherDef<AgbU4> {
+    MatcherDef(r#"^([0-9])[0-9]{2}\ 514X$"#, move |c| {
         Ok(AgbU4 {
             kind: Some("MM1514X".to_owned()),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -42,11 +42,11 @@ fn mitsumi_mm1514x_2() -> Matcher<AgbU4> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_u4;
-/// assert!(parse_agb_u4("S6960 E-U2Z C700").is_ok());
-/// assert!(parse_agb_u4("S6960 E-U2X C410").is_ok());
+/// assert!(parse_agb_u4("S6960 E-U2Z C700").is_some());
+/// assert!(parse_agb_u4("S6960 E-U2X C410").is_some());
 /// ```
-fn unknown() -> Matcher<AgbU4> {
-    Matcher::new(r#"^S6960\ E-U([0-9])[A-Z]\ C[0-9]{3}$"#, move |c| {
+fn unknown() -> MatcherDef<AgbU4> {
+    MatcherDef(r#"^S6960\ E-U([0-9])[A-Z]\ C[0-9]{3}$"#, move |c| {
         Ok(AgbU4 {
             kind: Some("S6960".to_owned()),
             manufacturer: None,
@@ -58,11 +58,11 @@ fn unknown() -> Matcher<AgbU4> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_u4;
-/// assert!(parse_agb_u4("9750A 1581").is_ok());
-/// assert!(parse_agb_u4("9750B 2A69").is_ok());
+/// assert!(parse_agb_u4("9750A 1581").is_some());
+/// assert!(parse_agb_u4("9750B 2A69").is_some());
 /// ```
-fn unknown2() -> Matcher<AgbU4> {
-    Matcher::new(r#"^(9750[AB])\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
+fn unknown2() -> MatcherDef<AgbU4> {
+    MatcherDef(r#"^(9750[AB])\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
         Ok(AgbU4 {
             kind: Some(c[1].to_owned()),
             manufacturer: None,
@@ -72,19 +72,14 @@ fn unknown2() -> Matcher<AgbU4> {
     })
 }
 
-pub fn parse_agb_u4(text: &str) -> Result<AgbU4, ()> {
+pub fn parse_agb_u4(text: &str) -> Option<AgbU4> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbU4>; 4] = [
+        static ref MATCHER: MatcherSet<AgbU4> = MatcherSet::new(&[
             mitsumi_mm1514x(),
             mitsumi_mm1514x_2(),
             unknown(),
             unknown2()
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

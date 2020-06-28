@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2_u16, Matcher};
+use super::{week2, year2_u16, Matcher, MatcherDef};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CgbCpu {
@@ -11,10 +11,10 @@ pub struct CgbCpu {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_cgb_cpu;
-/// assert!(parse_cgb_cpu("CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9842 I").is_ok());
+/// assert!(parse_cgb_cpu("CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9842 I").is_some());
 /// ```
-fn cgb_cpu() -> Matcher<CgbCpu> {
-    Matcher::new(
+fn cgb_cpu() -> MatcherDef<CgbCpu> {
+    MatcherDef(
         r#"^(CPU\ CGB(\ [A-E])?)\ Ⓜ\ ©\ (1998|2000)\ Nintendo\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(CgbCpu {
@@ -26,14 +26,9 @@ fn cgb_cpu() -> Matcher<CgbCpu> {
     )
 }
 
-pub fn parse_cgb_cpu(text: &str) -> Result<CgbCpu, ()> {
+pub fn parse_cgb_cpu(text: &str) -> Option<CgbCpu> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<CgbCpu>; 1] = [cgb_cpu()];
+        static ref MATCHER: Matcher<CgbCpu> = cgb_cpu().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

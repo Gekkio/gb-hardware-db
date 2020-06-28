@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, Manufacturer, Matcher, Year};
+use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct AgsU5 {
@@ -12,10 +12,10 @@ pub struct AgsU5 {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_ags_u5;
-/// assert!(parse_ags_u5("422 1581A").is_ok());
+/// assert!(parse_ags_u5("422 1581A").is_some());
 /// ```
-fn mitsumi_mm1581a() -> Matcher<AgsU5> {
-    Matcher::new(r#"^([0-9])([0-9]{2})\ 1581A$"#, move |c| {
+fn mitsumi_mm1581a() -> MatcherDef<AgsU5> {
+    MatcherDef(r#"^([0-9])([0-9]{2})\ 1581A$"#, move |c| {
         Ok(AgsU5 {
             kind: Some("MM1581A".to_owned()),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -27,10 +27,10 @@ fn mitsumi_mm1581a() -> Matcher<AgsU5> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_ags_u5;
-/// assert!(parse_ags_u5("2253B 3129").is_ok());
+/// assert!(parse_ags_u5("2253B 3129").is_some());
 /// ```
-fn unknown() -> Matcher<AgsU5> {
-    Matcher::new(r#"^2253B\ ([0-9])([0-9]{2})[0-9]$"#, move |c| {
+fn unknown() -> MatcherDef<AgsU5> {
+    MatcherDef(r#"^2253B\ ([0-9])([0-9]{2})[0-9]$"#, move |c| {
         Ok(AgsU5 {
             kind: None,
             manufacturer: None,
@@ -40,14 +40,9 @@ fn unknown() -> Matcher<AgsU5> {
     })
 }
 
-pub fn parse_ags_u5(text: &str) -> Result<AgsU5, ()> {
+pub fn parse_ags_u5(text: &str) -> Option<AgsU5> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgsU5>; 2] = [mitsumi_mm1581a(), unknown(),];
+        static ref MATCHER: MatcherSet<AgsU5> = MatcherSet::new(&[mitsumi_mm1581a(), unknown(),]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

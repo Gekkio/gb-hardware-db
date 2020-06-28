@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2_u16, Matcher};
+use super::{week2, year2_u16, MatcherDef, MatcherSet};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Gen1CpuKind {
@@ -22,10 +22,10 @@ pub struct Gen1Cpu {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gen1_cpu;
-/// assert!(parse_gen1_cpu("DMG-CPU LR35902 8907 D").is_ok());
+/// assert!(parse_gen1_cpu("DMG-CPU LR35902 8907 D").is_some());
 /// ```
-fn dmg_cpu_lr35902() -> Matcher<Gen1Cpu> {
-    Matcher::new(
+fn dmg_cpu_lr35902() -> MatcherDef<Gen1Cpu> {
+    MatcherDef(
         r#"^DMG-CPU\ LR35902\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Gen1Cpu {
@@ -39,13 +39,13 @@ fn dmg_cpu_lr35902() -> Matcher<Gen1Cpu> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gen1_cpu;
-/// assert!(parse_gen1_cpu("DMG-CPU © 1989 Nintendo JAPAN 8913 D").is_ok());
-/// assert!(parse_gen1_cpu("DMG-CPU A © 1989 Nintendo JAPAN 8937 D").is_ok());
-/// assert!(parse_gen1_cpu("DMG-CPU B © 1989 Nintendo JAPAN 9207 D").is_ok());
-/// assert!(parse_gen1_cpu("DMG-CPU C © 1989 Nintendo JAPAN 9835 D").is_ok());
+/// assert!(parse_gen1_cpu("DMG-CPU © 1989 Nintendo JAPAN 8913 D").is_some());
+/// assert!(parse_gen1_cpu("DMG-CPU A © 1989 Nintendo JAPAN 8937 D").is_some());
+/// assert!(parse_gen1_cpu("DMG-CPU B © 1989 Nintendo JAPAN 9207 D").is_some());
+/// assert!(parse_gen1_cpu("DMG-CPU C © 1989 Nintendo JAPAN 9835 D").is_some());
 /// ```
-fn dmg_cpu() -> Matcher<Gen1Cpu> {
-    Matcher::new(
+fn dmg_cpu() -> MatcherDef<Gen1Cpu> {
+    MatcherDef(
         r#"^DMG-CPU(\ [ABC])?\ ©\ 1989\ Nintendo\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Gen1Cpu {
@@ -63,8 +63,8 @@ fn dmg_cpu() -> Matcher<Gen1Cpu> {
     )
 }
 
-fn dmg_cpu_deprecated() -> Matcher<Gen1Cpu> {
-    Matcher::new(
+fn dmg_cpu_deprecated() -> MatcherDef<Gen1Cpu> {
+    MatcherDef(
         r#"^DMG-CPU(\ [A-B])?\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Gen1Cpu {
@@ -83,11 +83,11 @@ fn dmg_cpu_deprecated() -> Matcher<Gen1Cpu> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gen1_cpu;
-/// assert!(parse_gen1_cpu("B").is_ok());
-/// assert!(parse_gen1_cpu("C").is_ok());
+/// assert!(parse_gen1_cpu("B").is_some());
+/// assert!(parse_gen1_cpu("C").is_some());
 /// ```
-fn dmg_cpu_blob() -> Matcher<Gen1Cpu> {
-    Matcher::new(r#"^[BC]$"#, move |c| {
+fn dmg_cpu_blob() -> MatcherDef<Gen1Cpu> {
+    MatcherDef(r#"^[BC]$"#, move |c| {
         Ok(Gen1Cpu {
             kind: (match &c[0] {
                 "B" => Ok(Gen1CpuKind::DmgBlobB),
@@ -102,10 +102,10 @@ fn dmg_cpu_blob() -> Matcher<Gen1Cpu> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gen1_cpu;
-/// assert!(parse_gen1_cpu("SGB-CPU 01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9434 7 D").is_ok());
+/// assert!(parse_gen1_cpu("SGB-CPU 01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9434 7 D").is_some());
 /// ```
-fn sgb_cpu() -> Matcher<Gen1Cpu> {
-    Matcher::new(
+fn sgb_cpu() -> MatcherDef<Gen1Cpu> {
+    MatcherDef(
         r#"^SGB-CPU\ 01\ ©\ 1994\ Nintendo\ Ⓜ\ 1989\ Nintendo\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
         move |c| {
             Ok(Gen1Cpu {
@@ -117,20 +117,15 @@ fn sgb_cpu() -> Matcher<Gen1Cpu> {
     )
 }
 
-pub fn parse_gen1_cpu(text: &str) -> Result<Gen1Cpu, ()> {
+pub fn parse_gen1_cpu(text: &str) -> Option<Gen1Cpu> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Gen1Cpu>; 5] = [
+        static ref MATCHER: MatcherSet<Gen1Cpu> = MatcherSet::new(&[
             dmg_cpu(),
             dmg_cpu_blob(),
             dmg_cpu_lr35902(),
             dmg_cpu_deprecated(),
             sgb_cpu()
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

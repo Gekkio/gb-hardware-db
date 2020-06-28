@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{month2, year1, Matcher, Year};
+use super::{month2, year1, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgStamp {
@@ -10,13 +10,13 @@ pub struct DmgStamp {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_dmg_stamp;
-/// assert!(parse_dmg_stamp("010 23").is_ok());
-/// assert!(parse_dmg_stamp("903-22").is_ok());
-/// assert!(parse_dmg_stamp("709.3901").is_ok());
-/// assert!(parse_dmg_stamp("202-0007").is_ok());
+/// assert!(parse_dmg_stamp("010 23").is_some());
+/// assert!(parse_dmg_stamp("903-22").is_some());
+/// assert!(parse_dmg_stamp("709.3901").is_some());
+/// assert!(parse_dmg_stamp("202-0007").is_some());
 /// ```
-fn dmg_stamp() -> Matcher<DmgStamp> {
-    Matcher::new(r#"^([0-9])([0-9]{2})[-\ .][0-9-]{2,4}Y?$"#, move |c| {
+fn dmg_stamp() -> MatcherDef<DmgStamp> {
+    MatcherDef(r#"^([0-9])([0-9]{2})[-\ .][0-9-]{2,4}Y?$"#, move |c| {
         Ok(DmgStamp {
             year: Some(year1(&c[1])?),
             month: Some(month2(&c[2])?),
@@ -24,14 +24,9 @@ fn dmg_stamp() -> Matcher<DmgStamp> {
     })
 }
 
-pub fn parse_dmg_stamp(text: &str) -> Result<DmgStamp, ()> {
+pub fn parse_dmg_stamp(text: &str) -> Option<DmgStamp> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<DmgStamp>; 1] = [dmg_stamp()];
+        static ref MATCHER: Matcher<DmgStamp> = dmg_stamp().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

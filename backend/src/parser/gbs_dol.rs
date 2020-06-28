@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Manufacturer, Matcher, Year};
+use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct GbsDol {
@@ -11,10 +11,10 @@ pub struct GbsDol {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_gbs_dol;
-/// assert!(parse_gbs_dol("Nintendo GBS-DOL 011 0623L3001").is_ok());
+/// assert!(parse_gbs_dol("Nintendo GBS-DOL 011 0623L3001").is_some());
 /// ```
-fn unknown() -> Matcher<GbsDol> {
-    Matcher::new(
+fn unknown() -> MatcherDef<GbsDol> {
+    MatcherDef(
         r#"^Nintendo\ GBS-DOL\ 011\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(GbsDol {
@@ -26,14 +26,9 @@ fn unknown() -> Matcher<GbsDol> {
     )
 }
 
-pub fn parse_gbs_dol(text: &str) -> Result<GbsDol, ()> {
+pub fn parse_gbs_dol(text: &str) -> Option<GbsDol> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<GbsDol>; 1] = [unknown()];
+        static ref MATCHER: Matcher<GbsDol> = unknown().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

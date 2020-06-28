@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year2, Manufacturer, Matcher, Year};
+use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Accelerometer {
@@ -12,10 +12,10 @@ pub struct Accelerometer {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_accelerometer;
-/// assert!(parse_accelerometer("2738109451 0028 ADXL202JQC").is_ok());
+/// assert!(parse_accelerometer("2738109451 0028 ADXL202JQC").is_some());
 /// ```
-fn analog_adxl202jqc() -> Matcher<Accelerometer> {
-    Matcher::new(
+fn analog_adxl202jqc() -> MatcherDef<Accelerometer> {
+    MatcherDef(
         r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC?$"#,
         move |c| {
             Ok(Accelerometer {
@@ -28,14 +28,9 @@ fn analog_adxl202jqc() -> Matcher<Accelerometer> {
     )
 }
 
-pub fn parse_accelerometer(text: &str) -> Result<Accelerometer, ()> {
+pub fn parse_accelerometer(text: &str) -> Option<Accelerometer> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Accelerometer>; 1] = [analog_adxl202jqc()];
+        static ref MATCHER: Matcher<Accelerometer> = analog_adxl202jqc().into();
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

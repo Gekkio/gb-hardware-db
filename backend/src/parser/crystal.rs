@@ -1,6 +1,6 @@
 use lazy_static::lazy_static;
 
-use super::{week2, year1, year2, Manufacturer, Matcher, Year};
+use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Crystal {
@@ -12,10 +12,10 @@ pub struct Crystal {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS1H").is_ok());
+/// assert!(parse_crystal("KDS1H").is_some());
 /// ```
-fn kds_short() -> Matcher<Crystal> {
-    Matcher::new(r#"^KDS([0-9])([A-Z])$"#, move |c| {
+fn kds_short() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^KDS([0-9])([A-Z])$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[1])?),
@@ -27,12 +27,12 @@ fn kds_short() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 9803 4.194").is_ok());
-/// assert!(parse_crystal("KDS9807 4.194").is_ok());
-/// assert!(parse_crystal("KDSI 0549 4.194").is_ok());
+/// assert!(parse_crystal("KDS 9803 4.194").is_some());
+/// assert!(parse_crystal("KDS9807 4.194").is_some());
+/// assert!(parse_crystal("KDSI 0549 4.194").is_some());
 /// ```
-fn kds_4194() -> Matcher<Crystal> {
-    Matcher::new(r#"^KDSI?\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#, move |c| {
+fn kds_4194() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^KDSI?\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year2(&c[1])?),
@@ -44,10 +44,10 @@ fn kds_4194() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 9841 8.388").is_ok());
+/// assert!(parse_crystal("KDS 9841 8.388").is_some());
 /// ```
-fn kds_8388() -> Matcher<Crystal> {
-    Matcher::new(r#"^KDS\ ([0-9]{2})([0-9]{2})\ 8\.388$"#, move |c| {
+fn kds_8388() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^KDS\ ([0-9]{2})([0-9]{2})\ 8\.388$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year2(&c[1])?),
@@ -58,10 +58,10 @@ fn kds_8388() -> Matcher<Crystal> {
 }
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 6F 4.194").is_ok());
+/// assert!(parse_crystal("KDS 6F 4.194").is_some());
 /// ```
-fn kds_4194_short() -> Matcher<Crystal> {
-    Matcher::new(r#"^KDS\ ([0-9])([A-Z])\ 4\.194$"#, move |c| {
+fn kds_4194_short() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^KDS\ ([0-9])([A-Z])\ 4\.194$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[1])?),
@@ -73,26 +73,11 @@ fn kds_4194_short() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D419A2").is_ok());
-/// assert!(parse_crystal("D419J3I").is_ok());
+/// assert!(parse_crystal("D419A2").is_some());
+/// assert!(parse_crystal("D419J3I").is_some());
 /// ```
-fn kds_d419() -> Matcher<Crystal> {
-    Matcher::new(r#"^D419([A-Z])([0-9])[A-Z]?$"#, move |c| {
-        Ok(Crystal {
-            manufacturer: Some(Manufacturer::Kds),
-            year: Some(year1(&c[2])?),
-            month: Some(kds_month(&c[1])?),
-            week: None,
-        })
-    })
-}
-
-/// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D838K0I").is_ok());
-/// ```
-fn kds_d838() -> Matcher<Crystal> {
-    Matcher::new(r#"^D838([A-Z])([0-9])[A-Z]$"#, move |c| {
+fn kds_d419() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^D419([A-Z])([0-9])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -104,10 +89,10 @@ fn kds_d838() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D209A8").is_ok());
+/// assert!(parse_crystal("D838K0I").is_some());
 /// ```
-fn kds_d209() -> Matcher<Crystal> {
-    Matcher::new(r#"^D209([A-Z])([0-9])$"#, move |c| {
+fn kds_d838() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^D838([A-Z])([0-9])[A-Z]$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -119,10 +104,25 @@ fn kds_d209() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KSS20V 8A").is_ok());
+/// assert!(parse_crystal("D209A8").is_some());
 /// ```
-fn kinseki_kss20() -> Matcher<Crystal> {
-    Matcher::new(r#"^KSS20V\ ([0-9])([A-Z])$"#, move |c| {
+fn kds_d209() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^D209([A-Z])([0-9])$"#, move |c| {
+        Ok(Crystal {
+            manufacturer: Some(Manufacturer::Kds),
+            year: Some(year1(&c[2])?),
+            month: Some(kds_month(&c[1])?),
+            week: None,
+        })
+    })
+}
+
+/// ```
+/// # use gbhwdb_backend::parser::parse_crystal;
+/// assert!(parse_crystal("KSS20V 8A").is_some());
+/// ```
+fn kinseki_kss20() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^KSS20V\ ([0-9])([A-Z])$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -134,10 +134,10 @@ fn kinseki_kss20() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("33WKSS6DT").is_ok());
+/// assert!(parse_crystal("33WKSS6DT").is_some());
 /// ```
-fn kinseki_kss30() -> Matcher<Crystal> {
-    Matcher::new(r#"^33WKSS([0-9])([A-Z])T$"#, move |c| {
+fn kinseki_kss30() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^33WKSS([0-9])([A-Z])T$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -149,11 +149,11 @@ fn kinseki_kss30() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4194 KSS 0KF").is_ok());
-/// assert!(parse_crystal("4194 KSS1A").is_ok());
+/// assert!(parse_crystal("4194 KSS 0KF").is_some());
+/// assert!(parse_crystal("4194 KSS1A").is_some());
 /// ```
-fn kinseki_4194() -> Matcher<Crystal> {
-    Matcher::new(r#"^4194\ KSS\ ?([0-9])([A-Z])[A-Z]?$"#, move |c| {
+fn kinseki_4194() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^4194\ KSS\ ?([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -165,11 +165,11 @@ fn kinseki_4194() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("8388 KSS 1CF").is_ok());
-/// assert!(parse_crystal("8388 KSS 9J").is_ok());
+/// assert!(parse_crystal("8388 KSS 1CF").is_some());
+/// assert!(parse_crystal("8388 KSS 9J").is_some());
 /// ```
-fn kinseki_8388() -> Matcher<Crystal> {
-    Matcher::new(r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]?$"#, move |c| {
+fn kinseki_8388() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -181,12 +181,12 @@ fn kinseki_8388() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("32K09").is_ok());
-/// assert!(parse_crystal("32K9Y").is_ok());
-/// assert!(parse_crystal("32K0Z").is_ok());
+/// assert!(parse_crystal("32K09").is_some());
+/// assert!(parse_crystal("32K9Y").is_some());
+/// assert!(parse_crystal("32K0Z").is_some());
 /// ```
-fn unknown() -> Matcher<Crystal> {
-    Matcher::new(r#"^32K([0-9])[[:alnum:]]$"#, move |c| {
+fn unknown() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^32K([0-9])[[:alnum:]]$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -198,10 +198,10 @@ fn unknown() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.19C59").is_ok());
+/// assert!(parse_crystal("4.19C59").is_some());
 /// ```
-fn unknown2() -> Matcher<Crystal> {
-    Matcher::new(r#"^4\.19C([0-9])[[:alnum:]]$"#, move |c| {
+fn unknown2() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^4\.19C([0-9])[[:alnum:]]$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -213,10 +213,10 @@ fn unknown2() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.1943 9752").is_ok());
+/// assert!(parse_crystal("4.1943 9752").is_some());
 /// ```
-fn unknown_41943() -> Matcher<Crystal> {
-    Matcher::new(r#"^4\.1943\ ([0-9]{2})([0-9]{2})$"#, move |c| {
+fn unknown_41943() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^4\.1943\ ([0-9]{2})([0-9]{2})$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year2(&c[1])?),
@@ -228,10 +228,10 @@ fn unknown_41943() -> Matcher<Crystal> {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.1943 RVR 841").is_ok());
+/// assert!(parse_crystal("4.1943 RVR 841").is_some());
 /// ```
-fn unknown_41943_2() -> Matcher<Crystal> {
-    Matcher::new(r#"^4\.1943\ RVR\ ([0-9])([0-9]{2})$"#, move |c| {
+fn unknown_41943_2() -> MatcherDef<Crystal> {
+    MatcherDef(r#"^4\.1943\ RVR\ ([0-9])([0-9]{2})$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -260,9 +260,9 @@ fn kds_month(text: &str) -> Result<u8, String> {
     }
 }
 
-pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
+pub fn parse_crystal(text: &str) -> Option<Crystal> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Crystal>; 15] = [
+        static ref MATCHER: MatcherSet<Crystal> = MatcherSet::new(&[
             kds_short(),
             unknown(),
             kds_d419(),
@@ -278,12 +278,7 @@ pub fn parse_crystal(text: &str) -> Result<Crystal, ()> {
             kinseki_8388(),
             kds_d838(),
             kinseki_kss30(),
-        ];
+        ]);
     }
-    for matcher in MATCHERS.iter() {
-        if let Some(chip) = matcher.apply(text) {
-            return Ok(chip);
-        }
-    }
-    Err(())
+    MATCHER.apply(text)
 }

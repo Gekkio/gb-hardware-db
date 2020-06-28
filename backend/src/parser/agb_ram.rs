@@ -10,21 +10,48 @@ pub struct AgbRam {
     pub week: Option<u8>,
 }
 
-/// NEC D442012AGY
+/// NEC μPD442012A-X
+///
+/// Source:
+///   "NEC data sheet - MOS integrated circuit μPD442012A-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_agb_ram;
 /// assert!(parse_agb_ram("NEC JAPAN D442012AGY-BB85X-MJH 0037K7027").is_ok());
+/// assert!(parse_agb_ram("NEC JAPAN D442012AGY-BC85X-MJH 0330K7043").is_ok());
 /// ```
-fn nec() -> Matcher<AgbRam> {
+fn nec_upd442012a() -> Matcher<AgbRam> {
     Matcher::new(
-        r#"^NEC\ JAPAN\ (D442012AGY-[A-Z]{2}[0-9]{2}X-MJH)\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+        r#"^NEC\ JAPAN\ D442012AGY-(BB|BC|DD)([0-9]{2})X-MJH\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(AgbRam {
-                kind: Some(c[1].to_owned()),
+                kind: Some(format!("μPD442012AGY-{version}{access_time}X-MJH", version=&c[1], access_time=&c[2])),
                 manufacturer: Some(Manufacturer::Nec),
-                year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
+/// NEC μPD442012L-X
+///
+/// Source:
+///   "NEC data sheet - MOS integrated circuit μPD442012L-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_agb_ram;
+/// assert!(parse_agb_ram("NEC JAPAN D442012LGY-B85X-MJH 0138K7037").is_ok());
+/// ```
+fn nec_upd442012l() -> Matcher<AgbRam> {
+    Matcher::new(
+        r#"^NEC\ JAPAN\ D442012LGY-(B|C|D)([0-9]{2})X-MJH\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+        move |c| {
+            Ok(AgbRam {
+                kind: Some(format!("μPD442012LGY-{version}{access_time}X-MJH", version=&c[1], access_time=&c[2])),
+                manufacturer: Some(Manufacturer::Nec),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
             })
         },
     )
@@ -154,8 +181,9 @@ fn toshiba() -> Matcher<AgbRam> {
 
 pub fn parse_agb_ram(text: &str) -> Result<AgbRam, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<AgbRam>; 7] = [
-            nec(),
+        static ref MATCHERS: [Matcher<AgbRam>; 8] = [
+            nec_upd442012a(),
+            nec_upd442012l(),
             fujitsu(),
             hynix(),
             st_micro(),

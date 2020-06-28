@@ -1,0 +1,32 @@
+{
+  "slug": "AU55931008-7",
+  "contributor": "Pokechu22",
+  "shell": {
+    "color": "Indigo",
+    "release_code": "C/AGB-USA-1",
+    "serial": "AU55931008-7"
+  },
+  "mainboard": {
+    "label": "AGB-CPU-03",
+    "number_pair": "4-2",
+    "stamp": "491 3702",
+    "u1": {
+      "label": "CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0140 O"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012LGY-B85X-MJH 0138K7037"
+    },
+    "u3": {
+      "label": "AGB-REG IR3E09N 0141 K"
+    },
+    "u4": {
+      "label": "143 514X"
+    },
+    "u6": {
+      "label": "AMP AGB IR3R60N 0139 u"
+    },
+    "x1": {
+      "label": "4194 KSS 1KF"
+    }
+  }
+}

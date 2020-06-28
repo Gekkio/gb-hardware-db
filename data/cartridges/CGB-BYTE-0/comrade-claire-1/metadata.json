@@ -1,0 +1,30 @@
+{
+  "code": "CGB-BYTE-0",
+  "slug": "comrade-claire-1",
+  "contributor": "Comrade Claire",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BYTE-USA",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-KGDU-ö10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2001,
+    "month": 6,
+    "u1": {
+      "label": "B012304-M MX23C1603-12A CGB-BYTE-0 G2 1C9894A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 109 H00"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2827V52142 F0105 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 1501"
+    },
+    "x1": {}
+  }
+}

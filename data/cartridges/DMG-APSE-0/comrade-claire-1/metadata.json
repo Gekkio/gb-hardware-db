@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSE-0",
+  "slug": "comrade-claire-1",
+  "contributor": "Comrade Claire",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSE-USA-1",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "DMG-APSE-0 S LH538WU3 JAPAN F1 0012 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AL10 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0012 3 LO"
+    },
+    "u4": {
+      "label": "005 134A"
+    }
+  }
+}

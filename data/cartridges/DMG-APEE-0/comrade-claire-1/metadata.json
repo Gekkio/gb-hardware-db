@@ -1,0 +1,30 @@
+{
+  "code": "DMG-APEE-0",
+  "slug": "comrade-claire-1",
+  "contributor": "Comrade Claire",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEE-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 2001,
+    "month": 8,
+    "u1": {
+      "label": "DMG-APEE-0 F1 M538011E-14 1325401"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 128 H42"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0102 KOREA"
+    },
+    "u4": {
+      "label": "6735 1723"
+    },
+    "x1": {}
+  }
+}

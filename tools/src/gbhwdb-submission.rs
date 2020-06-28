@@ -36,27 +36,26 @@ fn main() -> Result<(), Error> {
         s.quit();
     });
     let contributor = ask_contributor_name(&mut siv);
-    if should_quit() {
+    if should_quit() || contributor.is_empty() {
         Ok(())
     } else {
-        while !should_quit() {
-            if let Some((root, cartridge)) = ask_submission(&mut siv, &cfgs, &contributor) {
-                let json = serde_json::to_string_pretty(&cartridge)?;
-                siv.add_layer(
-                    Dialog::new()
-                        .title(root.display().to_string())
-                        .content(TextView::new(json.clone()))
-                        .button("Ok", |s| s.quit()),
-                );
-                siv.run();
-                siv.pop_layer();
-                if !should_quit() {
-                    create_dir_all(&root)?;
-                    let file = File::create(root.join("metadata.json"))?;
-                    let mut file = BufWriter::new(file);
-                    file.write_all(&json.into_bytes())?;
-                }
+        while let Some((root, cartridge)) = ask_submission(&mut siv, &cfgs, &contributor) {
+            let json = serde_json::to_string_pretty(&cartridge)?;
+            siv.add_layer(
+                Dialog::new()
+                    .title(root.display().to_string())
+                    .content(TextView::new(json.clone()))
+                    .button("Ok", |s| s.quit()),
+            );
+            siv.run();
+            siv.pop_layer();
+            if should_quit() {
+                break
             }
+            create_dir_all(&root)?;
+            let file = File::create(root.join("metadata.json"))?;
+            let mut file = BufWriter::new(file);
+            file.write_all(&json.into_bytes())?;
         }
         Ok(())
     }

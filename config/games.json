@@ -97,6 +97,13 @@
       "rom_mapper"
     ]
   },
+  "CGB-B2XE-0": {
+    "name": "Mega Man Xtreme 2 (USA, Europe)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "CGB-B3OP-0": {
     "name": "SnowCross (Europe) (En,Fr,De,Es,It,Pt)",
     "platform": "gbc",
@@ -281,6 +288,13 @@
   },
   "CGB-BYTD-0": {
     "name": "Pokemon - Kristall-Edition (Germany)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram_xtal"
+    ]
+  },
+  "CGB-BYTE-0": {
+    "name": "Pokemon - Crystal Version (USA, Europe)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-B2XE-0",
+  "slug": "comrade-claire-1",
+  "contributor": "Comrade Claire",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B2XE-USA",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "1",
+    "year": 2001,
+    "month": 9,
+    "u1": {
+      "label": "CGB-B2XE-0 F1 M538011E-9J 1375431"
+    },
+    "u2": {
+      "label": "MBC5 P-2 136U4M"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 129AD21234790-II1RA"
+    },
+    "u4": {
+      "label": "129 134A"
+    }
+  }
+}

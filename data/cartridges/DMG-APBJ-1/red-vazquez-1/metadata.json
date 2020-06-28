@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APBJ-1",
+  "slug": "red-vazquez-1",
+  "contributor": "Red Vázquez",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APBJ-JPN",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-DEDN-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-APBJ-1 S LH534MV2 JAPAN E1 9642 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9641 3 A"
+    },
+    "u3": {
+      "label": "LH52B256NZ-10PLL MOSEL-VITELIC JAPAN N636 06 CB"
+    },
+    "u4": {
+      "label": "636 26A"
+    }
+  }
+}

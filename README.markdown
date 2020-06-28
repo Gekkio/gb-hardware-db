@@ -25,6 +25,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Miyako
 * pokechu22
 * pyroesp
+* Red Vázquez
 * Smileynator
 * terinjokes
 * tobiasvl

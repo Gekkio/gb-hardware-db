@@ -762,7 +762,7 @@ fn mosel_vitelic_lh52a64n_pl() -> Matcher<Ram> {
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_ram;
-/// assert!(parse_agb_ram("hynix 0231A HY62WT081ED70C KOREA").is_ok());
+/// assert!(parse_ram("hynix 0231A HY62WT081ED70C KOREA").is_ok());
 /// ```
 fn hynix_hy62wt08081e() -> Matcher<Ram> {
     Matcher::new(

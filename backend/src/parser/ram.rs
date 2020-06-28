@@ -778,8 +778,6 @@ fn hynix_hy62wt08081e() -> Matcher<Ram> {
     )
 }
 
-
-
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
         static ref MATCHERS: [Matcher<Ram>; 38] = [

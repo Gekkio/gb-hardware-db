@@ -1,7 +1,7 @@
 use cursive::traits::*;
 use cursive::view::Margins;
 use cursive::views::*;
-use cursive::Cursive;
+use cursive::{Cursive, CursiveExt};
 use failure::{format_err, Error};
 use gbhwdb_backend::config::cartridge::{BoardLayout, GameConfig, GamePlatform};
 use gbhwdb_tools::cursive::*;

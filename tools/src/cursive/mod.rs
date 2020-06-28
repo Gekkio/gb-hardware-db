@@ -2,7 +2,7 @@ use cursive::utils::markup::StyledString;
 use cursive::views::{EditView, SelectView, TextView};
 use cursive::Cursive;
 
-pub trait CursiveExt {
+pub trait GbHwDbCursiveExt {
     fn get_edit_view_value(&mut self, id: &str) -> String;
     fn get_select_view_selection<T>(&mut self, id: &str) -> Option<T>
     where
@@ -10,7 +10,7 @@ pub trait CursiveExt {
     fn set_text_view_content<S: Into<StyledString>>(&mut self, id: &str, content: S);
 }
 
-impl CursiveExt for Cursive {
+impl GbHwDbCursiveExt for Cursive {
     fn get_edit_view_value(&mut self, id: &str) -> String {
         self.call_on_name(id, |view: &mut EditView| String::clone(&view.get_content()))
             .unwrap_or_else(|| panic!("No EditView with id {:?}", id))

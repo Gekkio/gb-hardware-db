@@ -1,6 +1,6 @@
 use cursive::traits::*;
 use cursive::views::*;
-use cursive::Cursive;
+use cursive::{Cursive, CursiveExt};
 use failure::Error;
 use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig};
 use gbhwdb_backend::input::cartridge::{Cartridge, CartridgeBoard, CartridgeShell};
@@ -50,7 +50,7 @@ fn main() -> Result<(), Error> {
             siv.run();
             siv.pop_layer();
             if should_quit() {
-                break
+                break;
             }
             create_dir_all(&root)?;
             let file = File::create(root.join("metadata.json"))?;

@@ -19,7 +19,7 @@ path = "src/gbhwdb-submission.rs"
 
 [dependencies]
 clap = "2.27"
-cursive = "0.14"
+cursive = "0.15"
 failure = "0.1"
 failure_derive = "0.1"
 gbhwdb-backend = { path = "../backend" }

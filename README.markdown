@@ -23,6 +23,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * mattcurrie
 * max-m
 * Miyako
+* pokechu22
 * pyroesp
 * Smileynator
 * terinjokes

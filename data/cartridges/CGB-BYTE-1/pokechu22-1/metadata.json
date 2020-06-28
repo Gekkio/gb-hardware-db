@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BYTE-1",
+  "slug": "pokechu22-1",
+  "contributor": "Pokechu22",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BYTE-USA",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2002,
+    "month": 8,
+    "u1": {
+      "label": "M023404-M MX23C1603-12A CGB-BYTE-1 G2 1D2935A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 146 H08"
+    },
+    "u3": {
+      "label": "hynix 0231A HY62WT081ED70C KOREA"
+    },
+    "u4": {
+      "label": "144 134A"
+    },
+    "x1": {
+      "label": "KDS2G"
+    }
+  }
+}

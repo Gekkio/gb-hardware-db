@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AAXE-0",
+  "slug": "pokechu22-2",
+  "contributor": "Pokechu22",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AAXE-USA",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "CM",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "M004119-M MX23C1603-12A DMG-AAXE-0 G2 2D231400"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 036 H88"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 039 130NA"
+    },
+    "u4": {
+      "label": "036 134A"
+    },
+    "x1": {
+      "label": "32K09"
+    }
+  }
+}

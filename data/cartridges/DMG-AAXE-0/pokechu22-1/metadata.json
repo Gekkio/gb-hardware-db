@@ -1,0 +1,30 @@
+{
+  "code": "DMG-AAXE-0",
+  "slug": "pokechu22-1",
+  "contributor": "Pokechu22",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAXE-USA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "MB",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "S004019-M MX23C1603-12A DMG-AAXE-0 G2 2D216200"
+    },
+    "u2": {
+      "label": "MBC3 A LR38536B 0011 A"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0032 KOREA"
+    },
+    "u4": {
+      "label": "6735 0900"
+    },
+    "x1": {}
+  }
+}

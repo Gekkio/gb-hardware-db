@@ -758,9 +758,31 @@ fn mosel_vitelic_lh52a64n_pl() -> Matcher<Ram> {
     )
 }
 
+/// Hynix HY62WT08081E
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_agb_ram("hynix 0231A HY62WT081ED70C KOREA").is_ok());
+/// ```
+fn hynix_hy62wt08081e() -> Matcher<Ram> {
+    Matcher::new(
+        r#"^hynix\ ([0-9]{2})([0-9]{2})[A-Z]\ (HY62WT081E[LD][0-9][0-9][CEI])\ KOREA$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Hynix),
+                chip_type: Some(c[3].to_owned()),
+                year: Some(year2(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
+
+
 pub fn parse_ram(text: &str) -> Result<Ram, ()> {
     lazy_static! {
-        static ref MATCHERS: [Matcher<Ram>; 37] = [
+        static ref MATCHERS: [Matcher<Ram>; 38] = [
             bsi_bs62lv256sc(),
             hyundai_gm76c256c(),
             hyundai_hy6264a(),
@@ -798,6 +820,7 @@ pub fn parse_ram(text: &str) -> Result<Ram, ()> {
             lsi_logic_lh52xx(),
             crosslink_lh52a64n_yl(),
             mosel_vitelic_lh52a64n_pl(),
+            hynix_hy62wt08081e(),
         ];
     }
     for matcher in MATCHERS.iter() {

@@ -300,6 +300,13 @@
       "rom_mapper_ram_xtal"
     ]
   },
+  "CGB-BYTE-1": {
+    "name": "Pokemon - Crystal Version (USA, Europe) (Rev 1)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram_xtal"
+    ]
+  },
   "CGB-BYTF-0": {
     "name": "Pokemon - Version Cristal (France)",
     "platform": "gbc",
@@ -414,6 +421,13 @@
   },
   "DMG-AAXD-0": {
     "name": "Pokemon - Silberne Edition (Germany) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram_xtal"
+    ]
+  },
+  "DMG-AAXE-0": {
+    "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"

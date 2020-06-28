@@ -1,0 +1,28 @@
+{
+  "code": "CGB-AW8A-0",
+  "slug": "pokechu22-1",
+  "contributor": "Pokechu22",
+  "index": 1,
+  "shell": {
+    "code": "DIS-CGB-AW8A-USA"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 3,
+    "u1": {
+      "label": "CGB-AW8A-0 G2 N-16019WG5-M43 0013K7015"
+    },
+    "u2": {
+      "label": "MBC5 P-1 011U4M"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 014 151NA"
+    },
+    "u4": {
+      "label": "007 134A"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "XAF50521904",
+  "contributor": "fwwwn",
+  "shell": {
+    "color": "PearlBlue",
+    "release_code": "C/AGT-AUS(E4)-2",
+    "serial": "XAF50521904"
+  },
+  "mainboard": {
+    "label": "C/AGT-CPU-01",
+    "number_pair": "6-3",
+    "circled_letters": "FB",
+    "u1": {
+      "label": "CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0726 UB"
+    },
+    "u2": {
+      "label": "NEC JAPAN D442012AGY-BB85X-MJH 0721K7014"
+    },
+    "u3": {
+      "label": "MITSUMI JAPAN 722B PM B3"
+    },
+    "x1": {
+      "label": "KDSI 0715 4.194"
+    }
+  }
+}

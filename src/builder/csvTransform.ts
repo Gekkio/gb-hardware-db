@@ -53,7 +53,7 @@ export function generateCsv<T>(columns: CsvColumn<T>[], rows: T[], path: string)
       .on('finish', resolve)
 
     for (const row of rows) {
-      stringifier.write(columns.map(({ get }) => get(row)), 'UTF-8')
+      stringifier.write(columns.map(({ get }) => get(row)), 'utf-8')
     }
     stringifier.end()
   })

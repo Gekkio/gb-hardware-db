@@ -1,0 +1,40 @@
+{
+  "slug": "L10010466",
+  "contributor": "ide",
+  "shell": {
+    "color": "Silver",
+    "release_code": "MGL-JPN",
+    "serial": "L10010466"
+  },
+  "mainboard": {
+    "label": "MGL-CPU-01",
+    "number_pair": "2-1",
+    "stamp": "128-3419",
+    "circled_letters": "I",
+    "year": 1998,
+    "u1": {
+      "label": "CPU MGB Ⓜ © 1996 Nintendo JAPAN 9810 DA"
+    },
+    "u2": {
+      "label": "LH5164AN-10L SHARP JAPAN 9805 7 EB"
+    },
+    "u3": {
+      "label": "AMP MGB IR3R53N 9809 a"
+    },
+    "u4": {
+      "label": "DMG-REG IR3E02 9809 n"
+    },
+    "x1": {
+      "label": "KDS 9805 4.194"
+    },
+    "t1": {
+      "label": "82Y7"
+    }
+  },
+  "screen": {
+    "row_driver": {
+      "label": "8070",
+      "ribbon_label": "LH5076E"
+    }
+  }
+}

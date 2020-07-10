@@ -10,10 +10,11 @@ pub struct Transformer {
 
 /// ```
 /// # use gbhwdb_backend::parser::parse_transformer;
+/// assert!(parse_transformer("82Y7").is_some());
 /// assert!(parse_transformer("84Z7").is_some());
 /// ```
 fn mitsumi() -> MatcherDef<Transformer> {
-    MatcherDef(r#"^(84Z7)$"#, move |c| {
+    MatcherDef(r#"^(82Y7|84Z7)$"#, move |c| {
         Ok(Transformer {
             kind: c[1].to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),

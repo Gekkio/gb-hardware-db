@@ -6,6 +6,7 @@ Site source code for https://gbhwdb.gekkio.fi
 
 * Bruno Bertuga
 * Comrade Claire
+* creeps
 * curbsideaudio
 * davidslv
 * Duo (http://gameboy.mongenel.com)
@@ -13,6 +14,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * gekkio (https://gekkio.fi)
 * @hej.luxom
 * HDR
+* ide
 * ImATrackMan
 * Irfon Jones
 * ISSOtm

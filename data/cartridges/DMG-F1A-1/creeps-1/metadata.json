@@ -1,0 +1,26 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-F1-USA-1",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-GDAN-10",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 3,
+    "u1": {
+      "label": "DMG-F1A-1 C1 N-1001EUGW-J17 9812E7031"
+    },
+    "u2": {
+      "label": "DMG MBC2-A Nintendo P 8'27"
+    },
+    "u3": {
+      "label": "6129A 8274"
+    }
+  }
+}

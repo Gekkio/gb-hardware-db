@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AW8A-0",
+  "slug": "comrade-claire-1",
+  "contributor": "Comrade Claire",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AW8A-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "E003419-M MX23C1603-12A CGB-AW8A-0 G2 2C926100"
+    },
+    "u2": {
+      "label": "07D36FT MBC5 2417"
+    },
+    "u3": {
+      "label": "Winbond W24258S-70LE 020SH200908301AA"
+    },
+    "u4": {
+      "label": "6735 0565"
+    }
+  }
+}

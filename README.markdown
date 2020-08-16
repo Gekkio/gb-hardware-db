@@ -28,6 +28,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * pokechu22
 * pyroesp
 * Red Vázquez
+* Smelly-Ghost
 * Smileynator
 * terinjokes
 * tobiasvl

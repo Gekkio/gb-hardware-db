@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AYWJ-1",
+  "slug": "smelly-ghost-1",
+  "contributor": "Smelly-Ghost",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYWJ-JPN",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-KECN-SP",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 4,
+    "u1": {
+      "label": "DMG-AYWJ-1 S LH5S4MWF JAPAN E1 9819 D"
+    },
+    "u2": {
+      "label": "MBC3 LR385364 9743 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9818 5 DB"
+    },
+    "u4": {
+      "label": "6129A 8316"
+    },
+    "x1": {
+      "label": "KDS8A"
+    }
+  }
+}

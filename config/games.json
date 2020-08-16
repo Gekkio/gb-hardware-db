@@ -475,6 +475,13 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-AD3E-1": {
+    "name": "Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-AD3P-1": {
     "name": "Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)",
     "platform": "gb",

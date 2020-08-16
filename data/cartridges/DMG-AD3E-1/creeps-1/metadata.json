@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AD3E-1",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AD3E-USA",
+    "stamp": "12A"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "K",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "C983938-M MX23C4002-20 DMG-AD3E-1 E1 1P0221Y3"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9838 5 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9820 3 DB"
+    },
+    "u4": {
+      "label": "6129A 8914"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BBE-0",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BB-USA-1",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-BBE-0 S LH5317V5 JAPAN B1 9750 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9746 1 A"
+    }
+  }
+}

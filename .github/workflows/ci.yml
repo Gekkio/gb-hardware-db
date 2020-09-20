@@ -29,6 +29,18 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Run cargo install cargo-sweep
         uses: actions-rs/cargo@v1
         with:
@@ -54,3 +66,7 @@ jobs:
         with:
           command: run
           args: --release --bin gbhwdb-site-generator
+      - name: Run npm instsall
+        run: npm install
+      - name: Run site generation (Node)
+        run: npm run build

@@ -9,6 +9,7 @@ jobs:
   build_only:
     name: Build site
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -59,3 +60,68 @@ jobs:
         run: npm install
       - name: Run site generation (Node)
         run: npm run build
+  build_and_deploy:
+    name: Build + deploy site
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Install Ubuntu packages
+        run: sudo apt install libncurses-dev libncursesw5-dev
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all --release
+      - name: Run cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all --release
+      - name: Run site generation (Rust)
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release --bin gbhwdb-site-generator
+      - name: Run npm instsall
+        run: npm install
+      - name: Run site generation (Node)
+        run: npm run build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Run site deployment
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release --bin gbhwdb-deploy

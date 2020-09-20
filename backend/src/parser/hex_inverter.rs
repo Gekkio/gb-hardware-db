@@ -15,17 +15,14 @@ pub struct HexInverter {
 /// assert!(parse_hex_inverter("LVX 04 8 45").is_some());
 /// ```
 fn tc74lvx04ft() -> MatcherDef<HexInverter> {
-    MatcherDef(
-        r#"^LVX\ 04\ ([0-9])\ ([0-9]{2})$"#,
-        move |c| {
-            Ok(HexInverter {
-                manufacturer: Some(Manufacturer::Toshiba),
-                chip_type: Some("TC74LVX04FT".to_owned()),
-                year: Some(year1(&c[1])?),
-                week: Some(week2(&c[2])?),
-            })
-        },
-    )
+    MatcherDef(r#"^LVX\ 04\ ([0-9])\ ([0-9]{2})$"#, move |c| {
+        Ok(HexInverter {
+            manufacturer: Some(Manufacturer::Toshiba),
+            chip_type: Some("TC74LVX04FT".to_owned()),
+            year: Some(year1(&c[1])?),
+            week: Some(week2(&c[2])?),
+        })
+    })
 }
 
 pub fn parse_hex_inverter(text: &str) -> Option<HexInverter> {

@@ -24,7 +24,6 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: |
-            ~/.cargo/bin
             ~/.cargo/registry
             ~/.cargo/git
             target
@@ -41,16 +40,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Run cargo install cargo-sweep
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: cargo-sweep
-      - name: Run cargo sweep
-        uses: actions-rs/cargo@v1
-        with:
-          command: sweep
-          args: -i
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:

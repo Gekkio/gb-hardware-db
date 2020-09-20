@@ -1,7 +1,7 @@
+use anyhow::Error;
 use cursive::traits::*;
 use cursive::views::*;
 use cursive::{Cursive, CursiveExt};
-use failure::Error;
 use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig};
 use gbhwdb_backend::input::cartridge::{Cartridge, CartridgeBoard, CartridgeShell};
 use gbhwdb_backend::input::Chip;

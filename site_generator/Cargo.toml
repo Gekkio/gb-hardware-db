@@ -6,7 +6,7 @@ edition = "2018"
 publish = false
 
 [dependencies]
-failure = "0.1"
+anyhow = "1.0"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3"
 serde = { version = "1.0", features = ["derive"] }

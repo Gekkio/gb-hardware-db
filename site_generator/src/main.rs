@@ -1,4 +1,4 @@
-use failure::Error;
+use anyhow::Error;
 use gbhwdb_backend::config::cartridge::*;
 use gbhwdb_backend::input::cartridge::*;
 use gbhwdb_backend::parser;

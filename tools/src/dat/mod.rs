@@ -1,4 +1,4 @@
-use failure::Error;
+use anyhow::Error;
 use retro_dat::DatReader;
 use std::collections::HashSet;
 use std::path::Path;

@@ -1,8 +1,8 @@
+use anyhow::{anyhow, Error};
 use cursive::traits::*;
 use cursive::view::Margins;
 use cursive::views::*;
 use cursive::{Cursive, CursiveExt};
-use failure::{format_err, Error};
 use gbhwdb_backend::config::cartridge::{BoardLayout, GameConfig, GamePlatform};
 use gbhwdb_tools::cursive::*;
 use gbhwdb_tools::dat::DatFile;
@@ -90,9 +90,9 @@ fn load_dats() -> Result<Dats, Error> {
         }
     }
     Ok(Dats {
-        gb: gb_dat.ok_or(format_err!("No GB dat found"))?,
-        gbc: gbc_dat.ok_or(format_err!("No GBC dat found"))?,
-        gba: gba_dat.ok_or(format_err!("No GBA dat found"))?,
+        gb: gb_dat.ok_or(anyhow!("No GB dat found"))?,
+        gbc: gbc_dat.ok_or(anyhow!("No GBC dat found"))?,
+        gba: gba_dat.ok_or(anyhow!("No GBA dat found"))?,
     })
 }
 

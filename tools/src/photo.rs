@@ -1,15 +1,9 @@
-#[macro_use]
-extern crate clap;
-extern crate failure;
-extern crate image;
-
-use clap::{App, Arg, ArgMatches};
-use failure::Error;
+use anyhow::Error;
+use clap::{App, Arg, ArgMatches, value_t};
 use image::imageops::FilterType;
 use image::ImageOutputFormat;
 use std::fs::File;
 use std::io;
-use std::process;
 use std::u32;
 
 fn run(matches: &ArgMatches) -> Result<(), Error> {
@@ -29,7 +23,7 @@ fn run(matches: &ArgMatches) -> Result<(), Error> {
     Ok(())
 }
 
-fn main() {
+fn main() -> Result<(), Error> {
     let matches = App::new("gbhwdb-photo")
         .arg(
             Arg::with_name("output")
@@ -60,8 +54,5 @@ fn main() {
                 .required_unless("width"),
         )
         .get_matches();
-    if let Err(ref e) = run(&matches) {
-        eprintln!("{}\n{}", e, e.backtrace());
-        process::exit(1);
-    }
+    run(&matches)
 }

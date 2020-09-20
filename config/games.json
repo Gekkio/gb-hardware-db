@@ -294,7 +294,7 @@
     ]
   },
   "CGB-BYTE-0": {
-    "name": "Pokemon - Crystal Version (USA, Europe)",
+    "name": "Pokemon - Crystal Version (USA)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -672,7 +672,7 @@
     ]
   },
   "DMG-AMLP-0": {
-    "name": "Mulan (USA, Europe) (SGB Enhanced)",
+    "name": "Mulan (Europe) (SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

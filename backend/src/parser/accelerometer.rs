@@ -16,7 +16,7 @@ pub struct Accelerometer {
 /// ```
 fn analog_adxl202jqc() -> MatcherDef<Accelerometer> {
     MatcherDef(
-        r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC?$"#,
+        r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC$"#,
         move |c| {
             Ok(Accelerometer {
                 chip_type: Some("ADXL202JQC".to_owned()),

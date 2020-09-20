@@ -342,6 +342,13 @@
       "mbc7"
     ]
   },
+  "CGB-KTNE-0": {
+    "name": "Kirby - Tilt 'n' Tumble (USA)",
+    "platform": "gbc",
+    "layouts": [
+      "mbc7"
+    ]
+  },
   "DMG-A2GJ-0": {
     "name": "Beatmania GB 2 - Gotcha Mix (Japan) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
@@ -1302,6 +1309,13 @@
   },
   "DMG-HRCJ-0": {
     "name": "Robot Poncots - Star Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "huc3"
+    ]
+  },
+  "DMG-HREJ-0": {
+    "name": "Robot Poncots - Sun Version (Japan) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
     "layouts": [
       "huc3"

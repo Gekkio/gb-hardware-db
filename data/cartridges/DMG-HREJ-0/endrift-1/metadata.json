@@ -1,0 +1,33 @@
+{
+  "code": "DMG-HREJ-0",
+  "slug": "endrift-1",
+  "contributor": "endrift",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HREJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-UFDT-01",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-HREJ-0 S LH5S8MT0 JAPAN F 9846 E"
+    },
+    "u2": {
+      "label": "HuC-3 © HUDSON Nintendo 9842 A"
+    },
+    "u3": {
+      "label": "LH52256CT-10LL SHARP JAPAN 9844 5 SS"
+    },
+    "u4": {
+      "label": "838 134A"
+    },
+    "u5": {
+      "label": "LVX 04 8 45"
+    },
+    "x1": {}
+  }
+}

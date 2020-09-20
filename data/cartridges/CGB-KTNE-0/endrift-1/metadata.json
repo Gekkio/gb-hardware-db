@@ -1,0 +1,29 @@
+{
+  "code": "CGB-KTNE-0",
+  "slug": "endrift-1",
+  "contributor": "endrift",
+  "index": 1,
+  "shell": {
+    "code": "CGB-KTNE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A40-01",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "MBC-7 BU3667KS 105 129"
+    },
+    "u2": {
+      "label": "CGB-KTNE-0 F1 M538011E-1J 1185402"
+    },
+    "u3": {
+      "label": "LC56 W242 12"
+    },
+    "u4": {
+      "label": "3968550822 0110 ADXL202JQC"
+    }
+  }
+}

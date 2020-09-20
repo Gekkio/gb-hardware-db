@@ -118,8 +118,8 @@ pub fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut
             legacy.ram_protector = to_legacy_chip(board.year, roles.u5, board.u5);
         }
         BoardLayout::Mbc7 => {
-            legacy.rom = to_legacy_chip(board.year, roles.u1, board.u1);
-            legacy.mapper = to_legacy_chip(board.year, roles.u2, board.u2);
+            legacy.mapper = to_legacy_chip(board.year, roles.u1, board.u1);
+            legacy.rom = to_legacy_chip(board.year, roles.u2, board.u2);
             legacy.eeprom = to_legacy_chip(board.year, roles.u3, board.u3);
             legacy.accelerometer = to_legacy_chip(board.year, roles.u4, board.u4);
         }

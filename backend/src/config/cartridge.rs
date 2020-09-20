@@ -214,8 +214,8 @@ impl ChipRoleConfig {
                 ..ChipRoleConfig::default()
             },
             BoardLayout::Mbc7 => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
+                u1: Some(ChipRole::Mapper),
+                u2: Some(ChipRole::Rom),
                 u3: Some(ChipRole::Eeprom),
                 u4: Some(ChipRole::Accelerometer),
                 ..ChipRoleConfig::default()

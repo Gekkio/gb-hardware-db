@@ -1,2 +1,2 @@
 [workspace]
-members = ["backend", "site_generator", "tools"]
+members = ["backend", "deploy", "site_generator", "tools"]

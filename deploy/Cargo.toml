@@ -1,0 +1,18 @@
+[package]
+name = "gbhwdb-deploy"
+version = "0.0.0"
+authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
+edition = "2018"
+publish = false
+
+[dependencies]
+anyhow = "1.0"
+hex = "0.4"
+log = "0.4"
+md-5 = "0.9"
+rayon = "1.4"
+rusoto_core = "0.45"
+rusoto_s3 = "0.45"
+simplelog = "0.8"
+tokio = { version = "0.2", features = ["rt-threaded", "macros", "blocking"] }
+walkdir = "2.2"

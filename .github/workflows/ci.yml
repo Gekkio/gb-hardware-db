@@ -52,11 +52,8 @@ jobs:
           command: test
           args: --all --release
       - name: Run site generation (Rust)
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release --bin gbhwdb-site-generator
-      - name: Run npm instsall
+        run: cargo run --release --bin gbhwdb-site-generator
+      - name: Run npm install
         run: npm install
       - name: Run site generation (Node)
         run: npm run build
@@ -85,6 +82,12 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: cargo-sweep
+          version: latest
+      - name: Run cargo sweep
+        run: cargo sweep -i
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -106,11 +109,10 @@ jobs:
           command: test
           args: --all --release
       - name: Run site generation (Rust)
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release --bin gbhwdb-site-generator
-      - name: Run npm instsall
+        run: cargo run --release --bin gbhwdb-site-generator
+      - name: Run npm prune
+        run: npm prune
+      - name: Run npm install
         run: npm install
       - name: Run site generation (Node)
         run: npm run build
@@ -121,7 +123,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
       - name: Run site deployment
-        uses: actions-rs/cargo@v1
-        with:
-          command: run
-          args: --release --bin gbhwdb-deploy
+        run: cargo run --release --bin gbhwdb-deploy

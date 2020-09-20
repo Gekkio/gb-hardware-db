@@ -8,6 +8,7 @@ publish = false
 [dependencies]
 anyhow = "1.0"
 base64 = "0.12"
+chrono = "0.4"
 log = "0.4"
 md-5 = "0.9"
 rayon = "1.4"

@@ -1,5 +1,5 @@
 use anyhow::Error;
-use clap::{App, Arg, ArgMatches, value_t};
+use clap::{value_t, App, Arg, ArgMatches};
 use image::imageops::FilterType;
 use image::ImageOutputFormat;
 use std::fs::File;

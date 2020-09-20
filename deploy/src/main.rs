@@ -1,9 +1,10 @@
 use anyhow::{anyhow, Error};
+use chrono::{DateTime, FixedOffset, Utc};
 use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
 use rusoto_core::Region;
-use rusoto_s3::{ListObjectsV2Request, PutObjectRequest, S3Client, S3};
+use rusoto_s3::{DeleteObjectRequest, ListObjectsV2Request, PutObjectRequest, S3Client, S3};
 use simplelog::{LevelFilter, TermLogger, TerminalMode};
 use std::collections::BTreeMap;
 use std::fs::File;
@@ -48,6 +49,7 @@ impl LocalFile {
 struct RemoteFile {
     key: String,
     len: u64,
+    last_modified: Option<DateTime<FixedOffset>>,
     e_tag: Option<[u8; 16]>,
 }
 
@@ -118,6 +120,9 @@ async fn scan_remote_files<S: S3>(s3: &S, bucket: &str) -> Result<Vec<RemoteFile
                     result.push(RemoteFile {
                         key,
                         len: size as u64,
+                        last_modified: obj
+                            .last_modified
+                            .and_then(|timestamp| DateTime::parse_from_rfc3339(&timestamp).ok()),
                         e_tag: obj.e_tag.and_then(|e_tag| parse_e_tag(&e_tag)),
                     });
                 }
@@ -180,6 +185,20 @@ async fn main() -> Result<(), Error> {
     }
     info!("{} files scheduled for upload", to_upload.len());
 
+    let mut to_delete = Vec::new();
+    for (key, remote_file) in remote_index.iter() {
+        if local_index.contains_key(key) {
+            continue;
+        }
+        if let Some(last_modified) = remote_file.last_modified {
+            let elapsed = Utc::now().signed_duration_since(last_modified);
+            if elapsed > chrono::Duration::weeks(4) {
+                to_delete.push(remote_file);
+            }
+        }
+    }
+    info!("{} files scheduled for deletion", to_delete.len());
+
     let shared_mime_info = Arc::new(spawn_blocking(SharedMimeInfo::new).await?);
 
     for local_file in to_upload {
@@ -209,6 +228,16 @@ async fn main() -> Result<(), Error> {
             content_md5: Some(base64::encode(local_file.md5)),
             cache_control: Some(local_file.cache_control().to_owned()),
             ..PutObjectRequest::default()
+        })
+        .await?;
+    }
+
+    for remote_file in to_delete {
+        info!("Deleting {}", remote_file.key);
+        s3.delete_object(DeleteObjectRequest {
+            bucket: bucket.to_owned(),
+            key: remote_file.key.clone(),
+            ..DeleteObjectRequest::default()
         })
         .await?;
     }

@@ -8,6 +8,7 @@ publish = false
 [dependencies]
 failure = "0.1"
 gbhwdb-backend = { path = "../backend" }
+glob = "0.3"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 slug = "0.1"

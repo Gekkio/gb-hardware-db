@@ -2,7 +2,8 @@ use failure::Error;
 use gbhwdb_backend::config::cartridge::*;
 use gbhwdb_backend::input::cartridge::*;
 use gbhwdb_backend::parser;
-use std::fs::{create_dir_all, File};
+use glob::glob;
+use std::fs::{self, create_dir_all, File};
 use std::path::Path;
 use walkdir::{DirEntry, WalkDir};
 
@@ -44,6 +45,7 @@ fn main() -> Result<(), Error> {
     process_ags_submissions()?;
     process_gbs_submissions()?;
     process_oxy_submissions()?;
+    copy_static_files()?;
     Ok(())
 }
 
@@ -1069,5 +1071,30 @@ fn process_oxy_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/oxy.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    Ok(())
+}
+
+fn copy_static_files() -> Result<(), Error> {
+    static PATTERNS: [&str; 8] = [
+        "static/**/*.html",
+        "static/**/*.txt",
+        "static/**/*.ico",
+        "static/**/*.jpg",
+        "static/**/*.png",
+        "static/**/*.svg",
+        "static/**/*.webmanifest",
+        "static/**/*.xml",
+    ];
+    let target = Path::new("build/site");
+    for pattern in &PATTERNS {
+        for entry in glob(pattern)? {
+            let path = entry?;
+            let target = target.join(&path);
+            if let Some(parent) = target.parent() {
+                create_dir_all(parent)?;
+            }
+            fs::copy(&path, target)?;
+        }
+    }
     Ok(())
 }

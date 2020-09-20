@@ -9,17 +9,6 @@ const ts = require('gulp-typescript')
 const process = require('process')
 const exec = require('child_process').exec
 
-const staticPaths = [
-  'static/**/*.html',
-  'static/**/*.txt',
-  'static/**/*.ico',
-  'static/**/*.jpg',
-  'static/**/*.png',
-  'static/**/*.svg',
-  'static/**/*.webmanifest',
-  'static/**/*.xml',
-]
-
 const tsProject = ts.createProject('tsconfig.json')
 const scripts = () =>
   tsProject
@@ -44,8 +33,6 @@ const styles = () =>
     .pipe(postcss())
     .pipe(gulp.dest('build/site/static'))
 
-const staticFiles = () => gulp.src(staticPaths).pipe(gulp.dest('build/site'))
-
 const html = done => {
   const node = exec('node build/scripts/builder/builder.js', done)
   node.stdout.pipe(process.stdout)
@@ -53,20 +40,18 @@ const html = done => {
 }
 const scriptsAndHtml = gulp.series(scripts, html)
 
-const build = gulp.parallel(scriptsAndHtml, styles, staticFiles)
+const build = gulp.parallel(scriptsAndHtml, styles)
 const watch = async () => {
   gulp.watch(['src/**/*.ts', 'src/**/*.tsx'], scripts)
   gulp.watch(['build/scripts/**/*.js', 'content/**/*.markdown', 'data/**/*.json', 'data/**/*.jpg'], html)
   gulp.watch('src/site/**/*.scss', styles)
-  gulp.watch(staticPaths, staticFiles)
 }
 
 module.exports = {
   html,
   styles,
   scripts,
-  static: staticFiles,
-  build,
+  ruild,
   watch,
   lint,
   default: build,

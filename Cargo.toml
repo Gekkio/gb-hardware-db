@@ -1,5 +1,2 @@
 [workspace]
 members = ["backend", "deploy", "site_generator", "tools"]
-
-[profile.test]
-opt-level = 2

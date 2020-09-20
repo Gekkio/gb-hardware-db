@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 anyhow = "1.0"
-hex = "0.4"
+base64 = "0.12"
 log = "0.4"
 md-5 = "0.9"
 rayon = "1.4"
@@ -16,3 +16,4 @@ rusoto_s3 = "0.45"
 simplelog = "0.8"
 tokio = { version = "0.2", features = ["rt-threaded", "macros", "blocking"] }
 walkdir = "2.2"
+xdg-mime = "0.3"

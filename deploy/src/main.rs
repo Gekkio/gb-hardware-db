@@ -3,13 +3,16 @@ use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
 use rusoto_core::Region;
-use rusoto_s3::{ListObjectsV2Request, S3Client, S3};
+use rusoto_s3::{ListObjectsV2Request, PutObjectRequest, S3Client, S3};
 use simplelog::{LevelFilter, TermLogger, TerminalMode};
 use std::collections::BTreeMap;
 use std::fs::File;
 use std::io::{self, BufReader};
 use std::path::{Path, PathBuf};
 use std::str;
+use std::sync::Arc;
+use tokio::task::spawn_blocking;
+use xdg_mime::SharedMimeInfo;
 
 use walkdir::{DirEntry, WalkDir};
 
@@ -17,8 +20,28 @@ use walkdir::{DirEntry, WalkDir};
 struct LocalFile {
     absolute_path: PathBuf,
     relative_path: PathBuf,
+    key: String,
     len: u64,
     md5: [u8; 16],
+}
+
+impl LocalFile {
+    fn cache_control(&self) -> &'static str {
+        static CC_S: &str = "max-age=3600,public";
+        static CC_M: &str = "max-age=86400,public";
+        static CC_L: &str = "max-age=1209600,public";
+        if self.key.starts_with("static/") {
+            if self.key.ends_with(".jpg") {
+                CC_L
+            } else {
+                CC_S
+            }
+        } else if self.key.starts_with("consoles/") || self.key.starts_with("cartridges/") {
+            CC_M
+        } else {
+            CC_S
+        }
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -37,9 +60,15 @@ fn file_md5(path: &Path) -> Result<[u8; 16], Error> {
 
 fn scan_local_file(root: &Path, entry: &DirEntry) -> Result<LocalFile, Error> {
     let metadata = entry.metadata()?;
+    let relative_path = entry.path().strip_prefix(root)?.to_owned();
+    let key = relative_path
+        .to_str()
+        .ok_or_else(|| anyhow!("Non-UTF8 filename encountered {:?}", relative_path))?
+        .to_owned();
     Ok(LocalFile {
         absolute_path: entry.path().canonicalize()?,
-        relative_path: entry.path().strip_prefix(root)?.to_owned(),
+        relative_path,
+        key,
         len: metadata.len(),
         md5: file_md5(entry.path())?,
     })
@@ -54,7 +83,6 @@ fn scan_local_files(root: &Path) -> Result<Vec<LocalFile>, Error> {
         }
         entries.push(entry);
     }
-    entries.truncate(10);
 
     Ok(entries
         .into_par_iter()
@@ -86,15 +114,12 @@ async fn scan_remote_files<S: S3>(s3: &S, bucket: &str) -> Result<Vec<RemoteFile
             .await?;
         if let Some(contents) = output.contents {
             for obj in contents {
-                match (obj.key, obj.size) {
-                    (Some(key), Some(size)) => {
-                        result.push(RemoteFile {
-                            key,
-                            len: size as u64,
-                            e_tag: obj.e_tag.and_then(|e_tag| parse_e_tag(&e_tag)),
-                        });
-                    }
-                    _ => (),
+                if let (Some(key), Some(size)) = (obj.key, obj.size) {
+                    result.push(RemoteFile {
+                        key,
+                        len: size as u64,
+                        e_tag: obj.e_tag.and_then(|e_tag| parse_e_tag(&e_tag)),
+                    });
                 }
             }
         }
@@ -109,7 +134,7 @@ async fn scan_remote_files<S: S3>(s3: &S, bucket: &str) -> Result<Vec<RemoteFile
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let _ = TermLogger::init(
-        LevelFilter::Debug,
+        LevelFilter::Info,
         simplelog::Config::default(),
         TerminalMode::Mixed,
     );
@@ -119,7 +144,7 @@ async fn main() -> Result<(), Error> {
         return Err(anyhow!("Can't find build directory"));
     }
     info!("Scanning local files...");
-    let local_files = tokio::task::spawn_blocking(move || scan_local_files(build_dir)).await??;
+    let local_files = spawn_blocking(move || scan_local_files(build_dir)).await??;
     info!("Scanned {} local files", local_files.len());
 
     let s3 = S3Client::new(Region::EuWest1);
@@ -132,10 +157,7 @@ async fn main() -> Result<(), Error> {
     info!("Building deployment plan...");
     let local_index: BTreeMap<&str, &LocalFile> = local_files
         .iter()
-        .filter_map(|file| {
-            let key = file.relative_path.to_str()?;
-            Some((key, file))
-        })
+        .map(|file| (file.key.as_str(), file))
         .collect();
     let remote_index: BTreeMap<&str, &RemoteFile> = remote_files
         .iter()
@@ -158,5 +180,39 @@ async fn main() -> Result<(), Error> {
     }
     info!("{} files scheduled for upload", to_upload.len());
 
+    let shared_mime_info = Arc::new(spawn_blocking(SharedMimeInfo::new).await?);
+
+    for local_file in to_upload {
+        info!("Uploading {}", local_file.key);
+        let body = tokio::fs::read(&local_file.absolute_path).await?;
+        let (body, mime_guess) = {
+            let shared_mime_info = Arc::clone(&shared_mime_info);
+            let absolute_path = local_file.absolute_path.clone();
+            spawn_blocking(move || {
+                let guess = shared_mime_info
+                    .guess_mime_type()
+                    .path(absolute_path)
+                    .data(&body)
+                    .guess();
+                (body, guess)
+            })
+            .await?
+        };
+        if mime_guess.uncertain() {
+            return Err(anyhow!("Failed to guess MIME type for {}", local_file.key));
+        }
+        s3.put_object(PutObjectRequest {
+            bucket: bucket.to_owned(),
+            key: local_file.key.clone(),
+            body: Some(body.into()),
+            content_type: Some(mime_guess.mime_type().essence_str().to_owned()),
+            content_md5: Some(base64::encode(local_file.md5)),
+            cache_control: Some(local_file.cache_control().to_owned()),
+            ..PutObjectRequest::default()
+        })
+        .await?;
+    }
+
+    info!("Site deployment complete");
     Ok(())
 }

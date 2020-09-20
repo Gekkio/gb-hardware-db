@@ -44,12 +44,12 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --all
+          args: --all --release
       - name: Run cargo test
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --all
+          args: --all --release
       - name: Run site generation (Rust)
         uses: actions-rs/cargo@v1
         with:

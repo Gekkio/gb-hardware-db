@@ -1089,7 +1089,7 @@ fn copy_static_files() -> Result<(), Error> {
     for pattern in &PATTERNS {
         for entry in glob(pattern)? {
             let path = entry?;
-            let target = target.join(&path);
+            let target = target.join(path.strip_prefix("static")?);
             if let Some(parent) = target.parent() {
                 create_dir_all(parent)?;
             }

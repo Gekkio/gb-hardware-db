@@ -1,0 +1,42 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+
+jobs:
+  build_only:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all
+      - name: Run cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all
+      - name: Run site generation (Rust)
+        uses: actions-rs/cargo@v1
+        with:
+          command: run
+          args: --release --bin gbhwdb-site-generator
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Run site generation (Node)
+        run: npm run build

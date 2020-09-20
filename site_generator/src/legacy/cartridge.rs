@@ -255,6 +255,14 @@ pub fn to_legacy_chip(
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
                     }
+                    ChipRole::HexInverter => {
+                        let chip = gbhwdb_backend::parser::parse_hex_inverter(&label)
+                            .unwrap_or_else(|| panic!("{}", label));
+                        legacy.kind = chip.chip_type;
+                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
+                        legacy.year = to_legacy_year(board_year, chip.year);
+                        legacy.week = chip.week;
+                    }
                     _ => (),
                 }
             }

@@ -158,6 +158,7 @@ pub enum ChipRole {
     Accelerometer,
     LineDecoder,
     Tama,
+    HexInverter,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Default)]
@@ -234,7 +235,7 @@ impl ChipRoleConfig {
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Ram),
                 u4: Some(ChipRole::RamBackup),
-                u5: Some(ChipRole::Unknown),
+                u5: Some(ChipRole::HexInverter),
                 x1: Some(ChipRole::Crystal),
                 ..ChipRoleConfig::default()
             },

@@ -454,3 +454,18 @@ impl ToLegacyChip for parser::OxyU5 {
         self.week
     }
 }
+
+impl ToLegacyChip for parser::HexInverter {
+    fn kind(&self) -> Option<String> {
+        self.chip_type.clone()
+    }
+    fn manufacturer(&self) -> Option<Manufacturer> {
+        self.manufacturer
+    }
+    fn year(&self) -> Option<Year> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
+}

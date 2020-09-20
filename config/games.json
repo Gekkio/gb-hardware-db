@@ -440,6 +440,13 @@
       "rom_mapper_ram_xtal"
     ]
   },
+  "DMG-AB2E-0": {
+    "name": "Bomberman GB (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-AB6P-0": {
     "name": "Bugs Bunny - Crazy Castle 3 (USA, Europe) (GB Compatible)",
     "platform": "gbc",
@@ -562,6 +569,13 @@
   "DMG-AFOP-0": {
     "name": "FIFA 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "DMG-AGCE-0": {
+    "name": "Arcade Classic No. 3 - Galaga & Galaxian (USA) (SGB Enhanced)",
+    "platform": "gb",
     "layouts": [
       "rom_mapper"
     ]
@@ -1235,6 +1249,13 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-GOA-0": {
+    "name": "Golf (World)",
+    "platform": "gb",
+    "layouts": [
+      "mbc2"
     ]
   },
   "DMG-GWJ-0": {

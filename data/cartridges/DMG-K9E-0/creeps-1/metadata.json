@@ -1,0 +1,26 @@
+{
+  "code": "DMG-K9E-0",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-K9-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1996,
+    "month": 9,
+    "u1": {
+      "label": "DMG-K9E-0 D1 N-2001EUGW-J06 9637K7006"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9403CA012"
+    },
+    "u3": {
+      "label": "6129A 6840"
+    }
+  }
+}

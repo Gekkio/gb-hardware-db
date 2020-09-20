@@ -54,9 +54,3 @@ jobs:
         with:
           command: run
           args: --release --bin gbhwdb-site-generator
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: Run site generation (Node)
-        run: npm run build

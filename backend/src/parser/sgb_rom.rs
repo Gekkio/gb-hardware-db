@@ -68,6 +68,25 @@ fn unknown3() -> MatcherDef<SgbRom> {
     )
 }
 
+/// ```
+/// # use gbhwdb_backend::parser::parse_sgb_rom;
+/// assert!(parse_sgb_rom("© 1994 Nintendo SYS-SGB-NT N-2001EGW-J56 9414X9013").is_some());
+/// ```
+fn unknown4() -> MatcherDef<SgbRom> {
+    MatcherDef(
+        r#"^©\ 1994\ Nintendo\ (SYS-SGB-(NT|2))\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+        move |c| {
+            Ok(SgbRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: None,
+                chip_type: Some(c[3].to_owned()),
+                year: Some(year2(&c[4])?),
+                week: Some(week2(&c[5])?),
+            })
+        },
+    )
+}
+
 /// Toshiba SGB ROM
 ///
 /// ```
@@ -162,6 +181,7 @@ pub fn parse_sgb_rom(text: &str) -> Option<SgbRom> {
             unknown(),
             unknown2(),
             unknown3(),
+            unknown4(),
         ]);
     }
     MATCHER.apply(text)

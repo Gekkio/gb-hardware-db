@@ -1,0 +1,23 @@
+{
+  "code": "DMG-PCE-0",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-PC-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1991,
+    "month": 8,
+    "u1": {
+      "label": "DMG-PCE-0 S LH5314G2 JAPAN B1 9134 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9131BA030"
+    }
+  }
+}

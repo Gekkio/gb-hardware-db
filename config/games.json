@@ -13,6 +13,13 @@
       "rom_mapper_ram"
     ]
   },
+  "CGB-AHYE-1": {
+    "name": "Super Mario Bros. Deluxe (USA, Europe) (Rev 1)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "CGB-AJUP-0": {
     "name": "Jeremy McGrath Supercross 2000 (USA, Europe)",
     "platform": "gbc",
@@ -545,6 +552,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-ADDE-0": {
+    "name": "Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-ADDJ-0": {
     "name": "Donkey Kong Land (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -931,6 +945,13 @@
   },
   "DMG-APYJ-0": {
     "name": "Pocket Puyo Puyo Tsuu (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "DMG-ASFE-1": {
+    "name": "Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADDE-0",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADDE-USA-2",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-20",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ADDE-0 S LH5S4MVC JAPAN E1 9949 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9910 5 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9946 5 EB"
+    },
+    "u4": {
+      "label": "6735 9A06"
+    }
+  }
+}

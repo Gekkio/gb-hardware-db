@@ -4,6 +4,7 @@ Site source code for https://gbhwdb.gekkio.fi
 
 ## Contributors
 
+* Ben Black
 * Bruno Bertuga
 * Comrade Claire
 * creeps

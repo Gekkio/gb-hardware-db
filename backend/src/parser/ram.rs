@@ -726,7 +726,27 @@ fn victronix_vn4464s() -> MatcherDef<Ram> {
 /// ```
 fn crosslink_lh52a64n_yl() -> MatcherDef<Ram> {
     MatcherDef(
-        r#"^(LH52A64N-YL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]"#,
+        r#"^(LH52A64N-YL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
+        move |c| {
+            Ok(Ram {
+                manufacturer: Some(Manufacturer::Crosslink),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+/// Crosslink LH5268ANF-10YLL
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_ram;
+/// assert!(parse_ram("LH5268ANF-10YLL Xlink JAPAN H429 0Y BB").is_some());
+/// ```
+fn crosslink_lh5268anf() -> MatcherDef<Ram> {
+    MatcherDef(
+        r#"^(LH5268ANF-10YLL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
                 manufacturer: Some(Manufacturer::Crosslink),
@@ -817,6 +837,7 @@ pub fn parse_ram(text: &str) -> Option<Ram> {
             sharp_lh52a64n_l(),
             lsi_logic_lh52xx(),
             crosslink_lh52a64n_yl(),
+            crosslink_lh5268anf(),
             mosel_vitelic_lh52a64n_pl(),
             hynix_hy62wt08081e(),
         ]);

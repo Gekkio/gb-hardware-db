@@ -1,0 +1,20 @@
+{
+  "code": "DMG-MXE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MX-USA",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-AAA-02",
+    "circled_letters": "B",
+    "extra_label": "3",
+    "year": 1989,
+    "month": 3,
+    "u1": {
+      "label": "DMG-MXE-0 SHARP JAPAN A0 9012 D"
+    }
+  }
+}

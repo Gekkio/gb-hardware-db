@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AYQE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AYQE-USA",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A09-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "CGB-AYQE-0 S LHMN5MTF JAPAN H2 0010 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AL02 A"
+    }
+  }
+}

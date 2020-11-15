@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BPTE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BPTE-USA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-Z03-10",
+    "circled_letters": "MB",
+    "extra_label": "5",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "CGB-BPTE-0 G2 R531614G-44 044232E"
+    },
+    "u2": {
+      "label": "MBC5 P 037U2M"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S282730015 F0040 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 0A94"
+    }
+  }
+}

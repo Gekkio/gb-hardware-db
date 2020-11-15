@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AYLE-1",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYLE-USA",
+    "stamp": "11A"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "extra_label": "2",
+    "year": 1997,
+    "month": 6,
+    "u1": {
+      "label": "DMG-AYLE-1 S LH534MV9 JAPAN E1 9724 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9724 3 A"
+    }
+  }
+}

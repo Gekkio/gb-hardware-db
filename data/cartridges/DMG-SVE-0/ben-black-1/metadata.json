@@ -1,0 +1,23 @@
+{
+  "code": "DMG-SVE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-SV-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "B",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 6,
+    "u1": {
+      "label": "DMG-SVE-0 S LH5314HS JAPAN B1 9026 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9015BA040"
+    }
+  }
+}

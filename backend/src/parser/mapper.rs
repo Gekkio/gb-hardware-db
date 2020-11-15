@@ -456,10 +456,11 @@ fn rohm_mbc30() -> MatcherDef<Mapper> {
 /// ```
 /// # use gbhwdb_backend::parser::parse_mapper;
 /// assert!(parse_mapper("MBC5 BU3650K 229 H51").is_some());
+/// assert!(parse_mapper("MBC-5 BU3650K 049 186").is_some());
 /// ```
 fn rohm_mbc5() -> MatcherDef<Mapper> {
     MatcherDef(
-        r#"^MBC-?5\ BU3650K\ ([0-9])([0-9]{2})\ H[0-9]{2}$"#,
+        r#"^MBC-?5\ BU3650K\ ([0-9])([0-9]{2})\ [[:alnum:]][0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc5,

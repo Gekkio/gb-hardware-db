@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AKBJ-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKBJ-JPN",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1995,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AKBJ-0 S LH534MY0 JAPAN E1 9509 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9449 5 A"
+    },
+    "u3": {
+      "label": "LH5268ANF-10YLL Xlink JAPAN H429 0Y BB"
+    },
+    "u4": {
+      "label": "436 26A"
+    }
+  }
+}

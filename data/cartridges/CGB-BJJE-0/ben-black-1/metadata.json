@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BJJE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BJJE-USA-1",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "S005219-M MX23C1603-12A CGB-BJJE-0 G2 2D498100"
+    },
+    "u2": {
+      "label": "0CA7R9T MBC5 2417"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 050 168N"
+    },
+    "u4": {
+      "label": "047 134A"
+    }
+  }
+}

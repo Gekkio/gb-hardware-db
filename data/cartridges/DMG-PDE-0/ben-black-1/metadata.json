@@ -1,0 +1,20 @@
+{
+  "code": "DMG-PDE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-PD-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "B",
+    "extra_label": "6",
+    "year": 1990,
+    "month": 7,
+    "u1": {
+      "label": "DMG-PDE-0 SHARP JAPAN A0 9033 D"
+    }
+  }
+}

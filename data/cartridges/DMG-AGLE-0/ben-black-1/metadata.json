@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AGLE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AGLE-USA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AGLE-0 F1 M538011E-18 843232G"
+    },
+    "u2": {
+      "label": "MBC5 P-1 851U3L"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9851 5 CB"
+    },
+    "u4": {
+      "label": "849 134A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-BH2E-1",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BH2E-USA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "C005149-M MX23C8005-12 CGB-BH2E-1 F1 1C3786A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 049 186"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A0020 7 CB"
+    },
+    "u4": {
+      "label": "6735 0B03"
+    }
+  }
+}

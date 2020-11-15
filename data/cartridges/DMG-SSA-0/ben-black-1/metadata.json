@@ -1,0 +1,23 @@
+{
+  "code": "DMG-SSA-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-SS-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-03",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1990,
+    "month": 5,
+    "u1": {
+      "label": "DMG-SSA-0 SHARP JAPAN B0 9023 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9016BA059"
+    }
+  }
+}

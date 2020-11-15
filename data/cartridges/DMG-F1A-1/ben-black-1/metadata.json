@@ -1,0 +1,26 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "DMG-F1-USA",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "DMG-F1A-1 S LH5308PS JAPAN C1 9128 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9126CA040"
+    },
+    "u3": {
+      "label": "165 26A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-VYHE-0",
+  "slug": "ben-black-1",
+  "contributor": "Ben Black",
+  "index": 1,
+  "shell": {
+    "code": "CGB-VYHE-USA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A11-01",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "M994395-M MX23C1603-12 1 CGB-VYHE-0 G2 1Q6065A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 942U5M"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9945 1 EB"
+    },
+    "u4": {
+      "label": "940 134A"
+    }
+  }
+}

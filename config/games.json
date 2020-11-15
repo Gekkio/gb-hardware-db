@@ -69,6 +69,13 @@
       "rom_mapper_ram"
     ]
   },
+  "CGB-AYQE-0": {
+    "name": "Rayman (USA) (En,Fr,De,Es,It,Nl)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "CGB-AZ7J-0": {
     "name": "Zelda no Densetsu - Fushigi no Kinomi - Daichi no Shou (Japan)",
     "platform": "gbc",
@@ -167,6 +174,13 @@
       "rom_mapper_ram"
     ]
   },
+  "CGB-BH2E-1": {
+    "name": "Frogger 2 (USA) (Rev 1)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "CGB-BH6P-0": {
     "name": "Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,Da)",
     "platform": "gbc",
@@ -197,6 +211,13 @@
   },
   "CGB-BHVE-0": {
     "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
+  "CGB-BJJE-0": {
+    "name": "Powerpuff Girls, The - Bad Mojo Jojo (USA)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -235,6 +256,13 @@
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "CGB-BPTE-0": {
+    "name": "Powerpuff Girls, The - Paint the Townsville Green (USA)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "CGB-BTGP-0": {
@@ -347,6 +375,13 @@
     "platform": "gbc",
     "layouts": [
       "mbc7"
+    ]
+  },
+  "CGB-VYHE-0": {
+    "name": "Star Wars Episode I - Racer (USA, Europe) (Rumble Version)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-A2GJ-0": {
@@ -573,6 +608,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-AGAE-1": {
+    "name": "Game & Watch Gallery (USA) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-AGCE-0": {
     "name": "Arcade Classic No. 3 - Galaga & Galaxian (USA) (SGB Enhanced)",
     "platform": "gb",
@@ -585,6 +627,13 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-AGLE-0": {
+    "name": "Game & Watch Gallery 2 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-AGOP-0": {
@@ -627,6 +676,13 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-AKBJ-0": {
+    "name": "Hoshi no Kirby 2 (Japan) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-AKBP-0": {
@@ -997,6 +1053,13 @@
     "platform": "gb",
     "layouts": [
       "mbc2"
+    ]
+  },
+  "DMG-AYLE-1": {
+    "name": "Tetris Attack (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
     ]
   },
   "DMG-AYLP-1": {
@@ -1461,6 +1524,13 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-MXE-0": {
+    "name": "Motocross Maniacs (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom"
+    ]
+  },
   "DMG-N6X-0": {
     "name": "Super Battletank (Europe)",
     "platform": "gb",
@@ -1522,6 +1592,13 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-PDE-0": {
+    "name": "Pipe Dream (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom"
     ]
   },
   "DMG-PME-0": {
@@ -1634,6 +1711,20 @@
     "platform": "gb",
     "layouts": [
       "rom"
+    ]
+  },
+  "DMG-SSA-0": {
+    "name": "SolarStriker (World)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "DMG-SVE-0": {
+    "name": "Malibu Beach Volleyball (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
     ]
   },
   "DMG-SVJ-0": {

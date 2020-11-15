@@ -121,20 +121,41 @@ fn macronix2() -> MatcherDef<MaskRom> {
     )
 }
 
-/// OKI Semiconductor M538011E mask ROM
+/// OKI Semiconductor MSM538011E mask ROM
 ///
 /// ```
 /// # use gbhwdb_backend::parser::parse_mask_rom;
 /// assert!(parse_mask_rom("DMG-AM6J-0 F1 M538011E-36 9085401").is_some());
 /// ```
-fn oki() -> MatcherDef<MaskRom> {
+fn oki_msm538011e() -> MatcherDef<MaskRom> {
     MatcherDef(
         r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M538011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(MaskRom {
                 rom_code: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(c[3].to_owned()),
+                chip_type: Some(format!("MS{}", &c[3])),
+                year: Some(year1(&c[4])?),
+                week: Some(week2(&c[5])?),
+            })
+        },
+    )
+}
+
+/// OKI Semiconductor MR531614G mask ROM
+///
+/// ```
+/// # use gbhwdb_backend::parser::parse_mask_rom;
+/// assert!(parse_mask_rom("CGB-BPTE-0 G2 R531614G-44 044232E").is_some());
+/// ```
+fn oki_mr531614g() -> MatcherDef<MaskRom> {
+    MatcherDef(
+        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (R531614G)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: Some(format!("M{}", &c[3])),
                 year: Some(year1(&c[4])?),
                 week: Some(week2(&c[5])?),
             })
@@ -376,7 +397,8 @@ pub fn parse_mask_rom(text: &str) -> Option<MaskRom> {
             sharp3(),
             macronix(),
             macronix2(),
-            oki(),
+            oki_msm538011e(),
+            oki_mr531614g(),
             nec(),
             nec_like(),
             at_t(),

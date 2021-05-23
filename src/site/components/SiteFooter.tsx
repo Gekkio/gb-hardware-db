@@ -46,7 +46,7 @@ function License() {
 function Stats({ consoleSubmissionCount, cartridgeSubmissionCount }: Props) {
   return (
     <aside className="site-stats">
-      {`Last updated: ${humanDate.prettyPrint()}`}
+      {`Last updated: ${humanDate.prettyPrint(new Date())}`}
       <br />
       {`Console submission count: ${consoleSubmissionCount}`}
       <br />

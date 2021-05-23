@@ -10,6 +10,8 @@ jobs:
     name: Build site
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/master'
+    env:
+      RUSTC_WRAPPER: sccache
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -29,10 +31,19 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
+      - uses: actions/cache@v2
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-sccache-
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: sccache
+          version: latest
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -53,6 +64,10 @@ jobs:
         with:
           command: test
           args: --all --release
+      - name: Print sccache stats
+        run: sccache --show-stats
+      - name: Stop sccache server
+        run: sccache --stop-server || true
       - name: Run site generation (Rust)
         run: cargo run --release --bin gbhwdb-site-generator
       - name: Run npm install
@@ -63,6 +78,8 @@ jobs:
     name: Build + deploy site
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+    env:
+      RUSTC_WRAPPER: sccache
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -82,16 +99,19 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
+      - uses: actions/cache@v2
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-sccache-
       - uses: actions-rs/install@v0.1
         with:
-          crate: cargo-sweep
+          crate: sccache
           version: latest
-      - name: Run cargo sweep
-        run: cargo sweep -i --time 7
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -112,6 +132,10 @@ jobs:
         with:
           command: test
           args: --all --release
+      - name: Print sccache stats
+        run: sccache --show-stats
+      - name: Stop sccache server
+        run: sccache --stop-server || true
       - name: Run site generation (Rust)
         run: cargo run --release --bin gbhwdb-site-generator
       - name: Run npm prune

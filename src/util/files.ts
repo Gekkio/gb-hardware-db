@@ -1,14 +1,23 @@
 import * as fs from 'fs-extra'
+import util from 'util'
+
+interface NodeError extends Error {
+  code: string
+}
+
+function isNodeError(e: unknown): e is NodeError {
+  return util.types.isNativeError(e) && 'code' in e
+}
 
 export async function isOutdated(path: string, reference: fs.Stats): Promise<boolean> {
   try {
     const stats = await fs.stat(path)
     return stats.mtime.getTime() !== reference.mtime.getTime()
-  } catch (e) {
-    if (e.code !== 'ENOENT') {
-      throw e
+  } catch (e: unknown) {
+    if (isNodeError(e) && e.code === 'ENOENT') {
+      return true
     }
-    return true
+    throw e
   }
 }
 

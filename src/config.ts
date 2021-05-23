@@ -177,4 +177,4 @@ export interface GameConfig {
   layouts: CartLayoutId[]
 }
 
-export const gameCfgs: Record<string, GameConfig> = fs.readJsonSync('config/games.json')
+export const gameCfgs = fs.readJsonSync('config/games.json') as Record<string, GameConfig>

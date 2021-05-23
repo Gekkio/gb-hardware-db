@@ -42,6 +42,7 @@ import {
 import * as config from '../config'
 import { gameCfgs, gameLayouts, MapperId } from '../config'
 import processPhotos from './processPhotos'
+import util from 'util'
 
 winston.configure({
   level: process.env.LOG_LEVEL || 'info',
@@ -56,7 +57,7 @@ interface PageDeclaration {
   type: string
   path?: string[]
   title: string
-  props: any
+  props: unknown
 }
 
 interface GroupedConsoleSubmissions {
@@ -129,7 +130,7 @@ function consoleSubmissionComparator<T extends ConsoleSubmission>(a: T, b: T): n
 }
 
 async function crawlCartridges(): Promise<CartridgeSubmission[]> {
-  const data: CartridgeSubmission[] = await fs.readJson('build/data/cartridges.json')
+  const data = (await fs.readJson('build/data/cartridges.json')) as CartridgeSubmission[]
   return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
@@ -141,7 +142,7 @@ async function crawlCartridges(): Promise<CartridgeSubmission[]> {
 }
 
 async function crawlDmg(): Promise<DmgSubmission[]> {
-  const data: DmgSubmission[] = await fs.readJson('build/data/dmg.json')
+  const data = (await fs.readJson('build/data/dmg.json')) as DmgSubmission[]
   return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
@@ -160,7 +161,7 @@ async function crawlDmg(): Promise<DmgSubmission[]> {
 }
 
 async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
-  const data: Exclude<ConsoleSubmission, DmgSubmission | AgsSubmission>[] = await fs.readJson(jsonFile)
+  const data = (await fs.readJson(jsonFile)) as Exclude<ConsoleSubmission, DmgSubmission | AgsSubmission>[]
   return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
@@ -173,7 +174,7 @@ async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
 }
 
 async function crawlAgs(): Promise<AgsSubmission[]> {
-  const data: AgsSubmission[] = await fs.readJson('build/data/ags.json')
+  const data = (await fs.readJson('build/data/ags.json')) as AgsSubmission[]
   return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
@@ -307,7 +308,7 @@ async function main(): Promise<void> {
       props: {
         games: R.sortBy(
           ({ cfg }) => cfg.name,
-          (R.toPairs(cartridgesByGame) as any[]).map(([type, submissions]) => {
+          Object.entries(cartridgesByGame).map(([type, submissions]) => {
             const cfg = config.gameCfgs[type]
             return { type, cfg, submissions }
           })
@@ -415,10 +416,6 @@ async function processCartridgeCsv(submissions: CartridgeSubmission[]): Promise<
 main()
   .then(() => null)
   .catch((e) => {
-    if (e.isJoi) {
-      console.error(e.annotate())
-    } else {
-      console.error(e.stack || e)
-    }
+    console.error(util.types.isNativeError(e) ? e.stack : e)
     process.exit(1)
   })

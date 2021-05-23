@@ -34,7 +34,7 @@ import { gameCfgs } from '../config'
 
 export interface CsvColumn<T> {
   name: string
-  get: (value: T) => any
+  get: (value: T) => unknown
 }
 
 export function generateCsv<T>(columns: CsvColumn<T>[], rows: T[], path: string): Promise<void> {
@@ -486,12 +486,12 @@ function lift<T, V>(f: (t: T) => V | null | undefined, columns: CsvColumn<V>[]):
 
 function field<T, K extends keyof T>(prefix: string, key: K): CsvColumn<T> {
   return {
-    name: prefix ? `${prefix}_${key}` : String(key),
+    name: prefix ? `${prefix}_${String(key)}` : String(key),
     get: (value) => value[key],
   }
 }
 
-function generate<T>(prefix: string, name: string, get: (value: T) => any): CsvColumn<T> {
+function generate<T>(prefix: string, name: string, get: (value: T) => unknown): CsvColumn<T> {
   return {
     name: prefix ? `${prefix}_${name}` : name,
     get: (value: T) => {

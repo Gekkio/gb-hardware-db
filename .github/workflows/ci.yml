@@ -87,7 +87,7 @@ jobs:
           crate: cargo-sweep
           version: latest
       - name: Run cargo sweep
-        run: cargo sweep -i
+        run: cargo sweep -i --time 7
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:

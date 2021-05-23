@@ -5,7 +5,7 @@ use md5::{Digest, Md5};
 use rayon::prelude::*;
 use rusoto_core::Region;
 use rusoto_s3::{DeleteObjectRequest, ListObjectsV2Request, PutObjectRequest, S3Client, S3};
-use simplelog::{LevelFilter, TermLogger, TerminalMode};
+use simplelog::{ColorChoice, LevelFilter, TermLogger, TerminalMode};
 use std::collections::BTreeMap;
 use std::fs::File;
 use std::io::{self, BufReader};
@@ -13,9 +13,8 @@ use std::path::{Path, PathBuf};
 use std::str;
 use std::sync::Arc;
 use tokio::task::spawn_blocking;
-use xdg_mime::SharedMimeInfo;
-
 use walkdir::{DirEntry, WalkDir};
+use xdg_mime::SharedMimeInfo;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 struct LocalFile {
@@ -142,6 +141,7 @@ async fn main() -> Result<(), Error> {
         LevelFilter::Info,
         simplelog::Config::default(),
         TerminalMode::Mixed,
+        ColorChoice::Auto,
     );
 
     let build_dir = Path::new("build/site");

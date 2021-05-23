@@ -1,8 +1,8 @@
-import * as React from 'react'
+import classnames from 'classnames'
+import React from 'react'
 
 import { Chip } from '../../metadata'
 import * as format from '../format'
-import * as classnames from 'classnames'
 
 interface Props {
   designator: string

@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-import * as csvStringify from 'csv-stringify'
+import fs from 'fs'
+import csvStringify from 'csv-stringify'
 import {
   AgbSubmission,
   AgsSubmission,

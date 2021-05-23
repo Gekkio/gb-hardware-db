@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "jsx": "react",
     "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "build/scripts",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2020"
   },
   "include": ["src/**/*"],
   "exclude": [".git", "build", "node_modules"]

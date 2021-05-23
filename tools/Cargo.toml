@@ -20,11 +20,11 @@ path = "src/gbhwdb-submission.rs"
 [dependencies]
 anyhow = "1.0"
 clap = "2.27"
-cursive = "0.15"
+cursive = "0.16.3"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"
 image = { version = "0.23", features = ["jpeg_rayon"] }
-itertools = "0.9"
+itertools = "0.10"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

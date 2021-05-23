@@ -35,7 +35,7 @@ function generateThumbnail(width: number, input: string, output: string) {
   return new Promise((resolve, reject) => {
     childProcess.execFile('target/release/gbhwdb-photo', args, error => {
       if (error) return reject(error)
-      resolve()
+      resolve(undefined)
     })
   })
 }

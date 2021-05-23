@@ -12,9 +12,9 @@ chrono = "0.4"
 log = "0.4"
 md-5 = "0.9"
 rayon = "1.4"
-rusoto_core = "0.45"
-rusoto_s3 = "0.45"
-simplelog = "0.8"
-tokio = { version = "0.2", features = ["rt-threaded", "macros", "blocking"] }
+rusoto_core = "0.46"
+rusoto_s3 = "0.46"
+simplelog = "0.10"
+tokio = { version = "1.6.0", features = ["fs", "macros", "rt-multi-thread"] }
 walkdir = "2.2"
 xdg-mime = "0.3"

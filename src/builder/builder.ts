@@ -130,7 +130,7 @@ function consoleSubmissionComparator<T extends ConsoleSubmission>(a: T, b: T): n
 
 async function crawlCartridges(): Promise<CartridgeSubmission[]> {
   const data: CartridgeSubmission[] = await fs.readJson('build/data/cartridges.json')
-  return Bluebird.mapSeries(data, async submission => ({
+  return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
       front: await photoStats(submission.photos.front),
@@ -142,7 +142,7 @@ async function crawlCartridges(): Promise<CartridgeSubmission[]> {
 
 async function crawlDmg(): Promise<DmgSubmission[]> {
   const data: DmgSubmission[] = await fs.readJson('build/data/dmg.json')
-  return Bluebird.mapSeries(data, async submission => ({
+  return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
       front: await photoStats(submission.photos.front),
@@ -161,7 +161,7 @@ async function crawlDmg(): Promise<DmgSubmission[]> {
 
 async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
   const data: Exclude<ConsoleSubmission, DmgSubmission | AgsSubmission>[] = await fs.readJson(jsonFile)
-  return Bluebird.mapSeries(data, async submission => ({
+  return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
       front: await photoStats(submission.photos.front),
@@ -174,7 +174,7 @@ async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
 
 async function crawlAgs(): Promise<AgsSubmission[]> {
   const data: AgsSubmission[] = await fs.readJson('build/data/ags.json')
-  return Bluebird.mapSeries(data, async submission => ({
+  return Bluebird.mapSeries(data, async (submission) => ({
     ...submission,
     photos: {
       front: await photoStats(submission.photos.front),
@@ -280,7 +280,7 @@ async function main(): Promise<void> {
       title: 'Game cartridge contribution instructions',
       props: {
         content: await fs.readFile('content/contribute-cartridges.markdown', { encoding: 'utf-8' }),
-      }
+      },
     },
     {
       type: 'contribute-oxy',
@@ -289,7 +289,7 @@ async function main(): Promise<void> {
       props: {},
     },
     { type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {} },
-    ...config.consoles.map(type => {
+    ...config.consoles.map((type) => {
       const cfg = config.consoleCfgs[type]
       return {
         type,
@@ -316,7 +316,7 @@ async function main(): Promise<void> {
       },
     },
   ]
-  consoleSubmissions.forEach(submission => {
+  consoleSubmissions.forEach((submission) => {
     const { type, slug, title, contributor } = submission
     pages.push({
       type: `${type}-console`,
@@ -325,7 +325,7 @@ async function main(): Promise<void> {
       props: { submission },
     })
   })
-  cartridgeSubmissions.forEach(submission => {
+  cartridgeSubmissions.forEach((submission) => {
     const { type, slug, title, contributor } = submission
     const cfg = config.gameCfgs[type]
     pages.push({
@@ -414,7 +414,7 @@ async function processCartridgeCsv(submissions: CartridgeSubmission[]): Promise<
 
 main()
   .then(() => null)
-  .catch(e => {
+  .catch((e) => {
     if (e.isJoi) {
       console.error(e.annotate())
     } else {

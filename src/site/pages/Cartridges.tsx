@@ -42,7 +42,7 @@ export default function Cartridges({ games, mappers }: Props) {
         <tbody>
           {games
             .filter(({ cfg }) => cfg.platform === 'gb')
-            .map(game => (
+            .map((game) => (
               <Game key={game.type} game={game} />
             ))}
         </tbody>
@@ -54,7 +54,7 @@ export default function Cartridges({ games, mappers }: Props) {
         <tbody>
           {games
             .filter(({ cfg }) => cfg.platform === 'gbc')
-            .map(game => (
+            .map((game) => (
               <Game key={game.type} game={game} />
             ))}
         </tbody>
@@ -81,7 +81,7 @@ function Game({ game: { type, cfg, submissions } }: { game: GameSubmissions }) {
   const years = rejectNil(submissions.map(({ metadata }) => metadata.board.year)).map(String)
   const releases = rejectNil(submissions.map(({ metadata }) => metadata.code))
   const mappers = rejectNil(
-    submissions.map(({ metadata }) => metadata.board.mapper).map(mapper => mapper && mapper.kind)
+    submissions.map(({ metadata }) => metadata.board.mapper).map((mapper) => mapper && mapper.kind)
   )
   return (
     <tr>
@@ -106,7 +106,7 @@ function Mappers({ mappers }: { mappers: MapperId[] }) {
     <>
       <h3>Cartridges by mapper</h3>
       <ul>
-        {R.sortBy(x => x, mappers).map(mapper => (
+        {R.sortBy((x) => x, mappers).map((mapper) => (
           <li key={mapper}>
             <a href={`/cartridges/${mapper}.html`}>{mapperCfgs[mapper].name}</a>
           </li>

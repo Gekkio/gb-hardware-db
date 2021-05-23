@@ -23,14 +23,20 @@ export default function SiteHeader({ pageType }: Props) {
   )
 }
 
-const models = config.consoles.map(type => [type.toUpperCase(), type, config.consoleCfgs[type].name])
+const models = config.consoles.map((type) => [type.toUpperCase(), type, config.consoleCfgs[type].name])
 
 function isModel(pageType: string, code: string) {
   return pageType === code || pageType === `${code}-console`
 }
 
 function isInCartridges(pageType: string): boolean {
-  return pageType === 'cartridges' || pageType === 'cartridge' || pageType === 'game' || pageType === 'mapper' || pageType === "contribute-cartridges"
+  return (
+    pageType === 'cartridges' ||
+    pageType === 'cartridge' ||
+    pageType === 'game' ||
+    pageType === 'mapper' ||
+    pageType === 'contribute-cartridges'
+  )
 }
 
 function PrimaryNav({ pageType }: Props) {

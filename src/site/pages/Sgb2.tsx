@@ -28,7 +28,7 @@ export default function Sgb2({ submissions }: Props) {
           </tr>
         </thead>
         <tbody>
-          {submissions.map(submission => (
+          {submissions.map((submission) => (
             <Submission key={submission.slug} submission={submission} />
           ))}
         </tbody>

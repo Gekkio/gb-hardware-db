@@ -27,7 +27,7 @@ export default function Gbs({ submissions }: Props) {
           </tr>
         </thead>
         <tbody>
-          {submissions.map(submission => (
+          {submissions.map((submission) => (
             <Submission key={submission.slug} submission={submission} />
           ))}
         </tbody>

@@ -60,7 +60,10 @@ export const gameLayouts: Record<CartLayoutId, CartLayout> = {
     chips: [{ designator: 'U1', name: 'ROM', key: 'rom' }],
   },
   rom_mapper: {
-    chips: [{ designator: 'U1', name: 'ROM', key: 'rom' }, { designator: 'U2', name: 'Mapper', key: 'mapper' }],
+    chips: [
+      { designator: 'U1', name: 'ROM', key: 'rom' },
+      { designator: 'U2', name: 'Mapper', key: 'mapper' },
+    ],
   },
   rom_mapper_ram: {
     chips: [

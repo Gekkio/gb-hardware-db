@@ -14,7 +14,7 @@ interface Props {
 export default function Mapper({ mapper, submissions }: Props) {
   const cfg = mapperCfgs[mapper]
   const groupedSubmissions = R.groupBy(({ type }) => type, submissions)
-  const games = R.sortBy(type => gameCfgs[type].name, Object.keys(groupedSubmissions))
+  const games = R.sortBy((type) => gameCfgs[type].name, Object.keys(groupedSubmissions))
   const sortedSubmissions: CartridgeSubmission[] = []
   for (const game of games) {
     sortedSubmissions.push(...groupedSubmissions[game])
@@ -34,7 +34,7 @@ export default function Mapper({ mapper, submissions }: Props) {
           </tr>
         </thead>
         <tbody>
-          {sortedSubmissions.map(submission => (
+          {sortedSubmissions.map((submission) => (
             <Submission
               key={submission.slug}
               type={submission.type}

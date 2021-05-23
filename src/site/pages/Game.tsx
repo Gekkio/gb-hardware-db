@@ -29,7 +29,7 @@ export default function Game({ type, cfg, submissions }: Props) {
           </tr>
         </thead>
         <tbody>
-          {submissions.map(submission => (
+          {submissions.map((submission) => (
             <Submission key={submission.slug} type={type} layout={layout} submission={submission} />
           ))}
         </tbody>

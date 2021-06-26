@@ -1,5 +1,9 @@
 ## Game cartridge contribution instructions
 
+<h3 style="color: red">
+  Note: new submissions are no longer accepted, except in special cases
+</h3>
+
 ### Taking photos of the cartridge
 
 Cartridge submissions require three primary photos of the cartridge: one front

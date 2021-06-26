@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 interface Props {
   content: string
@@ -8,7 +9,7 @@ interface Props {
 export default function MarkdownPage({ content }: Props) {
   return (
     <article>
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
     </article>
   )
 }

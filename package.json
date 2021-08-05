@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.23.2",
     "express": "^4.17.1",
     "fs-extra": "^10.0.0",
-    "node-sass": "^6.0.0",
+    "node-sass": "^6.0.1",
     "nodemon": "^2.0.7",
     "normalize.css": "^8.0.1",
     "postcss-cli": "^8.3.1",

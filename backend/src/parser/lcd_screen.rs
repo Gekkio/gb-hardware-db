@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{month2, year1, MatcherDef, MatcherSet, Year};
 
@@ -35,9 +35,8 @@ fn lcd_screen2() -> MatcherDef<LcdScreen> {
 }
 
 pub fn parse_lcd_screen(text: &str) -> Option<LcdScreen> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<LcdScreen> =
-            MatcherSet::new(&[lcd_screen(), lcd_screen2(),]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<LcdScreen>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[lcd_screen(), lcd_screen2()]))
+        .apply(text)
 }

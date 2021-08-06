@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -650,39 +650,41 @@ fn mmm01() -> MatcherDef<Mapper> {
 }
 
 pub fn parse_mapper(text: &str) -> Option<Mapper> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Mapper> = MatcherSet::new(&[
-            sharp_mbc1a(),
-            sharp_mbc1b(),
-            sharp_mbc1b1(),
-            sharp_mbc2a(),
-            sharp_mbc3(),
-            sharp_mbc3a(),
-            sharp_mbc5(),
-            nec_like_mbc1b(),
-            nec_like_mbc2a(),
-            nec_like_mbc6(),
-            p_company_mbc1b(),
-            p_company_mbc2a(),
-            p_company_mbc3a(),
-            p_company_mbc3b(),
-            p_company_mbc30(),
-            p_company_mbc5(),
-            rohm_mbc3(),
-            rohm_mbc3a(),
-            rohm_mbc3b(),
-            rohm_mbc30(),
-            rohm_mbc5(),
-            rohm_mbc7(),
-            texas_instruments_mbc5(),
-            unknown_mbc1b(),
-            unknown_mbc1b_2(),
-            unknown_mbc1b_3(),
-            huc1(),
-            huc1a(),
-            huc3(),
-            mmm01(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Mapper>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                sharp_mbc1a(),
+                sharp_mbc1b(),
+                sharp_mbc1b1(),
+                sharp_mbc2a(),
+                sharp_mbc3(),
+                sharp_mbc3a(),
+                sharp_mbc5(),
+                nec_like_mbc1b(),
+                nec_like_mbc2a(),
+                nec_like_mbc6(),
+                p_company_mbc1b(),
+                p_company_mbc2a(),
+                p_company_mbc3a(),
+                p_company_mbc3b(),
+                p_company_mbc30(),
+                p_company_mbc5(),
+                rohm_mbc3(),
+                rohm_mbc3a(),
+                rohm_mbc3b(),
+                rohm_mbc30(),
+                rohm_mbc5(),
+                rohm_mbc7(),
+                texas_instruments_mbc5(),
+                unknown_mbc1b(),
+                unknown_mbc1b_2(),
+                unknown_mbc1b_3(),
+                huc1(),
+                huc1a(),
+                huc3(),
+                mmm01(),
+            ])
+        })
+        .apply(text)
 }

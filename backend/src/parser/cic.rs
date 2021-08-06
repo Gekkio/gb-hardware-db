@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2_u16, Matcher, MatcherDef};
 
@@ -27,8 +27,6 @@ fn cic() -> MatcherDef<Cic> {
 }
 
 pub fn parse_cic(text: &str) -> Option<Cic> {
-    lazy_static! {
-        static ref MATCHER: Matcher<Cic> = cic().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<Cic>> = OnceCell::new();
+    MATCHER.get_or_init(|| cic().into()).apply(text)
 }

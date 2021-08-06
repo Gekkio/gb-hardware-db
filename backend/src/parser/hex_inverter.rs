@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -26,8 +26,6 @@ fn tc74lvx04ft() -> MatcherDef<HexInverter> {
 }
 
 pub fn parse_hex_inverter(text: &str) -> Option<HexInverter> {
-    lazy_static! {
-        static ref MATCHER: Matcher<HexInverter> = tc74lvx04ft().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<HexInverter>> = OnceCell::new();
+    MATCHER.get_or_init(|| tc74lvx04ft().into()).apply(text)
 }

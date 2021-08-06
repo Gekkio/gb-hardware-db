@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{month2, week2, year1, MatcherDef, MatcherSet, Year};
 
@@ -38,9 +38,8 @@ fn lcd_chip_new() -> MatcherDef<LcdChip> {
 }
 
 pub fn parse_lcd_chip(text: &str) -> Option<LcdChip> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<LcdChip> =
-            MatcherSet::new(&[lcd_chip_old(), lcd_chip_new(),]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<LcdChip>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[lcd_chip_old(), lcd_chip_new()]))
+        .apply(text)
 }

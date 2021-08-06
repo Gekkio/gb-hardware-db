@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Matcher, MatcherDef, Year};
 
@@ -25,8 +25,6 @@ fn cgb_reg() -> MatcherDef<CgbReg> {
 }
 
 pub fn parse_cgb_reg(text: &str) -> Option<CgbReg> {
-    lazy_static! {
-        static ref MATCHER: Matcher<CgbReg> = cgb_reg().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<CgbReg>> = OnceCell::new();
+    MATCHER.get_or_init(|| cgb_reg().into()).apply(text)
 }

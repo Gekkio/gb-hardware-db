@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{year1, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -32,8 +32,8 @@ fn toshiba_tc7w139f() -> MatcherDef<LineDecoder> {
 }
 
 pub fn parse_line_decoder(text: &str) -> Option<LineDecoder> {
-    lazy_static! {
-        static ref MATCHER: Matcher<LineDecoder> = toshiba_tc7w139f().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<LineDecoder>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| toshiba_tc7w139f().into())
+        .apply(text)
 }

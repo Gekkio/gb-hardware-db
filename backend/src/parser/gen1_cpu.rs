@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2_u16, MatcherDef, MatcherSet};
 
@@ -118,14 +118,16 @@ fn sgb_cpu() -> MatcherDef<Gen1Cpu> {
 }
 
 pub fn parse_gen1_cpu(text: &str) -> Option<Gen1Cpu> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Gen1Cpu> = MatcherSet::new(&[
-            dmg_cpu(),
-            dmg_cpu_blob(),
-            dmg_cpu_lr35902(),
-            dmg_cpu_deprecated(),
-            sgb_cpu()
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Gen1Cpu>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                dmg_cpu(),
+                dmg_cpu_blob(),
+                dmg_cpu_lr35902(),
+                dmg_cpu_deprecated(),
+                sgb_cpu(),
+            ])
+        })
+        .apply(text)
 }

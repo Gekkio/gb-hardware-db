@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{Manufacturer, MatcherDef, MatcherSet};
 
@@ -35,8 +35,8 @@ fn tdk2() -> MatcherDef<Coil> {
 }
 
 pub fn parse_coil(text: &str) -> Option<Coil> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Coil> = MatcherSet::new(&[tdk(), tdk2()]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Coil>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[tdk(), tdk2()]))
+        .apply(text)
 }

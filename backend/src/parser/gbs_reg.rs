@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -26,8 +26,6 @@ fn mitsumi_1592f() -> MatcherDef<GbsReg> {
 }
 
 pub fn parse_gbs_reg(text: &str) -> Option<GbsReg> {
-    lazy_static! {
-        static ref MATCHER: Matcher<GbsReg> = mitsumi_1592f().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<GbsReg>> = OnceCell::new();
+    MATCHER.get_or_init(|| mitsumi_1592f().into()).apply(text)
 }

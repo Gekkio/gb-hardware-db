@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -29,8 +29,8 @@ fn analog_adxl202jqc() -> MatcherDef<Accelerometer> {
 }
 
 pub fn parse_accelerometer(text: &str) -> Option<Accelerometer> {
-    lazy_static! {
-        static ref MATCHER: Matcher<Accelerometer> = analog_adxl202jqc().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<Accelerometer>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| analog_adxl202jqc().into())
+        .apply(text)
 }

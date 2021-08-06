@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -26,8 +26,6 @@ fn unknown() -> MatcherDef<OxyU4> {
 }
 
 pub fn parse_oxy_u4(text: &str) -> Option<OxyU4> {
-    lazy_static! {
-        static ref MATCHER: Matcher<OxyU4> = unknown().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<OxyU4>> = OnceCell::new();
+    MATCHER.get_or_init(|| unknown().into()).apply(text)
 }

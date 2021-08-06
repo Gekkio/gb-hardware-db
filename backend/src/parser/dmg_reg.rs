@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Matcher, MatcherDef, Year};
 
@@ -27,8 +27,6 @@ fn dmg_reg() -> MatcherDef<DmgReg> {
 }
 
 pub fn parse_dmg_reg(text: &str) -> Option<DmgReg> {
-    lazy_static! {
-        static ref MATCHER: Matcher<DmgReg> = dmg_reg().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<DmgReg>> = OnceCell::new();
+    MATCHER.get_or_init(|| dmg_reg().into()).apply(text)
 }

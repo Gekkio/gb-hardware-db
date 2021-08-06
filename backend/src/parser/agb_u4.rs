@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -73,13 +73,15 @@ fn unknown2() -> MatcherDef<AgbU4> {
 }
 
 pub fn parse_agb_u4(text: &str) -> Option<AgbU4> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<AgbU4> = MatcherSet::new(&[
-            mitsumi_mm1514x(),
-            mitsumi_mm1514x_2(),
-            unknown(),
-            unknown2()
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<AgbU4>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                mitsumi_mm1514x(),
+                mitsumi_mm1514x_2(),
+                unknown(),
+                unknown2(),
+            ])
+        })
+        .apply(text)
 }

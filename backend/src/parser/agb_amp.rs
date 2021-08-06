@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -66,9 +66,8 @@ fn mitsumi_pm() -> MatcherDef<AgbAmp> {
 }
 
 pub fn parse_agb_amp(text: &str) -> Option<AgbAmp> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<AgbAmp> =
-            MatcherSet::new(&[sharp_ir3r60n(), rohm_bh7835afs(), mitsumi_pm()]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<AgbAmp>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[sharp_ir3r60n(), rohm_bh7835afs(), mitsumi_pm()]))
+        .apply(text)
 }

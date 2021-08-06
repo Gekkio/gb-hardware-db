@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{Manufacturer, Matcher, MatcherDef};
 
@@ -23,8 +23,6 @@ fn mitsumi() -> MatcherDef<Transformer> {
 }
 
 pub fn parse_transformer(text: &str) -> Option<Transformer> {
-    lazy_static! {
-        static ref MATCHER: Matcher<Transformer> = mitsumi().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<Transformer>> = OnceCell::new();
+    MATCHER.get_or_init(|| mitsumi().into()).apply(text)
 }

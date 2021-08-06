@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -799,48 +799,50 @@ fn hynix_hy62wt08081e() -> MatcherDef<Ram> {
 }
 
 pub fn parse_ram(text: &str) -> Option<Ram> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Ram> = MatcherSet::new(&[
-            bsi_bs62lv256sc(),
-            hyundai_gm76c256c(),
-            hyundai_hy6264a(),
-            hyundai_hy6264a_2(),
-            hyundai_hy628100b(),
-            lgs_gm76c256(),
-            lsi_logic_lh5168(),
-            lsi_logic_lh52b256(),
-            mosel_vitelic_lh5168(),
-            mosel_vitelic_lh5268a(),
-            mosel_vitelic_lh52b256(),
-            rohm_br62256f(),
-            rohm_br6265(),
-            rohm_xlj6265(),
-            sanyo_lc35256d(),
-            sanyo_lc35256f(),
-            sanyo_lc3564b(),
-            sharp_lh5164an(),
-            sharp_lh5164an_2(),
-            sharp_lh5160(),
-            sharp_lh5168(),
-            sharp_lh52256c(),
-            sharp_lh52256cvt(),
-            sharp_lh51d256t(),
-            sharp_lh52cv256(),
-            winbond_w24257(),
-            winbond_w24258(),
-            winbond_w2465(),
-            victronix_vn4464s(),
-            sharp_lh5164ln(),
-            sharp_lh5164n(),
-            sharp_lh5264n(),
-            sharp_lh5264tn_l(),
-            sharp_lh52a64n_l(),
-            lsi_logic_lh52xx(),
-            crosslink_lh52a64n_yl(),
-            crosslink_lh5268anf(),
-            mosel_vitelic_lh52a64n_pl(),
-            hynix_hy62wt08081e(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Ram>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                bsi_bs62lv256sc(),
+                hyundai_gm76c256c(),
+                hyundai_hy6264a(),
+                hyundai_hy6264a_2(),
+                hyundai_hy628100b(),
+                lgs_gm76c256(),
+                lsi_logic_lh5168(),
+                lsi_logic_lh52b256(),
+                mosel_vitelic_lh5168(),
+                mosel_vitelic_lh5268a(),
+                mosel_vitelic_lh52b256(),
+                rohm_br62256f(),
+                rohm_br6265(),
+                rohm_xlj6265(),
+                sanyo_lc35256d(),
+                sanyo_lc35256f(),
+                sanyo_lc3564b(),
+                sharp_lh5164an(),
+                sharp_lh5164an_2(),
+                sharp_lh5160(),
+                sharp_lh5168(),
+                sharp_lh52256c(),
+                sharp_lh52256cvt(),
+                sharp_lh51d256t(),
+                sharp_lh52cv256(),
+                winbond_w24257(),
+                winbond_w24258(),
+                winbond_w2465(),
+                victronix_vn4464s(),
+                sharp_lh5164ln(),
+                sharp_lh5164n(),
+                sharp_lh5264n(),
+                sharp_lh5264tn_l(),
+                sharp_lh52a64n_l(),
+                lsi_logic_lh52xx(),
+                crosslink_lh52a64n_yl(),
+                crosslink_lh5268anf(),
+                mosel_vitelic_lh52a64n_pl(),
+                hynix_hy62wt08081e(),
+            ])
+        })
+        .apply(text)
 }

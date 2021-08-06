@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, MatcherDef, MatcherSet, Year};
 
@@ -71,8 +71,8 @@ fn tama7() -> MatcherDef<Tama> {
 }
 
 pub fn parse_tama(text: &str) -> Option<Tama> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Tama> = MatcherSet::new(&[tama5(), tama6(), tama7(),]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Tama>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[tama5(), tama6(), tama7()]))
+        .apply(text)
 }

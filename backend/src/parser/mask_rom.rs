@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -390,25 +390,27 @@ fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
 }
 
 pub fn parse_mask_rom(text: &str) -> Option<MaskRom> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<MaskRom> = MatcherSet::new(&[
-            sharp(),
-            sharp2(),
-            sharp3(),
-            macronix(),
-            macronix2(),
-            oki_msm538011e(),
-            oki_mr531614g(),
-            nec(),
-            nec_like(),
-            at_t(),
-            smsc(),
-            glop_top(),
-            toshiba(),
-            samsung(),
-            samsung2(),
-            fujitsu(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<MaskRom>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                sharp(),
+                sharp2(),
+                sharp3(),
+                macronix(),
+                macronix2(),
+                oki_msm538011e(),
+                oki_mr531614g(),
+                nec(),
+                nec_like(),
+                at_t(),
+                smsc(),
+                glop_top(),
+                toshiba(),
+                samsung(),
+                samsung2(),
+                fujitsu(),
+            ])
+        })
+        .apply(text)
 }

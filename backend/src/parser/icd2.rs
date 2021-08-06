@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -47,8 +47,8 @@ fn unknown2() -> MatcherDef<Icd2> {
 }
 
 pub fn parse_icd2(text: &str) -> Option<Icd2> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Icd2> = MatcherSet::new(&[unknown(), unknown2(),]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Icd2>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[unknown(), unknown2()]))
+        .apply(text)
 }

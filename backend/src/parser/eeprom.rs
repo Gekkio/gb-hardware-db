@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -41,8 +41,8 @@ fn lc56() -> MatcherDef<Eeprom> {
 }
 
 pub fn parse_eeprom(text: &str) -> Option<Eeprom> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Eeprom> = MatcherSet::new(&[lcs5(), lc56()]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Eeprom>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| MatcherSet::new(&[lcs5(), lc56()]))
+        .apply(text)
 }

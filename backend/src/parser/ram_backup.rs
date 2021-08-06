@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -114,15 +114,17 @@ pub fn rohm_ba6735() -> MatcherDef<RamBackup> {
 }
 
 pub fn parse_ram_backup(text: &str) -> Option<RamBackup> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<RamBackup> = MatcherSet::new(&[
-            mitsumi_mm1026a(),
-            mitsumi_mm1134a(),
-            rohm_ba6129(),
-            rohm_ba6129a(),
-            rohm_ba6735(),
-            mitsubishi_m62021p(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<RamBackup>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                mitsumi_mm1026a(),
+                mitsumi_mm1134a(),
+                rohm_ba6129(),
+                rohm_ba6129a(),
+                rohm_ba6735(),
+                mitsubishi_m62021p(),
+            ])
+        })
+        .apply(text)
 }

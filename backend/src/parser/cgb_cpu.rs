@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2_u16, Matcher, MatcherDef};
 
@@ -27,8 +27,6 @@ fn cgb_cpu() -> MatcherDef<CgbCpu> {
 }
 
 pub fn parse_cgb_cpu(text: &str) -> Option<CgbCpu> {
-    lazy_static! {
-        static ref MATCHER: Matcher<CgbCpu> = cgb_cpu().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<CgbCpu>> = OnceCell::new();
+    MATCHER.get_or_init(|| cgb_cpu().into()).apply(text)
 }

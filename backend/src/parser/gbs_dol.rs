@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -27,8 +27,6 @@ fn unknown() -> MatcherDef<GbsDol> {
 }
 
 pub fn parse_gbs_dol(text: &str) -> Option<GbsDol> {
-    lazy_static! {
-        static ref MATCHER: Matcher<GbsDol> = unknown().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<GbsDol>> = OnceCell::new();
+    MATCHER.get_or_init(|| unknown().into()).apply(text)
 }

@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -31,8 +31,6 @@ fn macronix() -> MatcherDef<Flash> {
 }
 
 pub fn parse_flash(text: &str) -> Option<Flash> {
-    lazy_static! {
-        static ref MATCHER: Matcher<Flash> = macronix().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<Flash>> = OnceCell::new();
+    MATCHER.get_or_init(|| macronix().into()).apply(text)
 }

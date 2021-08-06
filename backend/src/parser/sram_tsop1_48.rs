@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, StaticRam};
 
@@ -234,18 +234,20 @@ fn toshiba_tc55v200() -> MatcherDef<StaticRam> {
 }
 
 pub fn parse_sram_tsop1_48(text: &str) -> Option<StaticRam> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<StaticRam> = MatcherSet::new(&[
-            nec_upd442012a(),
-            nec_upd442012l(),
-            fujitsu_mb82d12160(),
-            hynix_hy62lf16206a(),
-            st_micro_m68as128dl70n6(),
-            amic_lp62s16128bw(),
-            bsi_bs616lv2018(),
-            bsi_bs616lv2019(),
-            toshiba_tc55v200()
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<StaticRam>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                nec_upd442012a(),
+                nec_upd442012l(),
+                fujitsu_mb82d12160(),
+                hynix_hy62lf16206a(),
+                st_micro_m68as128dl70n6(),
+                amic_lp62s16128bw(),
+                bsi_bs616lv2018(),
+                bsi_bs616lv2019(),
+                toshiba_tc55v200(),
+            ])
+        })
+        .apply(text)
 }

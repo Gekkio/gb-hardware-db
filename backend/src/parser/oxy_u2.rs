@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
 
@@ -29,8 +29,6 @@ fn mitsumi_pm() -> MatcherDef<OxyU2> {
 }
 
 pub fn parse_oxy_u2(text: &str) -> Option<OxyU2> {
-    lazy_static! {
-        static ref MATCHER: Matcher<OxyU2> = mitsumi_pm().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<OxyU2>> = OnceCell::new();
+    MATCHER.get_or_init(|| mitsumi_pm().into()).apply(text)
 }

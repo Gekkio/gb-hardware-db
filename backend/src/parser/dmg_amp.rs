@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Matcher, MatcherDef, Year};
 
@@ -26,8 +26,6 @@ fn dmg_amp() -> MatcherDef<DmgAmp> {
 }
 
 pub fn parse_dmg_amp(text: &str) -> Option<DmgAmp> {
-    lazy_static! {
-        static ref MATCHER: Matcher<DmgAmp> = dmg_amp().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<DmgAmp>> = OnceCell::new();
+    MATCHER.get_or_init(|| dmg_amp().into()).apply(text)
 }

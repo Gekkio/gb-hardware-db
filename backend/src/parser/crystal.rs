@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -261,24 +261,26 @@ fn kds_month(text: &str) -> Result<u8, String> {
 }
 
 pub fn parse_crystal(text: &str) -> Option<Crystal> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<Crystal> = MatcherSet::new(&[
-            kds_short(),
-            unknown(),
-            kds_d419(),
-            unknown2(),
-            kds_d209(),
-            kinseki_kss20(),
-            kinseki_4194(),
-            kds_4194(),
-            kds_4194_short(),
-            unknown_41943(),
-            unknown_41943_2(),
-            kds_8388(),
-            kinseki_8388(),
-            kds_d838(),
-            kinseki_kss30(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<Crystal>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                kds_short(),
+                unknown(),
+                kds_d419(),
+                unknown2(),
+                kds_d209(),
+                kinseki_kss20(),
+                kinseki_4194(),
+                kds_4194(),
+                kds_4194_short(),
+                unknown_41943(),
+                unknown_41943_2(),
+                kds_8388(),
+                kinseki_8388(),
+                kds_d838(),
+                kinseki_kss30(),
+            ])
+        })
+        .apply(text)
 }

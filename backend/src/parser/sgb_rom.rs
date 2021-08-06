@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
 
@@ -172,17 +172,19 @@ fn oki() -> MatcherDef<SgbRom> {
 }
 
 pub fn parse_sgb_rom(text: &str) -> Option<SgbRom> {
-    lazy_static! {
-        static ref MATCHER: MatcherSet<SgbRom> = MatcherSet::new(&[
-            toshiba(),
-            sharp_sgb(),
-            sharp_sgb2(),
-            oki(),
-            unknown(),
-            unknown2(),
-            unknown3(),
-            unknown4(),
-        ]);
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<MatcherSet<SgbRom>> = OnceCell::new();
+    MATCHER
+        .get_or_init(|| {
+            MatcherSet::new(&[
+                toshiba(),
+                sharp_sgb(),
+                sharp_sgb2(),
+                oki(),
+                unknown(),
+                unknown2(),
+                unknown3(),
+                unknown4(),
+            ])
+        })
+        .apply(text)
 }

@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year1, Matcher, MatcherDef, Year};
 
@@ -22,8 +22,6 @@ fn cgb_stamp() -> MatcherDef<CgbStamp> {
 }
 
 pub fn parse_cgb_stamp(text: &str) -> Option<CgbStamp> {
-    lazy_static! {
-        static ref MATCHER: Matcher<CgbStamp> = cgb_stamp().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<CgbStamp>> = OnceCell::new();
+    MATCHER.get_or_init(|| cgb_stamp().into()).apply(text)
 }

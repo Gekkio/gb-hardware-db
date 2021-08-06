@@ -1,5 +1,5 @@
 use anyhow::Error;
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::collections::{BTreeMap, HashMap};
@@ -59,10 +59,6 @@ pub enum BoardLayout {
     Tama,
 }
 
-lazy_static! {
-    static ref MAP: HashMap<&'static str, BoardLayout> = create_map();
-}
-
 fn create_map() -> HashMap<&'static str, BoardLayout> {
     let mut m = HashMap::new();
     m.insert("0200309E4-01", BoardLayout::Tama);
@@ -120,11 +116,13 @@ fn create_map() -> HashMap<&'static str, BoardLayout> {
 
 impl BoardLayout {
     pub fn from_label(label: &str) -> Option<BoardLayout> {
+        static MAP: OnceCell<HashMap<&'static str, BoardLayout>> = OnceCell::new();
+        let map = MAP.get_or_init(|| create_map());
         label
             .rfind(|c: char| c == '-')
             .map(|pos| label.split_at(pos).0)
-            .and_then(|key| MAP.get(key).cloned())
-            .or_else(|| MAP.get(label).cloned())
+            .and_then(|key| map.get(key).cloned())
+            .or_else(|| map.get(label).cloned())
     }
 }
 

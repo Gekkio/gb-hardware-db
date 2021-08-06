@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{month2, year1, Matcher, MatcherDef, Year};
 
@@ -25,8 +25,6 @@ fn dmg_stamp() -> MatcherDef<DmgStamp> {
 }
 
 pub fn parse_dmg_stamp(text: &str) -> Option<DmgStamp> {
-    lazy_static! {
-        static ref MATCHER: Matcher<DmgStamp> = dmg_stamp().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<DmgStamp>> = OnceCell::new();
+    MATCHER.get_or_init(|| dmg_stamp().into()).apply(text)
 }

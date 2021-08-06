@@ -1,4 +1,4 @@
-use lazy_static::lazy_static;
+use once_cell::sync::OnceCell;
 
 use super::{week2, year2, Matcher, MatcherDef, Year};
 
@@ -28,8 +28,6 @@ fn mgb_amp() -> MatcherDef<MgbAmp> {
 }
 
 pub fn parse_mgb_amp(text: &str) -> Option<MgbAmp> {
-    lazy_static! {
-        static ref MATCHER: Matcher<MgbAmp> = mgb_amp().into();
-    }
-    MATCHER.apply(text)
+    static MATCHER: OnceCell<Matcher<MgbAmp>> = OnceCell::new();
+    MATCHER.get_or_init(|| mgb_amp().into()).apply(text)
 }

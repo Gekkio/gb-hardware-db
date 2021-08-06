@@ -31,6 +31,8 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
@@ -40,12 +42,13 @@ jobs:
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
-      - uses: actions-rs/install@v0.1
+      - name: Install sccache
+        uses: actions-rs/cargo@v1
         env:
           RUSTC_WRAPPER:
         with:
-          crate: sccache
-          version: latest
+          command: install
+          args: sccache
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -101,6 +104,8 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
+            ~/.cargo/.crates.toml
+            ~/.cargo/.crates2.json
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
@@ -110,12 +115,13 @@ jobs:
           key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-sccache-
-      - uses: actions-rs/install@v0.1
+      - name: Install sccache
+        uses: actions-rs/cargo@v1
         env:
           RUSTC_WRAPPER:
         with:
-          crate: sccache
-          version: latest
+          command: install
+          args: sccache
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:

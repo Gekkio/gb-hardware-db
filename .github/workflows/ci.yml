@@ -43,7 +43,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Install sccache
-        env:
         run: .github/scripts/install-sccache.sh
       - name: Install Node.js
         uses: actions/setup-node@v1
@@ -112,7 +111,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-sccache-
       - name: Install sccache
-        env:
         run: .github/scripts/install-sccache.sh
       - name: Install Node.js
         uses: actions/setup-node@v1

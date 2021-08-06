@@ -406,7 +406,7 @@
     ]
   },
   "DMG-A3ME-0": {
-    "name": "Mortal Kombat 3 (USA)",
+    "name": "Mortal Kombat 3 (USA, Europe)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -870,7 +870,7 @@
     ]
   },
   "DMG-APOJ-0": {
-    "name": "Pocket Bomber Man (Japan) (SGB Enhanced)",
+    "name": "Pocket Bomberman (Japan) (SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1287,7 +1287,7 @@
     ]
   },
   "DMG-EEE-0": {
-    "name": "Wario Blast featuring Bomberman! (USA, Europe) (SGB Enhanced)",
+    "name": "Wario Blast Featuring Bomberman! (USA, Europe) (SGB Enhanced)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

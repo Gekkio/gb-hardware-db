@@ -20,6 +20,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * ImATrackMan
 * Irfon Jones
 * ISSOtm
+* Jan Spakula
 * jrra
 * Kai
 * l0k1

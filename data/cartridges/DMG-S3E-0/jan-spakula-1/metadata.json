@@ -1,0 +1,20 @@
+{
+  "code": "DMG-S3E-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-S3-USA",
+    "stamp": "28"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "DMG-S3E-0 S LH5359UB JAPAN A0 9134 D"
+    }
+  }
+}

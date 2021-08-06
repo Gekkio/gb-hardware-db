@@ -706,6 +706,13 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-AKLP-0": {
+    "name": "Killer Instinct (USA, Europe) (SGB Enhanced)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-AKMJ-0": {
     "name": "Kandume Monsters (Japan) (SGB Enhanced)",
     "platform": "gb",
@@ -950,6 +957,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-AQCP-0": {
+    "name": "Ms. Pac-Man - Special Colour Edition (Europe) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-ASFE-1": {
     "name": "Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)",
     "platform": "gb",
@@ -967,6 +981,13 @@
   "DMG-ATAJ-0": {
     "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
     "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
+  "DMG-ATEA-0": {
+    "name": "Tetris DX (World) (SGB Enhanced) (GB Compatible)",
+    "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
     ]
@@ -1039,6 +1060,13 @@
     "platform": "gb",
     "layouts": [
       "mbc2"
+    ]
+  },
+  "DMG-AWHP-0": {
+    "name": "R-Type DX (USA, Europe) (GB Compatible)",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-AWLP-0": {
@@ -1447,6 +1475,13 @@
       "rom_mapper"
     ]
   },
+  "DMG-JPE-0": {
+    "name": "Jeopardy! (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-JQX-0": {
     "name": "Jurassic Park (Europe) (En,Fr,De,Es,It)",
     "platform": "gb",
@@ -1711,6 +1746,13 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper"
+    ]
+  },
+  "DMG-S3E-0": {
+    "name": "Spot - The Video Game (USA)",
+    "platform": "gb",
+    "layouts": [
+      "rom"
     ]
   },
   "DMG-SAJ-0": {

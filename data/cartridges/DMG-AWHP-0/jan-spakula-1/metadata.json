@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AWHP-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWHP-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 2,
+    "u1": {
+      "label": "DMG-AWHP-0 F1 M538011E-60 9245401"
+    },
+    "u2": {
+      "label": "MBC5 P-1 916U7L"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9846 1 CB"
+    },
+    "u4": {
+      "label": "915 134A"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AQCP-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AQCP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "A",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AQCP-0 S LH538WP6 JAPAN F1 9945 D"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 941 H79"
+    }
+  }
+}

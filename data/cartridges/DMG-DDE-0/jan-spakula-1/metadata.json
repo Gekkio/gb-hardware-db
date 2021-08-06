@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DDE-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DD-UKV",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "T",
+    "extra_label": "6",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "DMG-DDE-0 S LH5308NH JAPAN C1 9129 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 1'67"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AKLP-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKLP-UKV",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "TOSHIBA 9542EAI TC534000DF DMG-AKLP-0 E1 N059 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'04"
+    }
+  }
+}

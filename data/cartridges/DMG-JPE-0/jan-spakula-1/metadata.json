@@ -1,0 +1,23 @@
+{
+  "code": "DMG-JPE-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-JP-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1992,
+    "month": 4,
+    "u1": {
+      "label": "DMG-JPE-0 S LH5308T5 JAPAN C1 9217 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9213BR"
+    }
+  }
+}

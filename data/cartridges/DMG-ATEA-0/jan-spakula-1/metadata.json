@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ATEA-0",
+  "slug": "jan-spakula-1",
+  "contributor": "Jan Spakula",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ATEA-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "extra_label": "4",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "SEC KM23C4000DG DMG-ATEA-0 E1 KF5304U"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9840 3 A"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 840 192N"
+    },
+    "u4": {
+      "label": "841 26A"
+    }
+  }
+}

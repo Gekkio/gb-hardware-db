@@ -1,19 +1,23 @@
 use anyhow::Error;
-use cursive::traits::*;
-use cursive::views::*;
-use cursive::{Cursive, CursiveExt};
-use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig};
-use gbhwdb_backend::input::cartridge::{Cartridge, CartridgeBoard, CartridgeShell};
-use gbhwdb_backend::input::Chip;
+use cursive::{traits::*, views::*, Cursive, CursiveExt};
+use gbhwdb_backend::{
+    config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig},
+    input::{
+        cartridge::{Cartridge, CartridgeBoard, CartridgeShell},
+        Chip,
+    },
+};
 use gbhwdb_tools::cursive::*;
 use slug::slugify;
-use std::collections::BTreeMap;
-use std::fmt;
-use std::fs::{create_dir_all, File};
-use std::io::{BufReader, BufWriter, Write};
-use std::path::{Path, PathBuf};
-use std::str::FromStr;
-use std::sync::atomic::{self, AtomicBool};
+use std::{
+    collections::BTreeMap,
+    fmt,
+    fs::{create_dir_all, File},
+    io::{BufReader, BufWriter, Write},
+    path::{Path, PathBuf},
+    str::FromStr,
+    sync::atomic::{self, AtomicBool},
+};
 
 static QUIT: AtomicBool = AtomicBool::new(false);
 

@@ -1,22 +1,20 @@
 use anyhow::{anyhow, Error};
-use cursive::traits::*;
-use cursive::view::Margins;
-use cursive::views::*;
-use cursive::{Cursive, CursiveExt};
+use cursive::{traits::*, view::Margins, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::config::cartridge::{BoardLayout, GameConfig, GamePlatform};
-use gbhwdb_tools::cursive::*;
-use gbhwdb_tools::dat::DatFile;
+use gbhwdb_tools::{cursive::*, dat::DatFile};
 use glob::glob;
 use itertools::Itertools;
-use std::cell::Cell;
-use std::cmp::Ordering;
-use std::collections::{BTreeMap, HashSet};
-use std::fmt;
-use std::fs::File;
-use std::io::{BufReader, BufWriter};
-use std::path::Path;
-use std::rc::Rc;
-use std::sync::atomic::{self, AtomicBool};
+use std::{
+    cell::Cell,
+    cmp::Ordering,
+    collections::{BTreeMap, HashSet},
+    fmt,
+    fs::File,
+    io::{BufReader, BufWriter},
+    path::Path,
+    rc::Rc,
+    sync::atomic::{self, AtomicBool},
+};
 use strsim::jaro;
 
 #[derive(Clone, Debug)]

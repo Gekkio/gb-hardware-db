@@ -5,18 +5,6 @@ authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
 edition = "2018"
 publish = false
 
-[[bin]]
-name = "gbhwdb-photo"
-path = "src/photo.rs"
-
-[[bin]]
-name = "gbhwdb-dat"
-path = "src/gbhwdb-dat.rs"
-
-[[bin]]
-name = "gbhwdb-submission"
-path = "src/gbhwdb-submission.rs"
-
 [dependencies]
 anyhow = "1.0"
 clap = "2.27"

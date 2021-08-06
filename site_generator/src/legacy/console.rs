@@ -1,7 +1,7 @@
+use gbhwdb_backend::input::{LcdChip, LcdScreen};
 use serde::Serialize;
 
 use super::{to_legacy_year, LegacyChip, LegacyPhoto};
-use gbhwdb_backend::input::{LcdChip, LcdScreen};
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]

@@ -1,10 +1,7 @@
 use anyhow::Error;
 use clap::{value_t, App, Arg, ArgMatches};
-use image::imageops::FilterType;
-use image::ImageOutputFormat;
-use std::fs::File;
-use std::io;
-use std::u32;
+use image::{imageops::FilterType, ImageOutputFormat};
+use std::{fs::File, io, u32};
 
 fn run(matches: &ArgMatches) -> Result<(), Error> {
     let width = value_t!(matches, "width", u32).unwrap_or(u32::MAX);

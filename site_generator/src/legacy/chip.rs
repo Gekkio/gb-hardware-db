@@ -1,5 +1,7 @@
-use gbhwdb_backend::input::Chip;
-use gbhwdb_backend::parser::{self, Manufacturer, Year};
+use gbhwdb_backend::{
+    input::Chip,
+    parser::{self, Manufacturer, Year},
+};
 
 use crate::legacy::{to_legacy_manufacturer, to_legacy_year, LegacyChip};
 

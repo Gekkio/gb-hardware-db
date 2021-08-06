@@ -1,14 +1,14 @@
 use anyhow::Error;
-use gbhwdb_backend::config::cartridge::*;
-use gbhwdb_backend::input::cartridge::*;
-use gbhwdb_backend::parser;
+use gbhwdb_backend::{config::cartridge::*, input::cartridge::*, parser};
 use glob::glob;
-use std::fs::{self, create_dir_all, File};
-use std::path::Path;
+use std::{
+    fs::{self, create_dir_all, File},
+    path::Path,
+};
 use walkdir::{DirEntry, WalkDir};
 
-use legacy::chip::*;
-use legacy::*;
+use crate::legacy::chip::*;
+use crate::legacy::*;
 
 mod legacy;
 

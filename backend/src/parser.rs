@@ -1,47 +1,49 @@
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::str::FromStr;
 
-pub use self::accelerometer::{parse_accelerometer, Accelerometer};
-pub use self::agb_amp::{parse_agb_amp, AgbAmp};
-pub use self::agb_cpu::{parse_agb_cpu, AgbCpu};
-pub use self::agb_reg::{parse_agb_reg, AgbReg};
-pub use self::agb_u4::{parse_agb_u4, AgbU4};
-pub use self::ags_u4::{parse_ags_u4, AgsU4};
-pub use self::ags_u5::{parse_ags_u5, AgsU5};
-pub use self::cgb_cpu::{parse_cgb_cpu, CgbCpu};
-pub use self::cgb_reg::{parse_cgb_reg, CgbReg};
-pub use self::cgb_stamp::{parse_cgb_stamp, CgbStamp};
-pub use self::cic::{parse_cic, Cic};
-pub use self::coil::{parse_coil, Coil};
-pub use self::crystal::{parse_crystal, Crystal};
-pub use self::dmg_amp::{parse_dmg_amp, DmgAmp};
-pub use self::dmg_reg::{parse_dmg_reg, DmgReg};
-pub use self::dmg_stamp::{parse_dmg_stamp, DmgStamp};
-pub use self::eeprom::{parse_eeprom, Eeprom};
-pub use self::flash::{parse_flash, Flash};
-pub use self::gbs_dol::{parse_gbs_dol, GbsDol};
-pub use self::gbs_reg::{parse_gbs_reg, GbsReg};
-pub use self::gen1_cpu::{parse_gen1_cpu, Gen1Cpu, Gen1CpuKind};
-pub use self::gen2_cpu::{parse_gen2_cpu, Gen2Cpu, Gen2CpuKind};
-pub use self::hex_inverter::{parse_hex_inverter, HexInverter};
-pub use self::icd2::{parse_icd2, Icd2};
-pub use self::lcd_chip::{parse_lcd_chip, LcdChip};
-pub use self::lcd_screen::{parse_lcd_screen, LcdScreen};
-pub use self::line_decoder::{parse_line_decoder, LineDecoder};
-pub use self::mapper::{
-    parse_mapper, Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version,
+pub use self::{
+    accelerometer::{parse_accelerometer, Accelerometer},
+    agb_amp::{parse_agb_amp, AgbAmp},
+    agb_cpu::{parse_agb_cpu, AgbCpu},
+    agb_reg::{parse_agb_reg, AgbReg},
+    agb_u4::{parse_agb_u4, AgbU4},
+    ags_u4::{parse_ags_u4, AgsU4},
+    ags_u5::{parse_ags_u5, AgsU5},
+    cgb_cpu::{parse_cgb_cpu, CgbCpu},
+    cgb_reg::{parse_cgb_reg, CgbReg},
+    cgb_stamp::{parse_cgb_stamp, CgbStamp},
+    cic::{parse_cic, Cic},
+    coil::{parse_coil, Coil},
+    crystal::{parse_crystal, Crystal},
+    dmg_amp::{parse_dmg_amp, DmgAmp},
+    dmg_reg::{parse_dmg_reg, DmgReg},
+    dmg_stamp::{parse_dmg_stamp, DmgStamp},
+    eeprom::{parse_eeprom, Eeprom},
+    flash::{parse_flash, Flash},
+    gbs_dol::{parse_gbs_dol, GbsDol},
+    gbs_reg::{parse_gbs_reg, GbsReg},
+    gen1_cpu::{parse_gen1_cpu, Gen1Cpu, Gen1CpuKind},
+    gen2_cpu::{parse_gen2_cpu, Gen2Cpu, Gen2CpuKind},
+    hex_inverter::{parse_hex_inverter, HexInverter},
+    icd2::{parse_icd2, Icd2},
+    lcd_chip::{parse_lcd_chip, LcdChip},
+    lcd_screen::{parse_lcd_screen, LcdScreen},
+    line_decoder::{parse_line_decoder, LineDecoder},
+    mapper::{
+        parse_mapper, Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version,
+    },
+    mask_rom::{parse_mask_rom, MaskRom},
+    mgb_amp::{parse_mgb_amp, MgbAmp},
+    oxy_u2::{parse_oxy_u2, OxyU2},
+    oxy_u4::{parse_oxy_u4, OxyU4},
+    oxy_u5::{parse_oxy_u5, OxyU5},
+    ram::{parse_ram, Ram},
+    ram_backup::{parse_ram_backup, RamBackup},
+    sgb_rom::{parse_sgb_rom, SgbRom},
+    sram_tsop1_48::parse_sram_tsop1_48,
+    tama::{parse_tama, TamaType},
+    transformer::{parse_transformer, Transformer},
 };
-pub use self::mask_rom::{parse_mask_rom, MaskRom};
-pub use self::mgb_amp::{parse_mgb_amp, MgbAmp};
-pub use self::oxy_u2::{parse_oxy_u2, OxyU2};
-pub use self::oxy_u4::{parse_oxy_u4, OxyU4};
-pub use self::oxy_u5::{parse_oxy_u5, OxyU5};
-pub use self::ram::{parse_ram, Ram};
-pub use self::ram_backup::{parse_ram_backup, RamBackup};
-pub use self::sgb_rom::{parse_sgb_rom, SgbRom};
-pub use self::sram_tsop1_48::parse_sram_tsop1_48;
-pub use self::tama::{parse_tama, TamaType};
-pub use self::transformer::{parse_transformer, Transformer};
 
 mod accelerometer;
 mod agb_amp;

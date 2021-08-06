@@ -1,7 +1,6 @@
 use anyhow::Error;
 use retro_dat::DatReader;
-use std::collections::HashSet;
-use std::path::Path;
+use std::{collections::HashSet, path::Path};
 
 #[derive(Clone, Debug)]
 pub struct DatFile {

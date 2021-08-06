@@ -1,7 +1,8 @@
-use gbhwdb_backend::config::cartridge::*;
-use gbhwdb_backend::input::cartridge::*;
-use gbhwdb_backend::input::Chip;
-use gbhwdb_backend::parser::*;
+use gbhwdb_backend::{
+    config::cartridge::*,
+    input::{cartridge::*, Chip},
+    parser::*,
+};
 use serde::{Deserialize, Serialize};
 
 use super::{to_legacy_manufacturer, to_legacy_year, LegacyChip};

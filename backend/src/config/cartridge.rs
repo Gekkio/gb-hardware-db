@@ -2,11 +2,15 @@ use anyhow::Error;
 use once_cell::sync::OnceCell;
 use serde::{Deserialize, Serialize};
 use serde_json;
-use std::collections::{BTreeMap, HashMap};
-use std::fmt;
-use std::fs::File;
-use std::io::{BufReader, BufWriter};
-use std::path::Path;
+use std::{
+    collections::{BTreeMap, HashMap},
+    fmt,
+};
+use std::{
+    fs::File,
+    io::{BufReader, BufWriter},
+    path::Path,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameConfig {

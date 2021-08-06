@@ -1,6 +1,8 @@
-use cursive::utils::markup::StyledString;
-use cursive::views::{EditView, SelectView, TextView};
-use cursive::Cursive;
+use cursive::{
+    utils::markup::StyledString,
+    views::{EditView, SelectView, TextView},
+    Cursive,
+};
 
 pub trait GbHwDbCursiveExt {
     fn get_edit_view_value(&mut self, id: &str) -> String;

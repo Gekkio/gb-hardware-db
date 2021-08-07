@@ -1,4 +1,4 @@
-use super::{week2, year2_u16, LabelParser};
+use super::{week2, year2, LabelParser, Year};
 use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -15,7 +15,7 @@ pub enum Gen1SocKind {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Gen1Soc {
     pub kind: Gen1SocKind,
-    pub year: Option<u16>,
+    pub year: Option<Year>,
     pub week: Option<u8>,
 }
 
@@ -30,7 +30,7 @@ pub fn dmg_cpu_lr35902() -> &'static impl LabelParser<Gen1Soc> {
         move |c| {
             Ok(Gen1Soc {
                 kind: Gen1SocKind::Dmg0,
-                year: Some(year2_u16(&c[1])?),
+                year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
         },
@@ -57,7 +57,7 @@ pub fn dmg_cpu() -> &'static impl LabelParser<Gen1Soc> {
                     Some(text) => Err(format!("Invalid DMG-CPU part name: {}", text)),
                     _ => Ok(Gen1SocKind::Dmg0),
                 })?,
-                year: Some(year2_u16(&c[2])?),
+                year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
         },
@@ -76,7 +76,7 @@ pub fn dmg_cpu_deprecated() -> &'static impl LabelParser<Gen1Soc> {
                     Some(text) => Err(format!("Invalid DMG-CPU part name: {}", text)),
                     _ => Ok(Gen1SocKind::Dmg0),
                 })?,
-                year: Some(year2_u16(&c[2])?),
+                year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
         },
@@ -113,7 +113,7 @@ pub fn sgb_cpu() -> &'static impl LabelParser<Gen1Soc> {
         move |c| {
             Ok(Gen1Soc {
                 kind: Gen1SocKind::Sgb,
-                year: Some(year2_u16(&c[1])?),
+                year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
         },

@@ -1,13 +1,7 @@
-use super::{week2, year1, LabelParser, Manufacturer, Year};
+use super::{week2, year1, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct AgsChargeController {
-    pub kind: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type AgsChargeController = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -19,7 +13,7 @@ pub fn mitsumi_mm1581a() -> &'static impl LabelParser<AgsChargeController> {
         r#"^([0-9])([0-9]{2})\ 1581A$"#,
         move |c| {
             Ok(AgsChargeController {
-                kind: Some("MM1581A".to_owned()),
+                kind: "MM1581A".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),
@@ -38,7 +32,7 @@ pub fn unknown() -> &'static impl LabelParser<AgsChargeController> {
         r#"^2253B\ ([0-9])([0-9]{2})[0-9]$"#,
         move |c| {
             Ok(AgsChargeController {
-                kind: None,
+                kind: "2253B".to_owned(),
                 manufacturer: None,
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),

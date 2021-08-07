@@ -1,13 +1,7 @@
-use super::{week2, year1, LabelParser, Manufacturer, Year};
+use super::{week2, year1, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct AgbPmic {
-    pub kind: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type AgbPmic = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -16,7 +10,7 @@ pub struct AgbPmic {
 pub fn mitsumi_mm1514x() -> &'static impl LabelParser<AgbPmic> {
     single_parser!(AgbPmic, r#"^([0-9])([0-5][0-9])\ 514X$"#, move |c| {
         Ok(AgbPmic {
-            kind: Some("MM1514X".to_owned()),
+            kind: "MM1514X".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
             year: Some(year1(&c[1])?),
             week: Some(week2(&c[2])?),
@@ -31,7 +25,7 @@ pub fn mitsumi_mm1514x() -> &'static impl LabelParser<AgbPmic> {
 pub fn mitsumi_mm1514x_2() -> &'static impl LabelParser<AgbPmic> {
     single_parser!(AgbPmic, r#"^([0-9])[0-9]{2}\ 514X$"#, move |c| {
         Ok(AgbPmic {
-            kind: Some("MM1514X".to_owned()),
+            kind: "MM1514X".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
             year: Some(year1(&c[1])?),
             week: None,
@@ -50,7 +44,7 @@ pub fn unknown() -> &'static impl LabelParser<AgbPmic> {
         r#"^S6960\ E-U([0-9])[A-Z]\ C[0-9]{3}$"#,
         move |c| {
             Ok(AgbPmic {
-                kind: Some("S6960".to_owned()),
+                kind: "S6960".to_owned(),
                 manufacturer: None,
                 year: Some(year1(&c[1])?),
                 week: None,
@@ -70,7 +64,7 @@ pub fn unknown2() -> &'static impl LabelParser<AgbPmic> {
         r#"^(9750[AB])\ ([0-9])[[:alnum:]][0-9]{2}$"#,
         move |c| {
             Ok(AgbPmic {
-                kind: Some(c[1].to_owned()),
+                kind: c[1].to_owned(),
                 manufacturer: None,
                 year: Some(year1(&c[2])?),
                 week: None,

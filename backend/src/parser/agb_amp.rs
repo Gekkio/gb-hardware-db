@@ -1,13 +1,7 @@
-use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year1, year2, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct AgbAmp {
-    pub kind: String,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type AgbAmp = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -48,11 +42,5 @@ pub fn rohm_bh7835afs() -> &'static impl LabelParser<AgbAmp> {
 }
 
 pub fn agb_amp() -> &'static impl LabelParser<AgbAmp> {
-    multi_parser!(
-        AgbAmp,
-        sharp_ir3r60n(),
-        rohm_bh7835afs(),
-        // FIXME: Not really an amplifier
-        crate::parser::ags_pmic_new::mitsumi_pm()
-    )
+    multi_parser!(AgbAmp, sharp_ir3r60n(), rohm_bh7835afs(),)
 }

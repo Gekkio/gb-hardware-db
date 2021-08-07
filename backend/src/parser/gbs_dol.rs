@@ -1,12 +1,7 @@
-use super::{week2, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year2, ChipYearWeek, LabelParser};
 use crate::macros::single_parser;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct GbsDol {
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type GbsDol = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -18,6 +13,7 @@ pub fn unknown() -> &'static impl LabelParser<GbsDol> {
         r#"^Nintendo\ GBS-DOL\ 011\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(GbsDol {
+                kind: "GBS-DOL".to_owned(),
                 manufacturer: None,
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),

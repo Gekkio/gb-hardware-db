@@ -1,13 +1,7 @@
-use super::{week2, year1, LabelParser, Manufacturer, Year};
+use super::{week2, year1, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::single_parser;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct GbsReg {
-    pub kind: String,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type GbsReg = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};

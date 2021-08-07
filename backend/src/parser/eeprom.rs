@@ -1,13 +1,7 @@
-use super::{week2, year1, LabelParser, Manufacturer, Year};
+use super::{week2, year1, ChipYearWeek, LabelParser};
 use crate::macros::{multi_parser, single_parser};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Eeprom {
-    pub chip_type: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type Eeprom = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -19,7 +13,7 @@ pub fn lcs5() -> &'static impl LabelParser<Eeprom> {
         r#"^LCS5\ ([0-9])([0-9]{2})(\ [0-9]{2})?$"#,
         move |c| {
             Ok(Eeprom {
-                chip_type: Some("LCS5".to_owned()),
+                kind: "LCS5".to_owned(),
                 manufacturer: None,
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),
@@ -35,7 +29,7 @@ pub fn lcs5() -> &'static impl LabelParser<Eeprom> {
 pub fn lc56() -> &'static impl LabelParser<Eeprom> {
     single_parser!(Eeprom, r#"^LC56\ [A-Z][0-9]{3}\ [0-9]{2}$"#, move |_| {
         Ok(Eeprom {
-            chip_type: Some("LC56".to_owned()),
+            kind: "LC56".to_owned(),
             manufacturer: None,
             year: None,
             week: None,

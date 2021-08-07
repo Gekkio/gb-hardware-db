@@ -1,11 +1,13 @@
-use super::{week2, year1, AgbAmp, LabelParser, Manufacturer};
+use super::{week2, year1, AgbAmp, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::single_parser;
+
+pub type AgsPmicNew = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::ags_pmic_new::mitsumi_pm().parse("MITSUMI JAPAN 602E PM B3").is_ok());
 /// ```
-pub fn mitsumi_pm() -> &'static impl LabelParser<AgbAmp> {
+pub fn mitsumi_pm() -> &'static impl LabelParser<AgsPmicNew> {
     // FIXME: Not really an amplifier
     single_parser!(
         AgbAmp,
@@ -21,6 +23,6 @@ pub fn mitsumi_pm() -> &'static impl LabelParser<AgbAmp> {
     )
 }
 
-pub fn ags_pmic_new() -> &'static impl LabelParser<AgbAmp> {
+pub fn ags_pmic_new() -> &'static impl LabelParser<AgsPmicNew> {
     mitsumi_pm()
 }

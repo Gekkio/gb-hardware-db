@@ -74,7 +74,7 @@ impl ToLegacyChip for parser::Gen1Soc {
         Some(Manufacturer::Sharp)
     }
     fn year(&self) -> Option<Year> {
-        self.year.map(Year::Full)
+        self.year
     }
     fn week(&self) -> Option<u8> {
         self.week
@@ -94,51 +94,6 @@ impl ToLegacyChip for parser::Gen2Soc {
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year.map(Year::Full)
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::CgbSoc {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year.map(Year::Full)
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::AgbSoc {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year.map(Year::Full)
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::Ram {
-    fn kind(&self) -> Option<String> {
-        self.chip_type.clone()
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
     }
     fn year(&self) -> Option<Year> {
         self.year
@@ -181,81 +136,6 @@ impl ToLegacyChip for parser::Crystal {
     }
 }
 
-impl ToLegacyChip for parser::DmgAmp {
-    fn kind(&self) -> Option<String> {
-        Some("IR3R40".to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::DmgReg {
-    fn kind(&self) -> Option<String> {
-        Some("IR3E02".to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::MgbAmp {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::cgb_reg::CgbReg {
-    fn kind(&self) -> Option<String> {
-        Some("IR3E06N".to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::AgbReg {
-    fn kind(&self) -> Option<String> {
-        Some("IR3E09N".to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
 impl ToLegacyChip for parser::Coil {
     fn kind(&self) -> Option<String> {
         Some(self.kind.clone())
@@ -271,36 +151,6 @@ impl ToLegacyChip for parser::Transformer {
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         self.manufacturer
-    }
-}
-
-impl ToLegacyChip for parser::cic::Cic {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        Some(Manufacturer::Sharp)
-    }
-    fn year(&self) -> Option<Year> {
-        self.year.map(Year::Full)
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::Icd2 {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
     }
 }
 
@@ -322,144 +172,9 @@ impl ToLegacyChip for parser::SgbRom {
     }
 }
 
-impl ToLegacyChip for parser::AgbPmic {
-    fn kind(&self) -> Option<String> {
-        self.kind.clone()
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::AgbAmp {
+impl ToLegacyChip for parser::ChipYearWeek {
     fn kind(&self) -> Option<String> {
         Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::AgsPmicOld {
-    fn kind(&self) -> Option<String> {
-        self.kind.clone()
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::AgsChargeController {
-    fn kind(&self) -> Option<String> {
-        self.kind.clone()
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::GbsDol {
-    fn kind(&self) -> Option<String> {
-        Some("GBS-DOL".to_owned())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::GbsReg {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::OxyU2 {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::OxyU4 {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::OxyU5 {
-    fn kind(&self) -> Option<String> {
-        Some(self.kind.clone())
-    }
-    fn manufacturer(&self) -> Option<Manufacturer> {
-        self.manufacturer
-    }
-    fn year(&self) -> Option<Year> {
-        self.year
-    }
-    fn week(&self) -> Option<u8> {
-        self.week
-    }
-}
-
-impl ToLegacyChip for parser::HexInverter {
-    fn kind(&self) -> Option<String> {
-        self.chip_type.clone()
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         self.manufacturer

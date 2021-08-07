@@ -1,13 +1,7 @@
-use super::{week2, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year2, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::single_parser;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Flash {
-    pub chip_type: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type Flash = ChipYearWeek;
 
 /// Macronix MX29F008 flash
 ///
@@ -21,7 +15,7 @@ pub fn macronix_mx29f008() -> &'static impl LabelParser<Flash> {
         r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}\ (29F008[A-Z]{2}-[0-9]{2})\ [0-9]{5}\ TAIWAN$"#,
         move |c| {
             Ok(Flash {
-                chip_type: Some(format!("MX{}", &c[3])),
+                kind: format!("MX{}", &c[3]),
                 manufacturer: Some(Manufacturer::Macronix),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),

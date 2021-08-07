@@ -1,11 +1,7 @@
-use super::{week2, year2, LabelParser, Year};
-use crate::macros::single_parser;
+use super::{week2, year2, ChipYearWeek, LabelParser};
+use crate::{macros::single_parser, parser::Manufacturer};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct DmgReg {
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type DmgReg = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -19,6 +15,8 @@ pub fn sharp_ir3e02() -> &'static impl LabelParser<DmgReg> {
         r#"^DMG-REG\ IR3E02\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
             Ok(DmgReg {
+                kind: "IR3E02".to_owned(),
+                manufacturer: Some(Manufacturer::Sharp),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })

@@ -6,7 +6,6 @@ pub use self::{
     agb_amp::AgbAmp,
     agb_pmic::AgbPmic,
     agb_reg::AgbReg,
-    agb_soc::AgbSoc,
     ags_charge_ctrl::AgsChargeController,
     ags_pmic_old::AgsPmicOld,
     cgb_reg::CgbReg,
@@ -32,21 +31,23 @@ pub use self::{
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
     mask_rom::MaskRom,
     mgb_amp::MgbAmp,
-    oxy_u2::OxyU2,
+    mgl_transformer::Transformer,
+    oxy_pmic::OxyPmic,
     oxy_u4::OxyU4,
     oxy_u5::OxyU5,
     ram::Ram,
     ram_backup::RamBackup,
     sgb_rom::SgbRom,
     tama::TamaType,
-    transformer::Transformer,
 };
 
 pub mod accelerometer;
 pub mod agb_amp;
 pub mod agb_pmic;
 pub mod agb_reg;
-pub mod agb_soc;
+pub mod agb_soc_bga;
+pub mod agb_soc_qfp_128;
+pub mod agb_soc_qfp_156;
 pub mod ags_charge_ctrl;
 pub mod ags_pmic_new;
 pub mod ags_pmic_old;
@@ -73,7 +74,8 @@ pub mod line_decoder;
 pub mod mapper;
 pub mod mask_rom;
 pub mod mgb_amp;
-pub mod oxy_u2;
+pub mod mgl_transformer;
+pub mod oxy_pmic;
 pub mod oxy_u4;
 pub mod oxy_u5;
 pub mod ram;
@@ -81,7 +83,14 @@ pub mod ram_backup;
 pub mod sgb_rom;
 pub mod sram_tsop1_48;
 pub mod tama;
-pub mod transformer;
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ChipYearWeek {
+    pub kind: String,
+    pub manufacturer: Option<Manufacturer>,
+    pub year: Option<Year>,
+    pub week: Option<u8>,
+}
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Manufacturer {
@@ -141,14 +150,6 @@ pub fn year2(text: &str) -> Result<Year, String> {
     match u16::from_str(text) {
         Ok(value @ 0..=87) => Ok(Year::Full(value + 2000)),
         Ok(value @ 88..=99) => Ok(Year::Full(value + 1900)),
-        _ => Err(format!("Invalid 2-digit year: {}", text)),
-    }
-}
-
-pub fn year2_u16(text: &str) -> Result<u16, String> {
-    match u16::from_str(text) {
-        Ok(value @ 0..=87) => Ok(value + 2000),
-        Ok(value @ 88..=99) => Ok(value + 1900),
         _ => Err(format!("Invalid 2-digit year: {}", text)),
     }
 }

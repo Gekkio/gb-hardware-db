@@ -1,12 +1,7 @@
-use super::{week2, year2_u16, LabelParser};
-use crate::macros::single_parser;
+use super::{week2, year2, ChipYearWeek, LabelParser};
+use crate::{macros::single_parser, parser::Manufacturer};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct CgbSoc {
-    pub kind: String,
-    pub year: Option<u16>,
-    pub week: Option<u8>,
-}
+pub type CgbSoc = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -19,7 +14,8 @@ pub fn cpu_cgb() -> &'static impl LabelParser<CgbSoc> {
         move |c| {
             Ok(CgbSoc {
                 kind: c[1].to_owned(),
-                year: Some(year2_u16(&c[4])?),
+                manufacturer: Some(Manufacturer::Sharp),
+                year: Some(year2(&c[4])?),
                 week: Some(week2(&c[5])?),
             })
         },

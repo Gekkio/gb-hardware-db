@@ -539,7 +539,7 @@ fn process_mgl_submissions() -> Result<(), Error> {
             let t1 = map_legacy_chip(
                 year_hint,
                 &console.mainboard.t1,
-                parser::transformer::transformer(),
+                parser::mgl_transformer::mgl_transformer(),
             );
             let mainboard = LegacyMglMainboard {
                 kind: console.mainboard.label.clone(),
@@ -809,7 +809,11 @@ fn process_agb_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::agb_soc_qfp_128::agb_soc_qfp_128(),
+            );
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u2,
@@ -908,14 +912,25 @@ fn process_ags_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::agb_soc_qfp_156::agb_soc_qfp_156(),
+            );
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
-            let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp());
+            let amplifier = match console.mainboard.label.as_str() {
+                // FIXME: Not really an amplifier
+                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_legacy_chip(
+                    year_hint,
+                    &console.mainboard.u3,
+                    parser::ags_pmic_new::ags_pmic_new(),
+                ),
+                _ => map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
+            };
             let u4 = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u4,
@@ -998,7 +1013,11 @@ fn process_gbs_submissions() -> Result<(), Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::agb_soc::agb_soc());
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u2,
+                parser::agb_soc_qfp_128::agb_soc_qfp_128(),
+            );
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u3,
@@ -1089,8 +1108,16 @@ fn process_oxy_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
-            let u2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::oxy_u2::oxy_u2());
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::agb_soc_bga::agb_soc_bga(),
+            );
+            let u2 = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u2,
+                parser::oxy_pmic::oxy_pmic(),
+            );
             let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
             let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
             let mainboard = LegacyOxyMainboard {

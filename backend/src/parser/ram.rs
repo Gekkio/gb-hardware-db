@@ -1,13 +1,7 @@
-use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year1, year2, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Ram {
-    pub manufacturer: Option<Manufacturer>,
-    pub chip_type: Option<String>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type Ram = ChipYearWeek;
 
 /// LSI Logic LH52xx 64 kbit
 ///
@@ -23,8 +17,8 @@ pub fn lsi_logic_lh52xx() -> &'static impl LabelParser<Ram> {
         r#"^(LH5264N4T|LH52A64N-TL|LH5264TN-TL)\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -44,8 +38,8 @@ pub fn lsi_logic_lh52b256() -> &'static impl LabelParser<Ram> {
         r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -65,8 +59,8 @@ pub fn lsi_logic_lh5168() -> &'static impl LabelParser<Ram> {
         r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]{2,3})\ LSI\ LOGIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [0-9]\ [[:alnum:]]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -86,8 +80,8 @@ pub fn mosel_vitelic_lh52b256() -> &'static impl LabelParser<Ram> {
         r#"^(LH52B256[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -108,8 +102,8 @@ pub fn mosel_vitelic_lh5168() -> &'static impl LabelParser<Ram> {
         r#"^(LH5168[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])\ ?([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -129,8 +123,8 @@ pub fn mosel_vitelic_lh5268a() -> &'static impl LabelParser<Ram> {
         r#"^(LH5268A[A-Z]{0,2}-[0-9]{2}[A-Z]{2,3})\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [[:alnum:]]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -150,8 +144,8 @@ pub fn sanyo_lc35256d() -> &'static impl LabelParser<Ram> {
         r#"^SANYO\ (LC35256D[MT]-[0-9]{2}W)\ JAPAN\ ([0-9])[[:alnum:]]{4}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sanyo),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: None,
             })
@@ -171,8 +165,8 @@ pub fn sanyo_lc35256f() -> &'static impl LabelParser<Ram> {
         r#"^SANYO\ (LC35256F[MT]-[0-9]{2}U)\ JAPAN\ ([0-9])[[:alnum:]]{4}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sanyo),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: None,
             })
@@ -192,8 +186,8 @@ pub fn sanyo_lc3564b() -> &'static impl LabelParser<Ram> {
         r#"^SANYO\ (LC3564B[A-Z]?-[0-9]{2})\ JAPAN\ ([0-9])[[:alnum:]]{4}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sanyo),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: None,
             })
@@ -213,8 +207,8 @@ pub fn sharp_lh52256c() -> &'static impl LabelParser<Ram> {
         r#"^(LH52256C[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -234,8 +228,8 @@ pub fn sharp_lh52256cvt() -> &'static impl LabelParser<Ram> {
         r#"^(LH52256CVT)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -255,8 +249,8 @@ pub fn sharp_lh52cv256() -> &'static impl LabelParser<Ram> {
         r#"^(LH52CV256[A-Z]{1,2}-[0-9]{2}[A-Z]{0,2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -277,8 +271,8 @@ pub fn sharp_lh51d256t() -> &'static impl LabelParser<Ram> {
         r#"^(LH51D256T-Z[0-9])\ SHARP(\ JAPAN)?\ A?Y([0-9])\ ?([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[3])?),
                 week: Some(week2(&c[4])?),
             })
@@ -298,8 +292,8 @@ pub fn sharp_lh5160() -> &'static impl LabelParser<Ram> {
         r#"^(LH5160[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -321,8 +315,8 @@ pub fn sharp_lh5168() -> &'static impl LabelParser<Ram> {
         r#"^(LH5168[A-Z]{0,3}-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})(\ [0-9])?\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -342,8 +336,8 @@ pub fn sharp_lh5164an() -> &'static impl LabelParser<Ram> {
         r#"^(LH5164AN-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ A?([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -363,8 +357,8 @@ pub fn sharp_lh5164an_2() -> &'static impl LabelParser<Ram> {
         r#"^(LH5164AN-[0-9]{2}[A-Z]?)\ SHARP\ A([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -384,8 +378,8 @@ pub fn sharp_lh5164ln() -> &'static impl LabelParser<Ram> {
         r#"^(LH5164LN-[0-9]{2})\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -406,8 +400,8 @@ pub fn sharp_lh5264n() -> &'static impl LabelParser<Ram> {
         r#"^(LH5264N4?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -427,8 +421,8 @@ pub fn sharp_lh5264tn_l() -> &'static impl LabelParser<Ram> {
         r#"^(LH5264TN-L)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -448,8 +442,8 @@ pub fn sharp_lh5164n() -> &'static impl LabelParser<Ram> {
         r#"^(LH5164N-[0-9]{2}[A-Z]?)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -469,8 +463,8 @@ pub fn sharp_lh52a64n_l() -> &'static impl LabelParser<Ram> {
         r#"^(LH52A64N-L)\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -491,8 +485,8 @@ pub fn bsi_bs62lv256sc() -> &'static impl LabelParser<Ram> {
         r#"^BSI\ (BS62LV256SC-[0-9]{2})\ [[:alnum:]]{10,11}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Bsi),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[3])?),
                 week: Some(week2(&c[4])?),
             })
@@ -512,8 +506,8 @@ pub fn winbond_w2465() -> &'static impl LabelParser<Ram> {
         r#"^Winbond\ (W2465[A-Z]?-[0-9]{2}[A-Z]{1,2})\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{8}-II1RA$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Winbond),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -533,8 +527,8 @@ pub fn winbond_w24257() -> &'static impl LabelParser<Ram> {
         r#"^Winbond\ (W24257[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Winbond),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[3])?),
                 week: Some(week2(&c[4])?),
             })
@@ -554,8 +548,8 @@ pub fn winbond_w24258() -> &'static impl LabelParser<Ram> {
         r#"^Winbond\ (W24258[A-Z]?(-[0-9]{2}[A-Z]{1,2})?)\ ([0-9])([0-9]{2})[A-Z]{2}[0-9]{9}[A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Winbond),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[3])?),
                 week: Some(week2(&c[4])?),
             })
@@ -575,8 +569,8 @@ pub fn rohm_xlj6265() -> &'static impl LabelParser<Ram> {
         r#"^(XLJ6265[AB]?F?-N?[0-9]{2}[A-Z]{2})\ ([0-9])([0-9]{2})\ [0-9]{3}[A-Z]{0,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Rohm),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -596,8 +590,8 @@ pub fn rohm_br6265() -> &'static impl LabelParser<Ram> {
         r#"^(BR6265[AB]?F?-N?[0-9]{2}[A-Z]{2})\ ([0-9])([0-9]{2})\ [0-9]{3}[A-Z]{1,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Rohm),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -617,8 +611,8 @@ pub fn rohm_br62256f() -> &'static impl LabelParser<Ram> {
         r#"^(BR62256F-[0-9]{2}[A-Z]{2})\ ([0-9])([0-9]{2})\ [0-9]{3}[A-Z]{0,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Rohm),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -638,8 +632,8 @@ pub fn lgs_gm76c256() -> &'static impl LabelParser<Ram> {
         r#"^LGS\ (GM76C256[ABC][A-Z]{1,4}[0-9]{2}E?)\ ([0-9]{2})([0-9]{2})\ KOREA$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Lgs),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -659,8 +653,8 @@ pub fn hyundai_gm76c256c() -> &'static impl LabelParser<Ram> {
         r#"^HYUNDAI\ (GM76C256C[A-Z]{1,4}[0-9]{2}E?)\ ([0-9]{2})([0-9]{2})\ KOREA$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Hyundai),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -680,8 +674,8 @@ pub fn hyundai_hy628100b() -> &'static impl LabelParser<Ram> {
         r#"^HYUNDAI\ KOREA\ HY628100B\ ([0-9]{2})([0-9]{2})[A-Z]\ ([[:alnum:]]{2,4}-[0-9]{2}[EI]?)$"#,
         move |c| {
             Ok(Ram {
+                kind: format!("HY628100B{}", &c[3]),
                 manufacturer: Some(Manufacturer::Hyundai),
-                chip_type: Some(format!("HY628100B{}", &c[3])),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -701,8 +695,8 @@ pub fn hyundai_hy6264a() -> &'static impl LabelParser<Ram> {
         r#"^HY6264A\ ([A-Z]{2,3}-[0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z]\ KOREA$"#,
         move |c| {
             Ok(Ram {
+                kind: format!("HY6264A{}", &c[1]),
                 manufacturer: Some(Manufacturer::Hyundai),
-                chip_type: Some(format!("HY6264A{}", &c[1])),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -722,8 +716,8 @@ pub fn hyundai_hy6264a_2() -> &'static impl LabelParser<Ram> {
         r#"^HYUNDAI\ (HY6264A[A-Z]{3}-[0-9]{2})\ ([0-9]{2})([0-9]{2})[A-Z]\ KOREA$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Hyundai),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -743,8 +737,8 @@ pub fn victronix_vn4464s() -> &'static impl LabelParser<Ram> {
         r#"^Victronix\ (VN4464S-08LL)\ ([0-9]{2})([0-9]{2})[0-9][A-Z][0-9]{3}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Victronix),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year2(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -764,8 +758,8 @@ pub fn crosslink_lh52a64n_yl() -> &'static impl LabelParser<Ram> {
         r#"^(LH52A64N-YL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Crosslink),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -785,8 +779,8 @@ pub fn crosslink_lh5268anf() -> &'static impl LabelParser<Ram> {
         r#"^(LH5268ANF-10YLL)\ Xlink\ JAPAN\ H([0-9]{1})\ ?([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Crosslink),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -806,8 +800,8 @@ pub fn mosel_vitelic_lh52a64n_pl() -> &'static impl LabelParser<Ram> {
         r#"^(LH52A64N-PL)\ MOSEL-VITELIC\ JAPAN\ [A-Z]([0-9])([0-9]{2})\ [[:alnum:]]{2}\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Ram {
+                kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                chip_type: Some(c[1].to_owned()),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -827,8 +821,8 @@ pub fn hynix_hy62wt08081e() -> &'static impl LabelParser<Ram> {
         r#"^hynix\ ([0-9]{2})([0-9]{2})[A-Z]\ (HY62WT081E[LD][0-9][0-9][CEI])\ KOREA$"#,
         move |c| {
             Ok(Ram {
+                kind: c[3].to_owned(),
                 manufacturer: Some(Manufacturer::Hynix),
-                chip_type: Some(c[3].to_owned()),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })

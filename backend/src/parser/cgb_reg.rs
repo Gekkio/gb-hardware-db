@@ -1,11 +1,7 @@
-use super::{week2, year2, LabelParser, Year};
-use crate::macros::single_parser;
+use super::{week2, year2, ChipYearWeek, LabelParser};
+use crate::{macros::single_parser, parser::Manufacturer};
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct CgbReg {
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type CgbReg = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -17,6 +13,8 @@ pub fn sharp_ir3e06n() -> &'static impl LabelParser<CgbReg> {
         r#"^CGB-REG\ IR3E06N\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(CgbReg {
+                kind: "IR3E06N".to_owned(),
+                manufacturer: Some(Manufacturer::Sharp),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })

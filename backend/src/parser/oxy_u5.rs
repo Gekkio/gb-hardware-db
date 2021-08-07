@@ -1,13 +1,7 @@
-use super::{week2, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year2, ChipYearWeek, LabelParser};
 use crate::macros::single_parser;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct OxyU5 {
-    pub kind: String,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type OxyU5 = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};

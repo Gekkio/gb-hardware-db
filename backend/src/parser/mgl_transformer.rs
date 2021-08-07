@@ -9,10 +9,10 @@ pub struct Transformer {
 
 /// ```
 /// # use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::transformer::mitsumi_mgl().parse("82Y7").is_ok());
-/// assert!(parser::transformer::mitsumi_mgl().parse("84Z7").is_ok());
+/// assert!(parser::mgl_transformer::mitsumi_unknown().parse("82Y7").is_ok());
+/// assert!(parser::mgl_transformer::mitsumi_unknown().parse("84Z7").is_ok());
 /// ```
-pub fn mitsumi_mgl() -> &'static impl LabelParser<Transformer> {
+pub fn mitsumi_unknown() -> &'static impl LabelParser<Transformer> {
     single_parser!(Transformer, r#"^(82Y7|84Z7)$"#, move |c| {
         Ok(Transformer {
             kind: c[1].to_owned(),
@@ -21,6 +21,6 @@ pub fn mitsumi_mgl() -> &'static impl LabelParser<Transformer> {
     })
 }
 
-pub fn transformer() -> &'static impl LabelParser<Transformer> {
-    mitsumi_mgl()
+pub fn mgl_transformer() -> &'static impl LabelParser<Transformer> {
+    mitsumi_unknown()
 }

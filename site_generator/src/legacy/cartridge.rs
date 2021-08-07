@@ -194,7 +194,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::ram::ram()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
@@ -220,7 +220,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::flash::flash()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
@@ -229,7 +229,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::eeprom::eeprom()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
@@ -238,7 +238,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::accelerometer::accelerometer()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
@@ -247,7 +247,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::line_decoder::line_decoder()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                     }
@@ -270,7 +270,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::hex_inverter::hex_inverter()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = chip.chip_type;
+                        legacy.kind = Some(chip.kind);
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;

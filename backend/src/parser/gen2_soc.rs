@@ -1,4 +1,4 @@
-use super::{week2, year2_u16, LabelParser};
+use super::{week2, year2, LabelParser, Year};
 use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -10,7 +10,7 @@ pub enum Gen2SocKind {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Gen2Soc {
     pub kind: Gen2SocKind,
-    pub year: Option<u16>,
+    pub year: Option<Year>,
     pub week: Option<u8>,
 }
 
@@ -26,7 +26,7 @@ pub fn cpu_mgb() -> &'static impl LabelParser<Gen2Soc> {
         move |c| {
             Ok(Gen2Soc {
                 kind: Gen2SocKind::Mgb,
-                year: Some(year2_u16(&c[1])?),
+                year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
         },
@@ -44,7 +44,7 @@ pub fn cpu_sgb2() -> &'static impl LabelParser<Gen2Soc> {
         move |c| {
             Ok(Gen2Soc {
                 kind: Gen2SocKind::Sgb2,
-                year: Some(year2_u16(&c[1])?),
+                year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
         },

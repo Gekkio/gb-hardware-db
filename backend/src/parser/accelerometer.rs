@@ -1,25 +1,19 @@
-use super::{week2, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year2, ChipYearWeek, LabelParser, Manufacturer};
 use crate::macros::single_parser;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct Accelerometer {
-    pub chip_type: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<u8>,
-}
+pub type Accelerometer = ChipYearWeek;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::accelerometer::accelerometer().parse("2738109451 0028 ADXL202JQC").is_ok());
 /// ```
-pub fn analog_adxl202jqc() -> &'static impl LabelParser<Accelerometer> {
+pub fn analog_adxl202jqc() -> &'static impl LabelParser<ChipYearWeek> {
     single_parser!(
-        Accelerometer,
+        ChipYearWeek,
         r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC$"#,
         move |c| {
-            Ok(Accelerometer {
-                chip_type: Some("ADXL202JQC".to_owned()),
+            Ok(ChipYearWeek {
+                kind: "ADXL202JQC".to_owned(),
                 manufacturer: Some(Manufacturer::Analog),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),

@@ -120,21 +120,7 @@ impl ToLegacyChip for parser::StaticRam {
 
 impl ToLegacyChip for parser::Crystal {
     fn kind(&self) -> Option<String> {
-        if self.frequency > 1_000_000 {
-            Some(format!(
-                "{}.{} MHz",
-                self.frequency / 1_000_000,
-                self.frequency % 1_000_000
-            ))
-        } else if self.frequency > 1_000 {
-            Some(format!(
-                "{}.{} kHz",
-                self.frequency / 1_000,
-                self.frequency % 1_000
-            ))
-        } else {
-            Some(format!("{} Hz", self.frequency))
-        }
+        Some(self.format_frequency())
     }
     fn manufacturer(&self) -> Option<Manufacturer> {
         self.manufacturer

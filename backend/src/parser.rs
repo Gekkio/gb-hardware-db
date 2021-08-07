@@ -104,6 +104,22 @@ pub struct Crystal {
     pub week: Option<u8>,
 }
 
+impl Crystal {
+    pub fn format_frequency(&self) -> String {
+        if self.frequency > 1_000_000 {
+            format!(
+                "{}.{} MHz",
+                self.frequency / 1_000_000,
+                self.frequency % 1_000_000
+            )
+        } else if self.frequency > 1_000 {
+            format!("{}.{} kHz", self.frequency / 1_000, self.frequency % 1_000)
+        } else {
+            format!("{} Hz", self.frequency)
+        }
+    }
+}
+
 fn kds_month(text: &str) -> Result<u8, String> {
     match text {
         "A" => Ok(1),

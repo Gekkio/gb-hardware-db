@@ -212,6 +212,7 @@ pub fn to_legacy_chip(
                         let chip = gbhwdb_backend::parser::crystal_32kihz::crystal_32kihz()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
+                        legacy.kind = Some(chip.format_frequency());
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.month = chip.month;

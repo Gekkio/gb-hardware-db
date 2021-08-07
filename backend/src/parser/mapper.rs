@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Mbc1Version {
@@ -54,11 +53,12 @@ pub struct Mapper {
 /// Sharp MBC1A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1A Nintendo S 9025 1 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc1a().parse("DMG MBC1A Nintendo S 9025 1 A").is_ok());
 /// ```
-fn sharp_mbc1a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc1a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC1A\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -74,11 +74,12 @@ fn sharp_mbc1a() -> MatcherDef<Mapper> {
 /// Sharp MBC1B
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B Nintendo S 9107 5 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc1b().parse("DMG MBC1B Nintendo S 9107 5 A").is_ok());
 /// ```
-fn sharp_mbc1b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc1b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC1B\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -94,11 +95,12 @@ fn sharp_mbc1b() -> MatcherDef<Mapper> {
 /// Sharp MBC1B1
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B1 Nintendo S 9838 5 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc1b1().parse("DMG MBC1B1 Nintendo S 9838 5 A").is_ok());
 /// ```
-fn sharp_mbc1b1() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc1b1() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC1B1\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -114,11 +116,12 @@ fn sharp_mbc1b1() -> MatcherDef<Mapper> {
 /// Sharp MBC2A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC2A Nintendo S 9730 5 AB").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc2a().parse("DMG MBC2A Nintendo S 9730 5 AB").is_ok());
 /// ```
-fn sharp_mbc2a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc2a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC2A\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [0-9]\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(Mapper {
@@ -134,11 +137,12 @@ fn sharp_mbc2a() -> MatcherDef<Mapper> {
 /// Sharp MBC3
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 LR385364 9743 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc3().parse("MBC3 LR385364 9743 A").is_ok());
 /// ```
-fn sharp_mbc3() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc3() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC3\ LR385364\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -154,11 +158,12 @@ fn sharp_mbc3() -> MatcherDef<Mapper> {
 /// Sharp MBC3A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 A LR38536B 9935 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc3a().parse("MBC3 A LR38536B 9935 A").is_ok());
 /// ```
-fn sharp_mbc3a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc3a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC3\ A\ LR38536B\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -174,11 +179,12 @@ fn sharp_mbc3a() -> MatcherDef<Mapper> {
 /// Sharp MBC5
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 LZ9GB31 AL23 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc5().parse("MBC5 LZ9GB31 AL23 A").is_ok());
 /// ```
-fn sharp_mbc5() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn sharp_mbc5() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC5\ LZ9GB31\ ([[:alnum:]]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -194,11 +200,12 @@ fn sharp_mbc5() -> MatcherDef<Mapper> {
 /// Unknown MBC1B with NEC-like labeling
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B N 9019BA012").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::nec_like_mbc1b().parse("Nintendo DMG MBC1B N 9019BA012").is_ok());
 /// ```
-fn nec_like_mbc1b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn nec_like_mbc1b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^Nintendo\ DMG\ MBC1B\ N\ ([0-9]{2})([0-9]{2})BA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -214,11 +221,12 @@ fn nec_like_mbc1b() -> MatcherDef<Mapper> {
 /// Unknown MBC2A with NEC-like labeling
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC2A N 9011CA005").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::nec_like_mbc2a().parse("Nintendo DMG MBC2A N 9011CA005").is_ok());
 /// ```
-fn nec_like_mbc2a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn nec_like_mbc2a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^Nintendo\ DMG\ MBC2A\ N\ ([0-9]{2})([0-9]{2})CA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -234,11 +242,12 @@ fn nec_like_mbc2a() -> MatcherDef<Mapper> {
 /// Unknown MBC6 with NEC-like labeling
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo MBC6 0103XPO14").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::nec_like_mbc6().parse("Nintendo MBC6 0103XPO14").is_ok());
 /// ```
-fn nec_like_mbc6() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn nec_like_mbc6() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^Nintendo\ MBC6\ ([0-9]{2})([0-9]{2})XPO[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -254,11 +263,12 @@ fn nec_like_mbc6() -> MatcherDef<Mapper> {
 /// Unknown MBC1B by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1-B Nintendo P 0'D7").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc1b().parse("DMG MBC1-B Nintendo P 0'D7").is_ok());
 /// ```
-fn p_company_mbc1b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc1b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC1-B\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
@@ -274,11 +284,12 @@ fn p_company_mbc1b() -> MatcherDef<Mapper> {
 /// Unknown MBC2A by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC2-A Nintendo P 8'73").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc2a().parse("DMG MBC2-A Nintendo P 8'73").is_ok());
 /// ```
-fn p_company_mbc2a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc2a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC2-A\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
@@ -294,11 +305,12 @@ fn p_company_mbc2a() -> MatcherDef<Mapper> {
 /// Unknown MBC3A by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 A P-2 834U4E").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc3a().parse("MBC3 A P-2 834U4E").is_ok());
 /// ```
-fn p_company_mbc3a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc3a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC3\ A\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -314,11 +326,12 @@ fn p_company_mbc3a() -> MatcherDef<Mapper> {
 /// Unknown MBC3B by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 B P-2 134U2D").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc3b().parse("MBC3 B P-2 134U2D").is_ok());
 /// ```
-fn p_company_mbc3b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc3b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC3\ B\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -334,11 +347,12 @@ fn p_company_mbc3b() -> MatcherDef<Mapper> {
 /// Unknown MBC30 by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC30 P 047U2M").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc30().parse("MBC30 P 047U2M").is_ok());
 /// ```
-fn p_company_mbc30() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc30() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -354,11 +368,12 @@ fn p_company_mbc30() -> MatcherDef<Mapper> {
 /// Unknown MBC5 by some "P" company?
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 P 041U7M").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::p_company_mbc5().parse("MBC5 P 041U7M").is_ok());
 /// ```
-fn p_company_mbc5() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn p_company_mbc5() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC5\ P(-[0-9])?\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -374,11 +389,12 @@ fn p_company_mbc5() -> MatcherDef<Mapper> {
 /// Rohm MBC3
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC3 BU3631K 802 127").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc3().parse("MBC3 BU3631K 802 127").is_ok());
 /// ```
-fn rohm_mbc3() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc3() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC3\ BU3631K\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -394,11 +410,12 @@ fn rohm_mbc3() -> MatcherDef<Mapper> {
 /// Rohm MBC3A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-3 A BU3632K 004 H64").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc3a().parse("MBC-3 A BU3632K 004 H64").is_ok());
 /// ```
-fn rohm_mbc3a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc3a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC-3\ A\ BU3632K\ ([0-9])([0-9]{2})\ [[:alnum:]]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -414,11 +431,12 @@ fn rohm_mbc3a() -> MatcherDef<Mapper> {
 /// Rohm MBC3B
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-3 B BU3634K 135 H48").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc3b().parse("MBC-3 B BU3634K 135 H48").is_ok());
 /// ```
-fn rohm_mbc3b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc3b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC-3\ B\ BU3634K\ ([0-9])([0-9]{2})\ H[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -434,11 +452,12 @@ fn rohm_mbc3b() -> MatcherDef<Mapper> {
 /// Rohm MBC30
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-30 BU3633AK 046 175").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc30().parse("MBC-30 BU3633AK 046 175").is_ok());
 /// ```
-fn rohm_mbc30() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc30() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC-30\ BU3633AK\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -454,12 +473,13 @@ fn rohm_mbc30() -> MatcherDef<Mapper> {
 /// Rohm MBC5
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC5 BU3650K 229 H51").is_some());
-/// assert!(parse_mapper("MBC-5 BU3650K 049 186").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc5().parse("MBC5 BU3650K 229 H51").is_ok());
+/// assert!(parser::mapper::rohm_mbc5().parse("MBC-5 BU3650K 049 186").is_ok());
 /// ```
-fn rohm_mbc5() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc5() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC-?5\ BU3650K\ ([0-9])([0-9]{2})\ [[:alnum:]][0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
@@ -475,11 +495,12 @@ fn rohm_mbc5() -> MatcherDef<Mapper> {
 /// Rohm MBC7
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MBC-7 BU3667KS 041 170").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::rohm_mbc7().parse("MBC-7 BU3667KS 041 170").is_ok());
 /// ```
-fn rohm_mbc7() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn rohm_mbc7() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^MBC-7\ BU3667KS\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
@@ -495,11 +516,12 @@ fn rohm_mbc7() -> MatcherDef<Mapper> {
 /// Texas Instruments MBC5
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("11CH8VT MBC5 2417").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::texas_instruments_mbc5().parse("11CH8VT MBC5 2417").is_ok());
 /// ```
-fn texas_instruments_mbc5() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn texas_instruments_mbc5() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^([0-9])[[:alnum:]][A-Z][[:alnum:]]{3}T\ MBC5\ 2417$"#,
         move |c| {
             Ok(Mapper {
@@ -515,11 +537,12 @@ fn texas_instruments_mbc5() -> MatcherDef<Mapper> {
 /// Motorola MBC1B
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("DMG MBC1B Nintendo J9130BR").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::unknown_mbc1b().parse("DMG MBC1B Nintendo J9130BR").is_ok());
 /// ```
-fn unknown_mbc1b() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn unknown_mbc1b() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^DMG\ MBC1B\ Nintendo\ J([0-9]{2})([0-9]{2})BR$"#,
         move |c| {
             Ok(Mapper {
@@ -535,11 +558,12 @@ fn unknown_mbc1b() -> MatcherDef<Mapper> {
 /// Unknown MBC1B
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B 8940AJ").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::unknown_mbc1b_2().parse("Nintendo DMG MBC1B 8940AJ").is_ok());
 /// ```
-fn unknown_mbc1b_2() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn unknown_mbc1b_2() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^Nintendo\ DMG\ MBC1B\ ([0-9]{2})([0-9]{2})AJ$"#,
         move |c| {
             Ok(Mapper {
@@ -555,11 +579,12 @@ fn unknown_mbc1b_2() -> MatcherDef<Mapper> {
 /// Unknown MBC1B
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("Nintendo DMG MBC1B N9542B3004").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::unknown_mbc1b_3().parse("Nintendo DMG MBC1B N9542B3004").is_ok());
 /// ```
-fn unknown_mbc1b_3() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn unknown_mbc1b_3() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^Nintendo\ DMG\ MBC1B\ N([0-9]{2})([0-9]{2})B[0-9]{4}$"#,
         move |c| {
             Ok(Mapper {
@@ -575,11 +600,12 @@ fn unknown_mbc1b_3() -> MatcherDef<Mapper> {
 /// Hudson HuC-1
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC-1 © HUDSON Nintendo 9752 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::huc1().parse("HuC-1 © HUDSON Nintendo 9752 A").is_ok());
 /// ```
-fn huc1() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn huc1() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^HuC-1\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -595,11 +621,12 @@ fn huc1() -> MatcherDef<Mapper> {
 /// Hudson HuC-1A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC1A © HUDSON Nintendo 9845 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::huc1a().parse("HuC1A © HUDSON Nintendo 9845 A").is_ok());
 /// ```
-fn huc1a() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn huc1a() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^HuC1A\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -615,11 +642,12 @@ fn huc1a() -> MatcherDef<Mapper> {
 /// Hudson HuC-3
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("HuC-3 © HUDSON Nintendo 9943 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::huc3().parse("HuC-3 © HUDSON Nintendo 9943 A").is_ok());
 /// ```
-fn huc3() -> MatcherDef<Mapper> {
-    MatcherDef(
+pub fn huc3() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
         r#"^HuC-3\ ©\ HUDSON\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(Mapper {
@@ -635,56 +663,56 @@ fn huc3() -> MatcherDef<Mapper> {
 /// MMM01
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_mapper;
-/// assert!(parse_mapper("MMM01 645 113").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::mmm01().parse("MMM01 645 113").is_ok());
 /// ```
-fn mmm01() -> MatcherDef<Mapper> {
-    MatcherDef(r#"^MMM01\ ([0-9])([0-9]{2})\ [0-9]{3}$"#, move |c| {
-        Ok(Mapper {
-            mbc_type: MapperType::Mmm01,
-            manufacturer: None,
-            year: Some(year1(&c[1])?),
-            week: Some(week2(&c[2])?),
-        })
-    })
+pub fn mmm01() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
+        r#"^MMM01\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
+        move |c| {
+            Ok(Mapper {
+                mbc_type: MapperType::Mmm01,
+                manufacturer: None,
+                year: Some(year1(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        }
+    )
 }
 
-pub fn parse_mapper(text: &str) -> Option<Mapper> {
-    static MATCHER: OnceCell<MatcherSet<Mapper>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| {
-            MatcherSet::new(&[
-                sharp_mbc1a(),
-                sharp_mbc1b(),
-                sharp_mbc1b1(),
-                sharp_mbc2a(),
-                sharp_mbc3(),
-                sharp_mbc3a(),
-                sharp_mbc5(),
-                nec_like_mbc1b(),
-                nec_like_mbc2a(),
-                nec_like_mbc6(),
-                p_company_mbc1b(),
-                p_company_mbc2a(),
-                p_company_mbc3a(),
-                p_company_mbc3b(),
-                p_company_mbc30(),
-                p_company_mbc5(),
-                rohm_mbc3(),
-                rohm_mbc3a(),
-                rohm_mbc3b(),
-                rohm_mbc30(),
-                rohm_mbc5(),
-                rohm_mbc7(),
-                texas_instruments_mbc5(),
-                unknown_mbc1b(),
-                unknown_mbc1b_2(),
-                unknown_mbc1b_3(),
-                huc1(),
-                huc1a(),
-                huc3(),
-                mmm01(),
-            ])
-        })
-        .apply(text)
+pub fn mapper() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        sharp_mbc1a(),
+        sharp_mbc1b(),
+        sharp_mbc1b1(),
+        sharp_mbc2a(),
+        sharp_mbc3(),
+        sharp_mbc3a(),
+        sharp_mbc5(),
+        nec_like_mbc1b(),
+        nec_like_mbc2a(),
+        nec_like_mbc6(),
+        p_company_mbc1b(),
+        p_company_mbc2a(),
+        p_company_mbc3a(),
+        p_company_mbc3b(),
+        p_company_mbc30(),
+        p_company_mbc5(),
+        rohm_mbc3(),
+        rohm_mbc3a(),
+        rohm_mbc3b(),
+        rohm_mbc30(),
+        rohm_mbc5(),
+        rohm_mbc7(),
+        texas_instruments_mbc5(),
+        unknown_mbc1b(),
+        unknown_mbc1b_2(),
+        unknown_mbc1b_3(),
+        huc1(),
+        huc1a(),
+        huc3(),
+        mmm01(),
+    )
 }

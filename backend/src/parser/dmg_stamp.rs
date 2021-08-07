@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{month2, year1, Matcher, MatcherDef, Year};
+use super::{month2, year1, LabelParser, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgStamp {
@@ -9,22 +8,21 @@ pub struct DmgStamp {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_dmg_stamp;
-/// assert!(parse_dmg_stamp("010 23").is_some());
-/// assert!(parse_dmg_stamp("903-22").is_some());
-/// assert!(parse_dmg_stamp("709.3901").is_some());
-/// assert!(parse_dmg_stamp("202-0007").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::dmg_stamp::dmg_stamp().parse("010 23").is_ok());
+/// assert!(parser::dmg_stamp::dmg_stamp().parse("903-22").is_ok());
+/// assert!(parser::dmg_stamp::dmg_stamp().parse("709.3901").is_ok());
+/// assert!(parser::dmg_stamp::dmg_stamp().parse("202-0007").is_ok());
 /// ```
-fn dmg_stamp() -> MatcherDef<DmgStamp> {
-    MatcherDef(r#"^([0-9])([0-9]{2})[-\ .][0-9-]{2,4}Y?$"#, move |c| {
-        Ok(DmgStamp {
-            year: Some(year1(&c[1])?),
-            month: Some(month2(&c[2])?),
-        })
-    })
-}
-
-pub fn parse_dmg_stamp(text: &str) -> Option<DmgStamp> {
-    static MATCHER: OnceCell<Matcher<DmgStamp>> = OnceCell::new();
-    MATCHER.get_or_init(|| dmg_stamp().into()).apply(text)
+pub fn dmg_stamp() -> &'static impl LabelParser<DmgStamp> {
+    single_parser!(
+        DmgStamp,
+        r#"^([0-9])([0-9]{2})[-\ .][0-9-]{2,4}Y?$"#,
+        move |c| {
+            Ok(DmgStamp {
+                year: Some(year1(&c[1])?),
+                month: Some(month2(&c[2])?),
+            })
+        }
+    )
 }

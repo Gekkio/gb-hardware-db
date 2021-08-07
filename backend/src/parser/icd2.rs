@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Icd2 {
@@ -11,11 +10,12 @@ pub struct Icd2 {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_icd2;
-/// assert!(parse_icd2("Nintendo ICD2-R 435 129").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::icd2::unknown().parse("Nintendo ICD2-R 435 129").is_ok());
 /// ```
-fn unknown() -> MatcherDef<Icd2> {
-    MatcherDef(
+pub fn unknown() -> &'static impl LabelParser<Icd2> {
+    single_parser!(
+        Icd2,
         r#"^Nintendo\ (ICD2-[NR])\ ([0-9])([0-9]{2})\ [0-9]{3}$"#,
         move |c| {
             Ok(Icd2 {
@@ -29,11 +29,12 @@ fn unknown() -> MatcherDef<Icd2> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_icd2;
-/// assert!(parse_icd2("Nintendo ICD2-N 9415KX226 D93115").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::icd2::unknown2().parse("Nintendo ICD2-N 9415KX226 D93115").is_ok());
 /// ```
-fn unknown2() -> MatcherDef<Icd2> {
-    MatcherDef(
+pub fn unknown2() -> &'static impl LabelParser<Icd2> {
+    single_parser!(
+        Icd2,
         r#"^Nintendo\ (ICD2-[NR])\ ([0-9]{2})\ ?([0-9]{2})[A-Z]{2}[0-9]{3}\ (D93115|D93128)$"#,
         move |c| {
             Ok(Icd2 {
@@ -46,9 +47,6 @@ fn unknown2() -> MatcherDef<Icd2> {
     )
 }
 
-pub fn parse_icd2(text: &str) -> Option<Icd2> {
-    static MATCHER: OnceCell<MatcherSet<Icd2>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| MatcherSet::new(&[unknown(), unknown2()]))
-        .apply(text)
+pub fn icd2() -> &'static impl LabelParser<Icd2> {
+    multi_parser!(Icd2, unknown(), unknown2())
 }

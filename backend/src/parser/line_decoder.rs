@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{year1, Manufacturer, Matcher, MatcherDef, Year};
+use super::{year1, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LineDecoder {
@@ -12,11 +11,11 @@ pub struct LineDecoder {
 /// Toshiba TC7W139F
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_line_decoder;
-/// assert!(parse_line_decoder("7W139 0J").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::line_decoder::toshiba_tc7w139f().parse("7W139 0J").is_ok());
 /// ```
-fn toshiba_tc7w139f() -> MatcherDef<LineDecoder> {
-    MatcherDef(r#"^(7W139F?)\ ([0-9])[A-Z]$"#, move |c| {
+pub fn toshiba_tc7w139f() -> &'static impl LabelParser<LineDecoder> {
+    single_parser!(LineDecoder, r#"^(7W139F?)\ ([0-9])[A-Z]$"#, move |c| {
         Ok(LineDecoder {
             chip_type: Some(
                 (match &c[1] {
@@ -31,9 +30,6 @@ fn toshiba_tc7w139f() -> MatcherDef<LineDecoder> {
     })
 }
 
-pub fn parse_line_decoder(text: &str) -> Option<LineDecoder> {
-    static MATCHER: OnceCell<Matcher<LineDecoder>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| toshiba_tc7w139f().into())
-        .apply(text)
+pub fn line_decoder() -> &'static impl LabelParser<LineDecoder> {
+    toshiba_tc7w139f()
 }

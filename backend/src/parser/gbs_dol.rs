@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct GbsDol {
@@ -10,11 +9,12 @@ pub struct GbsDol {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_gbs_dol;
-/// assert!(parse_gbs_dol("Nintendo GBS-DOL 011 0623L3001").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::gbs_dol::unknown().parse("Nintendo GBS-DOL 011 0623L3001").is_ok());
 /// ```
-fn unknown() -> MatcherDef<GbsDol> {
-    MatcherDef(
+pub fn unknown() -> &'static impl LabelParser<GbsDol> {
+    single_parser!(
+        GbsDol,
         r#"^Nintendo\ GBS-DOL\ 011\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(GbsDol {
@@ -26,7 +26,6 @@ fn unknown() -> MatcherDef<GbsDol> {
     )
 }
 
-pub fn parse_gbs_dol(text: &str) -> Option<GbsDol> {
-    static MATCHER: OnceCell<Matcher<GbsDol>> = OnceCell::new();
-    MATCHER.get_or_init(|| unknown().into()).apply(text)
+pub fn gbs_dol() -> &'static impl LabelParser<GbsDol> {
+    unknown()
 }

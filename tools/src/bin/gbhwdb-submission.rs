@@ -6,6 +6,7 @@ use gbhwdb_backend::{
         cartridge::{Cartridge, CartridgeBoard, CartridgeShell},
         Chip,
     },
+    parser::{self, LabelParser},
 };
 use gbhwdb_tools::cursive::*;
 use slug::slugify;
@@ -282,22 +283,37 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
         let details = TextView::new("")
             .with_name(details_id.clone())
             .fixed_height(2);
-        use gbhwdb_backend::parser::*;
         match role {
-            ChipRole::Rom => add_details_callback(&mut editor, &details_id, parse_mask_rom),
-            ChipRole::Mapper => add_details_callback(&mut editor, &details_id, parse_mapper),
-            ChipRole::Ram => add_details_callback(&mut editor, &details_id, parse_ram),
-            ChipRole::RamBackup => add_details_callback(&mut editor, &details_id, parse_ram_backup),
-            ChipRole::Crystal => add_details_callback(&mut editor, &details_id, parse_crystal),
-            ChipRole::Flash => add_details_callback(&mut editor, &details_id, parse_flash),
-            ChipRole::Eeprom => add_details_callback(&mut editor, &details_id, parse_eeprom),
-            ChipRole::Accelerometer => {
-                add_details_callback(&mut editor, &details_id, parse_accelerometer)
+            ChipRole::Rom => {
+                add_details_callback(&mut editor, &details_id, parser::mask_rom::mask_rom())
             }
-            ChipRole::LineDecoder => {
-                add_details_callback(&mut editor, &details_id, parse_line_decoder)
+            ChipRole::Mapper => {
+                add_details_callback(&mut editor, &details_id, parser::mapper::mapper())
             }
-            ChipRole::Tama => add_details_callback(&mut editor, &details_id, parse_tama),
+            ChipRole::Ram => add_details_callback(&mut editor, &details_id, parser::ram::ram()),
+            ChipRole::RamBackup => {
+                add_details_callback(&mut editor, &details_id, parser::ram_backup::ram_backup())
+            }
+            ChipRole::Crystal => {
+                add_details_callback(&mut editor, &details_id, parser::crystal::crystal())
+            }
+            ChipRole::Flash => {
+                add_details_callback(&mut editor, &details_id, parser::flash::flash())
+            }
+            ChipRole::Eeprom => {
+                add_details_callback(&mut editor, &details_id, parser::eeprom::eeprom())
+            }
+            ChipRole::Accelerometer => add_details_callback(
+                &mut editor,
+                &details_id,
+                parser::accelerometer::accelerometer(),
+            ),
+            ChipRole::LineDecoder => add_details_callback(
+                &mut editor,
+                &details_id,
+                parser::line_decoder::line_decoder(),
+            ),
+            ChipRole::Tama => add_details_callback(&mut editor, &details_id, parser::tama::tama()),
             _ => (),
         }
         result.add_child(editor.with_name(id));
@@ -306,16 +322,16 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
     result
 }
 
-fn add_details_callback<T: fmt::Debug, F: Fn(&str) -> Option<T> + 'static>(
+fn add_details_callback<T: fmt::Debug, F: LabelParser<T>>(
     editor: &mut EditView,
     details_id: &str,
-    f: F,
+    f: &'static F,
 ) {
     let details_id = details_id.to_owned();
     editor.set_on_edit(move |siv, content, _| {
-        siv.call_on_name(&details_id, |view: &mut TextView| match f(&content) {
-            Some(chip) => view.set_content(format!("{:?}", chip)),
-            None => view.set_content(""),
+        siv.call_on_name(&details_id, |view: &mut TextView| match f.parse(&content) {
+            Ok(chip) => view.set_content(format!("{:?}", chip)),
+            Err(err) => view.set_content(format!("{}", err)),
         })
         .unwrap();
     });

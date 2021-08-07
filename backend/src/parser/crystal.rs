@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Crystal {
@@ -11,11 +10,11 @@ pub struct Crystal {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS1H").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_short().parse("KDS1H").is_ok());
 /// ```
-fn kds_short() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^KDS([0-9])([A-Z])$"#, move |c| {
+pub fn kds_short() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^KDS([0-9])([A-Z])$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[1])?),
@@ -26,42 +25,50 @@ fn kds_short() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 9803 4.194").is_some());
-/// assert!(parse_crystal("KDS9807 4.194").is_some());
-/// assert!(parse_crystal("KDSI 0549 4.194").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_4194().parse("KDS 9803 4.194").is_ok());
+/// assert!(parser::crystal::kds_4194().parse("KDS9807 4.194").is_ok());
+/// assert!(parser::crystal::kds_4194().parse("KDSI 0549 4.194").is_ok());
 /// ```
-fn kds_4194() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^KDSI?\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#, move |c| {
-        Ok(Crystal {
-            manufacturer: Some(Manufacturer::Kds),
-            year: Some(year2(&c[1])?),
-            month: None,
-            week: Some(week2(&c[2])?),
-        })
-    })
+pub fn kds_4194() -> &'static impl LabelParser<Crystal> {
+    single_parser!(
+        Crystal,
+        r#"^KDSI?\ ?([0-9]{2})([0-9]{2})\ 4\.194$"#,
+        move |c| {
+            Ok(Crystal {
+                manufacturer: Some(Manufacturer::Kds),
+                year: Some(year2(&c[1])?),
+                month: None,
+                week: Some(week2(&c[2])?),
+            })
+        }
+    )
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 9841 8.388").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_8388().parse("KDS 9841 8.388").is_ok());
 /// ```
-fn kds_8388() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^KDS\ ([0-9]{2})([0-9]{2})\ 8\.388$"#, move |c| {
-        Ok(Crystal {
-            manufacturer: Some(Manufacturer::Kds),
-            year: Some(year2(&c[1])?),
-            month: None,
-            week: Some(week2(&c[2])?),
-        })
-    })
+pub fn kds_8388() -> &'static impl LabelParser<Crystal> {
+    single_parser!(
+        Crystal,
+        r#"^KDS\ ([0-9]{2})([0-9]{2})\ 8\.388$"#,
+        move |c| {
+            Ok(Crystal {
+                manufacturer: Some(Manufacturer::Kds),
+                year: Some(year2(&c[1])?),
+                month: None,
+                week: Some(week2(&c[2])?),
+            })
+        }
+    )
 }
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KDS 6F 4.194").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_4194_short().parse("KDS 6F 4.194").is_ok());
 /// ```
-fn kds_4194_short() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^KDS\ ([0-9])([A-Z])\ 4\.194$"#, move |c| {
+pub fn kds_4194_short() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^KDS\ ([0-9])([A-Z])\ 4\.194$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[1])?),
@@ -72,12 +79,12 @@ fn kds_4194_short() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D419A2").is_some());
-/// assert!(parse_crystal("D419J3I").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_d419().parse("D419A2").is_ok());
+/// assert!(parser::crystal::kds_d419().parse("D419J3I").is_ok());
 /// ```
-fn kds_d419() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^D419([A-Z])([0-9])[A-Z]?$"#, move |c| {
+pub fn kds_d419() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^D419([A-Z])([0-9])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -88,11 +95,11 @@ fn kds_d419() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D838K0I").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_d838().parse("D838K0I").is_ok());
 /// ```
-fn kds_d838() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^D838([A-Z])([0-9])[A-Z]$"#, move |c| {
+pub fn kds_d838() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^D838([A-Z])([0-9])[A-Z]$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -103,11 +110,11 @@ fn kds_d838() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("D209A8").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kds_d209().parse("D209A8").is_ok());
 /// ```
-fn kds_d209() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^D209([A-Z])([0-9])$"#, move |c| {
+pub fn kds_d209() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^D209([A-Z])([0-9])$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kds),
             year: Some(year1(&c[2])?),
@@ -118,11 +125,11 @@ fn kds_d209() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("KSS20V 8A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kinseki_kss20().parse("KSS20V 8A").is_ok());
 /// ```
-fn kinseki_kss20() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^KSS20V\ ([0-9])([A-Z])$"#, move |c| {
+pub fn kinseki_kss20() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^KSS20V\ ([0-9])([A-Z])$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -133,11 +140,11 @@ fn kinseki_kss20() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("33WKSS6DT").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kinseki_kss30().parse("33WKSS6DT").is_ok());
 /// ```
-fn kinseki_kss30() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^33WKSS([0-9])([A-Z])T$"#, move |c| {
+pub fn kinseki_kss30() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^33WKSS([0-9])([A-Z])T$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -148,12 +155,12 @@ fn kinseki_kss30() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4194 KSS 0KF").is_some());
-/// assert!(parse_crystal("4194 KSS1A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kinseki_4194().parse("4194 KSS 0KF").is_ok());
+/// assert!(parser::crystal::kinseki_4194().parse("4194 KSS1A").is_ok());
 /// ```
-fn kinseki_4194() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^4194\ KSS\ ?([0-9])([A-Z])[A-Z]?$"#, move |c| {
+pub fn kinseki_4194() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^4194\ KSS\ ?([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -164,12 +171,12 @@ fn kinseki_4194() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("8388 KSS 1CF").is_some());
-/// assert!(parse_crystal("8388 KSS 9J").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::kinseki_8388().parse("8388 KSS 1CF").is_ok());
+/// assert!(parser::crystal::kinseki_8388().parse("8388 KSS 9J").is_ok());
 /// ```
-fn kinseki_8388() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]?$"#, move |c| {
+pub fn kinseki_8388() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^8388\ KSS\ ([0-9])([A-Z])[A-Z]?$"#, move |c| {
         Ok(Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
             year: Some(year1(&c[1])?),
@@ -180,13 +187,13 @@ fn kinseki_8388() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("32K09").is_some());
-/// assert!(parse_crystal("32K9Y").is_some());
-/// assert!(parse_crystal("32K0Z").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::unknown().parse("32K09").is_ok());
+/// assert!(parser::crystal::unknown().parse("32K9Y").is_ok());
+/// assert!(parser::crystal::unknown().parse("32K0Z").is_ok());
 /// ```
-fn unknown() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^32K([0-9])[[:alnum:]]$"#, move |c| {
+pub fn unknown() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^32K([0-9])[[:alnum:]]$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -197,11 +204,11 @@ fn unknown() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.19C59").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::unknown2().parse("4.19C59").is_ok());
 /// ```
-fn unknown2() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^4\.19C([0-9])[[:alnum:]]$"#, move |c| {
+pub fn unknown2() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^4\.19C([0-9])[[:alnum:]]$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -212,11 +219,11 @@ fn unknown2() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.1943 9752").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::unknown_41943().parse("4.1943 9752").is_ok());
 /// ```
-fn unknown_41943() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^4\.1943\ ([0-9]{2})([0-9]{2})$"#, move |c| {
+pub fn unknown_41943() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^4\.1943\ ([0-9]{2})([0-9]{2})$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year2(&c[1])?),
@@ -227,11 +234,11 @@ fn unknown_41943() -> MatcherDef<Crystal> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_crystal;
-/// assert!(parse_crystal("4.1943 RVR 841").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::crystal::unknown_41943_2().parse("4.1943 RVR 841").is_ok());
 /// ```
-fn unknown_41943_2() -> MatcherDef<Crystal> {
-    MatcherDef(r#"^4\.1943\ RVR\ ([0-9])([0-9]{2})$"#, move |c| {
+pub fn unknown_41943_2() -> &'static impl LabelParser<Crystal> {
+    single_parser!(Crystal, r#"^4\.1943\ RVR\ ([0-9])([0-9]{2})$"#, move |c| {
         Ok(Crystal {
             manufacturer: None,
             year: Some(year1(&c[1])?),
@@ -260,27 +267,23 @@ fn kds_month(text: &str) -> Result<u8, String> {
     }
 }
 
-pub fn parse_crystal(text: &str) -> Option<Crystal> {
-    static MATCHER: OnceCell<MatcherSet<Crystal>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| {
-            MatcherSet::new(&[
-                kds_short(),
-                unknown(),
-                kds_d419(),
-                unknown2(),
-                kds_d209(),
-                kinseki_kss20(),
-                kinseki_4194(),
-                kds_4194(),
-                kds_4194_short(),
-                unknown_41943(),
-                unknown_41943_2(),
-                kds_8388(),
-                kinseki_8388(),
-                kds_d838(),
-                kinseki_kss30(),
-            ])
-        })
-        .apply(text)
+pub fn crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        kds_short(),
+        unknown(),
+        kds_d419(),
+        unknown2(),
+        kds_d209(),
+        kinseki_kss20(),
+        kinseki_4194(),
+        kds_4194(),
+        kds_4194_short(),
+        unknown_41943(),
+        unknown_41943_2(),
+        kds_8388(),
+        kinseki_8388(),
+        kds_d838(),
+        kinseki_kss30(),
+    )
 }

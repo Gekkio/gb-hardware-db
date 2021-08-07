@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year1, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct HexInverter {
@@ -11,11 +10,11 @@ pub struct HexInverter {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_hex_inverter;
-/// assert!(parse_hex_inverter("LVX 04 8 45").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::hex_inverter::toshiba_tc74lvx04ft().parse("LVX 04 8 45").is_ok());
 /// ```
-fn tc74lvx04ft() -> MatcherDef<HexInverter> {
-    MatcherDef(r#"^LVX\ 04\ ([0-9])\ ([0-9]{2})$"#, move |c| {
+pub fn toshiba_tc74lvx04ft() -> &'static impl LabelParser<HexInverter> {
+    single_parser!(HexInverter, r#"^LVX\ 04\ ([0-9])\ ([0-9]{2})$"#, move |c| {
         Ok(HexInverter {
             manufacturer: Some(Manufacturer::Toshiba),
             chip_type: Some("TC74LVX04FT".to_owned()),
@@ -25,7 +24,6 @@ fn tc74lvx04ft() -> MatcherDef<HexInverter> {
     })
 }
 
-pub fn parse_hex_inverter(text: &str) -> Option<HexInverter> {
-    static MATCHER: OnceCell<Matcher<HexInverter>> = OnceCell::new();
-    MATCHER.get_or_init(|| tc74lvx04ft().into()).apply(text)
+pub fn hex_inverter() -> &'static impl LabelParser<HexInverter> {
+    toshiba_tc74lvx04ft()
 }

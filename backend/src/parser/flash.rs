@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Flash {
@@ -10,14 +9,15 @@ pub struct Flash {
     pub week: Option<u8>,
 }
 
-/// Macronix 29F008 flash
+/// Macronix MX29F008 flash
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_flash;
-/// assert!(parse_flash("E991012 29F008TC-14 21534 TAIWAN").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::flash::macronix_mx29f008().parse("E991012 29F008TC-14 21534 TAIWAN").is_ok());
 /// ```
-fn macronix() -> MatcherDef<Flash> {
-    MatcherDef(
+pub fn macronix_mx29f008() -> &'static impl LabelParser<Flash> {
+    single_parser!(
+        Flash,
         r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}\ (29F008[A-Z]{2}-[0-9]{2})\ [0-9]{5}\ TAIWAN$"#,
         move |c| {
             Ok(Flash {
@@ -30,7 +30,6 @@ fn macronix() -> MatcherDef<Flash> {
     )
 }
 
-pub fn parse_flash(text: &str) -> Option<Flash> {
-    static MATCHER: OnceCell<Matcher<Flash>> = OnceCell::new();
-    MATCHER.get_or_init(|| macronix().into()).apply(text)
+pub fn flash() -> &'static impl LabelParser<Flash> {
+    macronix_mx29f008()
 }

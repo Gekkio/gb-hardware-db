@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{Manufacturer, Matcher, MatcherDef};
+use super::{LabelParser, Manufacturer};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Transformer {
@@ -9,12 +8,12 @@ pub struct Transformer {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_transformer;
-/// assert!(parse_transformer("82Y7").is_some());
-/// assert!(parse_transformer("84Z7").is_some());
+/// # use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::transformer::mitsumi_mgl().parse("82Y7").is_ok());
+/// assert!(parser::transformer::mitsumi_mgl().parse("84Z7").is_ok());
 /// ```
-fn mitsumi() -> MatcherDef<Transformer> {
-    MatcherDef(r#"^(82Y7|84Z7)$"#, move |c| {
+pub fn mitsumi_mgl() -> &'static impl LabelParser<Transformer> {
+    single_parser!(Transformer, r#"^(82Y7|84Z7)$"#, move |c| {
         Ok(Transformer {
             kind: c[1].to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -22,7 +21,6 @@ fn mitsumi() -> MatcherDef<Transformer> {
     })
 }
 
-pub fn parse_transformer(text: &str) -> Option<Transformer> {
-    static MATCHER: OnceCell<Matcher<Transformer>> = OnceCell::new();
-    MATCHER.get_or_init(|| mitsumi().into()).apply(text)
+pub fn transformer() -> &'static impl LabelParser<Transformer> {
+    mitsumi_mgl()
 }

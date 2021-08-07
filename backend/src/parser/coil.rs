@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{Manufacturer, MatcherDef, MatcherSet};
+use super::{LabelParser, Manufacturer};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Coil {
@@ -9,11 +8,11 @@ pub struct Coil {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_coil;
-/// assert!(parse_coil("TDK ZJY-M4A N").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::coil::tdk().parse("TDK ZJY-M4A N").is_ok());
 /// ```
-fn tdk() -> MatcherDef<Coil> {
-    MatcherDef(r#"^TDK\ (ZJY-M4A)\ [A-Z]$"#, move |c| {
+pub fn tdk() -> &'static impl LabelParser<Coil> {
+    single_parser!(Coil, r#"^TDK\ (ZJY-M4A)\ [A-Z]$"#, move |c| {
         Ok(Coil {
             kind: c[1].to_owned(),
             manufacturer: Some(Manufacturer::Tdk),
@@ -22,11 +21,11 @@ fn tdk() -> MatcherDef<Coil> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_coil;
-/// assert!(parse_coil("TDK ZJY-M4PA n").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::coil::tdk2().parse("TDK ZJY-M4PA n").is_ok());
 /// ```
-fn tdk2() -> MatcherDef<Coil> {
-    MatcherDef(r#"^TDK\ (ZJY-M4PA)\ [a-z]$"#, move |c| {
+pub fn tdk2() -> &'static impl LabelParser<Coil> {
+    single_parser!(Coil, r#"^TDK\ (ZJY-M4PA)\ [a-z]$"#, move |c| {
         Ok(Coil {
             kind: c[1].to_owned(),
             manufacturer: Some(Manufacturer::Tdk),
@@ -34,9 +33,6 @@ fn tdk2() -> MatcherDef<Coil> {
     })
 }
 
-pub fn parse_coil(text: &str) -> Option<Coil> {
-    static MATCHER: OnceCell<MatcherSet<Coil>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| MatcherSet::new(&[tdk(), tdk2()]))
-        .apply(text)
+pub fn coil() -> &'static impl LabelParser<Coil> {
+    multi_parser!(Coil, tdk(), tdk2())
 }

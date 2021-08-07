@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MgbAmp {
@@ -10,13 +9,13 @@ pub struct MgbAmp {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_mgb_amp;
-/// assert!(parse_mgb_amp("AMP MGB IR3R53N 9806 a").is_some());
-/// assert!(parse_mgb_amp("AMP MGB IR3R56N 0040 C").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mgb_amp::sharp_ir3r53n().parse("AMP MGB IR3R53N 9806 a").is_ok());
 /// ```
-fn mgb_amp() -> MatcherDef<MgbAmp> {
-    MatcherDef(
-        r#"^AMP\ MGB\ (IR3R53N|IR3R56N)\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]$"#,
+pub fn sharp_ir3r53n() -> &'static impl LabelParser<MgbAmp> {
+    single_parser!(
+        MgbAmp,
+        r#"^AMP\ MGB\ (IR3R53N)\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]$"#,
         move |c| {
             Ok(MgbAmp {
                 kind: c[1].to_owned(),
@@ -27,7 +26,24 @@ fn mgb_amp() -> MatcherDef<MgbAmp> {
     )
 }
 
-pub fn parse_mgb_amp(text: &str) -> Option<MgbAmp> {
-    static MATCHER: OnceCell<Matcher<MgbAmp>> = OnceCell::new();
-    MATCHER.get_or_init(|| mgb_amp().into()).apply(text)
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mgb_amp::sharp_ir3r56n().parse("AMP MGB IR3R56N 0040 C").is_ok());
+/// ```
+pub fn sharp_ir3r56n() -> &'static impl LabelParser<MgbAmp> {
+    single_parser!(
+        MgbAmp,
+        r#"^AMP\ MGB\ (IR3R56N)\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]$"#,
+        move |c| {
+            Ok(MgbAmp {
+                kind: c[1].to_owned(),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
+pub fn mgb_amp() -> &'static impl LabelParser<MgbAmp> {
+    multi_parser!(MgbAmp, sharp_ir3r53n(), sharp_ir3r56n())
 }

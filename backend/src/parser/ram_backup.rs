@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, Manufacturer, MatcherDef, MatcherSet, Year};
+use super::{week2, year1, LabelParser, Manufacturer, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct RamBackup {
@@ -13,11 +12,11 @@ pub struct RamBackup {
 /// Mitsubishi M62021P
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("2021 7Z2").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::mitsubishi_m62021p().parse("2021 7Z2").is_ok());
 /// ```
-pub fn mitsubishi_m62021p() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^2021\ ([0-9])[[:alnum:]][0-9]$"#, move |c| {
+pub fn mitsubishi_m62021p() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(RamBackup, r#"^2021\ ([0-9])[[:alnum:]][0-9]$"#, move |c| {
         Ok(RamBackup {
             chip_type: "M62021P".to_owned(),
             manufacturer: Some(Manufacturer::Mitsubishi),
@@ -30,29 +29,33 @@ pub fn mitsubishi_m62021p() -> MatcherDef<RamBackup> {
 /// Mitsumi MM1026A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("843 26A").is_some());
-/// assert!(parse_ram_backup("1L51 26A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::mitsumi_mm1026a().parse("843 26A").is_ok());
+/// assert!(parser::ram_backup::mitsumi_mm1026a().parse("1L51 26A").is_ok());
 /// ```
-pub fn mitsumi_mm1026a() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^([0-9])([[:alnum:]][0-9]{1,2})\ 26A$"#, move |c| {
-        Ok(RamBackup {
-            chip_type: "MM1026A".to_owned(),
-            manufacturer: Some(Manufacturer::Mitsumi),
-            year: Some(year1(&c[1])?),
-            week: None,
-        })
-    })
+pub fn mitsumi_mm1026a() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(
+        RamBackup,
+        r#"^([0-9])([[:alnum:]][0-9]{1,2})\ 26A$"#,
+        move |c| {
+            Ok(RamBackup {
+                chip_type: "MM1026A".to_owned(),
+                manufacturer: Some(Manufacturer::Mitsumi),
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
 }
 
 /// Mitsumi MM1134A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("939 134A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::mitsumi_mm1134a().parse("939 134A").is_ok());
 /// ```
-pub fn mitsumi_mm1134a() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^([0-9])([0-9]{2})\ 134A$"#, move |c| {
+pub fn mitsumi_mm1134a() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(RamBackup, r#"^([0-9])([0-9]{2})\ 134A$"#, move |c| {
         Ok(RamBackup {
             chip_type: "MM1134A".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -65,66 +68,74 @@ pub fn mitsumi_mm1134a() -> MatcherDef<RamBackup> {
 /// ROHM BA6129
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("6129 4803").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::rohm_ba6129().parse("6129 4803").is_ok());
 /// ```
-pub fn rohm_ba6129() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^6129\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
-        Ok(RamBackup {
-            chip_type: "BA6129".to_owned(),
-            manufacturer: Some(Manufacturer::Rohm),
-            year: Some(year1(&c[1])?),
-            week: None,
-        })
-    })
+pub fn rohm_ba6129() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(
+        RamBackup,
+        r#"^6129\ ([0-9])[[:alnum:]][0-9]{2}$"#,
+        move |c| {
+            Ok(RamBackup {
+                chip_type: "BA6129".to_owned(),
+                manufacturer: Some(Manufacturer::Rohm),
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
 }
 
 /// ROHM BA6129A
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("6129A 6194").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::rohm_ba6129a().parse("6129A 6194").is_ok());
 /// ```
-pub fn rohm_ba6129a() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^6129A\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
-        Ok(RamBackup {
-            chip_type: "BA6129A".to_owned(),
-            manufacturer: Some(Manufacturer::Rohm),
-            year: Some(year1(&c[1])?),
-            week: None,
-        })
-    })
+pub fn rohm_ba6129a() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(
+        RamBackup,
+        r#"^6129A\ ([0-9])[[:alnum:]][0-9]{2}$"#,
+        move |c| {
+            Ok(RamBackup {
+                chip_type: "BA6129A".to_owned(),
+                manufacturer: Some(Manufacturer::Rohm),
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
 }
 
 /// ROHM BA6735
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_ram_backup;
-/// assert!(parse_ram_backup("6735 8C19").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::ram_backup::rohm_ba6735().parse("6735 8C19").is_ok());
 /// ```
-pub fn rohm_ba6735() -> MatcherDef<RamBackup> {
-    MatcherDef(r#"^6735\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
-        Ok(RamBackup {
-            chip_type: "BA6735".to_owned(),
-            manufacturer: Some(Manufacturer::Rohm),
-            year: Some(year1(&c[1])?),
-            week: None,
-        })
-    })
+pub fn rohm_ba6735() -> &'static impl LabelParser<RamBackup> {
+    single_parser!(
+        RamBackup,
+        r#"^6735\ ([0-9])[[:alnum:]][0-9]{2}$"#,
+        move |c| {
+            Ok(RamBackup {
+                chip_type: "BA6735".to_owned(),
+                manufacturer: Some(Manufacturer::Rohm),
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
 }
 
-pub fn parse_ram_backup(text: &str) -> Option<RamBackup> {
-    static MATCHER: OnceCell<MatcherSet<RamBackup>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| {
-            MatcherSet::new(&[
-                mitsumi_mm1026a(),
-                mitsumi_mm1134a(),
-                rohm_ba6129(),
-                rohm_ba6129a(),
-                rohm_ba6735(),
-                mitsubishi_m62021p(),
-            ])
-        })
-        .apply(text)
+pub fn ram_backup() -> &'static impl LabelParser<RamBackup> {
+    multi_parser!(
+        RamBackup,
+        mitsumi_mm1026a(),
+        mitsumi_mm1134a(),
+        rohm_ba6129(),
+        rohm_ba6129a(),
+        rohm_ba6735(),
+        mitsubishi_m62021p(),
+    )
 }

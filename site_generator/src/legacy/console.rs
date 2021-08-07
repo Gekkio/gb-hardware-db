@@ -1,4 +1,7 @@
-use gbhwdb_backend::input::{LcdChip, LcdScreen};
+use gbhwdb_backend::{
+    input::{LcdChip, LcdScreen},
+    parser::LabelParser,
+};
 use serde::Serialize;
 
 use super::{to_legacy_year, LegacyChip, LegacyPhoto};
@@ -517,8 +520,9 @@ pub struct LegacyLcdPanel {
 pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip {
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {
-        let chip =
-            gbhwdb_backend::parser::parse_lcd_chip(&label).unwrap_or_else(|| panic!("{}", label));
+        let chip = gbhwdb_backend::parser::lcd_chip::lcd_chip()
+            .parse(&label)
+            .unwrap_or_else(|_| panic!("{}", label));
         LegacyChip {
             label: Some(match &ribbon_label {
                 Some(ribbon_label) => format!("{} {}", ribbon_label, label),
@@ -552,7 +556,9 @@ pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option
         .map(|chip| to_legacy_lcd_chip(year_hint, chip));
     let label = screen.label.clone();
     let screen = screen.label.as_ref().map(|label| {
-        gbhwdb_backend::parser::parse_lcd_screen(label).unwrap_or_else(|| panic!("{}", label))
+        gbhwdb_backend::parser::lcd_screen::lcd_screen()
+            .parse(label)
+            .unwrap_or_else(|_| panic!("{}", label))
     });
     Some(LegacyLcdPanel {
         label,

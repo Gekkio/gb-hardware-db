@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, MatcherDef, MatcherSet, Year};
+use super::{week2, year2, LabelParser, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Tama {
@@ -19,27 +18,32 @@ pub enum TamaType {
 /// TAMA5
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_tama;
-/// assert!(parse_tama("TAMA5 9726 EAD1").is_some());
+/// # use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::tama::tama5().parse("TAMA5 9726 EAD1").is_ok());
 /// ```
-fn tama5() -> MatcherDef<Tama> {
-    MatcherDef(r#"^TAMA5\ ([0-9]{2})([0-9]{2})\ EA[A-Z]1$"#, move |c| {
-        Ok(Tama {
-            tama_type: TamaType::Tama5,
-            year: Some(year2(&c[1])?),
-            week: Some(week2(&c[2])?),
-        })
-    })
+pub fn tama5() -> &'static impl LabelParser<Tama> {
+    single_parser!(
+        Tama,
+        r#"^TAMA5\ ([0-9]{2})([0-9]{2})\ EA[A-Z]1$"#,
+        move |c| {
+            Ok(Tama {
+                tama_type: TamaType::Tama5,
+                year: Some(year2(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        }
+    )
 }
 
 /// TAMA6
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_tama;
-/// assert!(parse_tama("TAMA6 JAPAN 47C243M FV61 9751H").is_some());
+/// # use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::tama::tama6().parse("TAMA6 JAPAN 47C243M FV61 9751H").is_ok());
 /// ```
-fn tama6() -> MatcherDef<Tama> {
-    MatcherDef(
+pub fn tama6() -> &'static impl LabelParser<Tama> {
+    single_parser!(
+        Tama,
         r#"^TAMA6\ JAPAN\ 47C243M\ FV61\ ([0-9]{2})([0-9]{2})H$"#,
         move |c| {
             Ok(Tama {
@@ -54,11 +58,12 @@ fn tama6() -> MatcherDef<Tama> {
 /// TAMA7 ROM
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_tama;
-/// assert!(parse_tama("TAMA7 B9748 43913A TAIWAN").is_some());
+/// # use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::tama::tama7().parse("TAMA7 B9748 43913A TAIWAN").is_ok());
 /// ```
-fn tama7() -> MatcherDef<Tama> {
-    MatcherDef(
+pub fn tama7() -> &'static impl LabelParser<Tama> {
+    single_parser!(
+        Tama,
         r#"^TAMA7\ [A-Z]([0-9]{2})([0-9]{2})\ [0-9]{5}[A-Z]\ TAIWAN$"#,
         move |c| {
             Ok(Tama {
@@ -70,9 +75,6 @@ fn tama7() -> MatcherDef<Tama> {
     )
 }
 
-pub fn parse_tama(text: &str) -> Option<Tama> {
-    static MATCHER: OnceCell<MatcherSet<Tama>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| MatcherSet::new(&[tama5(), tama6(), tama7()]))
-        .apply(text)
+pub fn tama() -> &'static impl LabelParser<Tama> {
+    multi_parser!(Tama, tama5(), tama6(), tama7())
 }

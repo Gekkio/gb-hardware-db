@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SgbRom {
@@ -12,11 +11,12 @@ pub struct SgbRom {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9429 R77").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::unknown().parse("SYS-SGB-2 © 1994 Nintendo 9429 R77").is_ok());
 /// ```
-fn unknown() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn unknown() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
         move |c| {
             Ok(SgbRom {
@@ -31,11 +31,12 @@ fn unknown() -> MatcherDef<SgbRom> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo 9423 E").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::unknown2().parse("SYS-SGB-2 © 1994 Nintendo 9423 E").is_ok());
 /// ```
-fn unknown2() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn unknown2() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -50,11 +51,12 @@ fn unknown2() -> MatcherDef<SgbRom> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 JAPAN © 1994 Nintendo 427A2 A04 NND").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::unknown3().parse("SYS-SGB-2 JAPAN © 1994 Nintendo 427A2 A04 NND").is_ok());
 /// ```
-fn unknown3() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn unknown3() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-(NT|2))\ JAPAN\ ©\ 1994\ Nintendo\ [[:alnum:]]{5}\ [[:alnum:]]{3}\ [A-Z]{3}$"#,
         move |c| {
             Ok(SgbRom {
@@ -69,11 +71,12 @@ fn unknown3() -> MatcherDef<SgbRom> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("© 1994 Nintendo SYS-SGB-NT N-2001EGW-J56 9414X9013").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::unknown4().parse("© 1994 Nintendo SYS-SGB-NT N-2001EGW-J56 9414X9013").is_ok());
 /// ```
-fn unknown4() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn unknown4() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^©\ 1994\ Nintendo\ (SYS-SGB-(NT|2))\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(SgbRom {
@@ -90,11 +93,12 @@ fn unknown4() -> MatcherDef<SgbRom> {
 /// Toshiba SGB ROM
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::toshiba().parse("SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI").is_ok());
 /// ```
-fn toshiba() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn toshiba() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ (TC53[0-9]{4}[A-Z]{2})-[A-Z][0-9]{3}\ JAPAN\ ([0-9]{2})([0-9]{2})EAI$"#,
         move |c| {
             Ok(SgbRom {
@@ -111,11 +115,12 @@ fn toshiba() -> MatcherDef<SgbRom> {
 /// Sharp SGB ROM
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB-2 © 1994 Nintendo LH532M0M 9432 E").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::sharp_sgb().parse("SYS-SGB-2 © 1994 Nintendo LH532M0M 9432 E").is_ok());
 /// ```
-fn sharp_sgb() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn sharp_sgb() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-NT|SYS-SGB-2)\ ©\ 1994\ Nintendo\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -132,11 +137,12 @@ fn sharp_sgb() -> MatcherDef<SgbRom> {
 /// Sharp SGB2 ROM
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 0003 D").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::sharp_sgb2().parse("© 1998 Nintendo SYS-SGB2-10 LH5S4RY4 0003 D").is_ok());
 /// ```
-fn sharp_sgb2() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn sharp_sgb2() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^©\ 1998\ Nintendo\ (SYS-SGB2-10)\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
@@ -153,11 +159,12 @@ fn sharp_sgb2() -> MatcherDef<SgbRom> {
 /// OKI Semiconductor SGB/SGB2 ROM
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sgb_rom;
-/// assert!(parse_sgb_rom("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sgb_rom::oki().parse("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_ok());
 /// ```
-fn oki() -> MatcherDef<SgbRom> {
-    MatcherDef(
+pub fn oki() -> &'static impl LabelParser<SgbRom> {
+    single_parser!(
+        SgbRom,
         r#"^(SYS-SGB-NT|SYS-SGB-2|SYS-SGB2-10)\ ©\ 1998\ Nintendo\ (M534011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(SgbRom {
@@ -171,20 +178,16 @@ fn oki() -> MatcherDef<SgbRom> {
     )
 }
 
-pub fn parse_sgb_rom(text: &str) -> Option<SgbRom> {
-    static MATCHER: OnceCell<MatcherSet<SgbRom>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| {
-            MatcherSet::new(&[
-                toshiba(),
-                sharp_sgb(),
-                sharp_sgb2(),
-                oki(),
-                unknown(),
-                unknown2(),
-                unknown3(),
-                unknown4(),
-            ])
-        })
-        .apply(text)
+pub fn sgb_rom() -> &'static impl LabelParser<SgbRom> {
+    multi_parser!(
+        SgbRom,
+        toshiba(),
+        sharp_sgb(),
+        sharp_sgb2(),
+        oki(),
+        unknown(),
+        unknown2(),
+        unknown3(),
+        unknown4(),
+    )
 }

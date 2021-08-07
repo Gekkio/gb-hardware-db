@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Accelerometer {
@@ -11,11 +10,12 @@ pub struct Accelerometer {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_accelerometer;
-/// assert!(parse_accelerometer("2738109451 0028 ADXL202JQC").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::accelerometer::accelerometer().parse("2738109451 0028 ADXL202JQC").is_ok());
 /// ```
-fn analog_adxl202jqc() -> MatcherDef<Accelerometer> {
-    MatcherDef(
+pub fn analog_adxl202jqc() -> &'static impl LabelParser<Accelerometer> {
+    single_parser!(
+        Accelerometer,
         r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC$"#,
         move |c| {
             Ok(Accelerometer {
@@ -24,13 +24,10 @@ fn analog_adxl202jqc() -> MatcherDef<Accelerometer> {
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
-        },
+        }
     )
 }
 
-pub fn parse_accelerometer(text: &str) -> Option<Accelerometer> {
-    static MATCHER: OnceCell<Matcher<Accelerometer>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| analog_adxl202jqc().into())
-        .apply(text)
+pub fn accelerometer() -> &'static impl LabelParser<Accelerometer> {
+    analog_adxl202jqc()
 }

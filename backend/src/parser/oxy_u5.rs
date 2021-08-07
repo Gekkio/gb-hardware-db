@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct OxyU5 {
@@ -11,11 +10,12 @@ pub struct OxyU5 {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_oxy_u5;
-/// assert!(parse_oxy_u5("CP6465 B 02 KOR0531 635963").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::oxy_u5::unknown().parse("CP6465 B 02 KOR0531 635963").is_ok());
 /// ```
-fn unknown() -> MatcherDef<OxyU5> {
-    MatcherDef(
+pub fn unknown() -> &'static impl LabelParser<OxyU5> {
+    single_parser!(
+        OxyU5,
         r#"^CP6465\ B\ 02\ KOR([0-9]{2})([0-9]{2})\ [0-9]{6}$"#,
         move |c| {
             Ok(OxyU5 {
@@ -28,7 +28,6 @@ fn unknown() -> MatcherDef<OxyU5> {
     )
 }
 
-pub fn parse_oxy_u5(text: &str) -> Option<OxyU5> {
-    static MATCHER: OnceCell<Matcher<OxyU5>> = OnceCell::new();
-    MATCHER.get_or_init(|| unknown().into()).apply(text)
+pub fn oxy_u5() -> &'static impl LabelParser<OxyU5> {
+    unknown()
 }

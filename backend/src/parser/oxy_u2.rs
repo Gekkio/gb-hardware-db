@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year1, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct OxyU2 {
@@ -11,11 +10,12 @@ pub struct OxyU2 {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_oxy_u2;
-/// assert!(parse_oxy_u2("MITSUMI JAPAN 528A PM C").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::oxy_u2::mitsumi_pm().parse("MITSUMI JAPAN 528A PM C").is_ok());
 /// ```
-fn mitsumi_pm() -> MatcherDef<OxyU2> {
-    MatcherDef(
+pub fn mitsumi_pm() -> &'static impl LabelParser<OxyU2> {
+    single_parser!(
+        OxyU2,
         r#"^MITSUMI\ JAPAN\ ([0-9])([0-9]{2})\ ?[A-Z]\ PM\ C$"#,
         move |c| {
             Ok(OxyU2 {
@@ -28,7 +28,6 @@ fn mitsumi_pm() -> MatcherDef<OxyU2> {
     )
 }
 
-pub fn parse_oxy_u2(text: &str) -> Option<OxyU2> {
-    static MATCHER: OnceCell<Matcher<OxyU2>> = OnceCell::new();
-    MATCHER.get_or_init(|| mitsumi_pm().into()).apply(text)
+pub fn oxy_u2() -> &'static impl LabelParser<OxyU2> {
+    mitsumi_pm()
 }

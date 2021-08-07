@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, StaticRam};
+use super::{week2, year1, year2, LabelParser, Manufacturer, StaticRam};
+use crate::macros::{multi_parser, single_parser};
 
 /// NEC μPD442012A-X
 ///
@@ -8,12 +7,13 @@ use super::{week2, year1, year2, Manufacturer, MatcherDef, MatcherSet, StaticRam
 ///   "NEC data sheet - MOS integrated circuit μPD442012A-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("NEC JAPAN D442012AGY-BB85X-MJH 0037K7027").is_some());
-/// assert!(parse_sram_tsop1_48("NEC JAPAN D442012AGY-BC85X-MJH 0330K7043").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BB85X-MJH 0037K7027").is_ok());
+/// assert!(parser::sram_tsop1_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BC85X-MJH 0330K7043").is_ok());
 /// ```
-fn nec_upd442012a() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn nec_upd442012a() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^NEC\ JAPAN\ D442012AGY-(BB|BC|DD)([0-9]{2})X-MJH\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(StaticRam {
@@ -37,11 +37,12 @@ fn nec_upd442012a() -> MatcherDef<StaticRam> {
 ///   "NEC data sheet - MOS integrated circuit μPD442012L-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("NEC JAPAN D442012LGY-B85X-MJH 0138K7037").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::nec_upd442012l().parse("NEC JAPAN D442012LGY-B85X-MJH 0138K7037").is_ok());
 /// ```
-fn nec_upd442012l() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn nec_upd442012l() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^NEC\ JAPAN\ D442012LGY-(B|C|D)([0-9]{2})X-MJH\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(StaticRam {
@@ -62,11 +63,12 @@ fn nec_upd442012l() -> MatcherDef<StaticRam> {
 /// Fujitsu MB82D12160
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("JAPAN 82D12160-10FN 0238 M88N").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::fujitsu_mb82d12160().parse("JAPAN 82D12160-10FN 0238 M88N").is_ok());
 /// ```
-fn fujitsu_mb82d12160() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn fujitsu_mb82d12160() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^JAPAN\ 82D12160-10FN\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}[A-Z]$"#,
         move |c| {
             Ok(StaticRam {
@@ -86,11 +88,12 @@ fn fujitsu_mb82d12160() -> MatcherDef<StaticRam> {
 ///   "hynix HY62LF16206A-LT12C 128kx16bit full CMOS SRAM"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("Hynix KOREA HY62LF16206A 0223A LT12C").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::hynix_hy62lf16206a().parse("Hynix KOREA HY62LF16206A 0223A LT12C").is_ok());
 /// ```
-fn hynix_hy62lf16206a() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn hynix_hy62lf16206a() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^Hynix\ KOREA\ HY62LF16206A\ ([0-9]{2})([0-9]{2})[A-Z]\ LT12C$"#,
         move |c| {
             Ok(StaticRam {
@@ -107,11 +110,12 @@ fn hynix_hy62lf16206a() -> MatcherDef<StaticRam> {
 /// STMicro M68AS128
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("M68AS128 DL70N6 AANFG F6 TWN 8B 414").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::st_micro_m68as128dl70n6().parse("M68AS128 DL70N6 AANFG F6 TWN 8B 414").is_ok());
 /// ```
-fn st_micro_m68as128dl70n6() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn st_micro_m68as128dl70n6() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^([A-Z]\ )?M68AS128\ DL70N6\ [A-Z]{5}\ F6\ TWN\ [[:alnum:]]{2}\ ([0-9])([0-9]{2})$"#,
         move |c| {
             Ok(StaticRam {
@@ -131,11 +135,12 @@ fn st_micro_m68as128dl70n6() -> MatcherDef<StaticRam> {
 ///   "AMIC LP62S16128BW-T series - 128k x 16 bit low voltage CMOS SRAM"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("AMIC LP62S16128BW-70LLTF P4060473FB 0540A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::amic_lp62s16128bw().parse("AMIC LP62S16128BW-70LLTF P4060473FB 0540A").is_ok());
 /// ```
-fn amic_lp62s16128bw() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn amic_lp62s16128bw() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^AMIC\ LP62S16128BW-([0-9]{2})(LLT|LLTF)\ [[:alnum:]]{10}\ ([0-9]{2})([0-9]{2})[A-Z]$"#,
         move |c| {
             Ok(StaticRam {
@@ -159,12 +164,13 @@ fn amic_lp62s16128bw() -> MatcherDef<StaticRam> {
 ///   "BSI BS616LV2018 - Very Low Power/Voltage CMOS SRAM 128k x 16 bit"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN").is_some());
-/// assert!(parse_sram_tsop1_48("BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN").is_ok());
+/// assert!(parser::sram_tsop1_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN").is_ok());
 /// ```
-fn bsi_bs616lv2018() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn bsi_bs616lv2018() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^BSI\ BS616LV2018(TC|TI)-([0-9]{2})\ S31686-2FY[0-9]{5}.1\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
         move |c| {
             Ok(StaticRam {
@@ -188,13 +194,14 @@ fn bsi_bs616lv2018() -> MatcherDef<StaticRam> {
 ///   "BSI BS616LV2019 - Very Low Power CMOS SRAM 128k x 16 bit"
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("BSI BS616LV2019TC-70 S31687FZ26013.1 L0335 TAIWAN").is_some());
-/// assert!(parse_sram_tsop1_48("BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN").is_some());
-/// assert!(parse_sram_tsop1_48("BSI BS616LV2019TC-70 S31687FZ31012.1 L0410 TAIWAN").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ26013.1 L0335 TAIWAN").is_ok());
+/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN").is_ok());
+/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ31012.1 L0410 TAIWAN").is_ok());
 /// ```
-fn bsi_bs616lv2019() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn bsi_bs616lv2019() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^BSI\ BS616LV2019(TC|TI)-([0-9]{2})\ S31687FZ[0-9]{5}.1\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
         move |c| {
             Ok(StaticRam {
@@ -215,11 +222,12 @@ fn bsi_bs616lv2019() -> MatcherDef<StaticRam> {
 /// Toshiba TC55V200
 ///
 /// ```
-/// # use gbhwdb_backend::parser::parse_sram_tsop1_48;
-/// assert!(parse_sram_tsop1_48("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram_tsop1_48::toshiba_tc55v200().parse("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_ok());
 /// ```
-fn toshiba_tc55v200() -> MatcherDef<StaticRam> {
-    MatcherDef(
+pub fn toshiba_tc55v200() -> &'static impl LabelParser<StaticRam> {
+    single_parser!(
+        StaticRam,
         r#"^K13529\ JAPAN\ ([0-9]{2})([0-9]{2})\ MAD\ TC55V200\ FT-([0-9]{2})$"#,
         move |c| {
             Ok(StaticRam {
@@ -233,21 +241,17 @@ fn toshiba_tc55v200() -> MatcherDef<StaticRam> {
     )
 }
 
-pub fn parse_sram_tsop1_48(text: &str) -> Option<StaticRam> {
-    static MATCHER: OnceCell<MatcherSet<StaticRam>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| {
-            MatcherSet::new(&[
-                nec_upd442012a(),
-                nec_upd442012l(),
-                fujitsu_mb82d12160(),
-                hynix_hy62lf16206a(),
-                st_micro_m68as128dl70n6(),
-                amic_lp62s16128bw(),
-                bsi_bs616lv2018(),
-                bsi_bs616lv2019(),
-                toshiba_tc55v200(),
-            ])
-        })
-        .apply(text)
+pub fn sram_tsop1_48() -> &'static impl LabelParser<StaticRam> {
+    multi_parser!(
+        StaticRam,
+        nec_upd442012a(),
+        nec_upd442012l(),
+        fujitsu_mb82d12160(),
+        hynix_hy62lf16206a(),
+        st_micro_m68as128dl70n6(),
+        amic_lp62s16128bw(),
+        bsi_bs616lv2018(),
+        bsi_bs616lv2019(),
+        toshiba_tc55v200(),
+    )
 }

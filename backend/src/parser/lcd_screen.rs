@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{month2, year1, MatcherDef, MatcherSet, Year};
+use super::{month2, year1, LabelParser, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LcdScreen {
@@ -9,11 +8,28 @@ pub struct LcdScreen {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_lcd_screen;
-/// assert!(parse_lcd_screen("S890220").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::lcd_screen::lcd_screen1().parse("S890220").is_ok());
 /// ```
-fn lcd_screen() -> MatcherDef<LcdScreen> {
-    MatcherDef(r#"^.*[0-9]([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
+pub fn lcd_screen1() -> &'static impl LabelParser<LcdScreen> {
+    single_parser!(
+        LcdScreen,
+        r#"^.*[0-9]([0-9])([0-9]{2})[0-9]{2}$"#,
+        move |c| {
+            Ok(LcdScreen {
+                year: Some(year1(&c[1])?),
+                month: Some(month2(&c[2])?),
+            })
+        }
+    )
+}
+
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::lcd_screen::lcd_screen2().parse("T61102S T61104").is_ok());
+/// ```
+pub fn lcd_screen2() -> &'static impl LabelParser<LcdScreen> {
+    single_parser!(LcdScreen, r#"^.*([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
         Ok(LcdScreen {
             year: Some(year1(&c[1])?),
             month: Some(month2(&c[2])?),
@@ -21,22 +37,6 @@ fn lcd_screen() -> MatcherDef<LcdScreen> {
     })
 }
 
-/// ```
-/// # use gbhwdb_backend::parser::parse_lcd_screen;
-/// assert!(parse_lcd_screen("T61102S T61104").is_some());
-/// ```
-fn lcd_screen2() -> MatcherDef<LcdScreen> {
-    MatcherDef(r#"^.*([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
-        Ok(LcdScreen {
-            year: Some(year1(&c[1])?),
-            month: Some(month2(&c[2])?),
-        })
-    })
-}
-
-pub fn parse_lcd_screen(text: &str) -> Option<LcdScreen> {
-    static MATCHER: OnceCell<MatcherSet<LcdScreen>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| MatcherSet::new(&[lcd_screen(), lcd_screen2()]))
-        .apply(text)
+pub fn lcd_screen() -> &'static impl LabelParser<LcdScreen> {
+    multi_parser!(LcdScreen, lcd_screen1(), lcd_screen2())
 }

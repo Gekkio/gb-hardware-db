@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{month2, week2, year1, MatcherDef, MatcherSet, Year};
+use super::{month2, week2, year1, LabelParser, Year};
+use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LcdChip {
@@ -10,11 +9,11 @@ pub struct LcdChip {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_lcd_chip;
-/// assert!(parse_lcd_chip("110").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::lcd_chip::lcd_chip_old().parse("110").is_ok());
 /// ```
-fn lcd_chip_old() -> MatcherDef<LcdChip> {
-    MatcherDef(r#"^([0-9])([0-9]{2})$"#, move |c| {
+pub fn lcd_chip_old() -> &'static impl LabelParser<LcdChip> {
+    single_parser!(LcdChip, r#"^([0-9])([0-9]{2})$"#, move |c| {
         Ok(LcdChip {
             year: Some(year1(&c[1])?),
             month: Some(month2(&c[2])?),
@@ -24,11 +23,11 @@ fn lcd_chip_old() -> MatcherDef<LcdChip> {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_lcd_chip;
-/// assert!(parse_lcd_chip("5341").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::lcd_chip::lcd_chip_new().parse("5341").is_ok());
 /// ```
-fn lcd_chip_new() -> MatcherDef<LcdChip> {
-    MatcherDef(r#"^([0-9])([0-9]{2})[0-9]$"#, move |c| {
+pub fn lcd_chip_new() -> &'static impl LabelParser<LcdChip> {
+    single_parser!(LcdChip, r#"^([0-9])([0-9]{2})[0-9]$"#, move |c| {
         Ok(LcdChip {
             year: Some(year1(&c[1])?),
             month: None,
@@ -37,9 +36,6 @@ fn lcd_chip_new() -> MatcherDef<LcdChip> {
     })
 }
 
-pub fn parse_lcd_chip(text: &str) -> Option<LcdChip> {
-    static MATCHER: OnceCell<MatcherSet<LcdChip>> = OnceCell::new();
-    MATCHER
-        .get_or_init(|| MatcherSet::new(&[lcd_chip_old(), lcd_chip_new()]))
-        .apply(text)
+pub fn lcd_chip() -> &'static impl LabelParser<LcdChip> {
+    multi_parser!(LcdChip, lcd_chip_old(), lcd_chip_new())
 }

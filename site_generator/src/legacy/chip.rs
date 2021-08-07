@@ -1,6 +1,6 @@
 use gbhwdb_backend::{
     input::Chip,
-    parser::{self, Manufacturer, Year},
+    parser::{self, LabelParser, Manufacturer, Year},
 };
 
 use crate::legacy::{to_legacy_manufacturer, to_legacy_year, LegacyChip};
@@ -26,22 +26,22 @@ pub trait ToLegacyChip {
     }
 }
 
-pub fn map_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Option<T>>(
+pub fn map_legacy_chip<T: ToLegacyChip, F: LabelParser<T>>(
     year_hint: Option<u16>,
     chip: &Option<Chip>,
-    f: F,
+    f: &F,
 ) -> Option<LegacyChip> {
     chip.as_ref()
         .map(|chip| to_legacy_chip(year_hint, chip, f).unwrap_or_default())
 }
 
-pub fn to_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Option<T>>(
+pub fn to_legacy_chip<T: ToLegacyChip, F: LabelParser<T>>(
     year_hint: Option<u16>,
     chip: &Chip,
-    f: F,
+    f: &F,
 ) -> Option<LegacyChip> {
     chip.label.as_ref().map(|label| {
-        let chip = f(label).unwrap_or_else(|| panic!("{}", label));
+        let chip = f.parse(label).unwrap_or_else(|_| panic!("{}", label));
         LegacyChip {
             label: Some(label.to_owned()),
             kind: chip.kind(),
@@ -54,9 +54,9 @@ pub fn to_legacy_chip<T: ToLegacyChip, F: FnOnce(&str) -> Option<T>>(
     })
 }
 
-impl ToLegacyChip for parser::Gen1Cpu {
+impl ToLegacyChip for parser::Gen1Soc {
     fn kind(&self) -> Option<String> {
-        use gbhwdb_backend::parser::Gen1CpuKind::*;
+        use gbhwdb_backend::parser::Gen1SocKind::*;
         Some(
             (match self.kind {
                 Dmg0 => "DMG-CPU",
@@ -81,9 +81,9 @@ impl ToLegacyChip for parser::Gen1Cpu {
     }
 }
 
-impl ToLegacyChip for parser::Gen2Cpu {
+impl ToLegacyChip for parser::Gen2Soc {
     fn kind(&self) -> Option<String> {
-        use gbhwdb_backend::parser::Gen2CpuKind::*;
+        use gbhwdb_backend::parser::Gen2SocKind::*;
         Some(
             (match self.kind {
                 Mgb => "CPU MGB",
@@ -103,7 +103,7 @@ impl ToLegacyChip for parser::Gen2Cpu {
     }
 }
 
-impl ToLegacyChip for parser::CgbCpu {
+impl ToLegacyChip for parser::CgbSoc {
     fn kind(&self) -> Option<String> {
         Some(self.kind.clone())
     }
@@ -118,7 +118,7 @@ impl ToLegacyChip for parser::CgbCpu {
     }
 }
 
-impl ToLegacyChip for parser::AgbCpu {
+impl ToLegacyChip for parser::AgbSoc {
     fn kind(&self) -> Option<String> {
         Some(self.kind.clone())
     }
@@ -226,7 +226,7 @@ impl ToLegacyChip for parser::MgbAmp {
     }
 }
 
-impl ToLegacyChip for parser::CgbReg {
+impl ToLegacyChip for parser::cgb_reg::CgbReg {
     fn kind(&self) -> Option<String> {
         Some("IR3E06N".to_owned())
     }
@@ -274,7 +274,7 @@ impl ToLegacyChip for parser::Transformer {
     }
 }
 
-impl ToLegacyChip for parser::Cic {
+impl ToLegacyChip for parser::cic::Cic {
     fn kind(&self) -> Option<String> {
         Some(self.kind.clone())
     }
@@ -322,7 +322,7 @@ impl ToLegacyChip for parser::SgbRom {
     }
 }
 
-impl ToLegacyChip for parser::AgbU4 {
+impl ToLegacyChip for parser::AgbPmic {
     fn kind(&self) -> Option<String> {
         self.kind.clone()
     }
@@ -352,7 +352,7 @@ impl ToLegacyChip for parser::AgbAmp {
     }
 }
 
-impl ToLegacyChip for parser::AgsU4 {
+impl ToLegacyChip for parser::AgsPmicOld {
     fn kind(&self) -> Option<String> {
         self.kind.clone()
     }
@@ -367,7 +367,7 @@ impl ToLegacyChip for parser::AgsU4 {
     }
 }
 
-impl ToLegacyChip for parser::AgsU5 {
+impl ToLegacyChip for parser::AgsChargeController {
     fn kind(&self) -> Option<String> {
         self.kind.clone()
     }

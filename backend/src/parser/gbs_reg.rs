@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year1, Manufacturer, Matcher, MatcherDef, Year};
+use super::{week2, year1, LabelParser, Manufacturer, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct GbsReg {
@@ -11,11 +10,11 @@ pub struct GbsReg {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_gbs_reg;
-/// assert!(parse_gbs_reg("548 592F").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::gbs_reg::mitsumi_mm1592f().parse("548 592F").is_ok());
 /// ```
-fn mitsumi_1592f() -> MatcherDef<GbsReg> {
-    MatcherDef(r#"^([0-9])([0-9]{2})\ 592F$"#, move |c| {
+pub fn mitsumi_mm1592f() -> &'static impl LabelParser<GbsReg> {
+    single_parser!(GbsReg, r#"^([0-9])([0-9]{2})\ 592F$"#, move |c| {
         Ok(GbsReg {
             kind: "MM1592F".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -25,7 +24,6 @@ fn mitsumi_1592f() -> MatcherDef<GbsReg> {
     })
 }
 
-pub fn parse_gbs_reg(text: &str) -> Option<GbsReg> {
-    static MATCHER: OnceCell<Matcher<GbsReg>> = OnceCell::new();
-    MATCHER.get_or_init(|| mitsumi_1592f().into()).apply(text)
+pub fn gbs_reg() -> &'static impl LabelParser<GbsReg> {
+    mitsumi_mm1592f()
 }

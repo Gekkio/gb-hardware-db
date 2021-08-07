@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgAmp {
@@ -9,12 +8,13 @@ pub struct DmgAmp {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_dmg_amp;
-/// assert!(parse_dmg_amp("DMG-AMP IR3R40 9222 AA").is_some());
-/// assert!(parse_dmg_amp("DMG-AMP IR3R40 8909 A").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::dmg_amp::sharp_ir3r40().parse("DMG-AMP IR3R40 9222 AA").is_ok());
+/// assert!(parser::dmg_amp::sharp_ir3r40().parse("DMG-AMP IR3R40 8909 A").is_ok());
 /// ```
-fn dmg_amp() -> MatcherDef<DmgAmp> {
-    MatcherDef(
+pub fn sharp_ir3r40() -> &'static impl LabelParser<DmgAmp> {
+    single_parser!(
+        DmgAmp,
         r#"^DMG-AMP\ IR3R40\ ([0-9]{2})([0-9]{2})\ [A-Z]{1,2}$"#,
         move |c| {
             Ok(DmgAmp {
@@ -25,7 +25,6 @@ fn dmg_amp() -> MatcherDef<DmgAmp> {
     )
 }
 
-pub fn parse_dmg_amp(text: &str) -> Option<DmgAmp> {
-    static MATCHER: OnceCell<Matcher<DmgAmp>> = OnceCell::new();
-    MATCHER.get_or_init(|| dmg_amp().into()).apply(text)
+pub fn dmg_amp() -> &'static impl LabelParser<DmgAmp> {
+    sharp_ir3r40()
 }

@@ -1,5 +1,9 @@
 use anyhow::Error;
-use gbhwdb_backend::{config::cartridge::*, input::cartridge::*, parser};
+use gbhwdb_backend::{
+    config::cartridge::*,
+    input::cartridge::*,
+    parser::{self, LabelParser},
+};
 use glob::glob;
 use std::{
     fs::{self, create_dir_all, File},
@@ -148,38 +152,42 @@ fn process_dmg_submissions() -> Result<(), Error> {
             }
 
             let cpu = console.mainboard.u1.as_ref().map(|chip| {
-                to_legacy_chip(None, chip, parser::parse_gen1_cpu).unwrap_or_else(|| LegacyChip {
-                    kind: Some("blob".to_string()),
-                    ..LegacyChip::default()
-                })
-            });
-            let year_hint = cpu.as_ref().map(|cpu| cpu.year.unwrap_or(1996));
-
-            let work_ram = console.mainboard.u2.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::parse_ram).unwrap_or_else(|| LegacyChip {
-                    kind: Some("blob".to_string()),
-                    ..LegacyChip::default()
-                })
-            });
-            let video_ram = console.mainboard.u3.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::parse_ram).unwrap_or_else(|| LegacyChip {
-                    kind: Some("blob".to_string()),
-                    ..LegacyChip::default()
-                })
-            });
-            let amplifier = console.mainboard.u4.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::parse_dmg_amp).unwrap_or_else(|| {
+                to_legacy_chip(None, chip, parser::gen1_soc::gen1_soc()).unwrap_or_else(|| {
                     LegacyChip {
                         kind: Some("blob".to_string()),
                         ..LegacyChip::default()
                     }
                 })
             });
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("4.194304 MHz".to_owned()),
-                    ..chip
-                });
+            let year_hint = cpu.as_ref().map(|cpu| cpu.year.unwrap_or(1996));
+
+            let work_ram = console.mainboard.u2.as_ref().map(|chip| {
+                to_legacy_chip(year_hint, chip, parser::ram::ram()).unwrap_or_else(|| LegacyChip {
+                    kind: Some("blob".to_string()),
+                    ..LegacyChip::default()
+                })
+            });
+            let video_ram = console.mainboard.u3.as_ref().map(|chip| {
+                to_legacy_chip(year_hint, chip, parser::ram::ram()).unwrap_or_else(|| LegacyChip {
+                    kind: Some("blob".to_string()),
+                    ..LegacyChip::default()
+                })
+            });
+            let amplifier = console.mainboard.u4.as_ref().map(|chip| {
+                to_legacy_chip(year_hint, chip, parser::dmg_amp::dmg_amp()).unwrap_or_else(|| {
+                    LegacyChip {
+                        kind: Some("blob".to_string()),
+                        ..LegacyChip::default()
+                    }
+                })
+            });
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("4.194304 MHz".to_owned()),
+                        ..chip
+                    },
+                );
 
             let mainboard = LegacyDmgMainboard {
                 kind: console.mainboard.label.clone(),
@@ -194,7 +202,7 @@ fn process_dmg_submissions() -> Result<(), Error> {
             };
 
             let lcd_board = console.lcd_board.as_ref().map(|board| {
-                let regulator = map_legacy_chip(year_hint, &board.chip, parser::parse_dmg_reg);
+                let regulator = map_legacy_chip(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
                 let lcd_panel = board
                     .screen
                     .as_ref()
@@ -237,16 +245,18 @@ fn process_dmg_submissions() -> Result<(), Error> {
                 .as_ref()
                 .filter(|_| !console.mainboard.outlier)
                 .map(|stamp| {
-                    gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                        .unwrap_or_else(|| panic!("{}", stamp))
+                    gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                        .parse(&stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
                 });
             let lcd_board_stamp = console
                 .lcd_board
                 .as_ref()
                 .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
                 .map(|stamp| {
-                    gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                        .unwrap_or_else(|| panic!("{}", stamp))
+                    gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                        .parse(&stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
                 });
             let stamp = mainboard_stamp.or(lcd_board_stamp);
 
@@ -343,12 +353,16 @@ fn process_sgb_submissions() -> Result<(), Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen1_cpu);
-            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_icd2);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_ram);
-            let video_ram = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_ram);
-            let rom = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_sgb_rom);
-            let cic = map_legacy_chip(year_hint, &console.mainboard.u6, parser::parse_cic);
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::gen1_soc::gen1_soc(),
+            );
+            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let video_ram = map_legacy_chip(year_hint, &console.mainboard.u4, parser::ram::ram());
+            let rom = map_legacy_chip(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
+            let cic = map_legacy_chip(year_hint, &console.mainboard.u6, parser::cic::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -410,17 +424,23 @@ fn process_mgb_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_ram);
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::gen2_soc::gen2_soc(),
+            );
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_mgb_amp);
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_dmg_reg);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("4.194304 MHz".to_owned()),
-                    ..chip
-                });
+                map_legacy_chip(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("4.194304 MHz".to_owned()),
+                        ..chip
+                    },
+                );
             let mainboard = LegacyMgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -437,8 +457,9 @@ fn process_mgb_submissions() -> Result<(), Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                    .unwrap_or_else(|| panic!("{}", stamp))
+                gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                    .parse(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
             let metadata = LegacyMgbMetadata {
@@ -498,18 +519,28 @@ fn process_mgl_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_ram);
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::gen2_soc::gen2_soc(),
+            );
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_mgb_amp);
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_dmg_reg);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("4.194304 MHz".to_owned()),
-                    ..chip
-                });
-            let t1 = map_legacy_chip(year_hint, &console.mainboard.t1, parser::parse_transformer);
+                map_legacy_chip(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("4.194304 MHz".to_owned()),
+                        ..chip
+                    },
+                );
+            let t1 = map_legacy_chip(
+                year_hint,
+                &console.mainboard.t1,
+                parser::transformer::transformer(),
+            );
             let mainboard = LegacyMglMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -527,8 +558,9 @@ fn process_mgl_submissions() -> Result<(), Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|| panic!("{}", stamp))
+                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                    .parse(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
             let metadata = LegacyMglMetadata {
@@ -585,19 +617,25 @@ fn process_sgb2_submissions() -> Result<(), Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_gen2_cpu);
-            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_icd2);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_ram);
-            let rom = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_sgb_rom);
-            let cic = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_cic);
-            let coil = map_legacy_chip(year_hint, &console.mainboard.coil1, parser::parse_coil);
-            let crystal =
-                map_legacy_chip(year_hint, &console.mainboard.xtal1, parser::parse_crystal).map(
-                    |chip| LegacyChip {
-                        kind: Some("20.971520 MHz".to_owned()),
-                        ..chip
-                    },
-                );
+            let cpu = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u1,
+                parser::gen2_soc::gen2_soc(),
+            );
+            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let rom = map_legacy_chip(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
+            let cic = map_legacy_chip(year_hint, &console.mainboard.u5, parser::cic::cic());
+            let coil = map_legacy_chip(year_hint, &console.mainboard.coil1, parser::coil::coil());
+            let crystal = map_legacy_chip(
+                year_hint,
+                &console.mainboard.xtal1,
+                parser::crystal::crystal(),
+            )
+            .map(|chip| LegacyChip {
+                kind: Some("20.971520 MHz".to_owned()),
+                ..chip
+            });
             let mainboard = LegacySgb2Mainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -660,17 +698,19 @@ fn process_cgb_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(1998));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_cgb_cpu);
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_ram);
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
+            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_mgb_amp);
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_cgb_reg);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("8.388608 MHz".to_owned()),
-                    ..chip
-                });
+                map_legacy_chip(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("8.388608 MHz".to_owned()),
+                        ..chip
+                    },
+                );
             let mainboard = LegacyCgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -690,8 +730,9 @@ fn process_cgb_submissions() -> Result<(), Error> {
                     if stamp.starts_with(&['6', '7', '8', '9'][..]) {
                         (
                             Some(
-                                gbhwdb_backend::parser::parse_dmg_stamp(&stamp)
-                                    .unwrap_or_else(|| panic!("{}", stamp)),
+                                gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                                    .parse(&stamp)
+                                    .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
                             None,
                         )
@@ -699,8 +740,9 @@ fn process_cgb_submissions() -> Result<(), Error> {
                         (
                             None,
                             Some(
-                                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                                    .unwrap_or_else(|| panic!("{}", stamp)),
+                                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                                    .parse(&stamp)
+                                    .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
                         )
                     }
@@ -767,22 +809,28 @@ fn process_agb_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u2,
-                parser::parse_sram_tsop1_48,
+                parser::sram_tsop1_48::sram_tsop1_48(),
             );
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_reg);
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_agb_u4);
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
+            let u4 = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u4,
+                parser::agb_pmic::agb_pmic(),
+            );
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u6, parser::parse_agb_amp);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("4.194304 MHz".to_owned()),
-                    ..chip
-                });
+                map_legacy_chip(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("4.194304 MHz".to_owned()),
+                        ..chip
+                    },
+                );
             let mainboard = LegacyAgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -799,8 +847,9 @@ fn process_agb_submissions() -> Result<(), Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|| panic!("{}", stamp))
+                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                    .parse(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
             let metadata = LegacyAgbMetadata {
@@ -859,21 +908,31 @@ fn process_ags_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u2,
-                parser::parse_sram_tsop1_48,
+                parser::sram_tsop1_48::sram_tsop1_48(),
             );
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::parse_agb_amp);
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_ags_u4);
-            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_ags_u5);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.x1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("4.194304 MHz".to_owned()),
-                    ..chip
-                });
+                map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp());
+            let u4 = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u4,
+                parser::ags_pmic_old::ags_pmic_old(),
+            );
+            let u5 = map_legacy_chip(
+                year_hint,
+                &console.mainboard.u5,
+                parser::ags_charge_ctrl::ags_charge_ctrl(),
+            );
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.x1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("4.194304 MHz".to_owned()),
+                        ..chip
+                    },
+                );
             let mainboard = LegacyAgsMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -939,20 +998,22 @@ fn process_gbs_submissions() -> Result<(), Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_agb_cpu);
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u2, parser::agb_soc::agb_soc());
             let work_ram = map_legacy_chip(
                 year_hint,
                 &console.mainboard.u3,
-                parser::parse_sram_tsop1_48,
+                parser::sram_tsop1_48::sram_tsop1_48(),
             );
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_gbs_dol);
-            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_gbs_reg);
-            let u6 = map_legacy_chip(year_hint, &console.mainboard.u6, parser::parse_gbs_reg);
-            let crystal = map_legacy_chip(year_hint, &console.mainboard.y1, parser::parse_crystal)
-                .map(|chip| LegacyChip {
-                    kind: Some("33.554432 MHz".to_owned()),
-                    ..chip
-                });
+            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
+            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
+            let u6 = map_legacy_chip(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
+            let crystal =
+                map_legacy_chip(year_hint, &console.mainboard.y1, parser::crystal::crystal()).map(
+                    |chip| LegacyChip {
+                        kind: Some("33.554432 MHz".to_owned()),
+                        ..chip
+                    },
+                );
             let mainboard = LegacyGbsMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -971,8 +1032,9 @@ fn process_gbs_submissions() -> Result<(), Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::parse_cgb_stamp(&stamp)
-                    .unwrap_or_else(|| panic!("{}", stamp))
+                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                    .parse(&stamp)
+                    .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
             let metadata = LegacyGbsMetadata {
@@ -1027,10 +1089,10 @@ fn process_oxy_submissions() -> Result<(), Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::parse_agb_cpu);
-            let u2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::parse_oxy_u2);
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::parse_oxy_u4);
-            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::parse_oxy_u5);
+            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::agb_soc::agb_soc());
+            let u2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::oxy_u2::oxy_u2());
+            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
+            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
             let mainboard = LegacyOxyMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),

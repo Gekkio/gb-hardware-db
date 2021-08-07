@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DmgReg {
@@ -9,13 +8,14 @@ pub struct DmgReg {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_dmg_reg;
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9527 CB").is_some());
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9820 n").is_some());
-/// assert!(parse_dmg_reg("DMG-REG IR3E02 9024 J").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::dmg_reg::sharp_ir3e02().parse("DMG-REG IR3E02 9527 CB").is_ok());
+/// assert!(parser::dmg_reg::sharp_ir3e02().parse("DMG-REG IR3E02 9820 n").is_ok());
+/// assert!(parser::dmg_reg::sharp_ir3e02().parse("DMG-REG IR3E02 9024 J").is_ok());
 /// ```
-fn dmg_reg() -> MatcherDef<DmgReg> {
-    MatcherDef(
+pub fn sharp_ir3e02() -> &'static impl LabelParser<DmgReg> {
+    single_parser!(
+        DmgReg,
         r#"^DMG-REG\ IR3E02\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
             Ok(DmgReg {
@@ -26,7 +26,6 @@ fn dmg_reg() -> MatcherDef<DmgReg> {
     )
 }
 
-pub fn parse_dmg_reg(text: &str) -> Option<DmgReg> {
-    static MATCHER: OnceCell<Matcher<DmgReg>> = OnceCell::new();
-    MATCHER.get_or_init(|| dmg_reg().into()).apply(text)
+pub fn dmg_reg() -> &'static impl LabelParser<DmgReg> {
+    sharp_ir3e02()
 }

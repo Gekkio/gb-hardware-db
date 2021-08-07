@@ -1,6 +1,5 @@
-use once_cell::sync::OnceCell;
-
-use super::{week2, year2, Matcher, MatcherDef, Year};
+use super::{week2, year2, LabelParser, Year};
+use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct AgbReg {
@@ -9,11 +8,12 @@ pub struct AgbReg {
 }
 
 /// ```
-/// # use gbhwdb_backend::parser::parse_agb_reg;
-/// assert!(parse_agb_reg("AGB-REG IR3E09N 0104 C").is_some());
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::agb_reg::sharp_ir3e09n().parse("AGB-REG IR3E09N 0104 C").is_ok());
 /// ```
-fn agb_reg() -> MatcherDef<AgbReg> {
-    MatcherDef(
+pub fn sharp_ir3e09n() -> &'static impl LabelParser<AgbReg> {
+    single_parser!(
+        AgbReg,
         r#"^AGB-REG\ IR3E09N\ ([A0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
             Ok(AgbReg {
@@ -24,7 +24,6 @@ fn agb_reg() -> MatcherDef<AgbReg> {
     )
 }
 
-pub fn parse_agb_reg(text: &str) -> Option<AgbReg> {
-    static MATCHER: OnceCell<Matcher<AgbReg>> = OnceCell::new();
-    MATCHER.get_or_init(|| agb_reg().into()).apply(text)
+pub fn agb_reg() -> &'static impl LabelParser<AgbReg> {
+    sharp_ir3e09n()
 }

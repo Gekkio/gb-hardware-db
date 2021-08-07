@@ -13,7 +13,6 @@ pub use self::{
     cgb_stamp::CgbStamp,
     cic::Cic,
     coil::Coil,
-    crystal::Crystal,
     dmg_amp::DmgAmp,
     dmg_reg::DmgReg,
     dmg_stamp::DmgStamp,
@@ -56,7 +55,11 @@ pub mod cgb_soc;
 pub mod cgb_stamp;
 pub mod cic;
 pub mod coil;
-pub mod crystal;
+pub mod crystal_20mihz;
+pub mod crystal_32kihz;
+pub mod crystal_32mihz;
+pub mod crystal_4mihz;
+pub mod crystal_8mihz;
 pub mod dmg_amp;
 pub mod dmg_reg;
 pub mod dmg_stamp;
@@ -90,6 +93,34 @@ pub struct ChipYearWeek {
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
     pub week: Option<u8>,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Crystal {
+    pub manufacturer: Option<Manufacturer>,
+    pub frequency: u32,
+    pub year: Option<Year>,
+    pub month: Option<u8>,
+    pub week: Option<u8>,
+}
+
+fn kds_month(text: &str) -> Result<u8, String> {
+    match text {
+        "A" => Ok(1),
+        "B" => Ok(2),
+        "C" => Ok(3),
+        "D" => Ok(4),
+        "E" => Ok(5),
+        "F" => Ok(6),
+        "G" => Ok(7),
+        "H" => Ok(8),
+        // I is intentionally skipped
+        "J" => Ok(9),
+        "K" => Ok(10),
+        "L" => Ok(11),
+        "M" => Ok(12),
+        _ => Err(format!("Invalid 1-letter month: {}", text)),
+    }
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]

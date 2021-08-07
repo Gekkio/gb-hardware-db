@@ -294,9 +294,11 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
             ChipRole::RamBackup => {
                 add_details_callback(&mut editor, &details_id, parser::ram_backup::ram_backup())
             }
-            ChipRole::Crystal => {
-                add_details_callback(&mut editor, &details_id, parser::crystal::crystal())
-            }
+            ChipRole::Crystal => add_details_callback(
+                &mut editor,
+                &details_id,
+                parser::crystal_32kihz::crystal_32kihz(),
+            ),
             ChipRole::Flash => {
                 add_details_callback(&mut editor, &details_id, parser::flash::flash())
             }

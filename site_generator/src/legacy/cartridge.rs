@@ -209,7 +209,7 @@ pub fn to_legacy_chip(
                         legacy.week = chip.week;
                     }
                     ChipRole::Crystal => {
-                        let chip = gbhwdb_backend::parser::crystal::crystal()
+                        let chip = gbhwdb_backend::parser::crystal_32kihz::crystal_32kihz()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
                         legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);

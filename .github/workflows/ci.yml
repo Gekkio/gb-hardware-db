@@ -5,6 +5,10 @@ on:
     branches:
     - master
 
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build_only:
     name: Build site

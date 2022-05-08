@@ -1,10 +1,5 @@
 import * as React from 'react'
 
-import Home from './pages/Home'
-import Contribute from './pages/Contribute'
-import ContributeSgb from './pages/ContributeSgb'
-import ContributeSgb2 from './pages/ContributeSgb2'
-import ContributeOxy from './pages/ContributeOxy'
 import Dmg from './pages/Dmg'
 import DmgConsole from './pages/DmgConsole'
 import Sgb from './pages/Sgb'
@@ -31,7 +26,6 @@ import Cartridge from './pages/Cartridge'
 import Game from './pages/Game'
 import Cartridges from './pages/Cartridges'
 import Mapper from './pages/Mapper'
-import MarkdownPage from './pages/MarkdownPage'
 
 namespace Site {
   export interface Props {
@@ -79,18 +73,6 @@ export default function Site(props: Site.Props) {
 
 function renderPage(type: string, props: any) {
   switch (type) {
-    case 'index':
-      return <Home {...props} />
-    case 'contribute':
-      return <Contribute {...props} />
-    case 'contribute-sgb':
-      return <ContributeSgb {...props} />
-    case 'contribute-sgb2':
-      return <ContributeSgb2 {...props} />
-    case 'contribute-oxy':
-      return <ContributeOxy {...props} />
-    case 'contribute-cartridges':
-      return <MarkdownPage {...props} />
     case 'dmg':
       return <Dmg {...props} />
     case 'dmg-console':

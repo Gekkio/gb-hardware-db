@@ -5,7 +5,9 @@ use gbhwdb_backend::{
     parser::{self, LabelParser},
 };
 use glob::glob;
+use site::{build_site, Console};
 use std::{
+    convert::TryFrom,
     fs::{self, create_dir_all, File},
     path::Path,
 };
@@ -15,6 +17,8 @@ use crate::legacy::chip::*;
 use crate::legacy::*;
 
 mod legacy;
+mod site;
+mod template;
 
 fn is_metadata_file(entry: &DirEntry) -> bool {
     entry.file_type().is_file() && entry.file_name() == "metadata.json"
@@ -37,23 +41,26 @@ fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
 }
 
 fn main() -> Result<(), Error> {
+    let mut site = build_site();
     create_dir_all("build/data")?;
-    process_cartridge_submissions()?;
-    process_dmg_submissions()?;
-    process_sgb_submissions()?;
-    process_mgb_submissions()?;
-    process_mgl_submissions()?;
-    process_sgb2_submissions()?;
-    process_cgb_submissions()?;
-    process_agb_submissions()?;
-    process_ags_submissions()?;
-    process_gbs_submissions()?;
-    process_oxy_submissions()?;
+    site.counts.cartridges = process_cartridge_submissions()?;
+    site.counts.update(Console::Dmg, process_dmg_submissions()?);
+    site.counts.update(Console::Sgb, process_sgb_submissions()?);
+    site.counts.update(Console::Mgb, process_mgb_submissions()?);
+    site.counts.update(Console::Mgl, process_mgl_submissions()?);
+    site.counts
+        .update(Console::Sgb2, process_sgb2_submissions()?);
+    site.counts.update(Console::Cgb, process_cgb_submissions()?);
+    site.counts.update(Console::Agb, process_agb_submissions()?);
+    site.counts.update(Console::Ags, process_ags_submissions()?);
+    site.counts.update(Console::Gbs, process_gbs_submissions()?);
+    site.counts.update(Console::Oxy, process_oxy_submissions()?);
+    site.generate_all("build/site")?;
     copy_static_files()?;
     Ok(())
 }
 
-fn process_cartridge_submissions() -> Result<(), Error> {
+fn process_cartridge_submissions() -> Result<u32, Error> {
     use legacy::cartridge::*;
     let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
     let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
@@ -129,10 +136,10 @@ fn process_cartridge_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
     let file = File::create("build/data/cartridges.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_dmg_submissions() -> Result<(), Error> {
+fn process_dmg_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::dmg::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/DMG").min_depth(2).max_depth(2);
@@ -331,10 +338,10 @@ fn process_dmg_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/dmg.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_sgb_submissions() -> Result<(), Error> {
+fn process_sgb_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::sgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/SGB").min_depth(2).max_depth(2);
@@ -399,10 +406,10 @@ fn process_sgb_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/sgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_mgb_submissions() -> Result<(), Error> {
+fn process_mgb_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::mgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/MGB").min_depth(2).max_depth(2);
@@ -492,10 +499,10 @@ fn process_mgb_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/mgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_mgl_submissions() -> Result<(), Error> {
+fn process_mgl_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::mgl::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/MGL").min_depth(2).max_depth(2);
@@ -591,10 +598,10 @@ fn process_mgl_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/mgl.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_sgb2_submissions() -> Result<(), Error> {
+fn process_sgb2_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::sgb2::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/SGB2").min_depth(2).max_depth(2);
@@ -665,10 +672,10 @@ fn process_sgb2_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/sgb2.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_cgb_submissions() -> Result<(), Error> {
+fn process_cgb_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::cgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/CGB").min_depth(2).max_depth(2);
@@ -774,10 +781,10 @@ fn process_cgb_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/cgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_agb_submissions() -> Result<(), Error> {
+fn process_agb_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::agb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/AGB").min_depth(2).max_depth(2);
@@ -875,10 +882,10 @@ fn process_agb_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/agb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_ags_submissions() -> Result<(), Error> {
+fn process_ags_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::ags::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
@@ -977,10 +984,10 @@ fn process_ags_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/ags.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_gbs_submissions() -> Result<(), Error> {
+fn process_gbs_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::gbs::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/GBS").min_depth(2).max_depth(2);
@@ -1067,10 +1074,10 @@ fn process_gbs_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/gbs.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
-fn process_oxy_submissions() -> Result<(), Error> {
+fn process_oxy_submissions() -> Result<u32, Error> {
     use gbhwdb_backend::input::oxy::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);
@@ -1142,7 +1149,7 @@ fn process_oxy_submissions() -> Result<(), Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/oxy.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
-    Ok(())
+    Ok(u32::try_from(submissions.len())?)
 }
 
 fn copy_static_files() -> Result<(), Error> {

@@ -255,40 +255,6 @@ async function main(): Promise<void> {
   }
 
   const pages: PageDeclaration[] = [
-    {
-      type: 'index',
-      title: 'Home',
-      props: {
-        content: await fs.readFile('content/home.markdown', { encoding: 'utf-8' }),
-      },
-    },
-    { type: 'contribute', path: ['contribute', 'index'], title: 'Contribute', props: {} },
-    {
-      type: 'contribute-sgb',
-      path: ['contribute', 'sgb'],
-      title: 'Super Game Boy (SGB) contribution instructions',
-      props: {},
-    },
-    {
-      type: 'contribute-sgb2',
-      path: ['contribute', 'sgb2'],
-      title: 'Super Game Boy 2 (SGB2) contribution instructions',
-      props: {},
-    },
-    {
-      type: 'contribute-cartridges',
-      path: ['contribute', 'cartridges'],
-      title: 'Game cartridge contribution instructions',
-      props: {
-        content: await fs.readFile('content/contribute-cartridges.markdown', { encoding: 'utf-8' }),
-      },
-    },
-    {
-      type: 'contribute-oxy',
-      path: ['contribute', 'oxy'],
-      title: 'Game Boy Micro (OXY) contribution instructions',
-      props: {},
-    },
     { type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {} },
     ...config.consoles.map((type) => {
       const cfg = config.consoleCfgs[type]

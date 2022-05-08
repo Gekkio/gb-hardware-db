@@ -5,11 +5,6 @@ on:
     branches:
     - master
 
-env:
-  RUSTC_WRAPPER: sccache
-  SCCACHE_VERSION: 0.2.15
-  SCCACHE_SHA256: e5d03a9aa3b9fac7e490391bbe22d4f42c840d31ef9eaf127a03101930cbb7ca
-
 jobs:
   build_only:
     name: Build site
@@ -37,16 +32,6 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-      - uses: actions/cache@v2
-        with:
-          path: /home/runner/.cache/sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-sccache-
-      - name: Install sccache
-        run: |
-          .github/scripts/install-sccache.sh
-          echo "$HOME/sccache/bin" >> $GITHUB_PATH
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -67,10 +52,6 @@ jobs:
         with:
           command: test
           args: --all --release
-      - name: Print sccache stats
-        run: sccache --show-stats
-      - name: Stop sccache server
-        run: sccache --stop-server || true
       - name: Run site generation (Rust)
         run: cargo run --release --bin gbhwdb-site-generator
       - name: Run npm install
@@ -81,10 +62,6 @@ jobs:
     name: Build + deploy site
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-    env:
-      RUSTC_WRAPPER: /home/runner/sccache/sccache
-      SCCACHE_VERSION: 0.2.15
-      SCCACHE_SHA256: e5d03a9aa3b9fac7e490391bbe22d4f42c840d31ef9eaf127a03101930cbb7ca
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -107,16 +84,6 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
-      - uses: actions/cache@v2
-        with:
-          path: /home/runner/.cache/sccache
-          key: ${{ runner.os }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-sccache-
-      - name: Install sccache
-        run: |
-          .github/scripts/install-sccache.sh
-          echo "$HOME/sccache/bin" >> $GITHUB_PATH
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -137,10 +104,6 @@ jobs:
         with:
           command: test
           args: --all --release
-      - name: Print sccache stats
-        run: sccache --show-stats
-      - name: Stop sccache server
-        run: sccache --stop-server || true
       - name: Run site generation (Rust)
         run: cargo run --release --bin gbhwdb-site-generator
       - name: Run npm prune

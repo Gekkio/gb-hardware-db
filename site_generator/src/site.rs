@@ -78,7 +78,7 @@ impl SitePath {
 
 impl<const N: usize> From<[&'static str; N]> for SitePath {
     fn from(segments: [&'static str; N]) -> Self {
-        SitePath(segments.into_iter().copied().map(Cow::Borrowed).collect())
+        SitePath(segments.into_iter().map(Cow::Borrowed).collect())
     }
 }
 

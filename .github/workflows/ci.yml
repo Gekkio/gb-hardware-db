@@ -22,16 +22,9 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-      - uses: actions/cache@v2
+      - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          cache-on-failure: true
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -74,16 +67,9 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-      - uses: actions/cache@v2
+      - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          cache-on-failure: true
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:

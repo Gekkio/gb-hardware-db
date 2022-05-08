@@ -6,15 +6,15 @@ edition = "2018"
 publish = false
 
 [dependencies]
-anyhow = "1.0"
-base64 = "0.13"
-chrono = "0.4"
-log = "0.4"
-md-5 = "0.9"
-rayon = "1.4"
-rusoto_core = "0.47"
-rusoto_s3 = "0.47"
-simplelog = "0.10"
-tokio = { version = "1.6.0", features = ["fs", "macros", "rt-multi-thread"] }
-walkdir = "2.2"
-xdg-mime = "0.3"
+anyhow = "1.0.57"
+base64 = "0.13.0"
+chrono = "0.4.19"
+log = "0.4.17"
+md-5 = "0.10.1"
+rayon = "1.5.2"
+rusoto_core = "0.48.0"
+rusoto_s3 = "0.48.0"
+simplelog = "0.12.0"
+tokio = { version = "1.18.1", features = ["fs", "macros", "rt-multi-thread"] }
+walkdir = "2.3.2"
+xdg-mime = "0.3.3"

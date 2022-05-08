@@ -6,15 +6,15 @@ edition = "2018"
 publish = false
 
 [dependencies]
-anyhow = "1.0"
-clap = "2.27"
-cursive = "0.16.3"
+anyhow = "1.0.57"
+clap = "3.1.17"
+cursive = "0.18.0"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"
-image = { version = "0.23", features = ["jpeg_rayon"] }
-itertools = "0.10"
+image = { version = "0.24.2", features = ["jpeg_rayon"] }
+itertools = "0.10.3"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-slug = "0.1"
-strsim = "0.10"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+slug = "0.1.4"
+strsim = "0.10.0"

@@ -3,7 +3,8 @@ use percy_dom::{View, VirtualNode};
 use std::{
     borrow::Cow,
     collections::HashMap,
-    fmt, fs,
+    fmt,
+    fs::{self, create_dir_all},
     path::{Path, PathBuf},
 };
 
@@ -120,6 +121,9 @@ impl Site {
             match page.generate(&self.counts) {
                 Ok(content) => {
                     let target_file = path.join(target_dir);
+                    if let Some(parent) = target_file.parent() {
+                        create_dir_all(parent)?;
+                    }
                     fs::write(target_file, content.as_bytes())?;
                 }
                 Err(err) => {

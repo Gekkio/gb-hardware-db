@@ -1,6 +1,6 @@
 use crate::legacy::console::{LegacyAgsMainboard, LegacyAgsMetadata};
 
-use super::{calendar, calendar_short, chip, Builder, Field, ToCsv};
+use super::{chip, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyAgsMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -15,12 +15,7 @@ impl ToCsv for LegacyAgsMetadata {
                         .add("number_pair", |m| (&m.number_pair).csv())
                         .add("stamp", |m| (&m.stamp).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
+                        .add_date_code()
                 },
             )
             .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)

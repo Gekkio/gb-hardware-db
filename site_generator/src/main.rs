@@ -6,9 +6,8 @@ use gbhwdb_backend::{
     parser::{self, LabelParser},
 };
 use glob::glob;
-use site::{build_site, Console};
 use std::{
-    convert::TryFrom,
+    collections::HashMap,
     fs::{self, create_dir_all, File},
     io::BufWriter,
     path::Path,
@@ -17,8 +16,10 @@ use walkdir::{DirEntry, WalkDir};
 
 use crate::legacy::chip::*;
 use crate::legacy::*;
+use site::{build_site, Console, SubmissionCounts};
 
 mod csv_export;
+mod format;
 mod legacy;
 mod site;
 mod template;
@@ -43,23 +44,60 @@ fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
     }
 }
 
+#[derive(Default)]
+pub struct SiteData {
+    cartridges: Vec<LegacyCartridgeSubmission>,
+    dmg: Vec<LegacyDmgSubmission>,
+    sgb: Vec<LegacySgbSubmission>,
+    mgb: Vec<LegacyMgbSubmission>,
+    mgl: Vec<LegacyMglSubmission>,
+    sgb2: Vec<LegacySgb2Submission>,
+    cgb: Vec<LegacyCgbSubmission>,
+    agb: Vec<LegacyAgbSubmission>,
+    ags: Vec<LegacyAgsSubmission>,
+    gbs: Vec<LegacyGbsSubmission>,
+    oxy: Vec<LegacyOxySubmission>,
+}
+
+impl SiteData {
+    pub fn counts(&self) -> SubmissionCounts {
+        SubmissionCounts {
+            cartridges: self.cartridges.len() as u32,
+            consoles: HashMap::from([
+                (Console::Dmg, self.dmg.len() as u32),
+                (Console::Sgb, self.sgb.len() as u32),
+                (Console::Mgb, self.mgb.len() as u32),
+                (Console::Mgl, self.mgl.len() as u32),
+                (Console::Sgb2, self.sgb2.len() as u32),
+                (Console::Cgb, self.cgb.len() as u32),
+                (Console::Agb, self.agb.len() as u32),
+                (Console::Ags, self.ags.len() as u32),
+                (Console::Gbs, self.gbs.len() as u32),
+                (Console::Oxy, self.oxy.len() as u32),
+            ]),
+        }
+    }
+}
+
 fn main() -> Result<(), Error> {
-    let mut site = build_site();
+    let mut data = SiteData::default();
     create_dir_all("build/data")?;
     create_dir_all("build/site/static/export/consoles")?;
-    site.counts.cartridges = process_cartridge_submissions()?;
-    site.counts.update(Console::Dmg, process_dmg_submissions()?);
-    site.counts.update(Console::Sgb, process_sgb_submissions()?);
-    site.counts.update(Console::Mgb, process_mgb_submissions()?);
-    site.counts.update(Console::Mgl, process_mgl_submissions()?);
-    site.counts
-        .update(Console::Sgb2, process_sgb2_submissions()?);
-    site.counts.update(Console::Cgb, process_cgb_submissions()?);
-    site.counts.update(Console::Agb, process_agb_submissions()?);
-    site.counts.update(Console::Ags, process_ags_submissions()?);
-    site.counts.update(Console::Gbs, process_gbs_submissions()?);
-    site.counts.update(Console::Oxy, process_oxy_submissions()?);
-    site.generate_all("build/site")?;
+
+    data.cartridges = process_cartridge_submissions()?;
+    data.dmg = process_dmg_submissions()?;
+    data.sgb = process_sgb_submissions()?;
+    data.mgb = process_mgb_submissions()?;
+    data.mgl = process_mgl_submissions()?;
+    data.sgb2 = process_sgb2_submissions()?;
+    data.cgb = process_cgb_submissions()?;
+    data.agb = process_agb_submissions()?;
+    data.ags = process_ags_submissions()?;
+    data.gbs = process_gbs_submissions()?;
+    data.oxy = process_oxy_submissions()?;
+
+    let mut site = build_site();
+    site.generate_all(&data, "build/site")?;
     copy_static_files()?;
     Ok(())
 }
@@ -77,7 +115,7 @@ where
     write_submission_csv(csv, "https://gbhwdb.gekkio/consoles", submissions)
 }
 
-fn process_cartridge_submissions() -> Result<u32, Error> {
+fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Error> {
     use legacy::cartridge::*;
     let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
     let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
@@ -155,10 +193,10 @@ fn process_cartridge_submissions() -> Result<u32, Error> {
     serde_json::to_writer_pretty(file, &submissions)?;
     let csv = BufWriter::new(File::create("build/site/static/export/cartridges.csv")?);
     write_submission_csv(csv, "https://gbhwdb.gekkio/cartridges", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_dmg_submissions() -> Result<u32, Error> {
+fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
     use gbhwdb_backend::input::dmg::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/DMG").min_depth(2).max_depth(2);
@@ -358,10 +396,10 @@ fn process_dmg_submissions() -> Result<u32, Error> {
     let file = BufWriter::new(File::create("build/data/dmg.json")?);
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("dmg", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_sgb_submissions() -> Result<u32, Error> {
+fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
     use gbhwdb_backend::input::sgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/SGB").min_depth(2).max_depth(2);
@@ -427,10 +465,10 @@ fn process_sgb_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/sgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("sgb", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_mgb_submissions() -> Result<u32, Error> {
+fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
     use gbhwdb_backend::input::mgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/MGB").min_depth(2).max_depth(2);
@@ -521,10 +559,10 @@ fn process_mgb_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/mgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("mgb", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_mgl_submissions() -> Result<u32, Error> {
+fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
     use gbhwdb_backend::input::mgl::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/MGL").min_depth(2).max_depth(2);
@@ -621,10 +659,10 @@ fn process_mgl_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/mgl.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("mgl", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_sgb2_submissions() -> Result<u32, Error> {
+fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
     use gbhwdb_backend::input::sgb2::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/SGB2").min_depth(2).max_depth(2);
@@ -696,10 +734,10 @@ fn process_sgb2_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/sgb2.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("sgb2", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_cgb_submissions() -> Result<u32, Error> {
+fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
     use gbhwdb_backend::input::cgb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/CGB").min_depth(2).max_depth(2);
@@ -806,10 +844,10 @@ fn process_cgb_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/cgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("cgb", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_agb_submissions() -> Result<u32, Error> {
+fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
     use gbhwdb_backend::input::agb::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/AGB").min_depth(2).max_depth(2);
@@ -908,10 +946,10 @@ fn process_agb_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/agb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("agb", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_ags_submissions() -> Result<u32, Error> {
+fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
     use gbhwdb_backend::input::ags::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
@@ -1011,10 +1049,10 @@ fn process_ags_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/ags.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("ags", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_gbs_submissions() -> Result<u32, Error> {
+fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
     use gbhwdb_backend::input::gbs::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/GBS").min_depth(2).max_depth(2);
@@ -1102,10 +1140,10 @@ fn process_gbs_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/gbs.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("gbs", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
-fn process_oxy_submissions() -> Result<u32, Error> {
+fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     use gbhwdb_backend::input::oxy::*;
     use legacy::console::*;
     let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);
@@ -1178,7 +1216,7 @@ fn process_oxy_submissions() -> Result<u32, Error> {
     let file = File::create("build/data/oxy.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("oxy", &submissions)?;
-    Ok(u32::try_from(submissions.len())?)
+    Ok(submissions)
 }
 
 fn copy_static_files() -> Result<(), Error> {

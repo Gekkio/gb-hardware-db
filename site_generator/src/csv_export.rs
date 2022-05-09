@@ -1,7 +1,7 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::legacy::{LegacyChip, LegacySubmission};
+use crate::legacy::{HasDateCode, LegacyChip, LegacySubmission};
 
 mod agb;
 mod ags;
@@ -55,13 +55,7 @@ fn chip() -> Builder<LegacyChip> {
         .add("kind", |c| (&c.kind).csv())
         .add("label", |c| (&c.label).csv())
         .add("manufacturer", |c| (&c.manufacturer).csv())
-        .add("calendar_short", |c| {
-            calendar_short(c.year, c.month, c.week).csv()
-        })
-        .add("calendar", |c| calendar(c.year, c.month, c.week).csv())
-        .add("year", |c| c.year.csv())
-        .add("month", |c| c.month.csv())
-        .add("week", |c| c.week.csv())
+        .add_date_code()
 }
 
 trait Field<'a> {
@@ -118,6 +112,24 @@ impl<T> Builder<T> {
             .push((name.to_owned(), Box::new(move |value| f(value))));
         self
     }
+    pub fn add_date_code(self) -> Self
+    where
+        T: HasDateCode,
+    {
+        let mut result = self;
+        result = result.add("calendar_short", |v| v.calendar_short().csv());
+        result = result.add("calendar", |v| v.calendar().csv());
+        if T::YEAR {
+            result = result.add("year", |v| v.year().csv());
+        }
+        if T::MONTH {
+            result = result.add("month", |v| v.month().csv());
+        }
+        if T::WEEK {
+            result = result.add("week", |v| v.week().csv());
+        }
+        result
+    }
     pub fn record<'a>(&'a self, value: &'a T) -> impl Iterator<Item = Cow<[u8]>> + '_ {
         self.fields.iter().map(|(_, f)| match f(value) {
             Cow::Borrowed(s) => Cow::Borrowed(s.as_bytes()),
@@ -146,47 +158,5 @@ impl<T> Builder<T> {
             self.fields.push((name, getter));
         }
         self
-    }
-}
-
-fn month_name(month: u8) -> Option<&'static str> {
-    match month {
-        1 => Some("January"),
-        2 => Some("February"),
-        3 => Some("March"),
-        4 => Some("April"),
-        5 => Some("May"),
-        6 => Some("June"),
-        7 => Some("July"),
-        8 => Some("August"),
-        9 => Some("September"),
-        10 => Some("October"),
-        11 => Some("November"),
-        12 => Some("December"),
-        _ => None,
-    }
-}
-
-fn calendar(year: Option<u16>, month: Option<u8>, week: Option<u8>) -> String {
-    let year = year.map(|year| year.to_string()).unwrap_or_default();
-    let prefix = month
-        .and_then(month_name)
-        .map(Cow::Borrowed)
-        .or_else(|| week.map(|week| Cow::from(week.to_string())));
-    match prefix {
-        Some(prefix) => format!("{prefix}/{year}"),
-        _ => year,
-    }
-}
-
-fn calendar_short(year: Option<u16>, month: Option<u8>, week: Option<u8>) -> String {
-    let year = year.map(|year| year.to_string()).unwrap_or_default();
-    let prefix = month
-        .and_then(month_name)
-        .map(|month| Cow::Borrowed(&month[..3]))
-        .or_else(|| week.map(|week| Cow::from(format!("Week {week}"))));
-    match prefix {
-        Some(prefix) => format!("{prefix}/{year}"),
-        _ => year,
     }
 }

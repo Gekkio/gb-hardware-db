@@ -5,9 +5,11 @@ use crate::site::{SiteSection, SubmissionCounts};
 use crate::template::site_footer::SiteFooter;
 use crate::template::site_header::SiteHeader;
 
+pub mod chip;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;
+pub mod sgb;
 pub mod site_footer;
 pub mod site_header;
 

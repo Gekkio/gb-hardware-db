@@ -8,7 +8,10 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use crate::template::{markdown::Markdown, markdown_page::MarkdownPage, page};
+use crate::{
+    template::{markdown::Markdown, markdown_page::MarkdownPage, page},
+    SiteData,
+};
 
 pub fn build_site() -> Site {
     let mut site = Site::new();
@@ -48,18 +51,31 @@ pub fn build_site() -> Site {
         SiteSection::Consoles(None),
         "content/contribute-cartridges.markdown",
     );
+    site.add_page(
+        ["consoles", "sgb", "index"],
+        Page {
+            title: "Super Game Boy (SGB)".into(),
+            section: SiteSection::Consoles(Some(Console::Sgb)),
+            generator: Box::new(|data| {
+                Ok(crate::template::sgb::Sgb {
+                    submissions: &data.sgb,
+                }
+                .render())
+            }),
+        },
+    );
     site
 }
 
 pub struct Page {
     pub title: Cow<'static, str>,
     pub section: SiteSection,
-    pub generator: Box<dyn Fn() -> Result<VirtualNode, Error>>,
+    pub generator: Box<dyn Fn(&SiteData) -> Result<VirtualNode, Error>>,
 }
 
 impl Page {
-    pub fn generate(&self, counts: &SubmissionCounts) -> Result<String, Error> {
-        let content = (self.generator)()?;
+    pub fn generate(&self, data: &SiteData, counts: &SubmissionCounts) -> Result<String, Error> {
+        let content = (self.generator)(data)?;
         Ok(page(&self.title, self.section, content, counts))
     }
 }
@@ -85,14 +101,12 @@ impl<const N: usize> From<[&'static str; N]> for SitePath {
 
 pub struct Site {
     pub pages: HashMap<SitePath, Page>,
-    pub counts: SubmissionCounts,
 }
 
 impl Site {
     pub fn new() -> Self {
         Site {
             pages: HashMap::new(),
-            counts: SubmissionCounts::default(),
         }
     }
     pub fn add_markdown_page<P: Into<SitePath>, S: AsRef<Path>>(
@@ -108,17 +122,25 @@ impl Site {
             Page {
                 title: Cow::Borrowed(title),
                 section,
-                generator: Box::new(move || {
+                generator: Box::new(move |_| {
                     let markdown = Markdown::parse(&fs::read_to_string(&source)?);
                     Ok(MarkdownPage { markdown }.render())
                 }),
             },
         );
     }
-    pub fn generate_all(&mut self, target_dir: impl AsRef<Path>) -> Result<(), Error> {
+    pub fn add_page<P: Into<SitePath>>(&mut self, path: P, page: Page) {
+        self.pages.insert(path.into(), page);
+    }
+    pub fn generate_all(
+        &mut self,
+        data: &SiteData,
+        target_dir: impl AsRef<Path>,
+    ) -> Result<(), Error> {
         let target_dir = target_dir.as_ref();
+        let counts = data.counts();
         for (path, page) in &self.pages {
-            match page.generate(&self.counts) {
+            match page.generate(data, &counts) {
                 Ok(content) => {
                     let target_file = path.join(target_dir);
                     if let Some(parent) = target_file.parent() {

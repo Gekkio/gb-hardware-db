@@ -1,9 +1,50 @@
 use gbhwdb_backend::parser::*;
 use serde::{Deserialize, Serialize};
 
+use crate::format::{calendar, calendar_short};
+
+use self::console::{
+    LegacyAgbMetadata, LegacyAgsMetadata, LegacyAgsPhotos, LegacyCgbMetadata, LegacyDmgMetadata,
+    LegacyDmgPhotos, LegacyGbsMetadata, LegacyMgbMetadata, LegacyMglMetadata, LegacyOxyMetadata,
+    LegacySgb2Metadata, LegacySgbMetadata,
+};
+
 pub mod cartridge;
 pub mod chip;
 pub mod console;
+
+pub type LegacyCartridgeSubmission = LegacySubmission<cartridge::LegacyMetadata, LegacyPhotos>;
+pub type LegacyDmgSubmission = LegacySubmission<LegacyDmgMetadata, LegacyDmgPhotos>;
+pub type LegacySgbSubmission = LegacySubmission<LegacySgbMetadata, LegacyPhotos>;
+pub type LegacyMgbSubmission = LegacySubmission<LegacyMgbMetadata, LegacyPhotos>;
+pub type LegacyMglSubmission = LegacySubmission<LegacyMglMetadata, LegacyPhotos>;
+pub type LegacySgb2Submission = LegacySubmission<LegacySgb2Metadata, LegacyPhotos>;
+pub type LegacyCgbSubmission = LegacySubmission<LegacyCgbMetadata, LegacyPhotos>;
+pub type LegacyAgbSubmission = LegacySubmission<LegacyAgbMetadata, LegacyPhotos>;
+pub type LegacyAgsSubmission = LegacySubmission<LegacyAgsMetadata, LegacyAgsPhotos>;
+pub type LegacyGbsSubmission = LegacySubmission<LegacyGbsMetadata, LegacyPhotos>;
+pub type LegacyOxySubmission = LegacySubmission<LegacyOxyMetadata, LegacyPhotos>;
+
+pub trait HasDateCode {
+    const YEAR: bool = false;
+    const MONTH: bool = false;
+    const WEEK: bool = false;
+    fn year(&self) -> Option<u16> {
+        None
+    }
+    fn month(&self) -> Option<u8> {
+        None
+    }
+    fn week(&self) -> Option<u8> {
+        None
+    }
+    fn calendar_short(&self) -> String {
+        calendar_short(self.year(), self.month(), self.week())
+    }
+    fn calendar(&self) -> String {
+        calendar(self.year(), self.month(), self.week())
+    }
+}
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -29,6 +70,22 @@ pub struct LegacyChip {
     pub month: Option<u8>,
     pub week: Option<u8>,
     pub rom_code: Option<String>,
+}
+
+impl HasDateCode for LegacyChip {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+    const WEEK: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]

@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import Dmg from './pages/Dmg'
 import DmgConsole from './pages/DmgConsole'
-import Sgb from './pages/Sgb'
 import SgbConsole from './pages/SgbConsole'
 import Mgb from './pages/Mgb'
 import MgbConsole from './pages/MgbConsole'
@@ -77,8 +76,6 @@ function renderPage(type: string, props: any) {
       return <Dmg {...props} />
     case 'dmg-console':
       return <DmgConsole {...props} />
-    case 'sgb':
-      return <Sgb {...props} />
     case 'sgb-console':
       return <SgbConsole {...props} />
     case 'mgb':

@@ -1,6 +1,6 @@
 use crate::legacy::cartridge::{LegacyBoard, LegacyMetadata};
 
-use super::{calendar, calendar_short, chip, Builder, Field, ToCsv};
+use super::{chip, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -15,12 +15,7 @@ impl ToCsv for LegacyMetadata {
                         .add("type", |m| (&m.kind).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
                         .add("extra_label", |m| (&m.extra_label).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
+                        .add_date_code()
                 },
             )
             .nest("rom", |m| m.board.rom.as_ref(), chip)

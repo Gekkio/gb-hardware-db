@@ -4,7 +4,7 @@ use gbhwdb_backend::{
 };
 use serde::Serialize;
 
-use super::{to_legacy_year, LegacyChip, LegacyPhoto};
+use super::{to_legacy_year, HasDateCode, LegacyChip, LegacyPhoto};
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -76,6 +76,18 @@ pub struct LegacyDmgMetadata {
     pub jack_board: Option<LegacyDmgJackBoard>,
 }
 
+impl HasDateCode for LegacyDmgMetadata {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyDmgMainboard {
@@ -118,6 +130,18 @@ pub struct LegacyDmgLcdBoard {
     pub regulator: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyDmgLcdBoard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyDmgPowerBoard {
@@ -128,6 +152,18 @@ pub struct LegacyDmgPowerBoard {
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<u8>,
+}
+
+impl HasDateCode for LegacyDmgPowerBoard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -174,6 +210,18 @@ pub struct LegacySgbMainboard {
     pub cic: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacySgbMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacySgb2Metadata {
@@ -211,6 +259,18 @@ pub struct LegacySgb2Mainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacySgb2Mainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyMgbMetadata {
@@ -225,6 +285,18 @@ pub struct LegacyMgbMetadata {
     pub mainboard: LegacyMgbMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
+}
+
+impl HasDateCode for LegacyMgbMetadata {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -254,6 +326,18 @@ pub struct LegacyMgbMainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyMgbMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyMglMetadata {
@@ -268,6 +352,18 @@ pub struct LegacyMglMetadata {
     pub mainboard: LegacyMglMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
+}
+
+impl HasDateCode for LegacyMglMetadata {
+    const YEAR: bool = true;
+    const WEEK: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -299,6 +395,18 @@ pub struct LegacyMglMainboard {
     pub t1: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyMglMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyCgbMetadata {
@@ -313,6 +421,22 @@ pub struct LegacyCgbMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<u8>,
     pub mainboard: LegacyCgbMainboard,
+}
+
+impl HasDateCode for LegacyCgbMetadata {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+    const WEEK: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -342,6 +466,18 @@ pub struct LegacyCgbMainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyCgbMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyAgbMetadata {
@@ -354,6 +490,18 @@ pub struct LegacyAgbMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<u8>,
     pub mainboard: LegacyAgbMainboard,
+}
+
+impl HasDateCode for LegacyAgbMetadata {
+    const YEAR: bool = true;
+    const WEEK: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -383,6 +531,18 @@ pub struct LegacyAgbMainboard {
     pub u4: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyChip>,
+}
+
+impl HasDateCode for LegacyAgbMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -424,6 +584,18 @@ pub struct LegacyAgsMainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyAgsMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyGbsMetadata {
@@ -436,6 +608,18 @@ pub struct LegacyGbsMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<u8>,
     pub mainboard: LegacyGbsMainboard,
+}
+
+impl HasDateCode for LegacyGbsMetadata {
+    const YEAR: bool = true;
+    const WEEK: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn week(&self) -> Option<u8> {
+        self.week
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -471,6 +655,18 @@ pub struct LegacyGbsMainboard {
     pub crystal: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyGbsMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyOxyMetadata {
@@ -502,6 +698,18 @@ pub struct LegacyOxyMainboard {
     pub u5: Option<LegacyChip>,
 }
 
+impl HasDateCode for LegacyOxyMainboard {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyLcdPanel {
@@ -515,6 +723,18 @@ pub struct LegacyLcdPanel {
     pub column_driver: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub row_driver: Option<LegacyChip>,
+}
+
+impl HasDateCode for LegacyLcdPanel {
+    const YEAR: bool = true;
+    const MONTH: bool = true;
+
+    fn year(&self) -> Option<u16> {
+        self.year
+    }
+    fn month(&self) -> Option<u8> {
+        self.month
+    }
 }
 
 pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip {

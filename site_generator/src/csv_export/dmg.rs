@@ -3,18 +3,13 @@ use crate::legacy::console::{
     LegacyDmgPowerBoard, LegacyLcdPanel,
 };
 
-use super::{calendar, calendar_short, chip, Builder, Field, ToCsv};
+use super::{chip, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyDmgMetadata {
     fn csv_builder() -> Builder<Self> {
         Builder::<Self>::new()
             .add("color", |m| (&m.color).csv())
-            .add("calendar_short", |m| {
-                calendar_short(m.year, m.month, None).csv()
-            })
-            .add("calendar", |m| calendar(m.year, m.month, None).csv())
-            .add("year", |m| m.year.csv())
-            .add("month", |m| m.month.csv())
+            .add_date_code()
             .nest(
                 "mainboard",
                 |m| Some(&m.mainboard),
@@ -39,12 +34,7 @@ impl ToCsv for LegacyDmgMetadata {
                         .add("type", |b| (&b.kind).csv())
                         .add("circled_letters", |b| (&b.circled_letters).csv())
                         .add("stamp", |b| (&b.stamp).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
+                        .add_date_code()
                 },
             )
             .nest(
@@ -53,10 +43,7 @@ impl ToCsv for LegacyDmgMetadata {
                 || {
                     Builder::<LegacyLcdPanel>::new()
                         .add("label", |p| (&p.label).csv())
-                        .add("calendar_short", |p| {
-                            calendar_short(p.year, p.month, None).csv()
-                        })
-                        .add("calendar", |p| calendar(p.year, p.month, None).csv())
+                        .add_date_code()
                 },
             )
             .nest(
@@ -89,12 +76,7 @@ impl ToCsv for LegacyDmgMetadata {
                     Builder::<LegacyDmgPowerBoard>::new()
                         .add("type", |b| (&b.kind).csv())
                         .add("label", |b| (&b.label).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
+                        .add_date_code()
                 },
             )
             .nest(

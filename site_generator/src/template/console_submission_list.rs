@@ -93,6 +93,12 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                                 role="presentation"
                             >
                         }
+                    }).or_else(|| {
+                        M::PLACEHOLDER_SVG.map(|src| {
+                            html! {
+                                <img src={src} class="submission-list-item__placeholder" role="presentation">
+                            }
+                        })
                     }) }
                     </div>
                     <div class="submission-list-item__id">
@@ -104,6 +110,21 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                 <td>
                     <div>{metadata.mainboard().kind()}</div>
                     <div>{metadata.mainboard().calendar_short()}</div>
+                    {metadata.assembled().map(|date_code| {
+                        html! {
+                            <div>{format!("Assembled: {date_code}")}</div>
+                        }
+                    })}
+                    {metadata.release_code().map(|release_code| {
+                        html! {
+                            <div>{format!("Release: {release_code}")}</div>
+                        }
+                    })}
+                    {metadata.lcd_panel().map(|date_code| {
+                        html! {
+                            <div>{format!("LCD panel: {date_code}")}</div>
+                        }
+                    })}
                 </td>
                 { self.chips.iter().map(|chip| {
                     ConsoleListingChip {

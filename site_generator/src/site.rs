@@ -81,6 +81,36 @@ pub fn build_site() -> Site {
             }),
         },
     );
+    site.add_page(
+        ["consoles", "mgb", "index"],
+        Page {
+            title: "Game Boy Pocket (MGB)".into(),
+            section: SiteSection::Consoles(Some(Console::Mgb)),
+            generator: Box::new(|data| {
+                Ok(
+                    crate::template::console_submission_list::ConsoleSubmissionList {
+                        submissions: &data.mgb,
+                    }
+                    .render(),
+                )
+            }),
+        },
+    );
+    site.add_page(
+        ["consoles", "mgl", "index"],
+        Page {
+            title: "Game Boy Light (MGL)".into(),
+            section: SiteSection::Consoles(Some(Console::Mgl)),
+            generator: Box::new(|data| {
+                Ok(
+                    crate::template::console_submission_list::ConsoleSubmissionList {
+                        submissions: &data.mgl,
+                    }
+                    .render(),
+                )
+            }),
+        },
+    );
     site
 }
 

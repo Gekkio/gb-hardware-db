@@ -14,9 +14,19 @@ pub trait LegacyMainboard: HasDateCode {
 pub trait LegacyConsoleMetadata: 'static {
     type Mainboard: LegacyMainboard;
     const CONSOLE: Console;
+    const PLACEHOLDER_SVG: Option<&'static str> = None;
 
     fn chips() -> Vec<ChipInfo<Self>>;
     fn mainboard(&self) -> &Self::Mainboard;
+    fn release_code(&self) -> Option<&str> {
+        None
+    }
+    fn assembled(&self) -> Option<String> {
+        None
+    }
+    fn lcd_panel(&self) -> Option<String> {
+        None
+    }
 }
 
 pub trait LegacyConsolePhotos: 'static {
@@ -418,6 +428,60 @@ impl HasDateCode for LegacyMgbMetadata {
     }
 }
 
+impl LegacyMainboard for LegacyMgbMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyMgbMetadata {
+    type Mainboard = LegacyMgbMainboard;
+    const CONSOLE: Console = Console::Mgb;
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgb_placeholder.svg");
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U3",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo::new(
+                "Regulator",
+                "U4",
+                Box::new(|m| m.mainboard.regulator.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn assembled(&self) -> Option<String> {
+        Some(self.calendar_short()).filter(|text| !text.is_empty())
+    }
+
+    fn lcd_panel(&self) -> Option<String> {
+        self.lcd_panel
+            .as_ref()
+            .map(|panel| panel.calendar_short())
+            .filter(|text| !text.is_empty())
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyMgbMainboard {
@@ -482,6 +546,61 @@ impl HasDateCode for LegacyMglMetadata {
     }
     fn week(&self) -> Option<u8> {
         self.week
+    }
+}
+
+impl LegacyMainboard for LegacyMglMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyMglMetadata {
+    type Mainboard = LegacyMglMainboard;
+    const CONSOLE: Console = Console::Mgl;
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgl_placeholder.svg");
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U3",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo::new(
+                "Regulator",
+                "U4",
+                Box::new(|m| m.mainboard.regulator.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+            ChipInfo::new("Transformer", "T1", Box::new(|m| m.mainboard.t1.as_ref())),
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn assembled(&self) -> Option<String> {
+        Some(self.calendar_short()).filter(|text| !text.is_empty())
+    }
+
+    fn lcd_panel(&self) -> Option<String> {
+        self.lcd_panel
+            .as_ref()
+            .map(|panel| panel.calendar_short())
+            .filter(|text| !text.is_empty())
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
     }
 }
 

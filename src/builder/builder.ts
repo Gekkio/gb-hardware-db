@@ -241,7 +241,7 @@ async function main(): Promise<void> {
 
   const pages: PageDeclaration[] = [
     { type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {} },
-    ...config.consoles.filter((type) => !['sgb', 'sgb2'].includes(type)).map((type) => {
+    ...config.consoles.filter((type) => !['mgb', 'mgl', 'sgb', 'sgb2'].includes(type)).map((type) => {
       const cfg = config.consoleCfgs[type]
       return {
         type,

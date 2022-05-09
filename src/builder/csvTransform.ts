@@ -64,69 +64,6 @@ const CONSOLE_SUBMISSION_COLUMNS: CsvColumn<ConsoleSubmission>[] = [
   field('', 'contributor'),
 ]
 
-export const DMG_CSV_COLUMNS: CsvColumn<DmgSubmission>[] = [
-  ...CONSOLE_SUBMISSION_COLUMNS,
-  ...lift(
-    (s: DmgSubmission) => s.metadata,
-    [
-      field('', 'color'),
-      generate('', 'calendar_short', format.short.calendar),
-      generate('', 'calendar', format.calendar),
-      field('', 'year'),
-      field('', 'month'),
-      ...lift(
-        (m: DmgMetadata) => m.mainboard,
-        [
-          field('mainboard', 'type'),
-          field('mainboard', 'extra_label'),
-          field('mainboard', 'stamp'),
-          field('mainboard', 'circled_letters'),
-        ]
-      ),
-      ...lift((m: DmgMetadata) => m.mainboard.cpu, chipColumns('cpu')),
-      ...lift((m: DmgMetadata) => m.mainboard.work_ram, chipColumns('work_ram')),
-      ...lift((m: DmgMetadata) => m.mainboard.video_ram, chipColumns('video_ram')),
-      ...lift((m: DmgMetadata) => m.mainboard.amplifier, chipColumns('amplifier')),
-      ...lift((m: DmgMetadata) => m.mainboard.crystal, chipColumns('crystal')),
-      ...lift(
-        (m: DmgMetadata) => m.lcd_board,
-        [
-          field('lcd_board', 'type'),
-          field('lcd_board', 'circled_letters'),
-          field('lcd_board', 'stamp'),
-          generate('lcd_board', 'calendar_short', format.short.calendar),
-          generate('lcd_board', 'calendar', format.calendar),
-          field('lcd_board', 'year'),
-          field('lcd_board', 'month'),
-        ]
-      ),
-      ...lift(
-        (m: DmgMetadata) => m.lcd_board && m.lcd_board.lcd_panel,
-        [
-          field('lcd_panel', 'label'),
-          generate('lcd_panel', 'calendar_short', format.short.calendar),
-          generate('lcd_panel', 'calendar', format.calendar),
-          ...lift((lcd_panel: LcdPanel) => lcd_panel.column_driver, chipColumns('column_driver')),
-          ...lift((lcd_panel: LcdPanel) => lcd_panel.row_driver, chipColumns('row_driver')),
-        ]
-      ),
-      ...lift((m: DmgMetadata) => m.lcd_board && m.lcd_board.regulator, chipColumns('regulator')),
-      ...lift(
-        (m: DmgMetadata) => m.power_board,
-        [
-          field('power_board', 'type'),
-          field('power_board', 'label'),
-          generate('power_board', 'calendar_short', format.short.calendar),
-          generate('power_board', 'calendar', format.calendar),
-          field('power_board', 'year'),
-          field('power_board', 'month'),
-        ]
-      ),
-      ...lift((m: DmgMetadata) => m.jack_board, [field('jack_board', 'type'), field('jack_board', 'extra_label')]),
-    ]
-  ),
-]
-
 export const SGB_CSV_COLUMNS: CsvColumn<SgbSubmission>[] = [
   ...CONSOLE_SUBMISSION_COLUMNS,
   ...lift(

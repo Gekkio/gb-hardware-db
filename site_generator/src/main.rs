@@ -9,6 +9,7 @@ use site::{build_site, Console};
 use std::{
     convert::TryFrom,
     fs::{self, create_dir_all, File},
+    io::BufWriter,
     path::Path,
 };
 use walkdir::{DirEntry, WalkDir};
@@ -16,6 +17,7 @@ use walkdir::{DirEntry, WalkDir};
 use crate::legacy::chip::*;
 use crate::legacy::*;
 
+mod csv_export;
 mod legacy;
 mod site;
 mod template;
@@ -43,6 +45,7 @@ fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
 fn main() -> Result<(), Error> {
     let mut site = build_site();
     create_dir_all("build/data")?;
+    create_dir_all("build/site/static/export/consoles")?;
     site.counts.cartridges = process_cartridge_submissions()?;
     site.counts.update(Console::Dmg, process_dmg_submissions()?);
     site.counts.update(Console::Sgb, process_sgb_submissions()?);
@@ -336,8 +339,10 @@ fn process_dmg_submissions() -> Result<u32, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.slug.clone()));
-    let file = File::create("build/data/dmg.json")?;
+    let file = BufWriter::new(File::create("build/data/dmg.json")?);
     serde_json::to_writer_pretty(file, &submissions)?;
+    let csv = BufWriter::new(File::create("build/site/static/export/consoles/dmg.csv")?);
+    csv_export::write_console_submission_csv(csv, &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 

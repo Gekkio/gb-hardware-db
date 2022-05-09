@@ -1,5 +1,5 @@
 use anyhow::Error;
-use clap::{value_t, App, Arg, ArgMatches};
+use clap::{Arg, ArgMatches, Command};
 use image::{imageops::FilterType, ImageOutputFormat};
 use std::{
     fs::File,
@@ -8,8 +8,8 @@ use std::{
 };
 
 fn run(matches: &ArgMatches) -> Result<(), Error> {
-    let width = value_t!(matches, "width", u32).unwrap_or(u32::MAX);
-    let height = value_t!(matches, "height", u32).unwrap_or(u32::MAX);
+    let width = matches.value_of_t("width").unwrap_or(u32::MAX);
+    let height = matches.value_of_t("height").unwrap_or(u32::MAX);
     let input = matches.value_of_os("INPUT").expect("Missing input file");
     let output = matches.value_of_os("output").expect("Missing output file");
     let img = image::open(&input)?.resize(width, height, FilterType::Lanczos3);
@@ -27,9 +27,9 @@ fn run(matches: &ArgMatches) -> Result<(), Error> {
 }
 
 fn main() -> Result<(), Error> {
-    let matches = App::new("gbhwdb-photo")
+    let matches = Command::new("gbhwdb-photo")
         .arg(
-            Arg::with_name("output")
+            Arg::new("output")
                 .short('o')
                 .long("output")
                 .value_name("OUTPUT")
@@ -37,24 +37,24 @@ fn main() -> Result<(), Error> {
                 .help("Output file, or - to use standard output"),
         )
         .arg(
-            Arg::with_name("INPUT")
+            Arg::new("INPUT")
                 .help("Input file, or - to use standard input")
                 .required(true)
                 .index(1),
         )
         .arg(
-            Arg::with_name("width")
+            Arg::new("width")
                 .short('w')
                 .long("width")
                 .value_name("WIDTH")
-                .required_unless("height"),
+                .required_unless_present("height"),
         )
         .arg(
-            Arg::with_name("height")
+            Arg::new("height")
                 .short('h')
                 .long("height")
                 .value_name("HEIGHT")
-                .required_unless("width"),
+                .required_unless_present("width"),
         )
         .get_matches();
     run(&matches)

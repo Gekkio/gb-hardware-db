@@ -1,4 +1,5 @@
 use anyhow::Error;
+use csv_export::{write_submission_csv, ToCsv};
 use gbhwdb_backend::{
     config::cartridge::*,
     input::cartridge::*,
@@ -63,6 +64,19 @@ fn main() -> Result<(), Error> {
     Ok(())
 }
 
+fn write_console_submission_csv<M, P>(
+    kind: &'static str,
+    submissions: &[LegacySubmission<M, P>],
+) -> Result<(), Error>
+where
+    M: ToCsv,
+{
+    let csv = BufWriter::new(File::create(format!(
+        "build/site/static/export/consoles/{kind}.csv"
+    ))?);
+    write_submission_csv(csv, "https://gbhwdb.gekkio/consoles", submissions)
+}
+
 fn process_cartridge_submissions() -> Result<u32, Error> {
     use legacy::cartridge::*;
     let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
@@ -100,7 +114,7 @@ fn process_cartridge_submissions() -> Result<u32, Error> {
                 circled_letters: cartridge.board.circled_letters.clone(),
                 extra_label: cartridge.board.extra_label.clone(),
                 year: cartridge.board.year.map(|year| year as u16),
-                month: cartridge.board.month.map(|month| month as u16),
+                month: cartridge.board.month.map(|month| month as u8),
                 rom: None,
                 rom2: None,
                 mapper: None,
@@ -139,6 +153,8 @@ fn process_cartridge_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
     let file = File::create("build/data/cartridges.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    let csv = BufWriter::new(File::create("build/site/static/export/cartridges.csv")?);
+    write_submission_csv(csv, "https://gbhwdb.gekkio/cartridges", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -341,8 +357,7 @@ fn process_dmg_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = BufWriter::new(File::create("build/data/dmg.json")?);
     serde_json::to_writer_pretty(file, &submissions)?;
-    let csv = BufWriter::new(File::create("build/site/static/export/consoles/dmg.csv")?);
-    csv_export::write_console_submission_csv(csv, &submissions)?;
+    write_console_submission_csv("dmg", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -411,6 +426,7 @@ fn process_sgb_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/sgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("sgb", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -504,6 +520,7 @@ fn process_mgb_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/mgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("mgb", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -603,6 +620,7 @@ fn process_mgl_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/mgl.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("mgl", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -677,6 +695,7 @@ fn process_sgb2_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/sgb2.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("sgb2", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -786,6 +805,7 @@ fn process_cgb_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/cgb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("cgb", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -887,6 +907,7 @@ fn process_agb_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/agb.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("agb", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -989,6 +1010,7 @@ fn process_ags_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/ags.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("ags", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -1079,6 +1101,7 @@ fn process_gbs_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/gbs.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("gbs", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 
@@ -1154,6 +1177,7 @@ fn process_oxy_submissions() -> Result<u32, Error> {
     submissions.sort_by_key(|submission| (submission.slug.clone()));
     let file = File::create("build/data/oxy.json")?;
     serde_json::to_writer_pretty(file, &submissions)?;
+    write_console_submission_csv("oxy", &submissions)?;
     Ok(u32::try_from(submissions.len())?)
 }
 

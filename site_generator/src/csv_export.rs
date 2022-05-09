@@ -1,124 +1,27 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::legacy::{
-    console::{
-        LegacyDmgJackBoard, LegacyDmgLcdBoard, LegacyDmgMainboard, LegacyDmgMetadata,
-        LegacyDmgPowerBoard, LegacyLcdPanel,
-    },
-    LegacyChip, LegacySubmission,
-};
+use crate::legacy::{LegacyChip, LegacySubmission};
+
+mod agb;
+mod ags;
+mod cartridge;
+mod cgb;
+mod dmg;
+mod gbs;
+mod mgb;
+mod mgl;
+mod oxy;
+mod sgb;
+mod sgb2;
 
 pub trait ToCsv: Sized {
     fn csv_builder() -> Builder<Self>;
 }
 
-impl ToCsv for LegacyDmgMetadata {
-    fn csv_builder() -> Builder<Self> {
-        Builder::<Self>::new()
-            .add("color", |m| (&m.color).csv())
-            .add("calendar_short", |m| {
-                calendar_short(m.year, m.month, None).csv()
-            })
-            .add("calendar", |m| calendar(m.year, m.month, None).csv())
-            .add("year", |m| m.year.csv())
-            .add("month", |m| m.month.csv())
-            .nest(
-                "mainboard",
-                |m| Some(&m.mainboard),
-                || {
-                    Builder::<LegacyDmgMainboard>::new()
-                        .add("type", |m| (&m.kind).csv())
-                        .add("extra_label", |m| (&m.extra_label).csv())
-                        .add("stamp", |m| (&m.stamp).csv())
-                        .add("circled_letters", |m| (&m.circled_letters).csv())
-                },
-            )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), chip)
-            .nest("video_ram", |m| m.mainboard.video_ram.as_ref(), chip)
-            .nest("amplifier", |m| m.mainboard.amplifier.as_ref(), chip)
-            .nest("crystal", |m| m.mainboard.crystal.as_ref(), chip)
-            .nest(
-                "lcd_board",
-                |m| m.lcd_board.as_ref(),
-                || {
-                    Builder::<LegacyDmgLcdBoard>::new()
-                        .add("type", |b| (&b.kind).csv())
-                        .add("circled_letters", |b| (&b.circled_letters).csv())
-                        .add("stamp", |b| (&b.stamp).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
-                },
-            )
-            .nest(
-                "lcd_panel",
-                |m| m.lcd_board.as_ref().and_then(|b| b.lcd_panel.as_ref()),
-                || {
-                    Builder::<LegacyLcdPanel>::new()
-                        .add("label", |p| (&p.label).csv())
-                        .add("calendar_short", |p| {
-                            calendar_short(p.year, p.month, None).csv()
-                        })
-                        .add("calendar", |p| calendar(p.year, p.month, None).csv())
-                },
-            )
-            .nest(
-                "column_driver",
-                |m| {
-                    m.lcd_board
-                        .as_ref()
-                        .and_then(|b| b.lcd_panel.as_ref().and_then(|p| p.column_driver.as_ref()))
-                },
-                chip,
-            )
-            .nest(
-                "row_driver",
-                |m| {
-                    m.lcd_board
-                        .as_ref()
-                        .and_then(|b| b.lcd_panel.as_ref().and_then(|p| p.row_driver.as_ref()))
-                },
-                chip,
-            )
-            .nest(
-                "regulator",
-                |m| m.lcd_board.as_ref().and_then(|b| b.regulator.as_ref()),
-                chip,
-            )
-            .nest(
-                "power_board",
-                |m| m.power_board.as_ref(),
-                || {
-                    Builder::<LegacyDmgPowerBoard>::new()
-                        .add("type", |b| (&b.kind).csv())
-                        .add("label", |b| (&b.label).csv())
-                        .add("calendar_short", |b| {
-                            calendar_short(b.year, b.month, None).csv()
-                        })
-                        .add("calendar", |b| calendar(b.year, b.month, None).csv())
-                        .add("year", |b| b.year.csv())
-                        .add("month", |b| b.month.csv())
-                },
-            )
-            .nest(
-                "jack_board",
-                |m| m.jack_board.as_ref(),
-                || {
-                    Builder::<LegacyDmgJackBoard>::new()
-                        .add("type", |b| (&b.kind).csv())
-                        .add("extra_label", |b| (&b.extra_label).csv())
-                },
-            )
-    }
-}
-
-pub fn write_console_submission_csv<W, M, P>(
+pub fn write_submission_csv<W, M, P>(
     writer: W,
+    url_prefix: &'static str,
     submissions: &[LegacySubmission<M, P>],
 ) -> Result<(), Error>
 where
@@ -131,12 +34,8 @@ where
         .add("code", |s| (&s.code).csv())
         .add("title", |s| (&s.title).csv())
         .add("slug", |s| (&s.slug).csv())
-        .add("url", |s| {
-            format!(
-                "https://gbhwdb.gekkio.fi/consoles/{}/{}.html",
-                s.code, s.slug
-            )
-            .csv()
+        .add("url", move |s| {
+            format!("{url_prefix}/{}/{}.html", s.code, s.slug).csv()
         })
         .add("contributor", |s| (&s.contributor).csv());
 

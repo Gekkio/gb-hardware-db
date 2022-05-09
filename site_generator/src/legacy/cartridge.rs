@@ -29,7 +29,7 @@ pub struct LegacyBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u16>,
+    pub month: Option<u8>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub rom: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]

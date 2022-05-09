@@ -24,20 +24,6 @@ import {
   SgbSubmission,
   Photo,
 } from '../crawler'
-import {
-  AGB_CSV_COLUMNS,
-  AGS_CSV_COLUMNS,
-  CARTRIDGE_CSV_COLUMNS,
-  CGB_CSV_COLUMNS,
-  CsvColumn,
-  GBS_CSV_COLUMNS,
-  generateCsv,
-  MGB_CSV_COLUMNS,
-  MGL_CSV_COLUMNS,
-  OXY_CSV_COLUMNS,
-  SGB2_CSV_COLUMNS,
-  SGB_CSV_COLUMNS,
-} from './csvTransform'
 import * as config from '../config'
 import { gameCfgs, gameLayouts, MapperId } from '../config'
 import processPhotos from './processPhotos'
@@ -325,18 +311,6 @@ async function main(): Promise<void> {
     Bluebird.map(cartridgeSubmissions, processPhotos, { concurrency: 2 }),
   ])
 
-  await Promise.all([
-    processConsoleCsv('sgb', SGB_CSV_COLUMNS, groupedConsoles.sgb),
-    processConsoleCsv('mgb', MGB_CSV_COLUMNS, groupedConsoles.mgb),
-    processConsoleCsv('mgl', MGL_CSV_COLUMNS, groupedConsoles.mgl),
-    processConsoleCsv('sgb2', SGB2_CSV_COLUMNS, groupedConsoles.sgb2),
-    processConsoleCsv('cgb', CGB_CSV_COLUMNS, groupedConsoles.cgb),
-    processConsoleCsv('agb', AGB_CSV_COLUMNS, groupedConsoles.agb),
-    processConsoleCsv('ags', AGS_CSV_COLUMNS, groupedConsoles.ags),
-    processConsoleCsv('gbs', GBS_CSV_COLUMNS, groupedConsoles.gbs),
-    processConsoleCsv('oxy', OXY_CSV_COLUMNS, groupedConsoles.oxy),
-    processCartridgeCsv(cartridgeSubmissions),
-  ])
   winston.info('Site generation finished :)')
 
   async function processPage(page: PageDeclaration): Promise<void> {
@@ -359,22 +333,6 @@ async function main(): Promise<void> {
     await fs.outputFile(target, html)
     winston.debug(`Wrote HTML file ${target}`)
   }
-}
-
-async function processConsoleCsv<T, K extends keyof GroupedConsoleSubmissions>(
-  key: K,
-  columns: CsvColumn<T>[],
-  rows: T[]
-): Promise<void> {
-  const dir = path.resolve('build', 'site', 'static', 'export', 'consoles')
-  await fs.mkdirs(dir)
-  return generateCsv(columns, rows, path.resolve(dir, `${key}.csv`))
-}
-
-async function processCartridgeCsv(submissions: CartridgeSubmission[]): Promise<void> {
-  const dir = path.resolve('build', 'site', 'static', 'export')
-  await fs.mkdirs(dir)
-  return generateCsv(CARTRIDGE_CSV_COLUMNS, submissions, path.resolve(dir, `cartridges.csv`))
 }
 
 main()

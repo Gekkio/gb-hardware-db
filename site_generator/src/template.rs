@@ -6,10 +6,10 @@ use crate::template::site_footer::SiteFooter;
 use crate::template::site_header::SiteHeader;
 
 pub mod chip;
+pub mod console_submission_list;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;
-pub mod sgb;
 pub mod site_footer;
 pub mod site_header;
 

@@ -4,6 +4,7 @@ use gbhwdb_backend::{
     config::cartridge::*,
     input::cartridge::*,
     parser::{self, LabelParser},
+    Console,
 };
 use glob::glob;
 use std::{
@@ -16,7 +17,7 @@ use walkdir::{DirEntry, WalkDir};
 
 use crate::legacy::chip::*;
 use crate::legacy::*;
-use site::{build_site, Console, SubmissionCounts};
+use site::{build_site, SubmissionCounts};
 
 mod csv_export;
 mod format;

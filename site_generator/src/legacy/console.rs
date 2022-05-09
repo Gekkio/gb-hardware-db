@@ -1,10 +1,71 @@
 use gbhwdb_backend::{
     input::{LcdChip, LcdScreen},
     parser::LabelParser,
+    Console,
 };
 use serde::Serialize;
 
-use super::{to_legacy_year, HasDateCode, LegacyChip, LegacyPhoto};
+use super::{to_legacy_year, HasDateCode, LegacyChip, LegacyPhoto, LegacyPhotos};
+
+pub trait LegacyMainboard: HasDateCode {
+    fn kind(&self) -> &str;
+}
+
+pub trait LegacyConsoleMetadata: 'static {
+    type Mainboard: LegacyMainboard;
+    const CONSOLE: Console;
+
+    fn chips() -> Vec<ChipInfo<Self>>;
+    fn mainboard(&self) -> &Self::Mainboard;
+}
+
+pub trait LegacyConsolePhotos: 'static {
+    fn photos() -> Vec<PhotoInfo<Self>>;
+}
+
+impl LegacyConsolePhotos for LegacyPhotos {
+    fn photos() -> Vec<PhotoInfo<Self>> {
+        vec![
+            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
+            PhotoInfo::new("PCB front", Box::new(|p| p.pcb_front.as_ref())),
+            PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
+        ]
+    }
+}
+
+pub struct PhotoInfo<P: ?Sized> {
+    pub label: &'static str,
+    pub getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>,
+}
+
+impl<P: ?Sized> PhotoInfo<P> {
+    pub fn new(label: &'static str, getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>) -> Self {
+        PhotoInfo { label, getter }
+    }
+}
+
+pub struct ChipInfo<M: ?Sized> {
+    pub label: &'static str,
+    pub designator: &'static str,
+    pub hide_type: bool,
+    pub getter: Box<dyn Fn(&M) -> Option<&LegacyChip>>,
+}
+
+impl<M: ?Sized> ChipInfo<M> {
+    pub fn new(
+        label: &'static str,
+        designator: &'static str,
+        getter: Box<dyn Fn(&M) -> Option<&LegacyChip>>,
+    ) -> Self {
+        ChipInfo {
+            label,
+            designator,
+            hide_type: false,
+            getter,
+        }
+    }
+}
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -222,6 +283,32 @@ impl HasDateCode for LegacySgbMainboard {
     }
 }
 
+impl LegacyMainboard for LegacySgbMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+}
+
+impl LegacyConsoleMetadata for LegacySgbMetadata {
+    type Mainboard = LegacySgbMainboard;
+    const CONSOLE: Console = Console::Sgb;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("ICD2", "U2", Box::new(|m| m.mainboard.icd2.as_ref())),
+            ChipInfo::new("WRAM", "U3", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new("VRAM", "U4", Box::new(|m| m.mainboard.video_ram.as_ref())),
+            ChipInfo::new("ROM", "U5", Box::new(|m| m.mainboard.rom.as_ref())),
+            ChipInfo::new("CIC", "U6", Box::new(|m| m.mainboard.cic.as_ref())),
+        ]
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacySgb2Metadata {
@@ -268,6 +355,38 @@ impl HasDateCode for LegacySgb2Mainboard {
     }
     fn month(&self) -> Option<u8> {
         self.month
+    }
+}
+
+impl LegacyMainboard for LegacySgb2Mainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+}
+
+impl LegacyConsoleMetadata for LegacySgb2Metadata {
+    type Mainboard = LegacySgb2Mainboard;
+    const CONSOLE: Console = Console::Sgb2;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("ICD2", "U2", Box::new(|m| m.mainboard.icd2.as_ref())),
+            ChipInfo::new("WRAM", "U3", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new("ROM", "U4", Box::new(|m| m.mainboard.rom.as_ref())),
+            ChipInfo::new("CIC", "U5", Box::new(|m| m.mainboard.cic.as_ref())),
+            ChipInfo {
+                label: "Crystal",
+                designator: "XTAL1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+            ChipInfo::new("Coil", "COIL1", Box::new(|m| m.mainboard.coil.as_ref())),
+        ]
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
     }
 }
 

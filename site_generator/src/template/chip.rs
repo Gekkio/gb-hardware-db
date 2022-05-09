@@ -8,15 +8,6 @@ pub struct ConsoleListingChip<'a> {
     pub hide_type: bool,
 }
 
-impl<'a> ConsoleListingChip<'a> {
-    pub fn new(chip: Option<&'a LegacyChip>) -> Self {
-        ConsoleListingChip {
-            chip,
-            hide_type: false,
-        }
-    }
-}
-
 impl<'a> View for ConsoleListingChip<'a> {
     fn render(&self) -> VirtualNode {
         match self.chip {

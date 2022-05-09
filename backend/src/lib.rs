@@ -1,6 +1,85 @@
+use std::fmt;
+
 pub mod config;
 pub mod input;
 pub mod parser;
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+pub enum Console {
+    Dmg,
+    Sgb,
+    Mgb,
+    Mgl,
+    Sgb2,
+    Cgb,
+    Agb,
+    Ags,
+    Gbs,
+    Oxy,
+}
+
+impl Console {
+    pub const ALL: [Console; 10] = [
+        Console::Dmg,
+        Console::Sgb,
+        Console::Mgb,
+        Console::Mgl,
+        Console::Sgb2,
+        Console::Cgb,
+        Console::Agb,
+        Console::Ags,
+        Console::Gbs,
+        Console::Oxy,
+    ];
+    pub fn id(&self) -> &'static str {
+        match self {
+            Console::Dmg => "dmg",
+            Console::Sgb => "sgb",
+            Console::Mgb => "mgb",
+            Console::Mgl => "mgl",
+            Console::Sgb2 => "sgb2",
+            Console::Cgb => "cgb",
+            Console::Agb => "agb",
+            Console::Ags => "ags",
+            Console::Gbs => "gbs",
+            Console::Oxy => "oxy",
+        }
+    }
+    pub fn code(&self) -> &'static str {
+        match self {
+            Console::Dmg => "DMG",
+            Console::Sgb => "SGB",
+            Console::Mgb => "MGB",
+            Console::Mgl => "MGL",
+            Console::Sgb2 => "SGB2",
+            Console::Cgb => "CGB",
+            Console::Agb => "AGB",
+            Console::Ags => "AGS",
+            Console::Gbs => "GBS",
+            Console::Oxy => "OXY",
+        }
+    }
+    pub fn name(&self) -> &'static str {
+        match self {
+            Console::Dmg => "Game Boy",
+            Console::Sgb => "Super Game Boy",
+            Console::Mgb => "Game Boy Pocket",
+            Console::Mgl => "Game Boy Light",
+            Console::Sgb2 => "Super Game Boy 2",
+            Console::Cgb => "Game Boy Color",
+            Console::Agb => "Game Boy Advance",
+            Console::Ags => "Game Boy Advance SP",
+            Console::Gbs => "Game Boy Player",
+            Console::Oxy => "Game Boy Micro",
+        }
+    }
+}
+
+impl fmt::Display for Console {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(self.name())
+    }
+}
 
 #[macro_use]
 pub(crate) mod macros {

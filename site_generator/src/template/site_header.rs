@@ -1,6 +1,7 @@
+use gbhwdb_backend::Console;
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
-use crate::site::{Console, SiteSection};
+use crate::site::SiteSection;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct SiteHeader {
@@ -60,7 +61,7 @@ impl View for SecondaryNav {
                                 html! {
                                     <li class={class}>
                                         <a href={format!("/consoles/{}", console.id())}>
-                                            <strong>{console.id().to_uppercase()}</strong>
+                                            <strong>{console.code()}</strong>
                                             <span class="name">{console.name()}</span>
                                         </a>
                                     </li>

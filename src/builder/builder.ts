@@ -30,7 +30,6 @@ import {
   CARTRIDGE_CSV_COLUMNS,
   CGB_CSV_COLUMNS,
   CsvColumn,
-  DMG_CSV_COLUMNS,
   GBS_CSV_COLUMNS,
   generateCsv,
   MGB_CSV_COLUMNS,
@@ -327,7 +326,6 @@ async function main(): Promise<void> {
   ])
 
   await Promise.all([
-    processConsoleCsv('dmg', DMG_CSV_COLUMNS, groupedConsoles.dmg),
     processConsoleCsv('sgb', SGB_CSV_COLUMNS, groupedConsoles.sgb),
     processConsoleCsv('mgb', MGB_CSV_COLUMNS, groupedConsoles.mgb),
     processConsoleCsv('mgl', MGL_CSV_COLUMNS, groupedConsoles.mgl),

@@ -30,7 +30,7 @@ pub fn page(
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title}</title>
+        <title>{format!("{title} - Game Boy hardware database")}</title>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700" />
         <link rel="stylesheet" href="/static/gbhwdb.css" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

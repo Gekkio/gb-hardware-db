@@ -1,10 +1,10 @@
 use super::{week2, year1, LabelParser, Year};
-use crate::macros::single_parser;
+use crate::{macros::single_parser, time::Week};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CgbStamp {
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 /// ```

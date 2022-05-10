@@ -1,5 +1,8 @@
 use super::{week2, year2, LabelParser, Year};
-use crate::macros::{multi_parser, single_parser};
+use crate::{
+    macros::{multi_parser, single_parser},
+    time::Week,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum Gen1SocKind {
@@ -16,7 +19,7 @@ pub enum Gen1SocKind {
 pub struct Gen1Soc {
     pub kind: Gen1SocKind,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 /// ```

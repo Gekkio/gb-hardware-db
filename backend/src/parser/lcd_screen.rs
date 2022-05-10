@@ -1,10 +1,13 @@
 use super::{month2, year1, LabelParser, Year};
-use crate::macros::{multi_parser, single_parser};
+use crate::{
+    macros::{multi_parser, single_parser},
+    time::Month,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LcdScreen {
     pub year: Option<Year>,
-    pub month: Option<u8>,
+    pub month: Option<Month>,
 }
 
 /// ```

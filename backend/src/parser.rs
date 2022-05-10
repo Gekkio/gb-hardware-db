@@ -1,6 +1,8 @@
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::str::FromStr;
 
+use crate::time::{Month, Week};
+
 pub use self::{
     accelerometer::Accelerometer,
     agb_amp::AgbAmp,
@@ -92,7 +94,7 @@ pub struct ChipYearWeek {
     pub kind: String,
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -100,8 +102,8 @@ pub struct Crystal {
     pub manufacturer: Option<Manufacturer>,
     pub frequency: u32,
     pub year: Option<Year>,
-    pub month: Option<u8>,
-    pub week: Option<u8>,
+    pub month: Option<Month>,
+    pub week: Option<Week>,
 }
 
 impl Crystal {
@@ -120,21 +122,21 @@ impl Crystal {
     }
 }
 
-fn kds_month(text: &str) -> Result<u8, String> {
+fn kds_month(text: &str) -> Result<Month, String> {
     match text {
-        "A" => Ok(1),
-        "B" => Ok(2),
-        "C" => Ok(3),
-        "D" => Ok(4),
-        "E" => Ok(5),
-        "F" => Ok(6),
-        "G" => Ok(7),
-        "H" => Ok(8),
+        "A" => Ok(Month::January),
+        "B" => Ok(Month::February),
+        "C" => Ok(Month::March),
+        "D" => Ok(Month::April),
+        "E" => Ok(Month::May),
+        "F" => Ok(Month::June),
+        "G" => Ok(Month::July),
+        "H" => Ok(Month::August),
         // I is intentionally skipped
-        "J" => Ok(9),
-        "K" => Ok(10),
-        "L" => Ok(11),
-        "M" => Ok(12),
+        "J" => Ok(Month::September),
+        "K" => Ok(Month::October),
+        "L" => Ok(Month::November),
+        "M" => Ok(Month::December),
         _ => Err(format!("Invalid 1-letter month: {}", text)),
     }
 }
@@ -201,18 +203,18 @@ pub fn year2(text: &str) -> Result<Year, String> {
     }
 }
 
-pub fn week2(text: &str) -> Result<u8, String> {
-    match u8::from_str(text) {
-        Ok(value @ 1..=53) => Ok(value),
-        _ => Err(format!("Invalid 2-digit week: {}", text)),
-    }
+pub fn week2(text: &str) -> Result<Week, String> {
+    u8::from_str(text)
+        .ok()
+        .and_then(|v| Week::try_from(v).ok())
+        .ok_or_else(|| format!("Invalid 2-digit week: {}", text))
 }
 
-pub fn month2(text: &str) -> Result<u8, String> {
-    match u8::from_str(text) {
-        Ok(value @ 1..=12) => Ok(value),
-        _ => Err(format!("Invalid 2-digit month: {}", text)),
-    }
+pub fn month2(text: &str) -> Result<Month, String> {
+    u8::from_str(text)
+        .ok()
+        .and_then(|v| Month::try_from(v).ok())
+        .ok_or_else(|| format!("Invalid 2-digit month: {}", text))
 }
 
 pub trait LabelParser<T> {
@@ -255,7 +257,7 @@ pub struct StaticRam {
     pub part: Option<String>,
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 #[derive(Clone)]

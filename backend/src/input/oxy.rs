@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use crate::input::{is_not_outlier, Chip};
+use crate::{
+    input::{is_not_outlier, Chip},
+    time::Month,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -48,7 +51,7 @@ pub struct OxyMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]

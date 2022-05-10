@@ -1,5 +1,8 @@
 use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
-use crate::macros::{multi_parser, single_parser};
+use crate::{
+    macros::{multi_parser, single_parser},
+    time::Week,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SgbRom {
@@ -7,7 +10,7 @@ pub struct SgbRom {
     pub manufacturer: Option<Manufacturer>,
     pub chip_type: Option<String>,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 /// ```

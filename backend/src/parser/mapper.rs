@@ -1,5 +1,8 @@
 use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
-use crate::macros::{multi_parser, single_parser};
+use crate::{
+    macros::{multi_parser, single_parser},
+    time::Week,
+};
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Mbc1Version {
@@ -47,7 +50,7 @@ pub struct Mapper {
     pub mbc_type: MapperType,
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 /// Sharp MBC1A

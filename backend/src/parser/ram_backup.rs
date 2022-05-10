@@ -1,12 +1,15 @@
 use super::{week2, year1, LabelParser, Manufacturer, Year};
-use crate::macros::{multi_parser, single_parser};
+use crate::{
+    macros::{multi_parser, single_parser},
+    time::Week,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct RamBackup {
     pub chip_type: String,
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
-    pub week: Option<u8>,
+    pub week: Option<Week>,
 }
 
 /// Mitsubishi M62021P

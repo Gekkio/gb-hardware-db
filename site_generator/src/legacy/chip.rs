@@ -1,6 +1,7 @@
 use gbhwdb_backend::{
     input::Chip,
     parser::{self, LabelParser, Manufacturer, Year},
+    time::{Month, Week},
 };
 
 use crate::legacy::{to_legacy_manufacturer, to_legacy_year, LegacyChip};
@@ -15,10 +16,10 @@ pub trait ToLegacyChip {
     fn year(&self) -> Option<Year> {
         None
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         None
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         None
     }
     fn rom_code(&self) -> Option<String> {
@@ -76,7 +77,7 @@ impl ToLegacyChip for parser::Gen1Soc {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -98,7 +99,7 @@ impl ToLegacyChip for parser::Gen2Soc {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -113,7 +114,7 @@ impl ToLegacyChip for parser::StaticRam {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -128,10 +129,10 @@ impl ToLegacyChip for parser::Crystal {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -164,7 +165,7 @@ impl ToLegacyChip for parser::SgbRom {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
     fn rom_code(&self) -> Option<String> {
@@ -182,7 +183,7 @@ impl ToLegacyChip for parser::ChipYearWeek {
     fn year(&self) -> Option<Year> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }

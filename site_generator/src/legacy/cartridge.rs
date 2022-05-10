@@ -2,6 +2,7 @@ use gbhwdb_backend::{
     config::cartridge::*,
     input::{cartridge::*, Chip},
     parser::*,
+    time::Month,
 };
 use serde::{Deserialize, Serialize};
 
@@ -29,7 +30,7 @@ pub struct LegacyBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub rom: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -65,7 +66,7 @@ impl HasDateCode for LegacyBoard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }

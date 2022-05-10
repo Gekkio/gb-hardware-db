@@ -3,6 +3,7 @@ use std::fmt;
 pub mod config;
 pub mod input;
 pub mod parser;
+pub mod time;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub enum Console {

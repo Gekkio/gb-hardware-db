@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use crate::input::{is_not_outlier, Chip, LcdScreen};
+use crate::{
+    input::{is_not_outlier, Chip, LcdScreen},
+    time::Month,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -81,7 +84,7 @@ pub struct DmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub chip: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -98,7 +101,7 @@ pub struct DmgPowerBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,

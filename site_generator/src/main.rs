@@ -144,16 +144,13 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
             if let Some(year) = cartridge.board.year {
                 assert!(year >= 1989 && year < 2010);
             }
-            if let Some(month) = cartridge.board.month {
-                assert!(month >= 1 && month < 13);
-            }
 
             let mut board = LegacyBoard {
                 kind: cartridge.board.label.clone(),
                 circled_letters: cartridge.board.circled_letters.clone(),
                 extra_label: cartridge.board.extra_label.clone(),
                 year: cartridge.board.year.map(|year| year as u16),
-                month: cartridge.board.month.map(|month| month as u8),
+                month: cartridge.board.month,
                 rom: None,
                 rom2: None,
                 mapper: None,

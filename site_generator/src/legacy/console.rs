@@ -1,6 +1,7 @@
 use gbhwdb_backend::{
     input::{LcdChip, LcdScreen},
     parser::LabelParser,
+    time::{Month, Week},
     Console,
 };
 use serde::Serialize;
@@ -176,7 +177,7 @@ pub struct LegacyDmgMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     pub mainboard: LegacyDmgMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_board: Option<LegacyDmgLcdBoard>,
@@ -193,7 +194,7 @@ impl HasDateCode for LegacyDmgMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -264,7 +265,7 @@ pub struct LegacyDmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -278,7 +279,7 @@ impl HasDateCode for LegacyDmgLcdBoard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -292,7 +293,7 @@ pub struct LegacyDmgPowerBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
 }
 
 impl HasDateCode for LegacyDmgPowerBoard {
@@ -302,7 +303,7 @@ impl HasDateCode for LegacyDmgPowerBoard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -336,7 +337,7 @@ pub struct LegacySgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -358,7 +359,7 @@ impl HasDateCode for LegacySgbMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -412,7 +413,7 @@ pub struct LegacySgb2Mainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -436,7 +437,7 @@ impl HasDateCode for LegacySgb2Mainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -486,7 +487,7 @@ pub struct LegacyMgbMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     pub mainboard: LegacyMgbMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
@@ -499,7 +500,7 @@ impl HasDateCode for LegacyMgbMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -574,7 +575,7 @@ pub struct LegacyMgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -594,7 +595,7 @@ impl HasDateCode for LegacyMgbMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -609,7 +610,7 @@ pub struct LegacyMglMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub week: Option<u8>,
+    pub week: Option<Week>,
     pub mainboard: LegacyMglMainboard,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
@@ -622,7 +623,7 @@ impl HasDateCode for LegacyMglMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -698,7 +699,7 @@ pub struct LegacyMglMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -720,7 +721,7 @@ impl HasDateCode for LegacyMglMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -735,9 +736,9 @@ pub struct LegacyCgbMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub week: Option<u8>,
+    pub week: Option<Week>,
     pub mainboard: LegacyCgbMainboard,
 }
 
@@ -749,10 +750,10 @@ impl HasDateCode for LegacyCgbMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -820,7 +821,7 @@ pub struct LegacyCgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -840,7 +841,7 @@ impl HasDateCode for LegacyCgbMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -855,7 +856,7 @@ pub struct LegacyAgbMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub week: Option<u8>,
+    pub week: Option<Week>,
     pub mainboard: LegacyAgbMainboard,
 }
 
@@ -866,7 +867,7 @@ impl HasDateCode for LegacyAgbMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -935,7 +936,7 @@ pub struct LegacyAgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -957,7 +958,7 @@ impl HasDateCode for LegacyAgbMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -1032,7 +1033,7 @@ pub struct LegacyAgsMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1054,7 +1055,7 @@ impl HasDateCode for LegacyAgsMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -1069,7 +1070,7 @@ pub struct LegacyGbsMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub week: Option<u8>,
+    pub week: Option<Week>,
     pub mainboard: LegacyGbsMainboard,
 }
 
@@ -1080,7 +1081,7 @@ impl HasDateCode for LegacyGbsMetadata {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }
@@ -1145,7 +1146,7 @@ pub struct LegacyGbsMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1167,7 +1168,7 @@ impl HasDateCode for LegacyGbsMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -1223,7 +1224,7 @@ pub struct LegacyOxyMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1241,7 +1242,7 @@ impl HasDateCode for LegacyOxyMainboard {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }
@@ -1254,7 +1255,7 @@ pub struct LegacyLcdPanel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub column_driver: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1268,7 +1269,7 @@ impl HasDateCode for LegacyLcdPanel {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
 }

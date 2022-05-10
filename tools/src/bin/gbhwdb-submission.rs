@@ -7,6 +7,7 @@ use gbhwdb_backend::{
         Chip,
     },
     parser::{self, LabelParser},
+    time::Month,
 };
 use gbhwdb_tools::cursive::*;
 use slug::slugify;
@@ -255,7 +256,7 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
         circled_letters: trim(&circled_letters),
         extra_label: trim(&extra_label),
         year: trim(&year).map(|year| u16::from_str(&year).unwrap()),
-        month: trim(&month).map(|month| u8::from_str(&month).unwrap()),
+        month: trim(&month).map(|month| Month::try_from(u8::from_str(&month).unwrap()).unwrap()),
         u1: add_chip(siv, chips.u1, "u1"),
         u2: add_chip(siv, chips.u2, "u2"),
         u3: add_chip(siv, chips.u3, "u3"),

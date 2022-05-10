@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use crate::input::{is_not_outlier, Chip};
+use crate::{
+    input::{is_not_outlier, Chip},
+    time::Month,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -36,7 +39,7 @@ pub struct CartridgeBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub month: Option<u8>,
+    pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -119,7 +122,7 @@ fn test_deserialize() {
                 circled_letters: Some("M".to_owned()),
                 extra_label: Some("5".to_owned()),
                 year: Some(1999),
-                month: Some(11),
+                month: Some(Month::November),
                 u1: Some(Chip {
                     label: Some("U1".to_owned()),
                     outlier: true

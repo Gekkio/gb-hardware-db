@@ -1,4 +1,7 @@
-use gbhwdb_backend::parser::*;
+use gbhwdb_backend::{
+    parser::*,
+    time::{Month, Week},
+};
 use serde::{Deserialize, Serialize};
 
 use crate::format::{calendar, calendar_short};
@@ -32,10 +35,10 @@ pub trait HasDateCode {
     fn year(&self) -> Option<u16> {
         None
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         None
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         None
     }
     fn calendar_short(&self) -> Option<String> {
@@ -67,8 +70,8 @@ pub struct LegacyChip {
     pub label: Option<String>,
     pub manufacturer: Option<String>,
     pub year: Option<u16>,
-    pub month: Option<u8>,
-    pub week: Option<u8>,
+    pub month: Option<Month>,
+    pub week: Option<Week>,
     pub rom_code: Option<String>,
 }
 
@@ -80,10 +83,10 @@ impl HasDateCode for LegacyChip {
     fn year(&self) -> Option<u16> {
         self.year
     }
-    fn month(&self) -> Option<u8> {
+    fn month(&self) -> Option<Month> {
         self.month
     }
-    fn week(&self) -> Option<u8> {
+    fn week(&self) -> Option<Week> {
         self.week
     }
 }

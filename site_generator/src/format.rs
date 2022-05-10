@@ -1,6 +1,5 @@
-use std::borrow::Cow;
-
 use gbhwdb_backend::time::{Month, Week};
+use std::borrow::Cow;
 
 pub fn calendar(year: Option<u16>, month: Option<Month>, week: Option<Week>) -> String {
     let year = year.map(|year| year.to_string()).unwrap_or_default();

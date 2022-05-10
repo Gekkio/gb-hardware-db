@@ -2,8 +2,7 @@ use percy_dom::{html, IterableNodes, View, VirtualNode};
 use time::OffsetDateTime;
 
 use crate::site::{SiteSection, SubmissionCounts};
-use crate::template::site_footer::SiteFooter;
-use crate::template::site_header::SiteHeader;
+use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
 
 pub mod chip;
 pub mod console_submission_list;

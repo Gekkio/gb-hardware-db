@@ -4,13 +4,12 @@ use gbhwdb_backend::{
 };
 use serde::{Deserialize, Serialize};
 
-use crate::format::{calendar, calendar_short};
-
 use self::console::{
     LegacyAgbMetadata, LegacyAgsMetadata, LegacyAgsPhotos, LegacyCgbMetadata, LegacyDmgMetadata,
     LegacyDmgPhotos, LegacyGbsMetadata, LegacyMgbMetadata, LegacyMglMetadata, LegacyOxyMetadata,
     LegacySgb2Metadata, LegacySgbMetadata,
 };
+use crate::format::{calendar, calendar_short};
 
 pub mod cartridge;
 pub mod chip;
@@ -114,42 +113,7 @@ pub struct LegacyPhoto {
 }
 
 pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> {
-    manufacturer.map(|manufacturer| {
-        (match manufacturer {
-            Manufacturer::Amic => "AMIC Technology",
-            Manufacturer::Analog => "Analog Devices",
-            Manufacturer::AtT => "AT&T Technologies",
-            Manufacturer::Bsi => "BSI",
-            Manufacturer::Crosslink => "Crosslink Semiconductor",
-            Manufacturer::Fujitsu => "Fujitsu",
-            Manufacturer::Hudson => "Hudson",
-            Manufacturer::Hynix => "Hynix",
-            Manufacturer::Hyundai => "Hyundai",
-            Manufacturer::Kds => "Daishinku",
-            Manufacturer::Kinseki => "Kinseki",
-            Manufacturer::Lgs => "Lucky GoldStar",
-            Manufacturer::LsiLogic => "LSI Logic",
-            Manufacturer::Macronix => "Macronix",
-            Manufacturer::Mitsubishi => "Mitsubishi",
-            Manufacturer::Mitsumi => "Mitsumi",
-            Manufacturer::MoselVitelic => "Mosel-Vitelic",
-            Manufacturer::Motorola => "Motorola",
-            Manufacturer::Nec => "NEC",
-            Manufacturer::Oki => "OKI",
-            Manufacturer::Rohm => "ROHM",
-            Manufacturer::Samsung => "Samsung",
-            Manufacturer::Sanyo => "Sanyo",
-            Manufacturer::Sharp => "Sharp",
-            Manufacturer::Smsc => "Standard Microsystems Corporation",
-            Manufacturer::StMicro => "STMicroelectronics",
-            Manufacturer::Tdk => "TDK",
-            Manufacturer::TexasInstruments => "Texas Instruments",
-            Manufacturer::Toshiba => "Toshiba",
-            Manufacturer::Victronix => "Victronix",
-            Manufacturer::Winbond => "Winbond",
-        })
-        .to_owned()
-    })
+    manufacturer.map(|manufacturer| manufacturer.name().to_string())
 }
 
 pub fn to_legacy_year(year_hint: Option<u16>, chip_year: Option<Year>) -> Option<u16> {

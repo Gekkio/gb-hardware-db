@@ -32,7 +32,7 @@ impl Console {
         Console::Gbs,
         Console::Oxy,
     ];
-    pub fn id(&self) -> &'static str {
+    pub const fn id(&self) -> &'static str {
         match self {
             Console::Dmg => "dmg",
             Console::Sgb => "sgb",
@@ -46,7 +46,7 @@ impl Console {
             Console::Oxy => "oxy",
         }
     }
-    pub fn code(&self) -> &'static str {
+    pub const fn code(&self) -> &'static str {
         match self {
             Console::Dmg => "DMG",
             Console::Sgb => "SGB",
@@ -60,7 +60,7 @@ impl Console {
             Console::Oxy => "OXY",
         }
     }
-    pub fn name(&self) -> &'static str {
+    pub const fn name(&self) -> &'static str {
         match self {
             Console::Dmg => "Game Boy",
             Console::Sgb => "Super Game Boy",

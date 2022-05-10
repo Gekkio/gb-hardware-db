@@ -176,6 +176,44 @@ pub enum Manufacturer {
     Winbond,
 }
 
+impl Manufacturer {
+    pub const fn name(&self) -> &'static str {
+        match self {
+            Manufacturer::Amic => "AMIC Technology",
+            Manufacturer::Analog => "Analog Devices",
+            Manufacturer::AtT => "AT&T Technologies",
+            Manufacturer::Bsi => "BSI",
+            Manufacturer::Crosslink => "Crosslink Semiconductor",
+            Manufacturer::Fujitsu => "Fujitsu",
+            Manufacturer::Hudson => "Hudson",
+            Manufacturer::Hynix => "Hynix",
+            Manufacturer::Hyundai => "Hyundai",
+            Manufacturer::Kds => "Daishinku",
+            Manufacturer::Kinseki => "Kinseki",
+            Manufacturer::Lgs => "Lucky GoldStar",
+            Manufacturer::LsiLogic => "LSI Logic",
+            Manufacturer::Macronix => "Macronix",
+            Manufacturer::Mitsubishi => "Mitsubishi",
+            Manufacturer::Mitsumi => "Mitsumi",
+            Manufacturer::MoselVitelic => "Mosel-Vitelic",
+            Manufacturer::Motorola => "Motorola",
+            Manufacturer::Nec => "NEC",
+            Manufacturer::Oki => "OKI",
+            Manufacturer::Rohm => "ROHM",
+            Manufacturer::Samsung => "Samsung",
+            Manufacturer::Sanyo => "Sanyo",
+            Manufacturer::Sharp => "Sharp",
+            Manufacturer::Smsc => "Standard Microsystems Corporation",
+            Manufacturer::StMicro => "STMicroelectronics",
+            Manufacturer::Tdk => "TDK",
+            Manufacturer::TexasInstruments => "Texas Instruments",
+            Manufacturer::Toshiba => "Toshiba",
+            Manufacturer::Victronix => "Victronix",
+            Manufacturer::Winbond => "Winbond",
+        }
+    }
+}
+
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Year {
     Full(u16),

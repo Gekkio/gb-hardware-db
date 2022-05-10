@@ -13,12 +13,14 @@ use std::{
     io::BufWriter,
     path::Path,
 };
+
 use walkdir::{DirEntry, WalkDir};
 
 use crate::legacy::chip::*;
 use crate::legacy::*;
 use site::{build_site, SubmissionCounts};
 
+mod css;
 mod csv_export;
 mod format;
 mod legacy;
@@ -80,6 +82,17 @@ impl SiteData {
     }
 }
 
+fn build_css() -> Result<(), Error> {
+    create_dir_all("build/site/static")?;
+
+    let mut css = fs::read_to_string("third-party/normalize.css")?;
+    css.push_str(&css::read_sass("src/site/gbhwdb.scss")?);
+
+    let css = css::minify(&css)?;
+    fs::write("build/site/static/gbhwdb.css", css.as_bytes())?;
+    Ok(())
+}
+
 fn main() -> Result<(), Error> {
     let mut data = SiteData::default();
     create_dir_all("build/data")?;
@@ -99,6 +112,7 @@ fn main() -> Result<(), Error> {
 
     let mut site = build_site();
     site.generate_all(&data, "build/site")?;
+    build_css()?;
     copy_static_files()?;
     Ok(())
 }

@@ -10,6 +10,7 @@ anyhow = "1.0.57"
 csv = "1.1.6"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"
+grass = { version = "0.11.0", default-features = false }
 html5ever = "0.25.0"
 markup5ever_rcdom = "0.1.0"
 percy-dom = "0.7.1"
@@ -17,5 +18,7 @@ pulldown-cmark = "0.9.1"
 serde = { version = "1.0.137", features = ["derive"] }
 serde_json = "1.0.81"
 slug = "0.1.4"
+swc_common = { version = "0.17.25", features = ["anyhow", "sourcemap"] }
+swc_css = { version = "0.104.2", features = ["minifier"] }
 time = { version = "0.3.9", features = ["formatting", "macros", "local-offset"] }
 walkdir = "2.3.2"

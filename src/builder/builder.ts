@@ -9,21 +9,7 @@ import * as process from 'process'
 import * as winston from 'winston'
 
 import Site from '../site/Site'
-import {
-  AgbSubmission,
-  AgsSubmission,
-  CartridgeSubmission,
-  CgbSubmission,
-  ConsoleSubmission,
-  DmgSubmission,
-  GbsSubmission,
-  MgbSubmission,
-  MglSubmission,
-  OxySubmission,
-  Sgb2Submission,
-  SgbSubmission,
-  Photo,
-} from '../crawler'
+import { AgsSubmission, CartridgeSubmission, ConsoleSubmission, DmgSubmission, Photo } from '../crawler'
 import * as config from '../config'
 import { gameCfgs, gameLayouts, MapperId } from '../config'
 import processPhotos from './processPhotos'
@@ -43,19 +29,6 @@ interface PageDeclaration {
   path?: string[]
   title: string
   props: unknown
-}
-
-interface GroupedConsoleSubmissions {
-  dmg: DmgSubmission[]
-  sgb: SgbSubmission[]
-  mgb: MgbSubmission[]
-  mgl: MglSubmission[]
-  sgb2: Sgb2Submission[]
-  cgb: CgbSubmission[]
-  agb: AgbSubmission[]
-  ags: AgsSubmission[]
-  gbs: GbsSubmission[]
-  oxy: OxySubmission[]
 }
 
 function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefined {
@@ -99,19 +72,6 @@ function getMapper({ type, metadata }: CartridgeSubmission): MapperId | undefine
   const layout = cfg && gameLayouts[cfg.layouts[0]]
   if (!layout) return undefined
   return layout.chips.some(({ key }) => key === 'mapper') ? undefined : 'no-mapper'
-}
-
-function sortGroupComparator<T extends ConsoleSubmission>(a: T, b: T): number {
-  if (a.sort_group) {
-    return b.sort_group ? a.sort_group.localeCompare(b.sort_group) : -1
-  } else {
-    return b.sort_group ? 1 : 0
-  }
-}
-const slugComparator = R.comparator((a: { slug: string }, b: { slug: string }) => a.slug < b.slug)
-
-function consoleSubmissionComparator<T extends ConsoleSubmission>(a: T, b: T): number {
-  return sortGroupComparator(a, b) || slugComparator(a, b)
 }
 
 async function crawlCartridges(): Promise<CartridgeSubmission[]> {
@@ -217,18 +177,6 @@ async function main(): Promise<void> {
     .concat(gbsSubmissions)
     .concat(oxySubmissions)
 
-  const groupedConsoles: GroupedConsoleSubmissions = {
-    agb: R.sort(consoleSubmissionComparator, agbSubmissions as any),
-    ags: R.sort(consoleSubmissionComparator, agsSubmissions as any),
-    cgb: R.sort(consoleSubmissionComparator, cgbSubmissions as any),
-    dmg: R.sort(consoleSubmissionComparator, dmgSubmissions as any),
-    gbs: R.sort(consoleSubmissionComparator, gbsSubmissions as any),
-    mgb: R.sort(consoleSubmissionComparator, mgbSubmissions as any),
-    mgl: R.sort(consoleSubmissionComparator, mglSubmissions as any),
-    oxy: R.sort(consoleSubmissionComparator, oxySubmissions as any),
-    sgb: R.sort(consoleSubmissionComparator, sgbSubmissions as any),
-    sgb2: R.sort(consoleSubmissionComparator, sgb2Submissions as any),
-  }
   const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({ type }) => type, cartridgeSubmissions)
   const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
 
@@ -241,17 +189,6 @@ async function main(): Promise<void> {
 
   const pages: PageDeclaration[] = [
     { type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {} },
-    ...config.consoles.filter((type) => !['mgb', 'mgl', 'sgb', 'sgb2'].includes(type)).map((type) => {
-      const cfg = config.consoleCfgs[type]
-      return {
-        type,
-        path: ['consoles', type, 'index'],
-        title: `${cfg.name} (${type.toUpperCase()})`,
-        props: {
-          submissions: groupedConsoles[type],
-        },
-      }
-    }),
     {
       type: 'cartridges',
       path: ['cartridges', 'index'],

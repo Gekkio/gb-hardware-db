@@ -7,6 +7,7 @@ use crate::template::site_header::SiteHeader;
 
 pub mod chip;
 pub mod console_submission_list;
+pub mod dmg_submission_list;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;

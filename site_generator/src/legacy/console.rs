@@ -7,8 +7,9 @@ use serde::Serialize;
 
 use super::{to_legacy_year, HasDateCode, LegacyChip, LegacyPhoto, LegacyPhotos};
 
-pub trait LegacyMainboard: HasDateCode {
+pub trait LegacyMainboard {
     fn kind(&self) -> &str;
+    fn calendar_short(&self) -> Option<String>;
 }
 
 pub trait LegacyConsoleMetadata: 'static {
@@ -112,6 +113,32 @@ pub struct LegacyDmgPhotos {
     pub jack_board_back: Option<LegacyPhoto>,
 }
 
+impl LegacyConsolePhotos for LegacyDmgPhotos {
+    fn photos() -> Vec<PhotoInfo<Self>> {
+        vec![
+            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
+            PhotoInfo::new("Mainboard front", Box::new(|p| p.mainboard_front.as_ref())),
+            PhotoInfo::new("Mainboard back", Box::new(|p| p.mainboard_back.as_ref())),
+            PhotoInfo::new("LCD board front", Box::new(|p| p.lcd_board_front.as_ref())),
+            PhotoInfo::new("LCD board back", Box::new(|p| p.lcd_board_back.as_ref())),
+            PhotoInfo::new(
+                "Power board front",
+                Box::new(|p| p.power_board_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                "Power board back",
+                Box::new(|p| p.power_board_back.as_ref()),
+            ),
+            PhotoInfo::new(
+                "Jack board front",
+                Box::new(|p| p.jack_board_front.as_ref()),
+            ),
+            PhotoInfo::new("Jack board back", Box::new(|p| p.jack_board_back.as_ref())),
+        ]
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyAgsPhotos {
@@ -127,6 +154,18 @@ pub struct LegacyAgsPhotos {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "pcbBack")]
     pub pcb_back: Option<LegacyPhoto>,
+}
+
+impl LegacyConsolePhotos for LegacyAgsPhotos {
+    fn photos() -> Vec<PhotoInfo<Self>> {
+        vec![
+            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new("Top", Box::new(|p| p.top.as_ref())),
+            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
+            PhotoInfo::new("PCB front", Box::new(|p| p.pcb_front.as_ref())),
+            PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
+        ]
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -156,6 +195,37 @@ impl HasDateCode for LegacyDmgMetadata {
     }
     fn month(&self) -> Option<u8> {
         self.month
+    }
+}
+
+impl LegacyMainboard for LegacyDmgMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        None
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyDmgMetadata {
+    type Mainboard = LegacyDmgMainboard;
+    const CONSOLE: Console = Console::Dmg;
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/dmg_placeholder.svg");
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("VRAM", "U2", Box::new(|m| m.mainboard.video_ram.as_ref())),
+            ChipInfo::new("WRAM", "U3", Box::new(|m| m.mainboard.work_ram.as_ref())),
+        ]
+    }
+
+    fn assembled(&self) -> Option<String> {
+        self.calendar_short()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
     }
 }
 
@@ -297,6 +367,9 @@ impl LegacyMainboard for LegacySgbMainboard {
     fn kind(&self) -> &str {
         &self.kind
     }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
 }
 
 impl LegacyConsoleMetadata for LegacySgbMetadata {
@@ -372,6 +445,9 @@ impl LegacyMainboard for LegacySgb2Mainboard {
     fn kind(&self) -> &str {
         &self.kind
     }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
 }
 
 impl LegacyConsoleMetadata for LegacySgb2Metadata {
@@ -432,6 +508,9 @@ impl LegacyMainboard for LegacyMgbMainboard {
     fn kind(&self) -> &str {
         &self.kind
     }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
 }
 
 impl LegacyConsoleMetadata for LegacyMgbMetadata {
@@ -467,14 +546,13 @@ impl LegacyConsoleMetadata for LegacyMgbMetadata {
     }
 
     fn assembled(&self) -> Option<String> {
-        Some(self.calendar_short()).filter(|text| !text.is_empty())
+        self.calendar_short()
     }
 
     fn lcd_panel(&self) -> Option<String> {
         self.lcd_panel
             .as_ref()
-            .map(|panel| panel.calendar_short())
-            .filter(|text| !text.is_empty())
+            .and_then(|panel| panel.calendar_short())
     }
 
     fn mainboard(&self) -> &Self::Mainboard {
@@ -553,6 +631,9 @@ impl LegacyMainboard for LegacyMglMainboard {
     fn kind(&self) -> &str {
         &self.kind
     }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
 }
 
 impl LegacyConsoleMetadata for LegacyMglMetadata {
@@ -589,14 +670,13 @@ impl LegacyConsoleMetadata for LegacyMglMetadata {
     }
 
     fn assembled(&self) -> Option<String> {
-        Some(self.calendar_short()).filter(|text| !text.is_empty())
+        self.calendar_short()
     }
 
     fn lcd_panel(&self) -> Option<String> {
         self.lcd_panel
             .as_ref()
-            .map(|panel| panel.calendar_short())
-            .filter(|text| !text.is_empty())
+            .and_then(|panel| panel.calendar_short())
     }
 
     fn mainboard(&self) -> &Self::Mainboard {
@@ -677,6 +757,55 @@ impl HasDateCode for LegacyCgbMetadata {
     }
 }
 
+impl LegacyMainboard for LegacyCgbMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyCgbMetadata {
+    type Mainboard = LegacyCgbMainboard;
+    const CONSOLE: Console = Console::Cgb;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U3",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo::new(
+                "Regulator",
+                "U4",
+                Box::new(|m| m.mainboard.regulator.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn assembled(&self) -> Option<String> {
+        self.calendar_short()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyCgbMainboard {
@@ -742,6 +871,56 @@ impl HasDateCode for LegacyAgbMetadata {
     }
 }
 
+impl LegacyMainboard for LegacyAgbMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyAgbMetadata {
+    type Mainboard = LegacyAgbMainboard;
+    const CONSOLE: Console = Console::Agb;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Regulator",
+                "U3",
+                Box::new(|m| m.mainboard.regulator.as_ref()),
+            ),
+            ChipInfo::new("?", "U4", Box::new(|m| m.mainboard.u4.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U6",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn assembled(&self) -> Option<String> {
+        self.calendar_short()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyAgbMainboard {
@@ -791,6 +970,52 @@ pub struct LegacyAgsMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     pub mainboard: LegacyAgsMainboard,
+}
+
+impl LegacyMainboard for LegacyAgsMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyAgsMetadata {
+    type Mainboard = LegacyAgsMainboard;
+    const CONSOLE: Console = Console::Ags;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U3",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo::new("?", "U4", Box::new(|m| m.mainboard.u4.as_ref())),
+            ChipInfo::new(
+                "Battery controller",
+                "U5",
+                Box::new(|m| m.mainboard.u5.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -860,6 +1085,48 @@ impl HasDateCode for LegacyGbsMetadata {
     }
 }
 
+impl LegacyMainboard for LegacyGbsMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyGbsMetadata {
+    type Mainboard = LegacyGbsMainboard;
+    const CONSOLE: Console = Console::Gbs;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new("?", "U4", Box::new(|m| m.mainboard.u4.as_ref())),
+            ChipInfo::new("Regulator", "U5", Box::new(|m| m.mainboard.u5.as_ref())),
+            ChipInfo::new("Regulator", "U6", Box::new(|m| m.mainboard.u5.as_ref())),
+            ChipInfo {
+                label: "Crystal",
+                designator: "Y1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn assembled(&self) -> Option<String> {
+        self.calendar_short()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
+}
+
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyGbsMainboard {
@@ -913,6 +1180,37 @@ pub struct LegacyOxyMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     pub mainboard: LegacyOxyMainboard,
+}
+
+impl LegacyMainboard for LegacyOxyMainboard {
+    fn kind(&self) -> &str {
+        &self.kind
+    }
+    fn calendar_short(&self) -> Option<String> {
+        HasDateCode::calendar_short(self)
+    }
+}
+
+impl LegacyConsoleMetadata for LegacyOxyMetadata {
+    type Mainboard = LegacyOxyMainboard;
+    const CONSOLE: Console = Console::Oxy;
+
+    fn chips() -> Vec<ChipInfo<Self>> {
+        vec![
+            ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
+            ChipInfo::new("?", "U2", Box::new(|m| m.mainboard.u2.as_ref())),
+            ChipInfo::new("?", "U4", Box::new(|m| m.mainboard.u4.as_ref())),
+            ChipInfo::new("?", "U5", Box::new(|m| m.mainboard.u5.as_ref())),
+        ]
+    }
+
+    fn release_code(&self) -> Option<&str> {
+        self.release_code.as_deref()
+    }
+
+    fn mainboard(&self) -> &Self::Mainboard {
+        &self.mainboard
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]

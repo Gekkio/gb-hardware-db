@@ -3,14 +3,27 @@ use percy_dom::{html, IterableNodes, View, VirtualNode};
 use crate::{
     legacy::{
         console::{ChipInfo, LegacyConsoleMetadata, LegacyConsolePhotos, LegacyMainboard},
-        HasDateCode, LegacyPhoto, LegacySubmission,
+        LegacyPhoto, LegacySubmission,
     },
     template::chip::ConsoleListingChip,
 };
 
-#[derive(Copy, Clone, Debug)]
-pub struct ConsoleSubmissionList<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> {
+pub struct ConsoleSubmissionList<'a, M, P> {
     pub submissions: &'a [LegacySubmission<M, P>],
+    pub board_column_name: &'static str,
+    pub extra_columns: &'static [&'static str],
+    pub extra_cells: Vec<Box<dyn Fn(&M) -> Option<VirtualNode>>>,
+}
+
+impl<'a, M, P> ConsoleSubmissionList<'a, M, P> {
+    pub fn new(submissions: &'a [LegacySubmission<M, P>]) -> Self {
+        ConsoleSubmissionList {
+            submissions,
+            board_column_name: "Board",
+            extra_columns: &[],
+            extra_cells: vec![],
+        }
+    }
 }
 
 impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View
@@ -26,10 +39,15 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View
                     <thead>
                         <tr>
                             <th>{"ID"}</th>
-                            <th>{"Board"}</th>
+                            <th>{self.board_column_name}</th>
                             { chips.iter().map(|chip|
                                 html! {
                                     <th>{format!("{} ({})", chip.label, chip.designator)}</th>
+                                }
+                            ).collect::<Vec<_>>() }
+                            { self.extra_columns.iter().map(|&column|
+                                html! {
+                                    <th>{column}</th>
                                 }
                             ).collect::<Vec<_>>() }
                             <th>{"Photos"}</th>
@@ -37,7 +55,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View
                     </thead>
                     <tbody>
                         { self.submissions.iter().map(|submission|
-                            Submission { submission, chips: &chips }.render()
+                            Submission { submission, chips: &chips, extra_cells: &self.extra_cells }.render()
                         ).collect::<Vec<_>>() }
                     </tbody>
                 </table>
@@ -51,6 +69,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View
 struct Submission<'a, M: LegacyConsoleMetadata, P> {
     pub submission: &'a LegacySubmission<M, P>,
     pub chips: &'a [ChipInfo<M>],
+    pub extra_cells: &'a [Box<dyn Fn(&M) -> Option<VirtualNode>>],
 }
 
 impl<'a, M: LegacyConsoleMetadata, P> Submission<'a, M, P> {
@@ -109,7 +128,11 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                 </td>
                 <td>
                     <div>{metadata.mainboard().kind()}</div>
-                    <div>{metadata.mainboard().calendar_short()}</div>
+                    {metadata.mainboard().calendar_short().map(|date_code| {
+                        html! {
+                            <div>{format!("{date_code}")}</div>
+                        }
+                    })}
                     {metadata.assembled().map(|date_code| {
                         html! {
                             <div>{format!("Assembled: {date_code}")}</div>
@@ -131,6 +154,9 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                         chip: (chip.getter)(&metadata),
                         hide_type: chip.hide_type,
                     }.render()
+                }).collect::<Vec<_>>() }
+                { self.extra_cells.iter().map(|cell| html! {
+                    <td>{cell(&metadata)}</td>
                 }).collect::<Vec<_>>() }
                 <td>
                 { P::photos().iter().filter_map(|photo| {

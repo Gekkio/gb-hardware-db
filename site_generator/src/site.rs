@@ -9,7 +9,10 @@ use std::{
 };
 
 use crate::{
-    template::{markdown::Markdown, markdown_page::MarkdownPage, page},
+    template::{
+        console_submission_list::ConsoleSubmissionList, dmg_submission_list::DmgSubmissionList,
+        markdown::Markdown, markdown_page::MarkdownPage, page,
+    },
     SiteData,
 };
 
@@ -51,66 +54,29 @@ pub fn build_site() -> Site {
         SiteSection::Consoles(None),
         "content/contribute-cartridges.markdown",
     );
-    site.add_page(
-        ["consoles", "sgb", "index"],
-        Page {
-            title: "Super Game Boy (SGB)".into(),
-            section: SiteSection::Consoles(Some(Console::Sgb)),
-            generator: Box::new(|data| {
-                Ok(
-                    crate::template::console_submission_list::ConsoleSubmissionList {
-                        submissions: &data.sgb,
-                    }
-                    .render(),
-                )
-            }),
-        },
-    );
-    site.add_page(
-        ["consoles", "sgb2", "index"],
-        Page {
-            title: "Super Game Boy 2 (SGB2)".into(),
-            section: SiteSection::Consoles(Some(Console::Sgb2)),
-            generator: Box::new(|data| {
-                Ok(
-                    crate::template::console_submission_list::ConsoleSubmissionList {
-                        submissions: &data.sgb2,
-                    }
-                    .render(),
-                )
-            }),
-        },
-    );
-    site.add_page(
-        ["consoles", "mgb", "index"],
-        Page {
-            title: "Game Boy Pocket (MGB)".into(),
-            section: SiteSection::Consoles(Some(Console::Mgb)),
-            generator: Box::new(|data| {
-                Ok(
-                    crate::template::console_submission_list::ConsoleSubmissionList {
-                        submissions: &data.mgb,
-                    }
-                    .render(),
-                )
-            }),
-        },
-    );
-    site.add_page(
-        ["consoles", "mgl", "index"],
-        Page {
-            title: "Game Boy Light (MGL)".into(),
-            section: SiteSection::Consoles(Some(Console::Mgl)),
-            generator: Box::new(|data| {
-                Ok(
-                    crate::template::console_submission_list::ConsoleSubmissionList {
-                        submissions: &data.mgl,
-                    }
-                    .render(),
-                )
-            }),
-        },
-    );
+    for console in Console::ALL {
+        site.add_page(
+            ["consoles", console.id(), "index"],
+            Page {
+                title: format!("{} ({})", console.name(), console.code()).into(),
+                section: SiteSection::Consoles(Some(console)),
+                generator: Box::new(move |data| {
+                    Ok(match console {
+                        Console::Dmg => DmgSubmissionList::new(&data.dmg).render(),
+                        Console::Sgb => ConsoleSubmissionList::new(&data.sgb).render(),
+                        Console::Mgb => ConsoleSubmissionList::new(&data.mgb).render(),
+                        Console::Mgl => ConsoleSubmissionList::new(&data.mgl).render(),
+                        Console::Sgb2 => ConsoleSubmissionList::new(&data.sgb2).render(),
+                        Console::Cgb => ConsoleSubmissionList::new(&data.cgb).render(),
+                        Console::Agb => ConsoleSubmissionList::new(&data.agb).render(),
+                        Console::Ags => ConsoleSubmissionList::new(&data.ags).render(),
+                        Console::Gbs => ConsoleSubmissionList::new(&data.gbs).render(),
+                        Console::Oxy => ConsoleSubmissionList::new(&data.oxy).render(),
+                    })
+                }),
+            },
+        );
+    }
     site
 }
 

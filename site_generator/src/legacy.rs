@@ -38,11 +38,11 @@ pub trait HasDateCode {
     fn week(&self) -> Option<u8> {
         None
     }
-    fn calendar_short(&self) -> String {
-        calendar_short(self.year(), self.month(), self.week())
+    fn calendar_short(&self) -> Option<String> {
+        Some(calendar_short(self.year(), self.month(), self.week())).filter(|text| !text.is_empty())
     }
-    fn calendar(&self) -> String {
-        calendar(self.year(), self.month(), self.week())
+    fn calendar(&self) -> Option<String> {
+        Some(calendar(self.year(), self.month(), self.week())).filter(|text| !text.is_empty())
     }
 }
 

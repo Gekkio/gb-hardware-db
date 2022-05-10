@@ -1,20 +1,14 @@
 import * as React from 'react'
 
-import Dmg from './pages/Dmg'
 import DmgConsole from './pages/DmgConsole'
 import SgbConsole from './pages/SgbConsole'
 import MgbConsole from './pages/MgbConsole'
 import MglConsole from './pages/MglConsole'
 import Sgb2Console from './pages/Sgb2Console'
-import Cgb from './pages/Cgb'
 import CgbConsole from './pages/CgbConsole'
-import Agb from './pages/Agb'
 import AgbConsole from './pages/AgbConsole'
-import Ags from './pages/Ags'
 import AgsConsole from './pages/AgsConsole'
-import Gbs from './pages/Gbs'
 import GbsConsole from './pages/GbsConsole'
-import Oxy from './pages/Oxy'
 import OxyConsole from './pages/OxyConsole'
 import SiteFooter from './components/SiteFooter'
 import SiteHeader from './components/SiteHeader'
@@ -69,8 +63,6 @@ export default function Site(props: Site.Props) {
 
 function renderPage(type: string, props: any) {
   switch (type) {
-    case 'dmg':
-      return <Dmg {...props} />
     case 'dmg-console':
       return <DmgConsole {...props} />
     case 'sgb-console':
@@ -81,24 +73,14 @@ function renderPage(type: string, props: any) {
       return <MglConsole {...props} />
     case 'sgb2-console':
       return <Sgb2Console {...props} />
-    case 'cgb':
-      return <Cgb {...props} />
     case 'cgb-console':
       return <CgbConsole {...props} />
-    case 'agb':
-      return <Agb {...props} />
     case 'agb-console':
       return <AgbConsole {...props} />
-    case 'ags':
-      return <Ags {...props} />
     case 'ags-console':
       return <AgsConsole {...props} />
-    case 'gbs':
-      return <Gbs {...props} />
     case 'gbs-console':
       return <GbsConsole {...props} />
-    case 'oxy':
-      return <Oxy {...props} />
     case 'oxy-console':
       return <OxyConsole {...props} />
     case 'cartridges':

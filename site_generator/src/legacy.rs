@@ -15,17 +15,18 @@ pub mod cartridge;
 pub mod chip;
 pub mod console;
 
-pub type LegacyCartridgeSubmission = LegacySubmission<cartridge::LegacyMetadata, LegacyPhotos>;
+pub type LegacyCartridgeSubmission =
+    LegacySubmission<cartridge::LegacyMetadata, LegacyDefaultPhotos>;
 pub type LegacyDmgSubmission = LegacySubmission<LegacyDmgMetadata, LegacyDmgPhotos>;
-pub type LegacySgbSubmission = LegacySubmission<LegacySgbMetadata, LegacyPhotos>;
-pub type LegacyMgbSubmission = LegacySubmission<LegacyMgbMetadata, LegacyPhotos>;
-pub type LegacyMglSubmission = LegacySubmission<LegacyMglMetadata, LegacyPhotos>;
-pub type LegacySgb2Submission = LegacySubmission<LegacySgb2Metadata, LegacyPhotos>;
-pub type LegacyCgbSubmission = LegacySubmission<LegacyCgbMetadata, LegacyPhotos>;
-pub type LegacyAgbSubmission = LegacySubmission<LegacyAgbMetadata, LegacyPhotos>;
+pub type LegacySgbSubmission = LegacySubmission<LegacySgbMetadata, LegacyDefaultPhotos>;
+pub type LegacyMgbSubmission = LegacySubmission<LegacyMgbMetadata, LegacyDefaultPhotos>;
+pub type LegacyMglSubmission = LegacySubmission<LegacyMglMetadata, LegacyDefaultPhotos>;
+pub type LegacySgb2Submission = LegacySubmission<LegacySgb2Metadata, LegacyDefaultPhotos>;
+pub type LegacyCgbSubmission = LegacySubmission<LegacyCgbMetadata, LegacyDefaultPhotos>;
+pub type LegacyAgbSubmission = LegacySubmission<LegacyAgbMetadata, LegacyDefaultPhotos>;
 pub type LegacyAgsSubmission = LegacySubmission<LegacyAgsMetadata, LegacyAgsPhotos>;
-pub type LegacyGbsSubmission = LegacySubmission<LegacyGbsMetadata, LegacyPhotos>;
-pub type LegacyOxySubmission = LegacySubmission<LegacyOxyMetadata, LegacyPhotos>;
+pub type LegacyGbsSubmission = LegacySubmission<LegacyGbsMetadata, LegacyDefaultPhotos>;
+pub type LegacyOxySubmission = LegacySubmission<LegacyOxyMetadata, LegacyDefaultPhotos>;
 
 pub trait HasDateCode {
     const YEAR: bool = false;
@@ -62,6 +63,23 @@ pub struct LegacySubmission<M, P> {
     pub photos: P,
 }
 
+pub trait LegacyPhotos: 'static {
+    fn front(&self) -> Option<&LegacyPhoto>;
+    fn infos() -> Vec<PhotoInfo<Self>>;
+    fn photos(&self) -> Vec<&LegacyPhoto>;
+}
+
+pub struct PhotoInfo<P: ?Sized> {
+    pub label: &'static str,
+    pub getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>,
+}
+
+impl<P: ?Sized> PhotoInfo<P> {
+    pub fn new(label: &'static str, getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>) -> Self {
+        PhotoInfo { label, getter }
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct LegacyChip {
@@ -92,7 +110,7 @@ impl HasDateCode for LegacyChip {
 
 #[derive(Clone, Debug, Default, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct LegacyPhotos {
+pub struct LegacyDefaultPhotos {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub front: Option<LegacyPhoto>,
     #[serde(skip_serializing_if = "Option::is_none")]

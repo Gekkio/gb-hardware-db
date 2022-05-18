@@ -11,7 +11,6 @@ clap = "3.1.17"
 cursive = "0.18.0"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"
-image = { version = "0.24.2", features = ["jpeg_rayon"] }
 itertools = "0.10.3"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
 serde = { version = "1.0.137", features = ["derive"] }

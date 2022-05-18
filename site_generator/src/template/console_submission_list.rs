@@ -2,8 +2,8 @@ use percy_dom::{html, IterableNodes, View, VirtualNode};
 
 use crate::{
     legacy::{
-        console::{ChipInfo, LegacyConsoleMetadata, LegacyConsolePhotos, LegacyMainboard},
-        LegacyPhoto, LegacySubmission,
+        console::{ChipInfo, LegacyConsoleMetadata, LegacyMainboard},
+        LegacyPhoto, LegacyPhotos, LegacySubmission,
     },
     template::chip::ConsoleListingChip,
 };
@@ -26,9 +26,7 @@ impl<'a, M, P> ConsoleSubmissionList<'a, M, P> {
     }
 }
 
-impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View
-    for ConsoleSubmissionList<'a, M, P>
-{
+impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for ConsoleSubmissionList<'a, M, P> {
     fn render(&self) -> VirtualNode {
         let console = M::CONSOLE;
         let chips = M::chips();
@@ -87,7 +85,7 @@ impl<'a, M: LegacyConsoleMetadata, P> Submission<'a, M, P> {
     }
 }
 
-impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'a, M, P> {
+impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P> {
     fn render(&self) -> VirtualNode {
         let console = M::CONSOLE;
         let LegacySubmission {
@@ -103,7 +101,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                 <td class="submission-list-item">
                     <a class="submission-list-item__link" href={format!("/consoles/{id}/{slug}.html", id=console.id())}>
                     <div class="submission-list-item__photo">
-                    { P::photos().first().and_then(|photo| (photo.getter)(&photos)).map(|_| {
+                    { P::infos().first().and_then(|photo| (photo.getter)(&photos)).map(|_| {
                         html! {
                             <img
                                 src={format!("/static/{id}/{slug}_thumbnail_80.jpg", id=console.id())}
@@ -159,7 +157,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyConsolePhotos> View for Submission<'
                     <td>{cell(&metadata)}</td>
                 }).collect::<Vec<_>>() }
                 <td>
-                { P::photos().iter().filter_map(|photo| {
+                { P::infos().iter().filter_map(|photo| {
                     self.photo(photo.label, (photo.getter)(&photos))
                 }).collect::<Vec<_>>() }
                 </td>

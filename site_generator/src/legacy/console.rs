@@ -6,7 +6,10 @@ use gbhwdb_backend::{
 };
 use serde::Serialize;
 
-use super::{to_legacy_year, HasDateCode, LegacyChip, LegacyPhoto, LegacyPhotos};
+use super::{
+    to_legacy_year, HasDateCode, LegacyChip, LegacyDefaultPhotos, LegacyPhoto, LegacyPhotos,
+    PhotoInfo,
+};
 
 pub trait LegacyMainboard {
     fn kind(&self) -> &str;
@@ -31,12 +34,8 @@ pub trait LegacyConsoleMetadata: 'static {
     }
 }
 
-pub trait LegacyConsolePhotos: 'static {
-    fn photos() -> Vec<PhotoInfo<Self>>;
-}
-
-impl LegacyConsolePhotos for LegacyPhotos {
-    fn photos() -> Vec<PhotoInfo<Self>> {
+impl LegacyPhotos for LegacyDefaultPhotos {
+    fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
             PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
             PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
@@ -44,16 +43,16 @@ impl LegacyConsolePhotos for LegacyPhotos {
             PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
         ]
     }
-}
 
-pub struct PhotoInfo<P: ?Sized> {
-    pub label: &'static str,
-    pub getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>,
-}
+    fn front(&self) -> Option<&LegacyPhoto> {
+        self.front.as_ref()
+    }
 
-impl<P: ?Sized> PhotoInfo<P> {
-    pub fn new(label: &'static str, getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>) -> Self {
-        PhotoInfo { label, getter }
+    fn photos(&self) -> Vec<&LegacyPhoto> {
+        [&self.front, &self.back, &self.pcb_front, &self.pcb_back]
+            .iter()
+            .filter_map(|photo| photo.as_ref())
+            .collect()
     }
 }
 
@@ -114,8 +113,8 @@ pub struct LegacyDmgPhotos {
     pub jack_board_back: Option<LegacyPhoto>,
 }
 
-impl LegacyConsolePhotos for LegacyDmgPhotos {
-    fn photos() -> Vec<PhotoInfo<Self>> {
+impl LegacyPhotos for LegacyDmgPhotos {
+    fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
             PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
             PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
@@ -138,6 +137,26 @@ impl LegacyConsolePhotos for LegacyDmgPhotos {
             PhotoInfo::new("Jack board back", Box::new(|p| p.jack_board_back.as_ref())),
         ]
     }
+    fn front(&self) -> Option<&LegacyPhoto> {
+        self.front.as_ref()
+    }
+    fn photos(&self) -> Vec<&LegacyPhoto> {
+        [
+            &self.front,
+            &self.back,
+            &self.mainboard_front,
+            &self.mainboard_back,
+            &self.lcd_board_front,
+            &self.lcd_board_back,
+            &self.power_board_front,
+            &self.power_board_back,
+            &self.jack_board_front,
+            &self.jack_board_back,
+        ]
+        .iter()
+        .filter_map(|photo| photo.as_ref())
+        .collect()
+    }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -157,8 +176,8 @@ pub struct LegacyAgsPhotos {
     pub pcb_back: Option<LegacyPhoto>,
 }
 
-impl LegacyConsolePhotos for LegacyAgsPhotos {
-    fn photos() -> Vec<PhotoInfo<Self>> {
+impl LegacyPhotos for LegacyAgsPhotos {
+    fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
             PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
             PhotoInfo::new("Top", Box::new(|p| p.top.as_ref())),
@@ -166,6 +185,21 @@ impl LegacyConsolePhotos for LegacyAgsPhotos {
             PhotoInfo::new("PCB front", Box::new(|p| p.pcb_front.as_ref())),
             PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
         ]
+    }
+    fn front(&self) -> Option<&LegacyPhoto> {
+        self.front.as_ref()
+    }
+    fn photos(&self) -> Vec<&LegacyPhoto> {
+        [
+            &self.front,
+            &self.top,
+            &self.back,
+            &self.pcb_front,
+            &self.pcb_back,
+        ]
+        .iter()
+        .filter_map(|photo| photo.as_ref())
+        .collect()
     }
 }
 

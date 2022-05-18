@@ -1,5 +1,6 @@
 use anyhow::Error;
 use csv_export::{write_submission_csv, ToCsv};
+use filetime::{set_file_mtime, FileTime};
 use gbhwdb_backend::{
     config::cartridge::*,
     input::cartridge::*,
@@ -7,10 +8,13 @@ use gbhwdb_backend::{
     Console,
 };
 use glob::glob;
+use image::{imageops::FilterType, ImageOutputFormat};
+use legacy::LegacyPhotos;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use std::{
     collections::HashMap,
-    fs::{self, create_dir_all, File},
-    io::BufWriter,
+    fs::{self, create_dir_all, File, Metadata},
+    io::{BufWriter, Write},
     path::Path,
 };
 
@@ -93,6 +97,67 @@ fn build_css() -> Result<(), Error> {
     Ok(())
 }
 
+fn is_outdated(ref_meta: &Metadata, path: &Path) -> bool {
+    match path.metadata() {
+        Ok(meta) if meta.modified().ok() == ref_meta.modified().ok() => false,
+        _ => true,
+    }
+}
+
+fn convert_photo(
+    input: impl AsRef<Path>,
+    target: impl AsRef<Path>,
+    width: u32,
+) -> Result<(), Error> {
+    let img = image::open(input.as_ref())?.resize(width, u32::MAX, FilterType::Lanczos3);
+    let mut w = BufWriter::new(File::create(&target)?);
+    img.write_to(&mut w, ImageOutputFormat::Jpeg(80))?;
+    w.flush()?;
+    Ok(())
+}
+
+fn process_photos<M, P>(submissions: &[LegacySubmission<M, P>]) -> Result<(), Error>
+where
+    M: Sync + Send,
+    P: Sync + Send + LegacyPhotos,
+{
+    submissions
+        .par_iter()
+        .map(|submission| {
+            let target_dir = Path::new("build/site/static").join(&submission.code);
+            fs::create_dir_all(&target_dir)?;
+            if let Some(front) = submission.photos.front() {
+                let ref_meta = Path::new(&front.path).metadata()?;
+                for width in [80, 50] {
+                    let target = target_dir.join(format!(
+                        "{slug}_thumbnail_{width}.jpg",
+                        slug = submission.slug
+                    ));
+                    if is_outdated(&ref_meta, &target) {
+                        convert_photo(&front.path, &target, width)?;
+                        set_file_mtime(&target, FileTime::from_last_modification_time(&ref_meta))?;
+                        println!("Wrote thumbnail {target}", target = target.display());
+                    }
+                }
+            }
+            for photo in submission.photos.photos() {
+                let ref_meta = Path::new(&photo.path).metadata()?;
+                let target = target_dir.join(format!(
+                    "{slug}_{name}",
+                    slug = submission.slug,
+                    name = photo.name
+                ));
+                if is_outdated(&ref_meta, &target) {
+                    fs::copy(&photo.path, &target)?;
+                    set_file_mtime(&target, FileTime::from_last_modification_time(&ref_meta))?;
+                    println!("Copied photo {target}", target = target.display());
+                }
+            }
+            Ok(())
+        })
+        .collect::<Result<(), Error>>()
+}
+
 fn main() -> Result<(), Error> {
     let mut data = SiteData::default();
     create_dir_all("build/data")?;
@@ -109,6 +174,18 @@ fn main() -> Result<(), Error> {
     data.ags = process_ags_submissions()?;
     data.gbs = process_gbs_submissions()?;
     data.oxy = process_oxy_submissions()?;
+
+    process_photos(&data.cartridges)?;
+    process_photos(&data.dmg)?;
+    process_photos(&data.sgb)?;
+    process_photos(&data.mgb)?;
+    process_photos(&data.mgl)?;
+    process_photos(&data.sgb2)?;
+    process_photos(&data.cgb)?;
+    process_photos(&data.agb)?;
+    process_photos(&data.ags)?;
+    process_photos(&data.gbs)?;
+    process_photos(&data.oxy)?;
 
     let mut site = build_site();
     site.generate_all(&data, "build/site")?;
@@ -185,7 +262,7 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
                 stamp: cartridge.shell.stamp,
                 board,
             };
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.pcb_front = get_photo(root, "02_pcb_front.jpg");
             photos.pcb_back = get_photo(root, "03_pcb_back.jpg");
@@ -457,7 +534,7 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -547,7 +624,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
                 lcd_panel,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -647,7 +724,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
                 lcd_panel,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -726,7 +803,7 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -832,7 +909,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -934,7 +1011,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -1132,7 +1209,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
@@ -1204,7 +1281,7 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyPhotos::default();
+            let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.back = get_photo(root, "02_back.jpg");
             photos.pcb_front = get_photo(root, "03_pcb_front.jpg");

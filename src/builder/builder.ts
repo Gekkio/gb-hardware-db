@@ -12,7 +12,6 @@ import Site from '../site/Site'
 import { AgsSubmission, CartridgeSubmission, ConsoleSubmission, DmgSubmission, Photo } from '../crawler'
 import * as config from '../config'
 import { gameCfgs, gameLayouts, MapperId } from '../config'
-import processPhotos from './processPhotos'
 import util from 'util'
 
 winston.configure({
@@ -244,8 +243,6 @@ async function main(): Promise<void> {
 
   await Promise.all([
     Bluebird.map(pages, processPage, { concurrency: 16 }),
-    Bluebird.map(consoleSubmissions, processPhotos, { concurrency: 2 }),
-    Bluebird.map(cartridgeSubmissions, processPhotos, { concurrency: 2 }),
   ])
 
   winston.info('Site generation finished :)')

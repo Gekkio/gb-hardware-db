@@ -633,6 +633,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "filetime"
+version = "0.2.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0408e2626025178a6a7f7ffc05a25bc47103229f19c113755de7bf63816290c"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "redox_syscall",
+ "winapi",
+]
+
+[[package]]
 name = "flate2"
 version = "1.0.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -834,13 +846,16 @@ version = "0.0.0"
 dependencies = [
  "anyhow",
  "csv",
+ "filetime",
  "gbhwdb-backend",
  "glob",
  "grass",
  "html5ever",
+ "image",
  "markup5ever_rcdom",
  "percy-dom",
  "pulldown-cmark",
+ "rayon",
  "serde",
  "serde_json",
  "slug",
@@ -859,7 +874,6 @@ dependencies = [
  "cursive",
  "gbhwdb-backend",
  "glob",
- "image",
  "itertools",
  "retro-dat",
  "serde",
@@ -2059,9 +2073,9 @@ dependencies = [
 
 [[package]]
 name = "rayon"
-version = "1.5.2"
+version = "1.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd249e82c21598a9a426a4e00dd7adc1d640b22445ec8545feef801d1a74c221"
+checksum = "bd99e5772ead8baa5215278c9b15bf92087709e9c1b2d1f97cdb5a183c933a7d"
 dependencies = [
  "autocfg",
  "crossbeam-deque",

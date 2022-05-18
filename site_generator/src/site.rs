@@ -7,22 +7,41 @@ use std::{
     fs::{self, create_dir_all},
     path::{Path, PathBuf},
 };
+use time::OffsetDateTime;
 
 use crate::{
     template::{
         console_submission_list::ConsoleSubmissionList, dmg_submission_list::DmgSubmissionList,
-        markdown::Markdown, markdown_page::MarkdownPage, page,
+        home::Home, markdown::Markdown, markdown_page::MarkdownPage, page,
     },
     SiteData,
 };
 
 pub fn build_site() -> Site {
     let mut site = Site::new();
-    site.add_markdown_page(
+    site.add_page(
         ["index"],
-        "Home",
-        SiteSection::Consoles(None),
-        "content/home.markdown",
+        Page {
+            title: Cow::Borrowed("Home"),
+            section: SiteSection::Consoles(None),
+            generator: Box::new(move |data| {
+                let content = Markdown::parse(&fs::read_to_string("content/home.markdown")?);
+                let today = OffsetDateTime::now_local()
+                    .unwrap_or_else(|_| OffsetDateTime::now_utc())
+                    .date();
+                let counts = data.counts();
+                let cartridge_submission_count = counts.cartridges;
+                let console_submission_count = counts.consoles.values().sum();
+
+                Ok(Home {
+                    content,
+                    today,
+                    cartridge_submission_count,
+                    console_submission_count,
+                }
+                .render())
+            }),
+        },
     );
     site.add_markdown_page(
         ["contribute", "index"],
@@ -87,11 +106,12 @@ pub struct Page {
 }
 
 impl Page {
-    pub fn generate(&self, data: &SiteData, counts: &SubmissionCounts) -> Result<String, Error> {
+    pub fn generate(&self, data: &SiteData) -> Result<String, Error> {
         let content = (self.generator)(data)?;
-        Ok(page(&self.title, self.section, content, counts))
+        Ok(page(&self.title, self.section, content))
     }
 }
+
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub struct SitePath(Vec<Cow<'static, str>>);
 
@@ -151,9 +171,8 @@ impl Site {
         target_dir: impl AsRef<Path>,
     ) -> Result<(), Error> {
         let target_dir = target_dir.as_ref();
-        let counts = data.counts();
         for (path, page) in &self.pages {
-            match page.generate(data, &counts) {
+            match page.generate(data) {
                 Ok(content) => {
                     let target_file = path.join(target_dir);
                     if let Some(parent) = target_file.parent() {

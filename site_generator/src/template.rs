@@ -1,30 +1,19 @@
 use percy_dom::{html, IterableNodes, View, VirtualNode};
-use time::OffsetDateTime;
 
-use crate::site::{SiteSection, SubmissionCounts};
+use crate::site::SiteSection;
 use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
 
 pub mod chip;
 pub mod console_submission_list;
 pub mod dmg_submission_list;
+pub mod home;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;
 pub mod site_footer;
 pub mod site_header;
 
-pub fn page(
-    title: &str,
-    section: SiteSection,
-    content: VirtualNode,
-    counts: &SubmissionCounts,
-) -> String {
-    let today = OffsetDateTime::now_local()
-        .unwrap_or_else(|_| OffsetDateTime::now_utc())
-        .date();
-    let cartridge_submission_count = counts.cartridges;
-    let console_submission_count = counts.consoles.values().sum();
-
+pub fn page(title: &str, section: SiteSection, content: VirtualNode) -> String {
     let content = html! {
     <html lang="en">
       <head>
@@ -46,7 +35,7 @@ pub fn page(
         <main class="site-main">
           <div class="site-main__content">{content}</div>
         </main>
-        { SiteFooter { today, console_submission_count, cartridge_submission_count }.render() }
+        <SiteFooter />
       </body>
     </html>
     }

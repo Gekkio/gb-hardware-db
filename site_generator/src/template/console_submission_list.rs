@@ -2,8 +2,8 @@ use percy_dom::{html, IterableNodes, View, VirtualNode};
 
 use crate::{
     legacy::{
-        console::{ChipInfo, LegacyConsoleMetadata, LegacyMainboard},
-        LegacyPhoto, LegacyPhotos, LegacySubmission,
+        console::{ChipInfo, LegacyConsoleMetadata},
+        HasDateCode, LegacyPhoto, LegacyPhotos, LegacySubmission,
     },
     template::chip::ConsoleListingChip,
 };
@@ -125,23 +125,23 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
                     </a>
                 </td>
                 <td>
-                    <div>{metadata.mainboard().kind()}</div>
-                    {metadata.mainboard().calendar_short().map(|date_code| {
+                    <div>{metadata.mainboard().kind}</div>
+                    {metadata.mainboard().date_code.calendar_short().map(|date_code| {
                         html! {
                             <div>{format!("{date_code}")}</div>
                         }
                     })}
-                    {metadata.assembled().map(|date_code| {
+                    {metadata.shell().date_code.calendar_short().map(|date_code| {
                         html! {
                             <div>{format!("Assembled: {date_code}")}</div>
                         }
                     })}
-                    {metadata.release_code().map(|release_code| {
+                    {metadata.shell().release_code.map(|release_code| {
                         html! {
                             <div>{format!("Release: {release_code}")}</div>
                         }
                     })}
-                    {metadata.lcd_panel().map(|date_code| {
+                    {metadata.lcd_panel().and_then(|panel| panel.date_code().calendar_short()).map(|date_code| {
                         html! {
                             <div>{format!("LCD panel: {date_code}")}</div>
                         }

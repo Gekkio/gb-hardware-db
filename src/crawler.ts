@@ -1,30 +1,6 @@
 import * as fs from 'fs-extra'
 
-import {
-  AgbMetadata,
-  AgsMetadata,
-  CartridgeMetadata,
-  CgbMetadata,
-  DmgMetadata,
-  GbsMetadata,
-  MgbMetadata,
-  MglMetadata,
-  OxyMetadata,
-  Sgb2Metadata,
-  SgbMetadata,
-} from './metadata'
-
-export type ConsoleSubmission =
-  | DmgSubmission
-  | SgbSubmission
-  | MgbSubmission
-  | MglSubmission
-  | Sgb2Submission
-  | CgbSubmission
-  | AgbSubmission
-  | AgsSubmission
-  | GbsSubmission
-  | OxySubmission
+import { CartridgeMetadata } from './metadata'
 
 export type CartridgeSubmission = SubmissionBase<string, CartridgeMetadata>
 
@@ -50,31 +26,3 @@ export interface DefaultPhotos {
   pcbFront?: Photo
   pcbBack?: Photo
 }
-
-export interface DmgPhotos {
-  front?: Photo
-  back?: Photo
-  mainboardFront?: Photo
-  mainboardBack?: Photo
-  lcdBoardFront?: Photo
-  lcdBoardBack?: Photo
-  powerBoardFront?: Photo
-  powerBoardBack?: Photo
-  jackBoardFront?: Photo
-  jackBoardBack?: Photo
-}
-
-export interface AgsPhotos extends DefaultPhotos {
-  top?: Photo
-}
-
-export type DmgSubmission = SubmissionBase<'dmg', DmgMetadata, DmgPhotos>
-export type SgbSubmission = SubmissionBase<'sgb', SgbMetadata>
-export type MgbSubmission = SubmissionBase<'mgb', MgbMetadata>
-export type MglSubmission = SubmissionBase<'mgl', MglMetadata>
-export type Sgb2Submission = SubmissionBase<'sgb2', Sgb2Metadata>
-export type CgbSubmission = SubmissionBase<'cgb', CgbMetadata>
-export type AgbSubmission = SubmissionBase<'agb', AgbMetadata>
-export type AgsSubmission = SubmissionBase<'ags', AgsMetadata, AgsPhotos>
-export type GbsSubmission = SubmissionBase<'gbs', GbsMetadata>
-export type OxySubmission = SubmissionBase<'oxy', OxyMetadata>

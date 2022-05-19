@@ -28,25 +28,24 @@ pub type LegacyAgsSubmission = LegacySubmission<LegacyAgsMetadata, LegacyAgsPhot
 pub type LegacyGbsSubmission = LegacySubmission<LegacyGbsMetadata, LegacyDefaultPhotos>;
 pub type LegacyOxySubmission = LegacySubmission<LegacyOxyMetadata, LegacyDefaultPhotos>;
 
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Default)]
+pub struct DateCode {
+    pub year: Option<u16>,
+    pub month: Option<Month>,
+    pub week: Option<Week>,
+}
+
+impl DateCode {
+    pub fn calendar_short(&self) -> Option<String> {
+        Some(calendar_short(self.year, self.month, self.week)).filter(|text| !text.is_empty())
+    }
+    pub fn calendar(&self) -> Option<String> {
+        Some(calendar(self.year, self.month, self.week)).filter(|text| !text.is_empty())
+    }
+}
+
 pub trait HasDateCode {
-    const YEAR: bool = false;
-    const MONTH: bool = false;
-    const WEEK: bool = false;
-    fn year(&self) -> Option<u16> {
-        None
-    }
-    fn month(&self) -> Option<Month> {
-        None
-    }
-    fn week(&self) -> Option<Week> {
-        None
-    }
-    fn calendar_short(&self) -> Option<String> {
-        Some(calendar_short(self.year(), self.month(), self.week())).filter(|text| !text.is_empty())
-    }
-    fn calendar(&self) -> Option<String> {
-        Some(calendar(self.year(), self.month(), self.week())).filter(|text| !text.is_empty())
-    }
+    fn date_code(&self) -> DateCode;
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -70,14 +69,30 @@ pub trait LegacyPhotos: 'static {
 }
 
 pub struct PhotoInfo<P: ?Sized> {
+    pub kind: PhotoKind,
     pub label: &'static str,
     pub getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>,
 }
 
 impl<P: ?Sized> PhotoInfo<P> {
-    pub fn new(label: &'static str, getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>) -> Self {
-        PhotoInfo { label, getter }
+    pub fn new(
+        kind: PhotoKind,
+        label: &'static str,
+        getter: Box<dyn Fn(&P) -> Option<&LegacyPhoto>>,
+    ) -> Self {
+        PhotoInfo {
+            kind,
+            label,
+            getter,
+        }
     }
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub enum PhotoKind {
+    MainUnit,
+    MainBoard,
+    Other,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -93,18 +108,12 @@ pub struct LegacyChip {
 }
 
 impl HasDateCode for LegacyChip {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-    const WEEK: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
-    }
-    fn week(&self) -> Option<Week> {
-        self.week
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: self.week,
+        }
     }
 }
 

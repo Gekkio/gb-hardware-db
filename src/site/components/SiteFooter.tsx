@@ -1,17 +1,11 @@
-import * as humanDate from 'human-date'
 import * as React from 'react'
 
-interface Props {
-  consoleSubmissionCount: number
-  cartridgeSubmissionCount: number
-}
-
-export default function SiteFooter(props: Props) {
+export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer__content">
         <License />
-        <Stats {...props} />
+        <Stats />
       </div>
     </footer>
   )
@@ -43,15 +37,9 @@ function License() {
   )
 }
 
-function Stats({ consoleSubmissionCount, cartridgeSubmissionCount }: Props) {
+function Stats() {
   return (
     <aside className="site-stats">
-      {`Last updated: ${humanDate.prettyPrint(new Date())}`}
-      <br />
-      {`Console submission count: ${consoleSubmissionCount}`}
-      <br />
-      {`Cartridge submission count: ${cartridgeSubmissionCount}`}
-      <br />
       <a href="/contribute/index.html">Want to contribute?</a>
     </aside>
   )

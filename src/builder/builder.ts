@@ -9,7 +9,7 @@ import * as process from 'process'
 import * as winston from 'winston'
 
 import Site from '../site/Site'
-import { AgsSubmission, CartridgeSubmission, ConsoleSubmission, DmgSubmission, Photo } from '../crawler'
+import { CartridgeSubmission, Photo } from '../crawler'
 import * as config from '../config'
 import { gameCfgs, gameLayouts, MapperId } from '../config'
 import util from 'util'
@@ -85,52 +85,6 @@ async function crawlCartridges(): Promise<CartridgeSubmission[]> {
   }))
 }
 
-async function crawlDmg(): Promise<DmgSubmission[]> {
-  const data = (await fs.readJson('build/data/dmg.json')) as DmgSubmission[]
-  return Bluebird.mapSeries(data, async (submission) => ({
-    ...submission,
-    photos: {
-      front: await photoStats(submission.photos.front),
-      back: await photoStats(submission.photos.back),
-      mainboardFront: await photoStats(submission.photos.mainboardFront),
-      mainboardBack: await photoStats(submission.photos.mainboardBack),
-      lcdBoardFront: await photoStats(submission.photos.lcdBoardFront),
-      lcdBoardBack: await photoStats(submission.photos.lcdBoardBack),
-      powerBoardFront: await photoStats(submission.photos.powerBoardFront),
-      powerBoardBack: await photoStats(submission.photos.powerBoardBack),
-      jackBoardFront: await photoStats(submission.photos.jackBoardFront),
-      jackBoardBack: await photoStats(submission.photos.jackBoardBack),
-    },
-  }))
-}
-
-async function crawlConsole(jsonFile: string): Promise<ConsoleSubmission[]> {
-  const data = (await fs.readJson(jsonFile)) as Exclude<ConsoleSubmission, DmgSubmission | AgsSubmission>[]
-  return Bluebird.mapSeries(data, async (submission) => ({
-    ...submission,
-    photos: {
-      front: await photoStats(submission.photos.front),
-      back: await photoStats(submission.photos.back),
-      pcbFront: await photoStats(submission.photos.pcbFront),
-      pcbBack: await photoStats(submission.photos.pcbBack),
-    },
-  }))
-}
-
-async function crawlAgs(): Promise<AgsSubmission[]> {
-  const data = (await fs.readJson('build/data/ags.json')) as AgsSubmission[]
-  return Bluebird.mapSeries(data, async (submission) => ({
-    ...submission,
-    photos: {
-      front: await photoStats(submission.photos.front),
-      top: await photoStats(submission.photos.top),
-      back: await photoStats(submission.photos.back),
-      pcbFront: await photoStats(submission.photos.pcbFront),
-      pcbBack: await photoStats(submission.photos.pcbBack),
-    },
-  }))
-}
-
 async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> {
   if (!photo) return undefined
   const stats = await fs.stat(photo.path)
@@ -142,40 +96,6 @@ async function photoStats(photo: Photo | undefined): Promise<Photo | undefined> 
 
 async function main(): Promise<void> {
   const cartridgeSubmissions = await crawlCartridges()
-  const [
-    dmgSubmissions,
-    sgbSubmissions,
-    mgbSubmissions,
-    mglSubmissions,
-    sgb2Submissions,
-    cgbSubmissions,
-    agbSubmissions,
-    agsSubmissions,
-    gbsSubmissions,
-    oxySubmissions,
-  ] = await Promise.all([
-    crawlDmg(),
-    crawlConsole('build/data/sgb.json'),
-    crawlConsole('build/data/mgb.json'),
-    crawlConsole('build/data/mgl.json'),
-    crawlConsole('build/data/sgb2.json'),
-    crawlConsole('build/data/cgb.json'),
-    crawlConsole('build/data/agb.json'),
-    crawlAgs(),
-    crawlConsole('build/data/gbs.json'),
-    crawlConsole('build/data/oxy.json'),
-  ])
-  const consoleSubmissions = sgbSubmissions
-    .concat(dmgSubmissions)
-    .concat(mgbSubmissions)
-    .concat(mglSubmissions)
-    .concat(sgb2Submissions)
-    .concat(cgbSubmissions)
-    .concat(agbSubmissions)
-    .concat(agsSubmissions)
-    .concat(gbsSubmissions)
-    .concat(oxySubmissions)
-
   const cartridgesByGame: Record<string, CartridgeSubmission[]> = R.groupBy(({ type }) => type, cartridgeSubmissions)
   const cartridgesByMapper: Partial<Record<MapperId, CartridgeSubmission[]>> = {}
 
@@ -187,7 +107,6 @@ async function main(): Promise<void> {
   }
 
   const pages: PageDeclaration[] = [
-    { type: 'consoles', path: ['consoles', 'index'], title: 'Game Boy consoles', props: {} },
     {
       type: 'cartridges',
       path: ['cartridges', 'index'],
@@ -204,15 +123,6 @@ async function main(): Promise<void> {
       },
     },
   ]
-  consoleSubmissions.forEach((submission) => {
-    const { type, slug, title, contributor } = submission
-    pages.push({
-      type: `${type}-console`,
-      path: ['consoles', type, slug],
-      title: `${type.toUpperCase()}: ${title} [${contributor}]`,
-      props: { submission },
-    })
-  })
   cartridgeSubmissions.forEach((submission) => {
     const { type, slug, title, contributor } = submission
     const cfg = config.gameCfgs[type]
@@ -241,9 +151,7 @@ async function main(): Promise<void> {
     })
   }, cartridgesByMapper)
 
-  await Promise.all([
-    Bluebird.map(pages, processPage, { concurrency: 16 }),
-  ])
+  await Promise.all([Bluebird.map(pages, processPage, { concurrency: 16 })])
 
   winston.info('Site generation finished :)')
 
@@ -252,8 +160,6 @@ async function main(): Promise<void> {
       pageType: page.type,
       title: `${page.title} - Game Boy hardware database`,
       pageProps: page.props,
-      consoleSubmissionCount: consoleSubmissions.length,
-      cartridgeSubmissionCount: cartridgeSubmissions.length,
     }
     const markup = ReactDOMServer.renderToStaticMarkup(React.createElement(Site, props))
     const html = `<!DOCTYPE html>\n${markup}`

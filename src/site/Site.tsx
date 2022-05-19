@@ -1,15 +1,5 @@
 import * as React from 'react'
 
-import DmgConsole from './pages/DmgConsole'
-import SgbConsole from './pages/SgbConsole'
-import MgbConsole from './pages/MgbConsole'
-import MglConsole from './pages/MglConsole'
-import Sgb2Console from './pages/Sgb2Console'
-import CgbConsole from './pages/CgbConsole'
-import AgbConsole from './pages/AgbConsole'
-import AgsConsole from './pages/AgsConsole'
-import GbsConsole from './pages/GbsConsole'
-import OxyConsole from './pages/OxyConsole'
 import SiteFooter from './components/SiteFooter'
 import SiteHeader from './components/SiteHeader'
 import Cartridge from './pages/Cartridge'
@@ -22,8 +12,6 @@ namespace Site {
     pageType: string
     title: string
     pageProps: any
-    consoleSubmissionCount: number
-    cartridgeSubmissionCount: number
   }
 }
 
@@ -52,10 +40,7 @@ export default function Site(props: Site.Props) {
         <main className="site-main">
           <div className="site-main__content">{renderPage(props.pageType, props.pageProps)}</div>
         </main>
-        <SiteFooter
-          consoleSubmissionCount={props.consoleSubmissionCount}
-          cartridgeSubmissionCount={props.cartridgeSubmissionCount}
-        />
+        <SiteFooter />
       </body>
     </html>
   )
@@ -63,26 +48,6 @@ export default function Site(props: Site.Props) {
 
 function renderPage(type: string, props: any) {
   switch (type) {
-    case 'dmg-console':
-      return <DmgConsole {...props} />
-    case 'sgb-console':
-      return <SgbConsole {...props} />
-    case 'mgb-console':
-      return <MgbConsole {...props} />
-    case 'mgl-console':
-      return <MglConsole {...props} />
-    case 'sgb2-console':
-      return <Sgb2Console {...props} />
-    case 'cgb-console':
-      return <CgbConsole {...props} />
-    case 'agb-console':
-      return <AgbConsole {...props} />
-    case 'ags-console':
-      return <AgsConsole {...props} />
-    case 'gbs-console':
-      return <GbsConsole {...props} />
-    case 'oxy-console':
-      return <OxyConsole {...props} />
     case 'cartridges':
       return <Cartridges {...props} />
     case 'cartridge':

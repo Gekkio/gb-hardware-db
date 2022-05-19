@@ -17,7 +17,7 @@ impl<'a> View for ConsoleListingChip<'a> {
                     <td class="console-listing-chip">
                         { if self.hide_type { None } else { Some(html! { <div>{chip.kind.as_ref()}</div>}) } }
                         <div>{chip.rom_code.as_ref()}</div>
-                        <div>{chip.calendar_short()}</div>
+                        <div>{chip.date_code().calendar_short()}</div>
                         <div>{chip.manufacturer.as_ref()}</div>
                     </td>
                 }

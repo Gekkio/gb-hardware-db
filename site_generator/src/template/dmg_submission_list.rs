@@ -26,8 +26,8 @@ impl<'a> View for DmgSubmissionList<'a> {
                         html! {
                             <div>
                                 <div>{&board.kind}</div>
-                                <div>{board.calendar_short()}</div>
-                                { board.lcd_panel.as_ref().and_then(|panel| panel.calendar_short()).map(|date_code| {
+                                <div>{board.date_code().calendar_short()}</div>
+                                { board.lcd_panel.as_ref().and_then(|panel| panel.date_code().calendar_short()).map(|date_code| {
                                     html! {
                                         <div>{format!("LCD panel: {}", date_code)}</div>
                                     }
@@ -41,7 +41,7 @@ impl<'a> View for DmgSubmissionList<'a> {
                         html! {
                             <div>
                                 <div>{format!("Type {}", board.kind)}</div>
-                                <div>{board.calendar_short()}</div>
+                                <div>{board.date_code().calendar_short()}</div>
                             </div>
                         }
                     })

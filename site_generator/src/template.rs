@@ -4,7 +4,9 @@ use crate::site::SiteSection;
 use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
 
 pub mod chip;
+pub mod console_page;
 pub mod console_submission_list;
+pub mod dmg_console_page;
 pub mod dmg_submission_list;
 pub mod home;
 pub mod markdown;

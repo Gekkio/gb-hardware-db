@@ -6,7 +6,7 @@ use gbhwdb_backend::{
 };
 use serde::{Deserialize, Serialize};
 
-use super::{to_legacy_manufacturer, to_legacy_year, HasDateCode, LegacyChip};
+use super::{to_legacy_manufacturer, to_legacy_year, DateCode, HasDateCode, LegacyChip};
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -60,14 +60,12 @@ pub struct LegacyBoard {
 }
 
 impl HasDateCode for LegacyBoard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 

@@ -117,17 +117,11 @@ impl<T> Builder<T> {
         T: HasDateCode,
     {
         let mut result = self;
-        result = result.add("calendar_short", |v| v.calendar_short().csv());
-        result = result.add("calendar", |v| v.calendar().csv());
-        if T::YEAR {
-            result = result.add("year", |v| v.year().csv());
-        }
-        if T::MONTH {
-            result = result.add("month", |v| v.month().csv());
-        }
-        if T::WEEK {
-            result = result.add("week", |v| v.week().csv());
-        }
+        result = result.add("calendar_short", |v| v.date_code().calendar_short().csv());
+        result = result.add("calendar", |v| v.date_code().calendar().csv());
+        result = result.add("year", |v| v.date_code().year.csv());
+        result = result.add("month", |v| v.date_code().month.csv());
+        result = result.add("week", |v| v.date_code().week.csv());
         result
     }
     pub fn record<'a>(&'a self, value: &'a T) -> impl Iterator<Item = Cow<[u8]>> + '_ {

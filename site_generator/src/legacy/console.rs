@@ -7,29 +7,39 @@ use gbhwdb_backend::{
 use serde::Serialize;
 
 use super::{
-    to_legacy_year, HasDateCode, LegacyChip, LegacyDefaultPhotos, LegacyPhoto, LegacyPhotos,
-    PhotoInfo,
+    to_legacy_year, DateCode, HasDateCode, LegacyChip, LegacyDefaultPhotos, LegacyPhoto,
+    LegacyPhotos, PhotoInfo, PhotoKind,
 };
 
-pub trait LegacyMainboard {
-    fn kind(&self) -> &str;
-    fn calendar_short(&self) -> Option<String>;
+#[derive(Clone, Debug, PartialEq, Eq, Default)]
+pub struct LegacyMainboard<'a> {
+    pub kind: &'a str,
+    pub date_code: DateCode,
+    pub number_pair: Option<&'a str>,
+    pub stamp: Option<&'a str>,
+    pub stamp_front: Option<&'a str>,
+    pub stamp_back: Option<&'a str>,
+    pub circled_letters: Option<&'a str>,
+    pub letter_at_top_right: Option<&'a str>,
+    pub extra_label: Option<&'a str>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Default)]
+pub struct LegacyConsoleShell<'a> {
+    pub color: Option<&'a str>,
+    pub release_code: Option<&'a str>,
+    pub stamp: Option<&'a str>,
+    pub date_code: DateCode,
 }
 
 pub trait LegacyConsoleMetadata: 'static {
-    type Mainboard: LegacyMainboard;
     const CONSOLE: Console;
     const PLACEHOLDER_SVG: Option<&'static str> = None;
 
     fn chips() -> Vec<ChipInfo<Self>>;
-    fn mainboard(&self) -> &Self::Mainboard;
-    fn release_code(&self) -> Option<&str> {
-        None
-    }
-    fn assembled(&self) -> Option<String> {
-        None
-    }
-    fn lcd_panel(&self) -> Option<String> {
+    fn shell(&self) -> LegacyConsoleShell;
+    fn mainboard(&self) -> LegacyMainboard;
+    fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
         None
     }
 }
@@ -37,10 +47,18 @@ pub trait LegacyConsoleMetadata: 'static {
 impl LegacyPhotos for LegacyDefaultPhotos {
     fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
-            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
-            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
-            PhotoInfo::new("PCB front", Box::new(|p| p.pcb_front.as_ref())),
-            PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Back", Box::new(|p| p.back.as_ref())),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB front",
+                Box::new(|p| p.pcb_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB back",
+                Box::new(|p| p.pcb_back.as_ref()),
+            ),
         ]
     }
 
@@ -116,25 +134,48 @@ pub struct LegacyDmgPhotos {
 impl LegacyPhotos for LegacyDmgPhotos {
     fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
-            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
-            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
-            PhotoInfo::new("Mainboard front", Box::new(|p| p.mainboard_front.as_ref())),
-            PhotoInfo::new("Mainboard back", Box::new(|p| p.mainboard_back.as_ref())),
-            PhotoInfo::new("LCD board front", Box::new(|p| p.lcd_board_front.as_ref())),
-            PhotoInfo::new("LCD board back", Box::new(|p| p.lcd_board_back.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Back", Box::new(|p| p.back.as_ref())),
             PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "Mainboard front",
+                Box::new(|p| p.mainboard_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "Mainboard back",
+                Box::new(|p| p.mainboard_back.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::Other,
+                "LCD board front",
+                Box::new(|p| p.lcd_board_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::Other,
+                "LCD board back",
+                Box::new(|p| p.lcd_board_back.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::Other,
                 "Power board front",
                 Box::new(|p| p.power_board_front.as_ref()),
             ),
             PhotoInfo::new(
+                PhotoKind::Other,
                 "Power board back",
                 Box::new(|p| p.power_board_back.as_ref()),
             ),
             PhotoInfo::new(
+                PhotoKind::Other,
                 "Jack board front",
                 Box::new(|p| p.jack_board_front.as_ref()),
             ),
-            PhotoInfo::new("Jack board back", Box::new(|p| p.jack_board_back.as_ref())),
+            PhotoInfo::new(
+                PhotoKind::Other,
+                "Jack board back",
+                Box::new(|p| p.jack_board_back.as_ref()),
+            ),
         ]
     }
     fn front(&self) -> Option<&LegacyPhoto> {
@@ -179,11 +220,19 @@ pub struct LegacyAgsPhotos {
 impl LegacyPhotos for LegacyAgsPhotos {
     fn infos() -> Vec<PhotoInfo<Self>> {
         vec![
-            PhotoInfo::new("Front", Box::new(|p| p.front.as_ref())),
-            PhotoInfo::new("Top", Box::new(|p| p.top.as_ref())),
-            PhotoInfo::new("Back", Box::new(|p| p.back.as_ref())),
-            PhotoInfo::new("PCB front", Box::new(|p| p.pcb_front.as_ref())),
-            PhotoInfo::new("PCB back", Box::new(|p| p.pcb_back.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Top", Box::new(|p| p.top.as_ref())),
+            PhotoInfo::new(PhotoKind::MainUnit, "Back", Box::new(|p| p.back.as_ref())),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB front",
+                Box::new(|p| p.pcb_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB back",
+                Box::new(|p| p.pcb_back.as_ref()),
+            ),
         ]
     }
     fn front(&self) -> Option<&LegacyPhoto> {
@@ -221,29 +270,23 @@ pub struct LegacyDmgMetadata {
     pub jack_board: Option<LegacyDmgJackBoard>,
 }
 
-impl HasDateCode for LegacyDmgMetadata {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+impl HasDateCode for LegacyDmgMainboard {
+    fn date_code(&self) -> DateCode {
+        DateCode::default()
     }
 }
 
-impl LegacyMainboard for LegacyDmgMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        None
+impl HasDateCode for LegacyDmgMetadata {
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyDmgMetadata {
-    type Mainboard = LegacyDmgMainboard;
     const CONSOLE: Console = Console::Dmg;
     const PLACEHOLDER_SVG: Option<&'static str> = Some("/dmg_placeholder.svg");
 
@@ -252,15 +295,47 @@ impl LegacyConsoleMetadata for LegacyDmgMetadata {
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("VRAM", "U2", Box::new(|m| m.mainboard.video_ram.as_ref())),
             ChipInfo::new("WRAM", "U3", Box::new(|m| m.mainboard.work_ram.as_ref())),
+            ChipInfo::new(
+                "Amplifier",
+                "U4",
+                Box::new(|m| m.mainboard.amplifier.as_ref()),
+            ),
+            ChipInfo {
+                label: "Crystal",
+                designator: "X1",
+                hide_type: true,
+                getter: Box::new(|m| m.mainboard.crystal.as_ref()),
+            },
         ]
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: self.month,
+                week: None,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            extra_label: self.mainboard.extra_label.as_deref(),
+            ..LegacyMainboard::default()
+        }
+    }
+
+    fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
+        self.lcd_board
+            .as_ref()
+            .and_then(|board| board.lcd_panel.as_ref())
     }
 }
 
@@ -307,14 +382,12 @@ pub struct LegacyDmgLcdBoard {
 }
 
 impl HasDateCode for LegacyDmgLcdBoard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -331,14 +404,12 @@ pub struct LegacyDmgPowerBoard {
 }
 
 impl HasDateCode for LegacyDmgPowerBoard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -387,28 +458,16 @@ pub struct LegacySgbMainboard {
 }
 
 impl HasDateCode for LegacySgbMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
-    }
-}
-
-impl LegacyMainboard for LegacySgbMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacySgbMetadata {
-    type Mainboard = LegacySgbMainboard;
     const CONSOLE: Console = Console::Sgb;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -422,8 +481,21 @@ impl LegacyConsoleMetadata for LegacySgbMetadata {
         ]
     }
 
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            stamp: self.stamp.as_deref(),
+            ..LegacyConsoleShell::default()
+        }
+    }
+
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            letter_at_top_right: self.mainboard.letter_at_top_right.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -465,28 +537,16 @@ pub struct LegacySgb2Mainboard {
 }
 
 impl HasDateCode for LegacySgb2Mainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
-    }
-}
-
-impl LegacyMainboard for LegacySgb2Mainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacySgb2Metadata {
-    type Mainboard = LegacySgb2Mainboard;
     const CONSOLE: Console = Console::Sgb2;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -506,8 +566,21 @@ impl LegacyConsoleMetadata for LegacySgb2Metadata {
         ]
     }
 
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            stamp: self.stamp.as_deref(),
+            ..LegacyConsoleShell::default()
+        }
+    }
+
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            letter_at_top_right: self.mainboard.letter_at_top_right.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -528,28 +601,16 @@ pub struct LegacyMgbMetadata {
 }
 
 impl HasDateCode for LegacyMgbMetadata {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
-    }
-}
-
-impl LegacyMainboard for LegacyMgbMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyMgbMetadata {
-    type Mainboard = LegacyMgbMainboard;
     const CONSOLE: Console = Console::Mgb;
     const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgb_placeholder.svg");
 
@@ -576,22 +637,32 @@ impl LegacyConsoleMetadata for LegacyMgbMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: self.month,
+                week: None,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 
-    fn lcd_panel(&self) -> Option<String> {
-        self.lcd_panel
-            .as_ref()
-            .and_then(|panel| panel.calendar_short())
-    }
-
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
+        self.lcd_panel.as_ref()
     }
 }
 
@@ -623,14 +694,12 @@ pub struct LegacyMgbMainboard {
 }
 
 impl HasDateCode for LegacyMgbMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -651,28 +720,16 @@ pub struct LegacyMglMetadata {
 }
 
 impl HasDateCode for LegacyMglMetadata {
-    const YEAR: bool = true;
-    const WEEK: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn week(&self) -> Option<Week> {
-        self.week
-    }
-}
-
-impl LegacyMainboard for LegacyMglMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: None,
+            week: self.week,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyMglMetadata {
-    type Mainboard = LegacyMglMainboard;
     const CONSOLE: Console = Console::Mgl;
     const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgl_placeholder.svg");
 
@@ -700,22 +757,32 @@ impl LegacyConsoleMetadata for LegacyMglMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: None,
+                week: self.week,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 
-    fn lcd_panel(&self) -> Option<String> {
-        self.lcd_panel
-            .as_ref()
-            .and_then(|panel| panel.calendar_short())
-    }
-
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
+        self.lcd_panel.as_ref()
     }
 }
 
@@ -749,14 +816,12 @@ pub struct LegacyMglMainboard {
 }
 
 impl HasDateCode for LegacyMglMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -777,32 +842,16 @@ pub struct LegacyCgbMetadata {
 }
 
 impl HasDateCode for LegacyCgbMetadata {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-    const WEEK: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
-    }
-    fn week(&self) -> Option<Week> {
-        self.week
-    }
-}
-
-impl LegacyMainboard for LegacyCgbMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: self.week,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyCgbMetadata {
-    type Mainboard = LegacyCgbMainboard;
     const CONSOLE: Console = Console::Cgb;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -828,16 +877,28 @@ impl LegacyConsoleMetadata for LegacyCgbMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: self.month,
+                week: self.week,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
-    }
-
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -869,14 +930,12 @@ pub struct LegacyCgbMainboard {
 }
 
 impl HasDateCode for LegacyCgbMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -895,28 +954,16 @@ pub struct LegacyAgbMetadata {
 }
 
 impl HasDateCode for LegacyAgbMetadata {
-    const YEAR: bool = true;
-    const WEEK: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn week(&self) -> Option<Week> {
-        self.week
-    }
-}
-
-impl LegacyMainboard for LegacyAgbMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: None,
+            week: self.week,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyAgbMetadata {
-    type Mainboard = LegacyAgbMainboard;
     const CONSOLE: Console = Console::Agb;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -943,16 +990,28 @@ impl LegacyConsoleMetadata for LegacyAgbMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: None,
+                week: self.week,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
-    }
-
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -986,14 +1045,12 @@ pub struct LegacyAgbMainboard {
 }
 
 impl HasDateCode for LegacyAgbMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -1007,17 +1064,7 @@ pub struct LegacyAgsMetadata {
     pub mainboard: LegacyAgsMainboard,
 }
 
-impl LegacyMainboard for LegacyAgsMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
-    }
-}
-
 impl LegacyConsoleMetadata for LegacyAgsMetadata {
-    type Mainboard = LegacyAgsMainboard;
     const CONSOLE: Console = Console::Ags;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -1044,12 +1091,23 @@ impl LegacyConsoleMetadata for LegacyAgsMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -1083,14 +1141,12 @@ pub struct LegacyAgsMainboard {
 }
 
 impl HasDateCode for LegacyAgsMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -1109,28 +1165,16 @@ pub struct LegacyGbsMetadata {
 }
 
 impl HasDateCode for LegacyGbsMetadata {
-    const YEAR: bool = true;
-    const WEEK: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn week(&self) -> Option<Week> {
-        self.week
-    }
-}
-
-impl LegacyMainboard for LegacyGbsMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: None,
+            week: self.week,
+        }
     }
 }
 
 impl LegacyConsoleMetadata for LegacyGbsMetadata {
-    type Mainboard = LegacyGbsMainboard;
     const CONSOLE: Console = Console::Gbs;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -1149,16 +1193,30 @@ impl LegacyConsoleMetadata for LegacyGbsMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            date_code: DateCode {
+                year: self.year,
+                month: None,
+                week: self.week,
+            },
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn assembled(&self) -> Option<String> {
-        self.calendar_short()
-    }
-
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            number_pair: self.mainboard.number_pair.as_deref(),
+            stamp: self.mainboard.stamp.as_deref(),
+            stamp_front: self.mainboard.stamp_front.as_deref(),
+            stamp_back: self.mainboard.stamp_back.as_deref(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -1196,14 +1254,12 @@ pub struct LegacyGbsMainboard {
 }
 
 impl HasDateCode for LegacyGbsMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -1217,17 +1273,7 @@ pub struct LegacyOxyMetadata {
     pub mainboard: LegacyOxyMainboard,
 }
 
-impl LegacyMainboard for LegacyOxyMainboard {
-    fn kind(&self) -> &str {
-        &self.kind
-    }
-    fn calendar_short(&self) -> Option<String> {
-        HasDateCode::calendar_short(self)
-    }
-}
-
 impl LegacyConsoleMetadata for LegacyOxyMetadata {
-    type Mainboard = LegacyOxyMainboard;
     const CONSOLE: Console = Console::Oxy;
 
     fn chips() -> Vec<ChipInfo<Self>> {
@@ -1239,12 +1285,21 @@ impl LegacyConsoleMetadata for LegacyOxyMetadata {
         ]
     }
 
-    fn release_code(&self) -> Option<&str> {
-        self.release_code.as_deref()
+    fn shell(&self) -> LegacyConsoleShell {
+        LegacyConsoleShell {
+            color: self.color.as_deref(),
+            release_code: self.release_code.as_deref(),
+            ..LegacyConsoleShell::default()
+        }
     }
 
-    fn mainboard(&self) -> &Self::Mainboard {
-        &self.mainboard
+    fn mainboard(&self) -> LegacyMainboard {
+        LegacyMainboard {
+            kind: &self.mainboard.kind,
+            date_code: self.mainboard.date_code(),
+            circled_letters: self.mainboard.circled_letters.as_deref(),
+            ..LegacyMainboard::default()
+        }
     }
 }
 
@@ -1270,14 +1325,12 @@ pub struct LegacyOxyMainboard {
 }
 
 impl HasDateCode for LegacyOxyMainboard {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 
@@ -1297,14 +1350,12 @@ pub struct LegacyLcdPanel {
 }
 
 impl HasDateCode for LegacyLcdPanel {
-    const YEAR: bool = true;
-    const MONTH: bool = true;
-
-    fn year(&self) -> Option<u16> {
-        self.year
-    }
-    fn month(&self) -> Option<Month> {
-        self.month
+    fn date_code(&self) -> DateCode {
+        DateCode {
+            year: self.year,
+            month: self.month,
+            week: None,
+        }
     }
 }
 

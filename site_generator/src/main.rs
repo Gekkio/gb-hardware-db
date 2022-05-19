@@ -17,7 +17,6 @@ use std::{
     io::{BufWriter, Write},
     path::Path,
 };
-
 use walkdir::{DirEntry, WalkDir};
 
 use crate::legacy::chip::*;
@@ -482,8 +481,6 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = BufWriter::new(File::create("build/data/dmg.json")?);
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("dmg", &submissions)?;
     Ok(submissions)
 }
@@ -551,8 +548,6 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/sgb.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("sgb", &submissions)?;
     Ok(submissions)
 }
@@ -645,8 +640,6 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/mgb.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("mgb", &submissions)?;
     Ok(submissions)
 }
@@ -745,8 +738,6 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/mgl.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("mgl", &submissions)?;
     Ok(submissions)
 }
@@ -820,8 +811,6 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/sgb2.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("sgb2", &submissions)?;
     Ok(submissions)
 }
@@ -930,8 +919,6 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/cgb.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("cgb", &submissions)?;
     Ok(submissions)
 }
@@ -1032,8 +1019,6 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/agb.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("agb", &submissions)?;
     Ok(submissions)
 }
@@ -1135,8 +1120,6 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/ags.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("ags", &submissions)?;
     Ok(submissions)
 }
@@ -1226,8 +1209,6 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/gbs.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("gbs", &submissions)?;
     Ok(submissions)
 }
@@ -1302,8 +1283,6 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    let file = File::create("build/data/oxy.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
     write_console_submission_csv("oxy", &submissions)?;
     Ok(submissions)
 }

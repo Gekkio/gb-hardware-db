@@ -7,7 +7,7 @@ publish = false
 
 [dependencies]
 anyhow = "1.0.57"
-clap = "3.1.17"
+clap = "3.1.18"
 cursive = "0.18.0"
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"

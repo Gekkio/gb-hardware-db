@@ -21,7 +21,7 @@ rayon = "1.5.3"
 serde = { version = "1.0.137", features = ["derive"] }
 serde_json = "1.0.81"
 slug = "0.1.4"
-swc_common = { version = "0.17.25", features = ["anyhow", "sourcemap"] }
-swc_css = { version = "0.104.2", features = ["minifier"] }
+swc_common = { version = "0.18.6", features = ["anyhow", "sourcemap"] }
+swc_css = { version = "0.105.0", features = ["minifier"] }
 time = { version = "0.3.9", features = ["formatting", "macros", "local-offset"] }
 walkdir = "2.3.2"

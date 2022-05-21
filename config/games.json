@@ -588,7 +588,7 @@
     ]
   },
   "DMG-ADYP-0": {
-    "name": "Barbie - Ocean Discovery (Europe) (GB Compatible)",
+    "name": "Barbie - Ocean Discovery (United Kingdom) (GB Compatible)",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -1126,7 +1126,7 @@
     ]
   },
   "DMG-AYNP-0": {
-    "name": "Yannick Noah Tennis (France)",
+    "name": "Yannick Noah Tennis (France) (En)",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

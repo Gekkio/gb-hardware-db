@@ -12,12 +12,29 @@ pub fn parse_html_fragment(text: &str) -> IterableNodes {
         .from_utf8()
         .read_from(&mut text.as_bytes())
         .unwrap();
-    let children = dom.document.children.borrow();
-    children
+    let html = find_child(&dom.document, LocalName::from("html"));
+    match html {
+        Some(html) => html
+            .children
+            .borrow()
+            .iter()
+            .filter_map(convert)
+            .collect::<Vec<_>>()
+            .into(),
+        None => Vec::<VirtualNode>::new().into(),
+    }
+}
+
+fn find_child(handle: &Handle, expected_name: LocalName) -> Option<Handle> {
+    handle
+        .children
+        .borrow()
         .iter()
-        .filter_map(convert)
-        .collect::<Vec<_>>()
-        .into()
+        .find(|node| match &node.data {
+            NodeData::Element { name, .. } if name.local == expected_name => true,
+            _ => false,
+        })
+        .cloned()
 }
 
 fn convert(node: &Handle) -> Option<VirtualNode> {

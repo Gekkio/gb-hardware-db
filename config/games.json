@@ -1,6 +1,7 @@
 {
   "CGB-AFIP-0": {
     "name": "F-1 World Grand Prix (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -8,6 +9,7 @@
   },
   "CGB-AHYE-0": {
     "name": "Super Mario Bros. Deluxe (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -15,6 +17,7 @@
   },
   "CGB-AHYE-1": {
     "name": "Super Mario Bros. Deluxe (USA, Europe) (Rev 1)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -22,6 +25,7 @@
   },
   "CGB-AJUP-0": {
     "name": "Jeremy McGrath Supercross 2000 (USA, Europe)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -29,6 +33,7 @@
   },
   "CGB-AQOP-0": {
     "name": "Ready 2 Rumble Boxing (Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -36,6 +41,7 @@
   },
   "CGB-ASNP-0": {
     "name": "Smurfs Nightmare, The (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -43,6 +49,7 @@
   },
   "CGB-AT8E-0": {
     "name": "Micro Machines 1 and 2 - Twin Turbo (USA, Europe)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -50,6 +57,7 @@
   },
   "CGB-ATHD-0": {
     "name": "Tarzan (Germany)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -57,6 +65,7 @@
   },
   "CGB-ATHE-0": {
     "name": "Tarzan (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -64,6 +73,7 @@
   },
   "CGB-ATQP-0": {
     "name": "Tonka Raceway (Europe)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -71,6 +81,7 @@
   },
   "CGB-AW8A-0": {
     "name": "Wario Land 3 (World) (En,Ja)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -78,6 +89,7 @@
   },
   "CGB-AYQE-0": {
     "name": "Rayman (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -85,6 +97,7 @@
   },
   "CGB-AZ7J-0": {
     "name": "Zelda no Densetsu - Fushigi no Kinomi - Daichi no Shou (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -92,6 +105,7 @@
   },
   "CGB-AZ7P-0": {
     "name": "Legend of Zelda, The - Oracle of Seasons (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -99,6 +113,7 @@
   },
   "CGB-AZ8P-0": {
     "name": "Legend of Zelda, The - Oracle of Ages (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -106,6 +121,7 @@
   },
   "CGB-AZRP-0": {
     "name": "Mask of Zorro, The (Europe)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -113,6 +129,7 @@
   },
   "CGB-B2XE-0": {
     "name": "Mega Man Xtreme 2 (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -120,6 +137,7 @@
   },
   "CGB-B3OP-0": {
     "name": "SnowCross (Europe) (En,Fr,De,Es,It,Pt)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -127,6 +145,7 @@
   },
   "CGB-B4QP-1": {
     "name": "Monsters, Inc. (Europe) (Rev 1)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -134,6 +153,7 @@
   },
   "CGB-B82J-0": {
     "name": "Densha de Go! 2 (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "type_15"
@@ -141,6 +161,7 @@
   },
   "CGB-B9AJ-0": {
     "name": "Mobile Trainer (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -148,6 +169,7 @@
   },
   "CGB-BDQP-0": {
     "name": "Tiny Toon Adventures - Dizzy's Candy Quest (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -155,6 +177,7 @@
   },
   "CGB-BDSP-0": {
     "name": "Dinosaur'us (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -162,6 +185,7 @@
   },
   "CGB-BFUP-0": {
     "name": "Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -169,6 +193,7 @@
   },
   "CGB-BFVJ-1": {
     "name": "Monster Traveler (Japan) (Rev 1)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -176,6 +201,7 @@
   },
   "CGB-BGLJ-0": {
     "name": "Super Gals! Kotobuki Ran (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -183,6 +209,7 @@
   },
   "CGB-BH2E-1": {
     "name": "Frogger 2 (USA) (Rev 1)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -190,6 +217,7 @@
   },
   "CGB-BH6P-0": {
     "name": "Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,Da)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -197,6 +225,7 @@
   },
   "CGB-BHFE-0": {
     "name": "Mary-Kate and Ashley - Winners Circle (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -204,6 +233,7 @@
   },
   "CGB-BHMJ-0": {
     "name": "Hamster Paradise 2 (Japan)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -211,6 +241,7 @@
   },
   "CGB-BHTJ-1": {
     "name": "Tottoko Hamutarou - Tomodachi Daisakusen Dechu (Japan) (Rev 1)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -218,6 +249,7 @@
   },
   "CGB-BHVE-0": {
     "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -225,6 +257,7 @@
   },
   "CGB-BJJE-0": {
     "name": "Powerpuff Girls, The - Bad Mojo Jojo (USA)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -232,6 +265,7 @@
   },
   "CGB-BJWP-0": {
     "name": "Jimmy White's Cueball (Europe)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -239,6 +273,7 @@
   },
   "CGB-BLYP-0": {
     "name": "LEGO Stunt Rally (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -246,6 +281,7 @@
   },
   "CGB-BMVJ-0": {
     "name": "Net de Get - Minigame @ 100 (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "mbc6"
@@ -253,6 +289,7 @@
   },
   "CGB-BOMD-0": {
     "name": "Original Moorhuhn Jagd, Die (Germany)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -260,6 +297,7 @@
   },
   "CGB-BP8P-0": {
     "name": "Pooh and Tigger's Hunny Safari (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -267,6 +305,7 @@
   },
   "CGB-BPTE-0": {
     "name": "Powerpuff Girls, The - Paint the Townsville Green (USA)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -274,6 +313,7 @@
   },
   "CGB-BTGP-0": {
     "name": "Tony Hawk's Pro Skater 2 (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -281,6 +321,7 @@
   },
   "CGB-BVBP-0": {
     "name": "Beach'n Ball (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -288,6 +329,7 @@
   },
   "CGB-BWWJ-0": {
     "name": "Game Boy Wars 3 (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -295,6 +337,7 @@
   },
   "CGB-BXTJ-0": {
     "name": "Pocket Monsters - Crystal Version (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -302,6 +345,7 @@
   },
   "CGB-BY3D-0": {
     "name": "Yu-Gi-Oh! - Das Dunkle Duell (Germany)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -309,6 +353,7 @@
   },
   "CGB-BY3J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -316,6 +361,7 @@
   },
   "CGB-BY4J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -323,6 +369,7 @@
   },
   "CGB-BYTD-0": {
     "name": "Pokemon - Kristall-Edition (Germany)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -330,6 +377,7 @@
   },
   "CGB-BYTE-0": {
     "name": "Pokemon - Crystal Version (USA)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -337,6 +385,7 @@
   },
   "CGB-BYTE-1": {
     "name": "Pokemon - Crystal Version (USA, Europe) (Rev 1)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -344,6 +393,7 @@
   },
   "CGB-BYTF-0": {
     "name": "Pokemon - Version Cristal (France)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -351,6 +401,7 @@
   },
   "CGB-BYTU-0": {
     "name": "Pokemon - Crystal Version (Australia)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -358,6 +409,7 @@
   },
   "CGB-HF2J-0": {
     "name": "Pocket Family GB 2 (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "huc3"
@@ -365,6 +417,7 @@
   },
   "CGB-KCEJ-0": {
     "name": "Command Master (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "mbc7"
@@ -372,6 +425,7 @@
   },
   "CGB-KKKJ-0": {
     "name": "Korokoro Kirby (Japan)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "mbc7"
@@ -379,6 +433,7 @@
   },
   "CGB-KTNE-0": {
     "name": "Kirby - Tilt 'n' Tumble (USA)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "mbc7"
@@ -386,6 +441,7 @@
   },
   "CGB-VYHE-0": {
     "name": "Star Wars Episode I - Racer (USA, Europe) (Rumble Version)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -393,6 +449,7 @@
   },
   "DMG-A2GJ-0": {
     "name": "Beatmania GB 2 - Gotcha Mix (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -400,6 +457,7 @@
   },
   "DMG-A3GP-0": {
     "name": "PGA Tour 96 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -407,6 +465,7 @@
   },
   "DMG-A3ME-0": {
     "name": "Mortal Kombat 3 (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -414,6 +473,7 @@
   },
   "DMG-A4RJ-0": {
     "name": "Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -421,6 +481,7 @@
   },
   "DMG-A6SP-0": {
     "name": "FIFA Soccer 96 (USA, Europe) (En,Fr,De,Es) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -428,6 +489,7 @@
   },
   "DMG-A6W-0": {
     "name": "Bamse (Sweden)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -435,6 +497,7 @@
   },
   "DMG-A8WP-0": {
     "name": "World Cup 98 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -442,6 +505,7 @@
   },
   "DMG-AAMJ-0": {
     "name": "Mini Yonku GB Let's & Go!! - All-Star Battle Max (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -449,6 +513,7 @@
   },
   "DMG-AAUD-0": {
     "name": "Pokemon - Goldene Edition (Germany) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -456,6 +521,7 @@
   },
   "DMG-AAUJ-1": {
     "name": "Pocket Monsters Kin (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -463,6 +529,7 @@
   },
   "DMG-AAUP-0": {
     "name": "Pokemon - Gold Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -470,6 +537,7 @@
   },
   "DMG-AAXD-0": {
     "name": "Pokemon - Silberne Edition (Germany) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -477,6 +545,7 @@
   },
   "DMG-AAXE-0": {
     "name": "Pokemon - Silver Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -484,6 +553,7 @@
   },
   "DMG-AB2E-0": {
     "name": "Bomberman GB (USA, Europe) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -491,6 +561,7 @@
   },
   "DMG-AB6P-0": {
     "name": "Bugs Bunny - Crazy Castle 3 (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -498,6 +569,7 @@
   },
   "DMG-ABEJ-0": {
     "name": "Barcode Taisen Bardigun (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -505,6 +577,7 @@
   },
   "DMG-ABEJ-1": {
     "name": "Barcode Taisen Bardigun (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -512,6 +585,7 @@
   },
   "DMG-ABUP-0": {
     "name": "Bust-A-Move 2 - Arcade Edition (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -519,6 +593,7 @@
   },
   "DMG-ACRP-0": {
     "name": "Conker's Pocket Tales (USA, Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -526,6 +601,7 @@
   },
   "DMG-ACXJ-0": {
     "name": "Pokemon Card GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -533,6 +609,7 @@
   },
   "DMG-AD3E-1": {
     "name": "Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -540,6 +617,7 @@
   },
   "DMG-AD3P-1": {
     "name": "Donkey Kong Land III (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -547,6 +625,7 @@
   },
   "DMG-AD4P-0": {
     "name": "Dropzone (Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -554,6 +633,7 @@
   },
   "DMG-ADDE-0": {
     "name": "Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -561,6 +641,7 @@
   },
   "DMG-ADDJ-0": {
     "name": "Donkey Kong Land (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -568,6 +649,7 @@
   },
   "DMG-ADDP-0": {
     "name": "Donkey Kong Land 2 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -575,6 +657,7 @@
   },
   "DMG-ADQJ-0": {
     "name": "Dragon Quest Monsters - Terry no Wonderland (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -582,6 +665,7 @@
   },
   "DMG-ADYD-0": {
     "name": "Barbie - Meeres Abenteuer (Germany) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -589,6 +673,7 @@
   },
   "DMG-ADYP-0": {
     "name": "Barbie - Ocean Discovery (United Kingdom) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -596,6 +681,7 @@
   },
   "DMG-AEMP-0": {
     "name": "Madden NFL 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -603,6 +689,7 @@
   },
   "DMG-AFFJ-0": {
     "name": "Super Chinese Fighter GB (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -610,6 +697,7 @@
   },
   "DMG-AFGE-0": {
     "name": "Frogger (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -617,6 +705,7 @@
   },
   "DMG-AFOP-0": {
     "name": "FIFA 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -624,6 +713,7 @@
   },
   "DMG-AGAE-1": {
     "name": "Game & Watch Gallery (USA) (Rev 1) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -631,6 +721,7 @@
   },
   "DMG-AGCE-0": {
     "name": "Arcade Classic No. 3 - Galaga & Galaxian (USA) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -638,6 +729,7 @@
   },
   "DMG-AGGA-0": {
     "name": "Game Boy Gallery - 5 Games in 1 (Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -645,6 +737,7 @@
   },
   "DMG-AGLE-0": {
     "name": "Game & Watch Gallery 2 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -652,6 +745,7 @@
   },
   "DMG-AGOP-0": {
     "name": "Hugo (Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -659,6 +753,7 @@
   },
   "DMG-AGQE-0": {
     "name": "Game & Watch Gallery 3 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -666,6 +761,7 @@
   },
   "DMG-AGWJ-0": {
     "name": "Game Boy Wars Turbo (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -673,6 +769,7 @@
   },
   "DMG-AGX-0": {
     "name": "Pang (Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -680,6 +777,7 @@
   },
   "DMG-AHHJ-0": {
     "name": "Trade & Battle Card Hero (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -687,6 +785,7 @@
   },
   "DMG-AK2P-0": {
     "name": "Mortal Kombat & Mortal Kombat II (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -694,6 +793,7 @@
   },
   "DMG-AKBJ-0": {
     "name": "Hoshi no Kirby 2 (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -701,6 +801,7 @@
   },
   "DMG-AKBP-0": {
     "name": "Kirby's Dream Land 2 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -708,6 +809,7 @@
   },
   "DMG-AKLP-0": {
     "name": "Killer Instinct (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -715,6 +817,7 @@
   },
   "DMG-AKMJ-0": {
     "name": "Kandume Monsters (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -722,6 +825,7 @@
   },
   "DMG-ALAP-0": {
     "name": "Aladdin (Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -729,6 +833,7 @@
   },
   "DMG-AM3J-0": {
     "name": "Momotarou Collection 2 (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -736,6 +841,7 @@
   },
   "DMG-AM6J-0": {
     "name": "Daikaijuu Monogatari - The Miracle of the Zone II (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -743,6 +849,7 @@
   },
   "DMG-AMDJ-0": {
     "name": "Momotarou Collection (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -750,6 +857,7 @@
   },
   "DMG-AMLP-0": {
     "name": "Mulan (Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -757,6 +865,7 @@
   },
   "DMG-AMOP-0": {
     "name": "Mole Mania (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -764,6 +873,7 @@
   },
   "DMG-ANWJ-0": {
     "name": "Itsudemo! Nyan to Wonderful (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -771,6 +881,7 @@
   },
   "DMG-AODP-0": {
     "name": "Oddworld Adventures (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -778,6 +889,7 @@
   },
   "DMG-AOMJ-0": {
     "name": "Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "tama"
@@ -785,6 +897,7 @@
   },
   "DMG-AORP-0": {
     "name": "Ronaldo V-Football (Europe) (En,Fr,De,Es,It,Nl,Pt) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -792,6 +905,7 @@
   },
   "DMG-AP2J-0": {
     "name": "Picross 2 (Japan) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -799,6 +913,7 @@
   },
   "DMG-APAD-0": {
     "name": "Pokemon - Rote Edition (Germany) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -806,6 +921,7 @@
   },
   "DMG-APAF-0": {
     "name": "Pokemon - Version Rouge (France) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -813,6 +929,7 @@
   },
   "DMG-APAU-0": {
     "name": "Pokemon - Red Version (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -821,6 +938,7 @@
   },
   "DMG-APBJ-1": {
     "name": "Pocket Monsters - Midori (Japan) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -828,6 +946,7 @@
   },
   "DMG-APCJ-0": {
     "name": "Mario no Picross (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -835,6 +954,7 @@
   },
   "DMG-APCP-0": {
     "name": "Mario's Picross (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -842,6 +962,7 @@
   },
   "DMG-APDP-0": {
     "name": "Pinball Deluxe (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -849,6 +970,7 @@
   },
   "DMG-APE-0": {
     "name": "Kwirk - He's A-maze-ing! (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -856,6 +978,7 @@
   },
   "DMG-APED-0": {
     "name": "Pokemon - Blaue Edition (Germany) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -863,6 +986,7 @@
   },
   "DMG-APEE-0": {
     "name": "Pokemon - Blue Version (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -871,6 +995,7 @@
   },
   "DMG-APME-0": {
     "name": "Pagemaster, The (USA) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -878,6 +1003,7 @@
   },
   "DMG-APOJ-0": {
     "name": "Pocket Bomberman (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -885,6 +1011,7 @@
   },
   "DMG-APSD-0": {
     "name": "Pokemon - Gelbe Edition - Special Pikachu Edition (Germany) (CGB+SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -892,6 +1019,7 @@
   },
   "DMG-APSE-0": {
     "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB+SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -899,6 +1027,7 @@
   },
   "DMG-APSF-0": {
     "name": "Pokemon - Version Jaune - Edition Speciale Pikachu (France) (CGB+SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -906,6 +1035,7 @@
   },
   "DMG-APSJ-0": {
     "name": "Pocket Monsters - Pikachu (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -914,6 +1044,7 @@
   },
   "DMG-APSJ-1": {
     "name": "Pocket Monsters - Pikachu (Japan) (Rev 1) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -922,6 +1053,7 @@
   },
   "DMG-APSJ-2": {
     "name": "Pocket Monsters - Pikachu (Japan) (Rev 2) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -930,6 +1062,7 @@
   },
   "DMG-APSJ-3": {
     "name": "Pocket Monsters - Pikachu (Japan) (Rev 3) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram",
@@ -938,6 +1071,7 @@
   },
   "DMG-APSU-0": {
     "name": "Pokemon - Yellow Version - Special Pikachu Edition (USA, Europe) (CGB+SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -945,6 +1079,7 @@
   },
   "DMG-APXE-0": {
     "name": "Bug's Life, A (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -952,6 +1087,7 @@
   },
   "DMG-APYJ-0": {
     "name": "Pocket Puyo Puyo Tsuu (Japan) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -959,6 +1095,7 @@
   },
   "DMG-AQCP-0": {
     "name": "Ms. Pac-Man - Special Colour Edition (Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -966,6 +1103,7 @@
   },
   "DMG-ASFE-1": {
     "name": "Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -973,6 +1111,7 @@
   },
   "DMG-ASFP-1": {
     "name": "Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -980,6 +1119,7 @@
   },
   "DMG-ATAJ-0": {
     "name": "Game de Hakken!! Tamagotchi (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -987,6 +1127,7 @@
   },
   "DMG-ATEA-0": {
     "name": "Tetris DX (World) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -994,6 +1135,7 @@
   },
   "DMG-AUFP-0": {
     "name": "Smurfs Travel the World, The (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1001,6 +1143,7 @@
   },
   "DMG-AVBJ-0": {
     "name": "Pocket Bowling (Japan) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -1008,6 +1151,7 @@
   },
   "DMG-AVLP-0": {
     "name": "V-Rally - Championship Edition (Europe) (En,Fr,De)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1015,6 +1159,7 @@
   },
   "DMG-AVUE-0": {
     "name": "Beauty and the Beast - A Board Game Adventure (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1022,6 +1167,7 @@
   },
   "DMG-AW2J-0": {
     "name": "Wario Land 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1029,6 +1175,7 @@
   },
   "DMG-AW2P-0": {
     "name": "Wario Land II (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1036,6 +1183,7 @@
   },
   "DMG-AW7E-0": {
     "name": "James Bond 007 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1043,6 +1191,7 @@
   },
   "DMG-AW7P-0": {
     "name": "James Bond 007 (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1050,6 +1199,7 @@
   },
   "DMG-AWA-0": {
     "name": "Alleyway (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1057,6 +1207,7 @@
   },
   "DMG-AWDJ-0": {
     "name": "Dino Breeder (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1064,6 +1215,7 @@
   },
   "DMG-AWHP-0": {
     "name": "R-Type DX (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1071,6 +1223,7 @@
   },
   "DMG-AWLP-0": {
     "name": "Wario Land II (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1078,6 +1231,7 @@
   },
   "DMG-AXFE-0": {
     "name": "New Adventures of Mary-Kate & Ashley, The (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -1085,6 +1239,7 @@
   },
   "DMG-AXQP-0": {
     "name": "Pokemon Trading Card Game (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1092,6 +1247,7 @@
   },
   "DMG-AXQU-0": {
     "name": "Pokemon Trading Card Game (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1099,6 +1255,7 @@
   },
   "DMG-AYJ-0": {
     "name": "Ayakashi no Shiro (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1106,6 +1263,7 @@
   },
   "DMG-AYLE-1": {
     "name": "Tetris Attack (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1113,6 +1271,7 @@
   },
   "DMG-AYLP-1": {
     "name": "Tetris Attack (USA, Europe) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1120,6 +1279,7 @@
   },
   "DMG-AYMJ-1": {
     "name": "Gakkyuu Ou Yamazaki (Japan) (Rev 1) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1127,6 +1287,7 @@
   },
   "DMG-AYNP-0": {
     "name": "Yannick Noah Tennis (France) (En)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1134,6 +1295,7 @@
   },
   "DMG-AYWJ-0": {
     "name": "Bokujou Monogatari GB (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1141,6 +1303,7 @@
   },
   "DMG-AYWJ-1": {
     "name": "Bokujou Monogatari GB (Japan) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1148,6 +1311,7 @@
   },
   "DMG-AZLP-0": {
     "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1155,6 +1319,7 @@
   },
   "DMG-AZLP-2": {
     "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (Rev 2) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1162,6 +1327,7 @@
   },
   "DMG-B2E-0": {
     "name": "Bubble Bobble (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1169,6 +1335,7 @@
   },
   "DMG-B7HJ-0": {
     "name": "Nakayoshi Pet Series 1 - Kawaii Hamster (Japan) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1176,6 +1343,7 @@
   },
   "DMG-BAA-0": {
     "name": "Batman - The Video Game (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1183,6 +1351,7 @@
   },
   "DMG-BBE-0": {
     "name": "Bugs Bunny Crazy Castle, The (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1190,6 +1359,7 @@
   },
   "DMG-BIA-0": {
     "name": "Bomber King - Scenario 2 (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1197,6 +1367,7 @@
   },
   "DMG-BLUJ-0": {
     "name": "From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1204,6 +1375,7 @@
   },
   "DMG-BM6E-0": {
     "name": "Mega Man Xtreme (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1211,6 +1383,7 @@
   },
   "DMG-BMAE-0": {
     "name": "Mary-Kate and Ashley - Pocket Planner (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1218,6 +1391,7 @@
   },
   "DMG-BMAP-0": {
     "name": "Mary-Kate and Ashley - Pocket Planner (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1225,6 +1399,7 @@
   },
   "DMG-BQLJ-0": {
     "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1232,6 +1407,7 @@
   },
   "DMG-BTE-0": {
     "name": "Balloon Kid (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1239,6 +1415,7 @@
   },
   "DMG-BVE-0": {
     "name": "Battletoads (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1246,6 +1423,7 @@
   },
   "DMG-C3X-0": {
     "name": "Alfred Chicken (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1253,6 +1431,7 @@
   },
   "DMG-C8E-0": {
     "name": "Incredible Crash Dummies, The (USA, Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1260,6 +1439,7 @@
   },
   "DMG-CIE-0": {
     "name": "Yoshi's Cookie (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1267,6 +1447,7 @@
   },
   "DMG-CNE-0": {
     "name": "Operation C (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1274,6 +1455,7 @@
   },
   "DMG-CVJ-0": {
     "name": "Dracula Densetsu (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1281,6 +1463,7 @@
   },
   "DMG-CVX-0": {
     "name": "Castlevania - The Adventure (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1288,6 +1471,7 @@
   },
   "DMG-DCX-0": {
     "name": "Darkwing Duck (Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1295,6 +1479,7 @@
   },
   "DMG-DDE-0": {
     "name": "Double Dragon (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1302,6 +1487,7 @@
   },
   "DMG-DIJ-0": {
     "name": "Daiku no Gen-san - Ghost Building Company (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1309,6 +1495,7 @@
   },
   "DMG-DTX-0": {
     "name": "DuckTales (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1316,6 +1503,7 @@
   },
   "DMG-EEE-0": {
     "name": "Wario Blast Featuring Bomberman! (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1323,6 +1511,7 @@
   },
   "DMG-F1A-1": {
     "name": "F-1 Race (World) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1330,6 +1519,7 @@
   },
   "DMG-FPA-0": {
     "name": "Flipull (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1337,6 +1527,7 @@
   },
   "DMG-FPE-0": {
     "name": "Flipull (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1344,6 +1535,7 @@
   },
   "DMG-G2E-0": {
     "name": "Gauntlet II (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1351,6 +1543,7 @@
   },
   "DMG-GKX-0": {
     "name": "B.C. Kid (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1358,6 +1551,7 @@
   },
   "DMG-GMA-0": {
     "name": "BurgerTime Deluxe (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1365,6 +1559,7 @@
   },
   "DMG-GOA-0": {
     "name": "Golf (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1372,6 +1567,7 @@
   },
   "DMG-GWJ-0": {
     "name": "Game Boy Wars (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1379,6 +1575,7 @@
   },
   "DMG-H2E-0": {
     "name": "NBA All-Star Challenge 2 (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1386,6 +1583,7 @@
   },
   "DMG-HAE-0": {
     "name": "Heiankyo Alien (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1393,6 +1591,7 @@
   },
   "DMG-HBA-0": {
     "name": "Bomber Boy (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1400,6 +1599,7 @@
   },
   "DMG-HBX-0": {
     "name": "Dynablaster (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1407,6 +1607,7 @@
   },
   "DMG-HFAJ-0": {
     "name": "Pocket Family GB (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "huc3"
@@ -1414,6 +1615,7 @@
   },
   "DMG-HFE-0": {
     "name": "Hunt for Red October, The (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1421,6 +1623,7 @@
   },
   "DMG-HLA-1": {
     "name": "Hyper Lode Runner (World) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1428,6 +1631,7 @@
   },
   "DMG-HQE-0": {
     "name": "Chase H.Q. (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1435,6 +1639,7 @@
   },
   "DMG-HQJ-0": {
     "name": "Taito Chase H.Q. (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1442,6 +1647,7 @@
   },
   "DMG-HRCJ-0": {
     "name": "Robot Poncots - Star Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "huc3"
@@ -1449,6 +1655,7 @@
   },
   "DMG-HREJ-0": {
     "name": "Robot Poncots - Sun Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "huc3"
@@ -1456,6 +1663,7 @@
   },
   "DMG-HUX-0": {
     "name": "Humans, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1463,6 +1671,7 @@
   },
   "DMG-J7E-0": {
     "name": "Jungle Book, The (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1470,6 +1679,7 @@
   },
   "DMG-JBE-0": {
     "name": "Jordan vs Bird - One on One (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1477,6 +1687,7 @@
   },
   "DMG-JPE-0": {
     "name": "Jeopardy! (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1484,6 +1695,7 @@
   },
   "DMG-JQX-0": {
     "name": "Jurassic Park (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1491,6 +1703,7 @@
   },
   "DMG-K9E-0": {
     "name": "Kirby's Pinball Land (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1498,6 +1711,7 @@
   },
   "DMG-KLA-0": {
     "name": "Klax (Japan) (Hudson Soft)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1505,6 +1719,7 @@
   },
   "DMG-KYE-0": {
     "name": "Kirby's Dream Land (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1512,6 +1727,7 @@
   },
   "DMG-KYJ-0": {
     "name": "Hoshi no Kirby (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1519,6 +1735,7 @@
   },
   "DMG-L3E-0": {
     "name": "Alien 3 (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1526,6 +1743,7 @@
   },
   "DMG-L6J-2": {
     "name": "Super Mario Land 2 - 6-tsu no Kinka (Japan) (Rev 2)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1533,6 +1751,7 @@
   },
   "DMG-LDE-0": {
     "name": "Little Mermaid, The (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1540,6 +1759,7 @@
   },
   "DMG-LWE-0": {
     "name": "WWF Superstars (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1547,6 +1767,7 @@
   },
   "DMG-MCE-0": {
     "name": "Mickey's Dangerous Chase (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1554,6 +1775,7 @@
   },
   "DMG-MEA-0": {
     "name": "Metroid II - Return of Samus (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1561,6 +1783,7 @@
   },
   "DMG-MLA-1": {
     "name": "Super Mario Land (World) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1568,6 +1791,7 @@
   },
   "DMG-MQE-0": {
     "name": "Super Mario Land 2 - 6 Golden Coins (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1575,6 +1799,7 @@
   },
   "DMG-MQE-2": {
     "name": "Super Mario Land 2 - 6 Golden Coins (USA, Europe) (Rev 2)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1582,6 +1807,7 @@
   },
   "DMG-MXE-0": {
     "name": "Motocross Maniacs (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1589,6 +1815,7 @@
   },
   "DMG-N6X-0": {
     "name": "Super Battletank (Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1596,6 +1823,7 @@
   },
   "DMG-NCE-0": {
     "name": "Nintendo World Cup (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1603,6 +1831,7 @@
   },
   "DMG-NME-0": {
     "name": "Nemesis (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1610,6 +1839,7 @@
   },
   "DMG-NMX-0": {
     "name": "Nemesis (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1617,6 +1847,7 @@
   },
   "DMG-NWJ-0": {
     "name": "Noobow (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1624,6 +1855,7 @@
   },
   "DMG-OPX-0": {
     "name": "Pop Up (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1631,6 +1863,7 @@
   },
   "DMG-OTX-0": {
     "name": "Othello (Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1638,6 +1871,7 @@
   },
   "DMG-PBJ-0": {
     "name": "Pinball - 66hiki no Wani Daikoushin! (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1645,6 +1879,7 @@
   },
   "DMG-PCE-0": {
     "name": "Pac-Man (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1652,6 +1887,7 @@
   },
   "DMG-PDE-0": {
     "name": "Pipe Dream (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1659,6 +1895,7 @@
   },
   "DMG-PME-0": {
     "name": "Catrap (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1666,6 +1903,7 @@
   },
   "DMG-Q6E-0": {
     "name": "NFL Quarterback Club (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1673,6 +1911,7 @@
   },
   "DMG-QDA-1": {
     "name": "Donkey Kong (World) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1680,6 +1919,7 @@
   },
   "DMG-QQJ-1": {
     "name": "Puyo Puyo (Japan) (Rev 1) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1687,6 +1927,7 @@
   },
   "DMG-QXA-0": {
     "name": "QIX (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1694,6 +1935,7 @@
   },
   "DMG-R4X-0": {
     "name": "Mega Man IV (Europe)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1701,6 +1943,7 @@
   },
   "DMG-RAE-0": {
     "name": "Gargoyle's Quest (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1708,6 +1951,7 @@
   },
   "DMG-RAJ-0": {
     "name": "Red Arremer - Makaimura Gaiden (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1715,6 +1959,7 @@
   },
   "DMG-RCE-0": {
     "name": "Super R.C. Pro-Am (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1722,6 +1967,7 @@
   },
   "DMG-REA-0": {
     "name": "R-Type (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1729,6 +1975,7 @@
   },
   "DMG-RJX-0": {
     "name": "B.C. Kid 2 (Europe) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1736,6 +1983,7 @@
   },
   "DMG-RWE-0": {
     "name": "Mega Man - Dr. Wily's Revenge (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1743,6 +1991,7 @@
   },
   "DMG-RWX-0": {
     "name": "Mega Man - Dr. Wily's Revenge (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1750,6 +1999,7 @@
   },
   "DMG-S3E-0": {
     "name": "Spot - The Video Game (USA)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1757,6 +2007,7 @@
   },
   "DMG-SAJ-0": {
     "name": "Makai Toushi Sa-Ga (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1764,6 +2015,7 @@
   },
   "DMG-SLE-0": {
     "name": "InfoGenius Productivity Pak - Spell Checker and Calculator (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1771,6 +2023,7 @@
   },
   "DMG-SOE-1": {
     "name": "Boxxle (USA, Europe) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1778,6 +2031,7 @@
   },
   "DMG-SSA-0": {
     "name": "SolarStriker (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1785,6 +2039,7 @@
   },
   "DMG-SVE-0": {
     "name": "Malibu Beach Volleyball (USA)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1792,6 +2047,7 @@
   },
   "DMG-SVJ-0": {
     "name": "Seaside Volley (Japan)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1799,6 +2055,7 @@
   },
   "DMG-TRA-1": {
     "name": "Tetris (World) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1806,6 +2063,7 @@
   },
   "DMG-TSE-0": {
     "name": "Bart Simpson's Escape from Camp Deadly (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1813,6 +2071,7 @@
   },
   "DMG-UHE-0": {
     "name": "Prehistorik Man (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1820,6 +2079,7 @@
   },
   "DMG-V2A-0": {
     "name": "Flappy Special (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1827,6 +2087,7 @@
   },
   "DMG-VPHE-0": {
     "name": "Pokemon Pinball (USA, Australia) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1834,6 +2095,7 @@
   },
   "DMG-VPHJ-0": {
     "name": "Pokemon Pinball (Japan) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1841,6 +2103,7 @@
   },
   "DMG-VPHP-0": {
     "name": "Pokemon Pinball (Europe) (En,Fr,De,Es,It) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1848,6 +2111,7 @@
   },
   "DMG-VUA-0": {
     "name": "Dr. Mario (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1855,6 +2119,7 @@
   },
   "DMG-VUA-1": {
     "name": "Dr. Mario (World) (Rev 1)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom"
@@ -1862,6 +2127,7 @@
   },
   "DMG-W2X-0": {
     "name": "Mega Man II (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1869,6 +2135,7 @@
   },
   "DMG-W3X-0": {
     "name": "Mega Man III (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1876,6 +2143,7 @@
   },
   "DMG-W6J-0": {
     "name": "Wizardry Gaiden III - Yami no Seiten (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1883,6 +2151,7 @@
   },
   "DMG-WJA-0": {
     "name": "Wario Land - Super Mario Land 3 (World)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1890,6 +2159,7 @@
   },
   "DMG-WMX-0": {
     "name": "Mega Man V (Europe) (SGB Enhanced)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1897,6 +2167,7 @@
   },
   "DMG-WWE-0": {
     "name": "Wizards & Warriors X - The Fortress of Fear (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1904,6 +2175,7 @@
   },
   "DMG-XCA-0": {
     "name": "Power Mission (Japan)",
+    "rom_verified": false,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1911,6 +2183,7 @@
   },
   "DMG-XTX-0": {
     "name": "Top Ranking Tennis (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "mbc2"
@@ -1918,6 +2191,7 @@
   },
   "DMG-YKY-0": {
     "name": "Soccer (Europe, Australia) (En,Fr,De) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1925,6 +2199,7 @@
   },
   "DMG-YOX-0": {
     "name": "Mario & Yoshi (Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper"
@@ -1932,6 +2207,7 @@
   },
   "DMG-YTE-0": {
     "name": "Donkey Kong Land (USA, Europe) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1939,6 +2215,7 @@
   },
   "DMG-YTJ-0": {
     "name": "Super Donkey Kong GB (Japan) (SGB Enhanced)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"
@@ -1946,6 +2223,7 @@
   },
   "DMG-ZLE-0": {
     "name": "Legend of Zelda, The - Link's Awakening (USA, Europe)",
+    "rom_verified": true,
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram"

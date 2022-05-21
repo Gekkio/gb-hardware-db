@@ -11,6 +11,7 @@ use std::{
     fmt,
     fs::File,
     io::{BufReader, BufWriter},
+    ops::Index,
     path::Path,
     rc::Rc,
     sync::atomic::{self, AtomicBool},
@@ -24,12 +25,24 @@ struct Dats {
     gba: DatFile,
 }
 
+impl Index<GamePlatform> for Dats {
+    type Output = DatFile;
+
+    fn index(&self, index: GamePlatform) -> &Self::Output {
+        match index {
+            GamePlatform::Gb => &self.gb,
+            GamePlatform::Gbc => &self.gbc,
+            GamePlatform::Gba => &self.gba,
+        }
+    }
+}
+
 impl Dats {
     pub fn get_platform(&self, name: &str) -> Option<GamePlatform> {
         match (
-            self.gb.names.contains(name),
-            self.gbc.names.contains(name),
-            self.gba.names.contains(name),
+            self.gb.games.contains_key(name),
+            self.gbc.games.contains_key(name),
+            self.gba.games.contains_key(name),
         ) {
             (true, false, false) => Some(GamePlatform::Gb),
             (false, true, false) => Some(GamePlatform::Gbc),
@@ -39,32 +52,29 @@ impl Dats {
     }
     pub fn all_names(&self) -> HashSet<String> {
         self.gb
-            .names
-            .iter()
-            .chain(self.gbc.names.iter())
-            .chain(self.gba.names.iter())
+            .games
+            .keys()
+            .chain(self.gbc.games.keys())
+            .chain(self.gba.games.keys())
             .cloned()
             .collect()
     }
     pub fn all_games(&self) -> Vec<(GamePlatform, String)> {
         let gb = self
             .gb
-            .names
+            .games
             .iter()
-            .cloned()
-            .map(|name| (GamePlatform::Gb, name));
+            .map(|(name, _)| (GamePlatform::Gb, name.clone()));
         let gbc = self
             .gbc
-            .names
+            .games
             .iter()
-            .cloned()
-            .map(|name| (GamePlatform::Gbc, name));
+            .map(|(name, _)| (GamePlatform::Gbc, name.clone()));
         let gba = self
             .gba
-            .names
+            .games
             .iter()
-            .cloned()
-            .map(|name| (GamePlatform::Gba, name));
+            .map(|(name, _)| (GamePlatform::Gba, name.clone()));
         gb.chain(gbc).chain(gba).collect()
     }
 }
@@ -319,6 +329,9 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
         }
     }
 
+    for cfg in cfgs.values_mut() {
+        cfg.rom_verified = dats[cfg.platform].games[&cfg.name].rom_verified;
+    }
     siv.add_layer(
         Dialog::around(TextView::new("Synchronization complete")).button("Ok", |s| s.quit()),
     );
@@ -381,10 +394,13 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .fixed_width(150),
     );
     siv.run();
-    let (platform, name) = siv
+    let (platform, name, rom_verified) = siv
         .get_select_view_selection::<Candidate>("search_results")
-        .map(|c| (c.platform, c.name))
-        .unwrap_or((GamePlatform::Gb, String::new()));
+        .map(|c| {
+            let rom_verified = dats[c.platform].games[&c.name].rom_verified;
+            (c.platform, c.name, rom_verified)
+        })
+        .unwrap_or((GamePlatform::Gb, String::new(), false));
     siv.pop_layer();
     if name.len() == 0 || should_quit() {
         return;
@@ -444,6 +460,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
         code,
         GameConfig {
             name,
+            rom_verified,
             platform,
             layouts: vec![*layout],
         },

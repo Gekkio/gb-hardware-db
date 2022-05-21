@@ -13,6 +13,7 @@ use std::{
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameConfig {
     pub name: String,
+    pub rom_verified: bool,
     pub platform: GamePlatform,
     pub layouts: Vec<BoardLayout>,
 }

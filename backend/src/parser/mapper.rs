@@ -200,20 +200,20 @@ pub fn sharp_mbc5() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC1B with NEC-like labeling
+/// NEC MBC1B
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::nec_like_mbc1b().parse("Nintendo DMG MBC1B N 9019BA012").is_ok());
+/// assert!(parser::mapper::nec_mbc1b().parse("Nintendo DMG MBC1B N 9019BA012").is_ok());
 /// ```
-pub fn nec_like_mbc1b() -> &'static impl LabelParser<Mapper> {
+pub fn nec_mbc1b() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^Nintendo\ DMG\ MBC1B\ N\ ([0-9]{2})([0-9]{2})BA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc1(Mbc1Version::B),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Nec),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -221,20 +221,20 @@ pub fn nec_like_mbc1b() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC2A with NEC-like labeling
+/// NEC MBC2A
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::nec_like_mbc2a().parse("Nintendo DMG MBC2A N 9011CA005").is_ok());
+/// assert!(parser::mapper::nec_mbc2a().parse("Nintendo DMG MBC2A N 9011CA005").is_ok());
 /// ```
-pub fn nec_like_mbc2a() -> &'static impl LabelParser<Mapper> {
+pub fn nec_mbc2a() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^Nintendo\ DMG\ MBC2A\ N\ ([0-9]{2})([0-9]{2})CA[0-9]{3}$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc2(Mbc2Version::A),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Nec),
                 year: Some(year2(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -694,8 +694,8 @@ pub fn mapper() -> &'static impl LabelParser<Mapper> {
         sharp_mbc3(),
         sharp_mbc3a(),
         sharp_mbc5(),
-        nec_like_mbc1b(),
-        nec_like_mbc2a(),
+        nec_mbc1b(),
+        nec_mbc2a(),
         nec_like_mbc6(),
         p_company_mbc1b(),
         p_company_mbc2a(),

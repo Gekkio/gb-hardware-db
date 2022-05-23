@@ -1,4 +1,5 @@
 use anyhow::Error;
+use gbhwdb_backend::sha256::Sha256;
 use retro_dat::{DatReader, Status};
 use std::{collections::HashMap, path::Path};
 
@@ -12,6 +13,7 @@ pub struct DatFile {
 #[derive(Clone, Debug)]
 pub struct DatGame {
     pub rom_verified: bool,
+    pub sha256: Option<Sha256>,
 }
 
 pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
@@ -22,9 +24,22 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
         .games
         .into_iter()
         .map(|game| {
-            let rom_verified =
-                game.roms.len() > 0 && game.roms.iter().all(|rom| rom.status == Status::Verified);
-            (game.name, DatGame { rom_verified })
+            let (rom_verified, sha256) = {
+                match game.roms.first() {
+                    Some(rom) => (
+                        rom.status == Status::Verified,
+                        Sha256::parse(&rom.sha256).ok(),
+                    ),
+                    None => (false, None),
+                }
+            };
+            (
+                game.name,
+                DatGame {
+                    rom_verified,
+                    sha256,
+                },
+            )
         })
         .collect();
     let (header, version) = data_file

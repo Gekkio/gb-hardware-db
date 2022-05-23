@@ -10,10 +10,14 @@ use std::{
     path::Path,
 };
 
+use crate::sha256::Sha256;
+
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameConfig {
     pub name: String,
     pub rom_verified: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sha256: Option<Sha256>,
     pub platform: GamePlatform,
     pub layouts: Vec<BoardLayout>,
 }

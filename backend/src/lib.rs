@@ -3,6 +3,7 @@ use std::fmt;
 pub mod config;
 pub mod input;
 pub mod parser;
+pub mod sha256;
 pub mod time;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
@@ -79,6 +80,15 @@ impl Console {
 impl fmt::Display for Console {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(self.name())
+    }
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct ParseError(&'static str);
+
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(self.0)
     }
 }
 

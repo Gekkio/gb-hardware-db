@@ -330,7 +330,11 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     }
 
     for cfg in cfgs.values_mut() {
-        cfg.rom_verified = dats[cfg.platform].games[&cfg.name].rom_verified;
+        let dat_game = &dats[cfg.platform].games[&cfg.name];
+        cfg.rom_verified = dat_game.rom_verified;
+        if dat_game.sha256.is_some() {
+            cfg.sha256 = dat_game.sha256;
+        }
     }
     siv.add_layer(
         Dialog::around(TextView::new("Synchronization complete")).button("Ok", |s| s.quit()),
@@ -394,13 +398,13 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .fixed_width(150),
     );
     siv.run();
-    let (platform, name, rom_verified) = siv
+    let (platform, name, rom_verified, sha256) = siv
         .get_select_view_selection::<Candidate>("search_results")
         .map(|c| {
-            let rom_verified = dats[c.platform].games[&c.name].rom_verified;
-            (c.platform, c.name, rom_verified)
+            let dat_game = &dats[c.platform].games[&c.name];
+            (c.platform, c.name, dat_game.rom_verified, dat_game.sha256)
         })
-        .unwrap_or((GamePlatform::Gb, String::new(), false));
+        .unwrap_or((GamePlatform::Gb, String::new(), false, None));
     siv.pop_layer();
     if name.len() == 0 || should_quit() {
         return;
@@ -461,6 +465,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
         GameConfig {
             name,
             rom_verified,
+            sha256,
             platform,
             layouts: vec![*layout],
         },

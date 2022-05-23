@@ -18,5 +18,10 @@
     "u2": {
       "label": "Nintendo DMG MBC1B N 9109BA085"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "5fe63ff3d4abbf4631947e1bc1b208c6ca4eb2a381a68dd0f761323da3f27984"
   }
 }

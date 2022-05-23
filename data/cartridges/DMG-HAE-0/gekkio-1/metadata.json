@@ -16,5 +16,10 @@
     "u1": {
       "label": "DMG-HAE-0 SHARP JAPAN A0 9009 E"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "3f9d3767803ec4d9ab9092a3326705a68693b9a036b74768f6029eac15d71c20"
   }
 }

@@ -25,5 +25,10 @@
     "u4": {
       "label": "6735 0775"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "6c98bfb838beb284be3665b3bc60db33fdce8fbd60544f6ee203ef0ba06d571e"
   }
 }

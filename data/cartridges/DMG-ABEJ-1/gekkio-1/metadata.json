@@ -28,5 +28,10 @@
     "x1": {
       "label": "KDS8L"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "f2019318a6cf41848dc38a0f42a9db6cb0f101c886af3eb7a943713b0d59acef"
   }
 }

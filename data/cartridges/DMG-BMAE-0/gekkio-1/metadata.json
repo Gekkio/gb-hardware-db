@@ -28,5 +28,10 @@
     "x1": {
       "label": "KDS0J"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "3afc54651b9a6d71d7a5a884c6b86b9e2f6d5c6380aeff2e533cd14280444f21"
   }
 }

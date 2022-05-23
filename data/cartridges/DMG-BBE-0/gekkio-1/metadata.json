@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 8'01"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "a0bd5d25545de941e719437f7829f4edf32b3a140a399387f96dda2f8059fe4e"
   }
 }

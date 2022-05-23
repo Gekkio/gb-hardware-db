@@ -19,5 +19,10 @@
     "u2": {
       "label": "MBC5 P-1 914U5L"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "89e43fdc94ec1d2a67aaab39d72afa50dd01df4323df7bf3d0909247cc490c24"
   }
 }

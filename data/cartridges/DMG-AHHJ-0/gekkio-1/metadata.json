@@ -28,5 +28,10 @@
     "x1": {
       "label": "32K9X"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-05-23",
+    "sha256": "fc9d2e5a37521078c4f606a44f3b14f5bb46c362e5be003b52eb5594a44c99fe"
   }
 }

@@ -8,7 +8,7 @@ pub type AgbPmic = ChipYearWeek;
 /// assert!(parser::agb_pmic::mitsumi_mm1514x().parse("105 514X").is_ok());
 /// ```
 pub fn mitsumi_mm1514x() -> &'static impl LabelParser<AgbPmic> {
-    single_parser!(AgbPmic, r#"^([0-9])([0-5][0-9])\ 514X$"#, move |c| {
+    single_parser!(AgbPmic, r#"^([1-9])([0-5][0-9])\ 514X$"#, move |c| {
         Ok(AgbPmic {
             kind: "MM1514X".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),
@@ -23,7 +23,7 @@ pub fn mitsumi_mm1514x() -> &'static impl LabelParser<AgbPmic> {
 /// assert!(parser::agb_pmic::mitsumi_mm1514x_2().parse("081 514X").is_ok());
 /// ```
 pub fn mitsumi_mm1514x_2() -> &'static impl LabelParser<AgbPmic> {
-    single_parser!(AgbPmic, r#"^([0-9])[0-9]{2}\ 514X$"#, move |c| {
+    single_parser!(AgbPmic, r#"^(0)[0-9]{2}\ 514X$"#, move |c| {
         Ok(AgbPmic {
             kind: "MM1514X".to_owned(),
             manufacturer: Some(Manufacturer::Mitsumi),

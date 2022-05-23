@@ -1,6 +1,7 @@
 use super::{month2, year1, LabelParser, Year};
 use crate::{
     macros::{multi_parser, single_parser},
+    parser::year2,
     time::Month,
 };
 
@@ -15,16 +16,12 @@ pub struct LcdScreen {
 /// assert!(parser::lcd_screen::lcd_screen1().parse("S890220").is_ok());
 /// ```
 pub fn lcd_screen1() -> &'static impl LabelParser<LcdScreen> {
-    single_parser!(
-        LcdScreen,
-        r#"^.*[0-9]([0-9])([0-9]{2})[0-9]{2}$"#,
-        move |c| {
-            Ok(LcdScreen {
-                year: Some(year1(&c[1])?),
-                month: Some(month2(&c[2])?),
-            })
-        }
-    )
+    single_parser!(LcdScreen, r#"^.*([0-9]{2})([0-9]{2})[0-9]{2}$"#, move |c| {
+        Ok(LcdScreen {
+            year: Some(year2(&c[1])?),
+            month: Some(month2(&c[2])?),
+        })
+    })
 }
 
 /// ```
@@ -32,12 +29,16 @@ pub fn lcd_screen1() -> &'static impl LabelParser<LcdScreen> {
 /// assert!(parser::lcd_screen::lcd_screen2().parse("T61102S T61104").is_ok());
 /// ```
 pub fn lcd_screen2() -> &'static impl LabelParser<LcdScreen> {
-    single_parser!(LcdScreen, r#"^.*([0-9])([0-9]{2})[0-9]{2}$"#, move |c| {
-        Ok(LcdScreen {
-            year: Some(year1(&c[1])?),
-            month: Some(month2(&c[2])?),
-        })
-    })
+    single_parser!(
+        LcdScreen,
+        r#"^(.*[^0-9])?([0-9])([0-9]{2})[0-9]{2}$"#,
+        move |c| {
+            Ok(LcdScreen {
+                year: Some(year1(&c[2])?),
+                month: Some(month2(&c[3])?),
+            })
+        }
+    )
 }
 
 pub fn lcd_screen() -> &'static impl LabelParser<LcdScreen> {

@@ -1,3 +1,4 @@
+use log::warn;
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::str::FromStr;
 
@@ -318,7 +319,7 @@ impl<T> LabelParser<T> for MultiParser<T> {
     fn parse(&self, label: &str) -> Result<T, String> {
         let matches = self.regex_set.matches(label);
         if matches.iter().count() > 1 {
-            eprintln!("Warning: multiple matches for {}", label);
+            warn!("Warning: multiple matches for {}", label);
         }
         matches
             .iter()

@@ -1,5 +1,6 @@
 use anyhow::Error;
 use gbhwdb_backend::Console;
+use log::error;
 use percy_dom::{View, VirtualNode};
 use std::{
     borrow::Cow,
@@ -247,7 +248,7 @@ impl Site {
                     fs::write(target_file, content.as_bytes())?;
                 }
                 Err(err) => {
-                    eprintln!("{}", err)
+                    error!("{}", err)
                 }
             }
         }

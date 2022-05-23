@@ -10,7 +10,9 @@ use gbhwdb_backend::{
 use glob::glob;
 use image::{imageops::FilterType, ImageOutputFormat};
 use legacy::LegacyPhotos;
+use log::{debug, info, warn, LevelFilter};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
+use simplelog::{ColorChoice, TermLogger, TerminalMode};
 use std::{
     collections::HashMap,
     fs::{self, create_dir_all, File, Metadata},
@@ -135,7 +137,7 @@ where
                     if is_outdated(&ref_meta, &target) {
                         convert_photo(&front.path, &target, width)?;
                         set_file_mtime(&target, FileTime::from_last_modification_time(&ref_meta))?;
-                        println!("Wrote thumbnail {target}", target = target.display());
+                        debug!("Wrote thumbnail {target}", target = target.display());
                     }
                 }
             }
@@ -149,7 +151,7 @@ where
                 if is_outdated(&ref_meta, &target) {
                     fs::copy(&photo.path, &target)?;
                     set_file_mtime(&target, FileTime::from_last_modification_time(&ref_meta))?;
-                    println!("Copied photo {target}", target = target.display());
+                    debug!("Copied photo {target}", target = target.display());
                 }
             }
             Ok(())
@@ -158,9 +160,18 @@ where
 }
 
 fn main() -> Result<(), Error> {
+    let _ = TermLogger::init(
+        LevelFilter::Info,
+        simplelog::Config::default(),
+        TerminalMode::Mixed,
+        ColorChoice::Auto,
+    );
+
     let mut data = SiteData::default();
     create_dir_all("build/data")?;
     create_dir_all("build/site/static/export/consoles")?;
+
+    info!("Processing submissions");
 
     data.cartridges = process_cartridge_submissions()?;
     data.dmg = process_dmg_submissions()?;
@@ -174,6 +185,8 @@ fn main() -> Result<(), Error> {
     data.gbs = process_gbs_submissions()?;
     data.oxy = process_oxy_submissions()?;
 
+    info!("Processing photos");
+
     process_photos(&data.cartridges)?;
     process_photos(&data.dmg)?;
     process_photos(&data.sgb)?;
@@ -186,10 +199,14 @@ fn main() -> Result<(), Error> {
     process_photos(&data.gbs)?;
     process_photos(&data.oxy)?;
 
+    info!("Generating site");
+
     let mut site = build_site();
     site.generate_all(&data, "build/site")?;
     build_css()?;
     copy_static_files()?;
+
+    info!("Site generation finished");
     Ok(())
 }
 
@@ -214,7 +231,7 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let cartridge: Cartridge = serde_json::from_reader(file)?;
             assert_eq!(
@@ -237,7 +254,7 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
 
             if let Some(sha256) = cartridge.dump.as_ref().map(|dump| dump.sha256) {
                 match cfg.sha256 {
-                    None => println!(
+                    None => warn!(
                         "Submission has SHA256 but config doesn't: {}",
                         cartridge.code
                     ),
@@ -303,7 +320,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: DmgConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -504,7 +521,7 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: SgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -571,7 +588,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: MgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -663,7 +680,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: MglConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -761,7 +778,7 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: Sgb2Console = serde_json::from_reader(file)?;
             assert_eq!(
@@ -834,7 +851,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: CgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -942,7 +959,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: AgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -1042,7 +1059,7 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: AgsConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -1143,7 +1160,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: GbsConsole = serde_json::from_reader(file)?;
             assert_eq!(
@@ -1232,7 +1249,7 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            println!("{}", entry.path().display());
+            debug!("{}", entry.path().display());
             let file = File::open(&entry.path())?;
             let console: OxyConsole = serde_json::from_reader(file)?;
             assert_eq!(

@@ -816,6 +816,7 @@ name = "gbhwdb-backend"
 version = "0.0.0"
 dependencies = [
  "anyhow",
+ "log",
  "once_cell",
  "regex",
  "serde",
@@ -853,12 +854,14 @@ dependencies = [
  "grass",
  "html5ever",
  "image",
+ "log",
  "markup5ever_rcdom",
  "percy-dom",
  "pulldown-cmark",
  "rayon",
  "serde",
  "serde_json",
+ "simplelog",
  "slug",
  "swc_common",
  "swc_css",

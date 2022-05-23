@@ -115,6 +115,7 @@ fn ask_submission(
                         index,
                         shell,
                         board,
+                        dump: None,
                     },
                 ));
             }

@@ -1,4 +1,6 @@
-use serde::{Deserialize, Serialize};
+use serde::{de::Visitor, Deserialize, Serialize};
+use std::{fmt, str};
+use time::Date;
 
 use crate::{
     input::{is_not_outlier, Chip},
@@ -14,6 +16,8 @@ pub struct Cartridge {
     pub index: u16,
     pub shell: CartridgeShell,
     pub board: CartridgeBoard,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dump: Option<CartridgeDump>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -61,6 +65,129 @@ pub struct CartridgeBoard {
     pub outlier: bool,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct CartridgeDump {
+    pub tool: String,
+    #[serde(with = "date_format")]
+    pub date: Date,
+    pub sha256: Sha256,
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct Sha256([u8; 32]);
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct ParseError(&'static str);
+
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(self.0)
+    }
+}
+
+impl std::error::Error for ParseError {}
+
+impl Sha256 {
+    pub fn parse(text: &str) -> Result<Sha256, ParseError> {
+        if text.len() != 64 {
+            return Err(ParseError("invalid SHA256"));
+        }
+        let bytes = text.as_bytes().chunks(2).map(|chunk| {
+            let string = str::from_utf8(chunk).ok()?;
+            u8::from_str_radix(string, 16).ok()
+        });
+        let mut result = Sha256([0; 32]);
+        for (byte, parsed) in result.0.iter_mut().zip(bytes) {
+            *byte = parsed.ok_or(ParseError("invalid SHA256"))?;
+        }
+        Ok(result)
+    }
+}
+
+impl fmt::Display for Sha256 {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        for byte in &self.0 {
+            write!(f, "{:02x}", byte)?;
+        }
+        Ok(())
+    }
+}
+
+impl Serialize for Sha256 {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_str(&format!("{}", self))
+    }
+}
+
+impl<'de> Deserialize<'de> for Sha256 {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        struct Sha256Visitor;
+
+        impl<'de> Visitor<'de> for Sha256Visitor {
+            type Value = Sha256;
+
+            fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+                formatter.write_str("hex-formatted SHA256")
+            }
+
+            fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                Sha256::parse(v).map_err(serde::de::Error::custom)
+            }
+        }
+        deserializer.deserialize_str(Sha256Visitor)
+    }
+}
+
+mod date_format {
+    use serde::{de::Visitor, Deserializer, Serializer};
+    use time::{format_description::FormatItem, macros::format_description, Date};
+
+    static DATE_FORMAT: &[FormatItem] = format_description!("[year]-[month]-[day]");
+
+    pub fn serialize<S>(date: &Date, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let string = date
+            .format(DATE_FORMAT)
+            .map_err(serde::ser::Error::custom)?;
+        serializer.serialize_str(&string)
+    }
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<Date, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        struct DateVisitor;
+
+        impl<'de> Visitor<'de> for DateVisitor {
+            type Value = Date;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("date in YYYY-MM-DD format")
+            }
+
+            fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
+            where
+                E: serde::de::Error,
+            {
+                Date::parse(v, DATE_FORMAT).map_err(serde::de::Error::custom)
+            }
+        }
+
+        deserializer.deserialize_str(DateVisitor)
+    }
+}
+
 #[test]
 fn test_deserialize() {
     let cart: Cartridge = serde_json::from_str(
@@ -101,6 +228,11 @@ fn test_deserialize() {
                     "label": "KDS"
                 },
                 "outlier": true
+            },
+            "dump": {
+                "tool": "MeGa DumPer",
+                "date": "1999-01-01",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             }
         }"#,
     )
@@ -153,7 +285,15 @@ fn test_deserialize() {
                     outlier: false,
                 }),
                 outlier: true
-            }
+            },
+            dump: Some(CartridgeDump {
+                tool: "MeGa DumPer".to_owned(),
+                date: Date::from_calendar_date(1999, time::Month::January, 1).unwrap(),
+                sha256: Sha256::parse(
+                    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                )
+                .unwrap(),
+            })
         }
     );
 }
@@ -200,7 +340,8 @@ fn test_deserialize_minimal() {
                 u7: None,
                 x1: None,
                 outlier: false
-            }
+            },
+            dump: None,
         }
     )
 }

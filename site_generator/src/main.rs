@@ -235,6 +235,17 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
                 assert!(year >= 1989 && year < 2010);
             }
 
+            if let Some(sha256) = cartridge.dump.as_ref().map(|dump| dump.sha256) {
+                match cfg.sha256 {
+                    None => println!(
+                        "Submission has SHA256 but config doesn't: {}",
+                        cartridge.code
+                    ),
+                    Some(cfg_sha) if cfg_sha == sha256 => (),
+                    _ => panic!("SHA256 mismatch: {}", cartridge.code),
+                }
+            }
+
             let mut board = LegacyBoard {
                 kind: cartridge.board.label.clone(),
                 circled_letters: cartridge.board.circled_letters.clone(),

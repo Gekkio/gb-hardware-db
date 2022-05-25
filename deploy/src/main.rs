@@ -1,5 +1,4 @@
 use anyhow::{anyhow, Error};
-use chrono::{DateTime, FixedOffset, Utc};
 use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
@@ -14,6 +13,7 @@ use std::{
     str,
     sync::Arc,
 };
+use time::{format_description::well_known::Rfc3339, Duration, OffsetDateTime};
 use tokio::task::spawn_blocking;
 use walkdir::{DirEntry, WalkDir};
 use xdg_mime::SharedMimeInfo;
@@ -50,7 +50,7 @@ impl LocalFile {
 struct RemoteFile {
     key: String,
     len: u64,
-    last_modified: Option<DateTime<FixedOffset>>,
+    last_modified: Option<OffsetDateTime>,
     e_tag: Option<[u8; 16]>,
 }
 
@@ -123,7 +123,7 @@ async fn scan_remote_files<S: S3>(s3: &S, bucket: &str) -> Result<Vec<RemoteFile
                         len: size as u64,
                         last_modified: obj
                             .last_modified
-                            .and_then(|timestamp| DateTime::parse_from_rfc3339(&timestamp).ok()),
+                            .and_then(|timestamp| OffsetDateTime::parse(&timestamp, &Rfc3339).ok()),
                         e_tag: obj.e_tag.and_then(|e_tag| parse_e_tag(&e_tag)),
                     });
                 }
@@ -193,8 +193,8 @@ async fn main() -> Result<(), Error> {
             continue;
         }
         if let Some(last_modified) = remote_file.last_modified {
-            let elapsed = Utc::now().signed_duration_since(last_modified);
-            if elapsed > chrono::Duration::weeks(4) {
+            let elapsed = OffsetDateTime::now_utc() - last_modified;
+            if elapsed > Duration::weeks(4) {
                 to_delete.push(remote_file);
             }
         }

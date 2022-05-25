@@ -1,8 +1,8 @@
 @import 'common';
-@import 'components/ConsoleListingChip';
-@import 'components/ConsolePageChip';
-@import 'components/SiteFooter';
-@import 'components/SiteHeader';
+@import 'template/console_page_chip';
+@import 'template/listing_chip';
+@import 'template/site_footer';
+@import 'template/site_header';
 
 * {
   box-sizing: border-box;

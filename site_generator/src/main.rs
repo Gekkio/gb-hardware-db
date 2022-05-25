@@ -92,7 +92,7 @@ fn build_css() -> Result<(), Error> {
     create_dir_all("build/site/static")?;
 
     let mut css = fs::read_to_string("third-party/normalize.css")?;
-    css.push_str(&css::read_sass("src/site/gbhwdb.scss")?);
+    css.push_str(&css::read_sass("site_generator/src/gbhwdb.scss")?);
 
     let css = css::minify(&css)?;
     fs::write("build/site/static/gbhwdb.css", css.as_bytes())?;

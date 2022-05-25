@@ -6,7 +6,7 @@ use crate::{
         console::{ChipInfo, LegacyConsoleMetadata},
         HasDateCode, LegacyPhotos, LegacySubmission,
     },
-    template::chip::ConsoleListingChip,
+    template::listing_chip::ListingChip,
 };
 
 pub struct ConsoleSubmissionList<'a, M, P> {
@@ -101,7 +101,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
                     })}
                 </td>
                 { self.chips.iter().map(|chip| {
-                    ConsoleListingChip {
+                    ListingChip {
                         chip: (chip.getter)(&metadata),
                         hide_type: chip.hide_type,
                     }.render()

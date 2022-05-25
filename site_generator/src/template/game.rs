@@ -2,7 +2,7 @@ use gbhwdb_backend::config::cartridge::{ChipRoleConfig, GameConfig};
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
 use super::{
-    chip::ConsoleListingChip,
+    listing_chip::ListingChip,
     submission_list::{submission_list_photos, submission_list_submission},
 };
 use crate::legacy::{HasDateCode, LegacyCartridgeSubmission};
@@ -57,7 +57,7 @@ fn render_submission(
                 <div>{metadata.board.date_code().calendar().unwrap_or_default()}</div>
             </td>
             { chips.iter().map(|(designator, _)|
-                ConsoleListingChip {
+                ListingChip {
                     chip: metadata.board[designator].as_ref(),
                     hide_type: false,
                 }

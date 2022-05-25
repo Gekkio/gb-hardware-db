@@ -1,7 +1,7 @@
 use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig};
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
-use super::{chip::ConsoleListingChip, submission_list::submission_list_photos};
+use super::{listing_chip::ListingChip, submission_list::submission_list_photos};
 use crate::legacy::{
     HasDateCode, LegacyCartridgeSubmission, LegacyChip, LegacyDefaultPhotos, LegacyPhotos,
 };
@@ -60,7 +60,7 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
             { cfg.chips.iter().map(|&role| {
                 let chip = chips.iter().find(|&(_, candidate)| candidate == role)
                     .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
-                ConsoleListingChip {
+                ListingChip {
                     chip,
                     hide_type: false,
                 }.render()

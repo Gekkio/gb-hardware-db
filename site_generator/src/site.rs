@@ -331,6 +331,23 @@ pub fn build_site() -> Site {
                         .unwrap_or(false)
                 }),
             },
+            MapperCfg {
+                id: "tama5",
+                name: "TAMA5",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Mcu,
+                    ChipRole::Rtc,
+                    ChipRole::RamBackup,
+                    ChipRole::Crystal,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind == "TAMA5")
+                        .unwrap_or(false)
+                }),
+            },
         ]
     });
     site.add_page(["cartridges", "index"], move |data| {

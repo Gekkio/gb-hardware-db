@@ -14,7 +14,7 @@ use log::{debug, info, warn, LevelFilter};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use simplelog::{ColorChoice, TermLogger, TerminalMode};
 use std::{
-    collections::HashMap,
+    collections::{BTreeMap, HashMap},
     fs::{self, create_dir_all, File, Metadata},
     io::{BufWriter, Write},
     path::Path,
@@ -54,6 +54,7 @@ fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
 
 #[derive(Default)]
 pub struct SiteData {
+    cfgs: BTreeMap<String, GameConfig>,
     cartridges: Vec<LegacyCartridgeSubmission>,
     dmg: Vec<LegacyDmgSubmission>,
     sgb: Vec<LegacySgbSubmission>,
@@ -173,7 +174,9 @@ fn main() -> Result<(), Error> {
 
     info!("Processing submissions");
 
-    data.cartridges = process_cartridge_submissions()?;
+    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
+
+    data.cartridges = process_cartridge_submissions(&cfgs)?;
     data.dmg = process_dmg_submissions()?;
     data.sgb = process_sgb_submissions()?;
     data.mgb = process_mgb_submissions()?;
@@ -184,6 +187,7 @@ fn main() -> Result<(), Error> {
     data.ags = process_ags_submissions()?;
     data.gbs = process_gbs_submissions()?;
     data.oxy = process_oxy_submissions()?;
+    data.cfgs = cfgs;
 
     info!("Processing photos");
 
@@ -223,9 +227,10 @@ where
     write_submission_csv(csv, "https://gbhwdb.gekkio/consoles", submissions)
 }
 
-fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Error> {
+fn process_cartridge_submissions(
+    cfgs: &BTreeMap<String, GameConfig>,
+) -> Result<Vec<LegacyCartridgeSubmission>, Error> {
     use legacy::cartridge::*;
-    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
     let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -264,27 +269,24 @@ fn process_cartridge_submissions() -> Result<Vec<LegacyCartridgeSubmission>, Err
             }
 
             let mut board = LegacyBoard {
+                layout,
                 kind: cartridge.board.label.clone(),
                 circled_letters: cartridge.board.circled_letters.clone(),
                 extra_label: cartridge.board.extra_label.clone(),
                 year: cartridge.board.year.map(|year| year as u16),
                 month: cartridge.board.month,
-                rom: None,
-                rom2: None,
-                mapper: None,
-                ram: None,
-                ram_protector: None,
-                flash: None,
+                u1: None,
+                u2: None,
+                u3: None,
                 u4: None,
                 u5: None,
-                line_decoder: None,
-                eeprom: None,
-                accelerometer: None,
-                crystal: None,
-                battery: None,
+                u6: None,
+                u7: None,
+                x1: None,
             };
             add_legacy_chips(layout, cartridge.board, &mut board);
             let metadata = LegacyMetadata {
+                cfg: cfg.clone(),
                 code: cartridge.shell.code,
                 stamp: cartridge.shell.stamp,
                 board,

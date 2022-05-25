@@ -7,8 +7,8 @@ use gbhwdb_backend::{
 use serde::Serialize;
 
 use super::{
-    to_legacy_year, DateCode, HasDateCode, LegacyChip, LegacyDefaultPhotos, LegacyPhoto,
-    LegacyPhotos, PhotoInfo, PhotoKind,
+    to_legacy_year, DateCode, HasDateCode, LegacyChip, LegacyMetadata, LegacyPhoto, LegacyPhotos,
+    PhotoInfo, PhotoKind,
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, Default)]
@@ -32,45 +32,14 @@ pub struct LegacyConsoleShell<'a> {
     pub date_code: DateCode,
 }
 
-pub trait LegacyConsoleMetadata: 'static {
+pub trait LegacyConsoleMetadata: LegacyMetadata {
     const CONSOLE: Console;
-    const PLACEHOLDER_SVG: Option<&'static str> = None;
 
     fn chips() -> Vec<ChipInfo<Self>>;
     fn shell(&self) -> LegacyConsoleShell;
     fn mainboard(&self) -> LegacyMainboard;
     fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
         None
-    }
-}
-
-impl LegacyPhotos for LegacyDefaultPhotos {
-    fn infos() -> Vec<PhotoInfo<Self>> {
-        vec![
-            PhotoInfo::new(PhotoKind::MainUnit, "Front", Box::new(|p| p.front.as_ref())),
-            PhotoInfo::new(PhotoKind::MainUnit, "Back", Box::new(|p| p.back.as_ref())),
-            PhotoInfo::new(
-                PhotoKind::MainBoard,
-                "PCB front",
-                Box::new(|p| p.pcb_front.as_ref()),
-            ),
-            PhotoInfo::new(
-                PhotoKind::MainBoard,
-                "PCB back",
-                Box::new(|p| p.pcb_back.as_ref()),
-            ),
-        ]
-    }
-
-    fn front(&self) -> Option<&LegacyPhoto> {
-        self.front.as_ref()
-    }
-
-    fn photos(&self) -> Vec<&LegacyPhoto> {
-        [&self.front, &self.back, &self.pcb_front, &self.pcb_back]
-            .iter()
-            .filter_map(|photo| photo.as_ref())
-            .collect()
     }
 }
 
@@ -286,9 +255,12 @@ impl HasDateCode for LegacyDmgMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyDmgMetadata {
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/dmg_placeholder.svg");
+}
+
 impl LegacyConsoleMetadata for LegacyDmgMetadata {
     const CONSOLE: Console = Console::Dmg;
-    const PLACEHOLDER_SVG: Option<&'static str> = Some("/dmg_placeholder.svg");
 
     fn chips() -> Vec<ChipInfo<Self>> {
         vec![
@@ -467,6 +439,8 @@ impl HasDateCode for LegacySgbMainboard {
     }
 }
 
+impl LegacyMetadata for LegacySgbMetadata {}
+
 impl LegacyConsoleMetadata for LegacySgbMetadata {
     const CONSOLE: Console = Console::Sgb;
 
@@ -546,6 +520,8 @@ impl HasDateCode for LegacySgb2Mainboard {
     }
 }
 
+impl LegacyMetadata for LegacySgb2Metadata {}
+
 impl LegacyConsoleMetadata for LegacySgb2Metadata {
     const CONSOLE: Console = Console::Sgb2;
 
@@ -610,9 +586,12 @@ impl HasDateCode for LegacyMgbMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyMgbMetadata {
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgb_placeholder.svg");
+}
+
 impl LegacyConsoleMetadata for LegacyMgbMetadata {
     const CONSOLE: Console = Console::Mgb;
-    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgb_placeholder.svg");
 
     fn chips() -> Vec<ChipInfo<Self>> {
         vec![
@@ -729,9 +708,12 @@ impl HasDateCode for LegacyMglMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyMglMetadata {
+    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgl_placeholder.svg");
+}
+
 impl LegacyConsoleMetadata for LegacyMglMetadata {
     const CONSOLE: Console = Console::Mgl;
-    const PLACEHOLDER_SVG: Option<&'static str> = Some("/mgl_placeholder.svg");
 
     fn chips() -> Vec<ChipInfo<Self>> {
         vec![
@@ -851,6 +833,8 @@ impl HasDateCode for LegacyCgbMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyCgbMetadata {}
+
 impl LegacyConsoleMetadata for LegacyCgbMetadata {
     const CONSOLE: Console = Console::Cgb;
 
@@ -963,6 +947,8 @@ impl HasDateCode for LegacyAgbMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyAgbMetadata {}
+
 impl LegacyConsoleMetadata for LegacyAgbMetadata {
     const CONSOLE: Console = Console::Agb;
 
@@ -1063,6 +1049,8 @@ pub struct LegacyAgsMetadata {
     pub release_code: Option<String>,
     pub mainboard: LegacyAgsMainboard,
 }
+
+impl LegacyMetadata for LegacyAgsMetadata {}
 
 impl LegacyConsoleMetadata for LegacyAgsMetadata {
     const CONSOLE: Console = Console::Ags;
@@ -1174,6 +1162,8 @@ impl HasDateCode for LegacyGbsMetadata {
     }
 }
 
+impl LegacyMetadata for LegacyGbsMetadata {}
+
 impl LegacyConsoleMetadata for LegacyGbsMetadata {
     const CONSOLE: Console = Console::Gbs;
 
@@ -1272,6 +1262,8 @@ pub struct LegacyOxyMetadata {
     pub release_code: Option<String>,
     pub mainboard: LegacyOxyMainboard,
 }
+
+impl LegacyMetadata for LegacyOxyMetadata {}
 
 impl LegacyConsoleMetadata for LegacyOxyMetadata {
     const CONSOLE: Console = Console::Oxy;

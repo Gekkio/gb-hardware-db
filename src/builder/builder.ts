@@ -106,52 +106,33 @@ async function main(): Promise<void> {
     submissions.push(submission)
   }
 
-  const pages: PageDeclaration[] = [
-    {
-      type: 'cartridges',
-      path: ['cartridges', 'index'],
-      title: 'Game Boy cartridges',
-      props: {
-        games: R.sortBy(
-          ({ cfg }) => cfg.name,
-          Object.entries(cartridgesByGame).map(([type, submissions]) => {
-            const cfg = config.gameCfgs[type]
-            return { type, cfg, submissions }
-          })
-        ),
-        mappers: Object.keys(cartridgesByMapper),
-      },
-    },
-  ]
-  cartridgeSubmissions.forEach((submission) => {
-    const { type, slug, title, contributor } = submission
-    const cfg = config.gameCfgs[type]
-    pages.push({
-      type: 'cartridge',
-      path: ['cartridges', type, slug],
-      title: `${cfg.name}: ${title} [${contributor}]`,
-      props: { submission, cfg },
-    })
-  })
-  R.forEachObjIndexed((submissions, type) => {
-    const cfg = config.gameCfgs[type]
-    pages.push({
-      type: 'game',
-      path: ['cartridges', type, 'index'],
-      title: `${cfg.name}`,
-      props: { type, cfg, submissions },
-    })
-  }, cartridgesByGame)
-  R.forEachObjIndexed((submissions, mapper) => {
-    pages.push({
-      type: 'mapper',
-      path: ['cartridges', mapper],
-      title: `${mapper}`,
-      props: { mapper, submissions },
-    })
-  }, cartridgesByMapper)
-
-  await Promise.all([Bluebird.map(pages, processPage, { concurrency: 16 })])
+  // const pages: PageDeclaration[] = [
+  //   {
+  //     type: 'cartridges',
+  //     path: ['cartridges', 'index'],
+  //     title: 'Game Boy cartridges',
+  //     props: {
+  //       games: R.sortBy(
+  //         ({ cfg }) => cfg.name,
+  //         Object.entries(cartridgesByGame).map(([type, submissions]) => {
+  //           const cfg = config.gameCfgs[type]
+  //           return { type, cfg, submissions }
+  //         })
+  //       ),
+  //       mappers: Object.keys(cartridgesByMapper),
+  //     },
+  //   },
+  // ]
+  // R.forEachObjIndexed((submissions, mapper) => {
+  //   pages.push({
+  //     type: 'mapper',
+  //     path: ['cartridges', mapper],
+  //     title: `${mapper}`,
+  //     props: { mapper, submissions },
+  //   })
+  // }, cartridgesByMapper)
+  //
+  // await Promise.all([Bluebird.map(pages, processPage, { concurrency: 16 })])
 
   winston.info('Site generation finished :)')
 

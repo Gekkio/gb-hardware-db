@@ -460,10 +460,12 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     if should_quit() {
         return;
     }
+    let rom_id = code.clone();
     cfgs.insert(
         code,
         GameConfig {
             name,
+            rom_id,
             rom_verified,
             sha256,
             platform,

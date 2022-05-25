@@ -3,17 +3,22 @@ use percy_dom::{html, IterableNodes, View, VirtualNode};
 use crate::site::SiteSection;
 use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
 
+pub mod cartridge_page;
+pub mod cartridges;
 pub mod chip;
 pub mod console_page;
 pub mod console_submission_list;
 pub mod dmg_console_page;
 pub mod dmg_submission_list;
+pub mod game;
 pub mod home;
+pub mod mapper;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;
 pub mod site_footer;
 pub mod site_header;
+pub mod submission_list;
 
 pub fn page(title: &str, section: SiteSection, content: VirtualNode) -> String {
     let content = html! {

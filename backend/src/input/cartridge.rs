@@ -1,8 +1,9 @@
 use serde::{Deserialize, Serialize};
-use std::str;
+use std::{ops::Index, str};
 use time::Date;
 
 use crate::{
+    config::cartridge::PartDesignator,
     input::{is_not_outlier, Chip},
     sha256::Sha256,
     time::Month,
@@ -65,6 +66,23 @@ pub struct CartridgeBoard {
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
+}
+
+impl Index<PartDesignator> for CartridgeBoard {
+    type Output = Option<Chip>;
+
+    fn index(&self, index: PartDesignator) -> &Self::Output {
+        match index {
+            PartDesignator::U1 => &self.u1,
+            PartDesignator::U2 => &self.u2,
+            PartDesignator::U3 => &self.u3,
+            PartDesignator::U4 => &self.u4,
+            PartDesignator::U5 => &self.u5,
+            PartDesignator::U6 => &self.u6,
+            PartDesignator::U7 => &self.u7,
+            PartDesignator::X1 => &self.x1,
+        }
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]

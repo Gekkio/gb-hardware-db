@@ -7,6 +7,7 @@ use std::{
     fmt,
     fs::File,
     io::{BufReader, BufWriter},
+    ops::{Index, IndexMut},
     path::Path,
 };
 
@@ -14,6 +15,8 @@ use crate::sha256::Sha256;
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameConfig {
+    #[serde(skip, default)]
+    pub rom_id: String,
     pub name: String,
     pub rom_verified: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -136,7 +139,10 @@ impl BoardLayout {
 pub fn load_cfgs<P: AsRef<Path>>(path: P) -> Result<BTreeMap<String, GameConfig>, Error> {
     let file = File::open(path)?;
     let file = BufReader::new(file);
-    let cfgs = serde_json::from_reader(file)?;
+    let mut cfgs: BTreeMap<String, GameConfig> = serde_json::from_reader(file)?;
+    for (rom_id, cfg) in cfgs.iter_mut() {
+        cfg.rom_id = rom_id.clone();
+    }
     Ok(cfgs)
 }
 
@@ -162,8 +168,66 @@ pub enum ChipRole {
     Eeprom,
     Accelerometer,
     LineDecoder,
-    Tama,
     HexInverter,
+    Mcu,
+    Rtc,
+}
+
+impl ChipRole {
+    pub fn display(&self) -> &'static str {
+        match self {
+            ChipRole::Unknown => "Unknown",
+            ChipRole::Rom => "ROM",
+            ChipRole::Mapper => "Mapper",
+            ChipRole::Ram => "RAM",
+            ChipRole::RamBackup => "RAM protector",
+            ChipRole::Crystal => "Crystal",
+            ChipRole::Flash => "Flash",
+            ChipRole::Eeprom => "EEPROM",
+            ChipRole::Accelerometer => "Accelerometer",
+            ChipRole::LineDecoder => "Line decoder",
+            ChipRole::HexInverter => "Hex inverter",
+            ChipRole::Mcu => "Microcontroller",
+            ChipRole::Rtc => "RTC",
+        }
+    }
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub enum PartDesignator {
+    U1,
+    U2,
+    U3,
+    U4,
+    U5,
+    U6,
+    U7,
+    X1,
+}
+
+impl PartDesignator {
+    const ALL: [PartDesignator; 8] = [
+        PartDesignator::U1,
+        PartDesignator::U2,
+        PartDesignator::U3,
+        PartDesignator::U4,
+        PartDesignator::U5,
+        PartDesignator::U6,
+        PartDesignator::U7,
+        PartDesignator::X1,
+    ];
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            PartDesignator::U1 => "U1",
+            PartDesignator::U2 => "U2",
+            PartDesignator::U3 => "U3",
+            PartDesignator::U4 => "U4",
+            PartDesignator::U5 => "U5",
+            PartDesignator::U6 => "U6",
+            PartDesignator::U7 => "U7",
+            PartDesignator::X1 => "X1",
+        }
+    }
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Default)]
@@ -178,8 +242,48 @@ pub struct ChipRoleConfig {
     pub x1: Option<ChipRole>,
 }
 
+impl Index<PartDesignator> for ChipRoleConfig {
+    type Output = Option<ChipRole>;
+
+    fn index(&self, index: PartDesignator) -> &Self::Output {
+        match index {
+            PartDesignator::U1 => &self.u1,
+            PartDesignator::U2 => &self.u2,
+            PartDesignator::U3 => &self.u3,
+            PartDesignator::U4 => &self.u4,
+            PartDesignator::U5 => &self.u5,
+            PartDesignator::U6 => &self.u6,
+            PartDesignator::U7 => &self.u7,
+            PartDesignator::X1 => &self.x1,
+        }
+    }
+}
+
+impl IndexMut<PartDesignator> for ChipRoleConfig {
+    fn index_mut(&mut self, index: PartDesignator) -> &mut Self::Output {
+        match index {
+            PartDesignator::U1 => &mut self.u1,
+            PartDesignator::U2 => &mut self.u2,
+            PartDesignator::U3 => &mut self.u3,
+            PartDesignator::U4 => &mut self.u4,
+            PartDesignator::U5 => &mut self.u5,
+            PartDesignator::U6 => &mut self.u6,
+            PartDesignator::U7 => &mut self.u7,
+            PartDesignator::X1 => &mut self.x1,
+        }
+    }
+}
+
 impl ChipRoleConfig {
-    pub fn from_layout(layout: BoardLayout) -> ChipRoleConfig {
+    pub fn iter(&self) -> impl Iterator<Item = (PartDesignator, ChipRole)> + '_ {
+        PartDesignator::ALL
+            .into_iter()
+            .filter_map(|d| self[d].map(|role| (d, role)))
+    }
+}
+
+impl From<BoardLayout> for ChipRoleConfig {
+    fn from(layout: BoardLayout) -> Self {
         match layout {
             BoardLayout::Rom => ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
@@ -245,10 +349,10 @@ impl ChipRoleConfig {
                 ..ChipRoleConfig::default()
             },
             BoardLayout::Tama => ChipRoleConfig {
-                u1: Some(ChipRole::Tama),
-                u2: Some(ChipRole::Tama),
-                u3: Some(ChipRole::Tama),
-                u4: Some(ChipRole::Unknown),
+                u1: Some(ChipRole::Rom),
+                u2: Some(ChipRole::Mapper),
+                u3: Some(ChipRole::Mcu),
+                u4: Some(ChipRole::Rtc),
                 u5: Some(ChipRole::RamBackup),
                 x1: Some(ChipRole::Crystal),
                 ..ChipRoleConfig::default()

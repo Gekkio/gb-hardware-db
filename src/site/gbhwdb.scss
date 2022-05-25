@@ -106,3 +106,15 @@ tbody > tr:nth-child(even) {
     }
   }
 }
+
+.cartridges__mapper-list {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  > li {
+    list-style: none;
+  }
+}

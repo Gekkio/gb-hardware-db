@@ -233,7 +233,7 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     if should_quit() {
         return None;
     }
-    let chips = ChipRoleConfig::from_layout(BoardLayout::from_label(&label).unwrap());
+    let chips = ChipRoleConfig::from(BoardLayout::from_label(&label).unwrap());
     siv.add_layer(
         Dialog::new()
             .title("Enter chip details")
@@ -317,7 +317,6 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
                 &details_id,
                 parser::line_decoder::line_decoder(),
             ),
-            ChipRole::Tama => add_details_callback(&mut editor, &details_id, parser::tama::tama()),
             _ => (),
         }
         result.add_child(editor.with_name(id));

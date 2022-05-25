@@ -45,6 +45,30 @@ pub enum MapperType {
     Mmm01,
 }
 
+impl MapperType {
+    pub fn display_name(&self) -> &'static str {
+        match self {
+            MapperType::Mbc1(Mbc1Version::Original) => "MBC1",
+            MapperType::Mbc1(Mbc1Version::A) => "MBC1A",
+            MapperType::Mbc1(Mbc1Version::B) => "MBC1B",
+            MapperType::Mbc1(Mbc1Version::B1) => "MBC1B1",
+            MapperType::Mbc2(Mbc2Version::Original) => "MBC2",
+            MapperType::Mbc2(Mbc2Version::A) => "MBC2A",
+            MapperType::Mbc3(Mbc3Version::Original) => "MBC3",
+            MapperType::Mbc3(Mbc3Version::A) => "MBC3A",
+            MapperType::Mbc3(Mbc3Version::B) => "MBC3B",
+            MapperType::Mbc30 => "MBC30",
+            MapperType::Mbc5 => "MBC5",
+            MapperType::Mbc6 => "MBC6",
+            MapperType::Mbc7 => "MBC7",
+            MapperType::Mmm01 => "MMM01",
+            MapperType::Huc3 => "HuC-3",
+            MapperType::Huc1(Huc1Version::Original) => "HuC-1",
+            MapperType::Huc1(Huc1Version::A) => "HuC-1A",
+        }
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Mapper {
     pub mbc_type: MapperType,

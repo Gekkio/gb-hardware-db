@@ -1,9 +1,10 @@
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
+use super::submission_list::{submission_list_photos, submission_list_submission};
 use crate::{
     legacy::{
         console::{ChipInfo, LegacyConsoleMetadata},
-        HasDateCode, LegacyPhoto, LegacyPhotos, LegacySubmission,
+        HasDateCode, LegacyPhotos, LegacySubmission,
     },
     template::chip::ConsoleListingChip,
 };
@@ -70,60 +71,12 @@ struct Submission<'a, M: LegacyConsoleMetadata, P> {
     pub extra_cells: &'a [Box<dyn Fn(&M) -> Option<VirtualNode>>],
 }
 
-impl<'a, M: LegacyConsoleMetadata, P> Submission<'a, M, P> {
-    fn photo(&self, label: &'static str, photo: Option<&LegacyPhoto>) -> Option<VirtualNode> {
-        let console = M::CONSOLE;
-        let slug = &self.submission.slug;
-        photo.map(|photo| {
-            let LegacyPhoto { name, .. } = photo;
-            html! {
-                <div>
-                    <a href={format!("/static/{id}/{slug}_{name}", id=console.id())}>{label}</a>
-                </div>
-            }
-        })
-    }
-}
-
 impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P> {
     fn render(&self) -> VirtualNode {
-        let console = M::CONSOLE;
-        let LegacySubmission {
-            contributor,
-            slug,
-            title,
-            metadata,
-            photos,
-            ..
-        } = self.submission;
+        let metadata = &self.submission.metadata;
         html! {
             <tr>
-                <td class="submission-list-item">
-                    <a class="submission-list-item__link" href={format!("/consoles/{id}/{slug}.html", id=console.id())}>
-                    <div class="submission-list-item__photo">
-                    { P::infos().first().and_then(|photo| (photo.getter)(&photos)).map(|_| {
-                        html! {
-                            <img
-                                src={format!("/static/{id}/{slug}_thumbnail_80.jpg", id=console.id())}
-                                srcSet={format!("/static/{id}/{slug}_thumbnail_50.jpg 50w, /static/{id}/{slug}_thumbnail_80.jpg 80w", id=console.id())}
-                                sizes="(min-width: 1000px) 80px, 50px"
-                                role="presentation"
-                            >
-                        }
-                    }).or_else(|| {
-                        M::PLACEHOLDER_SVG.map(|src| {
-                            html! {
-                                <img src={src} class="submission-list-item__placeholder" role="presentation">
-                            }
-                        })
-                    }) }
-                    </div>
-                    <div class="submission-list-item__id">
-                        <div class="submission-list-item__title">{title}</div>
-                        <aside class="submission-list-item__contributor">{contributor}</aside>
-                    </div>
-                    </a>
-                </td>
+                { submission_list_submission("/consoles", &self.submission) }
                 <td>
                     <div>{metadata.mainboard().kind}</div>
                     {metadata.mainboard().date_code.calendar_short().map(|date_code| {
@@ -156,11 +109,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
                 { self.extra_cells.iter().map(|cell| html! {
                     <td>{cell(&metadata)}</td>
                 }).collect::<Vec<_>>() }
-                <td>
-                { P::infos().iter().filter_map(|photo| {
-                    self.photo(photo.label, (photo.getter)(&photos))
-                }).collect::<Vec<_>>() }
-                </td>
+                { submission_list_photos(self.submission) }
             </tr>
         }
     }

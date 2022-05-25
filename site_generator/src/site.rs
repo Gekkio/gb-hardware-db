@@ -1,6 +1,11 @@
 use anyhow::Error;
-use gbhwdb_backend::Console;
+use gbhwdb_backend::{
+    config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig},
+    Console,
+};
+use itertools::Itertools;
 use log::error;
+use once_cell::sync::OnceCell;
 use percy_dom::{View, VirtualNode};
 use std::{
     borrow::Cow,
@@ -13,12 +18,23 @@ use time::OffsetDateTime;
 use crate::{
     legacy::LegacySubmission,
     template::{
-        console_page::ConsolePage, console_submission_list::ConsoleSubmissionList,
-        dmg_console_page::DmgConsolePage, dmg_submission_list::DmgSubmissionList, home::Home,
-        markdown::Markdown, markdown_page::MarkdownPage, page,
+        cartridge_page::CartridgePage,
+        cartridges::Cartridges,
+        console_page::ConsolePage,
+        console_submission_list::ConsoleSubmissionList,
+        dmg_console_page::DmgConsolePage,
+        dmg_submission_list::DmgSubmissionList,
+        game::Game,
+        home::Home,
+        mapper::{Mapper, MapperCfg},
+        markdown::Markdown,
+        markdown_page::MarkdownPage,
+        page,
     },
     SiteData,
 };
+
+static MAPPER_CFGS: OnceCell<Vec<MapperCfg>> = OnceCell::new();
 
 pub fn build_site() -> Site {
     let mut site = Site::new();
@@ -158,6 +174,275 @@ pub fn build_site() -> Site {
             }),
         });
     }
+    let mapper_cfgs = MAPPER_CFGS.get_or_init(|| {
+        vec![
+            MapperCfg {
+                id: "no-mapper",
+                name: "No mapper",
+                chips: &[ChipRole::Rom],
+                match_fn: Box::new(|layout, _| layout == BoardLayout::Rom),
+            },
+            MapperCfg {
+                id: "mbc1",
+                name: "MBC1",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind.starts_with("MBC1"))
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc2",
+                name: "MBC2",
+                chips: &[ChipRole::Rom, ChipRole::Mapper, ChipRole::RamBackup],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind.starts_with("MBC2"))
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc3",
+                name: "MBC3",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                    ChipRole::Crystal,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind != "MBC30" && chip_kind.starts_with("MBC3"))
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc30",
+                name: "MBC30",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                    ChipRole::Crystal,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind == "MBC30")
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc5",
+                name: "MBC5",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind.starts_with("MBC5"))
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc6",
+                name: "MBC6",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind == "MBC6")
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mbc7",
+                name: "MBC7",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Eeprom,
+                    ChipRole::Accelerometer,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind == "MBC7")
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "mmm01",
+                name: "MMM01",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind == "MMM01")
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "huc1",
+                name: "HuC-1",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind.starts_with("HuC-1"))
+                        .unwrap_or(false)
+                }),
+            },
+            MapperCfg {
+                id: "huc3",
+                name: "HuC-3",
+                chips: &[
+                    ChipRole::Rom,
+                    ChipRole::Mapper,
+                    ChipRole::Ram,
+                    ChipRole::RamBackup,
+                    ChipRole::HexInverter,
+                    ChipRole::Crystal,
+                ],
+                match_fn: Box::new(|_, chip| {
+                    chip.and_then(|chip| chip.kind.as_ref())
+                        .map(|chip_kind| chip_kind.starts_with("HuC-3"))
+                        .unwrap_or(false)
+                }),
+            },
+        ]
+    });
+    site.add_page(["cartridges", "index"], move |data| {
+        Ok(Page {
+            title: "Game Boy cartridges".into(),
+            section: SiteSection::Cartridges,
+            content: Cartridges {
+                mapper_cfgs,
+                cfgs: &data.cfgs,
+                submissions: &data.cartridges,
+            }
+            .render(),
+        })
+    });
+    site.page_sets.push(Box::new(move |data| {
+        data.cartridges
+            .iter()
+            .sorted_by_key(|submission| &submission.code)
+            .group_by(|submission| &submission.code)
+            .into_iter()
+            .map(|(code, group)| {
+                let cfg = data.cfgs[code].clone();
+                let submissions = group.collect::<Vec<_>>();
+                let path = SitePath(vec![
+                    Cow::Borrowed("cartridges"),
+                    Cow::Owned(cfg.rom_id.clone()),
+                    Cow::Borrowed("index"),
+                ]);
+                let page = Page {
+                    title: Cow::Owned(cfg.name.clone()),
+                    section: SiteSection::Cartridges,
+                    content: Game {
+                        cfg: &cfg,
+                        submissions,
+                    }
+                    .render(),
+                };
+                (path, page)
+            })
+            .collect()
+    }));
+    site.page_sets.push(Box::new(move |data| {
+        data.cartridges
+            .iter()
+            .map(move |submission| {
+                let cfg = &submission.metadata.cfg;
+                let path = SitePath(vec![
+                    Cow::Borrowed("cartridges"),
+                    Cow::Owned(submission.code.clone()),
+                    Cow::Owned(submission.slug.clone()),
+                ]);
+                let page = Page {
+                    title: format!(
+                        "{}: {title} [{contributor}]",
+                        cfg.name,
+                        title = submission.title,
+                        contributor = submission.contributor
+                    )
+                    .into(),
+                    section: SiteSection::Cartridges,
+                    content: CartridgePage::new(submission).render(),
+                };
+                (path, page)
+            })
+            .collect()
+    }));
+    site.page_sets.push(Box::new(move |data| {
+        data.cartridges
+            .iter()
+            .map(|submission| {
+                let layout = submission.metadata.board.layout;
+                let chips = ChipRoleConfig::from(layout);
+                let mapper = chips
+                    .iter()
+                    .find(|&(_, role)| role == ChipRole::Mapper)
+                    .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
+                let key = mapper_cfgs
+                    .iter()
+                    .position(|cfg| (cfg.match_fn)(layout, mapper));
+                (key, submission)
+            })
+            .sorted_by_key(|&(key, _)| key)
+            .group_by(|&(key, _)| key)
+            .into_iter()
+            .filter_map(|(cfg_idx, group)| {
+                cfg_idx.map(|idx| (idx, group.map(|(_, submission)| submission)))
+            })
+            .map(|(cfg_idx, group)| {
+                let cfg = &mapper_cfgs[cfg_idx];
+                let submissions = group
+                    .sorted_by_key(|submission| {
+                        (
+                            &submission.metadata.cfg.name,
+                            submission.sort_group.as_ref(),
+                        )
+                    })
+                    .collect::<Vec<_>>();
+                let path = SitePath(vec![Cow::Borrowed("cartridges"), Cow::Borrowed(cfg.id)]);
+                let page = Page {
+                    title: Cow::Borrowed(cfg.name),
+                    section: SiteSection::Cartridges,
+                    content: Mapper {
+                        cfg: &cfg,
+                        submissions,
+                    }
+                    .render(),
+                };
+                (path, page)
+            })
+            .collect()
+    }));
+
     site
 }
 

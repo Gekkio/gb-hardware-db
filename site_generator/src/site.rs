@@ -189,7 +189,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                 ],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
@@ -200,7 +200,7 @@ pub fn build_site() -> Site {
             MapperCfg {
                 id: "mbc2",
                 name: "MBC2",
-                chips: &[ChipRole::Rom, ChipRole::Mapper, ChipRole::RamBackup],
+                chips: &[ChipRole::Rom, ChipRole::Mapper, ChipRole::SupervisorReset],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
                         .map(|chip_kind| chip_kind.starts_with("MBC2"))
@@ -214,7 +214,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                     ChipRole::Crystal,
                 ],
                 match_fn: Box::new(|_, chip| {
@@ -230,7 +230,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                     ChipRole::Crystal,
                 ],
                 match_fn: Box::new(|_, chip| {
@@ -246,7 +246,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                 ],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
@@ -261,7 +261,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                 ],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
@@ -291,7 +291,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                 ],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
@@ -306,7 +306,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                 ],
                 match_fn: Box::new(|_, chip| {
                     chip.and_then(|chip| chip.kind.as_ref())
@@ -321,7 +321,7 @@ pub fn build_site() -> Site {
                     ChipRole::Rom,
                     ChipRole::Mapper,
                     ChipRole::Ram,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                     ChipRole::HexInverter,
                     ChipRole::Crystal,
                 ],
@@ -339,7 +339,7 @@ pub fn build_site() -> Site {
                     ChipRole::Mapper,
                     ChipRole::Mcu,
                     ChipRole::Rtc,
-                    ChipRole::RamBackup,
+                    ChipRole::SupervisorReset,
                     ChipRole::Crystal,
                 ],
                 match_fn: Box::new(|_, chip| {

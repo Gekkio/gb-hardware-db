@@ -162,7 +162,7 @@ pub enum ChipRole {
     Rom,
     Mapper,
     Ram,
-    RamBackup,
+    SupervisorReset,
     Crystal,
     Flash,
     Eeprom,
@@ -180,7 +180,7 @@ impl ChipRole {
             ChipRole::Rom => "ROM",
             ChipRole::Mapper => "Mapper",
             ChipRole::Ram => "RAM",
-            ChipRole::RamBackup => "RAM protector",
+            ChipRole::SupervisorReset => "Supervisor & Reset",
             ChipRole::Crystal => "Crystal",
             ChipRole::Flash => "Flash",
             ChipRole::Eeprom => "EEPROM",
@@ -298,21 +298,21 @@ impl From<BoardLayout> for ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::RamBackup),
+                u4: Some(ChipRole::SupervisorReset),
                 ..ChipRoleConfig::default()
             },
             BoardLayout::RomMapperRamXtal => ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::RamBackup),
+                u4: Some(ChipRole::SupervisorReset),
                 x1: Some(ChipRole::Crystal),
                 ..ChipRoleConfig::default()
             },
             BoardLayout::Mbc2 => ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
                 u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::RamBackup),
+                u3: Some(ChipRole::SupervisorReset),
                 ..ChipRoleConfig::default()
             },
             BoardLayout::Mbc6 => ChipRoleConfig {
@@ -320,7 +320,7 @@ impl From<BoardLayout> for ChipRoleConfig {
                 u2: Some(ChipRole::Rom),
                 u3: Some(ChipRole::Flash),
                 u4: Some(ChipRole::Ram),
-                u5: Some(ChipRole::RamBackup),
+                u5: Some(ChipRole::SupervisorReset),
                 ..ChipRoleConfig::default()
             },
             BoardLayout::Mbc7 => ChipRoleConfig {
@@ -334,7 +334,7 @@ impl From<BoardLayout> for ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::RamBackup),
+                u4: Some(ChipRole::SupervisorReset),
                 u5: Some(ChipRole::Rom),
                 u6: Some(ChipRole::LineDecoder),
                 ..ChipRoleConfig::default()
@@ -343,7 +343,7 @@ impl From<BoardLayout> for ChipRoleConfig {
                 u1: Some(ChipRole::Rom),
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::RamBackup),
+                u4: Some(ChipRole::SupervisorReset),
                 u5: Some(ChipRole::HexInverter),
                 x1: Some(ChipRole::Crystal),
                 ..ChipRoleConfig::default()
@@ -353,7 +353,7 @@ impl From<BoardLayout> for ChipRoleConfig {
                 u2: Some(ChipRole::Mapper),
                 u3: Some(ChipRole::Mcu),
                 u4: Some(ChipRole::Rtc),
-                u5: Some(ChipRole::RamBackup),
+                u5: Some(ChipRole::SupervisorReset),
                 x1: Some(ChipRole::Crystal),
                 ..ChipRoleConfig::default()
             },

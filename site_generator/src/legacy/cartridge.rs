@@ -173,8 +173,8 @@ pub fn to_legacy_chip(
                         legacy.year = to_legacy_year(board_year, chip.year);
                         legacy.week = chip.week;
                     }
-                    ChipRole::RamBackup => {
-                        let chip = gbhwdb_backend::parser::ram_backup::ram_backup()
+                    ChipRole::SupervisorReset => {
+                        let chip = gbhwdb_backend::parser::supervisor_reset::supervisor_reset()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
                         legacy.kind = Some(chip.chip_type);

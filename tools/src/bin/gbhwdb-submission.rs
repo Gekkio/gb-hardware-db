@@ -293,9 +293,11 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
                 add_details_callback(&mut editor, &details_id, parser::mapper::mapper())
             }
             ChipRole::Ram => add_details_callback(&mut editor, &details_id, parser::ram::ram()),
-            ChipRole::RamBackup => {
-                add_details_callback(&mut editor, &details_id, parser::ram_backup::ram_backup())
-            }
+            ChipRole::SupervisorReset => add_details_callback(
+                &mut editor,
+                &details_id,
+                parser::supervisor_reset::supervisor_reset(),
+            ),
             ChipRole::Crystal => add_details_callback(
                 &mut editor,
                 &details_id,

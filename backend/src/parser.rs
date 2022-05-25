@@ -38,9 +38,9 @@ pub use self::{
     oxy_u4::OxyU4,
     oxy_u5::OxyU5,
     ram::Ram,
-    ram_backup::RamBackup,
     rtc::Rtc,
     sgb_rom::SgbRom,
+    supervisor_reset::SupervisorReset,
     tama::TamaType,
 };
 
@@ -86,10 +86,10 @@ pub mod oxy_pmic;
 pub mod oxy_u4;
 pub mod oxy_u5;
 pub mod ram;
-pub mod ram_backup;
 pub mod rtc;
 pub mod sgb_rom;
 pub mod sram_tsop1_48;
+pub mod supervisor_reset;
 pub mod tama;
 
 #[derive(Clone, Debug, Eq, PartialEq)]

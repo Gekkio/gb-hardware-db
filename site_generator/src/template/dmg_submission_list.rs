@@ -27,11 +27,6 @@ impl<'a> View for DmgSubmissionList<'a> {
                             <div>
                                 <div>{&board.kind}</div>
                                 <div>{board.date_code().calendar_short()}</div>
-                                { board.lcd_panel.as_ref().and_then(|panel| panel.date_code().calendar_short()).map(|date_code| {
-                                    html! {
-                                        <div>{format!("LCD panel: {}", date_code)}</div>
-                                    }
-                                })}
                             </div>
                         }
                     })
@@ -47,11 +42,12 @@ impl<'a> View for DmgSubmissionList<'a> {
                     })
                 }),
                 Box::new(|m: &LegacyDmgMetadata| {
-                    m.jack_board.as_ref().map(|board| {
-                        board.kind.as_str().into()
-                    })
+                    m.jack_board
+                        .as_ref()
+                        .map(|board| board.kind.as_str().into())
                 }),
             ],
-        }.render()
+        }
+        .render()
     }
 }

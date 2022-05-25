@@ -60,10 +60,6 @@ jobs:
       - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
         with:
           cache-on-failure: true
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:

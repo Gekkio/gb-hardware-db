@@ -1,10 +1,11 @@
 use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig};
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
-use super::{listing_chip::ListingChip, submission_list::submission_list_photos};
-use crate::legacy::{
-    HasDateCode, LegacyCartridgeSubmission, LegacyChip, LegacyDefaultPhotos, LegacyPhotos,
+use super::{
+    listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
+    listing_photos_cell::ListingPhotosCell,
 };
+use crate::legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip};
 
 pub struct MapperCfg {
     pub id: &'static str,
@@ -51,7 +52,12 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
     let chips = ChipRoleConfig::from(submission.metadata.board.layout);
     html! {
         <tr>
-            { submission_cell(submission) }
+            { ListingEntryCell {
+                url_prefix: "/cartridges",
+                primary_text: &submission.metadata.cfg.name,
+                secondary_texts: &[&submission.code, &submission.title],
+                submission,
+            }.render() }
             <td>{metadata.code.as_deref().unwrap_or_default()}</td>
             <td>
                 <div>{&metadata.board.kind}</div>
@@ -65,36 +71,9 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                     hide_type: false,
                 }.render()
             }).collect::<Vec<_>>() }
-            { submission_list_photos(submission) }
+            { ListingPhotosCell {
+                submission,
+            }.render() }
         </tr>
-    }
-}
-
-fn submission_cell(submission: &LegacyCartridgeSubmission) -> VirtualNode {
-    let code = &submission.code;
-    let slug = &submission.slug;
-    html! {
-        <td class="submission-list-item">
-            <a class="submission-list-item__link" href={format!("/cartridges/{code}/{slug}.html")}>
-            <div class="submission-list-item__photo">
-            { LegacyDefaultPhotos::infos().first().and_then(|photo| (photo.getter)(&submission.photos)).map(|_| {
-                html! {
-                    <img
-                        src={format!("/static/{code}/{slug}_thumbnail_80.jpg")}
-                        srcSet={format!("/static/{code}/{slug}_thumbnail_50.jpg 50w, /static/{code}/{slug}_thumbnail_80.jpg 80w")}
-                        sizes="(min-width: 1000px) 80px, 50px"
-                        role="presentation"
-                    >
-                }
-            }) }
-            </div>
-            <div class="submission-list-item__id">
-                <div class="submission-list-item__title">{&submission.metadata.cfg.name}</div>
-                <aside>{&submission.code}</aside>
-                <aside>{&submission.title}</aside>
-                <aside class="submission-list-item__contributor">{&submission.contributor}</aside>
-            </div>
-            </a>
-        </td>
     }
 }

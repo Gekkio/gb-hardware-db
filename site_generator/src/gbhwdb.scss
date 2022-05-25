@@ -1,6 +1,7 @@
 @import 'common';
 @import 'template/console_page_chip';
 @import 'template/listing_chip';
+@import 'template/listing_entry_cell';
 @import 'template/site_footer';
 @import 'template/site_header';
 
@@ -74,35 +75,6 @@ tbody > tr:nth-child(even) {
       @include media(desktop) {
         max-height: 400px;
       }
-    }
-  }
-}
-
-.submission-list-item {
-  &__link {
-    display: flex;
-    align-items: center;
-  }
-  &__title {
-    @include media(desktop) {
-      font-size: 16px;
-    }
-  }
-  &__id {
-    flex: 0 1 auto;
-  }
-  &__contributor {
-    font-style: italic;
-  }
-  &__photo {
-    flex: 0 0 auto;
-    margin-right: 10px;
-  }
-  &__placeholder {
-    width: 50px;
-
-    @include media(desktop) {
-      width: 80px;
     }
   }
 }

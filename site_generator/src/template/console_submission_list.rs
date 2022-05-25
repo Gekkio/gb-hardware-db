@@ -1,6 +1,6 @@
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
-use super::submission_list::{submission_list_photos, submission_list_submission};
+use super::{listing_entry_cell::ListingEntryCell, listing_photos_cell::ListingPhotosCell};
 use crate::{
     legacy::{
         console::{ChipInfo, LegacyConsoleMetadata},
@@ -76,7 +76,12 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
         let metadata = &self.submission.metadata;
         html! {
             <tr>
-                { submission_list_submission("/consoles", &self.submission) }
+                { ListingEntryCell {
+                    url_prefix: "/consoles",
+                    primary_text: &self.submission.title,
+                    secondary_texts: &[],
+                    submission: self.submission,
+                }.render() }
                 <td>
                     <div>{metadata.mainboard().kind}</div>
                     {metadata.mainboard().date_code.calendar_short().map(|date_code| {
@@ -109,7 +114,9 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
                 { self.extra_cells.iter().map(|cell| html! {
                     <td>{cell(&metadata)}</td>
                 }).collect::<Vec<_>>() }
-                { submission_list_photos(self.submission) }
+                { ListingPhotosCell {
+                    submission: self.submission,
+                }.render() }
             </tr>
         }
     }

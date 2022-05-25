@@ -1,8 +1,7 @@
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
-use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
-
 use super::console_submission_list::ConsoleSubmissionList;
+use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
 
 pub struct DmgSubmissionList<'a> {
     pub submissions: &'a [LegacyDmgSubmission],

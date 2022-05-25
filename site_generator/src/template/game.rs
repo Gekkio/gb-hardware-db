@@ -2,8 +2,8 @@ use gbhwdb_backend::config::cartridge::{ChipRoleConfig, GameConfig};
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
 use super::{
-    listing_chip::ListingChip,
-    submission_list::{submission_list_photos, submission_list_submission},
+    listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
+    listing_photos_cell::ListingPhotosCell,
 };
 use crate::legacy::{HasDateCode, LegacyCartridgeSubmission};
 
@@ -50,7 +50,12 @@ fn render_submission(
     let metadata = &submission.metadata;
     html! {
         <tr>
-            { submission_list_submission("/cartridges", submission) }
+            { ListingEntryCell {
+                url_prefix: "/cartridges",
+                primary_text: &submission.title,
+                secondary_texts: &[],
+                submission,
+            }.render() }
             <td>{metadata.code.as_deref().unwrap_or_default()}</td>
             <td>
                 <div>{&metadata.board.kind}</div>
@@ -62,7 +67,9 @@ fn render_submission(
                     hide_type: false,
                 }
             ).collect::<Vec<_>>() }
-            { submission_list_photos(submission) }
+            { ListingPhotosCell {
+                submission,
+            }.render() }
         </tr>
     }
 }

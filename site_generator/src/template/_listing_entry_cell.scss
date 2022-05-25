@@ -1,0 +1,30 @@
+@import '../common';
+
+.listing-entry-cell {
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+  &__primary {
+    @include media(desktop) {
+      font-size: 16px;
+    }
+  }
+  &__text {
+    flex: 0 1 auto;
+  }
+  &__contributor {
+    font-style: italic;
+  }
+  &__photo {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+  &__placeholder {
+    width: 50px;
+
+    @include media(desktop) {
+      width: 80px;
+    }
+  }
+}

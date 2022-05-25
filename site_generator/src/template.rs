@@ -12,13 +12,14 @@ pub mod dmg_submission_list;
 pub mod game;
 pub mod home;
 pub mod listing_chip;
+pub mod listing_entry_cell;
+pub mod listing_photos_cell;
 pub mod mapper;
 pub mod markdown;
 pub mod markdown_page;
 pub mod raw_html;
 pub mod site_footer;
 pub mod site_header;
-pub mod submission_list;
 
 pub fn page(title: &str, section: SiteSection, content: VirtualNode) -> String {
     let content = html! {

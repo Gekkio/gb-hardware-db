@@ -29,16 +29,6 @@ jobs:
       - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
         with:
           cache-on-failure: true
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:
@@ -49,12 +39,8 @@ jobs:
         with:
           command: test
           args: --all --release
-      - name: Run site generation (Rust)
+      - name: Run site generation
         run: cargo run --release --bin gbhwdb-site-generator
-      - name: Run npm install
-        run: npm install
-      - name: Run site generation (Node)
-        run: npm run build
   build_and_deploy:
     name: Build + deploy site
     runs-on: ubuntu-latest
@@ -78,12 +64,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:
@@ -94,14 +74,8 @@ jobs:
         with:
           command: test
           args: --all --release
-      - name: Run site generation (Rust)
+      - name: Run site generation
         run: cargo run --release --bin gbhwdb-site-generator
-      - name: Run npm prune
-        run: npm prune
-      - name: Run npm install
-        run: npm install
-      - name: Run site generation (Node)
-        run: npm run build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

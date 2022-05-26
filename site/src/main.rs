@@ -92,7 +92,7 @@ fn build_css() -> Result<(), Error> {
     create_dir_all("build/site/static")?;
 
     let mut css = fs::read_to_string("third-party/normalize.css")?;
-    css.push_str(&css::read_sass("site_generator/src/gbhwdb.scss")?);
+    css.push_str(&css::read_sass("site/src/gbhwdb.scss")?);
 
     let css = css::minify(&css)?;
     fs::write("build/site/static/gbhwdb.css", css.as_bytes())?;
@@ -1319,20 +1319,20 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
 
 fn copy_static_files() -> Result<(), Error> {
     static PATTERNS: [&str; 8] = [
-        "static/**/*.html",
-        "static/**/*.txt",
-        "static/**/*.ico",
-        "static/**/*.jpg",
-        "static/**/*.png",
-        "static/**/*.svg",
-        "static/**/*.webmanifest",
-        "static/**/*.xml",
+        "site/static/**/*.html",
+        "site/static/**/*.txt",
+        "site/static/**/*.ico",
+        "site/static/**/*.jpg",
+        "site/static/**/*.png",
+        "site/static/**/*.svg",
+        "site/static/**/*.webmanifest",
+        "site/static/**/*.xml",
     ];
     let target = Path::new("build/site");
     for pattern in &PATTERNS {
         for entry in glob(pattern)? {
             let path = entry?;
-            let target = target.join(path.strip_prefix("static")?);
+            let target = target.join(path.strip_prefix("site/static")?);
             if let Some(parent) = target.parent() {
                 create_dir_all(parent)?;
             }

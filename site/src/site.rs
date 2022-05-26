@@ -39,7 +39,7 @@ static MAPPER_CFGS: OnceCell<Vec<MapperCfg>> = OnceCell::new();
 pub fn build_site() -> Site {
     let mut site = Site::new();
     site.add_page(["index"], |data| {
-        let content = Markdown::parse(&fs::read_to_string("content/home.markdown")?);
+        let content = Markdown::parse(&fs::read_to_string("site/content/home.markdown")?);
         let today = OffsetDateTime::now_local()
             .unwrap_or_else(|_| OffsetDateTime::now_utc())
             .date();
@@ -62,37 +62,37 @@ pub fn build_site() -> Site {
         ["consoles", "index"],
         "Consoles",
         SiteSection::Consoles(None),
-        "content/consoles.markdown",
+        "site/content/consoles.markdown",
     );
     site.add_markdown_page(
         ["contribute", "index"],
         "Contribute",
         SiteSection::Consoles(None),
-        "content/contribute.markdown",
+        "site/content/contribute.markdown",
     );
     site.add_markdown_page(
         ["contribute", "sgb"],
         "Super Game Boy (SGB) contribution instructions",
         SiteSection::Consoles(Some(Console::Sgb)),
-        "content/contribute-sgb.markdown",
+        "site/content/contribute-sgb.markdown",
     );
     site.add_markdown_page(
         ["contribute", "sgb2"],
         "Super Game Boy 2 (SGB2) contribution instructions",
         SiteSection::Consoles(Some(Console::Sgb2)),
-        "content/contribute-sgb2.markdown",
+        "site/content/contribute-sgb2.markdown",
     );
     site.add_markdown_page(
         ["contribute", "oxy"],
         "Game Boy Micro (OXY) contribution instructions",
         SiteSection::Consoles(Some(Console::Oxy)),
-        "content/contribute-oxy.markdown",
+        "site/content/contribute-oxy.markdown",
     );
     site.add_markdown_page(
         ["contribute", "cartridges"],
         "Game cartridge contribution instructions",
         SiteSection::Consoles(None),
-        "content/contribute-cartridges.markdown",
+        "site/content/contribute-cartridges.markdown",
     );
     for console in Console::ALL {
         site.add_page(["consoles", console.id(), "index"], move |data| {

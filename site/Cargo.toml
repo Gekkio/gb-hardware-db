@@ -1,5 +1,5 @@
 [package]
-name = "gbhwdb-site-generator"
+name = "gbhwdb-site"
 version = "0.0.0"
 authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
 edition = "2021"

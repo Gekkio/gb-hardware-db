@@ -146,7 +146,7 @@ async fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
-    let build_dir = Path::new("build/site");
+    let build_dir = Path::new("build");
     if !build_dir.exists() {
         return Err(anyhow!("Can't find build directory"));
     }

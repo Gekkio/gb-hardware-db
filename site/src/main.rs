@@ -89,13 +89,13 @@ impl SiteData {
 }
 
 fn build_css() -> Result<(), Error> {
-    create_dir_all("build/site/static")?;
+    create_dir_all("build/static")?;
 
     let mut css = fs::read_to_string("third-party/normalize.css")?;
     css.push_str(&css::read_sass("site/src/gbhwdb.scss")?);
 
     let css = css::minify(&css)?;
-    fs::write("build/site/static/gbhwdb.css", css.as_bytes())?;
+    fs::write("build/static/gbhwdb.css", css.as_bytes())?;
     Ok(())
 }
 
@@ -126,7 +126,7 @@ where
     submissions
         .par_iter()
         .map(|submission| {
-            let target_dir = Path::new("build/site/static").join(&submission.code);
+            let target_dir = Path::new("build/static").join(&submission.code);
             fs::create_dir_all(&target_dir)?;
             if let Some(front) = submission.photos.front() {
                 let ref_meta = Path::new(&front.path).metadata()?;
@@ -169,8 +169,7 @@ fn main() -> Result<(), Error> {
     );
 
     let mut data = SiteData::default();
-    create_dir_all("build/data")?;
-    create_dir_all("build/site/static/export/consoles")?;
+    create_dir_all("build/static/export/consoles")?;
 
     info!("Processing submissions");
 
@@ -206,7 +205,7 @@ fn main() -> Result<(), Error> {
     info!("Generating site");
 
     let mut site = build_site();
-    site.generate_all(&data, "build/site")?;
+    site.generate_all(&data, "build")?;
     build_css()?;
     copy_static_files()?;
 
@@ -222,7 +221,7 @@ where
     M: ToCsv,
 {
     let csv = BufWriter::new(File::create(format!(
-        "build/site/static/export/consoles/{kind}.csv"
+        "build/static/export/consoles/{kind}.csv"
     ))?);
     write_submission_csv(csv, "https://gbhwdb.gekkio/consoles", submissions)
 }
@@ -307,9 +306,7 @@ fn process_cartridge_submissions(
         }
     }
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
-    let file = File::create("build/data/cartridges.json")?;
-    serde_json::to_writer_pretty(file, &submissions)?;
-    let csv = BufWriter::new(File::create("build/site/static/export/cartridges.csv")?);
+    let csv = BufWriter::new(File::create("build/static/export/cartridges.csv")?);
     write_submission_csv(csv, "https://gbhwdb.gekkio/cartridges", &submissions)?;
     Ok(submissions)
 }
@@ -1328,7 +1325,7 @@ fn copy_static_files() -> Result<(), Error> {
         "site/static/**/*.webmanifest",
         "site/static/**/*.xml",
     ];
-    let target = Path::new("build/site");
+    let target = Path::new("build");
     for pattern in &PATTERNS {
         for entry in glob(pattern)? {
             let path = entry?;

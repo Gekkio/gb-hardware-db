@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+
+SPDX-License-Identifier: MIT
+-->
+
 ## Welcome to the Game Boy hardware database
 
 This site contains data and photos of various types of Game Boy consoles, which

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 
 use super::{listing_entry_cell::ListingEntryCell, listing_photos_cell::ListingPhotosCell};

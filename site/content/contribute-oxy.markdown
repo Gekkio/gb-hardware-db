@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+
+SPDX-License-Identifier: MIT
+-->
+
 ## Game Boy Micro (OXY) contribution instructions
 
 <h3 style="color: red">

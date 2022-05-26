@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use super::{month2, year1, LabelParser, Year};
 use crate::{
     macros::{multi_parser, single_parser},

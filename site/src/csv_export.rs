@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use crate::legacy::console::{LegacyLcdPanel, LegacyMgbMainboard, LegacyMgbMetadata};
 
 use super::{chip, Builder, Field, ToCsv};

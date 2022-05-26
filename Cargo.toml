@@ -1,2 +1,6 @@
+# SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 [workspace]
 members = ["backend", "deploy", "site", "tools"]

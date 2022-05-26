@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use anyhow::{anyhow, Error};
 use log::{debug, info};
 use md5::{Digest, Md5};

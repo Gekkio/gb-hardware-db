@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use html5ever::{
     driver::ParseOpts, namespace_url, ns, parse_fragment, tendril::TendrilSink, LocalName, QualName,
 };

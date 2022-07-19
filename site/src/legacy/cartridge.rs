@@ -97,6 +97,7 @@ impl HasDateCode for LegacyBoard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }

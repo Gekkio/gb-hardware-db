@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     input::{is_not_outlier, Chip, LcdScreen},
-    time::Month,
+    time::{Jun, Month},
 };
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -55,6 +55,8 @@ pub struct MglMainboard {
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub jun: Option<Jun>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<Chip>,
     #[serde(skip_serializing_if = "Option::is_none")]

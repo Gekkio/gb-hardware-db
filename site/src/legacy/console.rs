@@ -5,7 +5,7 @@
 use gbhwdb_backend::{
     input::{LcdChip, LcdScreen},
     parser::LabelParser,
-    time::{Month, Week},
+    time::{Jun, Month, Week},
     Console,
 };
 use serde::Serialize;
@@ -254,6 +254,7 @@ impl HasDateCode for LegacyDmgMetadata {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -288,11 +289,7 @@ impl LegacyConsoleMetadata for LegacyDmgMetadata {
     fn shell(&self) -> LegacyConsoleShell {
         LegacyConsoleShell {
             color: self.color.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: self.month,
-                week: None,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -362,6 +359,7 @@ impl HasDateCode for LegacyDmgLcdBoard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -384,6 +382,7 @@ impl HasDateCode for LegacyDmgPowerBoard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -438,6 +437,7 @@ impl HasDateCode for LegacySgbMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -519,6 +519,7 @@ impl HasDateCode for LegacySgb2Mainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -585,6 +586,7 @@ impl HasDateCode for LegacyMgbMetadata {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -624,11 +626,7 @@ impl LegacyConsoleMetadata for LegacyMgbMetadata {
         LegacyConsoleShell {
             color: self.color.as_deref(),
             release_code: self.release_code.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: self.month,
-                week: None,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -665,6 +663,8 @@ pub struct LegacyMgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub jun: Option<Jun>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyChip>,
@@ -681,6 +681,7 @@ impl HasDateCode for LegacyMgbMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: self.jun,
             week: None,
         }
     }
@@ -707,6 +708,7 @@ impl HasDateCode for LegacyMglMetadata {
         DateCode {
             year: self.year,
             month: None,
+            jun: None,
             week: self.week,
         }
     }
@@ -747,11 +749,7 @@ impl LegacyConsoleMetadata for LegacyMglMetadata {
         LegacyConsoleShell {
             color: self.color.as_deref(),
             release_code: self.release_code.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: None,
-                week: self.week,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -788,6 +786,8 @@ pub struct LegacyMglMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub jun: Option<Jun>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyChip>,
@@ -806,6 +806,7 @@ impl HasDateCode for LegacyMglMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: self.jun,
             week: None,
         }
     }
@@ -832,6 +833,7 @@ impl HasDateCode for LegacyCgbMetadata {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: self.week,
         }
     }
@@ -869,11 +871,7 @@ impl LegacyConsoleMetadata for LegacyCgbMetadata {
         LegacyConsoleShell {
             color: self.color.as_deref(),
             release_code: self.release_code.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: self.month,
-                week: self.week,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -906,6 +904,8 @@ pub struct LegacyCgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub jun: Option<Jun>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyChip>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyChip>,
@@ -922,6 +922,7 @@ impl HasDateCode for LegacyCgbMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: self.jun,
             week: None,
         }
     }
@@ -946,6 +947,7 @@ impl HasDateCode for LegacyAgbMetadata {
         DateCode {
             year: self.year,
             month: None,
+            jun: None,
             week: self.week,
         }
     }
@@ -984,11 +986,7 @@ impl LegacyConsoleMetadata for LegacyAgbMetadata {
         LegacyConsoleShell {
             color: self.color.as_deref(),
             release_code: self.release_code.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: None,
-                week: self.week,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -1039,6 +1037,7 @@ impl HasDateCode for LegacyAgbMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -1137,6 +1136,7 @@ impl HasDateCode for LegacyAgsMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -1161,6 +1161,7 @@ impl HasDateCode for LegacyGbsMetadata {
         DateCode {
             year: self.year,
             month: None,
+            jun: None,
             week: self.week,
         }
     }
@@ -1191,11 +1192,7 @@ impl LegacyConsoleMetadata for LegacyGbsMetadata {
         LegacyConsoleShell {
             color: self.color.as_deref(),
             release_code: self.release_code.as_deref(),
-            date_code: DateCode {
-                year: self.year,
-                month: None,
-                week: self.week,
-            },
+            date_code: self.date_code(),
             ..LegacyConsoleShell::default()
         }
     }
@@ -1252,6 +1249,7 @@ impl HasDateCode for LegacyGbsMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -1325,6 +1323,7 @@ impl HasDateCode for LegacyOxyMainboard {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }
@@ -1350,6 +1349,7 @@ impl HasDateCode for LegacyLcdPanel {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: None,
         }
     }

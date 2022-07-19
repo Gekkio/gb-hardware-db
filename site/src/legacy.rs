@@ -4,7 +4,7 @@
 
 use gbhwdb_backend::{
     parser::*,
-    time::{Month, Week},
+    time::{Jun, Month, Week},
 };
 use serde::{Deserialize, Serialize};
 
@@ -13,7 +13,6 @@ use self::console::{
     LegacyDmgPhotos, LegacyGbsMetadata, LegacyMgbMetadata, LegacyMglMetadata, LegacyOxyMetadata,
     LegacySgb2Metadata, LegacySgbMetadata,
 };
-use crate::format::{calendar, calendar_short};
 
 pub mod cartridge;
 pub mod chip;
@@ -36,15 +35,48 @@ pub type LegacyOxySubmission = LegacySubmission<LegacyOxyMetadata, LegacyDefault
 pub struct DateCode {
     pub year: Option<u16>,
     pub month: Option<Month>,
+    pub jun: Option<Jun>,
     pub week: Option<Week>,
 }
 
 impl DateCode {
     pub fn calendar_short(&self) -> Option<String> {
-        Some(calendar_short(self.year, self.month, self.week)).filter(|text| !text.is_empty())
+        match (self.year, self.month, self.week) {
+            (Some(year), Some(month), _) => match self.jun {
+                Some(jun) => {
+                    let range = jun.range(year, month);
+                    Some(format!(
+                        "{month} {from}-{to}/{year}",
+                        month = &month.name()[..3],
+                        from = range.start(),
+                        to = range.end(),
+                    ))
+                }
+                None => Some(format!("{month}/{year}")),
+            },
+            (Some(year), _, Some(week)) => Some(format!("{week}/{year}")),
+            (Some(year), _, _) => Some(year.to_string()),
+            _ => None,
+        }
     }
     pub fn calendar(&self) -> Option<String> {
-        Some(calendar(self.year, self.month, self.week)).filter(|text| !text.is_empty())
+        match (self.year, self.month, self.week) {
+            (Some(year), Some(month), _) => match self.jun {
+                Some(jun) => {
+                    let range = jun.range(year, month);
+                    Some(format!(
+                        "{month} {from}-{to}/{year}",
+                        month = &month.name()[..3],
+                        from = range.start(),
+                        to = range.end(),
+                    ))
+                }
+                None => Some(format!("{month}/{year}")),
+            },
+            (Some(year), _, Some(week)) => Some(format!("Week {week}/{year}")),
+            (Some(year), _, _) => Some(year.to_string()),
+            _ => None,
+        }
     }
 }
 
@@ -120,6 +152,7 @@ impl HasDateCode for LegacyChip {
         DateCode {
             year: self.year,
             month: self.month,
+            jun: None,
             week: self.week,
         }
     }

@@ -31,7 +31,6 @@ use site::{build_site, SubmissionCounts};
 
 mod css;
 mod csv_export;
-mod format;
 mod legacy;
 mod site;
 mod template;
@@ -625,6 +624,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
                 stamp: console.mainboard.stamp.clone(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
+                jun: console.mainboard.jun,
                 cpu,
                 work_ram,
                 amplifier,
@@ -722,6 +722,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
                 stamp: console.mainboard.stamp.clone(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
+                jun: console.mainboard.jun,
                 cpu,
                 work_ram,
                 amplifier,
@@ -884,6 +885,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 stamp: console.mainboard.stamp.clone(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
+                jun: console.mainboard.jun,
                 cpu,
                 work_ram,
                 amplifier,

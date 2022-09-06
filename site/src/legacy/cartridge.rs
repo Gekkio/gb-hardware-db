@@ -23,6 +23,7 @@ pub struct LegacyMetadata {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub board: LegacyBoard,
+    pub dump: Option<CartridgeDump>,
 }
 
 impl super::LegacyMetadata for LegacyMetadata {}

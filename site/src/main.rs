@@ -292,6 +292,7 @@ fn process_cartridge_submissions(
                 code: cartridge.shell.code,
                 stamp: cartridge.shell.stamp,
                 board,
+                dump: cartridge.dump,
             };
             let mut photos = LegacyDefaultPhotos::default();
             photos.front = get_photo(root, "01_front.jpg");

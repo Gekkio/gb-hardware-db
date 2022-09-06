@@ -5,6 +5,7 @@
 use gbhwdb_backend::config::cartridge::ChipRoleConfig;
 use percy_dom::{html, IterableNodes, View, VirtualNode};
 use std::convert::identity;
+use time::{format_description::FormatItem, macros::format_description};
 
 use crate::legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip, LegacyPhoto};
 
@@ -30,6 +31,8 @@ impl<'a> CartridgePage<'a> {
         }
     }
 }
+
+static DATE_FORMAT: &[FormatItem] = format_description!("[year]-[month]-[day]");
 
 impl<'a> View for CartridgePage<'a> {
     fn render(&self) -> VirtualNode {
@@ -94,7 +97,7 @@ impl<'a> View for CartridgePage<'a> {
                         ]
                     }).collect::<Vec<_>>() }
                 </dl>
-                <h3>Chips</h3>
+                <h3>{"Chips"}</h3>
                 <table>
                     <thead>
                         <tr>
@@ -113,6 +116,19 @@ impl<'a> View for CartridgePage<'a> {
                         .collect::<Vec<_>>()
                     }
                 </table>
+                { metadata.dump.as_ref().map(|dump| html! {
+                    <div>
+                        <h3>{"ROM dump"}</h3>
+                        <dl>
+                            <dt>{"Used tool"}</dt>
+                            <dd>{&dump.tool}</dd>
+                            <dt>{"Dump date"}</dt>
+                            <dd>{&dump.date.format(DATE_FORMAT).unwrap_or_default()}</dd>
+                            <dt>{"SHA256"}</dt>
+                            <dd>{format!("{}", dump.sha256)}</dd>
+                        </dl>
+                    </div>
+                }) }
             </article>
         }
     }

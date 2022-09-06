@@ -16,6 +16,7 @@ use crate::{
 pub struct ConsoleSubmissionList<'a, M, P> {
     pub submissions: &'a [LegacySubmission<M, P>],
     pub board_column_name: &'static str,
+    pub render_console_column: bool,
     pub extra_columns: &'static [&'static str],
     pub extra_cells: Vec<Box<dyn Fn(&M) -> Option<VirtualNode>>>,
 }
@@ -25,9 +26,14 @@ impl<'a, M, P> ConsoleSubmissionList<'a, M, P> {
         ConsoleSubmissionList {
             submissions,
             board_column_name: "Board",
+            render_console_column: true,
             extra_columns: &[],
             extra_cells: vec![],
         }
+    }
+    pub fn render_console_column(mut self, value: bool) -> Self {
+        self.render_console_column = value;
+        self
     }
 }
 
@@ -41,7 +47,8 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for ConsoleSubmissionLi
                 <table>
                     <thead>
                         <tr>
-                            <th>{"ID"}</th>
+                            <th>{"Submission"}</th>
+                            { self.render_console_column.then(|| html! { <th>{"Console"}</th> }) }
                             <th>{self.board_column_name}</th>
                             { chips.iter().map(|chip|
                                 html! {
@@ -58,7 +65,12 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for ConsoleSubmissionLi
                     </thead>
                     <tbody>
                         { self.submissions.iter().map(|submission|
-                            Submission { submission, chips: &chips, extra_cells: &self.extra_cells }.render()
+                            Submission {
+                                submission,
+                                chips: &chips,
+                                extra_cells: &self.extra_cells,
+                                render_console_column: self.render_console_column
+                            }.render()
                         ).collect::<Vec<_>>() }
                     </tbody>
                 </table>
@@ -72,6 +84,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for ConsoleSubmissionLi
 struct Submission<'a, M: LegacyConsoleMetadata, P> {
     pub submission: &'a LegacySubmission<M, P>,
     pub chips: &'a [ChipInfo<M>],
+    pub render_console_column: bool,
     pub extra_cells: &'a [Box<dyn Fn(&M) -> Option<VirtualNode>>],
 }
 
@@ -86,26 +99,35 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for Submission<'a, M, P
                     secondary_texts: &[],
                     submission: self.submission,
                 }.render() }
+                { self.render_console_column.then(|| html! {
+                    <td>
+                        {metadata.shell().color.map(|color| {
+                            html! {
+                                <div>{format!("Color: {color}")}</div>
+                            }
+                        })}
+                        {metadata.shell().release_code.map(|release_code| {
+                            html! {
+                                <div>{format!("Release: {release_code}")}</div>
+                            }
+                        })}
+                        {metadata.shell().date_code.calendar_short().map(|date_code| {
+                            html! {
+                                <div>{format!("Assembled: {date_code}")}</div>
+                            }
+                        })}
+                        {metadata.lcd_panel().and_then(|panel| panel.date_code().calendar_short()).map(|date_code| {
+                            html! {
+                                <div>{format!("LCD panel: {date_code}")}</div>
+                            }
+                        })}
+                    </td>
+                }) }
                 <td>
                     <div>{metadata.mainboard().kind}</div>
                     {metadata.mainboard().date_code.calendar_short().map(|date_code| {
                         html! {
                             <div>{format!("{date_code}")}</div>
-                        }
-                    })}
-                    {metadata.shell().date_code.calendar_short().map(|date_code| {
-                        html! {
-                            <div>{format!("Assembled: {date_code}")}</div>
-                        }
-                    })}
-                    {metadata.shell().release_code.map(|release_code| {
-                        html! {
-                            <div>{format!("Release: {release_code}")}</div>
-                        }
-                    })}
-                    {metadata.lcd_panel().and_then(|panel| panel.date_code().calendar_short()).map(|date_code| {
-                        html! {
-                            <div>{format!("LCD panel: {date_code}")}</div>
                         }
                     })}
                 </td>

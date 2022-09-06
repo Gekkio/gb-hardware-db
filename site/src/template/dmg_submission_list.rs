@@ -22,6 +22,7 @@ impl<'a> View for DmgSubmissionList<'a> {
         ConsoleSubmissionList {
             submissions: self.submissions,
             board_column_name: "Mainboard",
+            render_console_column: true,
             extra_columns: &["LCD board", "Power board", "Jack board"],
             extra_cells: vec![
                 Box::new(|m: &LegacyDmgMetadata| {

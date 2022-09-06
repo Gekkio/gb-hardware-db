@@ -7,10 +7,6 @@
 @import '../common';
 
 .listing-entry-cell {
-  &__link {
-    display: flex;
-    align-items: center;
-  }
   &__primary {
     @include media(desktop) {
       font-size: 16px;

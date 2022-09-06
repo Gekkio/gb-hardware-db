@@ -105,10 +105,14 @@ pub fn build_site() -> Site {
                 section: SiteSection::Consoles(Some(console)),
                 content: match console {
                     Console::Dmg => DmgSubmissionList::new(&data.dmg).render(),
-                    Console::Sgb => ConsoleSubmissionList::new(&data.sgb).render(),
+                    Console::Sgb => ConsoleSubmissionList::new(&data.sgb)
+                        .render_console_column(false)
+                        .render(),
                     Console::Mgb => ConsoleSubmissionList::new(&data.mgb).render(),
                     Console::Mgl => ConsoleSubmissionList::new(&data.mgl).render(),
-                    Console::Sgb2 => ConsoleSubmissionList::new(&data.sgb2).render(),
+                    Console::Sgb2 => ConsoleSubmissionList::new(&data.sgb2)
+                        .render_console_column(false)
+                        .render(),
                     Console::Cgb => ConsoleSubmissionList::new(&data.cgb).render(),
                     Console::Agb => ConsoleSubmissionList::new(&data.agb).render(),
                     Console::Ags => ConsoleSubmissionList::new(&data.ags).render(),

@@ -291,20 +291,20 @@ pub fn nec_like_mbc6() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC1B by some "P" company?
+/// Panasonic MBC1B
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc1b().parse("DMG MBC1-B Nintendo P 0'D7").is_ok());
+/// assert!(parser::mapper::panasonic_mbc1b().parse("DMG MBC1-B Nintendo P 0'D7").is_ok());
 /// ```
-pub fn p_company_mbc1b() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc1b() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^DMG\ MBC1-B\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc1(Mbc1Version::B),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[1])?),
                 week: None,
             })
@@ -312,20 +312,20 @@ pub fn p_company_mbc1b() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC2A by some "P" company?
+/// Panasonic MBC2A
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc2a().parse("DMG MBC2-A Nintendo P 8'73").is_ok());
+/// assert!(parser::mapper::panasonic_mbc2a().parse("DMG MBC2-A Nintendo P 8'73").is_ok());
 /// ```
-pub fn p_company_mbc2a() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc2a() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^DMG\ MBC2-A\ Nintendo\ P\ ([0-9])'[[:alnum:]][0-9]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc2(Mbc2Version::A),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[1])?),
                 week: None,
             })
@@ -333,20 +333,20 @@ pub fn p_company_mbc2a() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC3A by some "P" company?
+/// Panasonic MBC3A
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc3a().parse("MBC3 A P-2 834U4E").is_ok());
+/// assert!(parser::mapper::panasonic_mbc3a().parse("MBC3 A P-2 834U4E").is_ok());
 /// ```
-pub fn p_company_mbc3a() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc3a() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^MBC3\ A\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc3(Mbc3Version::A),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -354,20 +354,20 @@ pub fn p_company_mbc3a() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC3B by some "P" company?
+/// Panasonic MBC3B
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc3b().parse("MBC3 B P-2 134U2D").is_ok());
+/// assert!(parser::mapper::panasonic_mbc3b().parse("MBC3 B P-2 134U2D").is_ok());
 /// ```
-pub fn p_company_mbc3b() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc3b() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^MBC3\ B\ P-2\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc3(Mbc3Version::B),
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -375,20 +375,20 @@ pub fn p_company_mbc3b() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC30 by some "P" company?
+/// Panasonic MBC30
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc30().parse("MBC30 P 047U2M").is_ok());
+/// assert!(parser::mapper::panasonic_mbc30().parse("MBC30 P 047U2M").is_ok());
 /// ```
-pub fn p_company_mbc30() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc30() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^MBC30\ P\ ([0-9])([0-9]{2})[[:alnum:]][0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc30,
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[1])?),
                 week: Some(week2(&c[2])?),
             })
@@ -396,20 +396,20 @@ pub fn p_company_mbc30() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-/// Unknown MBC5 by some "P" company?
+/// Panasonic MBC5
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::p_company_mbc5().parse("MBC5 P 041U7M").is_ok());
+/// assert!(parser::mapper::panasonic_mbc5().parse("MBC5 P 041U7M").is_ok());
 /// ```
-pub fn p_company_mbc5() -> &'static impl LabelParser<Mapper> {
+pub fn panasonic_mbc5() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
         r#"^MBC5\ P(-[0-9])?\ ([0-9])([0-9]{2})U[0-9][A-Z]$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc5,
-                manufacturer: None,
+                manufacturer: Some(Manufacturer::Panasonic),
                 year: Some(year1(&c[2])?),
                 week: Some(week2(&c[3])?),
             })
@@ -725,12 +725,12 @@ pub fn mapper() -> &'static impl LabelParser<Mapper> {
         nec_mbc1b(),
         nec_mbc2a(),
         nec_like_mbc6(),
-        p_company_mbc1b(),
-        p_company_mbc2a(),
-        p_company_mbc3a(),
-        p_company_mbc3b(),
-        p_company_mbc30(),
-        p_company_mbc5(),
+        panasonic_mbc1b(),
+        panasonic_mbc2a(),
+        panasonic_mbc3a(),
+        panasonic_mbc3b(),
+        panasonic_mbc30(),
+        panasonic_mbc5(),
         rohm_mbc3(),
         rohm_mbc3a(),
         rohm_mbc3b(),

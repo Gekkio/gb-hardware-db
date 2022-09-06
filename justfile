@@ -3,4 +3,4 @@
 # SPDX-License-Identifier: CC0-1.0
 
 dev:
-  cargo run --release --bin gbhwdb-devserver
+  (cargo run --bin gbhwdb-devserver) & (cargo watch -- cargo run --bin gbhwdb-site) & wait

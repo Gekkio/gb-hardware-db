@@ -273,7 +273,7 @@ impl LegacyConsoleMetadata for LegacyDmgMetadata {
             ChipInfo::new("VRAM", "U2", Box::new(|m| m.mainboard.video_ram.as_ref())),
             ChipInfo::new("WRAM", "U3", Box::new(|m| m.mainboard.work_ram.as_ref())),
             ChipInfo::new(
-                "Amplifier",
+                "Audio amplifier",
                 "U4",
                 Box::new(|m| m.mainboard.amplifier.as_ref()),
             ),
@@ -604,12 +604,12 @@ impl LegacyConsoleMetadata for LegacyMgbMetadata {
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
             ChipInfo::new(
-                "Amplifier",
+                "Audio amplifier",
                 "U3",
                 Box::new(|m| m.mainboard.amplifier.as_ref()),
             ),
             ChipInfo::new(
-                "Regulator",
+                "LCD bias generator",
                 "U4",
                 Box::new(|m| m.mainboard.regulator.as_ref()),
             ),
@@ -726,12 +726,12 @@ impl LegacyConsoleMetadata for LegacyMglMetadata {
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
             ChipInfo::new(
-                "Amplifier",
+                "Audio amplifier",
                 "U3",
                 Box::new(|m| m.mainboard.amplifier.as_ref()),
             ),
             ChipInfo::new(
-                "Regulator",
+                "LCD bias generator",
                 "U4",
                 Box::new(|m| m.mainboard.regulator.as_ref()),
             ),
@@ -849,12 +849,12 @@ impl LegacyConsoleMetadata for LegacyCgbMetadata {
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
             ChipInfo::new(
-                "Amplifier",
+                "Audio amplifier",
                 "U3",
                 Box::new(|m| m.mainboard.amplifier.as_ref()),
             ),
             ChipInfo::new(
-                "Regulator",
+                "LCD bias generator",
                 "U4",
                 Box::new(|m| m.mainboard.regulator.as_ref()),
             ),
@@ -963,13 +963,13 @@ impl LegacyConsoleMetadata for LegacyAgbMetadata {
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
             ChipInfo::new(
-                "Regulator",
+                "LCD bias generator",
                 "U3",
                 Box::new(|m| m.mainboard.regulator.as_ref()),
             ),
             ChipInfo::new("?", "U4", Box::new(|m| m.mainboard.u4.as_ref())),
             ChipInfo::new(
-                "Amplifier",
+                "Audio amplifier",
                 "U6",
                 Box::new(|m| m.mainboard.amplifier.as_ref()),
             ),

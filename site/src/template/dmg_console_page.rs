@@ -101,7 +101,7 @@ impl<'a> View for DmgConsolePage<'a> {
             extra_chips: vec![Box::new(|m: &LegacyDmgMetadata| {
                 (
                     "-",
-                    "LCD regulator",
+                    "LCD bias generator",
                     m.lcd_board
                         .as_ref()
                         .and_then(|board| board.regulator.as_ref()),

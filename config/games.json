@@ -196,6 +196,7 @@
   "CGB-BFUP-0": {
     "name": "Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "6a4f67f84d3ddd43385aacacdedc38aa58d091912465bf6a5f6b6278a4f3247b",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -244,7 +245,8 @@
   },
   "CGB-BHMJ-0": {
     "name": "Hamster Paradise 2 (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "aa00671d2803d3ef56533577f1d4609572da3cd0c52061ff7262baeb3a060fb1",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -260,7 +262,7 @@
     ]
   },
   "CGB-BHVE-0": {
-    "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "name": "Harry Potter and the Sorcerer's Stone (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
     "rom_verified": false,
     "platform": "gbc",
     "layouts": [
@@ -372,6 +374,7 @@
   "CGB-BY3J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)",
     "rom_verified": true,
+    "sha256": "e2cc3edffd34277ab9af404b4c160431aa1389ddc2c7b15a1273c3a58cd83c70",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -397,7 +400,8 @@
   },
   "CGB-BYTE-0": {
     "name": "Pokemon - Crystal Version (USA)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "d6702e353dcbe2d2c69183046c878ef13a0dae4006e8cdff521cca83dd1582fe",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -564,6 +568,7 @@
   "DMG-AAUP-0": {
     "name": "Pokemon - Gold Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "fb0016d27b1e5374e1ec9fcad60e6628d8646103b5313ca683417f52b97e7e4e",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1180,7 +1185,7 @@
   },
   "DMG-APYJ-0": {
     "name": "Pocket Puyo Puyo Tsuu (Japan) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "32ce756a5b9af569fa05bb561a72388914003cd6b1c88fef8d55c6f32b4d3d57",
     "platform": "gb",
     "layouts": [
@@ -1267,7 +1272,8 @@
   },
   "DMG-AW2J-0": {
     "name": "Wario Land 2 (Japan) (SGB Enhanced) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "521dc62bcb424dc984691659317773740f8cdc1b5649101e1e875c17926e13fc",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -2211,7 +2217,7 @@
   },
   "DMG-SLE-0": {
     "name": "InfoGenius Productivity Pak - Spell Checker and Calculator (USA)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "5fe63ff3d4abbf4631947e1bc1b208c6ca4eb2a381a68dd0f761323da3f27984",
     "platform": "gb",
     "layouts": [

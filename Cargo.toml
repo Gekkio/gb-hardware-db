@@ -4,3 +4,9 @@
 
 [workspace]
 members = ["backend", "deploy", "devserver", "site", "tools"]
+
+[profile.dev]
+opt-level = 1
+
+[profile.test]
+opt-level = 2

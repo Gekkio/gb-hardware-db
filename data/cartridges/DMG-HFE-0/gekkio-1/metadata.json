@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1B Nintendo S 9112 5 A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "0ea3c547fb5f74c99cc721d45886ca0ad2fea032b6648a82046351251f754eae"
   }
 }

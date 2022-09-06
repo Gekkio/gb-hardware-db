@@ -19,5 +19,10 @@
     "u2": {
       "label": "Nintendo DMG MBC1B 8940AJ"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "5d8ba1f7cd9ee6cd14dca5132b651cf248e08ff7d4274c1d883fbaa5597309e5"
   }
 }

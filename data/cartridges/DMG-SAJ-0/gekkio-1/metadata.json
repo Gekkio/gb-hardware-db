@@ -22,5 +22,10 @@
     "u3": {
       "label": "015 26A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "c2f40e3ed1dcd4b6682dd19537d93ac4145ad754d1c6fd77581d09826f06f45c"
   }
 }

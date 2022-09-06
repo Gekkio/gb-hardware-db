@@ -25,5 +25,10 @@
     "u4": {
       "label": "047 134A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "fafb25d3ce6a296060c234e93b9496ac3a8beee3f11b2d7a8bac2f79a2c0c9cc"
   }
 }

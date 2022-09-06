@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1B Nintendo J9330BR"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "49fbd2f61f953d5ef28cab73e357e524c3009ad19fcf30f6a9ee0ae273be41dc"
   }
 }

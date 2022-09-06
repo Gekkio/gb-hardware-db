@@ -16,5 +16,10 @@
     "u1": {
       "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9646 D"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "507939ba5a53506d0ee52abb0eb6749f497c492e8be79eb106010020b50065bd"
   }
 }

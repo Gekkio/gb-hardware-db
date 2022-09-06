@@ -25,5 +25,10 @@
     "u4": {
       "label": "135 26A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "0727cb5e298e1f87f757471b558965a2b8dfb01a5b8bffe7cce5a625673b55ef"
   }
 }

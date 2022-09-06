@@ -16,5 +16,10 @@
     "u1": {
       "label": "DMG-VUA-0 SHARP JAPAN A0 9011 D"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "3296ce126e2ebf61f99e39d82e20e0f7d7ade84539ddd48f7c0e21fef5f46932"
   }
 }

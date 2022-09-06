@@ -16,5 +16,10 @@
     "u1": {
       "label": "DMG-FPE-0 SHARP JAPAN A0 9011 D"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "23fe1e88229645354f665908eb0dcd39cd8f3fbbeebec4bd93d11f7740a478e4"
   }
 }

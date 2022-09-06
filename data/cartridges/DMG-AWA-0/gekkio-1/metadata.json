@@ -16,5 +16,10 @@
     "u1": {
       "label": "DMG-AWA-0 SHARP JAPAN 8909 D A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-06",
+    "sha256": "ed8070e011713527bdc03e2b9cec9f9c4a7e3aaa00e57e8786a186b265da1bb2"
   }
 }

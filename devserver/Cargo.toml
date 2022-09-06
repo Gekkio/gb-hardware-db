@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "gbhwdb-devserver"
+version = "0.0.0"
+authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
+edition = "2021"
+publish = false
+
+[dependencies]
+anyhow = "1.0.64"
+axum = "0.5.15"
+tokio = { version = "1.21.0", features = ["fs", "macros", "rt-multi-thread"] }
+tower-http = { version = "0.3.4", features = ["fs"] }

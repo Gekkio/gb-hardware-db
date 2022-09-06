@@ -2,5 +2,5 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-[workspace]
-members = ["backend", "deploy", "devserver", "site", "tools"]
+dev:
+  cargo run --release --bin gbhwdb-devserver

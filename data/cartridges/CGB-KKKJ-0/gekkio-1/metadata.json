@@ -25,5 +25,10 @@
     "u4": {
       "label": "3257920022 0032 ADXL202JQC"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "04e394c7913be317cc0be27ba8ba84ffafb4e83cd531cc66c5e2a678efe5cef3"
   }
 }

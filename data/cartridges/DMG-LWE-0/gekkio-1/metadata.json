@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1B Nintendo S 9204 1 AB"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "3e9ea5a9215c7f0921797e9c414b7eed031843ff20ffbb638b5715f0ae319781"
   }
 }

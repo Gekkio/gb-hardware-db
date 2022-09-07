@@ -29,5 +29,10 @@
       "label": "LVX 04 8 24"
     },
     "x1": {}
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "a0bafdead828c50ec412293b0d004c78564c3ae8ae5f295c2b46e6ed4e0d4818"
   }
 }

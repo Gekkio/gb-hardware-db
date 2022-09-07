@@ -19,5 +19,10 @@
     "u2": {
       "label": "MBC5 LZ9GB31 9836 A"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "62e956b58c8e0bcb489929bbfd84f6d97303ced03f67c6961cc21d2730003ec6"
   }
 }

@@ -21,5 +21,10 @@
     "u3": {
       "label": "6129A 8R42"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "32ff6a1b3e5a53584dfe9e90ce5311b5afac48c9e0d2c0a3ac81fc39d333a961"
   }
 }

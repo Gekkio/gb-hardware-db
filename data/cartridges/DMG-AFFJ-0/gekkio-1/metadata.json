@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 6'D6"
     }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-07",
+    "sha256": "137bac4650f234b571eef67fcb05cc137ef0aca4300389c2b6e5aa96fe9497fe"
   }
 }

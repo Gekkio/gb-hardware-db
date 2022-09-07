@@ -19,5 +19,10 @@
     "u2": {
       "label": "DMG MBC1B1 Nintendo S 9348 3 A"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2016-06-11",
+    "sha256": "d50625512f089c7a8c6ce3a44de7357466d61a2ef91ae0a0b87afce2a2e9621c"
   }
 }

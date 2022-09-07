@@ -25,5 +25,10 @@
     "u4": {
       "label": "846 26A"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2019-05-04",
+    "sha256": "9d9af105172d5b72d9c1e7ca09fc56cde33c607d840932b465ae2a5221c2f4a8"
   }
 }

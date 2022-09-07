@@ -28,5 +28,10 @@
     "x1": {
       "label": "KDS0M"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2016-06-11",
+    "sha256": "3afc54651b9a6d71d7a5a884c6b86b9e2f6d5c6380aeff2e533cd14280444f21"
   }
 }

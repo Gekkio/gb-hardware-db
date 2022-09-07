@@ -19,5 +19,10 @@
     "u2": {
       "label": "13A0V9T MBC5 2417"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2016-06-11",
+    "sha256": "6a4f67f84d3ddd43385aacacdedc38aa58d091912465bf6a5f6b6278a4f3247b"
   }
 }

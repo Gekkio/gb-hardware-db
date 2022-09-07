@@ -28,5 +28,10 @@
     "u5": {
       "label": "112 134A"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2019-05-04",
+    "sha256": "d5162631a4e9be122013fb491f2a3d04b72476cc4c052607d3bc9e9e5250e850"
   }
 }

@@ -25,5 +25,10 @@
     "u4": {
       "label": "2738109451 0028 ADXL202JQC"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2016-06-11",
+    "sha256": "04e394c7913be317cc0be27ba8ba84ffafb4e83cd531cc66c5e2a678efe5cef3"
   }
 }

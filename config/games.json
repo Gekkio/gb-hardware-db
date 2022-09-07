@@ -103,6 +103,7 @@
   "CGB-AZ7J-0": {
     "name": "Zelda no Densetsu - Fushigi no Kinomi - Daichi no Shou (Japan)",
     "rom_verified": true,
+    "sha256": "65404de57219f0ab6eacd63ef326ef8a921b9b4448ebcaa48330f70dca97a49f",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -188,6 +189,7 @@
   "CGB-BDSP-0": {
     "name": "Dinosaur'us (Europe) (En,Fr,De,Es,It,Nl)",
     "rom_verified": false,
+    "sha256": "fafb25d3ce6a296060c234e93b9496ac3a8beee3f11b2d7a8bac2f79a2c0c9cc",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -205,6 +207,7 @@
   "CGB-BFVJ-1": {
     "name": "Monster Traveler (Japan) (Rev 1)",
     "rom_verified": true,
+    "sha256": "5e567dcde1aa5e5e1fb61e9a614b9ca5fdd0c7748993c3687ae78f8eb7216ce9",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -213,6 +216,7 @@
   "CGB-BGLJ-0": {
     "name": "Super Gals! Kotobuki Ran (Japan)",
     "rom_verified": true,
+    "sha256": "50a02181ad93f70427479a90e5206884d8ff48426f2b472877a78e46461f5ba5",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -560,6 +564,7 @@
   "DMG-AAUJ-1": {
     "name": "Pocket Monsters Kin (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "27a07a1d3faf9c6a0b1b60d5e88ee3a4159a751a47b4c46ab09f1202d52bac3e",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -649,6 +654,7 @@
   "DMG-ACXJ-0": {
     "name": "Pokemon Card GB (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "89eb164c0102792c5f340bc299c215c1a40376b8de7589ef0d86be1e3861cec1",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -675,6 +681,7 @@
   "DMG-AD4P-0": {
     "name": "Dropzone (Europe) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "7693f5a868d01a2618666aa70c27699525b9e1123fe08e8e729a20573d80d08c",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -1248,6 +1255,7 @@
   "DMG-AVBJ-0": {
     "name": "Pocket Bowling (Japan) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "62e956b58c8e0bcb489929bbfd84f6d97303ced03f67c6961cc21d2730003ec6",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -1397,6 +1405,7 @@
   "DMG-AYMJ-1": {
     "name": "Gakkyuu Ou Yamazaki (Japan) (Rev 1) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "4d2cd0036b131b5db350b79d49c10b6c0510029fd484df1743df93b1a7e09e1b",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1495,6 +1504,7 @@
   "DMG-BLUJ-0": {
     "name": "From TV Animation One Piece - Yume no Luffy Kaizokudan Tanjou! (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "6680858cfdcc658e4b1e10d49f48b0f4abfdba10cd52007cde64744036eadff4",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1520,6 +1530,7 @@
   "DMG-BMAP-0": {
     "name": "Mary-Kate and Ashley - Pocket Planner (USA, Europe) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "3afc54651b9a6d71d7a5a884c6b86b9e2f6d5c6380aeff2e533cd14280444f21",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -1528,6 +1539,7 @@
   "DMG-BQLJ-0": {
     "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "90517f73231e52fe3ef733e369b8a3464996e785803fdb583398d40689760ab7",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1806,6 +1818,7 @@
   "DMG-HRCJ-0": {
     "name": "Robot Poncots - Star Version (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "a0bafdead828c50ec412293b0d004c78564c3ae8ae5f295c2b46e6ed4e0d4818",
     "platform": "gbc",
     "layouts": [
       "huc3"
@@ -1814,6 +1827,7 @@
   "DMG-HREJ-0": {
     "name": "Robot Poncots - Sun Version (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "a6957d433eb3f514752d9a16564ce145b5c6a84f132de88b59ae2fb3de259ad5",
     "platform": "gbc",
     "layouts": [
       "huc3"

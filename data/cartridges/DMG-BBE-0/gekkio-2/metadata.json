@@ -19,5 +19,10 @@
     "u2": {
       "label": "Nintendo DMG MBC1B N 9146BA067"
     }
+  },
+  "dump": {
+    "tool": "Gameboy Cart Shield V1.2 + custom software",
+    "date": "2019-05-04",
+    "sha256": "a0bd5d25545de941e719437f7829f4edf32b3a140a399387f96dda2f8059fe4e"
   }
 }

@@ -274,12 +274,12 @@ pub fn nec_mbc2a() -> &'static impl LabelParser<Mapper> {
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mapper::nec_like_mbc6().parse("Nintendo MBC6 0103XPO14").is_ok());
+/// assert!(parser::mapper::nec_like_mbc6().parse("Nintendo MBC6 0103XP014").is_ok());
 /// ```
 pub fn nec_like_mbc6() -> &'static impl LabelParser<Mapper> {
     single_parser!(
         Mapper,
-        r#"^Nintendo\ MBC6\ ([0-9]{2})([0-9]{2})XPO[0-9]{2}$"#,
+        r#"^Nintendo\ MBC6\ ([0-9]{2})([0-9]{2})XP0[0-9]{2}$"#,
         move |c| {
             Ok(Mapper {
                 mbc_type: MapperType::Mbc6,

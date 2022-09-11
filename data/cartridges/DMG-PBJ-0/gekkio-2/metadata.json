@@ -1,0 +1,28 @@
+{
+  "code": "DMG-PBJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-PBJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-02",
+    "circled_letters": "I",
+    "extra_label": "1",
+    "year": 1989,
+    "month": 9,
+    "u1": {
+      "label": "DMG-PBJ-0 SHARP JAPAN B0 8939 D"
+    },
+    "u2": {
+      "label": "DMG MBC1A Nintendo S 8938 5 A"
+    }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-11",
+    "sha256": "6d86dcf9c8529ebfcbdcfcfbbdc4d28ab662599674b7232b8733c5fe1badb1ab"
+  }
+}

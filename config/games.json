@@ -1671,6 +1671,15 @@
       "mbc2"
     ]
   },
+  "DMG-FAE-0": {
+    "name": "Faceball 2000 (USA)",
+    "rom_verified": false,
+    "sha256": "7689773cb3f483aa7bfcef61aa965041b3d11cd88642083992d50c0856dc9ddd",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
   "DMG-FPA-0": {
     "name": "Flipull (USA)",
     "rom_verified": false,
@@ -2008,6 +2017,15 @@
     "name": "Super Battletank (Europe)",
     "rom_verified": false,
     "sha256": "2f40a1a1594b81d16c7c139ff01ddf1ca15932f4afda2005f9ff2b9a04fdfa85",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper"
+    ]
+  },
+  "DMG-NBA-0": {
+    "name": "Kaisen Game - Navyblue (Japan)",
+    "rom_verified": false,
+    "sha256": "bd8439e5fcad770a1f9a2c2bd417c2cf615ea5d4576a9a110d5d90bb31906242",
     "platform": "gb",
     "layouts": [
       "rom_mapper"

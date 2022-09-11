@@ -1,0 +1,28 @@
+{
+  "code": "DMG-FAE-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-FA-USA",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1991,
+    "month": 10,
+    "u1": {
+      "label": "TOSHIBA 9144EAI TC531001CF DMG-FAE-0 C1 J619 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9144 3 AA"
+    }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-11",
+    "sha256": "7689773cb3f483aa7bfcef61aa965041b3d11cd88642083992d50c0856dc9ddd"
+  }
+}

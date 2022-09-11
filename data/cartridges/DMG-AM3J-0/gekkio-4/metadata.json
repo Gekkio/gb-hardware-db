@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AM3J-0",
+  "slug": "gekkio-4",
+  "contributor": "gekkio",
+  "index": 4,
+  "shell": {
+    "code": "DMG-AM3J-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-MC-SFCN-01",
+    "circled_letters": "Y",
+    "extra_label": "5",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AM3J-0 F1 N-8001EJGW-J65 9643K7013"
+    },
+    "u2": {
+      "label": "MMM01 644 103"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 535 118N"
+    },
+    "u4": {
+      "label": "642 26A"
+    }
+  }
+}

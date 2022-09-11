@@ -1,0 +1,28 @@
+{
+  "code": "DMG-NBA-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NBA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BBA-02",
+    "circled_letters": "I",
+    "extra_label": "5",
+    "year": 1989,
+    "month": 11,
+    "u1": {
+      "label": "DMG-NBA-0 SHARP JAPAN B0 8949 D"
+    },
+    "u2": {
+      "label": "DMG MBC1A Nintendo S 8944 1 A"
+    }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-11",
+    "sha256": "bd8439e5fcad770a1f9a2c2bd417c2cf615ea5d4576a9a110d5d90bb31906242"
+  }
+}

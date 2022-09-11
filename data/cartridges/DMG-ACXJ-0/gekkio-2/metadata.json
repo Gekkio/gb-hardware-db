@@ -1,0 +1,34 @@
+{
+  "code": "DMG-ACXJ-0",
+  "slug": "gekkio-2",
+  "contributor": "gekkio",
+  "index": 2,
+  "shell": {
+    "code": "DMG-ACXJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "K",
+    "extra_label": "2",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-ACXJ-0 F1 KFX312U"
+    },
+    "u2": {
+      "label": "HuC1A © HUDSON Nintendo 9846 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9814 KOREA"
+    },
+    "u4": {
+      "label": "844 134A"
+    }
+  },
+  "dump": {
+    "tool": "GB-CARTPP v1.0",
+    "date": "2022-09-11",
+    "sha256": "89eb164c0102792c5f340bc299c215c1a40376b8de7589ef0d86be1e3861cec1"
+  }
+}

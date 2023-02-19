@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 dev:
+  cargo build --all
   just run-devserver &
   cargo watch -- just build-site
 

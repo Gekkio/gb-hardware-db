@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::{anyhow, Error};
+use base64::Engine;
 use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
@@ -206,6 +207,7 @@ async fn main() -> Result<(), Error> {
     info!("{} files scheduled for deletion", to_delete.len());
 
     let shared_mime_info = Arc::new(spawn_blocking(SharedMimeInfo::new).await?);
+    let base64 = base64::engine::general_purpose::STANDARD;
 
     for local_file in to_upload {
         info!("Uploading {}", local_file.key);
@@ -231,7 +233,7 @@ async fn main() -> Result<(), Error> {
             key: local_file.key.clone(),
             body: Some(body.into()),
             content_type: Some(mime_guess.mime_type().essence_str().to_owned()),
-            content_md5: Some(base64::encode(local_file.md5)),
+            content_md5: Some(base64.encode(local_file.md5)),
             cache_control: Some(local_file.cache_control().to_owned()),
             ..PutObjectRequest::default()
         })

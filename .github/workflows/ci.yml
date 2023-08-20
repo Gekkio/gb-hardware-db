@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+# SPDX-FileCopyrightText: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -20,29 +20,23 @@ jobs:
     if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
       - name: Install Ubuntu packages
         run: sudo apt install libncurses-dev libncursesw5-dev
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-      - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@359a70e43a0bb8a13953b04a90f76428b4959bb6
         with:
           cache-on-failure: true
-      - name: Run cargo build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --all --release
-      - name: Run cargo test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --all --release
+      - name: Build
+        run: cargo build --all --release
+      - name: Test
+        run: cargo test --all --release
       - name: Run site generation
         run: cargo run --release --bin gbhwdb-site
   build_and_deploy:
@@ -51,33 +45,27 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
       - name: Install Ubuntu packages
         run: sudo apt install libncurses-dev libncursesw5-dev
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-      - uses: Swatinem/rust-cache@cb2cf0cc7c5198d3364b9630e2c3d457f160790c
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@359a70e43a0bb8a13953b04a90f76428b4959bb6
         with:
           cache-on-failure: true
-      - name: Run cargo build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --all --release
-      - name: Run cargo test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --all --release
+      - name: Build
+        run: cargo build --all --release
+      - name: Test
+        run: cargo test --all --release
       - name: Run site generation
         run: cargo run --release --bin gbhwdb-site
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

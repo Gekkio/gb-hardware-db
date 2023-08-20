@@ -15,7 +15,7 @@ clap = "4.1.6"
 cursive = { version = "0.20.0", default-features = false, features = ["crossterm-backend"] }
 gbhwdb-backend = { path = "../backend" }
 glob = "0.3.0"
-itertools = "0.10.3"
+itertools = "0.11.0"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
 serde = { version = "1.0.152", features = ["derive"] }
 serde_json = "1.0.85"

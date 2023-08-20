@@ -9,13 +9,13 @@ use gbhwdb_backend::{
 };
 use itertools::Itertools;
 use log::error;
-use once_cell::sync::OnceCell;
 use percy_dom::{View, VirtualNode};
 use std::{
     borrow::Cow,
     collections::HashMap,
     fs::{self, create_dir_all},
     path::{Path, PathBuf},
+    sync::OnceLock,
 };
 use time::OffsetDateTime;
 
@@ -38,7 +38,7 @@ use crate::{
     SiteData,
 };
 
-static MAPPER_CFGS: OnceCell<Vec<MapperCfg>> = OnceCell::new();
+static MAPPER_CFGS: OnceLock<Vec<MapperCfg>> = OnceLock::new();
 
 pub fn build_site() -> Site {
     let mut site = Site::new();

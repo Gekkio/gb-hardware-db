@@ -100,8 +100,8 @@ impl fmt::Display for ParseError {
 pub(crate) mod macros {
     macro_rules! single_parser {
         ($t:ty, $re:literal, $f:expr $(,)?) => {{
-            static PARSER: once_cell::sync::OnceCell<crate::parser::SingleParser<$t>> =
-                once_cell::sync::OnceCell::new();
+            static PARSER: std::sync::OnceLock<crate::parser::SingleParser<$t>> =
+                std::sync::OnceLock::new();
             PARSER.get_or_init(|| crate::parser::SingleParser::compile($re, $f))
         }};
     }
@@ -109,8 +109,8 @@ pub(crate) mod macros {
 
     macro_rules! multi_parser {
         ($t:ty, $($m:expr),+ $(,)?) => {{
-            static PARSER: once_cell::sync::OnceCell<crate::parser::MultiParser<$t>> =
-                once_cell::sync::OnceCell::new();
+            static PARSER: std::sync::OnceLock<crate::parser::MultiParser<$t>> =
+                std::sync::OnceLock::new();
             PARSER.get_or_init(|| {
                 use crate::parser::LabelParser;
                 let parsers: Vec<&'static dyn LabelParser<$t>> = vec![$($m),+];

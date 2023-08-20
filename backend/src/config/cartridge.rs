@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::Error;
-use once_cell::sync::OnceCell;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::{
@@ -13,6 +12,7 @@ use std::{
     io::{BufReader, BufWriter},
     ops::{Index, IndexMut},
     path::Path,
+    sync::OnceLock,
 };
 
 use crate::sha256::Sha256;
@@ -130,7 +130,7 @@ fn create_map() -> HashMap<&'static str, BoardLayout> {
 
 impl BoardLayout {
     pub fn from_label(label: &str) -> Option<BoardLayout> {
-        static MAP: OnceCell<HashMap<&'static str, BoardLayout>> = OnceCell::new();
+        static MAP: OnceLock<HashMap<&'static str, BoardLayout>> = OnceLock::new();
         let map = MAP.get_or_init(|| create_map());
         label
             .rfind(|c: char| c == '-')

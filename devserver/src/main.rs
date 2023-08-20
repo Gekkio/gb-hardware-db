@@ -2,15 +2,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-use axum::{http::StatusCode, response::IntoResponse, routing::get_service, Router};
+use axum::{routing::get_service, Router};
 use std::net::SocketAddr;
-use tokio::io;
 use tower_http::services::ServeDir;
 
 #[tokio::main]
 async fn main() {
-    let app =
-        Router::new().fallback(get_service(ServeDir::new("build")).handle_error(handle_error));
+    let app = Router::new().fallback(get_service(ServeDir::new("build")));
 
     let port = 8080;
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
@@ -19,8 +17,4 @@ async fn main() {
         .serve(app.into_make_service())
         .await
         .unwrap();
-}
-
-async fn handle_error(_: io::Error) -> impl IntoResponse {
-    (StatusCode::INTERNAL_SERVER_ERROR, "Internal server error")
 }

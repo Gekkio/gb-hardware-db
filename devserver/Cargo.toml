@@ -4,13 +4,13 @@
 
 [package]
 name = "gbhwdb-devserver"
-version = "0.0.0"
-authors = ["Joonas Javanainen <joonas.javanainen@gmail.com>"]
-edition = "2021"
-publish = false
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+publish.workspace = true
 
 [dependencies]
-anyhow = "1.0.64"
-axum = "0.6.7"
-tokio = { version = "1.21.0", features = ["fs", "macros", "rt-multi-thread"] }
-tower-http = { version = "0.3.4", features = ["fs"] }
+anyhow.workspace = true
+axum.workspace = true
+tokio = { workspace = true, features = ["fs", "macros", "rt-multi-thread"] }
+tower-http = { workspace = true, features = ["fs"] }

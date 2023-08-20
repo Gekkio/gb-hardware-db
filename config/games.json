@@ -725,6 +725,15 @@
       "rom_mapper_ram"
     ]
   },
+  "DMG-ADQJ-1": {
+    "name": "Dragon Quest Monsters - Terry no Wonderland (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "61e85e9f447ec9f12f73317a6b9223cc82c449ce317690523a9348c798c037be",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-ADYD-0": {
     "name": "Barbie - Meeres Abenteuer (Germany) (GB Compatible)",
     "rom_verified": false,
@@ -1091,6 +1100,15 @@
       "rom_mapper_ram_xtal"
     ]
   },
+  "DMG-APEJ-0": {
+    "name": "Pocket Monsters - Ao (Japan) (SGB Enhanced)",
+    "rom_verified": true,
+    "sha256": "71a70e5f77c109177d21c998310ffe01a68e8cd2f41e72e7129093b890c7d3d1",
+    "platform": "gb",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
   "DMG-APME-0": {
     "name": "Pagemaster, The (USA) (SGB Enhanced)",
     "rom_verified": false,
@@ -1241,6 +1259,14 @@
     "name": "Tetris DX (World) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "d349dc93423c6abcd775d3b6a8797df715a44a42ec837afb21bf17ae43b40a9e",
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
+    ]
+  },
+  "DMG-ATFJ-0": {
+    "name": "Sanrio Timenet - Mirai Hen (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1440,6 +1466,14 @@
     "platform": "gb",
     "layouts": [
       "rom_mapper_ram_xtal"
+    ]
+  },
+  "DMG-AZLJ-0": {
+    "name": "Zelda no Densetsu - Yume o Miru Shima DX (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc",
+    "layouts": [
+      "rom_mapper_ram"
     ]
   },
   "DMG-AZLP-0": {

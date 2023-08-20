@@ -95,6 +95,7 @@
   "CGB-AYQE-0": {
     "name": "Rayman (USA) (En,Fr,De,Es,It,Nl)",
     "rom_verified": false,
+    "sha256": "9ca5b01d04985e0c83c68d5b434f322d2e7ee494fffed08cd747e8ade1569b0a",
     "platform": "gbc",
     "layouts": [
       "rom_mapper"
@@ -266,8 +267,9 @@
     ]
   },
   "CGB-BHVE-0": {
-    "name": "Harry Potter and the Sorcerer's Stone (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
-    "rom_verified": false,
+    "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "rom_verified": true,
+    "sha256": "8eb56e0d55a04aa3fcf940f172757f4f60baa6c53c82707def8ae4e78844b1da",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -599,7 +601,7 @@
   },
   "DMG-AB2E-0": {
     "name": "Bomberman GB (USA, Europe) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "16d6a4650566ede0ec9e3e23a85544737faab4154d6381668e8547047340eee6",
     "platform": "gb",
     "layouts": [
@@ -822,6 +824,7 @@
   "DMG-AGQE-0": {
     "name": "Game & Watch Gallery 3 (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "22d2ab0ba8d90bff2113a1c10a7e8838e71a4603c1d6f43969098fed47e8dba5",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1335,6 +1338,7 @@
   "DMG-AWHP-0": {
     "name": "R-Type DX (USA, Europe) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "3d20b3fef48771f0d3ea2cdcf80812b02122a0a04dee0e8c8ae8e3e027f36741",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1512,7 +1516,8 @@
   },
   "DMG-BM6E-0": {
     "name": "Mega Man Xtreme (USA, Europe) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "638225d961484c8749ff8ceba1c865d267a5401b0d37a3a84cac7a6fb6bd8b9a",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"
@@ -1619,7 +1624,7 @@
   },
   "DMG-DCX-0": {
     "name": "Darkwing Duck (Europe)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "9ce06e4e79a734c27097a2ea4aa43fe8dd9802b739d4038cf12c307bfc221554",
     "platform": "gb",
     "layouts": [
@@ -1673,7 +1678,7 @@
   },
   "DMG-FAE-0": {
     "name": "Faceball 2000 (USA)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "7689773cb3f483aa7bfcef61aa965041b3d11cd88642083992d50c0856dc9ddd",
     "platform": "gb",
     "layouts": [
@@ -2024,7 +2029,7 @@
   },
   "DMG-NBA-0": {
     "name": "Kaisen Game - Navyblue (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "bd8439e5fcad770a1f9a2c2bd417c2cf615ea5d4576a9a110d5d90bb31906242",
     "platform": "gb",
     "layouts": [

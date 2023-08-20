@@ -4,13 +4,13 @@ Upstream-Contact: Joonas Javanainen <joonas.javanainen@gmail.com>
 Source: https://github.com/Gekkio/gb-hardware-db
 
 Files: config/*
-Copyright: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+Copyright: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
 License: CC0-1.0
 
 Files: data/*
-Copyright: 2017-2022 gbhwdb contributors
+Copyright: 2017-2023 gbhwdb contributors
 License: CC-BY-SA-4.0
 
 Files: site/static/*
-Copyright: 2017-2022 Joonas Javanainen <joonas.javanainen@gmail.com>
+Copyright: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
 License: MIT

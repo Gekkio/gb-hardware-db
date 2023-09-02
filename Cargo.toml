@@ -16,7 +16,7 @@ publish = false
 anyhow = "1.0.75"
 axum = "0.6.20"
 base64 = "0.21.2"
-clap = "4.3.23"
+clap = "4.4.2"
 csv = "1.2.2"
 cursive = { version = "0.20.0", default-features = false, features = ["crossterm-backend"] }
 filetime = "0.2.22"

@@ -14,15 +14,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_only:
+  build:
     name: Build site
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           lfs: true
+      - name: Check for unintended local changes (e.g. incorrect use of Git LFS)
+        run: git diff --exit-code
       - name: Install Ubuntu packages
         run: sudo apt install libncurses-dev libncursesw5-dev
       - name: Install stable toolchain
@@ -39,31 +40,23 @@ jobs:
         run: cargo test --all --release
       - name: Run site generation
         run: cargo run --release --bin gbhwdb-site
-  build_and_deploy:
-    name: Build + deploy site
+      - name: Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: site
+          path: |
+            build
+            target/release/gbhwdb-deploy
+          retention-days: 1
+  deploy:
+    name: Deploy site
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Archive
+        uses: actions/download-artifact@v3
         with:
-          lfs: true
-      - name: Install Ubuntu packages
-        run: sudo apt install libncurses-dev libncursesw5-dev
-      - name: Install stable toolchain
-        run: |
-          rustup toolchain install stable --profile minimal
-          rustup default stable
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@e207df5d269b42b69c8bc5101da26f7d31feddb4
-        with:
-          cache-on-failure: true
-      - name: Build
-        run: cargo build --all --release
-      - name: Test
-        run: cargo test --all --release
-      - name: Run site generation
-        run: cargo run --release --bin gbhwdb-site
+          name: site
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -71,4 +64,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
       - name: Run site deployment
-        run: cargo run --release --bin gbhwdb-deploy
+        run: target/release/gbhwdb-deploy

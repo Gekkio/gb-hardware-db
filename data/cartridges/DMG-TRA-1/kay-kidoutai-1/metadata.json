@@ -1,0 +1,20 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TRA",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-AAA-1",
+    "circled_letters": "I",
+    "extra_label": "6",
+    "year": 1989,
+    "month": 6,
+    "u1": {
+      "label": "DMG-TRA-1 SHARP JAPAN A0 8938 D"
+    }
+  }
+}

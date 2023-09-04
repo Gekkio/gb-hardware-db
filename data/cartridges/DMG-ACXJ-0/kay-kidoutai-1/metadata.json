@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ACXJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ACXJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "I",
+    "extra_label": "3",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ACXJ-0 S LH5S8MN1 JAPAN F1 9847 D"
+    },
+    "u2": {
+      "label": "HuC1A © HUDSON Nintendo 9846 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9830 KOREA"
+    },
+    "u4": {
+      "label": "843 134A"
+    }
+  }
+}

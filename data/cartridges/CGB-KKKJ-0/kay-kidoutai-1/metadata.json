@@ -1,0 +1,29 @@
+{
+  "code": "CGB-KKKJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "CGB-KKKJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A40-01",
+    "circled_letters": "MB",
+    "extra_label": "3",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "MBC-7 BU3667KS 037 154"
+    },
+    "u2": {
+      "label": "CGB-KKKJ-0 F1 N-8001EJGW-K39 0042K7005"
+    },
+    "u3": {
+      "label": "LC56 U713 08"
+    },
+    "u4": {
+      "label": "3307286856 0033 ADXL202JQC"
+    }
+  }
+}

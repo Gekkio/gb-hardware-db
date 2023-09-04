@@ -42,3 +42,4 @@ Site source code for https://gbhwdb.gekkio.fi
 * terinjokes
 * tobiasvl
 * zear
+* kay-kidoutai (https://kidoutai.com)

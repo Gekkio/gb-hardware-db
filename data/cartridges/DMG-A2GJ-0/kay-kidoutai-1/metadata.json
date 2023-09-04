@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A2GJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A2GJ-JPN",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "extra_label": "6",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "DMG-A2GJ-0 S LH538WP9 JAPAN F1 9946 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 942U4M"
+    }
+  }
+}

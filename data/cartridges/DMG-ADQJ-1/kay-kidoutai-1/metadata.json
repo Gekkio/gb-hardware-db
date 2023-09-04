@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ADQJ-1",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADQJ-JPN",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-DGCU-10",
+    "circled_letters": "I",
+    "extra_label": "2",
+    "year": 1999,
+    "month": 9,
+    "u1": {
+      "label": "DMG-ADQJ-1 S LH537MT4 JAPAN G2 9939 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9910 1 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9848 5 CB"
+    },
+    "u4": {
+      "label": "6735 9989"
+    }
+  }
+}

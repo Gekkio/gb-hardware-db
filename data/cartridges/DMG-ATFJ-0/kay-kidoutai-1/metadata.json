@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ATFJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ATFJ-JPN",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "K",
+    "extra_label": "5",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ATFJ-0 F1 N-8001EJGW-J86 9845K7068"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9837 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9829 KOREA"
+    },
+    "u4": {
+      "label": "839 134A"
+    }
+  }
+}

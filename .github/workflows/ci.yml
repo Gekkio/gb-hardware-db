@@ -52,6 +52,7 @@ jobs:
     name: Deploy site
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+    needs: build
     steps:
       - name: Archive
         uses: actions/download-artifact@v3

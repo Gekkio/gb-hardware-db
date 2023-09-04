@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ACXJ-0",
+  "slug": "kay-kidoutai-2",
+  "contributor": "kay_kidoutai",
+  "index": 2,
+  "shell": {
+    "code": "DMG-ACXJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-TFDN-01",
+    "circled_letters": "K",
+    "extra_label": "6",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-ACXJ-0 F1 KFX312U"
+    },
+    "u2": {
+      "label": "HuC1A © HUDSON Nintendo 9848 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9837 1 SO"
+    },
+    "u4": {
+      "label": "848 134A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AZLJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AZLJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "extra_label": "1",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "S984849-M MX23C8005-12 DMG-AZLJ-0 F1 23751ZA1"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9844 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9826 KOREA"
+    },
+    "u4": {
+      "label": "845 134A"
+    }
+  }
+}

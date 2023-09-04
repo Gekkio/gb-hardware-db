@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AM3J-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AM3J-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-MC-SFCN-01",
+    "circled_letters": "Y",
+    "extra_label": "3",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AM3J-0 S LH538MN6 JAPAN F1 9646 E"
+    },
+    "u2": {
+      "label": "MMM01 645 113"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 640 169N"
+    },
+    "u4": {
+      "label": "642 26A"
+    }
+  }
+}

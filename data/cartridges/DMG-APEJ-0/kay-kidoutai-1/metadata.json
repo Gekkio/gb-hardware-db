@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APEJ-0",
+  "slug": "kay-kidoutai-1",
+  "contributor": "kay_kidoutai",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "extra_label": "4",
+    "year": 1997,
+    "month": 6,
+    "u1": {
+      "label": "DMG-APEJ-0 S LH534MVS JAPAN E1 9725 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9722 1 A"
+    },
+    "u3": {
+      "label": "LGS GM76C256BLLFW70 9629 KOREA"
+    },
+    "u4": {
+      "label": "6129A 7569"
+    }
+  }
+}

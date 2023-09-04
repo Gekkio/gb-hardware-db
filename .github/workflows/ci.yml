@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build site
+    name: Build site (+ deploy if building master)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,29 +40,13 @@ jobs:
         run: cargo test --all --release
       - name: Run site generation
         run: cargo run --release --bin gbhwdb-site
-      - name: Archive
-        uses: actions/upload-artifact@v3
-        with:
-          name: site
-          path: |
-            build
-            target/release/gbhwdb-deploy
-          retention-days: 1
-  deploy:
-    name: Deploy site
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    needs: build
-    steps:
-      - name: Archive
-        uses: actions/download-artifact@v3
-        with:
-          name: site
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
+        if: github.ref == 'refs/heads/master' && github.repository == "Gekkio/gb-hardware-db"
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
       - name: Run site deployment
+        if: github.ref == 'refs/heads/master' && github.repository == "Gekkio/gb-hardware-db"
         run: target/release/gbhwdb-deploy

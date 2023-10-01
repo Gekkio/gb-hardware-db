@@ -46,7 +46,7 @@ swc_css = "=0.123.3"
 time = "0.3.26"
 tokio = "1.32.0"
 tower-http = "0.4.3"
-walkdir = "2.3.3"
+walkdir = "2.4.0"
 xdg-mime = "0.3.3"
 
 [profile.dev]

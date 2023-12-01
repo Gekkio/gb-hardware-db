@@ -2154,9 +2154,9 @@ dependencies = [
 
 [[package]]
 name = "quick-xml"
-version = "0.30.0"
+version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eff6510e86862b57b210fd8cbe8ed3f0d7d600b9c2863cd4549a2e033c66e956"
+checksum = "1004a344b30a54e2ee58d66a71b32d2db2feb0a31f9a2d302bf0536f15de2a33"
 dependencies = [
  "memchr",
 ]
@@ -2281,7 +2281,7 @@ checksum = "e5ea92a5b6195c6ef2a0295ea818b312502c6fc94dde986c5553242e18fd4ce2"
 [[package]]
 name = "retro-dat"
 version = "0.0.1"
-source = "git+https://github.com/Gekkio/retro-dat.git#32e80eda69743988300aaf4a681df1cc58bedca9"
+source = "git+https://github.com/Gekkio/retro-dat.git#0902976652e891dcb655558a9e728d6ca04d6886"
 dependencies = [
  "quick-xml",
 ]

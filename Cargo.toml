@@ -32,7 +32,7 @@ md-5 = "0.10.5"
 percy-dom = "0.9.6"
 pulldown-cmark = "0.9.3"
 rayon = "1.8.0"
-regex = "1.9.3"
+regex = "1.10.2"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
 rusoto_core = "0.48.0"
 rusoto_s3 = "0.48.0"

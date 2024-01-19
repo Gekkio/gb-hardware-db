@@ -3,12 +3,11 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::{anyhow, Error};
+use aws_config::BehaviorVersion;
 use base64::Engine;
 use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
-use rusoto_core::Region;
-use rusoto_s3::{DeleteObjectRequest, ListObjectsV2Request, PutObjectRequest, S3Client, S3};
 use simplelog::{ColorChoice, LevelFilter, TermLogger, TerminalMode};
 use std::{
     collections::BTreeMap,
@@ -18,7 +17,7 @@ use std::{
     str,
     sync::Arc,
 };
-use time::{format_description::well_known::Rfc3339, Duration, OffsetDateTime};
+use time::{Duration, OffsetDateTime};
 use tokio::task::spawn_blocking;
 use walkdir::{DirEntry, WalkDir};
 use xdg_mime::SharedMimeInfo;
@@ -109,34 +108,25 @@ fn parse_e_tag(e_tag: &str) -> Option<[u8; 16]> {
     Some(result)
 }
 
-async fn scan_remote_files<S: S3>(s3: &S, bucket: &str) -> Result<Vec<RemoteFile>, Error> {
-    let mut continuation_token = None;
+async fn scan_remote_files(
+    s3: &aws_sdk_s3::Client,
+    bucket: &str,
+) -> Result<Vec<RemoteFile>, Error> {
     let mut result = Vec::new();
-    loop {
-        let output = s3
-            .list_objects_v2(ListObjectsV2Request {
-                bucket: bucket.to_owned(),
-                continuation_token: continuation_token.clone(),
-                ..ListObjectsV2Request::default()
-            })
-            .await?;
-        if let Some(contents) = output.contents {
-            for obj in contents {
-                if let (Some(key), Some(size)) = (obj.key, obj.size) {
-                    result.push(RemoteFile {
-                        key,
-                        len: size as u64,
-                        last_modified: obj
-                            .last_modified
-                            .and_then(|timestamp| OffsetDateTime::parse(&timestamp, &Rfc3339).ok()),
-                        e_tag: obj.e_tag.and_then(|e_tag| parse_e_tag(&e_tag)),
-                    });
-                }
+    let mut stream = s3.list_objects_v2().bucket(bucket).into_paginator().send();
+    while let Some(page) = stream.next().await {
+        let page = page?;
+        for obj in page.contents() {
+            if let (Some(key), Some(size)) = (obj.key(), obj.size()) {
+                result.push(RemoteFile {
+                    key: key.to_owned(),
+                    len: size as u64,
+                    last_modified: obj.last_modified.and_then(|timestamp| {
+                        OffsetDateTime::from_unix_timestamp_nanos(timestamp.as_nanos()).ok()
+                    }),
+                    e_tag: obj.e_tag.as_ref().and_then(|e_tag| parse_e_tag(&e_tag)),
+                });
             }
-        }
-        continuation_token = output.next_continuation_token;
-        if continuation_token.is_none() {
-            break;
         }
     }
     Ok(result)
@@ -159,7 +149,8 @@ async fn main() -> Result<(), Error> {
     let local_files = spawn_blocking(move || scan_local_files(build_dir)).await??;
     info!("Scanned {} local files", local_files.len());
 
-    let s3 = S3Client::new(Region::EuWest1);
+    let config = aws_config::load_defaults(BehaviorVersion::latest()).await;
+    let s3 = aws_sdk_s3::Client::new(&config);
     let bucket = "gbhwdb.gekkio.fi";
 
     info!("Scanning remote files...");
@@ -177,7 +168,7 @@ async fn main() -> Result<(), Error> {
         .collect();
 
     let mut to_upload = Vec::new();
-    for (key, local_file) in local_index.iter() {
+    for (&key, &local_file) in local_index.iter() {
         if let Some(remote_file) = remote_index.get(key) {
             if remote_file.e_tag == Some(local_file.md5) {
                 debug!("Skipping local file {}: remote match found", key);
@@ -193,7 +184,7 @@ async fn main() -> Result<(), Error> {
     info!("{} files scheduled for upload", to_upload.len());
 
     let mut to_delete = Vec::new();
-    for (key, remote_file) in remote_index.iter() {
+    for (&key, &remote_file) in remote_index.iter() {
         if local_index.contains_key(key) {
             continue;
         }
@@ -228,26 +219,24 @@ async fn main() -> Result<(), Error> {
         if mime_guess.uncertain() {
             return Err(anyhow!("Failed to guess MIME type for {}", local_file.key));
         }
-        s3.put_object(PutObjectRequest {
-            bucket: bucket.to_owned(),
-            key: local_file.key.clone(),
-            body: Some(body.into()),
-            content_type: Some(mime_guess.mime_type().essence_str().to_owned()),
-            content_md5: Some(base64.encode(local_file.md5)),
-            cache_control: Some(local_file.cache_control().to_owned()),
-            ..PutObjectRequest::default()
-        })
-        .await?;
+        s3.put_object()
+            .bucket(bucket)
+            .key(&local_file.key)
+            .body(body.into())
+            .content_type(mime_guess.mime_type().essence_str())
+            .content_md5(base64.encode(local_file.md5))
+            .cache_control(local_file.cache_control())
+            .send()
+            .await?;
     }
 
     for remote_file in to_delete {
         info!("Deleting {}", remote_file.key);
-        s3.delete_object(DeleteObjectRequest {
-            bucket: bucket.to_owned(),
-            key: remote_file.key.clone(),
-            ..DeleteObjectRequest::default()
-        })
-        .await?;
+        s3.delete_object()
+            .bucket(bucket)
+            .key(&remote_file.key)
+            .send()
+            .await?;
     }
 
     info!("Site deployment complete");

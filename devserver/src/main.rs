@@ -13,8 +13,8 @@ async fn main() {
     let port = 8080;
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
     println!("Development server listening at port {port}");
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
+    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    axum::serve(listener, app.into_make_service())
         .await
         .unwrap();
 }

@@ -48,6 +48,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         if: github.ref == 'refs/heads/master' && github.repository == 'Gekkio/gb-hardware-db'
         with:
+          aws-region: eu-west-1
           role-to-assume: arn:aws:iam::570943329925:role/github-gb-hardware-db
           role-session-name: Github-Actions
       - name: Run site deployment

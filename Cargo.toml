@@ -18,7 +18,7 @@ axum = "0.7.4"
 aws-config = "1.1.2"
 aws-sdk-s3 = "1.11.0"
 base64 = "0.21.7"
-clap = "4.4.18"
+clap = "4.5.1"
 csv = "1.3.0"
 cursive = { version = "0.20.0", default-features = false, features = ["crossterm-backend"] }
 filetime = "0.2.23"

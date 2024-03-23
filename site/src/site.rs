@@ -9,7 +9,7 @@ use gbhwdb_backend::{
 };
 use itertools::Itertools;
 use log::error;
-use percy_dom::{View, VirtualNode};
+use maud::{Markup, Render};
 use std::{
     borrow::Cow,
     collections::HashMap,
@@ -124,7 +124,7 @@ pub fn build_site() -> Site {
         fn create_pages<M, P>(
             console: Console,
             submissions: &[LegacySubmission<M, P>],
-            f: impl Fn(&LegacySubmission<M, P>) -> VirtualNode,
+            f: impl Fn(&LegacySubmission<M, P>) -> Markup,
         ) -> Vec<(SitePath, Page)> {
             submissions
                 .iter()
@@ -429,7 +429,7 @@ pub fn build_site() -> Site {
                 let layout = submission.metadata.board.layout;
                 let chips = ChipRoleConfig::from(layout);
                 let mapper = chips
-                    .iter()
+                    .into_iter()
                     .find(|&(_, role)| role == ChipRole::Mapper)
                     .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
                 let key = mapper_cfgs
@@ -474,7 +474,7 @@ pub fn build_site() -> Site {
 pub struct Page {
     pub title: Cow<'static, str>,
     pub section: SiteSection,
-    pub content: VirtualNode,
+    pub content: Markup,
 }
 
 impl Page {

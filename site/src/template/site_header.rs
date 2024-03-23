@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::Console;
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use crate::site::SiteSection;
 
@@ -12,38 +12,30 @@ pub struct SiteHeader {
     pub section: SiteSection,
 }
 
-impl View for SiteHeader {
-    fn render(&self) -> VirtualNode {
-        let consoles_class = match self.section {
-            SiteSection::Consoles(_) => "active",
-            SiteSection::Cartridges => "",
-        };
-        let cartridges_class = match self.section {
-            SiteSection::Consoles(_) => "",
-            SiteSection::Cartridges => "active",
-        };
+impl Render for SiteHeader {
+    fn render(&self) -> Markup {
         html! {
-            <header class="site-header">
-                <div class="site-header__primary">
-                    <h1 class="site-header__title">
-                        <a href="/">
-                            {"Game Boy hardware database"}
-                            <aside>{"by Gekkio and contributors"}</aside>
-                        </a>
-                    </h1>
-                    <nav class="site-primary-nav">
-                        <ul>
-                            <li class={consoles_class}>
-                                <a href="/">{"Consoles"}</a>
-                            </li>
-                            <li class={cartridges_class}>
-                                <a href="/cartridges">{"Game cartridges"}</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <SecondaryNav section={self.section} />
-            </header>
+            header.site-header {
+                div.site-header__primary {
+                    h1.site-header__title {
+                        a href="/" {
+                            "Game Boy hardware database"
+                            aside { "by Gekkio and contributors" }
+                        }
+                    }
+                    nav.site-primary-nav {
+                        ul {
+                            li.active[matches!(self.section, SiteSection::Consoles(_))] {
+                                a href="/" { "Consoles" }
+                            }
+                            li.active[matches!(self.section, SiteSection::Cartridges)] {
+                                a href="/cartridges" { "Game cartridges" }
+                            }
+                        }
+                    }
+                }
+                (SecondaryNav { section: self.section })
+            }
         }
     }
 }
@@ -53,31 +45,23 @@ struct SecondaryNav {
     pub section: SiteSection,
 }
 
-impl View for SecondaryNav {
-    fn render(&self) -> VirtualNode {
-        match self.section {
-            SiteSection::Consoles(selected) => {
-                html! {
-                    <nav class="site-secondary-nav">
-                        <ul>
-                            { Console::ALL.iter().map(|&console| {
-                                let class = if Some(console) == selected { "active" } else { "" };
-                                html! {
-                                    <li class={class}>
-                                        <a href={format!("/consoles/{}", console.id())}>
-                                            <strong>{console.code()}</strong>
-                                            <span class="name">{console.name()}</span>
-                                        </a>
-                                    </li>
+impl Render for SecondaryNav {
+    fn render(&self) -> Markup {
+        html! {
+            nav.site-secondary-nav {
+                @if let SiteSection::Consoles(selected) = self.section {
+                    ul {
+                        @for console in Console::ALL {
+                            li.active[selected == Some(console)] {
+                                a href={ "/consoles/" (console.id()) } {
+                                    strong { (console.code()) }
+                                    span.name { (console.name()) }
                                 }
-                            }).collect::<Vec<_>>() }
-                        </ul>
-                    </nav>
+                            }
+                        }
+                    }
                 }
             }
-            SiteSection::Cartridges => html! {
-                <nav class="site-secondary-nav" />
-            },
         }
     }
 }

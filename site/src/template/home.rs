@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 use time::{macros::format_description, Date};
 
 use super::markdown::Markdown;
@@ -14,25 +14,23 @@ pub struct Home {
     pub cartridge_submission_count: u32,
 }
 
-impl View for Home {
-    fn render(&self) -> VirtualNode {
+impl Render for Home {
+    fn render(&self) -> Markup {
         let today = self
             .today
             .format(format_description!(
                 "[month repr:long] [day padding:none], [year]"
             ))
             .unwrap_or_else(|_| "?".to_string());
-        let console_submission_count = self.console_submission_count;
-        let cartridge_submission_count = self.cartridge_submission_count;
         html! {
-            <article>
-                {self.content.render()}
-                {format!("Last updated: {today}")}
-                <br>
-                {format!("Console submission count: {console_submission_count}")}
-                <br>
-                {format!("Cartridge submission count: {cartridge_submission_count}")}
-            </article>
+            article {
+                (self.content)
+                "Last updated: " (today)
+                br;
+                "Console submission count: " (self.console_submission_count)
+                br;
+                "Cartridge submission count: " (self.cartridge_submission_count)
+            }
         }
     }
 }

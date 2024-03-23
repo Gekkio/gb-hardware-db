@@ -3,8 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::config::cartridge::ChipRoleConfig;
-use percy_dom::{html, IterableNodes, View, VirtualNode};
-use std::convert::identity;
+use maud::{html, Markup, Render};
 use time::{format_description::FormatItem, macros::format_description};
 
 use crate::legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip, LegacyPhoto};
@@ -17,7 +16,7 @@ impl<'a> CartridgePage<'a> {
     pub fn new(submission: &'a LegacyCartridgeSubmission) -> Self {
         CartridgePage { submission }
     }
-    pub fn render_photo(&self, photo: &LegacyPhoto) -> VirtualNode {
+    pub fn render_photo(&self, photo: &LegacyPhoto) -> Markup {
         let url = format!(
             "/static/{code}/{slug}_{name}",
             code = self.submission.code,
@@ -25,124 +24,116 @@ impl<'a> CartridgePage<'a> {
             name = photo.name
         );
         html! {
-            <a href={&url}>
-                <img src={&url}>
-            </a>
+            a href=(url) {
+                img src=(url);
+            }
         }
     }
 }
 
 static DATE_FORMAT: &[FormatItem] = format_description!("[year]-[month]-[day]");
 
-impl<'a> View for CartridgePage<'a> {
-    fn render(&self) -> VirtualNode {
+impl<'a> Render for CartridgePage<'a> {
+    fn render(&self) -> Markup {
         let metadata = &self.submission.metadata;
         let photos = &self.submission.photos;
         let board = &metadata.board;
         html! {
-            <article class="page-cartridge">
-                <h2>{format!("{}: {} [{}]", metadata.cfg.name, self.submission.title, self.submission.contributor)}</h2>
-                <div class="page-cartridge__photo">
-                    {
-                        [photos.front.as_ref(), photos.back.as_ref()]
-                            .into_iter()
-                            .filter_map(identity)
-                            .map(|photo| self.render_photo(photo))
-                            .collect::<Vec<_>>()
+            article.page-cartridge {
+                h2 { (metadata.cfg.name) ": " (self.submission.title) " [" (self.submission.contributor) "]" }
+                div.page-cartridge__photo {
+                    @if let Some(photo) = &photos.front {
+                        (self.render_photo(photo))
                     }
-                </div>
-                <dl>
-                    { metadata.code.as_deref().into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Release"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.stamp.as_deref().into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Stamp on case"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                </dl>
-                <h3>{"Board"}</h3>
-                <div class="page-cartridge__photo">
-                    {
-                        [photos.pcb_front.as_ref(), photos.pcb_back.as_ref()]
-                            .into_iter()
-                            .filter_map(identity)
-                            .map(|photo| self.render_photo(photo))
-                            .collect::<Vec<_>>()
+                    @if let Some(photo) = &photos.back {
+                        (self.render_photo(photo))
                     }
-                </div>
-                <dl>
-                    <dt>{"Board type"}</dt>
-                    <dd>{&board.kind}</dd>
-                    { board.date_code().calendar().into_iter().flat_map(|date| {
-                        [
-                            html!{ <dt>{"Manufacture date"}</dt> },
-                            html!{ <dd>{date}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { board.circled_letters.as_deref().into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Circled letter(s) on board"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { board.extra_label.as_deref().into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Extra label"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                </dl>
-                <h3>{"Chips"}</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th />
-                            <th>{"Chip"}</th>
-                            <th>{"Type"}</th>
-                            <th>{"Manufacturer"}</th>
-                            <th>{"Date"}</th>
-                            <th>{"Label"}</th>
-                        </tr>
-                    </thead>
-                    { ChipRoleConfig::from(board.layout).iter()
-                        .map(|(designator, role)|
-                            render_chip(designator.as_str(), role.display(), metadata.board[designator].as_ref())
-                        )
-                        .collect::<Vec<_>>()
+                }
+                dl {
+                    @if let Some(value) = &metadata.code {
+                        dt { "Release" }
+                        dd { (value) }
                     }
-                </table>
-                { metadata.dump.as_ref().map(|dump| html! {
-                    <div>
-                        <h3>{"ROM dump"}</h3>
-                        <dl>
-                            <dt>{"Used tool"}</dt>
-                            <dd>{&dump.tool}</dd>
-                            <dt>{"Dump date"}</dt>
-                            <dd>{&dump.date.format(DATE_FORMAT).unwrap_or_default()}</dd>
-                            <dt>{"SHA256"}</dt>
-                            <dd>{format!("{}", dump.sha256)}</dd>
-                        </dl>
-                    </div>
-                }) }
-            </article>
+                    @if let Some(value) = &metadata.stamp {
+                        dt { "Stamp on case" }
+                        dd { (value) }
+                    }
+                }
+                h3 { "Board" }
+                div.page-cartridge__photo {
+                    @if let Some(photo) = &photos.pcb_front {
+                        (self.render_photo(photo))
+                    }
+                    @if let Some(photo) = &photos.pcb_back {
+                        (self.render_photo(photo))
+                    }
+                }
+                dl {
+                    dt { "Board type" }
+                    dd { (board.kind) }
+                    @if let Some(date) = board.date_code().calendar() {
+                        dt { "Manufacture date" }
+                        dd { (date) }
+                    }
+                    @if let Some(value) = &board.circled_letters {
+                        dt { "Circled letter(s) on board" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = &board.extra_label {
+                        dt { "Extra label" }
+                        dd { (value) }
+                    }
+                }
+                h3 { "Chips" }
+                table {
+                    thead {
+                        tr {
+                            th;
+                            th { "Chip" }
+                            th { "Type" }
+                            th { "Manufacturer" }
+                            th { "Date" }
+                            th { "Label" }
+                        }
+                    }
+                    @for (designator, role) in &ChipRoleConfig::from(board.layout) {
+                        (render_chip(designator.as_str(), role.display(), metadata.board[designator].as_ref()))
+                    }
+                }
+                @if let Some(dump) = &metadata.dump {
+                    div {
+                        h3 { "ROM dump" }
+                        dl {
+                            dt { "Used tool" }
+                            dd { (dump.tool) }
+                            dt { "Dump date" }
+                            dd { (dump.date.format(DATE_FORMAT).unwrap_or_default()) }
+                            dt { "SHA256" }
+                            dd { (dump.sha256) }
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-fn render_chip(designator: &str, label: &str, chip: Option<&LegacyChip>) -> VirtualNode {
+fn render_chip(designator: &str, label: &str, chip: Option<&LegacyChip>) -> Markup {
     html! {
-        <tr class="console-page-chip">
-            <td>{designator}</td>
-            <td>{label}</td>
-            <td>{chip.and_then(|chip| chip.kind.as_ref())}</td>
-            <td>{chip.and_then(|chip| chip.manufacturer.as_ref())}</td>
-            <td>{chip.and_then(|chip| chip.date_code().calendar())}</td>
-            <td>{chip.and_then(|chip| chip.label.as_ref())}</td>
-        </tr>
+        tr.console-page-chip {
+            td { (designator) }
+            td { (label) }
+            @if let Some(chip) = chip {
+                td { (chip.kind.as_deref().unwrap_or_default()) }
+                td { (chip.manufacturer.as_deref().unwrap_or_default()) }
+                td { (chip.date_code().calendar().unwrap_or_default()) }
+                td { (chip.label.as_deref().unwrap_or_default()) }
+            } @else {
+                td;
+                td;
+                td;
+                td;
+            }
+        }
     }
 }

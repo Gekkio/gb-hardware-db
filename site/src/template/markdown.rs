@@ -2,10 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::IterableNodes;
+use maud::{html, Markup, PreEscaped, Render};
 use pulldown_cmark::{html::push_html, Parser};
-
-use super::raw_html::parse_html_fragment;
 
 pub struct Markdown {
     html: String,
@@ -18,7 +16,12 @@ impl Markdown {
         push_html(&mut html, parser);
         Markdown { html }
     }
-    pub fn render(&self) -> IterableNodes {
-        parse_html_fragment(&self.html)
+}
+
+impl Render for Markdown {
+    fn render(&self) -> Markup {
+        html! {
+            (PreEscaped(&self.html))
+        }
     }
 }

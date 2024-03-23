@@ -16,12 +16,10 @@ filetime.workspace = true
 gbhwdb-backend.workspace = true
 glob.workspace = true
 grass.workspace = true
-html5ever.workspace = true
 image.workspace = true
 itertools.workspace = true
 log.workspace = true
-markup5ever_rcdom.workspace = true
-percy-dom.workspace = true
+maud.workspace = true
 pulldown-cmark.workspace = true
 rayon.workspace = true
 serde = { workspace = true, features = ["derive"] }

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use crate::legacy::{
     console::{ChipInfo, LegacyConsoleMetadata},
@@ -11,7 +11,7 @@ use crate::legacy::{
 
 pub struct ConsolePage<'a, M, P> {
     pub submission: &'a LegacySubmission<M, P>,
-    pub extra_sections: Vec<Box<dyn Fn(&Self, &M) -> VirtualNode>>,
+    pub extra_sections: Vec<Box<dyn Fn(&Self, &M) -> Markup>>,
     pub extra_chips: Vec<Box<dyn Fn(&M) -> (&str, &str, Option<&LegacyChip>)>>,
 }
 
@@ -23,14 +23,14 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
             extra_chips: Vec::new(),
         }
     }
-    fn render_chip_info(&self, info: &ChipInfo<M>) -> VirtualNode {
+    fn render_chip_info(&self, info: &ChipInfo<M>) -> Markup {
         let chip = (info.getter)(&self.submission.metadata);
         render_chip(info.designator, info.label, chip)
     }
-    fn render_photo_info(&self, photo: &PhotoInfo<P>) -> Option<VirtualNode> {
+    fn render_photo_info(&self, photo: &PhotoInfo<P>) -> Option<Markup> {
         (photo.getter)(&self.submission.photos).map(|photo| self.render_photo(photo))
     }
-    pub fn render_photo(&self, photo: &LegacyPhoto) -> VirtualNode {
+    pub fn render_photo(&self, photo: &LegacyPhoto) -> Markup {
         let url = format!(
             "/static/{console}/{slug}_{name}",
             console = M::CONSOLE.id(),
@@ -38,172 +38,149 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
             name = photo.name
         );
         html! {
-            <a href={&url}>
-                <img src={&url}>
-            </a>
+            a href=(url) {
+                img src=(url);
+            }
         }
     }
 }
 
-impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> View for ConsolePage<'a, M, P> {
-    fn render(&self) -> VirtualNode {
+impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M, P> {
+    fn render(&self) -> Markup {
         let metadata = &self.submission.metadata;
         let mainboard = metadata.mainboard();
         html! {
-            <article class={format!("page-console page-console--{console}", console = M::CONSOLE.id())}>
-                <h2>{format!("{}: {} [{}]", M::CONSOLE.code(), self.submission.title, self.submission.contributor)}</h2>
-                <div class="page-console__photo">
-                    { P::infos().iter()
-                        .filter(|p| p.kind == PhotoKind::MainUnit)
-                        .filter_map(|photo| self.render_photo_info(photo))
-                        .collect::<Vec<_>>()
-                    }
-                </div>
-                <dl>
-                    { metadata.shell().color.into_iter().flat_map(|color| {
-                        [
-                            html!{ <dt>{"Color"}</dt> },
-                            html!{ <dd>{color}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.shell().release_code.into_iter().flat_map(|release_code| {
-                        [
-                            html!{ <dt>{"Release code"}</dt> },
-                            html!{ <dd>{release_code}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.shell().date_code.calendar().into_iter().flat_map(|assembled| {
-                        [
-                            html!{ <dt>{"Assembly date"}</dt> },
-                            html!{ <dd>{assembled}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.shell().stamp.into_iter().flat_map(|stamp| {
-                        [
-                            html!{ <dt>{"Stamp on case"}</dt> },
-                            html!{ <dd>{stamp}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.lcd_panel().and_then(|panel| panel.label.as_ref()).into_iter().flat_map(|label| {
-                        [
-                            html!{ <dt>{"LCD panel label"}</dt> },
-                            html!{ <dd>{label}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { metadata.lcd_panel().and_then(|panel| panel.date_code().calendar()).into_iter().flat_map(|date| {
-                        [
-                            html!{ <dt>{"LCD panel date"}</dt> },
-                            html!{ <dd>{date}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                </dl>
-                <h3>{"Mainboard"}</h3>
-                <div class="page-console__photo">
-                    { P::infos().iter()
-                        .filter(|p| p.kind == PhotoKind::MainBoard)
-                        .filter_map(|photo| self.render_photo_info(photo))
-                        .collect::<Vec<_>>()
-                    }
-                </div>
-                <dl>
-                    <dt>{"Board type"}</dt>
-                    <dd>{mainboard.kind}</dd>
-                    { mainboard.date_code.calendar().into_iter().flat_map(|date| {
-                        [
-                            html!{ <dt>{"Manufacture date"}</dt> },
-                            html!{ <dd>{date}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.number_pair.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Number pair on board"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.stamp.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Stamp on board"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.stamp_front.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Secondary stamp on board (front)"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.stamp_back.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Secondary stamp on board (back)"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.circled_letters.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Circled letter(s) on board"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.letter_at_top_right.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Letter at top right"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                    { mainboard.extra_label.into_iter().flat_map(|value| {
-                        [
-                            html!{ <dt>{"Extra label"}</dt> },
-                            html!{ <dd>{value}</dd> },
-                        ]
-                    }).collect::<Vec<_>>() }
-                </dl>
-                { self.extra_sections.iter().map(|section| (section)(self, metadata)).collect::<Vec<_>>() }
-                <h3>Chips</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th />
-                            <th>{"Chip"}</th>
-                            <th>{"Type"}</th>
-                            <th>{"Manufacturer"}</th>
-                            <th>{"Date"}</th>
-                            <th>{"Label"}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { M::chips()
-                            .iter()
-                            .map(|info| self.render_chip_info(info))
-                            .collect::<Vec<_>>() }
-                        { metadata.lcd_panel().iter().flat_map(|panel| {
-                            [
-                                render_chip("-", "LCD column driver", panel.column_driver.as_ref()),
-                                render_chip("-", "LCD row driver", panel.row_driver.as_ref()),
-                            ]
-                        }).collect::<Vec<_>>() }
-                        { self.extra_chips.iter()
-                            .map(|f| {
-                                let (designator, label, chip) = f(metadata);
-                                render_chip(designator, label, chip)
-                            })
-                            .collect::<Vec<_>>()
+            article class=(format!("page-console page-console--{console}", console = M::CONSOLE.id())) {
+                h2 { (M::CONSOLE.code()) ": " (self.submission.title) " [" (self.submission.contributor) "]" }
+                div.page-console__photo {
+                    @for info in P::infos() {
+                        @if info.kind == PhotoKind::MainUnit {
+                            (self.render_photo_info(&info).unwrap_or_default())
                         }
-                    </tbody>
-                </table>
-            </article>
+                    }
+                }
+                dl {
+                    @if let Some(color) = metadata.shell().color {
+                        dt { "Color" }
+                        dd { (color) }
+                    }
+                    @if let Some(release_code) = metadata.shell().release_code {
+                        dt { "Release code" }
+                        dd { (release_code) }
+                    }
+                    @if let Some(assembled) = metadata.shell().date_code.calendar() {
+                        dt { "Assembly date" }
+                        dd { (assembled) }
+                    }
+                    @if let Some(stamp) = metadata.shell().stamp {
+                        dt { "Stamp on case" }
+                        dd { (stamp) }
+                    }
+                    @if let Some(panel) = metadata.lcd_panel() {
+                        @if let Some(label) = &panel.label {
+                            dt { "LCD panel label" }
+                            dd { (label) }
+                        }
+                        @if let Some(date) = panel.date_code().calendar() {
+                            dt { "LCD panel date" }
+                            dd { (date) }
+                        }
+                    }
+                }
+                h3 { "Mainboard" }
+                div.page-console__photo {
+                    @for info in P::infos() {
+                        @if info.kind == PhotoKind::MainBoard {
+                            (self.render_photo_info(&info).unwrap_or_default())
+                        }
+                    }
+                }
+                dl {
+                    dt { "Board type" }
+                    dd { (mainboard.kind) }
+                    @if let Some(date) = mainboard.date_code.calendar() {
+                        dt { "Manufacture date" }
+                        dd { (date) }
+                    }
+                    @if let Some(value) = mainboard.number_pair {
+                        dt { "Number pair on board" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.stamp {
+                        dt { "Stamp on board" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.stamp_front {
+                        dt { "Secondary stamp on board (front)" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.stamp_back {
+                        dt { "Secondary stamp on board (back)" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.circled_letters {
+                        dt { "Circled letter(s) on board" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.letter_at_top_right {
+                        dt { "Letter at top right" }
+                        dd { (value) }
+                    }
+                    @if let Some(value) = mainboard.extra_label {
+                        dt { "Extra label" }
+                        dd { (value) }
+                    }
+                }
+                @for section in &self.extra_sections {
+                    ((section)(self, metadata))
+                }
+                h3 { "Chips" }
+                table {
+                    thead {
+                        tr {
+                            th;
+                            th { "Chip" }
+                            th { "Type" }
+                            th { "Manufacturer" }
+                            th { "Date" }
+                            th { "Label" }
+                        }
+                    }
+                    tbody {
+                        @for info in M::chips() {
+                            (self.render_chip_info(&info))
+                        }
+                        @if let Some(panel) = metadata.lcd_panel() {
+                            (render_chip("-", "LCD column driver", panel.column_driver.as_ref()))
+                                (render_chip("-", "LCD row driver", panel.row_driver.as_ref()))
+                        }
+                        @for f in &self.extra_chips {
+                            @let (designator, label, chip) = f(metadata);
+                            (render_chip(designator, label, chip))
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-fn render_chip(designator: &str, label: &str, chip: Option<&LegacyChip>) -> VirtualNode {
+fn render_chip(designator: &str, label: &str, chip: Option<&LegacyChip>) -> Markup {
     html! {
-        <tr class="console-page-chip">
-            <td>{designator}</td>
-            <td>{label}</td>
-            <td>{chip.and_then(|chip| chip.kind.as_ref())}</td>
-            <td>{chip.and_then(|chip| chip.manufacturer.as_ref())}</td>
-            <td>{chip.and_then(|chip| chip.date_code().calendar())}</td>
-            <td>{chip.and_then(|chip| chip.label.as_ref())}</td>
-        </tr>
+        tr.console-page-chip {
+            td { (designator) }
+            td { (label) }
+            @if let Some(chip) = chip {
+                td { (chip.kind.as_deref().unwrap_or_default()) }
+                td { (chip.manufacturer.as_deref().unwrap_or_default()) }
+                td { (chip.date_code().calendar().unwrap_or_default()) }
+                td { (chip.label.as_deref().unwrap_or_default()) }
+            } @else {
+                td;
+                td;
+                td;
+                td;
+            }
+        }
     }
 }

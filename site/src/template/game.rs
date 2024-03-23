@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::config::cartridge::{ChipRoleConfig, GameConfig};
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use super::{
     listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
@@ -17,63 +17,58 @@ pub struct Game<'a> {
     pub submissions: Vec<&'a LegacyCartridgeSubmission>,
 }
 
-impl<'a> View for Game<'a> {
-    fn render(&self) -> VirtualNode {
+impl<'a> Render for Game<'a> {
+    fn render(&self) -> Markup {
         let layout = self.cfg.layouts[0];
         let chips = ChipRoleConfig::from(layout);
-        return html! {
-            <article>
-                <h2>{&self.cfg.name}</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>{"Entry"}</th>
-                            <th>{"Release"}</th>
-                            <th>{"Board"}</th>
-                            { chips.iter().map(|(designator, role)| html! {
-                                <th>{format!("{} ({})", role.display(), designator.as_str())}</th>
-                            }).collect::<Vec<_>>() }
-                            <th>{"Photos"}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { self.submissions.iter().map(|&submission| {
-                            render_submission(submission, &chips)
-                        }).collect::<Vec<_>>() }
-                    </tbody>
-                </table>
-            </article>
-        };
+        html! {
+            article {
+                h2 { (self.cfg.name) }
+                table {
+                    thead {
+                        tr {
+                            th { "Entry" }
+                            th { "Release" }
+                            th { "Board" }
+                            @for (designator, role) in &chips {
+                                th { (role.display()) " (" (designator.as_str()) ")" }
+                            }
+                            th {"Photos" }
+                        }
+                    }
+                    tbody {
+                        @for submission in &self.submissions {
+                            (render_submission(submission, &chips))
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-fn render_submission(
-    submission: &LegacyCartridgeSubmission,
-    chips: &ChipRoleConfig,
-) -> VirtualNode {
+fn render_submission(submission: &LegacyCartridgeSubmission, chips: &ChipRoleConfig) -> Markup {
     let metadata = &submission.metadata;
     html! {
-        <tr>
-            { ListingEntryCell {
+        tr {
+            (ListingEntryCell {
                 url_prefix: "/cartridges",
                 primary_text: &submission.title,
                 secondary_texts: &[],
                 submission,
-            }.render() }
-            <td>{metadata.code.as_deref().unwrap_or_default()}</td>
-            <td>
-                <div>{&metadata.board.kind}</div>
-                <div>{metadata.board.date_code().calendar().unwrap_or_default()}</div>
-            </td>
-            { chips.iter().map(|(designator, _)|
-                ListingChip {
+            })
+            td { (metadata.code.as_deref().unwrap_or_default()) }
+            td {
+                div { (metadata.board.kind) }
+                div { (metadata.board.date_code().calendar().unwrap_or_default()) }
+            }
+            @for (designator, _) in chips {
+                (ListingChip {
                     chip: metadata.board[designator].as_ref(),
                     hide_type: false,
-                }
-            ).collect::<Vec<_>>() }
-            { ListingPhotosCell {
-                submission,
-            }.render() }
-        </tr>
+                })
+            }
+            (ListingPhotosCell { submission })
+        }
     }
 }

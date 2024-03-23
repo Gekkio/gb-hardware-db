@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig};
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use super::{
     listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
@@ -23,61 +23,56 @@ pub struct Mapper<'a> {
     pub submissions: Vec<&'a LegacyCartridgeSubmission>,
 }
 
-impl<'a> View for Mapper<'a> {
-    fn render(&self) -> VirtualNode {
-        return html! {
-            <article>
-                <h2>{format!("Cartridges by mapper: {}", self.cfg.name)}</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>{"Entry"}</th>
-                            <th>{"Release"}</th>
-                            <th>{"Board"}</th>
-                            { self.cfg.chips.iter().map(|role| html! {
-                                <th>{role.display()}</th>
-                            }).collect::<Vec<_>>() }
-                            <th>{"Photos"}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { self.submissions.iter().map(|&submission| {
-                            render_submission(self.cfg, submission)
-                        }).collect::<Vec<_>>() }
-                    </tbody>
-                </table>
-            </article>
-        };
+impl<'a> Render for Mapper<'a> {
+    fn render(&self) -> Markup {
+        html! {
+            article {
+                h2 { "Cartridges by mapper: " (self.cfg.name) }
+                table {
+                    thead {
+                        tr {
+                            th { "Entry" }
+                            th { "Release" }
+                            th { "Board" }
+                            @for role in self.cfg.chips {
+                                th { (role.display()) }
+                            }
+                            th { "Photos" }
+                        }
+                    }
+                    tbody {
+                        @for submission in &self.submissions {
+                            (render_submission(self.cfg, submission))
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) -> VirtualNode {
+fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) -> Markup {
     let metadata = &submission.metadata;
     let chips = ChipRoleConfig::from(submission.metadata.board.layout);
     html! {
-        <tr>
-            { ListingEntryCell {
+        tr {
+            (ListingEntryCell {
                 url_prefix: "/cartridges",
                 primary_text: &submission.metadata.cfg.name,
                 secondary_texts: &[&submission.code, &submission.title],
                 submission,
-            }.render() }
-            <td>{metadata.code.as_deref().unwrap_or_default()}</td>
-            <td>
-                <div>{&metadata.board.kind}</div>
-                <div>{metadata.board.date_code().calendar().unwrap_or_default()}</div>
-            </td>
-            { cfg.chips.iter().map(|&role| {
-                let chip = chips.iter().find(|&(_, candidate)| candidate == role)
+            })
+            td { (metadata.code.as_deref().unwrap_or_default()) }
+            td {
+                div { (metadata.board.kind) }
+                div { (metadata.board.date_code().calendar().unwrap_or_default()) }
+            }
+            @for &role in cfg.chips {
+                @let chip = chips.into_iter().find(|&(_, candidate)| candidate == role)
                     .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
-                ListingChip {
-                    chip,
-                    hide_type: false,
-                }.render()
-            }).collect::<Vec<_>>() }
-            { ListingPhotosCell {
-                submission,
-            }.render() }
-        </tr>
+                (ListingChip { chip, hide_type: false })
+            }
+            (ListingPhotosCell { submission })
+        }
     }
 }

@@ -278,11 +278,16 @@ impl IndexMut<PartDesignator> for ChipRoleConfig {
     }
 }
 
-impl ChipRoleConfig {
-    pub fn iter(&self) -> impl Iterator<Item = (PartDesignator, ChipRole)> + '_ {
-        PartDesignator::ALL
-            .into_iter()
-            .filter_map(|d| self[d].map(|role| (d, role)))
+impl<'a> IntoIterator for &'a ChipRoleConfig {
+    type Item = (PartDesignator, ChipRole);
+    type IntoIter = Box<dyn Iterator<Item = Self::Item> + 'a>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        Box::new(
+            PartDesignator::ALL
+                .into_iter()
+                .filter_map(move |d| self[d].map(|role| (d, role))),
+        )
     }
 }
 

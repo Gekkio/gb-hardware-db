@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use super::markdown::Markdown;
 
@@ -10,12 +10,12 @@ pub struct MarkdownPage {
     pub markdown: Markdown,
 }
 
-impl View for MarkdownPage {
-    fn render(&self) -> VirtualNode {
+impl Render for MarkdownPage {
+    fn render(&self) -> Markup {
         html! {
-            <article>
-            {self.markdown.render()}
-            </article>
+            article {
+                (self.markdown)
+            }
         }
     }
 }

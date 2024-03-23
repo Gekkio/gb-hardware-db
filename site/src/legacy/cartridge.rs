@@ -106,7 +106,7 @@ impl HasDateCode for LegacyBoard {
 
 pub fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut LegacyBoard) {
     let roles = ChipRoleConfig::from(layout);
-    for (designator, role) in roles.iter() {
+    for (designator, role) in roles.into_iter() {
         legacy[designator] =
             to_legacy_chip(layout, board.year, Some(role), board[designator].as_ref());
     }

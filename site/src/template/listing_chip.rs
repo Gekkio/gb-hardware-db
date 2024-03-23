@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use crate::legacy::{HasDateCode, LegacyChip};
 
@@ -11,20 +11,20 @@ pub struct ListingChip<'a> {
     pub hide_type: bool,
 }
 
-impl<'a> View for ListingChip<'a> {
-    fn render(&self) -> VirtualNode {
+impl<'a> Render for ListingChip<'a> {
+    fn render(&self) -> Markup {
         match self.chip {
-            None => html! { <td /> },
-            Some(chip) => {
-                html! {
-                    <td class="listing-chip">
-                        { if self.hide_type { None } else { Some(html! { <div>{chip.kind.as_ref()}</div>}) } }
-                        <div>{chip.rom_code.as_ref()}</div>
-                        <div>{chip.date_code().calendar_short()}</div>
-                        <div>{chip.manufacturer.as_ref()}</div>
-                    </td>
+            None => html! { td; },
+            Some(chip) => html! {
+                td.listing-chip {
+                    @if !self.hide_type {
+                        div { (chip.kind.as_deref().unwrap_or_default()) }
+                    }
+                    div { (chip.rom_code.as_deref().unwrap_or_default()) }
+                    div { (chip.date_code().calendar_short().unwrap_or_default()) }
+                    div { (chip.manufacturer.as_deref().unwrap_or_default()) }
                 }
-            }
+            },
         }
     }
 }

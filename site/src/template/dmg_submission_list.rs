@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use percy_dom::{html, IterableNodes, View, VirtualNode};
+use maud::{html, Markup, Render};
 
 use super::console_submission_list::ConsoleSubmissionList;
 use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
@@ -17,8 +17,8 @@ impl<'a> DmgSubmissionList<'a> {
     }
 }
 
-impl<'a> View for DmgSubmissionList<'a> {
-    fn render(&self) -> VirtualNode {
+impl<'a> Render for DmgSubmissionList<'a> {
+    fn render(&self) -> Markup {
         ConsoleSubmissionList {
             submissions: self.submissions,
             board_column_name: "Mainboard",
@@ -26,29 +26,31 @@ impl<'a> View for DmgSubmissionList<'a> {
             extra_columns: &["LCD board", "Power board", "Jack board"],
             extra_cells: vec![
                 Box::new(|m: &LegacyDmgMetadata| {
-                    m.lcd_board.as_ref().map(|board| {
-                        html! {
-                            <div>
-                                <div>{&board.kind}</div>
-                                <div>{board.date_code().calendar_short()}</div>
-                            </div>
+                    html! {
+                        @if let Some(board) = &m.lcd_board {
+                            div {
+                                div { (board.kind) }
+                                div { (board.date_code().calendar_short().unwrap_or_default()) }
+                            }
                         }
-                    })
+                    }
                 }),
                 Box::new(|m: &LegacyDmgMetadata| {
-                    m.power_board.as_ref().map(|board| {
-                        html! {
-                            <div>
-                                <div>{format!("Type {}", board.kind)}</div>
-                                <div>{board.date_code().calendar_short()}</div>
-                            </div>
+                    html! {
+                        @if let Some(board) = &m.power_board {
+                            div {
+                                div { "Type " (board.kind) }
+                                div { (board.date_code().calendar_short().unwrap_or_default()) }
+                            }
                         }
-                    })
+                    }
                 }),
                 Box::new(|m: &LegacyDmgMetadata| {
-                    m.jack_board
-                        .as_ref()
-                        .map(|board| board.kind.as_str().into())
+                    html! {
+                        @if let Some(board) = &m.jack_board {
+                            (board.kind.as_str())
+                        }
+                    }
                 }),
             ],
         }

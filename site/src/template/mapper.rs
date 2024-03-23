@@ -9,7 +9,10 @@ use super::{
     listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
     listing_photos_cell::ListingPhotosCell,
 };
-use crate::legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip};
+use crate::{
+    legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip},
+    template::Optional,
+};
 
 pub struct MapperCfg {
     pub id: &'static str,
@@ -62,10 +65,12 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                 secondary_texts: &[&submission.code, &submission.title],
                 submission,
             })
-            td { (metadata.code.as_deref().unwrap_or_default()) }
+            td {
+                (Optional(metadata.code.as_ref()))
+            }
             td {
                 div { (metadata.board.kind) }
-                div { (metadata.board.date_code().calendar().unwrap_or_default()) }
+                div { (Optional(metadata.board.date_code().calendar())) }
             }
             @for &role in cfg.chips {
                 @let chip = chips.into_iter().find(|&(_, candidate)| candidate == role)

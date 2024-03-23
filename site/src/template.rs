@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, DOCTYPE};
+use maud::{html, Markup, Render, DOCTYPE};
 
 use crate::site::SiteSection;
 use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
@@ -23,6 +23,7 @@ pub mod markdown;
 pub mod markdown_page;
 pub mod site_footer;
 pub mod site_header;
+pub mod submission_chip_table;
 
 pub fn page(title: &str, section: SiteSection, content: Markup) -> String {
     html! {
@@ -54,4 +55,18 @@ pub fn page(title: &str, section: SiteSection, content: Markup) -> String {
         }
     }
     .into_string()
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub struct Optional<T>(Option<T>);
+
+impl<T> Render for Optional<T>
+where
+    T: Render,
+{
+    fn render_to(&self, buffer: &mut String) {
+        if let Some(value) = &self.0 {
+            value.render_to(buffer);
+        }
+    }
 }

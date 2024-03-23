@@ -5,7 +5,10 @@
 use maud::{html, Markup, Render};
 
 use super::console_submission_list::ConsoleSubmissionList;
-use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
+use crate::{
+    legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission},
+    template::Optional,
+};
 
 pub struct DmgSubmissionList<'a> {
     pub submissions: &'a [LegacyDmgSubmission],
@@ -30,7 +33,7 @@ impl<'a> Render for DmgSubmissionList<'a> {
                         @if let Some(board) = &m.lcd_board {
                             div {
                                 div { (board.kind) }
-                                div { (board.date_code().calendar_short().unwrap_or_default()) }
+                                div { (Optional(board.date_code().calendar_short())) }
                             }
                         }
                     }
@@ -40,7 +43,7 @@ impl<'a> Render for DmgSubmissionList<'a> {
                         @if let Some(board) = &m.power_board {
                             div {
                                 div { "Type " (board.kind) }
-                                div { (board.date_code().calendar_short().unwrap_or_default()) }
+                                div { (Optional(board.date_code().calendar_short())) }
                             }
                         }
                     }

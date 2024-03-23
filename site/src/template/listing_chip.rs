@@ -4,7 +4,10 @@
 
 use maud::{html, Markup, Render};
 
-use crate::legacy::{HasDateCode, LegacyChip};
+use crate::{
+    legacy::{HasDateCode, LegacyChip},
+    template::Optional,
+};
 
 pub struct ListingChip<'a> {
     pub chip: Option<&'a LegacyChip>,
@@ -18,11 +21,11 @@ impl<'a> Render for ListingChip<'a> {
             Some(chip) => html! {
                 td.listing-chip {
                     @if !self.hide_type {
-                        div { (chip.kind.as_deref().unwrap_or_default()) }
+                        div { (Optional(chip.kind.as_ref())) }
                     }
-                    div { (chip.rom_code.as_deref().unwrap_or_default()) }
-                    div { (chip.date_code().calendar_short().unwrap_or_default()) }
-                    div { (chip.manufacturer.as_deref().unwrap_or_default()) }
+                    div { (Optional(chip.rom_code.as_ref())) }
+                    div { (Optional(chip.date_code().calendar_short())) }
+                    div { (Optional(chip.manufacturer.as_ref())) }
                 }
             },
         }

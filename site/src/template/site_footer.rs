@@ -7,26 +7,8 @@ use maud::{html, Markup, Render};
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct SiteFooter;
 
-impl Render for SiteFooter {
-    fn render(&self) -> Markup {
-        html! {
-            footer.site-footer {
-                div.site-footer__content {
-                    (License)
-                    aside.site-stats {
-                        a href="/contribute/index.html" { "Want to contribute?" }
-                    }
-                }
-            }
-        }
-    }
-}
-
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-struct License;
-
-impl Render for License {
-    fn render(&self) -> Markup {
+impl SiteFooter {
+    fn license(&self) -> Markup {
         html! {
             aside.site-license {
                 a.license__badge rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" {
@@ -47,6 +29,21 @@ impl Render for License {
                     "The "
                     a href="https://github.com/Gekkio/gb-hardware-db" { "site source code" }
                     " is licensed under the MIT license."
+                }
+            }
+        }
+    }
+}
+
+impl Render for SiteFooter {
+    fn render(&self) -> Markup {
+        html! {
+            footer.site-footer {
+                div.site-footer__content {
+                    (self.license())
+                    aside.site-stats {
+                        a href="/contribute/index.html" { "Want to contribute?" }
+                    }
                 }
             }
         }

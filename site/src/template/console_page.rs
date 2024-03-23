@@ -4,15 +4,21 @@
 
 use maud::{html, Markup, Render};
 
-use crate::legacy::{
-    console::{ChipInfo, LegacyConsoleMetadata},
-    HasDateCode, LegacyChip, LegacyPhoto, LegacyPhotos, LegacySubmission, PhotoInfo, PhotoKind,
+use crate::{
+    legacy::{
+        console::LegacyConsoleMetadata, HasDateCode, LegacyPhoto, LegacyPhotos, LegacySubmission,
+        PhotoInfo, PhotoKind,
+    },
+    template::{
+        submission_chip_table::{submission_chip_table, SubmissionChip},
+        Optional,
+    },
 };
 
 pub struct ConsolePage<'a, M, P> {
     pub submission: &'a LegacySubmission<M, P>,
     pub extra_sections: Vec<Box<dyn Fn(&Self, &M) -> Markup>>,
-    pub extra_chips: Vec<Box<dyn Fn(&M) -> (&str, &str, Option<&LegacyChip>)>>,
+    pub extra_chips: Vec<Box<dyn Fn(&M) -> SubmissionChip>>,
 }
 
 impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
@@ -22,10 +28,6 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
             extra_sections: Vec::new(),
             extra_chips: Vec::new(),
         }
-    }
-    fn render_chip_info(&self, info: &ChipInfo<M>) -> Markup {
-        let chip = (info.getter)(&self.submission.metadata);
-        render_chip(info.designator, info.label, chip)
     }
     fn render_photo_info(&self, photo: &PhotoInfo<P>) -> Option<Markup> {
         (photo.getter)(&self.submission.photos).map(|photo| self.render_photo(photo))
@@ -49,13 +51,39 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M
     fn render(&self) -> Markup {
         let metadata = &self.submission.metadata;
         let mainboard = metadata.mainboard();
+        let chips = M::chips()
+            .into_iter()
+            .map(|info| {
+                let chip = (info.getter)(&self.submission.metadata);
+                SubmissionChip {
+                    designator: info.designator,
+                    label: info.label,
+                    chip,
+                }
+            })
+            .chain(metadata.lcd_panel().into_iter().flat_map(|panel| {
+                [
+                    SubmissionChip {
+                        designator: "-",
+                        label: "LCD column driver",
+                        chip: panel.column_driver.as_ref(),
+                    },
+                    SubmissionChip {
+                        designator: "-",
+                        label: "LCD row driver",
+                        chip: panel.row_driver.as_ref(),
+                    },
+                ]
+                .into_iter()
+            }))
+            .chain(self.extra_chips.iter().map(|f| f(metadata)));
         html! {
             article class=(format!("page-console page-console--{console}", console = M::CONSOLE.id())) {
                 h2 { (M::CONSOLE.code()) ": " (self.submission.title) " [" (self.submission.contributor) "]" }
                 div.page-console__photo {
                     @for info in P::infos() {
                         @if info.kind == PhotoKind::MainUnit {
-                            (self.render_photo_info(&info).unwrap_or_default())
+                            (Optional(self.render_photo_info(&info)))
                         }
                     }
                 }
@@ -91,7 +119,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M
                 div.page-console__photo {
                     @for info in P::infos() {
                         @if info.kind == PhotoKind::MainBoard {
-                            (self.render_photo_info(&info).unwrap_or_default())
+                            (Optional(self.render_photo_info(&info)))
                         }
                     }
                 }
@@ -135,51 +163,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M
                     ((section)(self, metadata))
                 }
                 h3 { "Chips" }
-                table {
-                    thead {
-                        tr {
-                            th;
-                            th { "Chip" }
-                            th { "Type" }
-                            th { "Manufacturer" }
-                            th { "Date" }
-                            th { "Label" }
-                        }
-                    }
-                    tbody {
-                        @for info in M::chips() {
-                            (self.render_chip_info(&info))
-                        }
-                        @if let Some(panel) = metadata.lcd_panel() {
-                            (render_chip("-", "LCD column driver", panel.column_driver.as_ref()))
-                                (render_chip("-", "LCD row driver", panel.row_driver.as_ref()))
-                        }
-                        @for f in &self.extra_chips {
-                            @let (designator, label, chip) = f(metadata);
-                            (render_chip(designator, label, chip))
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-fn render_chip(designator: &str, label: &str, chip: Option<&LegacyChip>) -> Markup {
-    html! {
-        tr.console-page-chip {
-            td { (designator) }
-            td { (label) }
-            @if let Some(chip) = chip {
-                td { (chip.kind.as_deref().unwrap_or_default()) }
-                td { (chip.manufacturer.as_deref().unwrap_or_default()) }
-                td { (chip.date_code().calendar().unwrap_or_default()) }
-                td { (chip.label.as_deref().unwrap_or_default()) }
-            } @else {
-                td;
-                td;
-                td;
-                td;
+                (submission_chip_table(chips))
             }
         }
     }

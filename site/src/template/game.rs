@@ -9,7 +9,10 @@ use super::{
     listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
     listing_photos_cell::ListingPhotosCell,
 };
-use crate::legacy::{HasDateCode, LegacyCartridgeSubmission};
+use crate::{
+    legacy::{HasDateCode, LegacyCartridgeSubmission},
+    template::Optional,
+};
 
 #[derive(Clone, Debug)]
 pub struct Game<'a> {
@@ -57,10 +60,10 @@ fn render_submission(submission: &LegacyCartridgeSubmission, chips: &ChipRoleCon
                 secondary_texts: &[],
                 submission,
             })
-            td { (metadata.code.as_deref().unwrap_or_default()) }
+            td { (Optional(metadata.code.as_ref())) }
             td {
                 div { (metadata.board.kind) }
-                div { (metadata.board.date_code().calendar().unwrap_or_default()) }
+                div { (Optional(metadata.board.date_code().calendar())) }
             }
             @for (designator, _) in chips {
                 (ListingChip {

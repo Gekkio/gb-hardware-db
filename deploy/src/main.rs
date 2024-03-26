@@ -4,23 +4,35 @@
 
 use anyhow::{anyhow, Error};
 use aws_config::BehaviorVersion;
+use aws_sdk_s3::primitives::ByteStream;
 use base64::Engine;
 use log::{debug, info};
 use md5::{Digest, Md5};
 use rayon::prelude::*;
 use simplelog::{ColorChoice, LevelFilter, TermLogger, TerminalMode};
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, HashMap},
     fs::File,
     io::{self, BufReader},
     path::{Path, PathBuf},
     str,
-    sync::Arc,
 };
 use time::{Duration, OffsetDateTime};
 use tokio::task::spawn_blocking;
 use walkdir::{DirEntry, WalkDir};
-use xdg_mime::SharedMimeInfo;
+
+static MIME_MAPPING: &[(&str, &str)] = &[
+    ("html", "text/html"),
+    ("png", "image/png"),
+    ("jpg", "image/jpeg"),
+    ("css", "text/css"),
+    ("csv", "text/csv"),
+    ("svg", "image/svg+xml"),
+    ("txt", "text/plain"),
+    ("ico", "image/vnd.microsoft.icon"),
+    ("xml", "application/xml"),
+    ("webmanifest", "application/manifest+json"),
+];
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 struct LocalFile {
@@ -141,6 +153,8 @@ async fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
+    let mime_map = MIME_MAPPING.into_iter().copied().collect::<HashMap<_, _>>();
+
     let build_dir = Path::new("build");
     if !build_dir.exists() {
         return Err(anyhow!("Can't find build directory"));
@@ -197,33 +211,24 @@ async fn main() -> Result<(), Error> {
     }
     info!("{} files scheduled for deletion", to_delete.len());
 
-    let shared_mime_info = Arc::new(spawn_blocking(SharedMimeInfo::new).await?);
     let base64 = base64::engine::general_purpose::STANDARD;
 
     for local_file in to_upload {
+        let ext = local_file
+            .absolute_path
+            .extension()
+            .and_then(|s| s.to_str())
+            .ok_or_else(|| anyhow!("Invalid file extension: {}", local_file.key))?;
+        let mime = mime_map
+            .get(ext)
+            .ok_or_else(|| anyhow!("Failed to detect MIME type of {}", local_file.key))?;
         info!("Uploading {}", local_file.key);
-        let body = tokio::fs::read(&local_file.absolute_path).await?;
-        let (body, mime_guess) = {
-            let shared_mime_info = Arc::clone(&shared_mime_info);
-            let absolute_path = local_file.absolute_path.clone();
-            spawn_blocking(move || {
-                let guess = shared_mime_info
-                    .guess_mime_type()
-                    .path(absolute_path)
-                    .data(&body)
-                    .guess();
-                (body, guess)
-            })
-            .await?
-        };
-        if mime_guess.uncertain() {
-            return Err(anyhow!("Failed to guess MIME type for {}", local_file.key));
-        }
+        let body = ByteStream::from_path(&local_file.absolute_path).await?;
         s3.put_object()
             .bucket(bucket)
             .key(&local_file.key)
-            .body(body.into())
-            .content_type(mime_guess.mime_type().essence_str())
+            .body(body)
+            .content_type(*mime)
             .content_md5(base64.encode(local_file.md5))
             .cache_control(local_file.cache_control())
             .send()

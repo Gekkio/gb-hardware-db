@@ -45,7 +45,6 @@ time = "0.3.31"
 tokio = "1.36.0"
 tower-http = "0.5.1"
 walkdir = "2.5.0"
-xdg-mime = "0.3.3"
 
 [profile.dev]
 opt-level = 1

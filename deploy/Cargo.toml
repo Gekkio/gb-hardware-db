@@ -21,4 +21,3 @@ simplelog.workspace = true
 time = { workspace = true, features = ["parsing"] }
 tokio = { workspace = true, features = ["fs", "macros", "rt-multi-thread"] }
 walkdir.workspace = true
-xdg-mime.workspace = true

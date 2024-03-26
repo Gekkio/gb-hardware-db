@@ -4,7 +4,7 @@
 
 use crate::legacy::console::{LegacyOxyMainboard, LegacyOxyMetadata};
 
-use super::{chip, Builder, Field, ToCsv};
+use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyOxyMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -21,9 +21,9 @@ impl ToCsv for LegacyOxyMetadata {
                         .add_date_code()
                 },
             )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("u2", |m| m.mainboard.u2.as_ref(), chip)
-            .nest("u4", |m| m.mainboard.u4.as_ref(), chip)
-            .nest("u5", |m| m.mainboard.u5.as_ref(), chip)
+            .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)
+            .nest("u2", |m| m.mainboard.u2.as_ref(), part)
+            .nest("u4", |m| m.mainboard.u4.as_ref(), part)
+            .nest("u5", |m| m.mainboard.u5.as_ref(), part)
     }
 }

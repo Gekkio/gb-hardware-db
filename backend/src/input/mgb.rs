@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    input::{is_not_outlier, Chip, LcdScreen},
+    input::{is_not_outlier, LcdScreen, Part},
     time::{Jun, Month},
 };
 
@@ -66,15 +66,15 @@ pub struct MgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<Chip>,
+    pub u1: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<Chip>,
+    pub u2: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<Chip>,
+    pub u3: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<Chip>,
+    pub u4: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<Chip>,
+    pub x1: Option<Part>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,

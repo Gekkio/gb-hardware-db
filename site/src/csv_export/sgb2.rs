@@ -4,7 +4,7 @@
 
 use crate::legacy::console::{LegacySgb2Mainboard, LegacySgb2Metadata};
 
-use super::{chip, Builder, Field, ToCsv};
+use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacySgb2Metadata {
     fn csv_builder() -> Builder<Self> {
@@ -21,12 +21,12 @@ impl ToCsv for LegacySgb2Metadata {
                         .add_date_code()
                 },
             )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("icd2", |m| m.mainboard.icd2.as_ref(), chip)
-            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), chip)
-            .nest("rom", |m| m.mainboard.rom.as_ref(), chip)
-            .nest("cic", |m| m.mainboard.cic.as_ref(), chip)
-            .nest("coil", |m| m.mainboard.coil.as_ref(), chip)
-            .nest("crystal", |m| m.mainboard.crystal.as_ref(), chip)
+            .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)
+            .nest("icd2", |m| m.mainboard.icd2.as_ref(), part)
+            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), part)
+            .nest("rom", |m| m.mainboard.rom.as_ref(), part)
+            .nest("cic", |m| m.mainboard.cic.as_ref(), part)
+            .nest("coil", |m| m.mainboard.coil.as_ref(), part)
+            .nest("crystal", |m| m.mainboard.crystal.as_ref(), part)
     }
 }

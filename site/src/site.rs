@@ -4,7 +4,7 @@
 
 use anyhow::Error;
 use gbhwdb_backend::{
-    config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig},
+    config::cartridge::{BoardLayout, PartRole, PartRoleConfig},
     Console,
 };
 use itertools::Itertools;
@@ -187,172 +187,172 @@ pub fn build_site() -> Site {
             MapperCfg {
                 id: "no-mapper",
                 name: "No mapper",
-                chips: &[ChipRole::Rom],
+                parts: &[PartRole::Rom],
                 match_fn: Box::new(|layout, _| layout == BoardLayout::Rom),
             },
             MapperCfg {
                 id: "mbc1",
                 name: "MBC1",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind.starts_with("MBC1"))
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind.starts_with("MBC1"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc2",
                 name: "MBC2",
-                chips: &[ChipRole::Rom, ChipRole::Mapper, ChipRole::SupervisorReset],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind.starts_with("MBC2"))
+                parts: &[PartRole::Rom, PartRole::Mapper, PartRole::SupervisorReset],
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind.starts_with("MBC2"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc3",
                 name: "MBC3",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
-                    ChipRole::Crystal,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
+                    PartRole::Crystal,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind != "MBC30" && chip_kind.starts_with("MBC3"))
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind != "MBC30" && kind.starts_with("MBC3"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc30",
                 name: "MBC30",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
-                    ChipRole::Crystal,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
+                    PartRole::Crystal,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind == "MBC30")
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind == "MBC30")
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc5",
                 name: "MBC5",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind.starts_with("MBC5"))
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind.starts_with("MBC5"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc6",
                 name: "MBC6",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind == "MBC6")
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind == "MBC6")
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mbc7",
                 name: "MBC7",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Eeprom,
-                    ChipRole::Accelerometer,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Eeprom,
+                    PartRole::Accelerometer,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind == "MBC7")
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind == "MBC7")
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "mmm01",
                 name: "MMM01",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind == "MMM01")
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind == "MMM01")
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "huc1",
                 name: "HuC-1",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind.starts_with("HuC-1"))
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind.starts_with("HuC-1"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "huc3",
                 name: "HuC-3",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Ram,
-                    ChipRole::SupervisorReset,
-                    ChipRole::HexInverter,
-                    ChipRole::Crystal,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Ram,
+                    PartRole::SupervisorReset,
+                    PartRole::HexInverter,
+                    PartRole::Crystal,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind.starts_with("HuC-3"))
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind.starts_with("HuC-3"))
                         .unwrap_or(false)
                 }),
             },
             MapperCfg {
                 id: "tama5",
                 name: "TAMA5",
-                chips: &[
-                    ChipRole::Rom,
-                    ChipRole::Mapper,
-                    ChipRole::Mcu,
-                    ChipRole::Rtc,
-                    ChipRole::SupervisorReset,
-                    ChipRole::Crystal,
+                parts: &[
+                    PartRole::Rom,
+                    PartRole::Mapper,
+                    PartRole::Mcu,
+                    PartRole::Rtc,
+                    PartRole::SupervisorReset,
+                    PartRole::Crystal,
                 ],
-                match_fn: Box::new(|_, chip| {
-                    chip.and_then(|chip| chip.kind.as_ref())
-                        .map(|chip_kind| chip_kind == "TAMA5")
+                match_fn: Box::new(|_, part| {
+                    part.and_then(|part| part.kind.as_ref())
+                        .map(|kind| kind == "TAMA5")
                         .unwrap_or(false)
                 }),
             },
@@ -427,10 +427,10 @@ pub fn build_site() -> Site {
             .iter()
             .map(|submission| {
                 let layout = submission.metadata.board.layout;
-                let chips = ChipRoleConfig::from(layout);
-                let mapper = chips
+                let parts = PartRoleConfig::from(layout);
+                let mapper = parts
                     .into_iter()
-                    .find(|&(_, role)| role == ChipRole::Mapper)
+                    .find(|&(_, role)| role == PartRole::Mapper)
                     .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
                 let key = mapper_cfgs
                     .iter()

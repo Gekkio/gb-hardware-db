@@ -11,7 +11,7 @@ use gbhwdb_backend::{
 use serde::Serialize;
 
 use super::{
-    to_legacy_year, DateCode, HasDateCode, LegacyChip, LegacyMetadata, LegacyPhoto, LegacyPhotos,
+    to_legacy_year, DateCode, HasDateCode, LegacyMetadata, LegacyPart, LegacyPhoto, LegacyPhotos,
     PhotoInfo, PhotoKind,
 };
 
@@ -39,7 +39,7 @@ pub struct LegacyConsoleShell<'a> {
 pub trait LegacyConsoleMetadata: LegacyMetadata {
     const CONSOLE: Console;
 
-    fn chips() -> Vec<ChipInfo<Self>>;
+    fn parts() -> Vec<ChipInfo<Self>>;
     fn shell(&self) -> LegacyConsoleShell;
     fn mainboard(&self) -> LegacyMainboard;
     fn lcd_panel(&self) -> Option<&LegacyLcdPanel> {
@@ -51,14 +51,14 @@ pub struct ChipInfo<M: ?Sized> {
     pub label: &'static str,
     pub designator: &'static str,
     pub hide_type: bool,
-    pub getter: Box<dyn Fn(&M) -> Option<&LegacyChip>>,
+    pub getter: Box<dyn Fn(&M) -> Option<&LegacyPart>>,
 }
 
 impl<M: ?Sized> ChipInfo<M> {
     pub fn new(
         label: &'static str,
         designator: &'static str,
-        getter: Box<dyn Fn(&M) -> Option<&LegacyChip>>,
+        getter: Box<dyn Fn(&M) -> Option<&LegacyPart>>,
     ) -> Self {
         ChipInfo {
             label,
@@ -267,7 +267,7 @@ impl LegacyMetadata for LegacyDmgMetadata {
 impl LegacyConsoleMetadata for LegacyDmgMetadata {
     const CONSOLE: Console = Console::Dmg;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("VRAM", "U2", Box::new(|m| m.mainboard.video_ram.as_ref())),
@@ -324,15 +324,15 @@ pub struct LegacyDmgMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub video_ram: Option<LegacyChip>,
+    pub video_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -351,7 +351,7 @@ pub struct LegacyDmgLcdBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub regulator: Option<LegacyChip>,
+    pub regulator: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyDmgLcdBoard {
@@ -419,17 +419,17 @@ pub struct LegacySgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub icd2: Option<LegacyChip>,
+    pub icd2: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub video_ram: Option<LegacyChip>,
+    pub video_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub rom: Option<LegacyChip>,
+    pub rom: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cic: Option<LegacyChip>,
+    pub cic: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacySgbMainboard {
@@ -448,7 +448,7 @@ impl LegacyMetadata for LegacySgbMetadata {}
 impl LegacyConsoleMetadata for LegacySgbMetadata {
     const CONSOLE: Console = Console::Sgb;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("ICD2", "U2", Box::new(|m| m.mainboard.icd2.as_ref())),
@@ -499,19 +499,19 @@ pub struct LegacySgb2Mainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub icd2: Option<LegacyChip>,
+    pub icd2: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub rom: Option<LegacyChip>,
+    pub rom: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cic: Option<LegacyChip>,
+    pub cic: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub coil: Option<LegacyChip>,
+    pub coil: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacySgb2Mainboard {
@@ -530,7 +530,7 @@ impl LegacyMetadata for LegacySgb2Metadata {}
 impl LegacyConsoleMetadata for LegacySgb2Metadata {
     const CONSOLE: Console = Console::Sgb2;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("ICD2", "U2", Box::new(|m| m.mainboard.icd2.as_ref())),
@@ -599,7 +599,7 @@ impl LegacyMetadata for LegacyMgbMetadata {
 impl LegacyConsoleMetadata for LegacyMgbMetadata {
     const CONSOLE: Console = Console::Mgb;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -665,15 +665,15 @@ pub struct LegacyMgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub regulator: Option<LegacyChip>,
+    pub regulator: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyMgbMainboard {
@@ -721,7 +721,7 @@ impl LegacyMetadata for LegacyMglMetadata {
 impl LegacyConsoleMetadata for LegacyMglMetadata {
     const CONSOLE: Console = Console::Mgl;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -788,17 +788,17 @@ pub struct LegacyMglMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub regulator: Option<LegacyChip>,
+    pub regulator: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub t1: Option<LegacyChip>,
+    pub t1: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyMglMainboard {
@@ -844,7 +844,7 @@ impl LegacyMetadata for LegacyCgbMetadata {}
 impl LegacyConsoleMetadata for LegacyCgbMetadata {
     const CONSOLE: Console = Console::Cgb;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -906,15 +906,15 @@ pub struct LegacyCgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub regulator: Option<LegacyChip>,
+    pub regulator: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyCgbMainboard {
@@ -958,7 +958,7 @@ impl LegacyMetadata for LegacyAgbMetadata {}
 impl LegacyConsoleMetadata for LegacyAgbMetadata {
     const CONSOLE: Console = Console::Agb;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -1019,17 +1019,17 @@ pub struct LegacyAgbMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub regulator: Option<LegacyChip>,
+    pub regulator: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<LegacyChip>,
+    pub u4: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyAgbMainboard {
@@ -1058,7 +1058,7 @@ impl LegacyMetadata for LegacyAgsMetadata {}
 impl LegacyConsoleMetadata for LegacyAgsMetadata {
     const CONSOLE: Console = Console::Ags;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -1118,17 +1118,17 @@ pub struct LegacyAgsMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub amplifier: Option<LegacyChip>,
+    pub amplifier: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<LegacyChip>,
+    pub u4: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<LegacyChip>,
+    pub u5: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyAgsMainboard {
@@ -1172,7 +1172,7 @@ impl LegacyMetadata for LegacyGbsMetadata {}
 impl LegacyConsoleMetadata for LegacyGbsMetadata {
     const CONSOLE: Console = Console::Gbs;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("WRAM", "U2", Box::new(|m| m.mainboard.work_ram.as_ref())),
@@ -1231,17 +1231,17 @@ pub struct LegacyGbsMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub work_ram: Option<LegacyChip>,
+    pub work_ram: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<LegacyChip>,
+    pub u4: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<LegacyChip>,
+    pub u5: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u6: Option<LegacyChip>,
+    pub u6: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub crystal: Option<LegacyChip>,
+    pub crystal: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyGbsMainboard {
@@ -1270,7 +1270,7 @@ impl LegacyMetadata for LegacyOxyMetadata {}
 impl LegacyConsoleMetadata for LegacyOxyMetadata {
     const CONSOLE: Console = Console::Oxy;
 
-    fn chips() -> Vec<ChipInfo<Self>> {
+    fn parts() -> Vec<ChipInfo<Self>> {
         vec![
             ChipInfo::new("CPU", "U1", Box::new(|m| m.mainboard.cpu.as_ref())),
             ChipInfo::new("?", "U2", Box::new(|m| m.mainboard.u2.as_ref())),
@@ -1309,13 +1309,13 @@ pub struct LegacyOxyMainboard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub cpu: Option<LegacyChip>,
+    pub cpu: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<LegacyChip>,
+    pub u2: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<LegacyChip>,
+    pub u4: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<LegacyChip>,
+    pub u5: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyOxyMainboard {
@@ -1339,9 +1339,9 @@ pub struct LegacyLcdPanel {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub column_driver: Option<LegacyChip>,
+    pub column_driver: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub row_driver: Option<LegacyChip>,
+    pub row_driver: Option<LegacyPart>,
 }
 
 impl HasDateCode for LegacyLcdPanel {
@@ -1355,13 +1355,13 @@ impl HasDateCode for LegacyLcdPanel {
     }
 }
 
-pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip {
+pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyPart {
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {
         let chip = gbhwdb_backend::parser::lcd_chip::lcd_chip()
             .parse(&label)
             .unwrap_or_else(|_| panic!("{}", label));
-        LegacyChip {
+        LegacyPart {
             label: Some(match &ribbon_label {
                 Some(ribbon_label) => format!("{} {}", ribbon_label, label),
                 None => label.to_owned(),
@@ -1374,11 +1374,11 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyChip 
             rom_code: None,
         }
     } else {
-        LegacyChip {
+        LegacyPart {
             label: ribbon_label.clone(),
             kind: ribbon_label.clone(),
             manufacturer: Some("Sharp".to_owned()),
-            ..LegacyChip::default()
+            ..LegacyPart::default()
         }
     }
 }

@@ -7,7 +7,7 @@ use crate::legacy::console::{
     LegacyDmgPowerBoard, LegacyLcdPanel,
 };
 
-use super::{chip, Builder, Field, ToCsv};
+use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyDmgMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -25,11 +25,11 @@ impl ToCsv for LegacyDmgMetadata {
                         .add("circled_letters", |m| (&m.circled_letters).csv())
                 },
             )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), chip)
-            .nest("video_ram", |m| m.mainboard.video_ram.as_ref(), chip)
-            .nest("amplifier", |m| m.mainboard.amplifier.as_ref(), chip)
-            .nest("crystal", |m| m.mainboard.crystal.as_ref(), chip)
+            .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)
+            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), part)
+            .nest("video_ram", |m| m.mainboard.video_ram.as_ref(), part)
+            .nest("amplifier", |m| m.mainboard.amplifier.as_ref(), part)
+            .nest("crystal", |m| m.mainboard.crystal.as_ref(), part)
             .nest(
                 "lcd_board",
                 |m| m.lcd_board.as_ref(),
@@ -57,7 +57,7 @@ impl ToCsv for LegacyDmgMetadata {
                         .as_ref()
                         .and_then(|b| b.lcd_panel.as_ref().and_then(|p| p.column_driver.as_ref()))
                 },
-                chip,
+                part,
             )
             .nest(
                 "row_driver",
@@ -66,12 +66,12 @@ impl ToCsv for LegacyDmgMetadata {
                         .as_ref()
                         .and_then(|b| b.lcd_panel.as_ref().and_then(|p| p.row_driver.as_ref()))
                 },
-                chip,
+                part,
             )
             .nest(
                 "regulator",
                 |m| m.lcd_board.as_ref().and_then(|b| b.regulator.as_ref()),
-                chip,
+                part,
             )
             .nest(
                 "power_board",

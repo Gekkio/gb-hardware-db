@@ -8,7 +8,7 @@ use time::Date;
 
 use crate::{
     config::cartridge::PartDesignator,
-    input::{is_not_outlier, Chip},
+    input::{is_not_outlier, Part},
     sha256::Sha256,
     time::Month,
     ParseError,
@@ -52,28 +52,28 @@ pub struct CartridgeBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<Chip>,
+    pub u1: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<Chip>,
+    pub u2: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<Chip>,
+    pub u3: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<Chip>,
+    pub u4: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<Chip>,
+    pub u5: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u6: Option<Chip>,
+    pub u6: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u7: Option<Chip>,
+    pub u7: Option<Part>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<Chip>,
+    pub x1: Option<Part>,
     #[serde(default)]
     #[serde(skip_serializing_if = "is_not_outlier")]
     pub outlier: bool,
 }
 
 impl Index<PartDesignator> for CartridgeBoard {
-    type Output = Option<Chip>;
+    type Output = Option<Part>;
 
     fn index(&self, index: PartDesignator) -> &Self::Output {
         match index {
@@ -207,32 +207,32 @@ fn test_deserialize() {
                 extra_label: Some("5".to_owned()),
                 year: Some(1999),
                 month: Some(Month::November),
-                u1: Some(Chip {
+                u1: Some(Part {
                     label: Some("U1".to_owned()),
                     outlier: true
                 }),
-                u2: Some(Chip {
+                u2: Some(Part {
                     label: Some("U2".to_owned()),
                     outlier: false
                 }),
-                u3: Some(Chip {
+                u3: Some(Part {
                     label: Some("U3".to_owned()),
                     outlier: false
                 }),
-                u4: Some(Chip {
+                u4: Some(Part {
                     label: Some("U4".to_owned()),
                     outlier: false
                 }),
-                u5: Some(Chip {
+                u5: Some(Part {
                     label: Some("U5".to_owned()),
                     outlier: false
                 }),
                 u6: None,
-                u7: Some(Chip {
+                u7: Some(Part {
                     label: None,
                     outlier: false
                 }),
-                x1: Some(Chip {
+                x1: Some(Part {
                     label: Some("KDS".to_owned()),
                     outlier: false,
                 }),

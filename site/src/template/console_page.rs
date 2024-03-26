@@ -10,7 +10,7 @@ use crate::{
         PhotoInfo, PhotoKind,
     },
     template::{
-        submission_chip_table::{submission_chip_table, SubmissionChip},
+        submission_part_table::{submission_part_table, SubmissionPart},
         Optional,
     },
 };
@@ -18,7 +18,7 @@ use crate::{
 pub struct ConsolePage<'a, M, P> {
     pub submission: &'a LegacySubmission<M, P>,
     pub extra_sections: Vec<Box<dyn Fn(&Self, &M) -> Markup>>,
-    pub extra_chips: Vec<Box<dyn Fn(&M) -> SubmissionChip>>,
+    pub extra_parts: Vec<Box<dyn Fn(&M) -> SubmissionPart>>,
 }
 
 impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
@@ -26,7 +26,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> ConsolePage<'a, M, P> {
         ConsolePage {
             submission,
             extra_sections: Vec::new(),
-            extra_chips: Vec::new(),
+            extra_parts: Vec::new(),
         }
     }
     fn render_photo_info(&self, photo: &PhotoInfo<P>) -> Option<Markup> {
@@ -51,32 +51,32 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M
     fn render(&self) -> Markup {
         let metadata = &self.submission.metadata;
         let mainboard = metadata.mainboard();
-        let chips = M::chips()
+        let parts = M::parts()
             .into_iter()
             .map(|info| {
-                let chip = (info.getter)(&self.submission.metadata);
-                SubmissionChip {
+                let part = (info.getter)(&self.submission.metadata);
+                SubmissionPart {
                     designator: info.designator,
                     label: info.label,
-                    chip,
+                    part,
                 }
             })
             .chain(metadata.lcd_panel().into_iter().flat_map(|panel| {
                 [
-                    SubmissionChip {
+                    SubmissionPart {
                         designator: "-",
                         label: "LCD column driver",
-                        chip: panel.column_driver.as_ref(),
+                        part: panel.column_driver.as_ref(),
                     },
-                    SubmissionChip {
+                    SubmissionPart {
                         designator: "-",
                         label: "LCD row driver",
-                        chip: panel.row_driver.as_ref(),
+                        part: panel.row_driver.as_ref(),
                     },
                 ]
                 .into_iter()
             }))
-            .chain(self.extra_chips.iter().map(|f| f(metadata)));
+            .chain(self.extra_parts.iter().map(|f| f(metadata)));
         html! {
             article class=(format!("page-console page-console--{console}", console = M::CONSOLE.id())) {
                 h2 { (M::CONSOLE.code()) ": " (self.submission.title) " [" (self.submission.contributor) "]" }
@@ -162,8 +162,8 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsolePage<'a, M
                 @for section in &self.extra_sections {
                     ((section)(self, metadata))
                 }
-                h3 { "Chips" }
-                (submission_chip_table(chips))
+                h3 { "Parts" }
+                (submission_part_table(parts))
             }
         }
     }

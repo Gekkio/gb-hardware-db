@@ -4,14 +4,14 @@
 
 use gbhwdb_backend::{
     config::cartridge::*,
-    input::{cartridge::*, Chip},
+    input::{cartridge::*, Part},
     parser::*,
     time::Month,
 };
 use serde::Serialize;
 use std::ops::{Index, IndexMut};
 
-use super::{to_legacy_manufacturer, to_legacy_year, DateCode, HasDateCode, LegacyChip};
+use super::{to_legacy_manufacturer, to_legacy_year, DateCode, HasDateCode, LegacyPart};
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -44,25 +44,25 @@ pub struct LegacyBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<LegacyChip>,
+    pub u1: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<LegacyChip>,
+    pub u2: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<LegacyChip>,
+    pub u3: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<LegacyChip>,
+    pub u4: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<LegacyChip>,
+    pub u5: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u6: Option<LegacyChip>,
+    pub u6: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub u7: Option<LegacyChip>,
+    pub u7: Option<LegacyPart>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<LegacyChip>,
+    pub x1: Option<LegacyPart>,
 }
 
 impl Index<PartDesignator> for LegacyBoard {
-    type Output = Option<LegacyChip>;
+    type Output = Option<LegacyPart>;
 
     fn index(&self, index: PartDesignator) -> &Self::Output {
         match index {
@@ -104,161 +104,161 @@ impl HasDateCode for LegacyBoard {
     }
 }
 
-pub fn add_legacy_chips(layout: BoardLayout, board: CartridgeBoard, legacy: &mut LegacyBoard) {
-    let roles = ChipRoleConfig::from(layout);
+pub fn add_legacy_parts(layout: BoardLayout, board: CartridgeBoard, legacy: &mut LegacyBoard) {
+    let roles = PartRoleConfig::from(layout);
     for (designator, role) in roles.into_iter() {
         legacy[designator] =
-            to_legacy_chip(layout, board.year, Some(role), board[designator].as_ref());
+            to_legacy_part(layout, board.year, Some(role), board[designator].as_ref());
     }
 }
 
-pub fn to_legacy_chip(
+pub fn to_legacy_part(
     layout: BoardLayout,
     board_year: Option<u16>,
-    role: Option<ChipRole>,
-    chip: Option<&Chip>,
-) -> Option<LegacyChip> {
+    role: Option<PartRole>,
+    part: Option<&Part>,
+) -> Option<LegacyPart> {
     if role == None {
-        assert_eq!(chip, None);
+        assert_eq!(part, None);
     }
-    chip.map(|chip| {
-        let mut legacy = LegacyChip {
+    part.map(|part| {
+        let mut legacy = LegacyPart {
             kind: None,
-            label: chip.label.clone(),
+            label: part.label.clone(),
             manufacturer: None,
             year: None,
             month: None,
             week: None,
             rom_code: None,
         };
-        if let Some(label) = chip.label.as_ref() {
+        if let Some(label) = part.label.as_ref() {
             if let Some(role) = role {
                 match role {
-                    ChipRole::Rom => {
+                    PartRole::Rom => {
                         if layout == BoardLayout::Tama {
-                            let chip = gbhwdb_backend::parser::tama::tama()
+                            let part = gbhwdb_backend::parser::tama::tama()
                                 .parse(&label)
                                 .unwrap_or_else(|_| panic!("{}", label));
                             legacy.kind = Some("TAMA7".to_owned());
-                            legacy.year = to_legacy_year(board_year, chip.year);
-                            legacy.week = chip.week;
+                            legacy.year = to_legacy_year(board_year, part.year);
+                            legacy.week = part.week;
                         } else {
-                            let chip = gbhwdb_backend::parser::mask_rom::mask_rom()
+                            let part = gbhwdb_backend::parser::mask_rom::mask_rom()
                                 .parse(&label)
                                 .unwrap_or_else(|_| panic!("{}", label));
-                            legacy.kind = chip.chip_type;
-                            legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                            legacy.year = to_legacy_year(board_year, chip.year);
-                            legacy.week = chip.week;
+                            legacy.kind = part.chip_type;
+                            legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                            legacy.year = to_legacy_year(board_year, part.year);
+                            legacy.week = part.week;
                         }
                     }
-                    ChipRole::Mapper => {
+                    PartRole::Mapper => {
                         if layout == BoardLayout::Tama {
-                            let chip = gbhwdb_backend::parser::tama::tama()
+                            let part = gbhwdb_backend::parser::tama::tama()
                                 .parse(&label)
                                 .unwrap_or_else(|_| panic!("{}", label));
                             legacy.kind = Some("TAMA5".to_owned());
-                            legacy.year = to_legacy_year(board_year, chip.year);
-                            legacy.week = chip.week;
+                            legacy.year = to_legacy_year(board_year, part.year);
+                            legacy.week = part.week;
                         } else {
-                            let chip = gbhwdb_backend::parser::mapper::mapper()
+                            let part = gbhwdb_backend::parser::mapper::mapper()
                                 .parse(&label)
                                 .unwrap_or_else(|_| panic!("{}", label));
-                            legacy.kind = Some(chip.mbc_type.display_name().to_owned());
-                            legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                            legacy.year = to_legacy_year(board_year, chip.year);
-                            legacy.week = chip.week;
+                            legacy.kind = Some(part.mbc_type.display_name().to_owned());
+                            legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                            legacy.year = to_legacy_year(board_year, part.year);
+                            legacy.week = part.week;
                         }
                     }
-                    ChipRole::Ram => {
-                        let chip = gbhwdb_backend::parser::ram::ram()
+                    PartRole::Ram => {
+                        let part = gbhwdb_backend::parser::ram::ram()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::SupervisorReset => {
-                        let chip = gbhwdb_backend::parser::supervisor_reset::supervisor_reset()
+                    PartRole::SupervisorReset => {
+                        let part = gbhwdb_backend::parser::supervisor_reset::supervisor_reset()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.chip_type);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.chip_type);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Crystal => {
-                        let chip = gbhwdb_backend::parser::crystal_32kihz::crystal_32kihz()
+                    PartRole::Crystal => {
+                        let part = gbhwdb_backend::parser::crystal_32kihz::crystal_32kihz()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.format_frequency());
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.month = chip.month;
+                        legacy.kind = Some(part.format_frequency());
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.month = part.month;
                     }
-                    ChipRole::Flash => {
-                        let chip = gbhwdb_backend::parser::flash::flash()
+                    PartRole::Flash => {
+                        let part = gbhwdb_backend::parser::flash::flash()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Eeprom => {
-                        let chip = gbhwdb_backend::parser::eeprom::eeprom()
+                    PartRole::Eeprom => {
+                        let part = gbhwdb_backend::parser::eeprom::eeprom()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Accelerometer => {
-                        let chip = gbhwdb_backend::parser::accelerometer::accelerometer()
+                    PartRole::Accelerometer => {
+                        let part = gbhwdb_backend::parser::accelerometer::accelerometer()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::LineDecoder => {
-                        let chip = gbhwdb_backend::parser::line_decoder::line_decoder()
+                    PartRole::LineDecoder => {
+                        let part = gbhwdb_backend::parser::line_decoder::line_decoder()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
                     }
-                    ChipRole::HexInverter => {
-                        let chip = gbhwdb_backend::parser::hex_inverter::hex_inverter()
+                    PartRole::HexInverter => {
+                        let part = gbhwdb_backend::parser::hex_inverter::hex_inverter()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Mcu => {
-                        let chip = gbhwdb_backend::parser::tama::tama()
+                    PartRole::Mcu => {
+                        let part = gbhwdb_backend::parser::tama::tama()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
                         legacy.kind = Some("TAMA6".to_owned());
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Rtc => {
-                        let chip = gbhwdb_backend::parser::rtc::rtc()
+                    PartRole::Rtc => {
+                        let part = gbhwdb_backend::parser::rtc::rtc()
                             .parse(&label)
                             .unwrap_or_else(|_| panic!("{}", label));
-                        legacy.kind = Some(chip.kind);
-                        legacy.manufacturer = to_legacy_manufacturer(chip.manufacturer);
-                        legacy.year = to_legacy_year(board_year, chip.year);
-                        legacy.week = chip.week;
+                        legacy.kind = Some(part.kind);
+                        legacy.manufacturer = to_legacy_manufacturer(part.manufacturer);
+                        legacy.year = to_legacy_year(board_year, part.year);
+                        legacy.week = part.week;
                     }
-                    ChipRole::Unknown => (),
+                    PartRole::Unknown => (),
                 }
             }
         }

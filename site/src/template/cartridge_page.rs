@@ -2,13 +2,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::ChipRoleConfig;
+use gbhwdb_backend::config::cartridge::PartRoleConfig;
 use maud::{html, Markup, Render};
 use time::{format_description::FormatItem, macros::format_description};
 
 use crate::{
     legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyPhoto},
-    template::submission_chip_table::{submission_chip_table, SubmissionChip},
+    template::submission_part_table::{submission_part_table, SubmissionPart},
 };
 
 pub struct CartridgePage<'a> {
@@ -41,12 +41,12 @@ impl<'a> Render for CartridgePage<'a> {
         let metadata = &self.submission.metadata;
         let photos = &self.submission.photos;
         let board = &metadata.board;
-        let chips = ChipRoleConfig::from(board.layout)
+        let parts = PartRoleConfig::from(board.layout)
             .into_iter()
-            .map(|(designator, role)| SubmissionChip {
+            .map(|(designator, role)| SubmissionPart {
                 designator: designator.as_str(),
                 label: role.display(),
-                chip: metadata.board[designator].as_ref(),
+                part: metadata.board[designator].as_ref(),
             });
         html! {
             article.page-cartridge {
@@ -94,8 +94,8 @@ impl<'a> Render for CartridgePage<'a> {
                         dd { (value) }
                     }
                 }
-                h3 { "Chips" }
-                (submission_chip_table(chips))
+                h3 { "Parts" }
+                (submission_part_table(parts))
                 @if let Some(dump) = &metadata.dump {
                     div {
                         h3 { "ROM dump" }

@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{ChipRoleConfig, GameConfig};
+use gbhwdb_backend::config::cartridge::{GameConfig, PartRoleConfig};
 use maud::{html, Markup, Render};
 
 use super::{
-    listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
+    listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
     listing_photos_cell::ListingPhotosCell,
 };
 use crate::{
@@ -23,7 +23,7 @@ pub struct Game<'a> {
 impl<'a> Render for Game<'a> {
     fn render(&self) -> Markup {
         let layout = self.cfg.layouts[0];
-        let chips = ChipRoleConfig::from(layout);
+        let parts = PartRoleConfig::from(layout);
         html! {
             article {
                 h2 { (self.cfg.name) }
@@ -33,7 +33,7 @@ impl<'a> Render for Game<'a> {
                             th { "Entry" }
                             th { "Release" }
                             th { "Board" }
-                            @for (designator, role) in &chips {
+                            @for (designator, role) in &parts {
                                 th { (role.display()) " (" (designator.as_str()) ")" }
                             }
                             th {"Photos" }
@@ -41,7 +41,7 @@ impl<'a> Render for Game<'a> {
                     }
                     tbody {
                         @for submission in &self.submissions {
-                            (render_submission(submission, &chips))
+                            (render_submission(submission, &parts))
                         }
                     }
                 }
@@ -50,7 +50,7 @@ impl<'a> Render for Game<'a> {
     }
 }
 
-fn render_submission(submission: &LegacyCartridgeSubmission, chips: &ChipRoleConfig) -> Markup {
+fn render_submission(submission: &LegacyCartridgeSubmission, parts: &PartRoleConfig) -> Markup {
     let metadata = &submission.metadata;
     html! {
         tr {
@@ -65,9 +65,9 @@ fn render_submission(submission: &LegacyCartridgeSubmission, chips: &ChipRoleCon
                 div { (metadata.board.kind) }
                 div { (Optional(metadata.board.date_code().calendar())) }
             }
-            @for (designator, _) in chips {
-                (ListingChip {
-                    chip: metadata.board[designator].as_ref(),
+            @for (designator, _) in parts {
+                (ListingPart {
+                    part: metadata.board[designator].as_ref(),
                     hide_type: false,
                 })
             }

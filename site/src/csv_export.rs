@@ -5,7 +5,7 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::legacy::{HasDateCode, LegacyChip, LegacySubmission};
+use crate::legacy::{HasDateCode, LegacyPart, LegacySubmission};
 
 mod agb;
 mod ags;
@@ -54,8 +54,8 @@ where
     Ok(())
 }
 
-fn chip() -> Builder<LegacyChip> {
-    Builder::<LegacyChip>::new()
+fn part() -> Builder<LegacyPart> {
+    Builder::<LegacyPart>::new()
         .add("kind", |c| (&c.kind).csv())
         .add("label", |c| (&c.label).csv())
         .add("manufacturer", |c| (&c.manufacturer).csv())

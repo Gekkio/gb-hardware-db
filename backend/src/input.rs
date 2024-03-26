@@ -22,7 +22,7 @@ pub(crate) fn is_not_outlier(outlier: &bool) -> bool {
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct Chip {
+pub struct Part {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
     #[serde(default)]
@@ -30,9 +30,9 @@ pub struct Chip {
     pub outlier: bool,
 }
 
-impl Chip {
-    pub fn from_label(label: Option<String>) -> Chip {
-        Chip {
+impl Part {
+    pub fn from_label(label: Option<String>) -> Part {
+        Part {
             label,
             outlier: false,
         }

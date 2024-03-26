@@ -25,7 +25,7 @@ use std::{
 };
 use walkdir::{DirEntry, WalkDir};
 
-use crate::legacy::chip::*;
+use crate::legacy::part::*;
 use crate::legacy::*;
 use site::{build_site, SubmissionCounts};
 
@@ -286,7 +286,7 @@ fn process_cartridge_submissions(
                 u7: None,
                 x1: None,
             };
-            add_legacy_chips(layout, cartridge.board, &mut board);
+            add_legacy_parts(layout, cartridge.board, &mut board);
             let metadata = LegacyMetadata {
                 cfg: cfg.clone(),
                 code: cartridge.shell.code,
@@ -334,37 +334,37 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 assert_eq!(&console.slug, serial);
             }
 
-            let cpu = console.mainboard.u1.as_ref().map(|chip| {
-                to_legacy_chip(None, chip, parser::gen1_soc::gen1_soc()).unwrap_or_else(|| {
-                    LegacyChip {
+            let cpu = console.mainboard.u1.as_ref().map(|part| {
+                to_legacy_part(None, part, parser::gen1_soc::gen1_soc()).unwrap_or_else(|| {
+                    LegacyPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyChip::default()
+                        ..LegacyPart::default()
                     }
                 })
             });
             let year_hint = cpu.as_ref().map(|cpu| cpu.year.unwrap_or(1996));
 
-            let work_ram = console.mainboard.u2.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::ram::ram()).unwrap_or_else(|| LegacyChip {
+            let work_ram = console.mainboard.u2.as_ref().map(|part| {
+                to_legacy_part(year_hint, part, parser::ram::ram()).unwrap_or_else(|| LegacyPart {
                     kind: Some("blob".to_string()),
-                    ..LegacyChip::default()
+                    ..LegacyPart::default()
                 })
             });
-            let video_ram = console.mainboard.u3.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::ram::ram()).unwrap_or_else(|| LegacyChip {
+            let video_ram = console.mainboard.u3.as_ref().map(|part| {
+                to_legacy_part(year_hint, part, parser::ram::ram()).unwrap_or_else(|| LegacyPart {
                     kind: Some("blob".to_string()),
-                    ..LegacyChip::default()
+                    ..LegacyPart::default()
                 })
             });
-            let amplifier = console.mainboard.u4.as_ref().map(|chip| {
-                to_legacy_chip(year_hint, chip, parser::dmg_amp::dmg_amp()).unwrap_or_else(|| {
-                    LegacyChip {
+            let amplifier = console.mainboard.u4.as_ref().map(|part| {
+                to_legacy_part(year_hint, part, parser::dmg_amp::dmg_amp()).unwrap_or_else(|| {
+                    LegacyPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyChip::default()
+                        ..LegacyPart::default()
                     }
                 })
             });
-            let crystal = map_legacy_chip(
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -383,7 +383,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             };
 
             let lcd_board = console.lcd_board.as_ref().map(|board| {
-                let regulator = map_legacy_chip(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
+                let regulator = map_legacy_part(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
                 let lcd_panel = board
                     .screen
                     .as_ref()
@@ -533,16 +533,16 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen1_soc::gen1_soc(),
             );
-            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::icd2::icd2());
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::ram::ram());
-            let video_ram = map_legacy_chip(year_hint, &console.mainboard.u4, parser::ram::ram());
-            let rom = map_legacy_chip(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
-            let cic = map_legacy_chip(year_hint, &console.mainboard.u6, parser::cic::cic());
+            let icd2 = map_legacy_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_legacy_part(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let video_ram = map_legacy_part(year_hint, &console.mainboard.u4, parser::ram::ram());
+            let rom = map_legacy_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
+            let cic = map_legacy_part(year_hint, &console.mainboard.u6, parser::cic::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -603,17 +603,17 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
-            let crystal = map_legacy_chip(
+                map_legacy_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -696,22 +696,22 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
-            let crystal = map_legacy_chip(
+                map_legacy_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
             );
-            let t1 = map_legacy_chip(
+            let t1 = map_legacy_part(
                 year_hint,
                 &console.mainboard.t1,
                 parser::mgl_transformer::mgl_transformer(),
@@ -792,17 +792,17 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let icd2 = map_legacy_chip(year_hint, &console.mainboard.u2, parser::icd2::icd2());
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u3, parser::ram::ram());
-            let rom = map_legacy_chip(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
-            let cic = map_legacy_chip(year_hint, &console.mainboard.u5, parser::cic::cic());
-            let coil = map_legacy_chip(year_hint, &console.mainboard.coil1, parser::coil::coil());
-            let crystal = map_legacy_chip(
+            let icd2 = map_legacy_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_legacy_part(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let rom = map_legacy_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
+            let cic = map_legacy_part(year_hint, &console.mainboard.u5, parser::cic::cic());
+            let coil = map_legacy_part(year_hint, &console.mainboard.coil1, parser::coil::coil());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.xtal1,
                 parser::crystal_20mihz::crystal_20mihz(),
@@ -868,13 +868,13 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(1998));
-            let cpu = map_legacy_chip(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
-            let work_ram = map_legacy_chip(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let cpu = map_legacy_part(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
+            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
-            let crystal = map_legacy_chip(
+                map_legacy_part(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_8mihz::crystal_8mihz(),
@@ -977,26 +977,26 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_qfp_128::agb_soc_qfp_128(),
             );
-            let work_ram = map_legacy_chip(
+            let work_ram = map_legacy_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
             let regulator =
-                map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
-            let u4 = map_legacy_chip(
+                map_legacy_part(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
+            let u4 = map_legacy_part(
                 year_hint,
                 &console.mainboard.u4,
                 parser::agb_pmic::agb_pmic(),
             );
             let amplifier =
-                map_legacy_chip(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
-            let crystal = map_legacy_chip(
+                map_legacy_part(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -1077,36 +1077,36 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_qfp_156::agb_soc_qfp_156(),
             );
-            let work_ram = map_legacy_chip(
+            let work_ram = map_legacy_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
             let amplifier = match console.mainboard.label.as_str() {
                 // FIXME: Not really an amplifier
-                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_legacy_chip(
+                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_legacy_part(
                     year_hint,
                     &console.mainboard.u3,
                     parser::ags_pmic_new::ags_pmic_new(),
                 ),
-                _ => map_legacy_chip(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
+                _ => map_legacy_part(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
             };
-            let u4 = map_legacy_chip(
+            let u4 = map_legacy_part(
                 year_hint,
                 &console.mainboard.u4,
                 parser::ags_pmic_old::ags_pmic_old(),
             );
-            let u5 = map_legacy_chip(
+            let u5 = map_legacy_part(
                 year_hint,
                 &console.mainboard.u5,
                 parser::ags_charge_ctrl::ags_charge_ctrl(),
             );
-            let crystal = map_legacy_chip(
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -1175,20 +1175,20 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::agb_soc_qfp_128::agb_soc_qfp_128(),
             );
-            let work_ram = map_legacy_chip(
+            let work_ram = map_legacy_part(
                 year_hint,
                 &console.mainboard.u3,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
-            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
-            let u6 = map_legacy_chip(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
-            let crystal = map_legacy_chip(
+            let u4 = map_legacy_part(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
+            let u5 = map_legacy_part(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
+            let u6 = map_legacy_part(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
+            let crystal = map_legacy_part(
                 year_hint,
                 &console.mainboard.y1,
                 parser::crystal_32mihz::crystal_32mihz(),
@@ -1267,18 +1267,18 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_legacy_chip(
+            let cpu = map_legacy_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_bga::agb_soc_bga(),
             );
-            let u2 = map_legacy_chip(
+            let u2 = map_legacy_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::oxy_pmic::oxy_pmic(),
             );
-            let u4 = map_legacy_chip(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
-            let u5 = map_legacy_chip(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
+            let u4 = map_legacy_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
+            let u5 = map_legacy_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
             let mainboard = LegacyOxyMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),

@@ -2,23 +2,23 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig};
+use gbhwdb_backend::config::cartridge::{BoardLayout, PartRole, PartRoleConfig};
 use maud::{html, Markup, Render};
 
 use super::{
-    listing_chip::ListingChip, listing_entry_cell::ListingEntryCell,
+    listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
     listing_photos_cell::ListingPhotosCell,
 };
 use crate::{
-    legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyChip},
+    legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyPart},
     template::Optional,
 };
 
 pub struct MapperCfg {
     pub id: &'static str,
     pub name: &'static str,
-    pub chips: &'static [ChipRole],
-    pub match_fn: Box<dyn Fn(BoardLayout, Option<&LegacyChip>) -> bool + Send + Sync>,
+    pub parts: &'static [PartRole],
+    pub match_fn: Box<dyn Fn(BoardLayout, Option<&LegacyPart>) -> bool + Send + Sync>,
 }
 
 pub struct Mapper<'a> {
@@ -37,7 +37,7 @@ impl<'a> Render for Mapper<'a> {
                             th { "Entry" }
                             th { "Release" }
                             th { "Board" }
-                            @for role in self.cfg.chips {
+                            @for role in self.cfg.parts {
                                 th { (role.display()) }
                             }
                             th { "Photos" }
@@ -56,7 +56,7 @@ impl<'a> Render for Mapper<'a> {
 
 fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) -> Markup {
     let metadata = &submission.metadata;
-    let chips = ChipRoleConfig::from(submission.metadata.board.layout);
+    let parts = PartRoleConfig::from(submission.metadata.board.layout);
     html! {
         tr {
             (ListingEntryCell {
@@ -72,10 +72,10 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                 div { (metadata.board.kind) }
                 div { (Optional(metadata.board.date_code().calendar())) }
             }
-            @for &role in cfg.chips {
-                @let chip = chips.into_iter().find(|&(_, candidate)| candidate == role)
+            @for &role in cfg.parts {
+                @let part = parts.into_iter().find(|&(_, candidate)| candidate == role)
                     .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
-                (ListingChip { chip, hide_type: false })
+                (ListingPart { part, hide_type: false })
             }
             (ListingPhotosCell { submission })
         }

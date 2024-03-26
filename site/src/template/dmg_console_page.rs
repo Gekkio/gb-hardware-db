@@ -4,7 +4,7 @@
 
 use maud::{html, Markup, Render};
 
-use super::{console_page::ConsolePage, submission_chip_table::SubmissionChip};
+use super::{console_page::ConsolePage, submission_part_table::SubmissionPart};
 use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
 
 pub struct DmgConsolePage<'a> {
@@ -94,10 +94,10 @@ impl<'a> Render for DmgConsolePage<'a> {
                     }
                 }
             })],
-            extra_chips: vec![Box::new(|m: &LegacyDmgMetadata| SubmissionChip {
+            extra_parts: vec![Box::new(|m: &LegacyDmgMetadata| SubmissionPart {
                 designator: "-",
                 label: "LCD bias generator",
-                chip: m
+                part: m
                     .lcd_board
                     .as_ref()
                     .and_then(|board| board.regulator.as_ref()),

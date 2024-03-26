@@ -15,8 +15,8 @@ use self::console::{
 };
 
 pub mod cartridge;
-pub mod chip;
 pub mod console;
+pub mod part;
 
 pub type LegacyCartridgeSubmission =
     LegacySubmission<cartridge::LegacyMetadata, LegacyDefaultPhotos>;
@@ -137,7 +137,7 @@ pub enum PhotoKind {
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct LegacyChip {
+pub struct LegacyPart {
     pub kind: Option<String>,
     pub label: Option<String>,
     pub manufacturer: Option<String>,
@@ -147,7 +147,7 @@ pub struct LegacyChip {
     pub rom_code: Option<String>,
 }
 
-impl HasDateCode for LegacyChip {
+impl HasDateCode for LegacyPart {
     fn date_code(&self) -> DateCode {
         DateCode {
             year: self.year,
@@ -214,8 +214,8 @@ pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<Stri
     manufacturer.map(|manufacturer| manufacturer.name().to_string())
 }
 
-pub fn to_legacy_year(year_hint: Option<u16>, chip_year: Option<Year>) -> Option<u16> {
-    (match (year_hint, chip_year) {
+pub fn to_legacy_year(year_hint: Option<u16>, part_year: Option<Year>) -> Option<u16> {
+    (match (year_hint, part_year) {
         (_, Some(Year::Full(year))) => Some(year),
         (Some(year_hint), Some(Year::Partial(year))) => Some(guess_full_year(year_hint, year)),
         _ => None,

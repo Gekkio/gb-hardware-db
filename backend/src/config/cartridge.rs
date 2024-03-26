@@ -161,7 +161,7 @@ pub fn write_cfgs<P: AsRef<Path>>(
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
-pub enum ChipRole {
+pub enum PartRole {
     Unknown,
     Rom,
     Mapper,
@@ -177,22 +177,22 @@ pub enum ChipRole {
     Rtc,
 }
 
-impl ChipRole {
+impl PartRole {
     pub fn display(&self) -> &'static str {
         match self {
-            ChipRole::Unknown => "Unknown",
-            ChipRole::Rom => "ROM",
-            ChipRole::Mapper => "Mapper",
-            ChipRole::Ram => "RAM",
-            ChipRole::SupervisorReset => "Supervisor & Reset",
-            ChipRole::Crystal => "Crystal",
-            ChipRole::Flash => "Flash",
-            ChipRole::Eeprom => "EEPROM",
-            ChipRole::Accelerometer => "Accelerometer",
-            ChipRole::LineDecoder => "Line decoder",
-            ChipRole::HexInverter => "Hex inverter",
-            ChipRole::Mcu => "Microcontroller",
-            ChipRole::Rtc => "RTC",
+            PartRole::Unknown => "Unknown",
+            PartRole::Rom => "ROM",
+            PartRole::Mapper => "Mapper",
+            PartRole::Ram => "RAM",
+            PartRole::SupervisorReset => "Supervisor & Reset",
+            PartRole::Crystal => "Crystal",
+            PartRole::Flash => "Flash",
+            PartRole::Eeprom => "EEPROM",
+            PartRole::Accelerometer => "Accelerometer",
+            PartRole::LineDecoder => "Line decoder",
+            PartRole::HexInverter => "Hex inverter",
+            PartRole::Mcu => "Microcontroller",
+            PartRole::Rtc => "RTC",
         }
     }
 }
@@ -235,19 +235,19 @@ impl PartDesignator {
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Default)]
-pub struct ChipRoleConfig {
-    pub u1: Option<ChipRole>,
-    pub u2: Option<ChipRole>,
-    pub u3: Option<ChipRole>,
-    pub u4: Option<ChipRole>,
-    pub u5: Option<ChipRole>,
-    pub u6: Option<ChipRole>,
-    pub u7: Option<ChipRole>,
-    pub x1: Option<ChipRole>,
+pub struct PartRoleConfig {
+    pub u1: Option<PartRole>,
+    pub u2: Option<PartRole>,
+    pub u3: Option<PartRole>,
+    pub u4: Option<PartRole>,
+    pub u5: Option<PartRole>,
+    pub u6: Option<PartRole>,
+    pub u7: Option<PartRole>,
+    pub x1: Option<PartRole>,
 }
 
-impl Index<PartDesignator> for ChipRoleConfig {
-    type Output = Option<ChipRole>;
+impl Index<PartDesignator> for PartRoleConfig {
+    type Output = Option<PartRole>;
 
     fn index(&self, index: PartDesignator) -> &Self::Output {
         match index {
@@ -263,7 +263,7 @@ impl Index<PartDesignator> for ChipRoleConfig {
     }
 }
 
-impl IndexMut<PartDesignator> for ChipRoleConfig {
+impl IndexMut<PartDesignator> for PartRoleConfig {
     fn index_mut(&mut self, index: PartDesignator) -> &mut Self::Output {
         match index {
             PartDesignator::U1 => &mut self.u1,
@@ -278,8 +278,8 @@ impl IndexMut<PartDesignator> for ChipRoleConfig {
     }
 }
 
-impl IntoIterator for ChipRoleConfig {
-    type Item = (PartDesignator, ChipRole);
+impl IntoIterator for PartRoleConfig {
+    type Item = (PartDesignator, PartRole);
     type IntoIter = Box<dyn Iterator<Item = Self::Item>>;
 
     fn into_iter(self) -> Self::IntoIter {
@@ -291,8 +291,8 @@ impl IntoIterator for ChipRoleConfig {
     }
 }
 
-impl<'a> IntoIterator for &'a ChipRoleConfig {
-    type Item = (PartDesignator, ChipRole);
+impl<'a> IntoIterator for &'a PartRoleConfig {
+    type Item = (PartDesignator, PartRole);
     type IntoIter = Box<dyn Iterator<Item = Self::Item> + 'a>;
 
     fn into_iter(self) -> Self::IntoIter {
@@ -304,80 +304,80 @@ impl<'a> IntoIterator for &'a ChipRoleConfig {
     }
 }
 
-impl From<BoardLayout> for ChipRoleConfig {
+impl From<BoardLayout> for PartRoleConfig {
     fn from(layout: BoardLayout) -> Self {
         match layout {
-            BoardLayout::Rom => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                ..ChipRoleConfig::default()
+            BoardLayout::Rom => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::RomMapper => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                ..ChipRoleConfig::default()
+            BoardLayout::RomMapper => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::RomMapperRam => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::SupervisorReset),
-                ..ChipRoleConfig::default()
+            BoardLayout::RomMapperRam => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::Ram),
+                u4: Some(PartRole::SupervisorReset),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::RomMapperRamXtal => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::SupervisorReset),
-                x1: Some(ChipRole::Crystal),
-                ..ChipRoleConfig::default()
+            BoardLayout::RomMapperRamXtal => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::Ram),
+                u4: Some(PartRole::SupervisorReset),
+                x1: Some(PartRole::Crystal),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Mbc2 => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::SupervisorReset),
-                ..ChipRoleConfig::default()
+            BoardLayout::Mbc2 => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::SupervisorReset),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Mbc6 => ChipRoleConfig {
-                u1: Some(ChipRole::Mapper),
-                u2: Some(ChipRole::Rom),
-                u3: Some(ChipRole::Flash),
-                u4: Some(ChipRole::Ram),
-                u5: Some(ChipRole::SupervisorReset),
-                ..ChipRoleConfig::default()
+            BoardLayout::Mbc6 => PartRoleConfig {
+                u1: Some(PartRole::Mapper),
+                u2: Some(PartRole::Rom),
+                u3: Some(PartRole::Flash),
+                u4: Some(PartRole::Ram),
+                u5: Some(PartRole::SupervisorReset),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Mbc7 => ChipRoleConfig {
-                u1: Some(ChipRole::Mapper),
-                u2: Some(ChipRole::Rom),
-                u3: Some(ChipRole::Eeprom),
-                u4: Some(ChipRole::Accelerometer),
-                ..ChipRoleConfig::default()
+            BoardLayout::Mbc7 => PartRoleConfig {
+                u1: Some(PartRole::Mapper),
+                u2: Some(PartRole::Rom),
+                u3: Some(PartRole::Eeprom),
+                u4: Some(PartRole::Accelerometer),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Type15 => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::SupervisorReset),
-                u5: Some(ChipRole::Rom),
-                u6: Some(ChipRole::LineDecoder),
-                ..ChipRoleConfig::default()
+            BoardLayout::Type15 => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::Ram),
+                u4: Some(PartRole::SupervisorReset),
+                u5: Some(PartRole::Rom),
+                u6: Some(PartRole::LineDecoder),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Huc3 => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::Ram),
-                u4: Some(ChipRole::SupervisorReset),
-                u5: Some(ChipRole::HexInverter),
-                x1: Some(ChipRole::Crystal),
-                ..ChipRoleConfig::default()
+            BoardLayout::Huc3 => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::Ram),
+                u4: Some(PartRole::SupervisorReset),
+                u5: Some(PartRole::HexInverter),
+                x1: Some(PartRole::Crystal),
+                ..PartRoleConfig::default()
             },
-            BoardLayout::Tama => ChipRoleConfig {
-                u1: Some(ChipRole::Rom),
-                u2: Some(ChipRole::Mapper),
-                u3: Some(ChipRole::Mcu),
-                u4: Some(ChipRole::Rtc),
-                u5: Some(ChipRole::SupervisorReset),
-                x1: Some(ChipRole::Crystal),
-                ..ChipRoleConfig::default()
+            BoardLayout::Tama => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Mapper),
+                u3: Some(PartRole::Mcu),
+                u4: Some(PartRole::Rtc),
+                u5: Some(PartRole::SupervisorReset),
+                x1: Some(PartRole::Crystal),
+                ..PartRoleConfig::default()
             },
         }
     }

@@ -15,15 +15,15 @@ pub mod dmg_console_page;
 pub mod dmg_submission_list;
 pub mod game;
 pub mod home;
-pub mod listing_chip;
 pub mod listing_entry_cell;
+pub mod listing_part;
 pub mod listing_photos_cell;
 pub mod mapper;
 pub mod markdown;
 pub mod markdown_page;
 pub mod site_footer;
 pub mod site_header;
-pub mod submission_chip_table;
+pub mod submission_part_table;
 
 pub fn page(title: &str, section: SiteSection, content: Markup) -> String {
     html! {

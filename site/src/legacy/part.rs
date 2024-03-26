@@ -3,12 +3,12 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::{
-    input::Chip,
+    input::Part,
     parser::{self, LabelParser, Manufacturer, Year},
     time::{Month, Week},
 };
 
-use crate::legacy::{to_legacy_manufacturer, to_legacy_year, LegacyChip};
+use crate::legacy::{to_legacy_manufacturer, to_legacy_year, LegacyPart};
 
 pub trait ToLegacyChip {
     fn kind(&self) -> Option<String> {
@@ -31,30 +31,30 @@ pub trait ToLegacyChip {
     }
 }
 
-pub fn map_legacy_chip<T: ToLegacyChip, F: LabelParser<T>>(
+pub fn map_legacy_part<T: ToLegacyChip, F: LabelParser<T>>(
     year_hint: Option<u16>,
-    chip: &Option<Chip>,
+    part: &Option<Part>,
     f: &F,
-) -> Option<LegacyChip> {
-    chip.as_ref()
-        .map(|chip| to_legacy_chip(year_hint, chip, f).unwrap_or_default())
+) -> Option<LegacyPart> {
+    part.as_ref()
+        .map(|part| to_legacy_part(year_hint, part, f).unwrap_or_default())
 }
 
-pub fn to_legacy_chip<T: ToLegacyChip, F: LabelParser<T>>(
+pub fn to_legacy_part<T: ToLegacyChip, F: LabelParser<T>>(
     year_hint: Option<u16>,
-    chip: &Chip,
+    part: &Part,
     f: &F,
-) -> Option<LegacyChip> {
-    chip.label.as_ref().map(|label| {
-        let chip = f.parse(label).unwrap_or_else(|_| panic!("{}", label));
-        LegacyChip {
+) -> Option<LegacyPart> {
+    part.label.as_ref().map(|label| {
+        let part = f.parse(label).unwrap_or_else(|_| panic!("{}", label));
+        LegacyPart {
             label: Some(label.to_owned()),
-            kind: chip.kind(),
-            manufacturer: to_legacy_manufacturer(chip.manufacturer()),
-            year: to_legacy_year(year_hint, chip.year()),
-            week: chip.week(),
-            month: chip.month(),
-            rom_code: chip.rom_code(),
+            kind: part.kind(),
+            manufacturer: to_legacy_manufacturer(part.manufacturer()),
+            year: to_legacy_year(year_hint, part.year()),
+            week: part.week(),
+            month: part.month(),
+            rom_code: part.rom_code(),
         }
     })
 }

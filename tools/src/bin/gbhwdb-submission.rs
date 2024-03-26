@@ -5,10 +5,10 @@
 use anyhow::Error;
 use cursive::{traits::*, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::{
-    config::cartridge::{BoardLayout, ChipRole, ChipRoleConfig, GameConfig},
+    config::cartridge::{BoardLayout, GameConfig, PartRole, PartRoleConfig},
     input::{
         cartridge::{Cartridge, CartridgeBoard, CartridgeShell},
-        Chip,
+        Part,
     },
     parser::{self, LabelParser},
     time::Month,
@@ -237,20 +237,20 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     if should_quit() {
         return None;
     }
-    let chips = ChipRoleConfig::from(BoardLayout::from_label(&label).unwrap());
+    let parts = PartRoleConfig::from(BoardLayout::from_label(&label).unwrap());
     siv.add_layer(
         Dialog::new()
-            .title("Enter chip details")
+            .title("Enter part details")
             .content(
                 LinearLayout::vertical()
-                    .child(chip_editor("u1", chips.u1))
-                    .child(chip_editor("u2", chips.u2))
-                    .child(chip_editor("u3", chips.u3))
-                    .child(chip_editor("u4", chips.u4))
-                    .child(chip_editor("u5", chips.u5))
-                    .child(chip_editor("u6", chips.u6))
-                    .child(chip_editor("u7", chips.u7))
-                    .child(chip_editor("x1", chips.x1)),
+                    .child(part_editor("u1", parts.u1))
+                    .child(part_editor("u2", parts.u2))
+                    .child(part_editor("u3", parts.u3))
+                    .child(part_editor("u4", parts.u4))
+                    .child(part_editor("u5", parts.u5))
+                    .child(part_editor("u6", parts.u6))
+                    .child(part_editor("u7", parts.u7))
+                    .child(part_editor("x1", parts.x1)),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(150),
@@ -262,14 +262,14 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
         extra_label: trim(&extra_label),
         year: trim(&year).map(|year| u16::from_str(&year).unwrap()),
         month: trim(&month).map(|month| Month::try_from(u8::from_str(&month).unwrap()).unwrap()),
-        u1: add_chip(siv, chips.u1, "u1"),
-        u2: add_chip(siv, chips.u2, "u2"),
-        u3: add_chip(siv, chips.u3, "u3"),
-        u4: add_chip(siv, chips.u4, "u4"),
-        u5: add_chip(siv, chips.u5, "u5"),
-        u6: add_chip(siv, chips.u6, "u6"),
-        u7: add_chip(siv, chips.u7, "u7"),
-        x1: add_chip(siv, chips.x1, "x1"),
+        u1: add_part(siv, parts.u1, "u1"),
+        u2: add_part(siv, parts.u2, "u2"),
+        u3: add_part(siv, parts.u3, "u3"),
+        u4: add_part(siv, parts.u4, "u4"),
+        u5: add_part(siv, parts.u5, "u5"),
+        u6: add_part(siv, parts.u6, "u6"),
+        u7: add_part(siv, parts.u7, "u7"),
+        x1: add_part(siv, parts.x1, "x1"),
         outlier: false,
     });
     siv.pop_layer();
@@ -280,7 +280,7 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     }
 }
 
-fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
+fn part_editor(id: &str, role: Option<PartRole>) -> LinearLayout {
     let mut editor = EditView::new();
     let mut result = LinearLayout::vertical();
     let details_id = format!("{}_details", id);
@@ -290,35 +290,35 @@ fn chip_editor(id: &str, role: Option<ChipRole>) -> LinearLayout {
             .with_name(details_id.clone())
             .fixed_height(2);
         match role {
-            ChipRole::Rom => {
+            PartRole::Rom => {
                 add_details_callback(&mut editor, &details_id, parser::mask_rom::mask_rom())
             }
-            ChipRole::Mapper => {
+            PartRole::Mapper => {
                 add_details_callback(&mut editor, &details_id, parser::mapper::mapper())
             }
-            ChipRole::Ram => add_details_callback(&mut editor, &details_id, parser::ram::ram()),
-            ChipRole::SupervisorReset => add_details_callback(
+            PartRole::Ram => add_details_callback(&mut editor, &details_id, parser::ram::ram()),
+            PartRole::SupervisorReset => add_details_callback(
                 &mut editor,
                 &details_id,
                 parser::supervisor_reset::supervisor_reset(),
             ),
-            ChipRole::Crystal => add_details_callback(
+            PartRole::Crystal => add_details_callback(
                 &mut editor,
                 &details_id,
                 parser::crystal_32kihz::crystal_32kihz(),
             ),
-            ChipRole::Flash => {
+            PartRole::Flash => {
                 add_details_callback(&mut editor, &details_id, parser::flash::flash())
             }
-            ChipRole::Eeprom => {
+            PartRole::Eeprom => {
                 add_details_callback(&mut editor, &details_id, parser::eeprom::eeprom())
             }
-            ChipRole::Accelerometer => add_details_callback(
+            PartRole::Accelerometer => add_details_callback(
                 &mut editor,
                 &details_id,
                 parser::accelerometer::accelerometer(),
             ),
-            ChipRole::LineDecoder => add_details_callback(
+            PartRole::LineDecoder => add_details_callback(
                 &mut editor,
                 &details_id,
                 parser::line_decoder::line_decoder(),
@@ -339,19 +339,19 @@ fn add_details_callback<T: fmt::Debug, F: LabelParser<T>>(
     let details_id = details_id.to_owned();
     editor.set_on_edit(move |siv, content, _| {
         siv.call_on_name(&details_id, |view: &mut TextView| match f.parse(&content) {
-            Ok(chip) => view.set_content(format!("{:?}", chip)),
+            Ok(part) => view.set_content(format!("{:?}", part)),
             Err(err) => view.set_content(format!("{}", err)),
         })
         .unwrap();
     });
 }
 
-fn add_chip(siv: &mut Cursive, role: Option<ChipRole>, id: &str) -> Option<Chip> {
+fn add_part(siv: &mut Cursive, role: Option<PartRole>, id: &str) -> Option<Part> {
     role.map(|_| match siv.get_edit_view_value(id).as_str() {
-        "-" => Chip {
+        "-" => Part {
             label: None,
             outlier: false,
         },
-        label => Chip::from_label(trim(label)),
+        label => Part::from_label(trim(label)),
     })
 }

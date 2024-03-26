@@ -4,7 +4,7 @@
 
 use crate::legacy::console::{LegacySgbMainboard, LegacySgbMetadata};
 
-use super::{chip, Builder, Field, ToCsv};
+use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacySgbMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -21,11 +21,11 @@ impl ToCsv for LegacySgbMetadata {
                         .add_date_code()
                 },
             )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("icd2", |m| m.mainboard.icd2.as_ref(), chip)
-            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), chip)
-            .nest("video_ram", |m| m.mainboard.video_ram.as_ref(), chip)
-            .nest("rom", |m| m.mainboard.rom.as_ref(), chip)
-            .nest("cic", |m| m.mainboard.cic.as_ref(), chip)
+            .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)
+            .nest("icd2", |m| m.mainboard.icd2.as_ref(), part)
+            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), part)
+            .nest("video_ram", |m| m.mainboard.video_ram.as_ref(), part)
+            .nest("rom", |m| m.mainboard.rom.as_ref(), part)
+            .nest("cic", |m| m.mainboard.cic.as_ref(), part)
     }
 }

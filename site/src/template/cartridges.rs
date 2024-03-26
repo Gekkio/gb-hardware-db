@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{ChipRole, ChipRoleConfig, GameConfig, GamePlatform};
+use gbhwdb_backend::config::cartridge::{GameConfig, GamePlatform, PartRole, PartRoleConfig};
 use itertools::Itertools;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};
@@ -100,12 +100,12 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         .iter()
         .map(|submission| Cow::Borrowed(submission.metadata.board.kind.as_ref()));
     let mappers = submissions.iter().filter_map(|submission| {
-        let roles = ChipRoleConfig::from(submission.metadata.board.layout);
-        let chip = roles
+        let roles = PartRoleConfig::from(submission.metadata.board.layout);
+        let parts = roles
             .into_iter()
-            .find(|&(_, role)| role == ChipRole::Mapper)
+            .find(|&(_, role)| role == PartRole::Mapper)
             .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
-        chip.and_then(|chip| chip.kind.as_deref().map(Cow::Borrowed))
+        parts.and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
     });
     html! {
         tr {

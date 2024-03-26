@@ -10,7 +10,7 @@ use crate::{
         console::{ChipInfo, LegacyConsoleMetadata},
         HasDateCode, LegacyPhotos, LegacySubmission,
     },
-    template::listing_chip::ListingChip,
+    template::listing_part::ListingPart,
 };
 
 pub struct ConsoleSubmissionList<'a, M, P> {
@@ -40,7 +40,7 @@ impl<'a, M, P> ConsoleSubmissionList<'a, M, P> {
 impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsoleSubmissionList<'a, M, P> {
     fn render(&self) -> Markup {
         let console = M::CONSOLE;
-        let chips = M::chips();
+        let parts = M::parts();
         html! {
             article {
                 h2 { (console.name()) " (" (console.code()) ")" }
@@ -52,8 +52,8 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsoleSubmission
                                 th { "Console" }
                             }
                             th { (self.board_column_name) }
-                            @for chip in &chips {
-                                th { (chip.label) " (" (chip.designator) ")" }
+                            @for part in &parts {
+                                th { (part.label) " (" (part.designator) ")" }
                             }
                             @for column in self.extra_columns {
                                 th { (column) }
@@ -65,7 +65,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsoleSubmission
                         @for submission in self.submissions {
                             (Submission {
                                 submission,
-                                chips: &chips,
+                                parts: &parts,
                                 extra_cells: &self.extra_cells,
                                 render_console_column: self.render_console_column
                             })
@@ -81,7 +81,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for ConsoleSubmission
 
 struct Submission<'a, M: LegacyConsoleMetadata, P> {
     pub submission: &'a LegacySubmission<M, P>,
-    pub chips: &'a [ChipInfo<M>],
+    pub parts: &'a [ChipInfo<M>],
     pub render_console_column: bool,
     pub extra_cells: &'a [Box<dyn Fn(&M) -> Markup>],
 }
@@ -122,10 +122,10 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                         div { (date_code) }
                     }
                 }
-                @for chip in self.chips {
-                    (ListingChip {
-                        chip: (chip.getter)(&metadata),
-                        hide_type: chip.hide_type,
+                @for part in self.parts {
+                    (ListingPart {
+                        part: (part.getter)(&metadata),
+                        hide_type: part.hide_type,
                     })
                 }
                 @for cell in self.extra_cells {

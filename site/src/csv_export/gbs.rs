@@ -4,7 +4,7 @@
 
 use crate::legacy::console::{LegacyGbsMainboard, LegacyGbsMetadata};
 
-use super::{chip, Builder, Field, ToCsv};
+use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacyGbsMetadata {
     fn csv_builder() -> Builder<Self> {
@@ -26,11 +26,11 @@ impl ToCsv for LegacyGbsMetadata {
                         .add_date_code()
                 },
             )
-            .nest("cpu", |m| m.mainboard.cpu.as_ref(), chip)
-            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), chip)
-            .nest("u4", |m| m.mainboard.u4.as_ref(), chip)
-            .nest("u5", |m| m.mainboard.u5.as_ref(), chip)
-            .nest("u6", |m| m.mainboard.u6.as_ref(), chip)
-            .nest("crystal", |m| m.mainboard.crystal.as_ref(), chip)
+            .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)
+            .nest("work_ram", |m| m.mainboard.work_ram.as_ref(), part)
+            .nest("u4", |m| m.mainboard.u4.as_ref(), part)
+            .nest("u5", |m| m.mainboard.u5.as_ref(), part)
+            .nest("u6", |m| m.mainboard.u6.as_ref(), part)
+            .nest("crystal", |m| m.mainboard.crystal.as_ref(), part)
     }
 }

@@ -8,19 +8,14 @@ use gbhwdb_backend::{
     parser::*,
     time::Month,
 };
-use serde::Serialize;
 use std::ops::{Index, IndexMut};
 
 use super::{to_legacy_manufacturer, to_legacy_year, DateCode, HasDateCode, LegacyPart};
 
-#[derive(Clone, Debug, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug)]
 pub struct LegacyMetadata {
-    #[serde(skip)]
     pub cfg: GameConfig,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub board: LegacyBoard,
     pub dump: Option<CartridgeDump>,
@@ -28,36 +23,21 @@ pub struct LegacyMetadata {
 
 impl super::LegacyMetadata for LegacyMetadata {}
 
-#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LegacyBoard {
-    #[serde(skip)]
     pub layout: BoardLayout,
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u1: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u2: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u3: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u4: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u5: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u6: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u7: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub x1: Option<LegacyPart>,
 }
 

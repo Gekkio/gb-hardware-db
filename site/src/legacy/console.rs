@@ -8,7 +8,6 @@ use gbhwdb_backend::{
     time::{Jun, Month, Week},
     Console,
 };
-use serde::Serialize;
 
 use super::{
     to_legacy_year, DateCode, HasDateCode, LegacyMetadata, LegacyPart, LegacyPhoto, LegacyPhotos,
@@ -69,38 +68,18 @@ impl<M: ?Sized> ChipInfo<M> {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgPhotos {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub top: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "mainboardFront")]
     pub mainboard_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "mainboardBack")]
     pub mainboard_back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "lcdBoardFront")]
     pub lcd_board_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "lcdBoardBack")]
     pub lcd_board_back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "powerBoardFront")]
     pub power_board_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "powerBoardBack")]
     pub power_board_back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "jackBoardFront")]
     pub jack_board_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "jackBoardBack")]
     pub jack_board_back: Option<LegacyPhoto>,
 }
 
@@ -173,20 +152,12 @@ impl LegacyPhotos for LegacyDmgPhotos {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyAgsPhotos {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub top: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "pcbFront")]
     pub pcb_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "pcbBack")]
     pub pcb_back: Option<LegacyPhoto>,
 }
 
@@ -225,21 +196,14 @@ impl LegacyPhotos for LegacyAgsPhotos {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     pub mainboard: LegacyDmgMainboard,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_board: Option<LegacyDmgLcdBoard>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub power_board: Option<LegacyDmgPowerBoard>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub jack_board: Option<LegacyDmgJackBoard>,
 }
 
@@ -312,45 +276,27 @@ impl LegacyConsoleMetadata for LegacyDmgMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub video_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgLcdBoard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyPart>,
 }
 
@@ -365,15 +311,11 @@ impl HasDateCode for LegacyDmgLcdBoard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgPowerBoard {
-    #[serde(rename = "type")]
     pub kind: String,
     pub label: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
 }
 
@@ -388,47 +330,30 @@ impl HasDateCode for LegacyDmgPowerBoard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDmgJackBoard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub extra_label: Option<String>,
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacySgbMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub mainboard: LegacySgbMainboard,
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacySgbMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub letter_at_top_right: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub icd2: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub video_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub rom: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cic: Option<LegacyPart>,
 }
 
@@ -477,40 +402,25 @@ impl LegacyConsoleMetadata for LegacySgbMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacySgb2Metadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
     pub mainboard: LegacySgb2Mainboard,
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacySgb2Mainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub letter_at_top_right: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub icd2: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub rom: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cic: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub coil: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -565,19 +475,13 @@ impl LegacyConsoleMetadata for LegacySgb2Metadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyMgbMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     pub mainboard: LegacyMgbMainboard,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
 }
 
@@ -647,32 +551,19 @@ impl LegacyConsoleMetadata for LegacyMgbMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyMgbMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -687,19 +578,13 @@ impl HasDateCode for LegacyMgbMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyMglMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<Week>,
     pub mainboard: LegacyMglMainboard,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub lcd_panel: Option<LegacyLcdPanel>,
 }
 
@@ -770,34 +655,20 @@ impl LegacyConsoleMetadata for LegacyMglMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyMglMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub t1: Option<LegacyPart>,
 }
 
@@ -812,18 +683,12 @@ impl HasDateCode for LegacyMglMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyCgbMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<Week>,
     pub mainboard: LegacyCgbMainboard,
 }
@@ -888,32 +753,19 @@ impl LegacyConsoleMetadata for LegacyCgbMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyCgbMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -928,16 +780,11 @@ impl HasDateCode for LegacyCgbMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyAgbMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<Week>,
     pub mainboard: LegacyAgbMainboard,
 }
@@ -1003,32 +850,19 @@ impl LegacyConsoleMetadata for LegacyAgbMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyAgbMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub regulator: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u4: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -1043,12 +877,9 @@ impl HasDateCode for LegacyAgbMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyAgsMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     pub mainboard: LegacyAgsMainboard,
 }
@@ -1102,32 +933,19 @@ impl LegacyConsoleMetadata for LegacyAgsMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyAgsMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub amplifier: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u4: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u5: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -1142,16 +960,11 @@ impl HasDateCode for LegacyAgsMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyGbsMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub week: Option<Week>,
     pub mainboard: LegacyGbsMainboard,
 }
@@ -1211,36 +1024,21 @@ impl LegacyConsoleMetadata for LegacyGbsMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyGbsMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp_front: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub stamp_back: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub work_ram: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u4: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u5: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u6: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub crystal: Option<LegacyPart>,
 }
 
@@ -1255,12 +1053,9 @@ impl HasDateCode for LegacyGbsMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyOxyMetadata {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub release_code: Option<String>,
     pub mainboard: LegacyOxyMainboard,
 }
@@ -1297,24 +1092,15 @@ impl LegacyConsoleMetadata for LegacyOxyMetadata {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyOxyMainboard {
-    #[serde(rename = "type")]
     pub kind: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub cpu: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u2: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u4: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub u5: Option<LegacyPart>,
 }
 
@@ -1329,18 +1115,12 @@ impl HasDateCode for LegacyOxyMainboard {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyLcdPanel {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub column_driver: Option<LegacyPart>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub row_driver: Option<LegacyPart>,
 }
 

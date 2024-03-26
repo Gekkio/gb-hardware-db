@@ -6,7 +6,6 @@ use gbhwdb_backend::{
     parser::*,
     time::{Jun, Month, Week},
 };
-use serde::{Deserialize, Serialize};
 
 use self::console::{
     LegacyAgbMetadata, LegacyAgsMetadata, LegacyAgsPhotos, LegacyCgbMetadata, LegacyDmgMetadata,
@@ -84,14 +83,11 @@ pub trait HasDateCode {
     fn date_code(&self) -> DateCode;
 }
 
-#[derive(Clone, Debug, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug)]
 pub struct LegacySubmission<M, P> {
-    #[serde(rename = "type")]
     pub code: String,
     pub title: String,
     pub slug: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub sort_group: Option<String>,
     pub contributor: String,
     pub metadata: M,
@@ -135,8 +131,7 @@ pub enum PhotoKind {
     Other,
 }
 
-#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Eq, PartialEq, Default)]
 pub struct LegacyPart {
     pub kind: Option<String>,
     pub label: Option<String>,
@@ -158,18 +153,11 @@ impl HasDateCode for LegacyPart {
     }
 }
 
-#[derive(Clone, Debug, Default, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug, Default)]
 pub struct LegacyDefaultPhotos {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub back: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "pcbFront")]
     pub pcb_front: Option<LegacyPhoto>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "pcbBack")]
     pub pcb_back: Option<LegacyPhoto>,
 }
 
@@ -203,8 +191,7 @@ impl LegacyPhotos for LegacyDefaultPhotos {
     }
 }
 
-#[derive(Clone, Debug, Serialize)]
-#[serde(deny_unknown_fields)]
+#[derive(Clone, Debug)]
 pub struct LegacyPhoto {
     pub path: String,
     pub name: String,

@@ -424,7 +424,8 @@
   },
   "CGB-BYTF-0": {
     "name": "Pokemon - Version Cristal (France)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "178b0da870a3cc58414940412eb6473f515b8941cb83d81a1a42d05ca82749e7",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram_xtal"
@@ -787,7 +788,7 @@
   },
   "DMG-AGAE-1": {
     "name": "Game & Watch Gallery (USA) (Rev 1) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "f2099eb0fc0bbee1351e4937be69d8e92410dfc23950b42bc45b9b9b3cb6c7df",
     "platform": "gb",
     "layouts": [
@@ -1471,6 +1472,7 @@
   "DMG-AZLJ-0": {
     "name": "Zelda no Densetsu - Yume o Miru Shima DX (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "7e46fdfd39c23e8496c0e345c6790ade295a4aa1cbacf6915bbda6af4b1c025a",
     "platform": "gbc",
     "layouts": [
       "rom_mapper_ram"

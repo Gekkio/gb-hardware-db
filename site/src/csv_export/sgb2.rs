@@ -3,11 +3,10 @@
 // SPDX-License-Identifier: MIT
 
 use crate::{
+    csv_export::{part, Builder, Field, ToCsv},
     legacy::console::{LegacySgb2Mainboard, LegacySgb2Metadata},
     HasDateCode,
 };
-
-use super::{part, Builder, Field, ToCsv};
 
 impl ToCsv for LegacySgb2Metadata {
     fn csv_builder() -> Builder<Self> {

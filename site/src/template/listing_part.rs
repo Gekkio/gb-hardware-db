@@ -4,10 +4,10 @@
 
 use maud::{html, Markup, Render};
 
-use crate::{legacy::LegacyPart, template::Optional};
+use crate::{process::part::ProcessedPart, template::Optional};
 
 pub struct ListingPart<'a> {
-    pub part: Option<&'a LegacyPart>,
+    pub part: Option<&'a ProcessedPart>,
     pub hide_type: bool,
 }
 

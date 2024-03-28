@@ -5,10 +5,7 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::{
-    legacy::{LegacyPart, LegacySubmission},
-    DateCode,
-};
+use crate::{legacy::LegacySubmission, process::part::ProcessedPart, process::DateCode};
 
 mod agb;
 mod ags;
@@ -57,8 +54,8 @@ where
     Ok(())
 }
 
-fn part() -> Builder<LegacyPart> {
-    Builder::<LegacyPart>::new()
+fn part() -> Builder<ProcessedPart> {
+    Builder::<ProcessedPart>::new()
         .add("kind", |c| (&c.kind).csv())
         .add("label", |c| (&c.label).csv())
         .add("manufacturer", |c| {

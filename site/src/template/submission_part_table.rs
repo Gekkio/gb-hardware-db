@@ -1,11 +1,11 @@
 use maud::{html, Markup};
 
-use crate::{template::Optional, LegacyPart};
+use crate::{process::part::ProcessedPart, template::Optional};
 
 pub struct SubmissionPart<'a> {
     pub designator: &'a str,
     pub label: &'a str,
-    pub part: Option<&'a LegacyPart>,
+    pub part: Option<&'a ProcessedPart>,
 }
 
 pub fn submission_part_table<'a>(parts: impl Iterator<Item = SubmissionPart<'a>>) -> Markup {

@@ -5,20 +5,21 @@
 use gbhwdb_backend::config::cartridge::{BoardLayout, PartRole, PartRoleConfig};
 use maud::{html, Markup, Render};
 
-use super::{
-    listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
-    listing_photos_cell::ListingPhotosCell,
-};
 use crate::{
-    legacy::{LegacyCartridgeSubmission, LegacyPart},
+    legacy::LegacyCartridgeSubmission,
+    process::part::ProcessedPart,
     template::Optional,
+    template::{
+        listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
+        listing_photos_cell::ListingPhotosCell,
+    },
 };
 
 pub struct MapperCfg {
     pub id: &'static str,
     pub name: &'static str,
     pub parts: &'static [PartRole],
-    pub match_fn: Box<dyn Fn(BoardLayout, Option<&LegacyPart>) -> bool + Send + Sync>,
+    pub match_fn: Box<dyn Fn(BoardLayout, Option<&ProcessedPart>) -> bool + Send + Sync>,
 }
 
 pub struct Mapper<'a> {

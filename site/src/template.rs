@@ -4,8 +4,10 @@
 
 use maud::{html, Markup, Render, DOCTYPE};
 
-use crate::site::SiteSection;
-use crate::template::{site_footer::SiteFooter, site_header::SiteHeader};
+use crate::{
+    site::SiteSection,
+    template::{site_footer::SiteFooter, site_header::SiteHeader},
+};
 
 pub mod cartridge_page;
 pub mod cartridges;

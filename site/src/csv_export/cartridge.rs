@@ -4,9 +4,10 @@
 
 use gbhwdb_backend::config::cartridge::PartDesignator;
 
-use crate::legacy::cartridge::{LegacyBoard, LegacyMetadata};
-
-use super::{part, Builder, Field, ToCsv};
+use crate::{
+    csv_export::{part, Builder, Field, ToCsv},
+    legacy::cartridge::{LegacyBoard, LegacyMetadata},
+};
 
 impl ToCsv for LegacyMetadata {
     fn csv_builder() -> Builder<Self> {

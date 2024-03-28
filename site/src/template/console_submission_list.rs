@@ -4,13 +4,13 @@
 
 use maud::{html, Markup, Render};
 
-use super::{listing_entry_cell::ListingEntryCell, listing_photos_cell::ListingPhotosCell};
 use crate::{
     legacy::{
         console::{ChipInfo, LegacyConsoleMetadata},
         HasDateCode, LegacyPhotos, LegacySubmission,
     },
     template::listing_part::ListingPart,
+    template::{listing_entry_cell::ListingEntryCell, listing_photos_cell::ListingPhotosCell},
 };
 
 pub struct ConsoleSubmissionList<'a, M, P> {

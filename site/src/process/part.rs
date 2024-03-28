@@ -1,27 +1,34 @@
-// SPDX-FileCopyrightText: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
+// SPDX-FileCopyrightText: 2017-2024 Joonas Javanainen <joonas.javanainen@gmail.com>
 //
 // SPDX-License-Identifier: MIT
 
 use anyhow::{anyhow, Error};
 use gbhwdb_backend::{
     input::Part,
-    parser::{self, LabelParser, Manufacturer},
+    parser,
+    parser::{LabelParser, Manufacturer},
 };
 
-use crate::{
-    legacy::{to_legacy_year, LegacyPart},
-    DateCode,
-};
+use crate::{process::to_full_year, process::DateCode};
 
-pub trait ToLegacyPart {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart;
+#[derive(Clone, Debug, Eq, PartialEq, Default)]
+pub struct ProcessedPart {
+    pub kind: Option<String>,
+    pub label: Option<String>,
+    pub manufacturer: Option<Manufacturer>,
+    pub date_code: DateCode,
+    pub rom_code: Option<String>,
 }
 
-pub fn map_legacy_part<T: ToLegacyPart, F: LabelParser<T>>(
+pub trait ParsedPart {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart;
+}
+
+pub fn map_part<T: ParsedPart, F: LabelParser<T>>(
     year_hint: Option<u16>,
     part: &Option<Part>,
     f: &F,
-) -> Option<LegacyPart> {
+) -> Option<ProcessedPart> {
     part.as_ref().map(|part| {
         boxed_parser(f)(year_hint, part)
             .unwrap()
@@ -30,9 +37,9 @@ pub fn map_legacy_part<T: ToLegacyPart, F: LabelParser<T>>(
 }
 
 pub type BoxedParser<'a> =
-    Box<dyn Fn(Option<u16>, &Part) -> Result<Option<LegacyPart>, Error> + 'a>;
+    Box<dyn Fn(Option<u16>, &Part) -> Result<Option<ProcessedPart>, Error> + 'a>;
 
-pub fn boxed_parser<'a, T: ToLegacyPart, F: LabelParser<T>>(f: &'a F) -> BoxedParser<'a> {
+pub fn boxed_parser<'a, T: ParsedPart, F: LabelParser<T>>(f: &'a F) -> BoxedParser<'a> {
     Box::new(|year_hint, part| {
         part.label
             .as_ref()
@@ -40,16 +47,16 @@ pub fn boxed_parser<'a, T: ToLegacyPart, F: LabelParser<T>>(f: &'a F) -> BoxedPa
                 let part = f
                     .parse(label)
                     .map_err(|label| anyhow!("Failed to parse {label}"))?;
-                Ok(part.to_legacy_part(year_hint, label.clone()))
+                Ok(part.process(year_hint, label.clone()))
             })
             .transpose()
     })
 }
 
-impl ToLegacyPart for parser::Gen1Soc {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
+impl ParsedPart for parser::Gen1Soc {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         use gbhwdb_backend::parser::Gen1SocKind::*;
-        LegacyPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(
                 match self.kind {
@@ -65,15 +72,15 @@ impl ToLegacyPart for parser::Gen1Soc {
             ),
             manufacturer: Some(Manufacturer::Sharp),
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Gen2Soc {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
+impl ParsedPart for parser::Gen2Soc {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         use gbhwdb_backend::parser::Gen2SocKind::*;
-        LegacyPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(
                 match self.kind {
@@ -84,126 +91,126 @@ impl ToLegacyPart for parser::Gen2Soc {
             ),
             manufacturer: Some(Manufacturer::Sharp),
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::StaticRam {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::StaticRam {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: self.part,
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Crystal {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::Crystal {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.format_frequency()),
             manufacturer: self.manufacturer,
             date_code: DateCode {
-                year: to_legacy_year(year_hint, self.year),
+                year: to_full_year(year_hint, self.year),
                 week: self.week,
                 month: self.month,
                 ..DateCode::default()
             },
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Coil {
-    fn to_legacy_part(self, _: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::Coil {
+    fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.kind),
             manufacturer: self.manufacturer,
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Transformer {
-    fn to_legacy_part(self, _: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::Transformer {
+    fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.kind),
             manufacturer: self.manufacturer,
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::SgbRom {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::SgbRom {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: self.chip_type,
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
             rom_code: Some(self.rom_code),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::ChipYearWeek {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::ChipYearWeek {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.kind),
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::MaskRom {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::MaskRom {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: self.chip_type,
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Mapper {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::Mapper {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.mbc_type.display_name().to_owned()),
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::SupervisorReset {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::SupervisorReset {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: Some(self.chip_type),
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
 
-impl ToLegacyPart for parser::Tama {
-    fn to_legacy_part(self, year_hint: Option<u16>, label: String) -> LegacyPart {
-        LegacyPart {
+impl ParsedPart for parser::Tama {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
             label: Some(label),
             kind: match self.tama_type {
                 parser::TamaType::Tama5 => Some("TAMA5".to_owned()),
@@ -212,7 +219,7 @@ impl ToLegacyPart for parser::Tama {
             },
             manufacturer: None,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }

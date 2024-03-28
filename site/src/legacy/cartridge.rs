@@ -13,8 +13,10 @@ use gbhwdb_backend::{
 };
 use std::collections::HashMap;
 
-use super::{DateCode, LegacyPart};
-use crate::{boxed_parser, BoxedParser};
+use crate::{
+    process::part::{boxed_parser, BoxedParser, ProcessedPart},
+    process::DateCode,
+};
 
 #[derive(Clone, Debug)]
 pub struct LegacyMetadata {
@@ -34,7 +36,7 @@ pub struct LegacyBoard {
     pub circled_letters: Option<String>,
     pub extra_label: Option<String>,
     pub date_code: DateCode,
-    pub parts: HashMap<PartDesignator, LegacyPart>,
+    pub parts: HashMap<PartDesignator, ProcessedPart>,
 }
 
 impl LegacyBoard {
@@ -77,9 +79,9 @@ fn part_parser(layout: BoardLayout, role: PartRole) -> BoxedParser<'static> {
         PartRole::Rtc => boxed_parser(rtc()),
         PartRole::Mcu => boxed_parser(tama()),
         PartRole::Unknown => Box::new(|_, part| {
-            Ok(part.label.clone().map(|label| LegacyPart {
+            Ok(part.label.clone().map(|label| ProcessedPart {
                 label: Some(label),
-                ..LegacyPart::default()
+                ..ProcessedPart::default()
             }))
         }),
     }

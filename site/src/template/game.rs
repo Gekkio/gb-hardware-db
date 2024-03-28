@@ -5,11 +5,14 @@
 use gbhwdb_backend::config::cartridge::{GameConfig, PartRoleConfig};
 use maud::{html, Markup, Render};
 
-use super::{
-    listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
-    listing_photos_cell::ListingPhotosCell,
+use crate::{
+    legacy::LegacyCartridgeSubmission,
+    template::Optional,
+    template::{
+        listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
+        listing_photos_cell::ListingPhotosCell,
+    },
 };
-use crate::{legacy::LegacyCartridgeSubmission, template::Optional};
 
 #[derive(Clone, Debug)]
 pub struct Game<'a> {

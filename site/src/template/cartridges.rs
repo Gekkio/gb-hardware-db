@@ -7,8 +7,7 @@ use itertools::Itertools;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};
 
-use super::mapper::MapperCfg;
-use crate::legacy::LegacyCartridgeSubmission;
+use crate::{legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg};
 
 pub struct Cartridges<'a> {
     pub mapper_cfgs: &'a [MapperCfg],

@@ -13,7 +13,6 @@ use gbhwdb_backend::{
 };
 use glob::glob;
 use image::{imageops::FilterType, ImageOutputFormat};
-use legacy::LegacyPhotos;
 use log::{debug, info, warn, LevelFilter};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use simplelog::{ColorChoice, TermLogger, TerminalMode};
@@ -25,13 +24,13 @@ use std::{
 };
 use walkdir::{DirEntry, WalkDir};
 
-use crate::legacy::part::*;
-use crate::legacy::*;
+use legacy::*;
 use site::{build_site, SubmissionCounts};
 
 mod css;
 mod csv_export;
 mod legacy;
+mod process;
 mod site;
 mod template;
 
@@ -302,6 +301,8 @@ fn process_cartridge_submissions(
 fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
     use gbhwdb_backend::input::dmg::*;
     use legacy::console::*;
+    use process::part::{boxed_parser, map_part, ProcessedPart};
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/DMG").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -321,9 +322,9 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             let cpu = console.mainboard.u1.as_ref().map(|part| {
                 boxed_parser(parser::gen1_soc::gen1_soc())(None, part)
                     .unwrap()
-                    .unwrap_or_else(|| LegacyPart {
+                    .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyPart::default()
+                        ..ProcessedPart::default()
                     })
             });
             let year_hint = cpu.as_ref().map(|cpu| cpu.date_code.year.unwrap_or(1996));
@@ -331,28 +332,28 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             let work_ram = console.mainboard.u2.as_ref().map(|part| {
                 boxed_parser(parser::ram::ram())(year_hint, part)
                     .unwrap()
-                    .unwrap_or_else(|| LegacyPart {
+                    .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyPart::default()
+                        ..ProcessedPart::default()
                     })
             });
             let video_ram = console.mainboard.u3.as_ref().map(|part| {
                 boxed_parser(parser::ram::ram())(year_hint, part)
                     .unwrap()
-                    .unwrap_or_else(|| LegacyPart {
+                    .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyPart::default()
+                        ..ProcessedPart::default()
                     })
             });
             let amplifier = console.mainboard.u4.as_ref().map(|part| {
                 boxed_parser(parser::dmg_amp::dmg_amp())(year_hint, part)
                     .unwrap()
-                    .unwrap_or_else(|| LegacyPart {
+                    .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
-                        ..LegacyPart::default()
+                        ..ProcessedPart::default()
                     })
             });
-            let crystal = map_legacy_part(
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -371,7 +372,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             };
 
             let lcd_board = console.lcd_board.as_ref().map(|board| {
-                let regulator = map_legacy_part(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
+                let regulator = map_part(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
                 let lcd_panel = board
                     .screen
                     .as_ref()
@@ -433,7 +434,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
                 year: stamp
                     .as_ref()
-                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                    .and_then(|stamp| to_full_year(year_hint, stamp.year)),
                 month: stamp.as_ref().and_then(|stamp| stamp.month),
                 mainboard,
                 lcd_board,
@@ -507,6 +508,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
 fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
     use gbhwdb_backend::input::sgb::*;
     use legacy::console::*;
+    use process::part::map_part;
     let walker = WalkDir::new("data/consoles/SGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -521,16 +523,16 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen1_soc::gen1_soc(),
             );
-            let icd2 = map_legacy_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
-            let work_ram = map_legacy_part(year_hint, &console.mainboard.u3, parser::ram::ram());
-            let video_ram = map_legacy_part(year_hint, &console.mainboard.u4, parser::ram::ram());
-            let rom = map_legacy_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
-            let cic = map_legacy_part(year_hint, &console.mainboard.u6, parser::cic::cic());
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_part(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let video_ram = map_part(year_hint, &console.mainboard.u4, parser::ram::ram());
+            let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
+            let cic = map_part(year_hint, &console.mainboard.u6, parser::cic::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -574,6 +576,8 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
 fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
     use gbhwdb_backend::input::mgb::*;
     use legacy::console::*;
+    use process::part::map_part;
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/MGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -591,17 +595,15 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
-            let amplifier =
-                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator =
-                map_legacy_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
-            let crystal = map_legacy_part(
+            let work_ram = map_part(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -633,7 +635,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
-                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                    .and_then(|stamp| to_full_year(year_hint, stamp.year)),
                 month: stamp.as_ref().and_then(|stamp| stamp.month),
                 mainboard,
                 lcd_panel,
@@ -667,6 +669,8 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
 fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
     use gbhwdb_backend::input::mgl::*;
     use legacy::console::*;
+    use process::part::map_part;
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/MGL").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -684,22 +688,20 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
-            let amplifier =
-                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator =
-                map_legacy_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
-            let crystal = map_legacy_part(
+            let work_ram = map_part(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
             );
-            let t1 = map_legacy_part(
+            let t1 = map_part(
                 year_hint,
                 &console.mainboard.t1,
                 parser::mgl_transformer::mgl_transformer(),
@@ -732,7 +734,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
-                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                    .and_then(|stamp| to_full_year(year_hint, stamp.year)),
                 week: stamp.as_ref().and_then(|stamp| stamp.week),
                 mainboard,
                 lcd_panel,
@@ -766,6 +768,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
 fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
     use gbhwdb_backend::input::sgb2::*;
     use legacy::console::*;
+    use process::part::map_part;
     let walker = WalkDir::new("data/consoles/SGB2").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -780,17 +783,17 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let icd2 = map_legacy_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
-            let work_ram = map_legacy_part(year_hint, &console.mainboard.u3, parser::ram::ram());
-            let rom = map_legacy_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
-            let cic = map_legacy_part(year_hint, &console.mainboard.u5, parser::cic::cic());
-            let coil = map_legacy_part(year_hint, &console.mainboard.coil1, parser::coil::coil());
-            let crystal = map_legacy_part(
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let work_ram = map_part(year_hint, &console.mainboard.u3, parser::ram::ram());
+            let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
+            let cic = map_part(year_hint, &console.mainboard.u5, parser::cic::cic());
+            let coil = map_part(year_hint, &console.mainboard.coil1, parser::coil::coil());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.xtal1,
                 parser::crystal_20mihz::crystal_20mihz(),
@@ -839,6 +842,8 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
 fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
     use gbhwdb_backend::input::cgb::*;
     use legacy::console::*;
+    use process::part::map_part;
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/CGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -856,13 +861,11 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(1998));
-            let cpu = map_legacy_part(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
-            let work_ram = map_legacy_part(year_hint, &console.mainboard.u2, parser::ram::ram());
-            let amplifier =
-                map_legacy_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator =
-                map_legacy_part(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
-            let crystal = map_legacy_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
+            let work_ram = map_part(year_hint, &console.mainboard.u2, parser::ram::ram());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_8mihz::crystal_8mihz(),
@@ -914,7 +917,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             let metadata = LegacyCgbMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
                 release_code: console.shell.release_code.clone(),
-                year: to_legacy_year(year_hint, stamp_year),
+                year: to_full_year(year_hint, stamp_year),
                 month: old_stamp.as_ref().and_then(|stamp| stamp.month),
                 week: new_stamp.as_ref().and_then(|stamp| stamp.week),
                 mainboard,
@@ -948,6 +951,8 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
 fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
     use gbhwdb_backend::input::agb::*;
     use legacy::console::*;
+    use process::part::map_part;
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/AGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -965,26 +970,24 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_qfp_128::agb_soc_qfp_128(),
             );
-            let work_ram = map_legacy_part(
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
-            let regulator =
-                map_legacy_part(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
-            let u4 = map_legacy_part(
+            let regulator = map_part(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
+            let u4 = map_part(
                 year_hint,
                 &console.mainboard.u4,
                 parser::agb_pmic::agb_pmic(),
             );
-            let amplifier =
-                map_legacy_part(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
-            let crystal = map_legacy_part(
+            let amplifier = map_part(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -1015,7 +1018,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
-                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                    .and_then(|stamp| to_full_year(year_hint, stamp.year)),
                 week: stamp.as_ref().and_then(|stamp| stamp.week),
                 mainboard,
             };
@@ -1048,6 +1051,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
 fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
     use gbhwdb_backend::input::ags::*;
     use legacy::console::*;
+    use process::part::map_part;
     let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -1065,36 +1069,36 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_qfp_156::agb_soc_qfp_156(),
             );
-            let work_ram = map_legacy_part(
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
             let amplifier = match console.mainboard.label.as_str() {
                 // FIXME: Not really an amplifier
-                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_legacy_part(
+                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_part(
                     year_hint,
                     &console.mainboard.u3,
                     parser::ags_pmic_new::ags_pmic_new(),
                 ),
-                _ => map_legacy_part(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
+                _ => map_part(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
             };
-            let u4 = map_legacy_part(
+            let u4 = map_part(
                 year_hint,
                 &console.mainboard.u4,
                 parser::ags_pmic_old::ags_pmic_old(),
             );
-            let u5 = map_legacy_part(
+            let u5 = map_part(
                 year_hint,
                 &console.mainboard.u5,
                 parser::ags_charge_ctrl::ags_charge_ctrl(),
             );
-            let crystal = map_legacy_part(
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
@@ -1149,6 +1153,8 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
 fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
     use gbhwdb_backend::input::gbs::*;
     use legacy::console::*;
+    use process::part::map_part;
+    use process::to_full_year;
     let walker = WalkDir::new("data/consoles/GBS").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -1163,20 +1169,20 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::agb_soc_qfp_128::agb_soc_qfp_128(),
             );
-            let work_ram = map_legacy_part(
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
                 parser::sram_tsop1_48::sram_tsop1_48(),
             );
-            let u4 = map_legacy_part(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
-            let u5 = map_legacy_part(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
-            let u6 = map_legacy_part(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
-            let crystal = map_legacy_part(
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
+            let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
+            let crystal = map_part(
                 year_hint,
                 &console.mainboard.y1,
                 parser::crystal_32mihz::crystal_32mihz(),
@@ -1209,7 +1215,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 release_code: console.shell.release_code.clone(),
                 year: stamp
                     .as_ref()
-                    .and_then(|stamp| to_legacy_year(year_hint, stamp.year)),
+                    .and_then(|stamp| to_full_year(year_hint, stamp.year)),
                 week: stamp.as_ref().and_then(|stamp| stamp.week),
                 mainboard,
             };
@@ -1238,6 +1244,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
 fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     use gbhwdb_backend::input::oxy::*;
     use legacy::console::*;
+    use process::part::map_part;
     let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -1255,18 +1262,18 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_legacy_part(
+            let cpu = map_part(
                 year_hint,
                 &console.mainboard.u1,
                 parser::agb_soc_bga::agb_soc_bga(),
             );
-            let u2 = map_legacy_part(
+            let u2 = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::oxy_pmic::oxy_pmic(),
             );
-            let u4 = map_legacy_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
-            let u5 = map_legacy_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
             let mainboard = LegacyOxyMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),

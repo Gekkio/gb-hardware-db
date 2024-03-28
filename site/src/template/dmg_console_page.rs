@@ -4,8 +4,10 @@
 
 use maud::{html, Markup, Render};
 
-use super::{console_page::ConsolePage, submission_part_table::SubmissionPart};
-use crate::legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission};
+use crate::{
+    legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission},
+    template::{console_page::ConsolePage, submission_part_table::SubmissionPart},
+};
 
 pub struct DmgConsolePage<'a> {
     pub submission: &'a LegacyDmgSubmission,

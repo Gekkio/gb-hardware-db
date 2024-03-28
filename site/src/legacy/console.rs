@@ -9,9 +9,10 @@ use gbhwdb_backend::{
     Console,
 };
 
-use super::{
-    to_legacy_year, DateCode, HasDateCode, LegacyMetadata, LegacyPart, LegacyPhoto, LegacyPhotos,
-    PhotoInfo, PhotoKind,
+use crate::{
+    legacy::{HasDateCode, LegacyMetadata, LegacyPhoto, LegacyPhotos, PhotoInfo, PhotoKind},
+    process::part::ProcessedPart,
+    process::{to_full_year, DateCode},
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, Default)]
@@ -50,14 +51,14 @@ pub struct ChipInfo<M: ?Sized> {
     pub label: &'static str,
     pub designator: &'static str,
     pub hide_type: bool,
-    pub getter: Box<dyn Fn(&M) -> Option<&LegacyPart>>,
+    pub getter: Box<dyn Fn(&M) -> Option<&ProcessedPart>>,
 }
 
 impl<M: ?Sized> ChipInfo<M> {
     pub fn new(
         label: &'static str,
         designator: &'static str,
-        getter: Box<dyn Fn(&M) -> Option<&LegacyPart>>,
+        getter: Box<dyn Fn(&M) -> Option<&ProcessedPart>>,
     ) -> Self {
         ChipInfo {
             label,
@@ -282,11 +283,11 @@ pub struct LegacyDmgMainboard {
     pub circled_letters: Option<String>,
     pub extra_label: Option<String>,
     pub stamp: Option<String>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub video_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub video_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -297,7 +298,7 @@ pub struct LegacyDmgLcdBoard {
     pub year: Option<u16>,
     pub month: Option<Month>,
     pub lcd_panel: Option<LegacyLcdPanel>,
-    pub regulator: Option<LegacyPart>,
+    pub regulator: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyDmgLcdBoard {
@@ -349,12 +350,12 @@ pub struct LegacySgbMainboard {
     pub letter_at_top_right: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub icd2: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub video_ram: Option<LegacyPart>,
-    pub rom: Option<LegacyPart>,
-    pub cic: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub icd2: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub video_ram: Option<ProcessedPart>,
+    pub rom: Option<ProcessedPart>,
+    pub cic: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacySgbMainboard {
@@ -415,13 +416,13 @@ pub struct LegacySgb2Mainboard {
     pub letter_at_top_right: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub icd2: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub rom: Option<LegacyPart>,
-    pub cic: Option<LegacyPart>,
-    pub coil: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub icd2: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub rom: Option<ProcessedPart>,
+    pub cic: Option<ProcessedPart>,
+    pub coil: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacySgb2Mainboard {
@@ -560,11 +561,11 @@ pub struct LegacyMgbMainboard {
     pub year: Option<u16>,
     pub month: Option<Month>,
     pub jun: Option<Jun>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub regulator: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub regulator: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyMgbMainboard {
@@ -664,12 +665,12 @@ pub struct LegacyMglMainboard {
     pub year: Option<u16>,
     pub month: Option<Month>,
     pub jun: Option<Jun>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub regulator: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
-    pub t1: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub regulator: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
+    pub t1: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyMglMainboard {
@@ -762,11 +763,11 @@ pub struct LegacyCgbMainboard {
     pub year: Option<u16>,
     pub month: Option<Month>,
     pub jun: Option<Jun>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub regulator: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub regulator: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyCgbMainboard {
@@ -858,12 +859,12 @@ pub struct LegacyAgbMainboard {
     pub stamp: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub regulator: Option<LegacyPart>,
-    pub u4: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub regulator: Option<ProcessedPart>,
+    pub u4: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyAgbMainboard {
@@ -941,12 +942,12 @@ pub struct LegacyAgsMainboard {
     pub stamp: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub amplifier: Option<LegacyPart>,
-    pub u4: Option<LegacyPart>,
-    pub u5: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub amplifier: Option<ProcessedPart>,
+    pub u4: Option<ProcessedPart>,
+    pub u5: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyAgsMainboard {
@@ -1034,12 +1035,12 @@ pub struct LegacyGbsMainboard {
     pub stamp_back: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub work_ram: Option<LegacyPart>,
-    pub u4: Option<LegacyPart>,
-    pub u5: Option<LegacyPart>,
-    pub u6: Option<LegacyPart>,
-    pub crystal: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub work_ram: Option<ProcessedPart>,
+    pub u4: Option<ProcessedPart>,
+    pub u5: Option<ProcessedPart>,
+    pub u6: Option<ProcessedPart>,
+    pub crystal: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyGbsMainboard {
@@ -1098,10 +1099,10 @@ pub struct LegacyOxyMainboard {
     pub circled_letters: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub cpu: Option<LegacyPart>,
-    pub u2: Option<LegacyPart>,
-    pub u4: Option<LegacyPart>,
-    pub u5: Option<LegacyPart>,
+    pub cpu: Option<ProcessedPart>,
+    pub u2: Option<ProcessedPart>,
+    pub u4: Option<ProcessedPart>,
+    pub u5: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyOxyMainboard {
@@ -1120,8 +1121,8 @@ pub struct LegacyLcdPanel {
     pub label: Option<String>,
     pub year: Option<u16>,
     pub month: Option<Month>,
-    pub column_driver: Option<LegacyPart>,
-    pub row_driver: Option<LegacyPart>,
+    pub column_driver: Option<ProcessedPart>,
+    pub row_driver: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyLcdPanel {
@@ -1135,13 +1136,13 @@ impl HasDateCode for LegacyLcdPanel {
     }
 }
 
-pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyPart {
+pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPart {
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {
         let chip = gbhwdb_backend::parser::lcd_chip::lcd_chip()
             .parse(&label)
             .unwrap_or_else(|_| panic!("{}", label));
-        LegacyPart {
+        ProcessedPart {
             label: Some(match &ribbon_label {
                 Some(ribbon_label) => format!("{} {}", ribbon_label, label),
                 None => label.to_owned(),
@@ -1149,7 +1150,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyPart 
             kind: ribbon_label.clone(),
             manufacturer: Some(Manufacturer::Sharp),
             date_code: DateCode {
-                year: to_legacy_year(year_hint, chip.year),
+                year: to_full_year(year_hint, chip.year),
                 week: chip.week,
                 month: chip.month,
                 jun: None,
@@ -1157,11 +1158,11 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyPart 
             rom_code: None,
         }
     } else {
-        LegacyPart {
+        ProcessedPart {
             label: ribbon_label.clone(),
             kind: ribbon_label.clone(),
             manufacturer: Some(Manufacturer::Sharp),
-            ..LegacyPart::default()
+            ..ProcessedPart::default()
         }
     }
 }
@@ -1185,7 +1186,7 @@ pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option
         label,
         year: screen
             .as_ref()
-            .and_then(|screen| to_legacy_year(year_hint, screen.year)),
+            .and_then(|screen| to_full_year(year_hint, screen.year)),
         month: screen.as_ref().and_then(|screen| screen.month),
         column_driver,
         row_driver,

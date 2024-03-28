@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-GDAN-10",
     "circled_letters": "I",
-    "extra_label": "3",
+    "panel_position": "3",
     "year": 1997,
     "month": 5,
     "u1": {

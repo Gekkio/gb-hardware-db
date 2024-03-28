@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-TFDN-01",
     "circled_letters": "I",
-    "extra_label": "6",
+    "panel_position": "6",
     "year": 1999,
     "month": 2,
     "u1": {

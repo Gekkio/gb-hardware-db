@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-KGDU-10",
     "circled_letters": "CM",
-    "extra_label": "4",
+    "panel_position": "4",
     "year": 2000,
     "month": 9,
     "u1": {

@@ -9,7 +9,7 @@
   },
   "board": {
     "label": "AAAC S",
-    "extra_label": "2",
+    "panel_position": "2",
     "u1": {
       "label": "LR0G150 DMG-TRA-1 92022"
     }

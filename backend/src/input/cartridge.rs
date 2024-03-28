@@ -46,7 +46,7 @@ pub struct CartridgeBoard {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub circled_letters: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub extra_label: Option<String>,
+    pub panel_position: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -156,7 +156,7 @@ fn test_deserialize() {
             "board": {
                 "label": "ASDF",
                 "circled_letters": "M",
-                "extra_label": "5",
+                "panel_position": "5",
                 "year": 1999,
                 "month": 11,
                 "u1": {
@@ -204,7 +204,7 @@ fn test_deserialize() {
             board: CartridgeBoard {
                 label: "ASDF".to_owned(),
                 circled_letters: Some("M".to_owned()),
-                extra_label: Some("5".to_owned()),
+                panel_position: Some("5".to_owned()),
                 year: Some(1999),
                 month: Some(Month::November),
                 u1: Some(Part {
@@ -280,7 +280,7 @@ fn test_deserialize_minimal() {
             board: CartridgeBoard {
                 label: "ASDF".to_owned(),
                 circled_letters: None,
-                extra_label: None,
+                panel_position: None,
                 year: None,
                 month: None,
                 u1: None,

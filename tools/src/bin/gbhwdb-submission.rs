@@ -217,8 +217,8 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
                     .child(EditView::new().with_name("label"))
                     .child(TextView::new("Circled letters:"))
                     .child(EditView::new().with_name("circled_letters"))
-                    .child(TextView::new("Extra label:"))
-                    .child(EditView::new().with_name("extra_label"))
+                    .child(TextView::new("Panel position:"))
+                    .child(EditView::new().with_name("panel_position"))
                     .child(TextView::new("Year:"))
                     .child(EditView::new().with_name("year"))
                     .child(TextView::new("Month:"))
@@ -230,7 +230,7 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     siv.run();
     let label = siv.get_edit_view_value("label");
     let circled_letters = siv.get_edit_view_value("circled_letters");
-    let extra_label = siv.get_edit_view_value("extra_label");
+    let panel_position = siv.get_edit_view_value("panel_position");
     let year = siv.get_edit_view_value("year");
     let month = siv.get_edit_view_value("month");
     siv.pop_layer();
@@ -259,7 +259,7 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     let board = trim(&label).map(|label| CartridgeBoard {
         label,
         circled_letters: trim(&circled_letters),
-        extra_label: trim(&extra_label),
+        panel_position: trim(&panel_position),
         year: trim(&year).map(|year| u16::from_str(&year).unwrap()),
         month: trim(&month).map(|month| Month::try_from(u8::from_str(&month).unwrap()).unwrap()),
         u1: add_part(siv, parts.u1, "u1"),

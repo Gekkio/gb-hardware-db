@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-A07-01",
     "circled_letters": "A",
-    "extra_label": "1",
+    "panel_position": "1",
     "u1": {
       "label": "DMG-AFOP-0 S LH538WPU JAPAN F1 9949 D"
     },

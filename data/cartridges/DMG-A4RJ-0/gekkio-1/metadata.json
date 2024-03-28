@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-A06-01",
     "circled_letters": "A",
-    "extra_label": "5",
+    "panel_position": "5",
     "year": 1999,
     "month": 12,
     "u1": {

@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-UFDT-01",
     "circled_letters": "I",
-    "extra_label": "1",
+    "panel_position": "1",
     "year": 1998,
     "month": 11,
     "u1": {

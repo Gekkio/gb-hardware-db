@@ -34,7 +34,7 @@ pub struct LegacyBoard {
     pub layout: BoardLayout,
     pub kind: String,
     pub circled_letters: Option<String>,
-    pub extra_label: Option<String>,
+    pub panel_position: Option<String>,
     pub date_code: DateCode,
     pub parts: HashMap<PartDesignator, ProcessedPart>,
 }
@@ -55,7 +55,7 @@ impl LegacyBoard {
             layout,
             kind: board.label,
             circled_letters: board.circled_letters,
-            extra_label: board.extra_label,
+            panel_position: board.panel_position,
             date_code: DateCode::year_month(board.year, board.month),
             parts,
         }

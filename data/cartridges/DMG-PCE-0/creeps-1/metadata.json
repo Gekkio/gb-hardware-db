@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-BEAN-02",
     "circled_letters": "I",
-    "extra_label": "3",
+    "panel_position": "3",
     "year": 1991,
     "month": 8,
     "u1": {

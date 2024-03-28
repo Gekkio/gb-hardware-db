@@ -21,7 +21,7 @@ impl ToCsv for LegacyMetadata {
                     Builder::<LegacyBoard>::new()
                         .add("type", |m| (&m.kind).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add("extra_label", |m| (&m.extra_label).csv())
+                        .add("panel_position", |m| (&m.panel_position).csv())
                         .add_date_code(|m| m.date_code)
                 },
             )

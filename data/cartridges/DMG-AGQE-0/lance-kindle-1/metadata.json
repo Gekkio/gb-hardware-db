@@ -7,7 +7,7 @@
   "board": {
     "label": "DMG-Z02-01",
     "circled_letters": "I",
-    "extra_label": "3",
+    "panel_position": "3",
     "year": 2000,
     "month": 8,
     "u1": {

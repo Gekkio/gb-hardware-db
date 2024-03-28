@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-MC-SFCN-01",
     "circled_letters": "Y",
-    "extra_label": "5",
+    "panel_position": "5",
     "year": 1996,
     "month": 10,
     "u1": {

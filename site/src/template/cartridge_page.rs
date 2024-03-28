@@ -89,8 +89,8 @@ impl<'a> Render for CartridgePage<'a> {
                         dt { "Circled letter(s) on board" }
                         dd { (value) }
                     }
-                    @if let Some(value) = &board.extra_label {
-                        dt { "Extra label" }
+                    @if let Some(value) = &board.panel_position {
+                        dt { "Position in PCB panel" }
                         dd { (value) }
                     }
                 }

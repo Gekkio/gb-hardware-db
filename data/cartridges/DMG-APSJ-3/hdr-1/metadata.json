@@ -10,7 +10,7 @@
   "board": {
     "label": "DMG-KFDN-10",
     "circled_letters": "I",
-    "extra_label": "6",
+    "panel_position": "6",
     "year": 2002,
     "month": 6,
     "u1": {

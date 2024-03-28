@@ -91,7 +91,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
         let metadata = &self.submission.metadata;
         let lcd_date_code = metadata
             .lcd_panel()
-            .and_then(|panel| panel.date_code().calendar_short());
+            .and_then(|panel| panel.date_code().calendar());
         html! {
             tr {
                 (ListingEntryCell {
@@ -108,7 +108,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                         @if let Some(release_code) = metadata.shell().release_code {
                             div { "Release: " (release_code) }
                         }
-                        @if let Some(date_code) = metadata.shell().date_code.calendar_short() {
+                        @if let Some(date_code) = metadata.shell().date_code.calendar() {
                             div { "Assembled: " (date_code) }
                         }
                         @if let Some(date_code) = lcd_date_code {
@@ -118,7 +118,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                 }
                 td {
                     div { (metadata.mainboard().kind) }
-                    @if let Some(date_code) = metadata.mainboard().date_code.calendar_short() {
+                    @if let Some(date_code) = metadata.mainboard().date_code.calendar() {
                         div { (date_code) }
                     }
                 }

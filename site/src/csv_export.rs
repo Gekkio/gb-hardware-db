@@ -123,7 +123,6 @@ impl<T> Builder<T> {
         FN: Fn(&T) -> DateCode + 'static + Copy,
     {
         let mut result = self;
-        result = result.add("calendar_short", move |v| f(v).calendar_short().csv());
         result = result.add("calendar", move |v| f(v).calendar().csv());
         result = result.add("year", move |v| f(v).year.csv());
         result = result.add("month", move |v| f(v).month.csv());

@@ -21,7 +21,7 @@ impl<'a> Render for ListingPart<'a> {
                         div { (Optional(part.kind.as_ref())) }
                     }
                     div { (Optional(part.rom_code.as_ref())) }
-                    div { (Optional(part.date_code.calendar_short())) }
+                    div { (Optional(part.date_code.calendar())) }
                     div { (Optional(part.manufacturer.as_ref().map(|m| m.name()))) }
                 }
             },

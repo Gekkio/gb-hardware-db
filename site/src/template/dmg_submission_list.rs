@@ -33,7 +33,7 @@ impl<'a> Render for DmgSubmissionList<'a> {
                         @if let Some(board) = &m.lcd_board {
                             div {
                                 div { (board.kind) }
-                                div { (Optional(board.date_code().calendar_short())) }
+                                div { (Optional(board.date_code().calendar())) }
                             }
                         }
                     }
@@ -43,7 +43,7 @@ impl<'a> Render for DmgSubmissionList<'a> {
                         @if let Some(board) = &m.power_board {
                             div {
                                 div { "Type " (board.kind) }
-                                div { (Optional(board.date_code().calendar_short())) }
+                                div { (Optional(board.date_code().calendar())) }
                             }
                         }
                     }

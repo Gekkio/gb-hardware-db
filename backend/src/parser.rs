@@ -45,7 +45,7 @@ pub use self::{
     rtc::Rtc,
     sgb_rom::SgbRom,
     supervisor_reset::SupervisorReset,
-    tama::TamaType,
+    tama::{Tama, TamaType},
 };
 
 pub mod accelerometer;

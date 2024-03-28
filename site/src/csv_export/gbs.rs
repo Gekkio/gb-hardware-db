@@ -2,7 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::legacy::console::{LegacyGbsMainboard, LegacyGbsMetadata};
+use crate::{
+    legacy::console::{LegacyGbsMainboard, LegacyGbsMetadata},
+    HasDateCode,
+};
 
 use super::{part, Builder, Field, ToCsv};
 
@@ -11,7 +14,7 @@ impl ToCsv for LegacyGbsMetadata {
         Builder::<Self>::new()
             .add("color", |m| (&m.color).csv())
             .add("release_code", |m| (&m.release_code).csv())
-            .add_date_code()
+            .add_date_code(|m| m.date_code())
             .nest(
                 "mainboard",
                 |m| Some(&m.mainboard),
@@ -23,7 +26,7 @@ impl ToCsv for LegacyGbsMetadata {
                         .add("stamp_front", |m| (&m.stamp_front).csv())
                         .add("stamp_back", |m| (&m.stamp_back).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)

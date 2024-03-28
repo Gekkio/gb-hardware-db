@@ -9,10 +9,7 @@ use super::{
     listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
     listing_photos_cell::ListingPhotosCell,
 };
-use crate::{
-    legacy::{HasDateCode, LegacyCartridgeSubmission},
-    template::Optional,
-};
+use crate::{legacy::LegacyCartridgeSubmission, template::Optional};
 
 #[derive(Clone, Debug)]
 pub struct Game<'a> {
@@ -63,11 +60,11 @@ fn render_submission(submission: &LegacyCartridgeSubmission, parts: &PartRoleCon
             td { (Optional(metadata.code.as_ref())) }
             td {
                 div { (metadata.board.kind) }
-                div { (Optional(metadata.board.date_code().calendar())) }
+                div { (Optional(metadata.board.date_code.calendar())) }
             }
             @for (designator, _) in parts {
                 (ListingPart {
-                    part: metadata.board[designator].as_ref(),
+                    part: metadata.board.parts.get(&designator),
                     hide_type: false,
                 })
             }

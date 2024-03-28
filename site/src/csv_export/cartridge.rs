@@ -2,6 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+use gbhwdb_backend::config::cartridge::PartDesignator;
+
 use crate::legacy::cartridge::{LegacyBoard, LegacyMetadata};
 
 use super::{part, Builder, Field, ToCsv};
@@ -19,16 +21,16 @@ impl ToCsv for LegacyMetadata {
                         .add("type", |m| (&m.kind).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
                         .add("extra_label", |m| (&m.extra_label).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code)
                 },
             )
-            .nest("u1", |m| m.board.u1.as_ref(), part)
-            .nest("u2", |m| m.board.u2.as_ref(), part)
-            .nest("u3", |m| m.board.u3.as_ref(), part)
-            .nest("u4", |m| m.board.u4.as_ref(), part)
-            .nest("u5", |m| m.board.u5.as_ref(), part)
-            .nest("u6", |m| m.board.u6.as_ref(), part)
-            .nest("u7", |m| m.board.u7.as_ref(), part)
-            .nest("x1", |m| m.board.x1.as_ref(), part)
+            .nest("u1", |m| m.board.parts.get(&PartDesignator::U1), part)
+            .nest("u2", |m| m.board.parts.get(&PartDesignator::U2), part)
+            .nest("u3", |m| m.board.parts.get(&PartDesignator::U3), part)
+            .nest("u4", |m| m.board.parts.get(&PartDesignator::U4), part)
+            .nest("u5", |m| m.board.parts.get(&PartDesignator::U5), part)
+            .nest("u6", |m| m.board.parts.get(&PartDesignator::U6), part)
+            .nest("u7", |m| m.board.parts.get(&PartDesignator::U7), part)
+            .nest("x1", |m| m.board.parts.get(&PartDesignator::X1), part)
     }
 }

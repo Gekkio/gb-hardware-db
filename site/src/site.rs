@@ -431,7 +431,7 @@ pub fn build_site() -> Site {
                 let mapper = parts
                     .into_iter()
                     .find(|&(_, role)| role == PartRole::Mapper)
-                    .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
+                    .and_then(|(designator, _)| submission.metadata.board.parts.get(&designator));
                 let key = mapper_cfgs
                     .iter()
                     .position(|cfg| (cfg.match_fn)(layout, mapper));

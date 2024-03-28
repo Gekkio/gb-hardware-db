@@ -7,7 +7,7 @@ use maud::{html, Markup, Render};
 use time::{format_description::FormatItem, macros::format_description};
 
 use crate::{
-    legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyPhoto},
+    legacy::{LegacyCartridgeSubmission, LegacyPhoto},
     template::submission_part_table::{submission_part_table, SubmissionPart},
 };
 
@@ -46,7 +46,7 @@ impl<'a> Render for CartridgePage<'a> {
             .map(|(designator, role)| SubmissionPart {
                 designator: designator.as_str(),
                 label: role.display(),
-                part: metadata.board[designator].as_ref(),
+                part: metadata.board.parts.get(&designator),
             });
         html! {
             article.page-cartridge {
@@ -81,7 +81,7 @@ impl<'a> Render for CartridgePage<'a> {
                 dl {
                     dt { "Board type" }
                     dd { (board.kind) }
-                    @if let Some(date) = board.date_code().calendar() {
+                    @if let Some(date) = board.date_code.calendar() {
                         dt { "Manufacture date" }
                         dd { (date) }
                     }

@@ -270,23 +270,7 @@ fn process_cartridge_submissions(
                 }
             }
 
-            let mut board = LegacyBoard {
-                layout,
-                kind: cartridge.board.label.clone(),
-                circled_letters: cartridge.board.circled_letters.clone(),
-                extra_label: cartridge.board.extra_label.clone(),
-                year: cartridge.board.year.map(|year| year as u16),
-                month: cartridge.board.month,
-                u1: None,
-                u2: None,
-                u3: None,
-                u4: None,
-                u5: None,
-                u6: None,
-                u7: None,
-                x1: None,
-            };
-            add_legacy_parts(layout, cartridge.board, &mut board);
+            let board = LegacyBoard::new(cartridge.board, layout);
             let metadata = LegacyMetadata {
                 cfg: cfg.clone(),
                 code: cartridge.shell.code,
@@ -335,34 +319,38 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             }
 
             let cpu = console.mainboard.u1.as_ref().map(|part| {
-                to_legacy_part(None, part, parser::gen1_soc::gen1_soc()).unwrap_or_else(|| {
-                    LegacyPart {
+                boxed_parser(parser::gen1_soc::gen1_soc())(None, part)
+                    .unwrap()
+                    .unwrap_or_else(|| LegacyPart {
                         kind: Some("blob".to_string()),
                         ..LegacyPart::default()
-                    }
-                })
+                    })
             });
-            let year_hint = cpu.as_ref().map(|cpu| cpu.year.unwrap_or(1996));
+            let year_hint = cpu.as_ref().map(|cpu| cpu.date_code.year.unwrap_or(1996));
 
             let work_ram = console.mainboard.u2.as_ref().map(|part| {
-                to_legacy_part(year_hint, part, parser::ram::ram()).unwrap_or_else(|| LegacyPart {
-                    kind: Some("blob".to_string()),
-                    ..LegacyPart::default()
-                })
-            });
-            let video_ram = console.mainboard.u3.as_ref().map(|part| {
-                to_legacy_part(year_hint, part, parser::ram::ram()).unwrap_or_else(|| LegacyPart {
-                    kind: Some("blob".to_string()),
-                    ..LegacyPart::default()
-                })
-            });
-            let amplifier = console.mainboard.u4.as_ref().map(|part| {
-                to_legacy_part(year_hint, part, parser::dmg_amp::dmg_amp()).unwrap_or_else(|| {
-                    LegacyPart {
+                boxed_parser(parser::ram::ram())(year_hint, part)
+                    .unwrap()
+                    .unwrap_or_else(|| LegacyPart {
                         kind: Some("blob".to_string()),
                         ..LegacyPart::default()
-                    }
-                })
+                    })
+            });
+            let video_ram = console.mainboard.u3.as_ref().map(|part| {
+                boxed_parser(parser::ram::ram())(year_hint, part)
+                    .unwrap()
+                    .unwrap_or_else(|| LegacyPart {
+                        kind: Some("blob".to_string()),
+                        ..LegacyPart::default()
+                    })
+            });
+            let amplifier = console.mainboard.u4.as_ref().map(|part| {
+                boxed_parser(parser::dmg_amp::dmg_amp())(year_hint, part)
+                    .unwrap()
+                    .unwrap_or_else(|| LegacyPart {
+                        kind: Some("blob".to_string()),
+                        ..LegacyPart::default()
+                    })
             });
             let crystal = map_legacy_part(
                 year_hint,

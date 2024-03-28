@@ -4,7 +4,7 @@
 
 use gbhwdb_backend::{
     input::{LcdChip, LcdScreen},
-    parser::LabelParser,
+    parser::{LabelParser, Manufacturer},
     time::{Jun, Month, Week},
     Console,
 };
@@ -1147,17 +1147,20 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> LegacyPart 
                 None => label.to_owned(),
             }),
             kind: ribbon_label.clone(),
-            manufacturer: Some("Sharp".to_owned()),
-            year: to_legacy_year(year_hint, chip.year),
-            week: chip.week,
-            month: chip.month,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: DateCode {
+                year: to_legacy_year(year_hint, chip.year),
+                week: chip.week,
+                month: chip.month,
+                jun: None,
+            },
             rom_code: None,
         }
     } else {
         LegacyPart {
             label: ribbon_label.clone(),
             kind: ribbon_label.clone(),
-            manufacturer: Some("Sharp".to_owned()),
+            manufacturer: Some(Manufacturer::Sharp),
             ..LegacyPart::default()
         }
     }

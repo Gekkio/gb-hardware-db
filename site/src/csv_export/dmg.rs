@@ -2,9 +2,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::legacy::console::{
-    LegacyDmgJackBoard, LegacyDmgLcdBoard, LegacyDmgMainboard, LegacyDmgMetadata,
-    LegacyDmgPowerBoard, LegacyLcdPanel,
+use crate::{
+    legacy::console::{
+        LegacyDmgJackBoard, LegacyDmgLcdBoard, LegacyDmgMainboard, LegacyDmgMetadata,
+        LegacyDmgPowerBoard, LegacyLcdPanel,
+    },
+    HasDateCode,
 };
 
 use super::{part, Builder, Field, ToCsv};
@@ -13,7 +16,7 @@ impl ToCsv for LegacyDmgMetadata {
     fn csv_builder() -> Builder<Self> {
         Builder::<Self>::new()
             .add("color", |m| (&m.color).csv())
-            .add_date_code()
+            .add_date_code(|m| m.date_code())
             .nest(
                 "mainboard",
                 |m| Some(&m.mainboard),
@@ -38,7 +41,7 @@ impl ToCsv for LegacyDmgMetadata {
                         .add("type", |b| (&b.kind).csv())
                         .add("circled_letters", |b| (&b.circled_letters).csv())
                         .add("stamp", |b| (&b.stamp).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest(
@@ -47,7 +50,7 @@ impl ToCsv for LegacyDmgMetadata {
                 || {
                     Builder::<LegacyLcdPanel>::new()
                         .add("label", |p| (&p.label).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest(
@@ -80,7 +83,7 @@ impl ToCsv for LegacyDmgMetadata {
                     Builder::<LegacyDmgPowerBoard>::new()
                         .add("type", |b| (&b.kind).csv())
                         .add("label", |b| (&b.label).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest(

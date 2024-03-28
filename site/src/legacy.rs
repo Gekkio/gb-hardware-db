@@ -39,6 +39,20 @@ pub struct DateCode {
 }
 
 impl DateCode {
+    pub fn year_month(year: Option<u16>, month: Option<Month>) -> Self {
+        DateCode {
+            year,
+            month,
+            ..DateCode::default()
+        }
+    }
+    pub fn loose_year_week(year_hint: Option<u16>, year: Option<Year>, week: Option<Week>) -> Self {
+        DateCode {
+            year: to_legacy_year(year_hint, year),
+            week,
+            ..DateCode::default()
+        }
+    }
     pub fn calendar_short(&self) -> Option<String> {
         match (self.year, self.month, self.week) {
             (Some(year), Some(month), _) => match self.jun {
@@ -75,6 +89,26 @@ impl DateCode {
             (Some(year), _, Some(week)) => Some(format!("Week {week}/{year}")),
             (Some(year), _, _) => Some(year.to_string()),
             _ => None,
+        }
+    }
+}
+
+impl From<(Option<u16>, Option<Week>)> for DateCode {
+    fn from((year, week): (Option<u16>, Option<Week>)) -> Self {
+        DateCode {
+            year,
+            week,
+            ..DateCode::default()
+        }
+    }
+}
+
+impl From<(Option<u16>, Option<Month>)> for DateCode {
+    fn from((year, month): (Option<u16>, Option<Month>)) -> Self {
+        DateCode {
+            year,
+            month,
+            ..DateCode::default()
         }
     }
 }
@@ -135,22 +169,9 @@ pub enum PhotoKind {
 pub struct LegacyPart {
     pub kind: Option<String>,
     pub label: Option<String>,
-    pub manufacturer: Option<String>,
-    pub year: Option<u16>,
-    pub month: Option<Month>,
-    pub week: Option<Week>,
+    pub manufacturer: Option<Manufacturer>,
+    pub date_code: DateCode,
     pub rom_code: Option<String>,
-}
-
-impl HasDateCode for LegacyPart {
-    fn date_code(&self) -> DateCode {
-        DateCode {
-            year: self.year,
-            month: self.month,
-            jun: None,
-            week: self.week,
-        }
-    }
 }
 
 #[derive(Clone, Debug, Default)]
@@ -195,10 +216,6 @@ impl LegacyPhotos for LegacyDefaultPhotos {
 pub struct LegacyPhoto {
     pub path: String,
     pub name: String,
-}
-
-pub fn to_legacy_manufacturer(manufacturer: Option<Manufacturer>) -> Option<String> {
-    manufacturer.map(|manufacturer| manufacturer.name().to_string())
 }
 
 pub fn to_legacy_year(year_hint: Option<u16>, part_year: Option<Year>) -> Option<u16> {

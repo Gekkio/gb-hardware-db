@@ -2,7 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::legacy::console::{LegacyAgsMainboard, LegacyAgsMetadata};
+use crate::{
+    legacy::console::{LegacyAgsMainboard, LegacyAgsMetadata},
+    HasDateCode,
+};
 
 use super::{part, Builder, Field, ToCsv};
 
@@ -19,7 +22,7 @@ impl ToCsv for LegacyAgsMetadata {
                         .add("number_pair", |m| (&m.number_pair).csv())
                         .add("stamp", |m| (&m.stamp).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)

@@ -1,6 +1,6 @@
 use maud::{html, Markup};
 
-use crate::{template::Optional, HasDateCode, LegacyPart};
+use crate::{template::Optional, LegacyPart};
 
 pub struct SubmissionPart<'a> {
     pub designator: &'a str,
@@ -28,8 +28,8 @@ pub fn submission_part_table<'a>(parts: impl Iterator<Item = SubmissionPart<'a>>
                         td { (label) }
                         @if let Some(part) = part {
                             td { (Optional(part.kind.as_ref())) }
-                            td { (Optional(part.manufacturer.as_ref())) }
-                            td { (Optional(part.date_code().calendar())) }
+                            td { (Optional(part.manufacturer.as_ref().map(|m| m.name()))) }
+                            td { (Optional(part.date_code.calendar())) }
                             td { (Optional(part.label.as_ref())) }
                         } @else {
                             td;

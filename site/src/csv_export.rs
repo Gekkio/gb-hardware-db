@@ -5,7 +5,10 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::legacy::{HasDateCode, LegacyPart, LegacySubmission};
+use crate::{
+    legacy::{LegacyPart, LegacySubmission},
+    DateCode,
+};
 
 mod agb;
 mod ags;
@@ -58,8 +61,10 @@ fn part() -> Builder<LegacyPart> {
     Builder::<LegacyPart>::new()
         .add("kind", |c| (&c.kind).csv())
         .add("label", |c| (&c.label).csv())
-        .add("manufacturer", |c| (&c.manufacturer).csv())
-        .add_date_code()
+        .add("manufacturer", |c| {
+            (&c.manufacturer).map(|m| m.name()).csv()
+        })
+        .add_date_code(|c| c.date_code)
 }
 
 trait Field<'a> {
@@ -116,16 +121,16 @@ impl<T> Builder<T> {
             .push((name.to_owned(), Box::new(move |value| f(value))));
         self
     }
-    pub fn add_date_code(self) -> Self
+    pub fn add_date_code<FN>(self, f: FN) -> Self
     where
-        T: HasDateCode,
+        FN: Fn(&T) -> DateCode + 'static + Copy,
     {
         let mut result = self;
-        result = result.add("calendar_short", |v| v.date_code().calendar_short().csv());
-        result = result.add("calendar", |v| v.date_code().calendar().csv());
-        result = result.add("year", |v| v.date_code().year.csv());
-        result = result.add("month", |v| v.date_code().month.csv());
-        result = result.add("week", |v| v.date_code().week.csv());
+        result = result.add("calendar_short", move |v| f(v).calendar_short().csv());
+        result = result.add("calendar", move |v| f(v).calendar().csv());
+        result = result.add("year", move |v| f(v).year.csv());
+        result = result.add("month", move |v| f(v).month.csv());
+        result = result.add("week", move |v| f(v).week.csv());
         result
     }
     pub fn record<'a>(&'a self, value: &'a T) -> impl Iterator<Item = Cow<[u8]>> + '_ {

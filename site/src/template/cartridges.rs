@@ -90,6 +90,7 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         submission
             .metadata
             .board
+            .date_code
             .year
             .map(|year| Cow::Owned(year.to_string()))
     });
@@ -104,7 +105,7 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         let parts = roles
             .into_iter()
             .find(|&(_, role)| role == PartRole::Mapper)
-            .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
+            .and_then(|(designator, _)| submission.metadata.board.parts.get(&designator));
         parts.and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
     });
     html! {

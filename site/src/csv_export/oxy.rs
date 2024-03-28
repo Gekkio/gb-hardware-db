@@ -2,7 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::legacy::console::{LegacyOxyMainboard, LegacyOxyMetadata};
+use crate::{
+    legacy::console::{LegacyOxyMainboard, LegacyOxyMetadata},
+    HasDateCode,
+};
 
 use super::{part, Builder, Field, ToCsv};
 
@@ -18,7 +21,7 @@ impl ToCsv for LegacyOxyMetadata {
                     Builder::<LegacyOxyMainboard>::new()
                         .add("type", |m| (&m.kind).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                 },
             )
             .nest("cpu", |m| m.mainboard.cpu.as_ref(), part)

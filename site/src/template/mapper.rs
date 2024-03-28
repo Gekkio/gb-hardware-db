@@ -10,7 +10,7 @@ use super::{
     listing_photos_cell::ListingPhotosCell,
 };
 use crate::{
-    legacy::{HasDateCode, LegacyCartridgeSubmission, LegacyPart},
+    legacy::{LegacyCartridgeSubmission, LegacyPart},
     template::Optional,
 };
 
@@ -70,11 +70,11 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
             }
             td {
                 div { (metadata.board.kind) }
-                div { (Optional(metadata.board.date_code().calendar())) }
+                div { (Optional(metadata.board.date_code.calendar())) }
             }
             @for &role in cfg.parts {
                 @let part = parts.into_iter().find(|&(_, candidate)| candidate == role)
-                    .and_then(|(designator, _)| submission.metadata.board[designator].as_ref());
+                    .and_then(|(designator, _)| submission.metadata.board.parts.get(&designator));
                 (ListingPart { part, hide_type: false })
             }
             (ListingPhotosCell { submission })

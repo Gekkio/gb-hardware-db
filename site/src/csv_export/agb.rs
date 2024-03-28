@@ -2,7 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use crate::legacy::console::{LegacyAgbMainboard, LegacyAgbMetadata};
+use crate::{
+    legacy::console::{LegacyAgbMainboard, LegacyAgbMetadata},
+    HasDateCode,
+};
 
 use super::{part, Builder, Field, ToCsv};
 
@@ -11,7 +14,7 @@ impl ToCsv for LegacyAgbMetadata {
         Builder::<Self>::new()
             .add("color", |m| (&m.color).csv())
             .add("release_code", |m| (&m.release_code).csv())
-            .add_date_code()
+            .add_date_code(|m| m.date_code())
             .nest(
                 "mainboard",
                 |m| Some(&m.mainboard),
@@ -21,7 +24,7 @@ impl ToCsv for LegacyAgbMetadata {
                         .add("number_pair", |m| (&m.number_pair).csv())
                         .add("stamp", |m| (&m.stamp).csv())
                         .add("circled_letters", |m| (&m.circled_letters).csv())
-                        .add_date_code()
+                        .add_date_code(|m| m.date_code())
                     // TODO: date_range?
                 },
             )

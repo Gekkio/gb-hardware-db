@@ -4,10 +4,7 @@
 
 use maud::{html, Markup, Render};
 
-use crate::{
-    legacy::{HasDateCode, LegacyPart},
-    template::Optional,
-};
+use crate::{legacy::LegacyPart, template::Optional};
 
 pub struct ListingPart<'a> {
     pub part: Option<&'a LegacyPart>,
@@ -24,8 +21,8 @@ impl<'a> Render for ListingPart<'a> {
                         div { (Optional(part.kind.as_ref())) }
                     }
                     div { (Optional(part.rom_code.as_ref())) }
-                    div { (Optional(part.date_code().calendar_short())) }
-                    div { (Optional(part.manufacturer.as_ref())) }
+                    div { (Optional(part.date_code.calendar_short())) }
+                    div { (Optional(part.manufacturer.as_ref().map(|m| m.name()))) }
                 }
             },
         }

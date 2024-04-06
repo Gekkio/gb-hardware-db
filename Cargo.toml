@@ -42,7 +42,7 @@ strsim = "0.11.0"
 swc_common = "=0.33.20"
 swc_css = "=0.157.39"
 time = "0.3.31"
-tokio = "1.36.0"
+tokio = "1.37.0"
 tower-http = "0.5.1"
 walkdir = "2.5.0"
 

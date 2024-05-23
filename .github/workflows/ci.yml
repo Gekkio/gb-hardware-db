@@ -35,7 +35,7 @@ jobs:
           rustup toolchain install stable --profile minimal
           rustup default stable
       - name: Cache dependencies
-        uses: Swatinem/rust-cache@378c8285a4eaf12899d11bea686a763e906956af
+        uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84
         with:
           cache-on-failure: true
       - name: Build

@@ -55,9 +55,6 @@ impl<'a> Render for CartridgePage<'a> {
                     @if let Some(photo) = &photos.front {
                         (self.render_photo(photo))
                     }
-                    @if let Some(photo) = &photos.back {
-                        (self.render_photo(photo))
-                    }
                 }
                 dl {
                     @if let Some(value) = &metadata.code {
@@ -75,6 +72,9 @@ impl<'a> Render for CartridgePage<'a> {
                         (self.render_photo(photo))
                     }
                     @if let Some(photo) = &photos.pcb_back {
+                        (self.render_photo(photo))
+                    }
+                    @if let Some(photo) = &photos.without_battery {
                         (self.render_photo(photo))
                     }
                 }

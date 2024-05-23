@@ -4,6 +4,8 @@
 
 use std::fmt;
 
+use config::cartridge::GamePlatform;
+
 pub mod config;
 pub mod input;
 pub mod parser;
@@ -82,6 +84,44 @@ impl Console {
 }
 
 impl fmt::Display for Console {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(self.name())
+    }
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+pub enum CartridgeClass {
+    Gb,
+    Gba,
+}
+
+impl From<GamePlatform> for CartridgeClass {
+    fn from(value: GamePlatform) -> Self {
+        match value {
+            GamePlatform::Gb => CartridgeClass::Gb,
+            GamePlatform::Gbc => CartridgeClass::Gb,
+            GamePlatform::Gba => CartridgeClass::Gba,
+        }
+    }
+}
+
+impl CartridgeClass {
+    pub const ALL: [CartridgeClass; 2] = [CartridgeClass::Gb, CartridgeClass::Gba];
+    pub const fn id(&self) -> &'static str {
+        match self {
+            CartridgeClass::Gb => "gb",
+            CartridgeClass::Gba => "gba",
+        }
+    }
+    pub const fn name(&self) -> &'static str {
+        match self {
+            CartridgeClass::Gb => "Game Boy",
+            CartridgeClass::Gba => "Game Boy Advance",
+        }
+    }
+}
+
+impl fmt::Display for CartridgeClass {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.write_str(self.name())
     }

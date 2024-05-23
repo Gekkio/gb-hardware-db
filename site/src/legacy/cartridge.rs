@@ -47,7 +47,8 @@ impl LegacyBoard {
             .filter_map(|(designator, role)| {
                 let parser = part_parser(layout, role);
                 let part = board[designator].as_ref()?;
-                let part = parser(board.year, part).unwrap()?;
+                let part = parser(board.year, part)
+                    .unwrap_or_else(|_| panic!("Failed to parse {designator:?}"))?;
                 Some((designator, part))
             })
             .collect();

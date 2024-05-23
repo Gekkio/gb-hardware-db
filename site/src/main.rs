@@ -277,10 +277,11 @@ fn process_cartridge_submissions(
                 board,
                 dump: cartridge.dump,
             };
-            let mut photos = LegacyDefaultPhotos::default();
+            let mut photos = LegacyCartridgePhotos::default();
             photos.front = get_photo(root, "01_front.jpg");
             photos.pcb_front = get_photo(root, "02_pcb_front.jpg");
             photos.pcb_back = get_photo(root, "03_pcb_back.jpg");
+            photos.without_battery = get_photo(root, "04_without_battery.jpg");
             submissions.push(LegacySubmission {
                 code: cartridge.code,
                 title: format!("Entry #{}", cartridge.index),

@@ -5,7 +5,7 @@
 use anyhow::Error;
 use gbhwdb_backend::{
     config::cartridge::{BoardLayout, PartRole, PartRoleConfig},
-    Console,
+    CartridgeClass, Console,
 };
 use itertools::Itertools;
 use log::error;
@@ -29,6 +29,8 @@ use crate::{
         dmg_console_page::DmgConsolePage,
         dmg_submission_list::DmgSubmissionList,
         game::Game,
+        gb_cartridges::GbCartridges,
+        gba_cartridges::GbaCartridges,
         home::Home,
         mapper::{Mapper, MapperCfg},
         markdown::Markdown,
@@ -358,12 +360,31 @@ pub fn build_site() -> Site {
             },
         ]
     });
-    site.add_page(["cartridges", "index"], move |data| {
+    site.add_page(["cartridges", "index"], move |_| {
+        let content = Markdown::parse(&fs::read_to_string("site/content/cartridges.markdown")?);
+        Ok(Page {
+            title: "Cartridges".into(),
+            section: SiteSection::Cartridges(None),
+            content: Cartridges { content }.render(),
+        })
+    });
+    site.add_page(["cartridges", "gb"], move |data| {
         Ok(Page {
             title: "Game Boy cartridges".into(),
-            section: SiteSection::Cartridges,
-            content: Cartridges {
+            section: SiteSection::Cartridges(Some(CartridgeClass::Gb)),
+            content: GbCartridges {
                 mapper_cfgs,
+                cfgs: &data.cfgs,
+                submissions: &data.cartridges,
+            }
+            .render(),
+        })
+    });
+    site.add_page(["cartridges", "gba"], move |data| {
+        Ok(Page {
+            title: "Game Boy Advance cartridges".into(),
+            section: SiteSection::Cartridges(Some(CartridgeClass::Gba)),
+            content: GbaCartridges {
                 cfgs: &data.cfgs,
                 submissions: &data.cartridges,
             }
@@ -386,7 +407,7 @@ pub fn build_site() -> Site {
                 ]);
                 let page = Page {
                     title: Cow::Owned(cfg.name.clone()),
-                    section: SiteSection::Cartridges,
+                    section: SiteSection::Cartridges(Some(CartridgeClass::from(cfg.platform))),
                     content: Game {
                         cfg: &cfg,
                         submissions,
@@ -415,7 +436,7 @@ pub fn build_site() -> Site {
                         contributor = submission.contributor
                     )
                     .into(),
-                    section: SiteSection::Cartridges,
+                    section: SiteSection::Cartridges(Some(CartridgeClass::from(cfg.platform))),
                     content: CartridgePage::new(submission).render(),
                 };
                 (path, page)
@@ -456,7 +477,7 @@ pub fn build_site() -> Site {
                 let path = SitePath(vec![Cow::Borrowed("cartridges"), Cow::Borrowed(cfg.id)]);
                 let page = Page {
                     title: Cow::Borrowed(cfg.name),
-                    section: SiteSection::Cartridges,
+                    section: SiteSection::Cartridges(Some(CartridgeClass::Gb)),
                     content: Mapper {
                         cfg: &cfg,
                         submissions,
@@ -590,5 +611,5 @@ impl SubmissionCounts {
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum SiteSection {
     Consoles(Option<Console>),
-    Cartridges,
+    Cartridges(Option<CartridgeClass>),
 }

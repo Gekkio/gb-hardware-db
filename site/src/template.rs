@@ -16,6 +16,8 @@ pub mod console_submission_list;
 pub mod dmg_console_page;
 pub mod dmg_submission_list;
 pub mod game;
+pub mod gb_cartridges;
+pub mod gba_cartridges;
 pub mod home;
 pub mod listing_entry_cell;
 pub mod listing_part;

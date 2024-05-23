@@ -13,7 +13,7 @@ pub mod cartridge;
 pub mod console;
 
 pub type LegacyCartridgeSubmission =
-    LegacySubmission<cartridge::LegacyMetadata, LegacyDefaultPhotos>;
+    LegacySubmission<cartridge::LegacyMetadata, LegacyCartridgePhotos>;
 pub type LegacyDmgSubmission = LegacySubmission<LegacyDmgMetadata, LegacyDmgPhotos>;
 pub type LegacySgbSubmission = LegacySubmission<LegacySgbMetadata, LegacyDefaultPhotos>;
 pub type LegacyMgbSubmission = LegacySubmission<LegacyMgbMetadata, LegacyDefaultPhotos>;
@@ -112,6 +112,53 @@ impl LegacyPhotos for LegacyDefaultPhotos {
             .iter()
             .filter_map(|photo| photo.as_ref())
             .collect()
+    }
+}
+
+#[derive(Clone, Debug, Default)]
+pub struct LegacyCartridgePhotos {
+    pub front: Option<LegacyPhoto>,
+    pub pcb_front: Option<LegacyPhoto>,
+    pub pcb_back: Option<LegacyPhoto>,
+    pub without_battery: Option<LegacyPhoto>,
+}
+
+impl LegacyPhotos for LegacyCartridgePhotos {
+    fn infos() -> Vec<PhotoInfo<Self>> {
+        vec![
+            PhotoInfo::new(PhotoKind::MainUnit, "Front", Box::new(|p| p.front.as_ref())),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB front",
+                Box::new(|p| p.pcb_front.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "PCB back",
+                Box::new(|p| p.pcb_back.as_ref()),
+            ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "Without battery",
+                Box::new(|p| p.without_battery.as_ref()),
+            ),
+        ]
+    }
+
+    fn front(&self) -> Option<&LegacyPhoto> {
+        self.front.as_ref()
+    }
+
+    fn photos(&self) -> Vec<&LegacyPhoto> {
+        [
+            &self.front,
+            &self.pcb_front,
+            &self.pcb_back,
+            &self.without_battery,
+        ]
+        .iter()
+        .filter_map(|photo| photo.as_ref())
+        .collect()
     }
 }
 

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::Console;
+use gbhwdb_backend::{CartridgeClass, Console};
 use maud::{html, Markup, Render};
 
 use crate::site::SiteSection;
@@ -20,7 +20,7 @@ impl SiteHeader {
                     li.active[matches!(self.section, SiteSection::Consoles(_))] {
                         a href="/" { "Consoles" }
                     }
-                    li.active[matches!(self.section, SiteSection::Cartridges)] {
+                    li.active[matches!(self.section, SiteSection::Cartridges(_))] {
                         a href="/cartridges" { "Game cartridges" }
                     }
                 }
@@ -37,6 +37,17 @@ impl SiteHeader {
                                 a href={ "/consoles/" (console.id()) } {
                                     strong { (console.code()) }
                                     span.name { (console.name()) }
+                                }
+                            }
+                        }
+                    }
+                }
+                @if let SiteSection::Cartridges(selected) = self.section {
+                    ul {
+                        @for class in CartridgeClass::ALL {
+                            li.active[selected == Some(class)] {
+                                a href={ "/cartridges/" (class.id()) ".html" } {
+                                    strong { (class.name()) }
                                 }
                             }
                         }

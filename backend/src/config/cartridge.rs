@@ -71,6 +71,8 @@ pub enum BoardLayout {
     Huc3,
     #[serde(rename = "tama")]
     Tama,
+    #[serde(rename = "agb_fram")]
+    AgbFram,
     #[serde(rename = "agb_e06")]
     AgbE06,
 }
@@ -78,6 +80,8 @@ pub enum BoardLayout {
 fn create_map() -> HashMap<&'static str, BoardLayout> {
     let mut m = HashMap::new();
     m.insert("AGB-E06", BoardLayout::AgbE06);
+    m.insert("AGB-E11", BoardLayout::AgbFram);
+    m.insert("AGB-Y11", BoardLayout::AgbFram);
     m.insert("0200309E4-01", BoardLayout::Tama);
     m.insert("AAAC S", BoardLayout::Rom);
     m.insert("CGB-A32", BoardLayout::Mbc6);
@@ -386,6 +390,11 @@ impl From<BoardLayout> for PartRoleConfig {
                 u1: Some(PartRole::Rom),
                 u2: Some(PartRole::Ram),
                 u3: Some(PartRole::SupervisorReset),
+                ..PartRoleConfig::default()
+            },
+            BoardLayout::AgbFram => PartRoleConfig {
+                u1: Some(PartRole::Rom),
+                u2: Some(PartRole::Ram),
                 ..PartRoleConfig::default()
             },
         }

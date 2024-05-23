@@ -1,0 +1,22 @@
+{
+  "code": "AGB-A7KE-0",
+  "slug": "echelonprime-1",
+  "contributor": "EchelonPrime",
+  "index": 1,
+  "shell": {
+    "code": "AGB-A7KE-USA"
+  },
+  "board": {
+    "label": "AGB-E11-01",
+    "circled_letters": "I",
+    "panel_position": "E-1",
+    "year": 2003,
+    "month": 7,
+    "u1": {
+      "label": "M033646-M MX23L6406-12C AGB-A7KE-0 I2 2H601300"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256A 0330 M04"
+    }
+  }
+}

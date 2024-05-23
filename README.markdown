@@ -17,11 +17,12 @@ Site source code for https://gbhwdb.gekkio.fi
 * curbsideaudio
 * davidslv
 * Duo (http://gameboy.mongenel.com)
+* EchelonPrime
 * endrift
 * FIX94
 * gekkio (https://gekkio.fi)
-* @hej.luxom
 * HDR
+* @hej.luxom
 * ide
 * ImATrackMan
 * Irfon Jones
@@ -29,6 +30,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Jan Spakula
 * jrra
 * Kai
+* kay-kidoutai (https://kidoutai.com)
 * l0k1
 * Lance Kindle
 * mattcurrie
@@ -42,4 +44,3 @@ Site source code for https://gbhwdb.gekkio.fi
 * terinjokes
 * tobiasvl
 * zear
-* kay-kidoutai (https://kidoutai.com)

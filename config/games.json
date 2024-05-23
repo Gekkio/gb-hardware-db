@@ -1,4 +1,13 @@
 {
+  "AGB-A7KE-0": {
+    "name": "Kirby - Nightmare in Dream Land (USA)",
+    "rom_verified": true,
+    "sha256": "caa4e11b6102257939297710dc4b49f6cec307de67838b2e7b7627e81b155db8",
+    "platform": "gba",
+    "layouts": [
+      "agb_fram"
+    ]
+  },
   "AGB-AWAP-0": {
     "name": "Wario Land 4 (USA, Europe)",
     "rom_verified": true,
@@ -6,6 +15,14 @@
     "platform": "gba",
     "layouts": [
       "agb_e06"
+    ]
+  },
+  "AGB-AZ2E-0": {
+    "name": "Zoids - Legacy (USA)",
+    "rom_verified": false,
+    "platform": "gba",
+    "layouts": [
+      "agb_fram"
     ]
   },
   "CGB-AFIP-0": {

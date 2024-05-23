@@ -1,0 +1,22 @@
+{
+  "code": "AGB-AZ2E-0",
+  "slug": "echelonprime-1",
+  "contributor": "EchelonPrime",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AZ2E-USA"
+  },
+  "board": {
+    "label": "AGB-Y11-01",
+    "circled_letters": "I",
+    "panel_position": "C-4",
+    "year": 2004,
+    "month": 7,
+    "u1": {
+      "label": "M043246-M MX23L6406-12C AGB-AZ2E-0 I2 2K050600"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256A 0412 M88"
+    }
+  }
+}

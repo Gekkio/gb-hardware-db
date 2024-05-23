@@ -12,14 +12,14 @@ use gbhwdb_backend::{
     Console,
 };
 use glob::glob;
-use image::{imageops::FilterType, ImageOutputFormat};
+use image::{codecs::jpeg::JpegEncoder, imageops::FilterType};
 use log::{debug, info, warn, LevelFilter};
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use simplelog::{ColorChoice, TermLogger, TerminalMode};
 use std::{
     collections::{BTreeMap, HashMap},
     fs::{self, create_dir_all, File, Metadata},
-    io::{BufWriter, Write},
+    io::BufWriter,
     path::Path,
 };
 use walkdir::{DirEntry, WalkDir};
@@ -114,9 +114,9 @@ fn convert_photo(
     width: u32,
 ) -> Result<(), Error> {
     let img = image::open(input.as_ref())?.resize(width, u32::MAX, FilterType::Lanczos3);
-    let mut w = BufWriter::new(File::create(&target)?);
-    img.write_to(&mut w, ImageOutputFormat::Jpeg(80))?;
-    w.flush()?;
+    let w = BufWriter::new(File::create(&target)?);
+    let encoder = JpegEncoder::new_with_quality(w, 80);
+    img.write_with_encoder(encoder)?;
     Ok(())
 }
 

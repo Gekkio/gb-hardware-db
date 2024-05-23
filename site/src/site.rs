@@ -395,7 +395,7 @@ pub fn build_site() -> Site {
         data.cartridges
             .iter()
             .sorted_by_key(|submission| &submission.code)
-            .group_by(|submission| &submission.code)
+            .chunk_by(|submission| &submission.code)
             .into_iter()
             .map(|(code, group)| {
                 let cfg = data.cfgs[code].clone();
@@ -459,7 +459,7 @@ pub fn build_site() -> Site {
                 (key, submission)
             })
             .sorted_by_key(|&(key, _)| key)
-            .group_by(|&(key, _)| key)
+            .chunk_by(|&(key, _)| key)
             .into_iter()
             .filter_map(|(cfg_idx, group)| {
                 cfg_idx.map(|idx| (idx, group.map(|(_, submission)| submission)))

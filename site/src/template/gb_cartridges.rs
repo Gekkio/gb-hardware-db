@@ -25,7 +25,7 @@ impl<'a> Render for GbCartridges<'a> {
             .submissions
             .iter()
             .sorted_by_key(|submission| &submission.code)
-            .group_by(|submission| &submission.code)
+            .chunk_by(|submission| &submission.code)
         {
             let cfg = &self.cfgs[code];
             if CartridgeClass::from(cfg.platform) == CartridgeClass::Gb {

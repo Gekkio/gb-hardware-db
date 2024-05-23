@@ -13,4 +13,4 @@ publish.workspace = true
 anyhow.workspace = true
 axum.workspace = true
 tokio = { workspace = true, features = ["fs", "macros", "rt-multi-thread"] }
-tower-http = { workspace = true, features = ["fs"] }
+tower-http = { workspace = true, features = ["fs", "set-header"] }

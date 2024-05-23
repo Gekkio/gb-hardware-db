@@ -93,11 +93,12 @@ pub fn sharp3() -> &'static impl LabelParser<MaskRom> {
 /// assert!(parser::mask_rom::macronix().parse("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_ok());
 /// assert!(parser::mask_rom::macronix().parse("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
 /// assert!(parser::mask_rom::macronix().parse("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
+/// assert!(parser::mask_rom::macronix().parse("S013607-M MX23L6406-12B AGB-AWAP-0 I2 2E489301").is_ok())
 /// ```
 pub fn macronix() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-M\ (MX23C[0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
+        r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-M\ (MX23[CL][0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((AGB|DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
         move |c| {
             Ok(MaskRom {
                 rom_code: c[5].to_owned(),

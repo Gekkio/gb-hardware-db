@@ -139,6 +139,26 @@ pub fn rohm_ba6735() -> &'static impl LabelParser<SupervisorReset> {
     )
 }
 
+/// TI SN74LV2416
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::supervisor_reset::ti_sn74lv2416().parse("LV2416 17M A23D").is_ok())
+/// ```
+pub fn ti_sn74lv2416() -> &'static impl LabelParser<SupervisorReset> {
+    single_parser!(
+        SupervisorReset,
+        r#"^LV2416\ ([0-9])([0-9])[[:alnum:]]\ [A-Z][0-9]{2}[A-Z]$"#,
+        move |c| {
+            Ok(SupervisorReset {
+                chip_type: "SN74LV2416".to_owned(),
+                manufacturer: Some(Manufacturer::TexasInstruments),
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
+}
+
 pub fn supervisor_reset() -> &'static impl LabelParser<SupervisorReset> {
     multi_parser!(
         SupervisorReset,
@@ -148,5 +168,6 @@ pub fn supervisor_reset() -> &'static impl LabelParser<SupervisorReset> {
         rohm_ba6129a(),
         rohm_ba6735(),
         mitsubishi_m62021p(),
+        ti_sn74lv2416(),
     )
 }

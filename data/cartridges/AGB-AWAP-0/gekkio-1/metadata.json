@@ -1,0 +1,26 @@
+{
+  "code": "AGB-AWAP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AWAP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E06-10",
+    "circled_letters": "I",
+    "panel_position": "N-3",
+    "year": 2001,
+    "month": 9,
+    "u1": {
+      "label": "S013607-M MX23L6406-12B AGB-AWAP-0 I2 2E489301"
+    },
+    "u2": {
+      "label": "hynix 0137A HY62WT081ED70C KOREA"
+    },
+    "u3": {
+      "label": "LV2416 17M A23D"
+    }
+  }
+}

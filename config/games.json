@@ -1,4 +1,13 @@
 {
+  "AGB-AWAP-0": {
+    "name": "Wario Land 4 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d16c7bf6e62bb84049fff1b387108fbd1e6e2cd38ca994ab5310dd9cbf9ba414",
+    "platform": "gba",
+    "layouts": [
+      "agb_e06"
+    ]
+  },
   "CGB-AFIP-0": {
     "name": "F-1 World Grand Prix (Europe) (En,Fr,De,Es)",
     "rom_verified": true,

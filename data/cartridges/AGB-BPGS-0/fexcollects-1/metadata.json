@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPGS-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPGS-ESP",
+    "stamp": "07"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "MB",
+    "panel_position": "K-2",
+    "year": 2004,
+    "month": 9,
+    "u1": {
+      "label": "E045338-MG MX23L12806-12C AGB-BPGS-0 J2 2K953200"
+    },
+    "u2": {
+      "label": "E044057G MX29L010TC-15A1 1G0501"
+    }
+  }
+}

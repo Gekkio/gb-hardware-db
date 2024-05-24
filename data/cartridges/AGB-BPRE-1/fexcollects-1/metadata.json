@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPRE-1",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPRE-USA",
+    "stamp": "15A E4"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "F-1",
+    "year": 2007,
+    "month": 8,
+    "u1": {
+      "label": "MAGNACHIP AC23V128111 AGB-BPRE-1 J2 SP0730 PS"
+    },
+    "u2": {
+      "label": "B072957G MX29L010TC-15A1 1H5943"
+    }
+  }
+}

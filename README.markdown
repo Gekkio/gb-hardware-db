@@ -19,6 +19,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Duo (http://gameboy.mongenel.com)
 * EchelonPrime
 * endrift
+* FexCollects
 * FIX94
 * gekkio (https://gekkio.fi)
 * HDR

@@ -52,6 +52,7 @@ impl fmt::Display for GamePlatform {
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum BoardConfig {
+    AgbE02,
     AgbE03,
     AgbE06,
     AgbE11,
@@ -122,6 +123,13 @@ impl BoardConfig {
         }
 
         match self {
+            BoardConfig::AgbE02 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // TSOP-I-32 Flash
+                D::U2 => part(PartRole::Flash, flash()),
+                _ => None,
+            },
             BoardConfig::AgbE03 => match designator {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
@@ -548,6 +556,7 @@ pub struct BoardPart {
 
 fn create_map() -> HashMap<&'static str, BoardConfig> {
     let mut m = HashMap::new();
+    m.insert("AGB-E02", BoardConfig::AgbE02);
     m.insert("AGB-E03", BoardConfig::AgbE03);
     m.insert("AGB-E06", BoardConfig::AgbE06);
     m.insert("AGB-E11", BoardConfig::AgbE11);

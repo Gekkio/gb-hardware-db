@@ -95,12 +95,13 @@ pub fn sharp3() -> &'static impl LabelParser<MaskRom> {
 /// assert!(parser::mask_rom::macronix().parse("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_ok());
 /// assert!(parser::mask_rom::macronix().parse("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
 /// assert!(parser::mask_rom::macronix().parse("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
-/// assert!(parser::mask_rom::macronix().parse("S013607-M MX23L6406-12B AGB-AWAP-0 I2 2E489301").is_ok())
+/// assert!(parser::mask_rom::macronix().parse("S013607-M MX23L6406-12B AGB-AWAP-0 I2 2E489301").is_ok());
+/// assert!(parser::mask_rom::macronix().parse("B063953-MG MX23L25607-12D2 AGB-B24P-0 K2 2T016800").is_ok());
 /// ```
 pub fn macronix() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-M\ (MX23[CL][0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((AGB|DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
+        r#"^[A-Z]([0-9]{2})([0-9]{2})[0-9]{2}-MG?\ (MX23[CL][0-9]{4,5}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((AGB|DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
         move |c| {
             Ok(MaskRom {
                 rom_code: c[5].to_owned(),
@@ -402,6 +403,28 @@ pub fn unknown_r26v3210f() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+/// Magnachip AC23V Mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::magnachip_ac23v().parse("MAGNACHIP AC23V128111 AGB-BPRE-1 J2 SP0730 PS").is_ok());
+/// ```
+pub fn magnachip_ac23v() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^MAGNACHIP\ (AC23V[0-9]{6})\ (AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ SP([0-9]{2})([0-9]{2})\ PS$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[2].to_owned(),
+                manufacturer: Some(Manufacturer::Magnachip),
+                chip_type: Some(c[1].to_owned()),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
 fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
     match code {
         "LH5359" => Some("LH53259"),   // Sharp Memory Data Book 1992
@@ -456,5 +479,6 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         samsung2(),
         fujitsu(),
         unknown_r26v3210f(),
+        magnachip_ac23v(),
     )
 }

@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPRS-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPRS-ESP",
+    "stamp": "09 E3"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "MB",
+    "panel_position": "N-3",
+    "year": 2005,
+    "month": 3,
+    "u1": {
+      "label": "S052638-MG MX23L12806-12C AGB-BPRS-0 J2 2M396503A1"
+    },
+    "u2": {
+      "label": "E044657G MX29L010TC-15A1 1G1769"
+    }
+  }
+}

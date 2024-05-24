@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPGJ-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPGJ-JPN",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "AGB-E02-20",
+    "circled_letters": "MB",
+    "panel_position": "C-5",
+    "year": 2003,
+    "month": 12,
+    "u1": {
+      "label": "N040238-M MX23L12806-12C AGB-BPGJ-0 J2 2J129100"
+    },
+    "u2": {
+      "label": "E032457 MX29L010TC-15A1 1E8980"
+    }
+  }
+}

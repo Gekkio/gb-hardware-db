@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPGE-1",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPGE-USA",
+    "stamp": "19A E4"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "MB",
+    "panel_position": "B-3",
+    "year": 2006,
+    "month": 10,
+    "u1": {
+      "label": "B064338-MG MX23L12806-12C AGB-BPGE-1 J2 20753000"
+    },
+    "u2": {
+      "label": "B064157G MX29L010TC-15A1 1H4943"
+    }
+  }
+}

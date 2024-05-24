@@ -1,0 +1,23 @@
+{
+  "code": "AGB-B24P-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-B24P-EUR",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "G-6",
+    "year": 2006,
+    "month": 8,
+    "u1": {
+      "label": "B063953-MG MX23L25607-12D2 AGB-B24P-0 K2 2T016800"
+    },
+    "u2": {
+      "label": "B063857G MX29L010TC-15A1 1H4751"
+    }
+  }
+}

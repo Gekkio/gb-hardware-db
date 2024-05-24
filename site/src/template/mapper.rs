@@ -32,7 +32,16 @@ impl<'a> Render for Mapper<'a> {
         html! {
             article {
                 h2 { "Cartridges by mapper: " (self.cfg.name) }
-                table {
+                table.mapper-listing {
+                    colgroup {
+                        col.mapper-listing__first-column;
+                        col;
+                        col;
+                        @for _ in self.cfg.parts {
+                            col;
+                        }
+                        col;
+                    }
                     thead {
                         tr {
                             th { "Entry" }

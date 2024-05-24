@@ -1,8 +1,968 @@
 {
+  "AGB-A2GP-0": {
+    "name": "GT Advance 3 - Pro Concept Racing (Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-A2NE-0": {
+    "name": "Sonic Advance 2 (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "f2b7a3329401a02706d87560f61da3e6da2ca42f2b9ae98a86d78e0529cb7260",
+    "platform": "gba"
+  },
+  "AGB-A2NP-0": {
+    "name": "Sonic Advance 2 (Europe) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-A2RE-0": {
+    "name": "Bratz (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "sha256": "fb4811eac43aa8763d7ebae1ef8296bcbc71da9623331990a42c6209d1c7e93f",
+    "platform": "gba"
+  },
+  "AGB-A2SE-0": {
+    "name": "Spyro 2 - Season of Flame (USA)",
+    "rom_verified": false,
+    "sha256": "75c1c3846f0a7e762c453455ff86c9fe7c3eecbd1d153809798831e5ee0a8117",
+    "platform": "gba"
+  },
+  "AGB-A3AC-0": {
+    "name": "Yaoxi Dao (China)",
+    "rom_verified": false,
+    "sha256": "789a75cd1936acbfbe133ce2fac233d269703a809ccd3b33bb0ad0bc71b600d6",
+    "platform": "gba"
+  },
+  "AGB-A3AJ-0": {
+    "name": "Super Mario Advance 3 - Yoshi's Island + Mario Brothers (Japan)",
+    "rom_verified": true,
+    "sha256": "9f29c9df2df70a2108dcfc8491becdf956054f7ae5311fcdff2d226795be0be2",
+    "platform": "gba"
+  },
+  "AGB-A3BP-0": {
+    "name": "Sabrina the Teenage Witch - Potion Commotion (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "bb1f9261f5100d2a765da0c10e6a5eb290dd5b4e8890bfe14721263e420434d6",
+    "platform": "gba"
+  },
+  "AGB-A3EJ-0": {
+    "name": "Bakuten Shoot Beyblade 2002 - Gekisen! Team Battle!! Kouryuu no Shou - Daichi Hen (Japan)",
+    "rom_verified": false,
+    "sha256": "f8f50e0e49438f4b26ebbd0533e9ee015a0e4fc5d1f3df64814b2975618acaa4",
+    "platform": "gba"
+  },
+  "AGB-A3QE-0": {
+    "name": "Sound of Thunder, A (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "bcfcf623a1addb0fbf251aeeab4f47275388f166a325c23c88b2741f01e070f3",
+    "platform": "gba"
+  },
+  "AGB-A3UJ-0": {
+    "name": "Mother 3 (Japan)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-A3WJ-0": {
+    "name": "Bakuten Shoot Beyblade 2002 - Gekisen! Team Battle!! Seiryuu no Shou - Takao Hen (Japan)",
+    "rom_verified": false,
+    "sha256": "2df731e763871ed34287fe98d5420e9eadb5d622da698df740d8aa1af41cbd19",
+    "platform": "gba"
+  },
+  "AGB-A4AE-0": {
+    "name": "Simpsons, The - Road Rage (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "8146d3338b05ebf18ac13cbf941ddfec491c7d21be87de10bd2bcbfbdcf37ee0",
+    "platform": "gba"
+  },
+  "AGB-A4AP-0": {
+    "name": "Simpsons, The - Road Rage (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "8146d3338b05ebf18ac13cbf941ddfec491c7d21be87de10bd2bcbfbdcf37ee0",
+    "platform": "gba"
+  },
+  "AGB-A4CE-0": {
+    "name": "I Spy Challenger! (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-A55P-0": {
+    "name": "Who Wants to Be a Millionaire (Europe)",
+    "rom_verified": true,
+    "sha256": "3707684287e337559de27d1be8b103f3a234d837ff4ba200ecd204608a0d53fa",
+    "platform": "gba"
+  },
+  "AGB-A5AE-0": {
+    "name": "Bionicle - Matoran Adventures (USA, Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": true,
+    "sha256": "a0df916402b36c0b605201059e4d7872c4c94d88b43473d270ed3ab6bf56d002",
+    "platform": "gba"
+  },
+  "AGB-A5NJ-0": {
+    "name": "Super Donkey Kong (Japan)",
+    "rom_verified": true,
+    "sha256": "a53ea8669b3e77fd7d8aec11bfdb8960ff24af968dafeadea9e6017c62f56ed6",
+    "platform": "gba"
+  },
+  "AGB-A5NU-0": {
+    "name": "Donkey Kong Country (USA)",
+    "rom_verified": true,
+    "sha256": "3d624dba4b99aca263e70ddb041e448c9d41ea43b52ffed320198e1e12d8980e",
+    "platform": "gba"
+  },
+  "AGB-A6BE-0": {
+    "name": "Megaman - Battle Network 3 - White Version (USA)",
+    "rom_verified": true,
+    "sha256": "a161aa80e9ee7e07e85bda5d1c93ad3d1415e35aee88380fe117997ebaf6c1c2",
+    "platform": "gba"
+  },
+  "AGB-A6ME-0": {
+    "name": "Megaman & Bass (USA)",
+    "rom_verified": true,
+    "sha256": "bac48ba865906942884540d86ce2f652a32583af69d04f063aba30778026bb35",
+    "platform": "gba"
+  },
+  "AGB-A6TP-0": {
+    "name": "Dr. Muto (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-A7HP-0": {
+    "name": "Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
   "AGB-A7KE-0": {
     "name": "Kirby - Nightmare in Dream Land (USA)",
     "rom_verified": true,
     "sha256": "caa4e11b6102257939297710dc4b49f6cec307de67838b2e7b7627e81b155db8",
+    "platform": "gba"
+  },
+  "AGB-A7KJ-0": {
+    "name": "Hoshi no Kirby - Yume no Izumi Deluxe (Japan)",
+    "rom_verified": true,
+    "sha256": "4d306911d2d7bad548aaffe13b1d30670a3fd97f9f9d760c247cd2ae3c431c36",
+    "platform": "gba"
+  },
+  "AGB-A7ME-0": {
+    "name": "Amazing Virtual Sea-Monkeys, The (USA)",
+    "rom_verified": false,
+    "sha256": "f6f92ee32e1368ef6e1f24be7ee5bdd1d51e8581c64bc4b89f5abf57e94552de",
+    "platform": "gba"
+  },
+  "AGB-A7OE-0": {
+    "name": "007 - NightFire (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "b39b223cfa5a6e19de3f7c3a9aca254a41eb2eebcf2718c8e0d0575291f7e903",
+    "platform": "gba"
+  },
+  "AGB-A89E-0": {
+    "name": "Megaman - Battle Chip Challenge (USA)",
+    "rom_verified": false,
+    "sha256": "e38da6e5dcdaf565ec1969ef6cbd95c4a307d87d3c853e23926ff2ce4497feb4",
+    "platform": "gba"
+  },
+  "AGB-A89J-0": {
+    "name": "Rockman EXE - Battle Chip GP (Japan)",
+    "rom_verified": false,
+    "sha256": "6c3ac853d06b0fa70d9ac5a0705841ddb4f0e06cd246894e60bcb1cf824ef025",
+    "platform": "gba"
+  },
+  "AGB-A8HE-0": {
+    "name": "Cabela's Big Game Hunter (USA)",
+    "rom_verified": true,
+    "sha256": "2bd88eaa5eea883c5aaff3b6184093d954c118fe37f609470f18f239b8453530",
+    "platform": "gba"
+  },
+  "AGB-A8QE-0": {
+    "name": "Pirates of the Caribbean - The Curse of the Black Pearl (USA) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "8b12ea1121c65b25d0f957e77865e561f9850f2cfd9f4186be0b0ebb2db98285",
+    "platform": "gba"
+  },
+  "AGB-A9AE-0": {
+    "name": "Demon Driver - Time to Burn Rubber! (USA)",
+    "rom_verified": false,
+    "sha256": "8a42982d68f2dbea42a4cf4ccefe1f9149de5329bf1ab7beb333acf0d736c57e",
+    "platform": "gba"
+  },
+  "AGB-A9GE-0": {
+    "name": "Stadium Games (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AA2C-0": {
+    "name": "Chaoji Maliou Shijie (China)",
+    "rom_verified": false,
+    "sha256": "9906d344891803eaa9de77bc91869f818b9072ef0532617004c74c647edbadc3",
+    "platform": "gba"
+  },
+  "AGB-AA2P-0": {
+    "name": "Super Mario Advance 2 - Super Mario World (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AA3E-0": {
+    "name": "All-Star Baseball 2003 (USA)",
+    "rom_verified": false,
+    "sha256": "02cf8855f20deefb33d27a6e9f853a8985713bb42ab4121d905f8ecb00371ea5",
+    "platform": "gba"
+  },
+  "AGB-AA7E-0": {
+    "name": "All-Star Baseball 2004 Featuring Derek Jeter (USA)",
+    "rom_verified": false,
+    "sha256": "06c9b7dd1dc90920b9db2fbf1da5bee35e9d650d9eadc058501a8ed5d9bff395",
+    "platform": "gba"
+  },
+  "AGB-AA9E-0": {
+    "name": "Duel Masters - Sempai Legends (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AABE-0": {
+    "name": "American Bass Challenge (USA)",
+    "rom_verified": false,
+    "sha256": "294e7c34a9d2ee37bc005368fcc268dfdc0dfaaade8adddae5d25e2fa33ee418",
+    "platform": "gba"
+  },
+  "AGB-AAKE-0": {
+    "name": "AirForce Delta Storm (USA) (En,Ja,Fr,De)",
+    "rom_verified": true,
+    "sha256": "eaa3e8311569f86a20aa3e82fc9ab44135a809dc0a177f3961d5d963a83d5d7e",
+    "platform": "gba"
+  },
+  "AGB-AAOE-0": {
+    "name": "Aero the Acro-Bat (USA)",
+    "rom_verified": false,
+    "sha256": "2d1631c5568a589092f9ed854255977623171ebf62d8eb0dd24e616499c0998e",
+    "platform": "gba"
+  },
+  "AGB-AAQE-0": {
+    "name": "Animal Snap - Rescue Them 2 by 2 (USA)",
+    "rom_verified": true,
+    "sha256": "eed54048fd9fa69d74d6fc4cb428a10ac760e3b2c64834d9190238e057ebb7c4",
+    "platform": "gba"
+  },
+  "AGB-AARE-0": {
+    "name": "Altered Beast - Guardian of the Realms (USA)",
+    "rom_verified": true,
+    "sha256": "4a82fb525d8cbf6e4a2df00db9b3d96c92735f4c39f84c2e83492641d9bf9e55",
+    "platform": "gba"
+  },
+  "AGB-AAYE-0": {
+    "name": "Mary-Kate and Ashley - Sweet 16 - Licensed to Drive (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AB3E-0": {
+    "name": "Dave Mirra Freestyle BMX 3 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "c20d61f5f8524ee33b73697128143b0ab211996bc0972e03178446691ecf691d",
+    "platform": "gba"
+  },
+  "AGB-AB8J-0": {
+    "name": "Bakuten Shoot Beyblade 2002 - Ikuze! Bakutou! Chou Jiryoku Battle!! (Japan)",
+    "rom_verified": true,
+    "sha256": "10c8a203b6d3fe7c2666a3b6f2f9a72b22d662e2d00adc783d6acae7d134f3b1",
+    "platform": "gba"
+  },
+  "AGB-ABMP-0": {
+    "name": "Super Bust-A-Move (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "13fa1ad5d98817c9918fa97ce389fb570976df2181dd363b4ad9e79d46b0ae0c",
+    "platform": "gba"
+  },
+  "AGB-ABQE-0": {
+    "name": "David Beckham Soccer (USA) (En,Es)",
+    "rom_verified": false,
+    "sha256": "506a3b9d2f5ed6af8ee3150172b8b467fee34389c1ba6bbff0e81bbab5b9adb4",
+    "platform": "gba"
+  },
+  "AGB-ABTE-0": {
+    "name": "Batman - Vengeance (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ABWE-0": {
+    "name": "Buffy the Vampire Slayer - Wrath of the Darkhul King (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "7c41ec9557f97ee126222c0d45a3541b10fc7561d9e524139e954c1e904254f5",
+    "platform": "gba"
+  },
+  "AGB-ABYE-0": {
+    "name": "Britney's Dance Beat (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AC5E-0": {
+    "name": "DemiKids - Dark Version (USA)",
+    "rom_verified": true,
+    "sha256": "5a6c050a34db8fe020b36fdca586a94a1eb60b8a4d82412658fc103a5be1c6f1",
+    "platform": "gba"
+  },
+  "AGB-AC8E-0": {
+    "name": "Crash Bandicoot 2 - N-Tranced (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ACCE-0": {
+    "name": "Crazy Chase (USA)",
+    "rom_verified": false,
+    "sha256": "663c9549c4de6c167e4bd62726d5a2b17e32cb96ba51f70d368143501f3ae2e4",
+    "platform": "gba"
+  },
+  "AGB-ACCP-0": {
+    "name": "Crazy Chase (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ACEE-0": {
+    "name": "Agassi Tennis Generation (USA)",
+    "rom_verified": false,
+    "sha256": "d8ecc97ceba5a80793ac5ff63a7952fb0adffaa6481d6032f3d5bb25c755c2f4",
+    "platform": "gba"
+  },
+  "AGB-ACGP-0": {
+    "name": "Columns Crown (Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ACKE-0": {
+    "name": "Backyard Baseball (USA)",
+    "rom_verified": true,
+    "sha256": "7c817528d9848c0390dba0fbd0ede3472833ab83a5cda76150ce8f3460dd899a",
+    "platform": "gba"
+  },
+  "AGB-ACPE-0": {
+    "name": "Caesars Palace Advance - Millennium Gold Edition (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ACQP-0": {
+    "name": "Crash Bandicoot XS (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AD4E-0": {
+    "name": "Dungeons & Dragons - Eye of the Beholder (USA)",
+    "rom_verified": false,
+    "sha256": "d8439d2129c3362d504e5440f407c1cbb3641ed165ee79f4f138673a9c25cbb0",
+    "platform": "gba"
+  },
+  "AGB-AD6P-0": {
+    "name": "Davis Cup (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AD7P-0": {
+    "name": "Droopy's Tennis Open (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "0b7a8f7091827ae4e5504c89adb6ffb65652ecb6764ee1324a608c2b5ad24684",
+    "platform": "gba"
+  },
+  "AGB-AE7E-0": {
+    "name": "Fire Emblem (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "f1200d19771b366b6ead15dec0eee4a7785b538d894c069c36f7592321ee799b",
+    "platform": "gba"
+  },
+  "AGB-AE7X-0": {
+    "name": "Fire Emblem (Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AERE-0": {
+    "name": "Dora the Explorer - The Search for the Pirate Pig's Treasure (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AEVE-0": {
+    "name": "Alienators - Evolution Continues (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "88465bfb0bde8a9a3df4a6081cc9f8e999fa74c68c1ec91ebc8dfc977be85fd0",
+    "platform": "gba"
+  },
+  "AGB-AEYP-0": {
+    "name": "Kim Possible (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "f442ac329d1c1be68d367087e96b9a4320430fe2e2cd68f51e15ddbc257c02b0",
+    "platform": "gba"
+  },
+  "AGB-AFEJ-0": {
+    "name": "Fire Emblem - Fuuin no Tsurugi (Japan)",
+    "rom_verified": true,
+    "sha256": "e62288883544705b18f1a0753896fdd865a628fb4589135813b16a972a4c1557",
+    "platform": "gba"
+  },
+  "AGB-AFGE-0": {
+    "name": "American Tail, An - Fievel's Gold Rush (USA) (En,Es)",
+    "rom_verified": false,
+    "sha256": "7397d79854a26e969add473cfeda87e5101422f34b613b703f05d0e296f7542b",
+    "platform": "gba"
+  },
+  "AGB-AFLP-0": {
+    "name": "FILA Decathlon (Europe) (En,Fr,De,Es,It,Sv)",
+    "rom_verified": true,
+    "sha256": "437cc4baa0819db43c71c3db6bd6331b057c82704af91bc9e5f98d012089695e",
+    "platform": "gba"
+  },
+  "AGB-AFNJ-0": {
+    "name": "Angel Collection - Mezase! Gakuen no Fashion Leader (Japan)",
+    "rom_verified": false,
+    "sha256": "6361765826b78e83276e0db8603e3fd5ac4d0453f5d4dc1383eeea0478a35eca",
+    "platform": "gba"
+  },
+  "AGB-AFSE-0": {
+    "name": "Flintstones, The - Big Trouble in Bedrock (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AFTE-0": {
+    "name": "F-14 Tomcat (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AFXJ-0": {
+    "name": "Final Fantasy Tactics Advance (Japan)",
+    "rom_verified": true,
+    "sha256": "b13dd536808ef5d0fd4494386a9499f6feb8310835d3f867cd17cc340d82bf9a",
+    "platform": "gba"
+  },
+  "AGB-AGFE-0": {
+    "name": "Golden Sun - The Lost Age (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AGFF-0": {
+    "name": "Golden Sun - L'Age Perdu (France)",
+    "rom_verified": true,
+    "sha256": "8f9a854618332d4a2886170a03ab0b10624d1202ea8562dabf0002807f7b56a8",
+    "platform": "gba"
+  },
+  "AGB-AGRE-0": {
+    "name": "ESPN Final Round Golf 2002 (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AGSE-0": {
+    "name": "Golden Sun (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AGSF-0": {
+    "name": "Golden Sun (France)",
+    "rom_verified": true,
+    "sha256": "5eb59f508c25548fb0ef72911cc75a81867f16b0ef8fca2a22cb6d026a862cd8",
+    "platform": "gba"
+  },
+  "AGB-AH3E-0": {
+    "name": "Hamtaro - Ham-Ham Heartbreak (USA)",
+    "rom_verified": true,
+    "sha256": "06f359a322fdba920c35ee0c794f1520a7f1b52827e372dd69c5fff648e6ae3d",
+    "platform": "gba"
+  },
+  "AGB-AH3P-0": {
+    "name": "Hamtaro - Ham-Ham Heartbreak (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AH9E-0": {
+    "name": "Hobbit, The - The Prelude to the Lord of the Rings (USA)",
+    "rom_verified": false,
+    "sha256": "b911978db02a94500eeb82dfce1d8ef13dd2bc69075b8bedf4daad18f1b2c9a2",
+    "platform": "gba"
+  },
+  "AGB-AHLP-0": {
+    "name": "Incredible Hulk, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AHOE-0": {
+    "name": "Mat Hoffman's Pro BMX (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a2779b43120f80a4b6305185c01086655f4b2eec979f88b7d7b53023fce5c05d",
+    "platform": "gba"
+  },
+  "AGB-AHPE-0": {
+    "name": "Hot Potato! (USA)",
+    "rom_verified": true,
+    "sha256": "274f67f7ec5399ab9f8cc42542a21c55a2a1e83648d15bcddb22cb06825feb33",
+    "platform": "gba"
+  },
+  "AGB-AI2E-0": {
+    "name": "Iridion II (USA)",
+    "rom_verified": false,
+    "sha256": "8f89c1ab8fb52f302dbed6e57f163918101470bce8f6442b4ffd19153f970449",
+    "platform": "gba"
+  },
+  "AGB-AI3E-0": {
+    "name": "Iridion 3D (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AI3P-0": {
+    "name": "Iridion 3D (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AI8E-0": {
+    "name": "Barbie Horse Adventures - Blue Ribbon Race (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AI8P-0": {
+    "name": "Barbie Horse Adventures (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "e9a14060b099b4c6faa525f8a3237f0166299711a467e62533970c4afdd51f30",
+    "platform": "gba"
+  },
+  "AGB-AIHE-0": {
+    "name": "Mission Impossible - Operation Surma (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AIHP-0": {
+    "name": "Mission Impossible - Operation Surma (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AILE-0": {
+    "name": "Aggressive Inline (USA)",
+    "rom_verified": false,
+    "sha256": "a75c9d5f1508dd114749c4418900a745fd075e276da09e2f6778069755510f08",
+    "platform": "gba"
+  },
+  "AGB-AISP-0": {
+    "name": "International Superstar Soccer (Europe)",
+    "rom_verified": true,
+    "sha256": "388cecb5acc74c659561e29c1f43c60c670b2c68189a2fb8d933c252b07090db",
+    "platform": "gba"
+  },
+  "AGB-AJFP-0": {
+    "name": "Jungle Book 2, The (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "52c1e1c50a010da08f028a31420914e7b188b0b90fd5530c4e0acbc0cb0feafe",
+    "platform": "gba"
+  },
+  "AGB-AJLE-0": {
+    "name": "Justice League - Injustice for All (USA)",
+    "rom_verified": false,
+    "sha256": "71c7829c906de73516473b04ed5333d0a275a261ba7d132482b832a93d85b7f9",
+    "platform": "gba"
+  },
+  "AGB-AJNE-0": {
+    "name": "Jimmy Neutron - Boy Genius (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AJRE-0": {
+    "name": "Jet Grind Radio (USA)",
+    "rom_verified": false,
+    "sha256": "1bbcfdbf0cb2374420b70e2fb38c415acfa068883c44187b563e786cb8ce9bc7",
+    "platform": "gba"
+  },
+  "AGB-AK8E-0": {
+    "name": "Medabots AX - Metabee Ver. (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AK9E-0": {
+    "name": "Medabots AX - Rokusho Ver. (USA)",
+    "rom_verified": true,
+    "sha256": "c1d194d9ffc703066109563aef173520d8c1f2f5bbb4fd4a7b7ebb9ff98c31cc",
+    "platform": "gba"
+  },
+  "AGB-AKFE-0": {
+    "name": "Sports Illustrated for Kids - Football (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AKGP-0": {
+    "name": "Mech Platoon (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "9599e6cc7c0c2ca5abab4a8d1bb24cd4b21eb88ab8d64000169fd9fb7637e854",
+    "platform": "gba"
+  },
+  "AGB-AKLE-0": {
+    "name": "Klonoa - Empire of Dreams (USA)",
+    "rom_verified": true,
+    "sha256": "7fe0b833376b560bc63434669c0bc917a899766b025694fcbe4486a9d37066f3",
+    "platform": "gba"
+  },
+  "AGB-AKSE-0": {
+    "name": "Mary-Kate and Ashley - Girls Night Out (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AKXF-0": {
+    "name": "Spider-Man (France)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AL4E-0": {
+    "name": "DemiKids - Light Version (USA)",
+    "rom_verified": true,
+    "sha256": "ef4c3e3d2147505a1a61ed3e2c3220c8c23caa2231502a39dfae9c209eff0d0f",
+    "platform": "gba"
+  },
+  "AGB-AL9P-0": {
+    "name": "Lara Croft Tomb Raider - The Prophecy (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "e0bd3cd251a272833db1a25e86778723289b39996e41cb684d36f08488d302aa",
+    "platform": "gba"
+  },
+  "AGB-ALDE-0": {
+    "name": "Lady Sia (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "e5621eacc61af62e6f1e838053936f1404df7e13b48ab53a9558c4f6700690d5",
+    "platform": "gba"
+  },
+  "AGB-ALUP-0": {
+    "name": "Super Monkey Ball Jr. (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AMAC-0": {
+    "name": "Chaoji Maliou 2 (China)",
+    "rom_verified": false,
+    "sha256": "a39d80233a5a5a2ee69116f6c1739c2d7ad5a68a362b0f99b9b4eb0b1ad2363a",
+    "platform": "gba"
+  },
+  "AGB-AMAE-0": {
+    "name": "Super Mario Advance (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d29dec02caacbf449e2a93c6042258b0669542e102eb0e6fd0eb92a5411e0244",
+    "platform": "gba"
+  },
+  "AGB-AMAP-0": {
+    "name": "Super Mario Advance (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d29dec02caacbf449e2a93c6042258b0669542e102eb0e6fd0eb92a5411e0244",
+    "platform": "gba"
+  },
+  "AGB-AMBJ-0": {
+    "name": "Mobile Pro Yakyuu - Kantoku no Saihai (Japan)",
+    "rom_verified": true,
+    "sha256": "184ce017a6e62989cbf7a68b25c5da3b564e543db61a3f24876a86c1b7068aaf",
+    "platform": "gba"
+  },
+  "AGB-AMEE-0": {
+    "name": "Army Men - Operation Green (USA) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "c0e1f5f998728d02f81012e06e9e2342e7908ae4b5d42384ae11fd01d70889fa",
+    "platform": "gba"
+  },
+  "AGB-AMGE-0": {
+    "name": "ESPN Great Outdoor Games - Bass 2002 (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AMHE-0": {
+    "name": "Bomberman Max 2 - Blue Advance (USA)",
+    "rom_verified": true,
+    "sha256": "e7ab828cda726d1193f3ac514a3128b6d1f4de73430d3c8aa7cf744dea1bed75",
+    "platform": "gba"
+  },
+  "AGB-AMKE-0": {
+    "name": "Mario Kart - Super Circuit (USA)",
+    "rom_verified": true,
+    "sha256": "aadc8b9f3c947ff6f610b6c8d7fddaaa9bea98b4bd43576df84f26c457ae1f90",
+    "platform": "gba"
+  },
+  "AGB-AMKJ-0": {
+    "name": "Mario Kart Advance (Japan)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AMKP-0": {
+    "name": "Mario Kart - Super Circuit (Europe)",
+    "rom_verified": true,
+    "sha256": "8f942be288124bb909559356c462460132b0ccbc6397db402aeabea60c4597bb",
+    "platform": "gba"
+  },
+  "AGB-AMRE-0": {
+    "name": "Motocross Maniacs Advance (USA) (En,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AN3E-0": {
+    "name": "Catz (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "3e1b7c2bb3d7ab5d223ab9944c5b7bff8558c35ebd42e948ecd109293e257b20",
+    "platform": "gba"
+  },
+  "AGB-AN6E-0": {
+    "name": "Klonoa 2 - Dream Champ Tournament (USA)",
+    "rom_verified": false,
+    "sha256": "2309b8c97aeb7fb64fcde35576c64de3a7a37c56d8ff5a6eee5844743753ab15",
+    "platform": "gba"
+  },
+  "AGB-ANCP-0": {
+    "name": "ZooCube (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ANMP-0": {
+    "name": "Namco Museum (Europe)",
+    "rom_verified": true,
+    "sha256": "0b567456f4fc1f18a5843cd782f1eb82bd1acd5f2dd295b03a36b77316ee1080",
+    "platform": "gba"
+  },
+  "AGB-ANUE-0": {
+    "name": "Antz - Extreme Racing (USA)",
+    "rom_verified": false,
+    "sha256": "9bf8c74c87b57205f03501648d297fc9cab6c24f1a5c2be6cddc8db842e7d564",
+    "platform": "gba"
+  },
+  "AGB-AOWE-0": {
+    "name": "Spyro - Attack of the Rhynocs (USA)",
+    "rom_verified": false,
+    "sha256": "65a929eae6786ac3b6018bafd1c48e2ade99883655e542e5b4e949e95ce6f28b",
+    "platform": "gba"
+  },
+  "AGB-AP8D-0": {
+    "name": "Scooby-Doo (Germany)",
+    "rom_verified": false,
+    "sha256": "0e195df4624af70c101aabc4d0ee5a11e66a511e22979526092e0ce25a2cb604",
+    "platform": "gba"
+  },
+  "AGB-APBJ-0": {
+    "name": "Pinobee no Daibouken (Japan)",
+    "rom_verified": false,
+    "sha256": "b9747dbdb518ff34192f3ef81df24c5c535d4d8739df5f7b120d8badbb6b1efb",
+    "platform": "gba"
+  },
+  "AGB-APDP-0": {
+    "name": "Pinball of the Dead, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "57578a9edff810790d7430e6d4f2c08cf0cd36299cb738862cefba104f0da7ef",
+    "platform": "gba"
+  },
+  "AGB-APXE-0": {
+    "name": "Phalanx (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AQAJ-1": {
+    "name": "Choro Q Advance (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AQRE-0": {
+    "name": "ATV - Quad Power Racing (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AR2P-0": {
+    "name": "Ready 2 Rumble Boxing - Round 2 (Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "4bd8430697bb5ff3a98ad48d8ecf2183f2c5b43e06ab730e243acf3592c59b9e",
+    "platform": "gba"
+  },
+  "AGB-AREP-0": {
+    "name": "Megaman - Battle Network (Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ARFE-0": {
+    "name": "Razor Freestyle Scooter (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ARME-0": {
+    "name": "Minority Report - Everybody Runs (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ARPE-0": {
+    "name": "Robopon 2 - Ring Version (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ARQE-0": {
+    "name": "Matchbox Cross Town Heroes (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ARXE-0": {
+    "name": "Rampage - Puzzle Attack (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "378e1f0dc7f316b79d7865608387d5fc5882abde19dbf350c9007c5ddb99a31f",
+    "platform": "gba"
+  },
+  "AGB-ASAP-0": {
+    "name": "Army Men Advance (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "d49331d145b3a191b2844a06e803d3894804f7541a9d623a039b1e4ea84dac97",
+    "platform": "gba"
+  },
+  "AGB-ASBJ-1": {
+    "name": "Gyakuten Saiban (Japan) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "6ee314d92d946a477d76aaefa15203eb083136ac562418fce862132515162c16",
+    "platform": "gba"
+  },
+  "AGB-ASGP-0": {
+    "name": "Smuggler's Run (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "36d64b2c351a357ce60c68836916b61946e06321009febbce26bdbb45cf3a23e",
+    "platform": "gba"
+  },
+  "AGB-ASIE-1": {
+    "name": "Sims, The - Bustin' Out (USA) (En,Fr,De,Es,It,Nl) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ASLE-0": {
+    "name": "Stuart Little 2 (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ASOE-0": {
+    "name": "Sonic Advance (USA) (En,Ja)",
+    "rom_verified": true,
+    "sha256": "afc29e3325baf68a1822e88b25fcb59c8bdc29b8cdc48fa21c56defbd60ca020",
+    "platform": "gba"
+  },
+  "AGB-ASOP-0": {
+    "name": "Sonic Advance (Europe) (En,Ja,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "a57c8c1a3e19a65baadc4a2fb4aa669e5ef462153ae9536634adbe6e03154b08",
+    "platform": "gba"
+  },
+  "AGB-ASQE-0": {
+    "name": "Snood (USA)",
+    "rom_verified": true,
+    "sha256": "2a52f77c0d01a37236265218b5125effbe5260b7d0c3e1d9c145d37a44122379",
+    "platform": "gba"
+  },
+  "AGB-ASTJ-0": {
+    "name": "Densetsu no Stafy (Japan)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-ASYE-0": {
+    "name": "Spyro - Season of Ice (USA)",
+    "rom_verified": true,
+    "sha256": "d331abe19e3f02e2855aa4bbc2de14626810aca83e0c216862eb1d8ca8d024b0",
+    "platform": "gba"
+  },
+  "AGB-ASZP-0": {
+    "name": "Scorpion King, The - Sword of Osiris (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "9a618f456876306784b22f803456766e6477297a91cee993048f28e1ceec2e0c",
+    "platform": "gba"
+  },
+  "AGB-AT3E-0": {
+    "name": "Tony Hawk's Pro Skater 3 (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AT3F-0": {
+    "name": "Tony Hawk's Pro Skater 3 (France)",
+    "rom_verified": true,
+    "sha256": "6e6ba7257df4ba98a69a87aca3101ed12a366aa438d4124c79cd1c5062406394",
+    "platform": "gba"
+  },
+  "AGB-AT5E-0": {
+    "name": "Tiger Woods PGA Tour Golf (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AT7F-0": {
+    "name": "Titeuf - Ze Gag Machine (France)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AT9E-0": {
+    "name": "BMX Trick Racer (USA)",
+    "rom_verified": true,
+    "sha256": "b0de1c426f95accf00f8fb0be9e3ab8d3b73de1b2b0a94e3bee2e28a5f68944b",
+    "platform": "gba"
+  },
+  "AGB-ATAE-0": {
+    "name": "Tang Tang (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ATJE-0": {
+    "name": "Tom and Jerry - The Magic Ring (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-ATLX-0": {
+    "name": "Atlantis - The Lost Empire (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "398962efa1771a9280c5a56b51b6e8a3f5e45c292b779dd5b033427a4f342a64",
+    "platform": "gba"
+  },
+  "AGB-ATQP-0": {
+    "name": "TOCA World Touring Cars (Europe)",
+    "rom_verified": true,
+    "sha256": "6d5782b97029e08310b60095156100026e237ea4de2d8ced75ec8a6f6ffad068",
+    "platform": "gba"
+  },
+  "AGB-AUQP-0": {
+    "name": "Butt-Ugly Martians - B.K.M. Battles (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "77b29a2d7ebc6d31cb699aa24fd1e96359e0adc8208739806906af5d9f718ad6",
+    "platform": "gba"
+  },
+  "AGB-AV3E-0": {
+    "name": "Spy Kids 3-D - Game Over (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AVBE-0": {
+    "name": "Barbie Software - Groovy Games (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AVBP-0": {
+    "name": "Barbie Software - Groovy Games (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "181e22a3d5a530001c7add9b577e26b25592e7564f3781c91373847b414d1bdb",
+    "platform": "gba"
+  },
+  "AGB-AVFJ-0": {
+    "name": "Densetsu no Stafy 2 (Japan)",
+    "rom_verified": true,
+    "sha256": "57e1108d3ec3f3ffc2f5e6089567134412b3440bb2bd678f6a36be0b1a2970ef",
+    "platform": "gba"
+  },
+  "AGB-AVLE-0": {
+    "name": "Daredevil (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "bf443816c2d00f373c33040e14d1bddba7e35a18c33de1bfa777f65905b031fa",
+    "platform": "gba"
+  },
+  "AGB-AVSX-0": {
+    "name": "Sword of Mana (Europe) (Fr,De)",
+    "rom_verified": false,
+    "sha256": "5e347a833484a1a5a5f6592249ed4ba6f26b6175dca48103c96c5fb34865036f",
+    "platform": "gba"
+  },
+  "AGB-AW2E-0": {
+    "name": "Advance Wars 2 - Black Hole Rising (USA)",
+    "rom_verified": true,
+    "sha256": "ef3cc89273f9df88020f07751ea6306b25c39df01893822fe431550eedf9b134",
+    "platform": "gba"
+  },
+  "AGB-AWAC-0": {
+    "name": "Waliou Xunbao Ji (China)",
+    "rom_verified": false,
+    "sha256": "316d8beeaacb99d39fc0ed70b0cc3c593d85478b409e989813d83307ff2e6ab4",
+    "platform": "gba"
+  },
+  "AGB-AWAE-0": {
+    "name": "Wario Land 4 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d16c7bf6e62bb84049fff1b387108fbd1e6e2cd38ca994ab5310dd9cbf9ba414",
+    "platform": "gba"
+  },
+  "AGB-AWAJ-0": {
+    "name": "Wario Land Advance - Youki no Otakara (Japan)",
+    "rom_verified": true,
+    "sha256": "a6c6e9d01e8d66acb677cf2c742c361d175d81dd8c271e3ede35434f74e6404a",
     "platform": "gba"
   },
   "AGB-AWAP-0": {
@@ -11,14 +971,1633 @@
     "sha256": "d16c7bf6e62bb84049fff1b387108fbd1e6e2cd38ca994ab5310dd9cbf9ba414",
     "platform": "gba"
   },
+  "AGB-AWIE-0": {
+    "name": "ESPN International Winter Sports 2002 (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AWRE-1": {
+    "name": "Advance Wars (USA) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "4dd4bd22441f29b22ca5af554f30bf0eb7d2b1a5daff0e2cd071a43e11383305",
+    "platform": "gba"
+  },
+  "AGB-AWRP-0": {
+    "name": "Advance Wars (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "9cc6db0832d7b7251964cb02538df842f4e13f3f44071465dafa1d507ddf552b",
+    "platform": "gba"
+  },
+  "AGB-AWSE-0": {
+    "name": "Tiny Toon Adventures - Wacky Stackers (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AX4E-1": {
+    "name": "Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "53ec98fc672d94e3962ba854805ce5005e07e10a4c7ed4e7dbec7a2ca7846562",
+    "platform": "gba"
+  },
+  "AGB-AX4P-0": {
+    "name": "Super Mario Advance 4 - Super Mario Bros. 3 (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AXPE-0": {
+    "name": "Pokemon - Sapphire Version (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "c36c1b899503e8823ee7eb607eea583adcef7ea92ff804838b193c227f2c6657",
+    "platform": "gba"
+  },
+  "AGB-AXPJ-1": {
+    "name": "Pocket Monsters - Sapphire (Japan) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "1d0d335740875c52cec8bf185dba6a38887f5c66f6fbef1ba2919008dab75baf",
+    "platform": "gba"
+  },
+  "AGB-AXRP-1": {
+    "name": "Super Street Fighter II Turbo - Revival (Europe) (Rev 1)",
+    "rom_verified": false,
+    "sha256": "fdc8278e815c701cba7adcf2afd94793b4d3c65be9ab4e94a7ef78baddbf6e25",
+    "platform": "gba"
+  },
+  "AGB-AXTE-0": {
+    "name": "Island Xtreme Stunts (USA, Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AY3E-0": {
+    "name": "Army Men - Turf Wars (USA)",
+    "rom_verified": true,
+    "sha256": "876b52a1a73e3a8e7fad461f0cc1e4aff2be16786abc7947cb1c2a8aa731dabc",
+    "platform": "gba"
+  },
+  "AGB-AY5E-0": {
+    "name": "Yu-Gi-Oh! - The Eternal Duelist Soul (USA)",
+    "rom_verified": true,
+    "sha256": "1085ec7471106d1507ca205c29d424ceb46159fa6392ec4fa2c41c6072ae3a98",
+    "platform": "gba"
+  },
+  "AGB-AY8P-0": {
+    "name": "Yu-Gi-Oh! - Reshef of Destruction (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "a2881118e68236df865978fd97d6e3ecefce0a7ae0c51ac4162b65c57eb32880",
+    "platform": "gba"
+  },
+  "AGB-AYBE-0": {
+    "name": "Backyard Basketball (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AYCE-0": {
+    "name": "Phantasy Star Collection (USA)",
+    "rom_verified": true,
+    "sha256": "6747a17af7ccb082bab1f2a8ed7d88952ab93879d93173b12331b1e5e8ec1c4e",
+    "platform": "gba"
+  },
+  "AGB-AYFE-0": {
+    "name": "Backyard Football (USA)",
+    "rom_verified": false,
+    "sha256": "af9223dae1611a24c204a907ca33063557821c91d99bbe093659851c78183096",
+    "platform": "gba"
+  },
+  "AGB-AYGE-0": {
+    "name": "Gauntlet - Dark Legacy (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AYNE-0": {
+    "name": "Planet of the Apes (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-AYWE-0": {
+    "name": "Yu-Gi-Oh! - Worldwide Edition - Stairway to the Destined Duel (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "c4c3ef5c8980996be049a3b6efd1c99b165e565405e040ea428801a14b8c8aa9",
+    "platform": "gba"
+  },
+  "AGB-AYZP-0": {
+    "name": "Rayman 3 (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
   "AGB-AZ2E-0": {
     "name": "Zoids - Legacy (USA)",
     "rom_verified": false,
     "platform": "gba"
   },
+  "AGB-AZ8E-0": {
+    "name": "Super Puzzle Fighter II (USA)",
+    "rom_verified": false,
+    "sha256": "194344d6cc2b03d7c05512368c9b2ddb34f2a46c27bdd293894f1de508f52bbf",
+    "platform": "gba"
+  },
+  "AGB-AZID-0": {
+    "name": "Findet Nemo (Germany)",
+    "rom_verified": true,
+    "sha256": "4116788abf6c80944d921d83f13db64e2c24198dbbbd0ef7cc13d7e7b75c90b6",
+    "platform": "gba"
+  },
+  "AGB-AZLP-0": {
+    "name": "Legend of Zelda, The - A Link to the Past & Four Swords (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-AZQP-0": {
+    "name": "Treasure Planet (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "77a7a573f1b60e835e369a9d983326440e63dd2819af5e969c639f9e73ce8248",
+    "platform": "gba"
+  },
+  "AGB-AZSE-0": {
+    "name": "Gem Smashers (USA)",
+    "rom_verified": false,
+    "sha256": "762649b79df6dd5364de07eeb99df09e849f14bdd605b11442963032142a4d3d",
+    "platform": "gba"
+  },
+  "AGB-AZTJ-0": {
+    "name": "Zero-Tours (Japan)",
+    "rom_verified": true,
+    "sha256": "4cb55fff4e7daecb16ebeec1b5fb11fc866776c03ae1d472ad8a8dbf0dc6a254",
+    "platform": "gba"
+  },
+  "AGB-AZWC-0": {
+    "name": "Waliou Zhizao (China)",
+    "rom_verified": false,
+    "sha256": "d40004ebf1f34de7787a353f45b711f0e01cb4e41f9b2f48871a394d6870e72c",
+    "platform": "gba"
+  },
+  "AGB-AZWE-0": {
+    "name": "WarioWare, Inc. - Mega Microgame$! (USA)",
+    "rom_verified": true,
+    "sha256": "c09be39a09b37f6a84849dee0a6f4ce2bd0f2bc06cfe3a64ca8e7834eebb2724",
+    "platform": "gba"
+  },
+  "AGB-B24E-0": {
+    "name": "Pokemon Mystery Dungeon - Red Rescue Team (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "ad316814c77ed083734d816ebcde2ece390efae8d15bcb6c66d7c2862d82eb68",
+    "platform": "gba"
+  },
   "AGB-B24P-0": {
     "name": "Pokemon Mystery Dungeon - Red Rescue Team (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-B2BP-0": {
+    "name": "2 Games in 1 - The SpongeBob SquarePants Movie + SpongeBob SquarePants and Friends in Freeze Frame Frenzy (Europe) (En,Fr,De,Es,It,Nl+En,Fr,De,Es,Nl)",
+    "rom_verified": true,
+    "sha256": "92557eb4c104a883d5cc66b59df1cc2c1368c0107608ea57cdff4738177cdd02",
+    "platform": "gba"
+  },
+  "AGB-B2DU-0": {
+    "name": "Donkey Kong Country 2 (USA)",
+    "rom_verified": true,
+    "sha256": "02d0756f7e95308aec4f44598433e93a9a66bf5eabbf0cec7fd8d5f31a06a2f5",
+    "platform": "gba"
+  },
+  "AGB-B2NE-0": {
+    "name": "Arthur and the Invisibles (USA) (En,Fr,Es)",
+    "rom_verified": true,
+    "sha256": "c17e876e6caf7300b12607265ebd6f3ec4babc507dceae2e7c606cf732bfd9bb",
+    "platform": "gba"
+  },
+  "AGB-B2RE-0": {
+    "name": "Super Robot Taisen - Original Generation 2 (USA)",
+    "rom_verified": false,
+    "sha256": "b9b6af144361a7d1fe8694e2d78cf5ea523b30b37214e3ddeb30dbe2f54b358a",
+    "platform": "gba"
+  },
+  "AGB-B2TE-0": {
+    "name": "Tony Hawk's Underground 2 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "04742b4beb1b777474860db2692c00d669241ca46edc8f7e816604bb32bd6304",
+    "platform": "gba"
+  },
+  "AGB-B2WE-0": {
+    "name": "Chronicles of Narnia, The - The Lion, the Witch and the Wardrobe (USA, Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": true,
+    "sha256": "33f3b74cebf9b1577cfbc8967fb7769529d8e458ae2d081784a4885d710df7b6",
+    "platform": "gba"
+  },
+  "AGB-B30E-0": {
+    "name": "3 Game Pack! - Mouse Trap + Simon + Operation (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B33E-0": {
+    "name": "Santa Clause 3, The - The Escape Clause (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B34E-0": {
+    "name": "Let's Ride! - Sunshine Stables (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B35E-0": {
+    "name": "Strawberry Shortcake - Summertime Adventure (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B3BE-0": {
+    "name": "ATV - Thunder Ridge Riders (USA)",
+    "rom_verified": false,
+    "sha256": "62da81c6c7dd5658e5895ba1fadf6b7b089cf19d859dd79bf1212f4edd890fa1",
+    "platform": "gba"
+  },
+  "AGB-B3JE-0": {
+    "name": "Curious George (USA)",
+    "rom_verified": false,
+    "sha256": "e3ea35e9a3500c2625d5a8b559af974913330cc04d1930b0ae53809ddb93b1ad",
+    "platform": "gba"
+  },
+  "AGB-B3NE-0": {
+    "name": "Majesco's Sports Pack (USA)",
+    "rom_verified": false,
+    "sha256": "770278d2970ae989eef2161bfbf2151428e07fc9e78210cd4217c7f3db3fd799",
+    "platform": "gba"
+  },
+  "AGB-B3SE-0": {
+    "name": "Sonic Advance 3 (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "f937fa93b97b14b9fb9fce98844c534f936222d21d1fdb5f1af42292bad32c85",
+    "platform": "gba"
+  },
+  "AGB-B4BE-0": {
+    "name": "Megaman - Battle Network 4 - Blue Moon (USA)",
+    "rom_verified": true,
+    "sha256": "63ea187c792f4bfcd077f92c3a509fa09ed422993aee9480c39dfdf6a561c5c1",
+    "platform": "gba"
+  },
+  "AGB-B4BJ-1": {
+    "name": "Rockman EXE 4 - Tournament Blue Moon (Japan) (Rev 1)",
+    "rom_verified": false,
+    "sha256": "4b70e9e646adde8495f1a632f81d50edd7d8e96352326cb71910ada4214b849b",
+    "platform": "gba"
+  },
+  "AGB-B4BP-0": {
+    "name": "Megaman - Battle Network 4 - Blue Moon (Europe)",
+    "rom_verified": true,
+    "sha256": "7eb12321dd8af8d768186868c4949f1e2a9bb7661b6d451d967833496de5fc0a",
+    "platform": "gba"
+  },
+  "AGB-B4UE-0": {
+    "name": "Shrek - Super Slam (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B4WE-0": {
+    "name": "Megaman - Battle Network 4 - Red Sun (USA)",
+    "rom_verified": true,
+    "sha256": "b04adfca9cae47fc9241e70c88e49b16ee9e75d796ab4ee90940401a6c1d5514",
+    "platform": "gba"
+  },
+  "AGB-B4WJ-0": {
+    "name": "Rockman EXE 4 - Tournament Red Sun (Japan)",
+    "rom_verified": true,
+    "sha256": "10f8f233f2748c4e3df28a4003a02229afaa589ed309fe3890888af67e85db62",
+    "platform": "gba"
+  },
+  "AGB-B53E-0": {
+    "name": "Crash & Spyro Superpack - Spyro Orange - The Cortex Conspiracy + Crash Bandicoot Purple - Ripto's Rampage (USA)",
+    "rom_verified": false,
+    "sha256": "424246a0522d14b4c1d344691363087e2a13bed0aaab1b1262a194dfd4c2f431",
+    "platform": "gba"
+  },
+  "AGB-B53P-0": {
+    "name": "Crash & Spyro Super Pack Volume 3 (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "46494b6226e0a54574e84852758c6dd7bfa6bce4c44771462ce61105ca06944f",
+    "platform": "gba"
+  },
+  "AGB-B5NE-0": {
+    "name": "Namco Museum - 50th Anniversary (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B63E-0": {
+    "name": "Big Mutha Truckers (USA)",
+    "rom_verified": false,
+    "sha256": "78a17fd1ed21f93a08e00c5de1038d16a068eba1680c137b87caf6fe98ff819b",
+    "platform": "gba"
+  },
+  "AGB-B67E-0": {
+    "name": "Three-in-One Pack - Sorry! + Aggravation + Scrabble Junior (USA)",
+    "rom_verified": true,
+    "sha256": "cd55d7088a3d4bb8c81eae95e01cf38812de260bd43c0198eeb181d7c94f9548",
+    "platform": "gba"
+  },
+  "AGB-B6BE-0": {
+    "name": "2 Games in One! - Paperboy + Rampage (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B6ZE-0": {
+    "name": "3 Games in One! - Breakout + Centipede + Warlords (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-B82E-0": {
+    "name": "Dogz (USA)",
+    "rom_verified": true,
+    "sha256": "75a52a3b58b997890a1b31217a15da464430862498e05d40bfca5837310601e1",
+    "platform": "gba"
+  },
+  "AGB-B86E-0": {
+    "name": "Hello Kitty - Happy Party Pals (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B8DE-0": {
+    "name": "Around the World in 80 Days (USA)",
+    "rom_verified": true,
+    "sha256": "f3c3586a824ac671c2571b6c73392f1694a7fb425628b166cc482bc0bd72b4a5",
+    "platform": "gba"
+  },
+  "AGB-B8FE-0": {
+    "name": "Herbie - Fully Loaded (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-B8KE-0": {
+    "name": "Kirby & The Amazing Mirror (USA)",
+    "rom_verified": true,
+    "sha256": "cfb194cd0cb373787094a962852e3e564fb2ecdb0609fe065afdd8de3f4e11f1",
+    "platform": "gba"
+  },
+  "AGB-B8KJ-1": {
+    "name": "Hoshi no Kirby - Kagami no Daimeikyuu (Japan) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "4d8bae4e34032f9b5f9013ea3dabd6e80e1b5c796ad03e1470e4252f31e3043b",
+    "platform": "gba"
+  },
+  "AGB-B8QP-0": {
+    "name": "Pirates of the Caribbean - Dead Man's Chest (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BAAE-0": {
+    "name": "Operation Armored Liberty (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BADE-0": {
+    "name": "Aladdin (USA) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "sha256": "8faf7635d203fde1b556ebc0c5b9110e03570605b5306f3ec21addddca837337",
+    "platform": "gba"
+  },
+  "AGB-BAEE-0": {
+    "name": "Ace Combat Advance (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "1b30008304ed8cd4434c685075d954f2a95f7aab6165540fb62e2ac35da08e6e",
+    "platform": "gba"
+  },
+  "AGB-BAJP-0": {
+    "name": "Banjo-Pilot (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "6e966c2ed473cbcad1235e9e416b54b4fb70564522e6df8088a6680435518fcc",
+    "platform": "gba"
+  },
+  "AGB-BALE-0": {
+    "name": "All Grown Up! - Express Yourself (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "99a5b1aff13936e58bcedc8da98be88712e5fd54d1a0994f45b1b7e38d37640f",
+    "platform": "gba"
+  },
+  "AGB-BAPE-0": {
+    "name": "American Dragon - Jake Long - Rise of the Huntsclan (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "4f904d42234bc6eb2f8f21ab97a0066c60090db6458df5a0e16735f23491bbce",
+    "platform": "gba"
+  },
+  "AGB-BAVE-0": {
+    "name": "Activision Anthology (USA)",
+    "rom_verified": true,
+    "sha256": "3848b99ff114cde1c8ba7f162ffb9dcab77fc676871da703b82132ce1743ce32",
+    "platform": "gba"
+  },
+  "AGB-BAWE-0": {
+    "name": "Alex Rider - Stormbreaker (USA)",
+    "rom_verified": true,
+    "sha256": "16117cd914b7088936c827cdeb7dbe5be382148a77add40fdd1c6a63f9667f98",
+    "platform": "gba"
+  },
+  "AGB-BB2E-0": {
+    "name": "Beyblade G-Revolution (USA)",
+    "rom_verified": false,
+    "sha256": "c4a568adc896bace0e25dbff4aa0c1802933c88e3f4a4e825075116c8c4173e5",
+    "platform": "gba"
+  },
+  "AGB-BB4E-0": {
+    "name": "2 Game Pack! - Matchbox Missions - Emergency Response + Air, Land and Sea Rescue (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BB5E-0": {
+    "name": "Arctic Tale (USA)",
+    "rom_verified": true,
+    "sha256": "a707238e89d35deddcaa0bed1687d77b9f784fb5515ebb764c8ad2e89618880d",
+    "platform": "gba"
+  },
+  "AGB-BB7E-0": {
+    "name": "Backyard Sports - Basketball 2007 (USA)",
+    "rom_verified": false,
+    "sha256": "c373a662ff16d96009b16af1fa4e8fe453615651b463dd379dde06d1d5dade77",
+    "platform": "gba"
+  },
+  "AGB-BBAE-0": {
+    "name": "Shamu's Deep Sea Adventures (USA)",
+    "rom_verified": true,
+    "sha256": "2048f9b160995cc1f7ff4f733d1d6f80e53415f0e523a9e636b95b041f09d3ec",
+    "platform": "gba"
+  },
+  "AGB-BBAP-0": {
+    "name": "Shamu's Deep Sea Adventures (Europe)",
+    "rom_verified": false,
+    "sha256": "2153175d97c14fb6ba035d95a732e45e6a56e7f1ed7cebbdbc268647c4748fb6",
+    "platform": "gba"
+  },
+  "AGB-BBCE-0": {
+    "name": "Back to Stone (USA) (En,Fr)",
+    "rom_verified": true,
+    "sha256": "af9223dae1611a24c204a907ca33063557821c91d99bbe093659851c78183096",
+    "platform": "gba"
+  },
+  "AGB-BBDE-0": {
+    "name": "BattleBots - Design & Destroy (USA)",
+    "rom_verified": true,
+    "sha256": "0352c43aa4ac19dea33c2041e106498b77ddad846db5ac1dfb8a00b0ba20ab44",
+    "platform": "gba"
+  },
+  "AGB-BBGE-0": {
+    "name": "Batman Begins (USA, Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "1cf4376fb235252b43b4365527914e356a9af9c6299eee90ab6b138bae05f6bd",
+    "platform": "gba"
+  },
+  "AGB-BBHE-0": {
+    "name": "Blades of Thunder (USA)",
+    "rom_verified": false,
+    "sha256": "10185cf2a77c8be78ba7657d648c25b0d7c19ec7514b177a62637fb5e451a80c",
+    "platform": "gba"
+  },
+  "AGB-BBIE-0": {
+    "name": "Barbie Diaries, The - High School Mystery (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BBOE-0": {
+    "name": "Berenstain Bears and the Spooky Old Tree, The (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BBRE-0": {
+    "name": "Brother Bear (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BBRX-0": {
+    "name": "Brother Bear (Europe) (Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": true,
+    "sha256": "d7e6d7f35eeb08bd61184c7b386c468ecd342d5606d8c6668f82fba854e098db",
+    "platform": "gba"
+  },
+  "AGB-BBUE-0": {
+    "name": "Bratz - The Movie (USA)",
+    "rom_verified": true,
+    "sha256": "e6d2124944ba63006dc069d9d86db556dcdb35f533a80b9ff8517c308b831a92",
+    "platform": "gba"
+  },
+  "AGB-BBWE-0": {
+    "name": "Avatar - The Last Airbender - The Burning Earth (USA)",
+    "rom_verified": false,
+    "sha256": "28341daec417bfdbe1826813b3672c0398ecc5eb10874029e73f6d39bdd1bc03",
+    "platform": "gba"
+  },
+  "AGB-BBZE-0": {
+    "name": "Bratz - Babyz (USA)",
+    "rom_verified": false,
+    "sha256": "c6ab1d4939b7009c56b8433ab95ec470dcdb6447e28cf89d3b0d355ab8015867",
+    "platform": "gba"
+  },
+  "AGB-BC4E-0": {
+    "name": "3 Game Pack! - Candy Land + Chutes and Ladders + Original Memory Game (USA)",
+    "rom_verified": true,
+    "sha256": "02225bf0fa6810fe510014774382379cce83836069b58d32ca836f0830024b3f",
+    "platform": "gba"
+  },
+  "AGB-BC7E-0": {
+    "name": "Backyard Sports - Baseball 2007 (USA)",
+    "rom_verified": true,
+    "sha256": "314d34b30602aab2d92a31c1c2d0a88e8ff29d0c76fb14b050b5cd261f19416e",
+    "platform": "gba"
+  },
+  "AGB-BCBE-0": {
+    "name": "Crushed Baseball (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BCDE-0": {
+    "name": "Cinderella - Magical Dreams (USA) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "d0c1f9e77211b3be4e18b731d417627fe6c5dcde6b4306b2d2437d28c9b3ee68",
+    "platform": "gba"
+  },
+  "AGB-BCFE-0": {
+    "name": "Charlie and the Chocolate Factory (USA) (En,Fr,Es,Nl)",
+    "rom_verified": false,
+    "sha256": "908aa26aa73dfd4ea08961758168d1f2dd91d89fbf90ed9cc84a6ae056f634e3",
+    "platform": "gba"
+  },
+  "AGB-BCGE-0": {
+    "name": "Cabbage Patch Kids - The Patch Puppy Rescue (USA)",
+    "rom_verified": false,
+    "sha256": "0505ec240e2ee9077cd13b456ad5e437872d5d59d2161db5cce3b7ae46515dce",
+    "platform": "gba"
+  },
+  "AGB-BCHE-0": {
+    "name": "Chicken Little (USA, Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "1c38dba4b01694b45fdf1ceadab7d2598a28396b73728166ff39d325d25482bf",
+    "platform": "gba"
+  },
+  "AGB-BCJE-0": {
+    "name": "Charlotte's Web (USA) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "6536f6cd411f99d7d09855aad2dd1a2db8e3722bb608949e168c05fcc0408267",
+    "platform": "gba"
+  },
+  "AGB-BCPE-0": {
+    "name": "Cars - Mater-National Championship (USA) (En,Fr)",
+    "rom_verified": false,
+    "sha256": "f59e26915074ce04580013e2781d85cb5c0634fa38159c52c86fc4b2ae34d0a6",
+    "platform": "gba"
+  },
+  "AGB-BCQE-0": {
+    "name": "Cheetah Girls, The (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BCRP-0": {
+    "name": "Crazy Frog Racer (Europe) (En,Fr,De,Nl)",
+    "rom_verified": false,
+    "sha256": "da409e1d41e86d05ad2326113935bbd50a21ec72206f0734782aca22be7a8189",
+    "platform": "gba"
+  },
+  "AGB-BCXE-0": {
+    "name": "Kid's Cards (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BCYE-0": {
+    "name": "Backyard Baseball 2006 (USA)",
+    "rom_verified": false,
+    "sha256": "a51c28f4e2f8a33cb214334ac8977fa05beff3249f64dbc2b13829a773bcf133",
+    "platform": "gba"
+  },
+  "AGB-BD4E-1": {
+    "name": "Crash Bandicoot Purple - Ripto's Rampage (USA) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "9600098f85758fe3e6d34a4d0433764e7b5bd3641ac01b358931f3c467f0bd40",
+    "platform": "gba"
+  },
+  "AGB-BD9E-0": {
+    "name": "Dragon Tales - Dragon Adventures (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BDOE-0": {
+    "name": "Dora the Explorer - Super Star Adventures! (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BDQU-0": {
+    "name": "Donkey Kong Country 3 (USA)",
+    "rom_verified": true,
+    "sha256": "eef5120a58feaf194d3b47c67ba30e249217953e898cdcf5c3297f1c531ba24f",
+    "platform": "gba"
+  },
+  "AGB-BDSE-0": {
+    "name": "Digimon - Battle Spirit 2 (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "6c8e8c45b4ba2d11d98f21934c897b69effa5c5e499f20ae070f7fb5207e2a6a",
+    "platform": "gba"
+  },
+  "AGB-BDSP-0": {
+    "name": "Digimon - Battle Spirit 2 (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "6362b9ea3f4c9955076953779635101111b3ac37ea43b7cdf22185b494e53495",
+    "platform": "gba"
+  },
+  "AGB-BE3E-0": {
+    "name": "Star Wars - Episode III - Revenge of the Sith (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BE3P-0": {
+    "name": "Star Wars - Episode III - Revenge of the Sith (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "a286052a62272d234d31371082d0ae11efe73f3a34416a126d7e16ce17dd1bad",
+    "platform": "gba"
+  },
+  "AGB-BEAE-0": {
+    "name": "Care Bears - The Care Quest (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "sha256": "5e629cae8e999327ba53f580482d7f7a9cb8a1f0b53ca9e8734fcf15e3ad69cf",
+    "platform": "gba"
+  },
+  "AGB-BEFE-0": {
+    "name": "Let's Ride! - Friends Forever (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BERE-0": {
+    "name": "Dora the Explorer - Super Spies (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BETE-0": {
+    "name": "Atomic Betty (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "e85966aef5fded854a4c1d833f6ef6750a466975402b9f3bd87eead4bc96aa35",
+    "platform": "gba"
+  },
+  "AGB-BETP-0": {
+    "name": "Atomic Betty (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "e85966aef5fded854a4c1d833f6ef6750a466975402b9f3bd87eead4bc96aa35",
+    "platform": "gba"
+  },
+  "AGB-BEVE-0": {
+    "name": "everGirl (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BEYE-0": {
+    "name": "Beyblade V-Force - Ultimate Blader Jam (USA)",
+    "rom_verified": true,
+    "sha256": "a9f4bdb4d7f889fb099aed794f5c03548c2f5e12fb9a1d3463278835f72db41c",
+    "platform": "gba"
+  },
+  "AGB-BF3E-0": {
+    "name": "Ford Racing 3 (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BF4E-0": {
+    "name": "Fantastic 4 (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BF4X-0": {
+    "name": "Fantastic 4 (Europe) (Fr,De,Es,Nl)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BF7E-0": {
+    "name": "Backyard Sports - Football 2007 (USA)",
+    "rom_verified": false,
+    "sha256": "d6845eeb8972f69a0cc78e50bd10d691ee3107559178a223e03c7c3204898208",
+    "platform": "gba"
+  },
+  "AGB-BF8E-0": {
+    "name": "Super Hornet FA 18F (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BFBP-0": {
+    "name": "2 Disney Games - Disney Sports - Football + Disney Sports - Skateboarding (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "f97c95207d4128429f9117239bc341b410de881f0c8fa156d94db0159f2250a7",
+    "platform": "gba"
+  },
+  "AGB-BFEE-0": {
+    "name": "Dogz - Fashion (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BFKE-0": {
+    "name": "Franklin the Turtle (USA) (En,Fr,De,Es,It,Sv,No,Da,Fi)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BFNJ-0": {
+    "name": "Finding Nemo (Japan)",
+    "rom_verified": true,
+    "sha256": "70b4c544bbf358230c43db51dbf9f83fd4f5ae6b75f9b6d2ad613d2cab157f37",
+    "platform": "gba"
+  },
+  "AGB-BFSE-0": {
+    "name": "Freekstyle (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BFUE-0": {
+    "name": "Fear Factor - Unleashed (USA)",
+    "rom_verified": false,
+    "sha256": "dc9fed8d1465bc27608e6815f9bf48be4b0dd93a9260dfbdfc49ec8e00fd2276",
+    "platform": "gba"
+  },
+  "AGB-BGCE-0": {
+    "name": "Advance Guardian Heroes (USA)",
+    "rom_verified": true,
+    "sha256": "9b34f8aa61f9b3065bf5d2c5816f259c3ce348ba5a507c83aa9343690e0bdb4c",
+    "platform": "gba"
+  },
+  "AGB-BGGE-0": {
+    "name": "Golden Nugget Casino (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BGYJ-1": {
+    "name": "Konjiki no Gashbell!! - Unare! Yuujou no Zakeru 2 (Japan) (Rev 1)",
+    "rom_verified": false,
+    "sha256": "4b7723375a4268f0a960a759c02665104a387cd936b075f51f71a6c21bc52f51",
+    "platform": "gba"
+  },
+  "AGB-BGZE-0": {
+    "name": "Madagascar (USA)",
+    "rom_verified": false,
+    "sha256": "91ad85e8582f3a78f93f9d24567ca8e28e2b1bbfadf3246111e232b50e3f94e6",
+    "platform": "gba"
+  },
+  "AGB-BGZP-0": {
+    "name": "Madagascar (Europe)",
+    "rom_verified": true,
+    "sha256": "d14dee1a7a003d582b1b6bb99d596d76ef10c692896342f0bd2fc16c24861f9c",
+    "platform": "gba"
+  },
+  "AGB-BH3E-0": {
+    "name": "Happy Feet (USA) (En,Fr)",
+    "rom_verified": true,
+    "sha256": "cc057503f52c8ef083f5a3809f84d5c15da2abb0a301ce0c2ef2496f9b6d43c7",
+    "platform": "gba"
+  },
+  "AGB-BH3P-0": {
+    "name": "Happy Feet (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BH5E-0": {
+    "name": "Over the Hedge (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BH9E-0": {
+    "name": "Tony Hawk's American Sk8land (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BH9X-0": {
+    "name": "Tony Hawk's American Sk8land (Europe) (Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BHLE-0": {
+    "name": "Shaman King - Legacy of the Spirits - Soaring Hawk (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BHME-0": {
+    "name": "Home on the Range (USA) (En,Fr)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BHNE-0": {
+    "name": "Harlem Globetrotters - World Tour (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BHTE-0": {
+    "name": "Harry Potter and the Prisoner of Azkaban (USA, Europe) (En,Fr,De,Es,It,Nl,Da)",
+    "rom_verified": true,
+    "sha256": "f596a7b90af7504c18e6fc970b7316f0917a7c343e50a98405949b33157f231c",
+    "platform": "gba"
+  },
+  "AGB-BHTP-0": {
+    "name": "Harry Potter and the Prisoner of Azkaban (USA, Europe) (En,Fr,De,Es,It,Nl,Da)",
+    "rom_verified": true,
+    "sha256": "f596a7b90af7504c18e6fc970b7316f0917a7c343e50a98405949b33157f231c",
+    "platform": "gba"
+  },
+  "AGB-BHZE-0": {
+    "name": "2 Games in 1 - Hot Wheels - Velocity X + Hot Wheels - World Race (USA)",
+    "rom_verified": false,
+    "sha256": "df640e574ee25d92833a177a990caf05b9d954720b312d58c6fba788ebbba228",
+    "platform": "gba"
+  },
+  "AGB-BI4E-0": {
+    "name": "4 Games on One Game Pak (Racing) (USA) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "aa7537887d3c1ab408e4abee64fd7ba3e2a9fff40f4a5fa5a6488cb2365cb48a",
+    "platform": "gba"
+  },
+  "AGB-BIBE-0": {
+    "name": "Bible Game, The (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BICE-0": {
+    "name": "Incredibles, The (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BIDE-0": {
+    "name": "American Idol (USA)",
+    "rom_verified": true,
+    "sha256": "5c037227289a4c4cbb800d0699772a902f56166e6059a8207240c4812a7d3a8c",
+    "platform": "gba"
+  },
+  "AGB-BIHE-0": {
+    "name": "Bionicle Heroes (USA) (En,Fr,De,Es,It,Da)",
+    "rom_verified": false,
+    "sha256": "8bd413f0ef3b49d2572f7abb32b9102c6a05d449d4acc6d6df9109d433c467e4",
+    "platform": "gba"
+  },
+  "AGB-BIIP-0": {
+    "name": "Polarium Advance (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BILE-0": {
+    "name": "Bionicle - Maze of Shadows (USA)",
+    "rom_verified": false,
+    "sha256": "392489956f8d64f6d9e8e287e40eb4bbf4c45adf54060d02e7f7fef598f8ccb3",
+    "platform": "gba"
+  },
+  "AGB-BINX-0": {
+    "name": "2 Games in 1 - Finding Nemo + The Incredibles (Europe) (Fr,Nl)",
+    "rom_verified": false,
+    "sha256": "e906cbdbf37d7aee0bb4c0c0c03741ea95812b5430a39a91e1d114f73c0e072d",
+    "platform": "gba"
+  },
+  "AGB-BIQP-0": {
+    "name": "Incredibles, The - Rise of the Underminer (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "0308a3db8e870f20d78221b05192b2ad3cab922020e8639d8a0aebdbcbeea4bc",
+    "platform": "gba"
+  },
+  "AGB-BJ2E-0": {
+    "name": "High School Musical - Livin' the Dream (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BJAP-0": {
+    "name": "GT Racers (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "a90613baaddbe1747a42d05b791120e32a4fbef9525940084b358935a4c94e68",
+    "platform": "gba"
+  },
+  "AGB-BJBE-0": {
+    "name": "007 - Everything or Nothing (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "45d0003d5612d4f0a4b57adcf7ddbe6bb10c1e7f7c01f02472967fc690cf6676",
+    "platform": "gba"
+  },
+  "AGB-BJGE-0": {
+    "name": "Glucoboy (Australia)",
+    "rom_verified": false,
+    "sha256": "7b7a8085b4af16dc285173318766a4455e022078d307fb7d5b19f1a0bd453577",
+    "platform": "gba"
+  },
+  "AGB-BJNE-0": {
+    "name": "Adventures of Jimmy Neutron Boy Genius, The - Jet Fusion (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BJVE-0": {
+    "name": "Tak - The Great Juju Challenge (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BJWE-0": {
+    "name": "Tak - The Great Juju Challenge (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BJYE-0": {
+    "name": "Adventures of Jimmy Neutron Boy Genius, The - Attack of the Twonkies (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BKFE-0": {
+    "name": "Bee Game, The (USA)",
+    "rom_verified": false,
+    "sha256": "2770d0cb708ff71841913a9621f6ead43a4d3c076c846816a5c7e8b2eb02190f",
+    "platform": "gba"
+  },
+  "AGB-BKZE-0": {
+    "name": "Banjo-Kazooie - Grunty's Revenge (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "36fe9ed931dea1f14080a80071b187087ee437c046df8f62af847d09caa5ae86",
+    "platform": "gba"
+  },
+  "AGB-BKZX-0": {
+    "name": "Banjo-Kazooie - Grunty's Revenge (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BL2E-0": {
+    "name": "Lizzie McGuire 2 - Lizzie Diaries (USA) (En,Fr)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BL3E-0": {
+    "name": "Lizzie McGuire 3 - Homecoming Havoc (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BL6E-0": {
+    "name": "My Little Pony - Crystal Princess - The Runaway Rainbow (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BL9E-0": {
+    "name": "Let's Ride! - Dreamer (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BLHE-0": {
+    "name": "Flushed Away (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BLKE-0": {
+    "name": "Lion King 1 1-2, The (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BLME-0": {
+    "name": "Lizzie McGuire - On the Go! (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BLNE-0": {
+    "name": "Looney Tunes Double Pack (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BLOE-0": {
+    "name": "Land Before Time, The - Into the Mysterious Beyond (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "sha256": "455f5c32ec345b595098b4c284a8db8247310f9a5b3e282567a5ae5b94d39db0",
+    "platform": "gba"
+  },
+  "AGB-BM5P-0": {
+    "name": "Mario vs. Donkey Kong (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BMBE-0": {
+    "name": "Mighty Beanz - Pocket Puzzles (USA)",
+    "rom_verified": false,
+    "sha256": "004d2bf5b7cecb6d3722367410e9ae4208814e777a69c3d82855401122e18cf9",
+    "platform": "gba"
+  },
+  "AGB-BMCE-0": {
+    "name": "Monster Trucks (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "df68636dfb5ead8d044414aabeb82f60931645536e20db51869bf3e4c5cd0595",
+    "platform": "gba"
+  },
+  "AGB-BMFE-0": {
+    "name": "Madden NFL 2005 (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BMGE-0": {
+    "name": "Mario Golf - Advance Tour (USA)",
+    "rom_verified": true,
+    "sha256": "f58b827e5b1d2ccbd1cb5eab81d38a3dc6716f0ff6c2591475bb06a862bffc0f",
+    "platform": "gba"
+  },
+  "AGB-BMXC-0": {
+    "name": "Miteluode - Lingdian Renwu (China)",
+    "rom_verified": false,
+    "sha256": "ad8e6ead0494162ba5802bba587205dc2d333c45767f81f229f884155696171f",
+    "platform": "gba"
+  },
+  "AGB-BMXE-0": {
+    "name": "Metroid - Zero Mission (USA)",
+    "rom_verified": true,
+    "sha256": "fc94f65380b65b870a30b9b04b39cca1dc63d6e46a4a373d3904adc0912ebc37",
+    "platform": "gba"
+  },
+  "AGB-BNCE-0": {
+    "name": "Tim Burton's The Nightmare Before Christmas - The Pumpkin King (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BNDE-0": {
+    "name": "Codename - Kids Next Door - Operation S.O.D.A. (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BNFE-0": {
+    "name": "Need for Speed - Underground 2 (USA, Europe) (En,Fr,De,It)",
+    "rom_verified": true,
+    "sha256": "cf9be79fb71b89667ac4b1b24eb956deb2ec0481a454319889b66ded3dbc4ded",
+    "platform": "gba"
+  },
+  "AGB-BNLU-0": {
+    "name": "Ratatouille (Australia, Greece) (En)",
+    "rom_verified": true,
+    "sha256": "2babd5c8beb7fc772335c98a385f166ac2efb1de6b9b6bdccfea9bc37e4a4b53",
+    "platform": "gba"
+  },
+  "AGB-BNSP-0": {
+    "name": "Need for Speed - Underground (USA, Europe) (En,Fr,De,It)",
+    "rom_verified": true,
+    "sha256": "53817aec76a623dc2c7782ddf841f89f369aebe5a92a28c9afc69feaf914a593",
+    "platform": "gba"
+  },
+  "AGB-BNTE-0": {
+    "name": "Teenage Mutant Ninja Turtles (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BOMJ-0": {
+    "name": "Bomberman Jetters - Game Collection (Japan)",
+    "rom_verified": true,
+    "sha256": "70a0aa8329a5d32492da7fde4503f9a3e589a110bee55823cf4f3e4e966a1c54",
+    "platform": "gba"
+  },
+  "AGB-BP9E-0": {
+    "name": "World Championship Poker (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BPEE-0": {
+    "name": "Pokemon - Emerald Version (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a9dec84dfe7f62ab2220bafaef7479da0929d066ece16a6885f6226db19085af",
+    "platform": "gba"
+  },
+  "AGB-BPEI-0": {
+    "name": "Pokemon - Versione Smeraldo (Italy)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BPLE-0": {
+    "name": "Archer Maclean's 3D Pool (USA)",
+    "rom_verified": true,
+    "sha256": "991aa6a3b6a060889a6ae0f6a8d04c957f5224df0cd34ee08535043a29c15a1c",
+    "platform": "gba"
+  },
+  "AGB-BPMP-1": {
+    "name": "Premier Manager 2003-04 (Europe) (En,Fr,De,It) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BPPE-0": {
+    "name": "Pokemon Pinball - Ruby & Sapphire (USA)",
+    "rom_verified": true,
+    "sha256": "1a2bbb845456873de0e50ba01383977d7b3500f85dceac929c5fb0111389d9a1",
+    "platform": "gba"
+  },
+  "AGB-BPPJ-0": {
+    "name": "Pokemon Pinball - Ruby & Sapphire (Japan)",
+    "rom_verified": true,
+    "sha256": "ef6d11d691f3a8e9aa8d4f744396c5e97a6e250c2d219a58ecc3970141d9ccd1",
+    "platform": "gba"
+  },
+  "AGB-BPPU-0": {
+    "name": "Pokemon Pinball - Ruby & Sapphire (USA)",
+    "rom_verified": true,
+    "sha256": "1a2bbb845456873de0e50ba01383977d7b3500f85dceac929c5fb0111389d9a1",
+    "platform": "gba"
+  },
+  "AGB-BPRE-0": {
+    "name": "Pokemon - FireRed Version (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "3d0c79f1627022e18765766f6cb5ea067f6b5bf7dca115552189ad65a5c3a8ac",
+    "platform": "gba"
+  },
+  "AGB-BPRE-1": {
+    "name": "Pokemon - FireRed Version (USA, Europe) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "729041b940afe031302d630fdbe57c0c145f3f7b6d9b8eca5e98678d0ca4d059",
+    "platform": "gba"
+  },
+  "AGB-BPRF-0": {
+    "name": "Pokemon - Version Rouge Feu (France)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BPVX-0": {
+    "name": "Pippa Funnell - Stable Adventure (Europe) (En,Fr)",
+    "rom_verified": false,
+    "sha256": "8ccc089c1ea747ba2f349b31495fb5629d0a7668317f637b99aca45b7fb3020f",
+    "platform": "gba"
+  },
+  "AGB-BQ3E-0": {
+    "name": "Rayman - Raving Rabbids (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BQ4P-0": {
+    "name": "SpongeBob SquarePants - Creature from the Krusty Krab (Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BQCE-0": {
+    "name": "Crash of the Titans (USA) (En,Fr)",
+    "rom_verified": false,
+    "sha256": "8442dd6172714f20212af582db1510963c4e02a2132299920d9e2dadbf954f41",
+    "platform": "gba"
+  },
+  "AGB-BQLE-0": {
+    "name": "March of the Penguins (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BQQE-0": {
+    "name": "SpongeBob SquarePants - Lights, Camera, Pants! (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BQVE-0": {
+    "name": "Paws & Claws - Pet Vet (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BQZE-0": {
+    "name": "Avatar - The Last Airbender (USA)",
+    "rom_verified": true,
+    "sha256": "67df1edd696bfefa9f169ab03f1eca300c0efa336acf0da7fff8499d69fbe99a",
+    "platform": "gba"
+  },
+  "AGB-BRAE-0": {
+    "name": "Racing Gears Advance (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BRBJ-0": {
+    "name": "Rockman EXE 5 - Team of Blues (Japan)",
+    "rom_verified": true,
+    "sha256": "284ae3c7c9d3b6eaaf8ed858f33de91a62b0bcf66d04cf21d6838d042b83a4ab",
+    "platform": "gba"
+  },
+  "AGB-BRHE-0": {
+    "name": "Meet the Robinsons (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BRQE-0": {
+    "name": "3 Games in One - Darts + Roll-a-Ball + Shuffle Bowl (USA)",
+    "rom_verified": false,
+    "sha256": "9f276dd5081e7f642ac1710a3bd68b05468c6e946715d0d43c3e733200fd79ed",
+    "platform": "gba"
+  },
+  "AGB-BRRE-0": {
+    "name": "Bratz - Rock Angelz (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "08f5dc54324dd7e9cc3fb50bfa1e39e2f6ff7a94ce4c907fc84f88d076df9c0e",
+    "platform": "gba"
+  },
+  "AGB-BRTP-0": {
+    "name": "Robots (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "4ecd011cf0d9174cdeb4bf751848011103170f1c30ae93d4b4c7fd53a294f605",
+    "platform": "gba"
+  },
+  "AGB-BS7P-0": {
+    "name": "2 in 1 Game Pack - Shrek 2 & Shark Tale (Europe) (En,Fr,De,Es,It,Sv+En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "48072d27d2106e25cb1f5d873443805eb5905c598d6801121cac7dc93b456052",
+    "platform": "gba"
+  },
+  "AGB-BSBE-0": {
+    "name": "Sonic Battle (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "536c7d7bdb37862c79d048c351b0c61ffe8380c71e1be8b15d537549272b72a9",
+    "platform": "gba"
+  },
+  "AGB-BSDP-0": {
+    "name": "Sitting Ducks (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BSMP-0": {
+    "name": "Metal Slug Advance (Europe)",
+    "rom_verified": true,
+    "sha256": "dc58cb8606570467793b918f0c32a5e74341d42a165c9c6b022bb355cfcf8e1f",
+    "platform": "gba"
+  },
+  "AGB-BSNE-0": {
+    "name": "SpongeBob SquarePants Movie, The (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BSNX-0": {
+    "name": "SpongeBob SquarePants Movie, The (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BSTE-1": {
+    "name": "Spyro Orange - The Cortex Conspiracy (USA) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "974ff2bab4e5d7d20e42184ab4c179cf3d0beda247648ad102d4a3b80b0dd3c9",
+    "platform": "gba"
+  },
+  "AGB-BSTP-0": {
+    "name": "Spyro Fusion (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "0ac8a659449934e24c60fd077ff8eac1ec8b931efc6e040d10ccafbd2e110a7e",
+    "platform": "gba"
+  },
+  "AGB-BSUE-0": {
+    "name": "Shark Tale (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "08e371f442d7ca15fdbe1dc8a8b0a9d01356781c3a9a7802d8e45c689ebf4f32",
+    "platform": "gba"
+  },
+  "AGB-BSUX-0": {
+    "name": "Shark Tale (Europe) (Fr,De,Es)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BSXE-0": {
+    "name": "SSX 3 (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BSZX-0": {
+    "name": "2 Games in 1 - SpongeBob SquarePants - SuperSponge + SpongeBob SquarePants - Battle for Bikini Bottom (Europe) (En+En,Fr,De)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BT9E-0": {
+    "name": "Tak 2 - The Staff of Dreams (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BTAP-0": {
+    "name": "Astro Boy - Omega Factor (Europe) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "06ac840a438c61fe0e15d7b399358706a20d082a4e37d46666a7ca5b02fc55a9",
+    "platform": "gba"
+  },
+  "AGB-BTBE-0": {
+    "name": "Thunderbirds (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BTHE-0": {
+    "name": "Thunder Alley (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BTNE-0": {
+    "name": "Tron 2.0 - Killer App (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BTUE-0": {
+    "name": "Totally Spies! (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BTYP-0": {
+    "name": "Ty the Tasmanian Tiger 2 - Bush Rescue (USA, Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "a6e7d7067015ed1f7b930a1838cc30c48a02260bcc5db9cfc57b572ad78a2171",
+    "platform": "gba"
+  },
+  "AGB-BU4E-0": {
+    "name": "Unfabulous (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BU5E-0": {
+    "name": "Uno 52 (USA)",
+    "rom_verified": false,
+    "sha256": "2350420c3f83982dac2684d84cbc03a073ea2d8fcb319ab0b54ed9f2d1141b08",
+    "platform": "gba"
+  },
+  "AGB-BUEE-0": {
+    "name": "Danny Phantom - The Ultimate Enemy (USA)",
+    "rom_verified": false,
+    "sha256": "a88c36755e56a7732cde373d1f844fafad4b8fe2388218c3dc4e78c0557a2541",
+    "platform": "gba"
+  },
+  "AGB-BULE-0": {
+    "name": "Ultimate Spider-Man (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BUQE-0": {
+    "name": "2 Game Pack! - Uno + Skip-Bo (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BUYE-0": {
+    "name": "Ant Bully, The (USA) (En,Fr)",
+    "rom_verified": false,
+    "sha256": "4f52192abda8957a85cac09e6c94d359a58b620959a7f31e6002f57662aaa274",
+    "platform": "gba"
+  },
+  "AGB-BVDJ-0": {
+    "name": "bit Generations - Boundish (Japan) (En)",
+    "rom_verified": false,
+    "sha256": "f37ee29693a3c4dafe9afd7624c19dbe0fc042371f3ed17b0b7ab1aeb70295b8",
+    "platform": "gba"
+  },
+  "AGB-BW5E-0": {
+    "name": "Combo Pack - Sonic Advance + Sonic Pinball Party (USA) (En,Ja,Fr,De,Es+En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "ec51663053a8b8df120685ccc9f1c9fd8e9a0db9a1ec95b5fdeb46e52b51284e",
+    "platform": "gba"
+  },
+  "AGB-BW6P-0": {
+    "name": "2 Games in 1 - Sonic Battle + Sonic Pinball Party (Europe) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "d55f76fd79b790b4449e012adea5e628e103bb9f58b5136b2a0b16ad348d1127",
+    "platform": "gba"
+  },
+  "AGB-BWHE-0": {
+    "name": "Winnie the Pooh's Rumbly Tumbly Adventure (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BWQE-0": {
+    "name": "2 Games in 1 - Quad Desert Fury + Monster Trucks (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BWSE-0": {
+    "name": "Shaman King - Legacy of the Spirits - Sprinting Wolf (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BWTP-0": {
+    "name": "W.i.t.c.h. (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BWWP-0": {
+    "name": "WWE - Survivor Series (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "08b0c6895e3814cbd657b7da82ae7d2bf1f035a254ffa86bd455c337ec8df6de",
+    "platform": "gba"
+  },
+  "AGB-BX3P-0": {
+    "name": "2 in 1 Game Pack - Spider-Man & Spider-Man 2 (Europe) (En,Fr,De+En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "cc3824308428b94d891c9966f2fbce0eec2db17a51121737adc9ff83a4c2101e",
+    "platform": "gba"
+  },
+  "AGB-BX5P-0": {
+    "name": "Rayman - 10th Anniversary (Europe) (En,Fr,De,Es,It,Nl,Sv,No,Da,Fi)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BXAE-0": {
+    "name": "Texas Hold 'em Poker (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BXAP-1": {
+    "name": "Texas Hold 'em Poker (Europe) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BXFP-0": {
+    "name": "Bratz - Forever Diamondz (Europe) (En,Fr,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BXHP-0": {
+    "name": "2-in-1 Fun Pack - Shrek 2 + Madagascar - Operation Penguin (Europe)",
+    "rom_verified": false,
+    "sha256": "24f6c7424ad1b26a635a38f69ca99a3ea0ac4535de664b80efc5b0e55a9b971e",
+    "platform": "gba"
+  },
+  "AGB-BXLX-0": {
+    "name": "Ratatouille (Europe) (Fr,De,Nl)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BY2E-0": {
+    "name": "Yu-Gi-Oh! Double Pack (USA)",
+    "rom_verified": false,
+    "sha256": "b86546b5c52316d96eb54c3c5365c5eba56ffe9f3c46b6341160ecd1e9cf0688",
+    "platform": "gba"
+  },
+  "AGB-BY6E-0": {
+    "name": "Yu-Gi-Oh! - Ultimate Masters - World Championship Tournament 2006 (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "f405c620da05a817a5d63f45a4707b914260fb5802fe519b1e31bf050ba8f524",
+    "platform": "gba"
+  },
+  "AGB-BY7E-0": {
+    "name": "Yu-Gi-Oh! - 7 Trials to Glory - World Championship Tournament 2005 (USA) (En,Ja,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "321ac103afa7c647041d62606522d14edc33490af2f948ecccbdd9f57319de98",
+    "platform": "gba"
+  },
+  "AGB-BYAE-0": {
+    "name": "F24 Stealth Fighter (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BYDE-0": {
+    "name": "Yu-Gi-Oh! - Destiny Board Traveler (USA)",
+    "rom_verified": false,
+    "sha256": "ca818f32cba69d4ade8bdea200ae39206747c50d6d4f256eca89b81c357caff4",
+    "platform": "gba"
+  },
+  "AGB-BYFE-0": {
+    "name": "Backyard Football 2006 (USA)",
+    "rom_verified": true,
+    "sha256": "ff121d81cf5608b4522fdb11a1090a813c127d3ccfea14656ecb4ab737c7e5cf",
+    "platform": "gba"
+  },
+  "AGB-BYGJ-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters GX - Mezase Duel King! (Japan)",
+    "rom_verified": false,
+    "sha256": "6475f01cdc5618d0aadca4be96e28e376b05c839aaaf7f62b7c3716ad29c1783",
+    "platform": "gba"
+  },
+  "AGB-BYVE-0": {
+    "name": "Yu-Gi-Oh! Double Pack 2 (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "b56ff2d3ea4cd1f553f8e2a90c2487a9983bd7c3a3da281c5b6090bb6c20e2c6",
+    "platform": "gba"
+  },
+  "AGB-BZCE-0": {
+    "name": "Suite Life of Zack & Cody, The - Tipton Caper (USA) (En,Fr)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BZME-0": {
+    "name": "Legend of Zelda, The - The Minish Cap (USA)",
+    "rom_verified": true,
+    "sha256": "bedc74df62755f705398273de8ed3bc59be610cf55760d0b9aa277f1f5035e73",
+    "platform": "gba"
+  },
+  "AGB-BZMJ-0": {
+    "name": "Zelda no Densetsu - Fushigi no Boushi (Japan)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BZMP-0": {
+    "name": "Legend of Zelda, The - The Minish Cap (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-BZNE-0": {
+    "name": "Deal or No Deal (USA)",
+    "rom_verified": false,
+    "sha256": "325d8ed603759f5c5d566bb6d10b7f8493daef1b132c4144391367df75d719c6",
+    "platform": "gba"
+  },
+  "AGB-BZPE-0": {
+    "name": "2 Games in One! - Dr. Mario + Puzzle League (USA)",
+    "rom_verified": false,
+    "sha256": "aa5326dd9110b3309e5e19408e2c4d5cbb15899292d502d4976bbe56f12ede07",
+    "platform": "gba"
+  },
+  "AGB-BZSE-0": {
+    "name": "That's So Raven 2 - Supernatural Style (USA) (En,Fr)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-BZXE-0": {
+    "name": "SpongeBob's Atlantis SquarePantis (USA)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-FDME-0": {
+    "name": "Classic NES Series - Dr. Mario (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "0c8e7923a5fbb99f1d8367ba96cf61cd09df4ebebe716bc2871de4bc4a934fe9",
+    "platform": "gba"
+  },
+  "AGB-FLBE-0": {
+    "name": "Classic NES Series - Zelda II - The Adventure of Link (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "732560be6c6957b809c9cc821d0f03c3842c61af220c0a61dc77ffb0f695e862",
+    "platform": "gba"
+  },
+  "AGB-FM2J-0": {
+    "name": "Famicom Mini 21 - Super Mario Bros. 2 (Japan)",
+    "rom_verified": false,
+    "sha256": "648e5c1867d5be8024eb748c4eaf439229100094d2ecbbc9ff2f96ca5f3c704f",
+    "platform": "gba"
+  },
+  "AGB-FMRJ-0": {
+    "name": "Famicom Mini 23 - Metroid (Japan)",
+    "rom_verified": true,
+    "sha256": "86debebab7fcbed4f4378543cc57e0096b29069baa9eade538a3a6cc195e3dba",
+    "platform": "gba"
+  },
+  "AGB-FMRP-0": {
+    "name": "Classic NES Series - Metroid (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-FNMJ-0": {
+    "name": "Famicom Mini 22 - Nazo no Murasame Jou (Japan)",
+    "rom_verified": false,
+    "platform": "gba"
+  },
+  "AGB-FP7P-0": {
+    "name": "Classic NES Series - Pac-Man (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "e5dd09eb171d108131d849c0615a1faced4c9b0df5dee58e724d51e728f8422d",
+    "platform": "gba"
+  },
+  "AGB-FPMJ-0": {
+    "name": "Famicom Mini 06 - Pac-Man (Japan) (En)",
+    "rom_verified": false,
+    "sha256": "526150cadcb7a5a9137981f2eca7f3999b69e307f16fc9585c6dc6a9fcf5b7ea",
+    "platform": "gba"
+  },
+  "AGB-FSMJ-1": {
+    "name": "Famicom Mini 01 - Super Mario Bros. (Japan) (En) (Rev 1)",
+    "rom_verified": false,
+    "sha256": "9d44c1e5cb6ad97c89c4fa7b7b77047c154fb8b4e1fced6b62110b1fa8399d87",
+    "platform": "gba"
+  },
+  "AGB-FXVE-0": {
+    "name": "Classic NES Series - Xevious (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "604fd742a0c19ef09bf4d863dfb8a62ada973546b4dd4fbc84aa0c702a20f261",
+    "platform": "gba"
+  },
+  "AGB-FZLE-0": {
+    "name": "Classic NES Series - The Legend of Zelda (USA, Europe)",
+    "rom_verified": false,
+    "sha256": "a03c97b16ba1ba62361d5b3fed71e14fdafad814ff33671994b695f7bf0f2d20",
+    "platform": "gba"
+  },
+  "AGB-FZLJ-0": {
+    "name": "Famicom Mini 05 - Zelda no Densetsu 1 - The Hyrule Fantasy (Japan)",
+    "rom_verified": false,
+    "sha256": "998968a26587100d8e72b5b882f4f03c5bab20a324872ce1c8a1c67ed842d37f",
+    "platform": "gba"
+  },
+  "AGB-KHPJ-0": {
+    "name": "Korokoro Puzzle - Happy Panecchu! (Japan)",
+    "rom_verified": true,
+    "sha256": "ddc4bc2724cffb035983c854681bc2d716381d6283c4b5cf50668e2f745d181e",
+    "platform": "gba"
+  },
+  "AGB-KYGE-0": {
+    "name": "Yoshi Topsy-Turvy (USA)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-KYGJ-0": {
+    "name": "Yoshi no Banyuuinryoku (Japan)",
+    "rom_verified": true,
+    "sha256": "048d6b0f8f2f823007f0ef93438e394ff7e67dd2e0cbdb85f25ca40ebc44388a",
+    "platform": "gba"
+  },
+  "AGB-KYGP-0": {
+    "name": "Yoshi's Universal Gravitation (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gba"
+  },
+  "AGB-RZWE-0": {
+    "name": "WarioWare - Twisted! (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "ee1f05e0dde1ca1c3711cc7efddc40e13418b45edc213f70521284444ff87605",
+    "platform": "gba"
+  },
+  "AGB-TCHK-0": {
+    "name": "AGB Aging Cartridge (World) (v1.0) (Test Program)",
+    "rom_verified": false,
+    "sha256": "61f4222cb17fc0ac49f8779298433c293f52266a23722965575ceceb150d8a7c",
+    "platform": "gba"
+  },
+  "AGB-TCHK-1": {
+    "name": "AGS Aging Cartridge (World) (Rev 1) (v7.0) (Test Program)",
+    "rom_verified": false,
+    "sha256": "12953a9b75d70b85dfb0375f95fcaf60784bee0559048aa1789091f6d38e3228",
+    "platform": "gba"
+  },
+  "AGB-TCHK-3": {
+    "name": "AGS Aging Cartridge (World) (Rev 3) (v9.0) (Test Program)",
+    "rom_verified": false,
+    "sha256": "a5dac843f942d397f8bc943653a5811e43e7e8d557ee2564c64701f709467661",
+    "platform": "gba"
+  },
+  "AGB-ZMPE-0": {
+    "name": "GBA Jukebox (USA)",
+    "rom_verified": false,
+    "sha256": "a749cf04771966c3aaf4a711910ac846ce38ab439c9dd36663b6cff827ad4570",
+    "platform": "gba"
+  },
+  "AGB-ZMPJ-0": {
+    "name": "Music Recorder MP3 (Japan)",
+    "rom_verified": false,
+    "sha256": "9ea5580a89c29c7d1732f9fd23021341002ff23c27c175d967145c63c978f496",
     "platform": "gba"
   },
   "CGB-A2QJ-0": {

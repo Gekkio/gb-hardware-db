@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{month2, year1, LabelParser, Year};
+use super::{month2, year1, LabelParser, ParsedData, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     parser::year2,
@@ -14,6 +14,8 @@ pub struct LcdScreen {
     pub year: Option<Year>,
     pub month: Option<Month>,
 }
+
+impl ParsedData for LcdScreen {}
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};

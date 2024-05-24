@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     time::Week,
@@ -80,6 +80,8 @@ pub struct Mapper {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for Mapper {}
 
 /// Sharp MBC1A
 ///
@@ -712,38 +714,67 @@ pub fn mmm01() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-pub fn mapper() -> &'static impl LabelParser<Mapper> {
+pub fn any_mbc1_sop24() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
         sharp_mbc1a(),
         sharp_mbc1b(),
         sharp_mbc1b1(),
-        sharp_mbc2a(),
-        sharp_mbc3(),
-        sharp_mbc3a(),
-        sharp_mbc5(),
         nec_mbc1b(),
-        nec_mbc2a(),
-        nec_like_mbc6(),
         panasonic_mbc1b(),
-        panasonic_mbc2a(),
-        panasonic_mbc3a(),
-        panasonic_mbc3b(),
-        panasonic_mbc30(),
-        panasonic_mbc5(),
-        rohm_mbc3(),
-        rohm_mbc3a(),
-        rohm_mbc3b(),
-        rohm_mbc30(),
-        rohm_mbc5(),
-        rohm_mbc7(),
-        texas_instruments_mbc5(),
         unknown_mbc1b(),
         unknown_mbc1b_2(),
         unknown_mbc1b_3(),
-        huc1(),
-        huc1a(),
-        huc3(),
-        mmm01(),
     )
+}
+
+pub fn any_mbc2_sop28() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, nec_mbc2a(), panasonic_mbc2a(), sharp_mbc2a(),)
+}
+
+pub fn any_mbc3_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        panasonic_mbc3a(),
+        panasonic_mbc3b(),
+        rohm_mbc3(),
+        rohm_mbc3a(),
+        rohm_mbc3b(),
+        sharp_mbc3(),
+        sharp_mbc3a(),
+    )
+}
+
+pub fn any_mbc30_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, panasonic_mbc30(), rohm_mbc30(),)
+}
+
+pub fn any_mbc5_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        panasonic_mbc5(),
+        rohm_mbc5(),
+        sharp_mbc5(),
+        texas_instruments_mbc5(),
+    )
+}
+
+pub fn any_mbc6_qfp64() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, nec_like_mbc6(),)
+}
+
+pub fn any_mbc7_qfp56() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, rohm_mbc7(),)
+}
+
+pub fn any_mmm01_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, mmm01(),)
+}
+
+pub fn any_huc1_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, huc1(), huc1a(),)
+}
+
+pub fn any_huc3_qfp48() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, huc3(),)
 }

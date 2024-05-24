@@ -5,19 +5,17 @@
 use anyhow::Error;
 use cursive::{traits::*, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::{
-    config::cartridge::{BoardConfig, BoardPart, GameConfig, PartDesignator, PartRole},
+    config::cartridge::{BoardConfig, BoardPart, GameConfig, PartDesignator},
     input::{
         cartridge::{Cartridge, CartridgeBoard, CartridgeShell},
         Part,
     },
-    parser::{self, LabelParser},
     time::Month,
 };
 use gbhwdb_tools::cursive::*;
 use slug::slugify;
 use std::{
     collections::BTreeMap,
-    fmt,
     fs::{create_dir_all, File},
     io::{BufReader, BufWriter, Write},
     path::{Path, PathBuf},
@@ -289,61 +287,20 @@ fn part_editor(id: &str, part: Option<BoardPart>) -> LinearLayout {
         let details = TextView::new("")
             .with_name(details_id.clone())
             .fixed_height(2);
-        match part.role {
-            PartRole::Rom => {
-                add_details_callback(&mut editor, &details_id, parser::mask_rom::mask_rom())
-            }
-            PartRole::Mapper => {
-                add_details_callback(&mut editor, &details_id, parser::mapper::mapper())
-            }
-            PartRole::Ram => add_details_callback(&mut editor, &details_id, parser::ram::ram()),
-            PartRole::SupervisorReset => add_details_callback(
-                &mut editor,
-                &details_id,
-                parser::supervisor_reset::supervisor_reset(),
-            ),
-            PartRole::Crystal => add_details_callback(
-                &mut editor,
-                &details_id,
-                parser::crystal_32kihz::crystal_32kihz(),
-            ),
-            PartRole::Flash => {
-                add_details_callback(&mut editor, &details_id, parser::flash::flash())
-            }
-            PartRole::Eeprom => {
-                add_details_callback(&mut editor, &details_id, parser::eeprom::eeprom())
-            }
-            PartRole::Accelerometer => add_details_callback(
-                &mut editor,
-                &details_id,
-                parser::accelerometer::accelerometer(),
-            ),
-            PartRole::LineDecoder => add_details_callback(
-                &mut editor,
-                &details_id,
-                parser::line_decoder::line_decoder(),
-            ),
-            _ => (),
-        }
+        let details_id = details_id.to_owned();
+        editor.set_on_edit(move |siv, content, _| {
+            siv.call_on_name(&details_id, |view: &mut TextView| {
+                match (part.parser)(&content) {
+                    Ok(part) => view.set_content(format!("{:?}", part)),
+                    Err(err) => view.set_content(format!("{}", err)),
+                }
+            })
+            .unwrap();
+        });
         result.add_child(editor.with_name(id));
         result.add_child(details);
     }
     result
-}
-
-fn add_details_callback<T: fmt::Debug, F: LabelParser<T>>(
-    editor: &mut EditView,
-    details_id: &str,
-    f: &'static F,
-) {
-    let details_id = details_id.to_owned();
-    editor.set_on_edit(move |siv, content, _| {
-        siv.call_on_name(&details_id, |view: &mut TextView| match f.parse(&content) {
-            Ok(part) => view.set_content(format!("{:?}", part)),
-            Err(err) => view.set_content(format!("{}", err)),
-        })
-        .unwrap();
-    });
 }
 
 fn add_part(siv: &mut Cursive, id: &str) -> Option<Part> {

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{LabelParser, Manufacturer};
+use super::{LabelParser, Manufacturer, ParsedData};
 use crate::macros::single_parser;
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -10,6 +10,8 @@ pub struct Transformer {
     pub kind: String,
     pub manufacturer: Option<Manufacturer>,
 }
+
+impl ParsedData for Transformer {}
 
 /// ```
 /// # use gbhwdb_backend::parser::{self, LabelParser};

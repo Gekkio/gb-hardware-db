@@ -4,7 +4,7 @@
 
 use log::warn;
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
-use std::str::FromStr;
+use std::{fmt, str::FromStr};
 
 use crate::time::{Month, Week};
 
@@ -96,6 +96,8 @@ pub mod sram_tsop1_48;
 pub mod supervisor_reset;
 pub mod tama;
 
+pub trait ParsedData: Clone + fmt::Debug {}
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearWeek {
     pub kind: String,
@@ -103,6 +105,19 @@ pub struct ChipYearWeek {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for ChipYearWeek {}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct StaticRam {
+    pub family: Option<&'static str>,
+    pub part: Option<String>,
+    pub manufacturer: Option<Manufacturer>,
+    pub year: Option<Year>,
+    pub week: Option<Week>,
+}
+
+impl ParsedData for StaticRam {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Crystal {
@@ -112,6 +127,8 @@ pub struct Crystal {
     pub month: Option<Month>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for Crystal {}
 
 impl Crystal {
     pub fn format_frequency(&self) -> String {
@@ -275,7 +292,10 @@ pub struct SingleParser<T> {
     f: fn(Captures) -> Result<T, String>,
 }
 
-impl<T> LabelParser<T> for SingleParser<T> {
+impl<T> LabelParser<T> for SingleParser<T>
+where
+    T: ParsedData,
+{
     fn parse(&self, label: &str) -> Result<T, String> {
         if let Some(captures) = self.regex.captures(label) {
             (self.f)(captures)
@@ -298,15 +318,6 @@ impl<T> SingleParser<T> {
     }
 }
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct StaticRam {
-    pub family: Option<&'static str>,
-    pub part: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<Week>,
-}
-
 #[derive(Clone)]
 pub struct MultiParser<T: 'static> {
     parsers: Vec<&'static SingleParser<T>>,
@@ -323,7 +334,10 @@ impl<T> MultiParser<T> {
     }
 }
 
-impl<T> LabelParser<T> for MultiParser<T> {
+impl<T> LabelParser<T> for MultiParser<T>
+where
+    T: ParsedData,
+{
     fn parse(&self, label: &str) -> Result<T, String> {
         let matches = self.regex_set.matches(label);
         if matches.iter().count() > 1 {

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     time::Week,
@@ -16,6 +16,8 @@ pub struct MaskRom {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for MaskRom {}
 
 /// Sharp ROM chip (1990+)
 ///

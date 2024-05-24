@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, LabelParser, Manufacturer, Year};
+use super::{week2, year1, LabelParser, Manufacturer, ParsedData, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     time::Week,
@@ -15,6 +15,8 @@ pub struct SupervisorReset {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for SupervisorReset {}
 
 /// Mitsubishi M62021P
 ///

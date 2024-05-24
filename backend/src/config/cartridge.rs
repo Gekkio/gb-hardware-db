@@ -18,7 +18,7 @@ use std::{
 use crate::{
     parser::{
         accelerometer::accelerometer, crystal_32kihz::crystal_32kihz, eeprom::eeprom, flash::flash,
-        hex_inverter::hex_inverter, line_decoder::line_decoder, mapper::mapper, mask_rom::mask_rom,
+        hex_inverter::hex_inverter, line_decoder::line_decoder, mapper, mask_rom::mask_rom,
         ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, LabelParser,
     },
     sha256::Sha256,
@@ -158,8 +158,8 @@ impl BoardConfig {
                 _ => None,
             },
             BoardConfig::CgbA32 => match designator {
-                // TQFP-64 MBC6
-                D::U1 => part(PartRole::Mapper, mapper()),
+                // QFP-64 MBC6
+                D::U1 => part(PartRole::Mapper, mapper::any_mbc6_qfp64()),
                 // SOP-32 ROM
                 D::U2 => part(PartRole::Rom, mask_rom()),
                 // TSOP-I-40 Flash
@@ -174,7 +174,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -185,7 +185,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -196,7 +196,7 @@ impl BoardConfig {
                 // TSOP-I-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -208,7 +208,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -219,21 +219,21 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 _ => None,
             },
             BoardConfig::DmgA09 => match designator {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 _ => None,
             },
             BoardConfig::DmgA11 => match designator {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -245,7 +245,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-32 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -256,7 +256,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -271,7 +271,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-32 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -280,7 +280,7 @@ impl BoardConfig {
             },
             BoardConfig::DmgA40 => match designator {
                 // QFP-56 MBC7
-                D::U1 => part(PartRole::Mapper, mapper()),
+                D::U1 => part(PartRole::Mapper, mapper::any_mbc7_qfp56()),
                 // SOP-32 ROM
                 D::U2 => part(PartRole::Rom, mask_rom()),
                 // TSSOP-8 EEPROM
@@ -291,7 +291,7 @@ impl BoardConfig {
             },
             BoardConfig::DmgA47 => match designator {
                 // QFP-56 MBC7
-                D::U1 => part(PartRole::Mapper, mapper()),
+                D::U1 => part(PartRole::Mapper, mapper::any_mbc7_qfp56()),
                 // TSOP-II-44 ROM
                 D::U2 => part(PartRole::Rom, mask_rom()),
                 // TSSOP-8 EEPROM
@@ -309,7 +309,7 @@ impl BoardConfig {
                 // QFP-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-24 MBC1
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc1_sop24()),
                 _ => None,
             },
             BoardConfig::DmgBean | BoardConfig::DmgBfan | BoardConfig::DmgMBfan => match designator
@@ -317,7 +317,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-24 MBC1
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc1_sop24()),
                 _ => None,
             },
             BoardConfig::DmgDecn | BoardConfig::DmgDedn | BoardConfig::DmgMcDfcn => {
@@ -325,7 +325,7 @@ impl BoardConfig {
                     // SOP-32 ROM
                     D::U1 => part(PartRole::Rom, mask_rom()),
                     // SOP-24 MBC1
-                    D::U2 => part(PartRole::Mapper, mapper()),
+                    D::U2 => part(PartRole::Mapper, mapper::any_mbc1_sop24()),
                     // SOP-28 RAM
                     D::U3 => part(PartRole::Ram, ram()),
                     // SOP-8 26A
@@ -337,7 +337,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-24 MBC1
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc1_sop24()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -348,7 +348,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-28 MBC2
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc2_sop28()),
                 // SOP-8 26A
                 D::U3 => part(PartRole::SupervisorReset, supervisor_reset()),
                 _ => None,
@@ -357,7 +357,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc3_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 26A / MM1134
@@ -369,7 +369,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc3_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -381,7 +381,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc3_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -393,7 +393,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc3_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -404,7 +404,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MMM01
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mmm01_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 26A
@@ -415,7 +415,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC30
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc30_qfp32()),
                 // SOP-32 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -427,7 +427,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 HuC-1
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_huc1_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 26A
@@ -439,7 +439,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 HuC-1
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_huc1_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 1134A
@@ -451,7 +451,7 @@ impl BoardConfig {
                 // TSOP-I-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-48 HuC-3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_huc3_qfp48()),
                 // TSOP-I-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 26A
@@ -465,7 +465,7 @@ impl BoardConfig {
                 // TSOP-I-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-48 HuC-3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_huc3_qfp48()),
                 // TSOP-I-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -479,7 +479,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-48 HuC-3
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_huc3_qfp48()),
                 // TSOP-I-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134
@@ -493,7 +493,7 @@ impl BoardConfig {
                 // SOP-32 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -504,7 +504,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A
@@ -515,7 +515,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // QFP-32 MBC5
-                D::U2 => part(PartRole::Mapper, mapper()),
+                D::U2 => part(PartRole::Mapper, mapper::any_mbc5_qfp32()),
                 // SOP-28 RAM
                 D::U3 => part(PartRole::Ram, ram()),
                 // SOP-8 MM1134A

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, LabelParser, Year};
+use super::{week2, year2, LabelParser, ParsedData, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     time::Week,
@@ -20,6 +20,8 @@ pub struct Gen2Soc {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
+
+impl ParsedData for Gen2Soc {}
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};

@@ -6,13 +6,7 @@ use anyhow::Error;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::{
-    any::Any,
-    collections::{BTreeMap, HashMap},
-    fmt,
-    fs::File,
-    io::{BufReader, BufWriter},
-    path::Path,
-    sync::OnceLock,
+    any::Any, collections::{BTreeMap, HashMap}, fmt, fs::File, io::{BufReader, BufWriter}, path::Path, sync::OnceLock
 };
 
 use crate::{
@@ -20,6 +14,7 @@ use crate::{
         accelerometer::accelerometer, crystal_32kihz::crystal_32kihz, eeprom::eeprom, flash::flash,
         hex_inverter::hex_inverter, line_decoder::line_decoder, mapper, mask_rom::mask_rom,
         ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, LabelParser,
+        ParsedData,
     },
     sha256::Sha256,
 };
@@ -109,13 +104,17 @@ impl BoardConfig {
     pub fn part(&self, designator: PartDesignator) -> Option<BoardPart> {
         use PartDesignator as D;
 
-        fn part<T: 'static>(
+        fn part<T: ParsedData + 'static>(
             role: PartRole,
             parser: &'static impl LabelParser<T>,
         ) -> Option<BoardPart> {
             Some(BoardPart {
                 role,
                 parser: Box::new(move |input| {
+                    let value = parser.parse(input)?;
+                    Ok(Box::new(value))
+                }),
+                parse_any: Box::new(move |input| {
                     let value = parser.parse(input)?;
                     Ok(Box::new(value))
                 }),
@@ -543,7 +542,8 @@ impl BoardConfig {
 
 pub struct BoardPart {
     pub role: PartRole,
-    pub parser: Box<dyn Fn(&str) -> Result<Box<dyn Any>, String>>,
+    pub parser: Box<dyn Fn(&str) -> Result<Box<dyn ParsedData>, String>>,
+    pub parse_any: Box<dyn Fn(&str) -> Result<Box<dyn Any>, String>>,
 }
 
 fn create_map() -> HashMap<&'static str, BoardConfig> {

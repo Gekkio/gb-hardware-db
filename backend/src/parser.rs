@@ -4,7 +4,7 @@
 
 use log::warn;
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
-use std::{fmt, str::FromStr};
+use std::{any::Any, fmt, str::FromStr};
 
 use crate::time::{Month, Week};
 
@@ -96,7 +96,7 @@ pub mod sram_tsop1_48;
 pub mod supervisor_reset;
 pub mod tama;
 
-pub trait ParsedData: Clone + fmt::Debug {}
+pub trait ParsedData: fmt::Debug + Any {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearWeek {

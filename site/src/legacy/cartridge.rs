@@ -46,8 +46,8 @@ impl LegacyBoard {
                 let submission_part = &board[designator];
                 let label = &submission_part.as_ref()?.label.as_ref()?;
 
-                let parsed = (part.parser)(label)
-                    .unwrap_or_else(|_| panic!("Failed to parse {designator:?}"));
+                let parsed = (part.parse_any)(label)
+                    .unwrap_or_else(|_| panic!("Failed to parse {designator:?}:{label}"));
 
                 let part = try_process::<MaskRom>(board.year, label, parsed)
                     .or_else(|parsed| try_process::<Mapper>(board.year, label, parsed))

@@ -21,10 +21,125 @@
     "rom_verified": true,
     "platform": "gba"
   },
+  "CGB-A2QJ-0": {
+    "name": "RPG Tsukuru GB (Japan)",
+    "rom_verified": true,
+    "sha256": "86aa28d99aecfe63926e8fe7ff43c07dfb9cb40f4d8b8c742107ff6e16094f3f",
+    "platform": "gbc"
+  },
+  "CGB-A33X-0": {
+    "name": "TG Rally 2 (United Kingdom)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-A36J-0": {
+    "name": "Moomin no Daibouken (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-A3HJ-0": {
+    "name": "Hyper Olympic - Winter 2000 (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-A4AJ-0": {
+    "name": "Animal Breeder 4 (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-A72J-0": {
+    "name": "Densha de Go! (Japan)",
+    "rom_verified": false,
+    "sha256": "868b4fd2d7b1d7b441da31a473cbbc1c65cc02d83ff07938618739874a2a23bc",
+    "platform": "gbc"
+  },
+  "CGB-A7BE-0": {
+    "name": "Bomberman Max - Red Challenger (USA)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-A7BJ-0": {
+    "name": "Bomberman Max - Yami no Senshi (Japan)",
+    "rom_verified": true,
+    "sha256": "65f2488ae1a5be5a2e0a7392e950ca1d48f4912bf0566ca29d32dd7fda8068e4",
+    "platform": "gbc"
+  },
+  "CGB-A8BE-0": {
+    "name": "Bomberman Max - Blue Champion (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-A8BJ-0": {
+    "name": "Bomberman Max - Hikari no Yuusha (Japan)",
+    "rom_verified": true,
+    "sha256": "53b6b5c16b34345974a87d498f787cc816b216373e29568777433112bca99bd3",
+    "platform": "gbc"
+  },
+  "CGB-AA6P-0": {
+    "name": "Asterix - Sur la Trace D'Idefix (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "801660458dc65c29701f21985943ba84c1f55cf57c9be3527b17548c33be260d",
+    "platform": "gbc"
+  },
+  "CGB-AAUK-0": {
+    "name": "Pocket Monsters Geum (Korea)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AAXK-0": {
+    "name": "Pocket Monsters Eun (Korea)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-ADIP-0": {
+    "name": "Duke Nukem (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "9b9fc030382842957dee83e480fc345d56e599d4fce89e6a0350249b35ac8509",
+    "platform": "gbc"
+  },
+  "CGB-ADTE-0": {
+    "name": "Deja Vu I & II - The Casebooks of Ace Harding (USA)",
+    "rom_verified": false,
+    "sha256": "b3ca745829e018513eae8d760484140a031c0f031e1881fca3374a9194e3ecac",
+    "platform": "gbc"
+  },
+  "CGB-ADVJ-0": {
+    "name": "Granduel - Shinki Dungeon no Hihou (Japan)",
+    "rom_verified": true,
+    "sha256": "66bd276677c3f2f091b66b2c115432f131127c5d3fb14dbced7f677390b1c0d6",
+    "platform": "gbc"
+  },
+  "CGB-ADXP-0": {
+    "name": "Maus, Die (Europe) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AEQP-0": {
+    "name": "F1 Racing Championship (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "4ab779981c8f0c5a7025a485b46804561df614214e698ee362f6a3b769649720",
+    "platform": "gbc"
+  },
+  "CGB-AEWJ-1": {
+    "name": "Wizardry Empire (Japan) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AF9X-0": {
+    "name": "Casper (Europe) (En,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-AFIP-0": {
     "name": "F-1 World Grand Prix (Europe) (En,Fr,De,Es)",
     "rom_verified": true,
     "sha256": "78e91740ecdc7aaad788e1c8f3fac21865a5cc7c5feb04c6cc3e016a0c8c93a4",
+    "platform": "gbc"
+  },
+  "CGB-AFZP-0": {
+    "name": "Street Fighter Alpha - Warriors' Dreams (Europe)",
+    "rom_verified": false,
+    "sha256": "667f467a0e185946c176c6cc6e3bf0c3d129e97918f8fb6ebb7d88d5d093130c",
     "platform": "gbc"
   },
   "CGB-AHYE-0": {
@@ -38,14 +153,225 @@
     "rom_verified": true,
     "platform": "gbc"
   },
+  "CGB-AHYP-0": {
+    "name": "Super Mario Bros. Deluxe (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "af5a78f29f7e5e70bfe4d0122bdb99d5d0e38a3e8912ff49c2630c7d6be7db67",
+    "platform": "gbc"
+  },
+  "CGB-AHYP-1": {
+    "name": "Super Mario Bros. Deluxe (USA, Europe) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AHZE-0": {
+    "name": "Billy Bob's Huntin' 'n' Fishin' (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "745f2e3cbd194c42f27fd16a2c6be4d63f2382ac3f807f4ab948b4a249be7261",
+    "platform": "gbc"
+  },
+  "CGB-AHZP-0": {
+    "name": "Billy Bob's Huntin' 'n' Fishin' (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "745f2e3cbd194c42f27fd16a2c6be4d63f2382ac3f807f4ab948b4a249be7261",
+    "platform": "gbc"
+  },
+  "CGB-AI2P-0": {
+    "name": "Caesars Palace II (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AIME-0": {
+    "name": "Mission - Impossible (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "sha256": "f8a9daa63a36874e56221c391182880b8ddc792da156f3fba0ca8266049df676",
+    "platform": "gbc"
+  },
+  "CGB-AIMP-0": {
+    "name": "Mission - Impossible (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "8537bd0499fd3ff8aef5e4971c9715283a97c7c9ffb41d11787f7a45cbb00dfb",
+    "platform": "gbc"
+  },
+  "CGB-AIWU-0": {
+    "name": "Alice in Wonderland (USA, Australia)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AJ7E-0": {
+    "name": "NBA in the Zone 2000 (USA)",
+    "rom_verified": false,
+    "sha256": "60f56ffa14d5998836b9e03d89fef058b834cc58cce5f3e190b9db655cf4a28b",
+    "platform": "gbc"
+  },
+  "CGB-AJ7P-0": {
+    "name": "NBA in the Zone 2000 (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AJOD-0": {
+    "name": "Janosch - Das grosse Panama-Spiel (Germany)",
+    "rom_verified": true,
+    "sha256": "f60de7888fa062f6972d74303e7a794d23400db9d4d0b68c8323ddff801e3709",
+    "platform": "gbc"
+  },
   "CGB-AJUP-0": {
     "name": "Jeremy McGrath Supercross 2000 (USA, Europe)",
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-AJVJ-0": {
+    "name": "Pocket Pro Wrestling - Perfect Wrestler (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AKWD-0": {
+    "name": "Carmageddon - Carpocalypse Now (Germany)",
+    "rom_verified": true,
+    "sha256": "683ca4682b4b0af29581bc4cddaa28846cda0ff5942db50087c58896e9b46953",
+    "platform": "gbc"
+  },
+  "CGB-AKWP-0": {
+    "name": "Carmageddon - Carpocalypse Now (USA, Europe) (En,Fr,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-ALCP-0": {
+    "name": "Missile Command (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-ALMJ-0": {
+    "name": "Looney Tunes Collector - Martian Quest! (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-ALMP-0": {
+    "name": "Looney Tunes Collector - Martian Alert! (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "db7d9b473efdd7580fedd3af50cbd359231201c8d6b5aca75fd2678b9b74a25e",
+    "platform": "gbc"
+  },
+  "CGB-ALQE-0": {
+    "name": "Lucky Luke (USA) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-ALQP-0": {
+    "name": "Lucky Luke (Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "ebe7df5da026f653a16ef58758d4ba6765246f043d2e7f72571327bb4148ecfa",
+    "platform": "gbc"
+  },
+  "CGB-ALXE-0": {
+    "name": "Klax (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "4709a7160a834dcc3eb8537b4461ce7c2cfe3bddc427bdc3fe9d6c4be8f9f812",
+    "platform": "gbc"
+  },
+  "CGB-ALXP-0": {
+    "name": "Klax (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "4709a7160a834dcc3eb8537b4461ce7c2cfe3bddc427bdc3fe9d6c4be8f9f812",
+    "platform": "gbc"
+  },
+  "CGB-AM9P-0": {
+    "name": "Moomin's Tale (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "d9ea816b3f647f8d2164b60816abc49f598c15519e19cbae1168f0f21fb6cf8e",
+    "platform": "gbc"
+  },
+  "CGB-AMHP-0": {
+    "name": "Crazy Bikers (Europe)",
+    "rom_verified": false,
+    "sha256": "36d44cd0bfbc2ecde60f0489c927dee52b674d67340f182d35ac6e2d66b4027c",
+    "platform": "gbc"
+  },
+  "CGB-ANNE-0": {
+    "name": "Marble Madness (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "c1df41a27743c2a7598fba6ee6a7e4dee954861c434d4c6316c19dcf2b4aff62",
+    "platform": "gbc"
+  },
+  "CGB-ANUE-0": {
+    "name": "Mr. Nutz (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AO4F-0": {
+    "name": "Bugs Bunny et le Chateau des Catastrophes (France) (En)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AO4P-0": {
+    "name": "Bugs Bunny in - Crazy Castle 4 (Europe)",
+    "rom_verified": true,
+    "sha256": "fbee61c1e75c9e703ee2ed1e5d13c183fd3d29a0ce1bbf2b97e86035c69709fb",
+    "platform": "gbc"
+  },
+  "CGB-AOGP-0": {
+    "name": "Logical (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AOXP-0": {
+    "name": "Armorines - Project S.W.A.R.M. (USA, Europe) (En,De)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AOZE-0": {
+    "name": "Dogz (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-APJJ-0": {
+    "name": "Pocket Cooking (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "CGB-AQOP-0": {
     "name": "Ready 2 Rumble Boxing (Europe)",
     "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AR5E-0": {
+    "name": "Rampart (USA)",
+    "rom_verified": true,
+    "sha256": "7a7c6e496fbca4aa39d42d3a3af4d79e9795dbef35c01ab34db0ac7ab003b793",
+    "platform": "gbc"
+  },
+  "CGB-AR6P-0": {
+    "name": "Tom Clancy's Rainbow Six (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "aceaf844999ea06e30bb7ee60f722e2e022d2e4f521ba26a9f60dfa9eb15de98",
+    "platform": "gbc"
+  },
+  "CGB-AR7P-0": {
+    "name": "Turok - Rage Wars (USA, Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-ARNE-0": {
+    "name": "Mickey's Racing Adventure (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "b289e0f55c6d3e8c230e2ccaa29f821e417e7a19e5b31d35b61c5f0516ccdca1",
+    "platform": "gbc"
+  },
+  "CGB-ARNP-0": {
+    "name": "Mickey's Racing Adventure (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "b289e0f55c6d3e8c230e2ccaa29f821e417e7a19e5b31d35b61c5f0516ccdca1",
+    "platform": "gbc"
+  },
+  "CGB-AS6P-0": {
+    "name": "Spy vs Spy (Europe) (En,Fr,De,Es,It,Nl,Sv)",
+    "rom_verified": true,
+    "sha256": "26fb9a9d498dbf1da8cf8dd04840bd565daf916f8dd7bdb65709f79a2a569246",
+    "platform": "gbc"
+  },
+  "CGB-ASNE-0": {
+    "name": "Smurfs Nightmare, The (USA)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "CGB-ASNP-0": {
@@ -54,9 +380,35 @@
     "sha256": "2a3c767dc98eae6b3e09f3bd7ec29902370ec1351cd1b4fe49e9a1115add24f2",
     "platform": "gbc"
   },
+  "CGB-ASXP-0": {
+    "name": "San Francisco Rush 2049 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "4d6d40ebac2e6aa3dc7c2c006fe4e499d75d0f2a8d6bfec346e352b743418dcc",
+    "platform": "gbc"
+  },
+  "CGB-AT7J-0": {
+    "name": "Tetris Adventure - Susume Mickey to Nakama-tachi (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AT7J-1": {
+    "name": "Tetris Adventure - Susume Mickey to Nakama-tachi (Japan) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-AT8E-0": {
     "name": "Micro Machines 1 and 2 - Twin Turbo (USA, Europe)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AT8P-0": {
+    "name": "Micro Machines 1 and 2 - Twin Turbo (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AT9P-0": {
+    "name": "Tomb Raider (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
     "platform": "gbc"
   },
   "CGB-ATHD-0": {
@@ -70,8 +422,66 @@
     "sha256": "375ef1a7885eaf145a6209f7053578687f21751f064a3bbd37dab183cbbf0aed",
     "platform": "gbc"
   },
+  "CGB-ATHF-0": {
+    "name": "Tarzan (France)",
+    "rom_verified": true,
+    "sha256": "971dee20268a07f32ba349370e563bc04c5a38cda4dd1f79821acc0f867a6184",
+    "platform": "gbc"
+  },
+  "CGB-ATQE-0": {
+    "name": "Tonka Raceway (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-ATQP-0": {
     "name": "Tonka Raceway (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-ATXP-0": {
+    "name": "Tom and Jerry (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AUHP-0": {
+    "name": "Heroes of Might and Magic (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AUTP-0": {
+    "name": "Rampage 2 - Universal Tour (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AV4E-0": {
+    "name": "Bionic Commando - Elite Forces (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "209eb947d0c5104264308a3bc769df48c77b13be1711daff8d51000bc98e4d76",
+    "platform": "gbc"
+  },
+  "CGB-AVCP-0": {
+    "name": "Army Men (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AVDE-0": {
+    "name": "Pro Darts (USA)",
+    "rom_verified": false,
+    "sha256": "de5926f07e97a086aaf504f6048c4e3493e572878ff2f3331eb99b0020ddb7a2",
+    "platform": "gbc"
+  },
+  "CGB-AVED-0": {
+    "name": "Pumuckls Abenteuer bei den Piraten (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AVFP-0": {
+    "name": "Vegas Games (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AVNP-0": {
+    "name": "BattleTanx (Europe) (En,Fr,De)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -81,10 +491,98 @@
     "sha256": "b625ed03e7553cc29ebc4203d919838312fc9f9f85915f5d2eddfe14aec77406",
     "platform": "gbc"
   },
+  "CGB-AWTE-0": {
+    "name": "WWF Attitude (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AWTP-0": {
+    "name": "WWF Attitude (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AWUP-0": {
+    "name": "Worms Armageddon (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-AWXJ-0": {
+    "name": "Mario Golf GB (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AX2E-0": {
+    "name": "NFL Blitz 2000 (USA)",
+    "rom_verified": true,
+    "sha256": "1da4c3e328db54623adcce3ff3faa1d09f1f098ff467f30ba98ed845b90182a2",
+    "platform": "gbc"
+  },
+  "CGB-AX9P-0": {
+    "name": "Jim Henson's Muppets (Europe) (En,Fr,De,Es,It,Nl,Sv)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AXGP-0": {
+    "name": "Gex 3 - Deep Cover Gecko (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "0434668a52dda69a2d4b9b23abaf2d2cd63f4065488fc53cc6707ee61a97ac7e",
+    "platform": "gbc"
+  },
+  "CGB-AXKE-0": {
+    "name": "Knockout Kings (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "214710311150029f87ab0c8d67713ac446f3b75057cbebdc8960455acb1824eb",
+    "platform": "gbc"
+  },
+  "CGB-AXKP-0": {
+    "name": "Knockout Kings (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "214710311150029f87ab0c8d67713ac446f3b75057cbebdc8960455acb1824eb",
+    "platform": "gbc"
+  },
+  "CGB-AXPP-0": {
+    "name": "10-Pin Bowling (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AXRP-0": {
+    "name": "Suzuki Alstare Extreme Racing (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "5ae217530face3c08a434f6d02fa5fb2d3d7769ee849890af69e3af429347970",
+    "platform": "gbc"
+  },
+  "CGB-AXWP-0": {
+    "name": "Supreme Snowboarding (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AYHP-0": {
+    "name": "WCW Mayhem (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-AYQE-0": {
     "name": "Rayman (USA) (En,Fr,De,Es,It,Nl)",
     "rom_verified": false,
     "sha256": "9ca5b01d04985e0c83c68d5b434f322d2e7ee494fffed08cd747e8ade1569b0a",
+    "platform": "gbc"
+  },
+  "CGB-AYQP-0": {
+    "name": "Rayman (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "7ca4b608b1c9162498146efcb43f98fcea08b1c10663ea0bcfb55fb62cc5eaa4",
+    "platform": "gbc"
+  },
+  "CGB-AYTJ-0": {
+    "name": "Yakouchuu GB (Japan)",
+    "rom_verified": false,
+    "sha256": "090735952d7d78ecb164b44558da0fc4d4a1d0b3235b12bd607d7d0964b07c2d",
+    "platform": "gbc"
+  },
+  "CGB-AZ7E-0": {
+    "name": "Legend of Zelda, The - Oracle of Seasons (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "862a51368fb30539279d336b3fe193b43876d2cb15c87a36f5da517804ab3971",
     "platform": "gbc"
   },
   "CGB-AZ7J-0": {
@@ -99,15 +597,80 @@
     "sha256": "35fd809a21df04c7dac16cf76f7cc5d04017e3beabca102d2e378912a48539d9",
     "platform": "gbc"
   },
+  "CGB-AZ8E-0": {
+    "name": "Legend of Zelda, The - Oracle of Ages (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "0b56b78a9e45452e98c33edd111234931f1e034dc097f6f23082eb8db6055474",
+    "platform": "gbc"
+  },
+  "CGB-AZ8J-0": {
+    "name": "Zelda no Densetsu - Fushigi no Kinomi - Jikuu no Shou (Japan)",
+    "rom_verified": true,
+    "sha256": "75f1047438e9e1d188495f54fe9d689e79607ec370a8697626d1688ce5bcf2a5",
+    "platform": "gbc"
+  },
   "CGB-AZ8P-0": {
     "name": "Legend of Zelda, The - Oracle of Ages (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
     "sha256": "dbbb897a003654abfef7eadbfd401421e247e0c37319e947e5c80099f8f7ab86",
     "platform": "gbc"
   },
+  "CGB-AZCP-0": {
+    "name": "Catz (Europe)",
+    "rom_verified": false,
+    "sha256": "39499b9db9d93ad201f7cec80b8103259b84042182cace7dfe107941dd2028f7",
+    "platform": "gbc"
+  },
+  "CGB-AZEP-0": {
+    "name": "Noddy and the Birthday Party (Europe) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-AZRP-0": {
     "name": "Mask of Zorro, The (Europe)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AZWE-0": {
+    "name": "Microsoft - The 6 in 1 Puzzle Collection Entertainment Pack (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-AZWP-0": {
+    "name": "Puzzled (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "26005714027c2eb6527c49fd0310b859f118eb40a027b338914a2285fc1ac9de",
+    "platform": "gbc"
+  },
+  "CGB-B18P-0": {
+    "name": "F-18 Thunder Strike (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B24P-0": {
+    "name": "Le Mans 24 Hours (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "a8497fee97ae3d70b955a6b498f6ecd196dab875ba097012075e340a80fd7189",
+    "platform": "gbc"
+  },
+  "CGB-B2CK-0": {
+    "name": "Bomberman Selection (Korea)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B2RP-0": {
+    "name": "Mummy Returns, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B2SE-0": {
+    "name": "Spider-Man 2 - The Sinister Six (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B2SP-0": {
+    "name": "Spider-Man 2 - The Sinister Six (USA, Europe)",
+    "rom_verified": true,
     "platform": "gbc"
   },
   "CGB-B2XE-0": {
@@ -116,13 +679,152 @@
     "sha256": "e37a14a8e61bd64f2226dacc26a7ee75dd90abfcf88c5016eb97b76ecda0ddca",
     "platform": "gbc"
   },
+  "CGB-B2XP-0": {
+    "name": "Mega Man Xtreme 2 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "e37a14a8e61bd64f2226dacc26a7ee75dd90abfcf88c5016eb97b76ecda0ddca",
+    "platform": "gbc"
+  },
+  "CGB-B2ZX-0": {
+    "name": "Tweenies - Doodles' Bones (Europe) (En,Nl,Sv,No,Da)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B32J-0": {
+    "name": "Medarot 3 - Kabuto Version (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B3AE-0": {
+    "name": "Shantae (USA)",
+    "rom_verified": true,
+    "sha256": "1b92e22d5510c51bab97d23074e4aad7464d93eb15f7596ef7da0a5efa27a19d",
+    "platform": "gbc"
+  },
+  "CGB-B3CJ-0": {
+    "name": "Nakayoshi Cooking Series 5 - Cake o Tsukurou (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B3DJ-0": {
+    "name": "Nakayoshi Cooking Series 4 - Tanoshii Dessert (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B3HE-0": {
+    "name": "ESPN International Track & Field (USA)",
+    "rom_verified": false,
+    "sha256": "221a3d10567319eb975431ff855e665506b92cfd9481b66037bb1929fb32860f",
+    "platform": "gbc"
+  },
   "CGB-B3OP-0": {
     "name": "SnowCross (Europe) (En,Fr,De,Es,It,Pt)",
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-B3QJ-0": {
+    "name": "Uchuujin Tanaka Tarou de - RPG Tsukuru GB 2 (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B3SE-0": {
+    "name": "Shaun Palmer's Pro Snowboarder (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "ffec556c29c47faa81c44ab803fbd088c008f23f13c6113ff2104ec88c2ceb5a",
+    "platform": "gbc"
+  },
+  "CGB-B3SP-0": {
+    "name": "Shaun Palmer's Pro Snowboarder (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "ffec556c29c47faa81c44ab803fbd088c008f23f13c6113ff2104ec88c2ceb5a",
+    "platform": "gbc"
+  },
+  "CGB-B3TE-0": {
+    "name": "Tony Hawk's Pro Skater 3 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "1320a14ccfcd0e36a578620ea943da13655f85ed2a99f31eb96bd43b7bde57ec",
+    "platform": "gbc"
+  },
+  "CGB-B3TP-0": {
+    "name": "Tony Hawk's Pro Skater 3 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "1320a14ccfcd0e36a578620ea943da13655f85ed2a99f31eb96bd43b7bde57ec",
+    "platform": "gbc"
+  },
+  "CGB-B4MJ-0": {
+    "name": "Medarot 4 - Kabuto Version (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B4PP-0": {
+    "name": "Sabrina - The Animated Series - Spooked! (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "47dbe306f7bf01fd2500ebc40cac9b0af633daa3b4fd9499e03a4150423d9301",
+    "platform": "gbc"
+  },
+  "CGB-B4QE-0": {
+    "name": "Monsters, Inc. (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "2e35f37e830ac957a441ea27a13ce9c63ef78638ad332f6ddcd54bb57cb98fec",
+    "platform": "gbc"
+  },
+  "CGB-B4QP-0": {
+    "name": "Monsters, Inc. (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "2e35f37e830ac957a441ea27a13ce9c63ef78638ad332f6ddcd54bb57cb98fec",
+    "platform": "gbc"
+  },
   "CGB-B4QP-1": {
     "name": "Monsters, Inc. (Europe) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B4QX-0": {
+    "name": "Monsters, Inc. (Europe) (En,Es,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B4QY-0": {
+    "name": "Monsters, Inc. (Europe) (En,Fr,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B4TE-0": {
+    "name": "Saban's Power Rangers - Time Force (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "91368206a6fa408d50a9f6e606f4c06646e23255e94ad04ac1df7acb7853e1b6",
+    "platform": "gbc"
+  },
+  "CGB-B4TP-0": {
+    "name": "Saban's Power Rangers - Time Force (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "91368206a6fa408d50a9f6e606f4c06646e23255e94ad04ac1df7acb7853e1b6",
+    "platform": "gbc"
+  },
+  "CGB-B7DE-0": {
+    "name": "Snow White and the Seven Dwarfs (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B7IJ-0": {
+    "name": "Nakayoshi Pet Series 3 - Kawaii Koinu (Japan)",
+    "rom_verified": false,
+    "sha256": "75d6cbef258780b95238429879288f739e4e0277de38ebb1acc7d1091f7477a4",
+    "platform": "gbc"
+  },
+  "CGB-B7KJ-0": {
+    "name": "Kinniku Banzuke GB 3 - Shinseiki Survival Retsuden! (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B7NJ-0": {
+    "name": "Nakayoshi Pet Series 4 - Kawaii Koneko (Japan)",
+    "rom_verified": true,
+    "sha256": "7957aa8941368bb1cd8c08ef2d36fe8b22aeccb07cac0383b0261d069c296a74",
+    "platform": "gbc"
+  },
+  "CGB-B7PJ-0": {
+    "name": "Nakayoshi Cooking Series 2 - Oishii Panya-san (Japan)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -132,10 +834,396 @@
     "sha256": "aaf85dc22020cc7103bfcacb0bdd54568d4b391a0483fd3e11f18cd35c9c05a6",
     "platform": "gbc"
   },
+  "CGB-B86E-0": {
+    "name": "Hamtaro - Ham-Hams Unite! (USA)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B86J-0": {
+    "name": "Tottoko Hamutarou 2 - Hamu-chan Zu Daishuugou Dechu (Japan)",
+    "rom_verified": true,
+    "sha256": "7e24624b544ebb5f06638795501d78589b8af0a3e6d9c2a59300ad00c2cc6479",
+    "platform": "gbc"
+  },
+  "CGB-B86P-0": {
+    "name": "Hamtaro - Ham-Hams Unite! (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "48b5c1200ebd28376229d050af95d4fa37ea375ee95c9e435198abb0d61c0ec1",
+    "platform": "gbc"
+  },
+  "CGB-B87J-0": {
+    "name": "Hana Yori Dango - Another Love Story (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B8MJ-0": {
+    "name": "Hamster Monogatari GB + Magi Ham no Mahou Shoujo (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-B99E-0": {
+    "name": "102 Dalmatians - Puppies to the Rescue (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B99F-0": {
+    "name": "102 Dalmatiens a la Rescousse, Les (France)",
+    "rom_verified": false,
+    "sha256": "bb99eda93a9024b558f09fd9faf4ddfd9d1657b8cee76988358cb19e2c2fc2ad",
+    "platform": "gbc"
+  },
+  "CGB-B99P-0": {
+    "name": "102 Dalmatians - Puppies to the Rescue (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-B99S-0": {
+    "name": "102 Dalmatas - Cachorros Al Rescate (Spain)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-B9AJ-0": {
     "name": "Mobile Trainer (Japan)",
     "rom_verified": true,
     "sha256": "6d802e66b54f700aa8c767dd4a3b9df200bae05e07a296fffb16ebf4efc76570",
+    "platform": "gbc"
+  },
+  "CGB-B9TP-0": {
+    "name": "Tomb Raider - Curse of the Sword (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a75109b2730df5bef628f05660d670f07a1be6c6249d73f7f88375061c3f3bbb",
+    "platform": "gbc"
+  },
+  "CGB-BA2E-0": {
+    "name": "Army Men 2 (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "6da0357c4b00a1b8393f4e9fb5dbbe620e9b1680a7c4032303a058178fa245b7",
+    "platform": "gbc"
+  },
+  "CGB-BA2P-0": {
+    "name": "Army Men 2 (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "6da0357c4b00a1b8393f4e9fb5dbbe620e9b1680a7c4032303a058178fa245b7",
+    "platform": "gbc"
+  },
+  "CGB-BABX-0": {
+    "name": "Atlantis - The Lost Empire (Europe) (En,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BABY-0": {
+    "name": "Atlantis - The Lost Empire (Europe) (Fr,De,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BADE-0": {
+    "name": "Aladdin (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAEP-0": {
+    "name": "Aliens - Thanatos Encounter (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAFJ-0": {
+    "name": "Tsuriiko!! (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAGD-0": {
+    "name": "Rugrats - Typisch Angelica (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAGE-0": {
+    "name": "Rugrats - Totally Angelica (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "409ec5e4dbf87a8f6fe4e86d52402ea70c24ceb2653fe83a94f7cb0646a08333",
+    "platform": "gbc"
+  },
+  "CGB-BAGF-0": {
+    "name": "Razmoket, Les - 100% Angelica (France)",
+    "rom_verified": false,
+    "sha256": "16d4b856bb6801a93d3eb1e76a77a96d66c7d0eeb4b3728d4d92491cfdcfffed",
+    "platform": "gbc"
+  },
+  "CGB-BAGP-0": {
+    "name": "Rugrats - Totally Angelica (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "409ec5e4dbf87a8f6fe4e86d52402ea70c24ceb2653fe83a94f7cb0646a08333",
+    "platform": "gbc"
+  },
+  "CGB-BALE-0": {
+    "name": "Blue's Clues - Blue's Alphabet Book (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAME-0": {
+    "name": "Animorphs (USA)",
+    "rom_verified": false,
+    "sha256": "da72b44e4023672bd79b063be100e569d629a542d809fe898a4da27682d0473f",
+    "platform": "gbc"
+  },
+  "CGB-BATE-0": {
+    "name": "Army Men - Air Combat (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "4cdeaa6d2f37891394dbeecc952dff8950ea5c80959a1d4d9d5839bba2782a09",
+    "platform": "gbc"
+  },
+  "CGB-BATP-0": {
+    "name": "Army Men - Air Combat (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "4cdeaa6d2f37891394dbeecc952dff8950ea5c80959a1d4d9d5839bba2782a09",
+    "platform": "gbc"
+  },
+  "CGB-BAUJ-0": {
+    "name": "Network Boukenki Bugsite - Alpha Version (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BAXP-0": {
+    "name": "Action Man - Search for Base X (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "fa9fe020c07a5194dcd61ab33be44779ce5c9de4074fac3eb68bae9311d7c2f6",
+    "platform": "gbc"
+  },
+  "CGB-BAZE-0": {
+    "name": "Antz Racing (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BAZP-0": {
+    "name": "Antz Racing (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "sha256": "cc31252fcf8df4be20627e3fad382da45fb5076d2e7f457e4c138a0831a6b6bd",
+    "platform": "gbc"
+  },
+  "CGB-BB3J-0": {
+    "name": "Bakuten Shoot Beyblade (Japan)",
+    "rom_verified": false,
+    "sha256": "8bcd542c602d8cdffbc8ce90c8c5f325f0398a25ee2149b2e2b4049d42c5e4b2",
+    "platform": "gbc"
+  },
+  "CGB-BB6J-0": {
+    "name": "Gyouten Ningen Batseelor - Doctor Guy no Yabou (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BB7E-0": {
+    "name": "Jim Henson's Bear in the Big Blue House (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBEE-0": {
+    "name": "Trouballs (USA)",
+    "rom_verified": false,
+    "sha256": "2a9aa5ad0ea2900ca7333128861e37d79ed4a3bc7c308d894d5b15dcceed442c",
+    "platform": "gbc"
+  },
+  "CGB-BBHE-1": {
+    "name": "Powerpuff Girls, The - Battle Him (USA) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBHF-0": {
+    "name": "Powerpuff Girls, The - Bulle Contre Lui (France)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBHP-0": {
+    "name": "Powerpuff Girls, The - Battle Him (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBHS-0": {
+    "name": "Super Nenas, Las - Lucha Con Ese (Spain)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBNP-0": {
+    "name": "Jim Henson's Bear in the Big Blue House (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BBQP-0": {
+    "name": "Bob et Bobette - Les Dompteurs du Temps (Europe) (Fr,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BBSJ-0": {
+    "name": "Brave Saga - Shinshou Astaria (Japan)",
+    "rom_verified": true,
+    "sha256": "5ffda4ca9e2712e2ecc44e75bfd8c7307f4ed5fbcbb82a0f5cd9ad19e3bac6c2",
+    "platform": "gbc"
+  },
+  "CGB-BBXE-0": {
+    "name": "Yogi Bear - Great Balloon Blast (USA)",
+    "rom_verified": false,
+    "sha256": "79847fc3769d81c17f95f7d4797b25129c5bf416e9da2a16ab2d09d71e9b9bbe",
+    "platform": "gbc"
+  },
+  "CGB-BBZD-0": {
+    "name": "Dragon Ball Z - Legendaere Superkaempfer (Germany)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BBZE-0": {
+    "name": "Dragon Ball Z - Legendary Super Warriors (USA)",
+    "rom_verified": true,
+    "sha256": "8dab48cc81d14bcee7c73274df09cf5c4dd44c3b93d10a5a3175e04fead25dee",
+    "platform": "gbc"
+  },
+  "CGB-BBZI-0": {
+    "name": "Dragon Ball Z - I Leggendari Super Guerrieri (Italy)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BCBP-0": {
+    "name": "Commander Keen (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a7d8b7ded91011d4e04894e4a90dd679328d1767427ae0d625f57fccf19f93a5",
+    "platform": "gbc"
+  },
+  "CGB-BCCE-0": {
+    "name": "Scooby-Doo! - Classic Creep Capers (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "da934314ae7934480bcb64b43046a1de8702b69b43439fa233fd67863b6dad1b",
+    "platform": "gbc"
+  },
+  "CGB-BCCP-0": {
+    "name": "Scooby-Doo! - Classic Creep Capers (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "da934314ae7934480bcb64b43046a1de8702b69b43439fa233fd67863b6dad1b",
+    "platform": "gbc"
+  },
+  "CGB-BCFE-0": {
+    "name": "Cannon Fodder (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BCKE-0": {
+    "name": "Chicken Run (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "50a6ddd98a515f530ca031f86e5491c8d77d16b0694c0d1054bcc964991eba41",
+    "platform": "gbc"
+  },
+  "CGB-BCKP-0": {
+    "name": "Chicken Run (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "50a6ddd98a515f530ca031f86e5491c8d77d16b0694c0d1054bcc964991eba41",
+    "platform": "gbc"
+  },
+  "CGB-BCLP-0": {
+    "name": "Carl Lewis Athletics 2000 (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BCMP-0": {
+    "name": "Championship Motocross 2001 featuring Ricky Carmichael (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BCSE-0": {
+    "name": "Hoyle Casino (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BCTE-0": {
+    "name": "CyberTiger (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "071e4efad6e1079b1e7674c1f22bbb5dba4689686ef9fc717aa40a06f3ef4593",
+    "platform": "gbc"
+  },
+  "CGB-BCTP-0": {
+    "name": "CyberTiger (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "071e4efad6e1079b1e7674c1f22bbb5dba4689686ef9fc717aa40a06f3ef4593",
+    "platform": "gbc"
+  },
+  "CGB-BCUJ-0": {
+    "name": "Hamster Paradise 4 (Japan)",
+    "rom_verified": true,
+    "sha256": "c9a2edd8f37c7d56993019e32daf115f7b610057c12f7e1b623cf6b0da179b1b",
+    "platform": "gbc"
+  },
+  "CGB-BCVP-0": {
+    "name": "Mary-Kate and Ashley - Crush Course (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BCXE-0": {
+    "name": "Cubix - Robots for Everyone - Race 'n Robots (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "289f60c364ec6241f81245de56b21716a6bc5455570ff7d1107b0b84cf01050c",
+    "platform": "gbc"
+  },
+  "CGB-BD3E-0": {
+    "name": "Dragon Warrior III (USA)",
+    "rom_verified": true,
+    "sha256": "34f11935cb3c23102462aab9d96c09e25b81b35eef91f5e5456b2c3665734f0e",
+    "platform": "gbc"
+  },
+  "CGB-BD8D-0": {
+    "name": "Diva Starz (Germany)",
+    "rom_verified": true,
+    "sha256": "52087d541a38538540d3ef0d7c90bc23408f8477ff6b3930a7215df858487e53",
+    "platform": "gbc"
+  },
+  "CGB-BD8F-0": {
+    "name": "Diva Starz (France)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BD8P-0": {
+    "name": "Diva Starz (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BDCP-0": {
+    "name": "Dukes of Hazzard, The - Racing for Home (Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BDDE-0": {
+    "name": "Donkey Kong Country (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "e22324dfd7884a593d265bc3776af6d06c9cf049a060ac7d05613c5303672fca",
+    "platform": "gbc"
+  },
+  "CGB-BDDJ-0": {
+    "name": "Donkey Kong 2001 (Japan)",
+    "rom_verified": true,
+    "sha256": "cdaf66ce7b40a6b3e7c0986b1f09df88c006d4c566fe2b3ebe0caf1f35e9015e",
+    "platform": "gbc"
+  },
+  "CGB-BDDP-0": {
+    "name": "Donkey Kong Country (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "e22324dfd7884a593d265bc3776af6d06c9cf049a060ac7d05613c5303672fca",
+    "platform": "gbc"
+  },
+  "CGB-BDED-0": {
+    "name": "Moorhuhn 2 - Die Jagd geht weiter (Germany)",
+    "rom_verified": true,
+    "sha256": "68ab57af178570b2ca3b4dc3a687d4dae241c4d4c07846854f717f508741f947",
+    "platform": "gbc"
+  },
+  "CGB-BDFJ-0": {
+    "name": "Dr. Rin ni Kiitemite! - Koi no Rin Fuusui (Japan)",
+    "rom_verified": true,
+    "sha256": "3062efded5aa1a58409b2ae98cebeafdc10221ddd58957d5d1cb0b41207d21c4",
+    "platform": "gbc"
+  },
+  "CGB-BDLP-0": {
+    "name": "Deadly Skies (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BDNE-0": {
+    "name": "Dinosaur (USA)",
+    "rom_verified": false,
+    "sha256": "aea0cd13dc84fcbdf541560c71add456248648b501eac03d3d591ccae18e00c2",
     "platform": "gbc"
   },
   "CGB-BDQP-0": {
@@ -143,10 +1231,139 @@
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-BDRP-0": {
+    "name": "Driver (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BDSP-0": {
     "name": "Dinosaur'us (Europe) (En,Fr,De,Es,It,Nl)",
     "rom_verified": false,
     "sha256": "fafb25d3ce6a296060c234e93b9496ac3a8beee3f11b2d7a8bac2f79a2c0c9cc",
+    "platform": "gbc"
+  },
+  "CGB-BDUD-0": {
+    "name": "Doug's Big Game (Germany)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BDUP-0": {
+    "name": "Doug's Big Game (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BDWE-0": {
+    "name": "Dragon Tales - Dragon Adventures (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BDXP-0": {
+    "name": "Dragon's Lair (USA, Europe) (En,Ja,Fr,De,Es,Zh)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BEAE-0": {
+    "name": "Austin Powers - Welcome to My Underground Lair! (USA)",
+    "rom_verified": false,
+    "sha256": "8509be8f8720fea154b81ce8e47b72251916d94da534aed998d13277b131fd05",
+    "platform": "gbc"
+  },
+  "CGB-BEAX-0": {
+    "name": "Austin Powers - Welcome to My Underground Lair! (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BECP-0": {
+    "name": "ECW Hardcore Revolution (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BENP-0": {
+    "name": "Emperor's New Groove, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "53000dc61a06e4ff9d0aa6f9a870d79f8d5702513bc5e8fcd20711048ee7efaa",
+    "platform": "gbc"
+  },
+  "CGB-BEOP-0": {
+    "name": "E.T. - The Extra-Terrestrial and the Cosmic Garden (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BEPE-0": {
+    "name": "Matchbox Emergency Patrol (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "2af36e0a28de9fb7da48a042b9719b10e1d1ca571e2ce4bce9eacdf9ef804ff0",
+    "platform": "gbc"
+  },
+  "CGB-BEPP-0": {
+    "name": "Matchbox Emergency Patrol (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "2af36e0a28de9fb7da48a042b9719b10e1d1ca571e2ce4bce9eacdf9ef804ff0",
+    "platform": "gbc"
+  },
+  "CGB-BERE-0": {
+    "name": "E.T. - The Extra-Terrestrial - Escape from Planet Earth (USA)",
+    "rom_verified": false,
+    "sha256": "4ce1820ce0b4f64180d5eafc08ac917c681e7592168d9a944291d82f96bfab6d",
+    "platform": "gbc"
+  },
+  "CGB-BESE-0": {
+    "name": "Extreme Sports with the Berenstain Bears (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BESP-0": {
+    "name": "Extreme Sports with the Berenstain Bears (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BEXP-0": {
+    "name": "Elevator Action EX (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BF2E-0": {
+    "name": "F1 World Grand Prix II for Game Boy Color (USA) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BF2P-0": {
+    "name": "F1 World Grand Prix II for Game Boy Color (Europe) (En,Fr,De,Es)",
+    "rom_verified": false,
+    "sha256": "c460c746e8ebeb1633e484c131bedf4597493076d14a80531c70517199370566",
+    "platform": "gbc"
+  },
+  "CGB-BFBD-0": {
+    "name": "Anpfiff - Der RTL Fussball-Manager (Germany)",
+    "rom_verified": true,
+    "sha256": "a6576b94677319fbebf4d7ac53647ce9ccf2d53df7b5a27c6a6d8ae373ccc387",
+    "platform": "gbc"
+  },
+  "CGB-BFCE-0": {
+    "name": "Force 21 (USA) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "1e81354b488f29e77512d9f40b4fa916065ccbaa027846c1805141514556efd6",
+    "platform": "gbc"
+  },
+  "CGB-BFED-0": {
+    "name": "Bibi und Tina - Fohlen Felix in Gefahr (Germany)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BFIB-0": {
+    "name": "F1 Championship Season 2000 (Brazil) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BFSP-0": {
+    "name": "Flintstones, The - Burgertime in Bedrock (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BFUE-0": {
+    "name": "Shrek - Fairy Tale Freakdown (USA, Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "6a4f67f84d3ddd43385aacacdedc38aa58d091912465bf6a5f6b6278a4f3247b",
     "platform": "gbc"
   },
   "CGB-BFUP-0": {
@@ -161,15 +1378,79 @@
     "sha256": "5e567dcde1aa5e5e1fb61e9a614b9ca5fdd0c7748993c3687ae78f8eb7216ce9",
     "platform": "gbc"
   },
+  "CGB-BFWJ-0": {
+    "name": "Fushigi no Dungeon - Fuurai no Shiren GB 2 - Sabaku no Majou (Japan) (BFWJ)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BGDE-0": {
+    "name": "Godzilla - The Series - Monster Wars (USA) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "ef34c9b13105f87bdb679179548cac9f89220a08eb7d99287640552930b0f9bc",
+    "platform": "gbc"
+  },
+  "CGB-BGDP-0": {
+    "name": "Godzilla - The Series - Monster Wars (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BGFD-0": {
+    "name": "Gifty (Germany) (En)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BGFP-0": {
+    "name": "Gift (Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BGHP-0": {
+    "name": "Grinch, The (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BGKJ-0": {
+    "name": "Doraemon no Study Boy - Gakushuu Kanji Game (Japan)",
+    "rom_verified": true,
+    "sha256": "54872b898e20fa844efb68e0a1686603331ddb78768e4d5f450858f49686578c",
+    "platform": "gbc"
+  },
   "CGB-BGLJ-0": {
     "name": "Super Gals! Kotobuki Ran (Japan)",
     "rom_verified": true,
     "sha256": "50a02181ad93f70427479a90e5206884d8ff48426f2b472877a78e46461f5ba5",
     "platform": "gbc"
   },
+  "CGB-BGOJ-0": {
+    "name": "Mobile Golf (Japan)",
+    "rom_verified": true,
+    "sha256": "8990e1ca43048b3f0d19954850e67ecfa549e5b050d0816f2135f9a582fbd3b2",
+    "platform": "gbc"
+  },
+  "CGB-BGSJ-0": {
+    "name": "Gensou Maden Saiyuuki - Sabaku no Shijin (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BGYJ-1": {
+    "name": "Gambler Densetsu Tetsuya - Shinjuku Tenun Hen (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "CGB-BH2E-1": {
     "name": "Frogger 2 (USA) (Rev 1)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BH3J-0": {
+    "name": "Hamster Paradise 3 (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BH6E-0": {
+    "name": "Harry Potter and the Chamber of Secrets (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,Da)",
+    "rom_verified": true,
+    "sha256": "2788df60fc6373bdf7c9fa241a4409da14726f23017953adc1121bb90ad6b99a",
     "platform": "gbc"
   },
   "CGB-BH6P-0": {
@@ -183,10 +1464,26 @@
     "rom_verified": true,
     "platform": "gbc"
   },
+  "CGB-BHFP-0": {
+    "name": "Mary-Kate and Ashley - Winners Circle (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "CGB-BHMJ-0": {
     "name": "Hamster Paradise 2 (Japan)",
     "rom_verified": true,
     "sha256": "aa00671d2803d3ef56533577f1d4609572da3cd0c52061ff7262baeb3a060fb1",
+    "platform": "gbc"
+  },
+  "CGB-BHOD-0": {
+    "name": "Geheimnis der Happy Hippo-Insel, Das (Germany)",
+    "rom_verified": true,
+    "sha256": "84194e5c8ae9adce8483e785c0aebba94c593421991d8eb0e9fae9208b1c4967",
+    "platform": "gbc"
+  },
+  "CGB-BHTJ-0": {
+    "name": "Tottoko Hamutarou - Tomodachi Daisakusen Dechu (Japan)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "CGB-BHTJ-1": {
@@ -195,10 +1492,91 @@
     "sha256": "6f986ed280df86cdd7b01702b64113847c0288708dad2602b06841234c5dfe14",
     "platform": "gbc"
   },
+  "CGB-BHUP-0": {
+    "name": "Hugo - Black Diamond Fever (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BHVE-0": {
     "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
     "rom_verified": true,
     "sha256": "8eb56e0d55a04aa3fcf940f172757f4f60baa6c53c82707def8ae4e78844b1da",
+    "platform": "gbc"
+  },
+  "CGB-BHVP-0": {
+    "name": "Harry Potter and the Sorcerer's Stone (USA, Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "rom_verified": true,
+    "sha256": "8eb56e0d55a04aa3fcf940f172757f4f60baa6c53c82707def8ae4e78844b1da",
+    "platform": "gbc"
+  },
+  "CGB-BHWJ-0": {
+    "name": "Shin Megami Tensei Devil Children - Shiro no Sho (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BHXP-0": {
+    "name": "Hugo - The Evil Mirror (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da,Fi)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BI2J-0": {
+    "name": "Momotarou Densetsu 1-2 (Japan)",
+    "rom_verified": true,
+    "sha256": "7d0d8bdb9c52e381862277271e3e0fe474af69cf9ea92053147cdfb1de32785b",
+    "platform": "gbc"
+  },
+  "CGB-BI9J-0": {
+    "name": "McDonald's Monogatari - Honobono Tenchou Ikusei Game (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BIBD-0": {
+    "name": "Bibi Blocksberg - Im Bann der Hexenkugel (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BICP-0": {
+    "name": "Top Gun - Fire Storm (USA, Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BIJP-0": {
+    "name": "Indiana Jones and the Infernal Machine (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "42568dbaba8e8e62d14154e023adc6719ddf30081b47fdb8d87c45065af09d64",
+    "platform": "gbc"
+  },
+  "CGB-BJAE-0": {
+    "name": "NBA Jam 2001 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "aa222a14efdfc5f8e90dda0410293b8ebe7d04338d2497555e40c0d01d1206f7",
+    "platform": "gbc"
+  },
+  "CGB-BJAP-0": {
+    "name": "NBA Jam 2001 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "aa222a14efdfc5f8e90dda0410293b8ebe7d04338d2497555e40c0d01d1206f7",
+    "platform": "gbc"
+  },
+  "CGB-BJGE-0": {
+    "name": "Jungle Book, The - Mowgli's Wild Adventure (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "6ca54452e5b30622c316e65109857f8e8ae2d30b128f5b25a6699a371720da34",
+    "platform": "gbc"
+  },
+  "CGB-BJHJ-0": {
+    "name": "Hamster Club - Awasete Chuu (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJIP-0": {
+    "name": "Stuart Little - The Journey Home (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJIX-0": {
+    "name": "Stuart Little - The Journey Home (Europe) (Fr,De)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "CGB-BJJE-0": {
@@ -206,13 +1584,226 @@
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-BJJE-1": {
+    "name": "Powerpuff Girls, The - Bad Mojo Jojo (USA) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJJE-2": {
+    "name": "Powerpuff Girls, The - Bad Mojo Jojo (USA) (Rev 2)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BJJF-0": {
+    "name": "Powerpuff Girls, The - L'Affreux Mojo Jojo (France)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJJP-0": {
+    "name": "Powerpuff Girls, The - Bad Mojo Jojo (Europe) (BJJP)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJJS-0": {
+    "name": "Super Nenas, Las - El Malvado Mojo Jojo (Spain)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BJTJ-1": {
+    "name": "Jissen ni Yakudatsu Tsumego (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "CGB-BJWP-0": {
     "name": "Jimmy White's Cueball (Europe)",
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-BJYD-0": {
+    "name": "Jay und die Spielzeugdiebe (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BK2E-0": {
+    "name": "Croc 2 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "002ad8e22b4d846d3185c2e42af284dcb5f9b040bb174c9b5e9670de4df79278",
+    "platform": "gbc"
+  },
+  "CGB-BK7J-0": {
+    "name": "Hello Kitty no Happy House (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BKHJ-0": {
+    "name": "Kisekae Series 3 - Kisekae Hamster (Japan)",
+    "rom_verified": true,
+    "sha256": "acd7c88b7e7ae600712278508cc01edaaeac753c2e38f47cf03d3e67557c27e3",
+    "platform": "gbc"
+  },
+  "CGB-BKIP-0": {
+    "name": "Shelly Club (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BKRJ-0": {
+    "name": "Watashi no Kitchen (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BL2E-0": {
+    "name": "LEGO Island 2 - The Brickster's Revenge (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLBP-0": {
+    "name": "Land Before Time, The (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLDP-0": {
+    "name": "Laura (Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
+    "rom_verified": false,
+    "sha256": "be45c39c74da9d8ce466d84d105a6b474d23f6ffbe0afdad3110aa92ca013c09",
+    "platform": "gbc"
+  },
+  "CGB-BLEE-0": {
+    "name": "Blade (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "fcb408bb34497a5f5558c8a12baf7eb8967854ec80da5d73997869ad5e09ca64",
+    "platform": "gbc"
+  },
+  "CGB-BLEP-0": {
+    "name": "Blade (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "fcb408bb34497a5f5558c8a12baf7eb8967854ec80da5d73997869ad5e09ca64",
+    "platform": "gbc"
+  },
+  "CGB-BLFP-0": {
+    "name": "Lufia - The Legend Returns (Europe) (En,De)",
+    "rom_verified": true,
+    "sha256": "2fce2730314aaba5c0e1924dbe5fc33b3aa43236e687efc0a008ed43740380e1",
+    "platform": "gbc"
+  },
+  "CGB-BLHJ-0": {
+    "name": "Love Hina Party (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLKD-0": {
+    "name": "Koenig der Loewen, Der - Simbas grosses Abenteuer (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLKF-1": {
+    "name": "Roi Lion, Le - La Formidable Aventure de Simba (France) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLKP-0": {
+    "name": "Lion King, The - Simba's Mighty Adventure (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLNE-0": {
+    "name": "Little Nicky (USA)",
+    "rom_verified": true,
+    "sha256": "7c4b3b579508f01b34820b4ff34f3cc6a26a265cb63ded737ad1804a8162e471",
+    "platform": "gbc"
+  },
+  "CGB-BLPE-0": {
+    "name": "LEGO Alpha Team (USA)",
+    "rom_verified": true,
+    "sha256": "3e4b4f7a289eb75252539ea28f8a2310aa365099940e2f5edc03105317081c2b",
+    "platform": "gbc"
+  },
+  "CGB-BLQP-0": {
+    "name": "Looney Tunes Racing (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLRE-0": {
+    "name": "LEGO Racers (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BLVJ-0": {
+    "name": "Sylvanian Families 2 - Irozuku Mori no Fantasy (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BLYP-0": {
     "name": "LEGO Stunt Rally (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BM3E-0": {
+    "name": "Micro Machines V3 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "426cd51642fdf235d18f1409b4ab722486b8d378bdc7b9d4eb7143b5d6a5f95a",
+    "platform": "gbc"
+  },
+  "CGB-BM3P-0": {
+    "name": "Micro Machines V3 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "426cd51642fdf235d18f1409b4ab722486b8d378bdc7b9d4eb7143b5d6a5f95a",
+    "platform": "gbc"
+  },
+  "CGB-BM5E-0": {
+    "name": "Mat Hoffman's Pro BMX (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BM8J-0": {
+    "name": "Mario Tennis GB (Japan)",
+    "rom_verified": true,
+    "sha256": "bc9d363cd702693a3af5c3e089e6881fbdbe2d9162995fe601243d2029fd26d7",
+    "platform": "gbc"
+  },
+  "CGB-BMDJ-0": {
+    "name": "Mr. Driller (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BMDP-0": {
+    "name": "Mr. Driller (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BMID-0": {
+    "name": "M&M's Minis Madness (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BMIP-0": {
+    "name": "M&M's Minis Madness (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BMME-0": {
+    "name": "Warriors of Might and Magic (USA) (En,Fr,De)",
+    "rom_verified": false,
+    "sha256": "69f23d391a278a749c1d414990a0348f0f24c991dc0c37caedcb733cfa92b276",
+    "platform": "gbc"
+  },
+  "CGB-BMQE-0": {
+    "name": "Microsoft Pinball Arcade (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BMQP-0": {
+    "name": "Microsoft Pinball Arcade (Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BMSP-0": {
+    "name": "Metal Gear Solid (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "90d3bb23de52e642ce361f9688910f3dc3669427452de6290589e72b1f22311f",
+    "platform": "gbc"
+  },
+  "CGB-BMTP-0": {
+    "name": "MTV Sports - Skateboarding Featuring Andy MacDonald (USA, Europe)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -222,10 +1813,64 @@
     "sha256": "9fb1e6e4a637796b8624bd2de6c9abaa9e758546b620cb5dc8441b07c288bc63",
     "platform": "gbc"
   },
+  "CGB-BMXE-0": {
+    "name": "Dave Mirra Freestyle BMX (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "62651903f410ff81815fb28cbfc438fddd29a87c763e5deb6e565800ace4e5fc",
+    "platform": "gbc"
+  },
+  "CGB-BMXP-0": {
+    "name": "Dave Mirra Freestyle BMX (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "62651903f410ff81815fb28cbfc438fddd29a87c763e5deb6e565800ace4e5fc",
+    "platform": "gbc"
+  },
+  "CGB-BN2E-0": {
+    "name": "NASCAR 2000 (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BNMJ-0": {
+    "name": "Animastar GB (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BNOP-0": {
+    "name": "Simpsons, The - Night of the Living Treehouse of Horror (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BNSE-0": {
+    "name": "NSYNC - Get to the Show (USA)",
+    "rom_verified": false,
+    "sha256": "b7b982e2204f0f5f566b5b93e39805d980859b9190f08756d5d628437f9affb7",
+    "platform": "gbc"
+  },
+  "CGB-BO7P-0": {
+    "name": "007 - The World Is Not Enough (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BOBX-0": {
+    "name": "Bob the Builder - Fix it Fun! (Europe) (En,Sv,No,Da,Fi)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BOBY-0": {
+    "name": "Bob the Builder - Fix it Fun! (Europe) (En,Fr,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BOMD-0": {
     "name": "Original Moorhuhn Jagd, Die (Germany)",
     "rom_verified": true,
     "sha256": "37cd42559ea48780f707e44d3ce44c2ab2c2506034151826561df635aa2fea28",
+    "platform": "gbc"
+  },
+  "CGB-BP7J-0": {
+    "name": "Pokemon Card GB 2 - GR Dan Sanjou! (Japan)",
+    "rom_verified": false,
+    "sha256": "0c26b4fec983e1ce7efedb7c6b6de997a26240f0390a7caab21888b819e3624a",
     "platform": "gbc"
   },
   "CGB-BP8P-0": {
@@ -233,9 +1878,370 @@
     "rom_verified": false,
     "platform": "gbc"
   },
+  "CGB-BPCD-0": {
+    "name": "Pumuckls Abenteuer im Geisterschloss (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPFE-0": {
+    "name": "Hype - The Time Quest (Brazil) (En)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPHJ-1": {
+    "name": "Love Hina Pocket (Japan) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPJE-0": {
+    "name": "Project S-11 (USA)",
+    "rom_verified": false,
+    "sha256": "584f8fcfde1ae9f262747be425df0ed4d1a7421d24b8d62af05b075875b1cb35",
+    "platform": "gbc"
+  },
+  "CGB-BPLE-1": {
+    "name": "Pro Pool (USA) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPLP-0": {
+    "name": "Pro Pool (Europe) (En,Fr,De)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPNE-0": {
+    "name": "Pokemon Puzzle Challenge (USA, Australia)",
+    "rom_verified": true,
+    "sha256": "42e6bf3b26f186f1ddf23d2ab0e78dea423c55562119f1988ffab906e8f86fe6",
+    "platform": "gbc"
+  },
+  "CGB-BPOE-0": {
+    "name": "Winnie the Pooh - Adventures in the 100 Acre Wood (USA)",
+    "rom_verified": true,
+    "sha256": "48781a21e2aeb055c0d1cc59240b83ae8eed34ea933b421d0a861c6a5eba5af8",
+    "platform": "gbc"
+  },
+  "CGB-BPSP-0": {
+    "name": "Pocket Soccer (Europe) (En,Fr,De,Es,It,Pt)",
+    "rom_verified": false,
+    "sha256": "28eaaeaa6b3b6b6aa97daab8fd19ad19fdaa1690aca8c0f6c86b103aa438bf9a",
+    "platform": "gbc"
+  },
   "CGB-BPTE-0": {
     "name": "Powerpuff Girls, The - Paint the Townsville Green (USA)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPTE-1": {
+    "name": "Powerpuff Girls, The - Paint the Townsville Green (USA) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "00ba12501a5d4fc17a5b6ac3aa5edea2d19ff4a7f830754c91128948443cd11e",
+    "platform": "gbc"
+  },
+  "CGB-BPTF-0": {
+    "name": "Powerpuff Girls, The - Panique a Townsville (France)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BPTP-0": {
+    "name": "Powerpuff Girls, The - Paint the Townsville Green (Europe) (BPTP)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BPTS-0": {
+    "name": "Super Nenas, Las - Panico en Townsville (Spain)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPVE-0": {
+    "name": "MTV Sports - Pure Ride (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "08c850b0ffd7699b3a21b7e3df1fd3a9bf1b8a6488c1f3bf0f0a665486ae3207",
+    "platform": "gbc"
+  },
+  "CGB-BPVP-0": {
+    "name": "MTV Sports - Pure Ride (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "08c850b0ffd7699b3a21b7e3df1fd3a9bf1b8a6488c1f3bf0f0a665486ae3207",
+    "platform": "gbc"
+  },
+  "CGB-BPXE-0": {
+    "name": "Laura (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPYJ-0": {
+    "name": "Pocket Puyo Puyo-n (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BPYJ-1": {
+    "name": "Pocket Puyo Puyo-n (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BPYJ-2": {
+    "name": "Pocket Puyo Puyo-n (Japan) (Rev 2)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BQ7J-0": {
+    "name": "Doraemon no Quiz Boy 2 (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BQAE-0": {
+    "name": "Donald Duck - Goin' Quackers (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "sha256": "0ee26b1a12c91560ab852510a792b13d7391c2fcebf4c0c0a1d8323194eb473a",
+    "platform": "gbc"
+  },
+  "CGB-BQAP-0": {
+    "name": "Donald Duck - Quack Attack (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BQBJ-1": {
+    "name": "Doraemon no Quiz Boy (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BQPP-0": {
+    "name": "SpongeBob SquarePants - Legend of the Lost Spatula (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BQQJ-0": {
+    "name": "Doraemon no Study Boy - Kuku Game (Japan)",
+    "rom_verified": false,
+    "sha256": "dd5508e761ca068e194575162e14ab49500febea8ecad016cbca1d470f937c4a",
+    "platform": "gbc"
+  },
+  "CGB-BQRJ-0": {
+    "name": "Shinseiki Evangelion - Mahjong Hokan Keikaku (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BQUJ-0": {
+    "name": "Shaman King Card Game - Chou Senjiryakketsu - Funbari Hen (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BQVJ-0": {
+    "name": "Shaman King Card Game - Chou Senjiryakketsu - Meramera Hen (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BQYJ-0": {
+    "name": "Sakura Taisen GB 2 - Thunderbolt Sakusen (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BRCP-0": {
+    "name": "Croc (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BRHP-0": {
+    "name": "Robin Hood (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "sha256": "407128e484d288fda8a32c18e8cc4bf7e5faca0b32495c147095b5df6e6cd6c1",
+    "platform": "gbc"
+  },
+  "CGB-BRJJ-0": {
+    "name": "Sakura Taisen GB - Geki Hana Gumi Nyuutai! (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BROE-0": {
+    "name": "Dexter's Laboratory - Robot Rampage (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BROP-0": {
+    "name": "Dexter's Laboratory - Robot Rampage (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BRPE-0": {
+    "name": "Rugrats in Paris - The Movie (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d769aad02ded9685ae14a5286a0f0a2a109e444376e3956f3a99b9b1a07e7f5c",
+    "platform": "gbc"
+  },
+  "CGB-BRPF-0": {
+    "name": "Razmoket a Paris, Les - Le Film (France)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BRPP-0": {
+    "name": "Rugrats in Paris - The Movie (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d769aad02ded9685ae14a5286a0f0a2a109e444376e3956f3a99b9b1a07e7f5c",
+    "platform": "gbc"
+  },
+  "CGB-BRRP-0": {
+    "name": "Road Rash (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BRSE-0": {
+    "name": "Saban's Power Rangers - Lightspeed Rescue (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BRSP-0": {
+    "name": "Saban's Power Rangers - Lightspeed Rescue (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BRTF-0": {
+    "name": "Razmoket, Les - Voyage dans le Temps (France)",
+    "rom_verified": false,
+    "sha256": "47af206810d11d9f932df8de7ecbdc13247f0b3aee36aecbe3639a9c3d8ffc6d",
+    "platform": "gbc"
+  },
+  "CGB-BRUE-0": {
+    "name": "Rocket Power - Gettin' Air (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d47bc7d265d70a141d378add0423db6da750a0f5dfd14c913583880d4d52efe9",
+    "platform": "gbc"
+  },
+  "CGB-BRUP-0": {
+    "name": "Rocket Power - Gettin' Air (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "d47bc7d265d70a141d378add0423db6da750a0f5dfd14c913583880d4d52efe9",
+    "platform": "gbc"
+  },
+  "CGB-BRYE-0": {
+    "name": "Rayman 2 (USA) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BRZE-0": {
+    "name": "Razor Freestyle Scooter (USA)",
+    "rom_verified": false,
+    "sha256": "9bae7bcfc9f5e2acdcd5d08e766633fd67fabf5bfd61bb086ca7f1c6963602e0",
+    "platform": "gbc"
+  },
+  "CGB-BRZP-0": {
+    "name": "Freestyle Scooter (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BS9P-0": {
+    "name": "Snoopy Tennis (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSEF-0": {
+    "name": "Spider-Man (France)",
+    "rom_verified": false,
+    "sha256": "cac21fc72722fa077eb21de6e779aaba3e915243c44baa485e06fc2b05851834",
+    "platform": "gbc"
+  },
+  "CGB-BSFP-0": {
+    "name": "Adventures of the Smurfs, The (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSGP-0": {
+    "name": "Sabrina - The Animated Series - Zapped! (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSHE-0": {
+    "name": "Army Men - Sarge's Heroes 2 (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "a6357faa528f11919f77da369d09a03fc7a5d41fcfa02c4bc5a43a33f6818003",
+    "platform": "gbc"
+  },
+  "CGB-BSHP-0": {
+    "name": "Army Men - Sarge's Heroes 2 (USA, Europe) (En,Fr,De)",
+    "rom_verified": true,
+    "sha256": "a6357faa528f11919f77da369d09a03fc7a5d41fcfa02c4bc5a43a33f6818003",
+    "platform": "gbc"
+  },
+  "CGB-BSJD-0": {
+    "name": "Bundesliga Stars 2001 (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSNE-0": {
+    "name": "Mickey's Speedway USA (USA, Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "9263a2138f5852177ea8a2436c6ddf6ec4ad41fc155d184b1773749533d6a470",
+    "platform": "gbc"
+  },
+  "CGB-BSNP-0": {
+    "name": "Mickey's Speedway USA (USA, Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "9263a2138f5852177ea8a2436c6ddf6ec4ad41fc155d184b1773749533d6a470",
+    "platform": "gbc"
+  },
+  "CGB-BSUP-0": {
+    "name": "Ultimate Surfing (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSWD-0": {
+    "name": "Swing (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSXP-0": {
+    "name": "Supercross Freestyle (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BSYP-0": {
+    "name": "Toonsylvania (Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BT3E-0": {
+    "name": "Turok 3 - Shadow of Oblivion (USA, Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "1710b81824ea2044e7c475c3a8befe52fb8ba92f5dfc8866d7362c1e11393859",
+    "platform": "gbc"
+  },
+  "CGB-BT3P-0": {
+    "name": "Turok 3 - Shadow of Oblivion (USA, Europe) (En,Fr,De,Es)",
+    "rom_verified": true,
+    "sha256": "1710b81824ea2044e7c475c3a8befe52fb8ba92f5dfc8866d7362c1e11393859",
+    "platform": "gbc"
+  },
+  "CGB-BT5P-0": {
+    "name": "Toy Story Racer (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BT8J-0": {
+    "name": "Shin Megami Tensei Trading Card - Card Summoner (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTBP-0": {
+    "name": "Trick Boarder (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTFE-0": {
+    "name": "Tony Hawk's Pro Skater (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a365aa4da19001f6894ce64ba1cf184e9144362353cdf3db3eae49ac8a8a347c",
+    "platform": "gbc"
+  },
+  "CGB-BTFP-0": {
+    "name": "Tony Hawk's Pro Skater (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "a365aa4da19001f6894ce64ba1cf184e9144362353cdf3db3eae49ac8a8a347c",
+    "platform": "gbc"
+  },
+  "CGB-BTGE-0": {
+    "name": "Tony Hawk's Pro Skater 2 (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "9b3505986288ff7f7648472e3caa555c044ec1f6b0e8f656f64811fd65b489a3",
     "platform": "gbc"
   },
   "CGB-BTGP-0": {
@@ -244,15 +2250,256 @@
     "sha256": "9b3505986288ff7f7648472e3caa555c044ec1f6b0e8f656f64811fd65b489a3",
     "platform": "gbc"
   },
+  "CGB-BTJP-1": {
+    "name": "Tom and Jerry - Mousehunt (Europe) (En,Fr,De,Es,It) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTKE-0": {
+    "name": "Batman Beyond - Return of the Joker (USA)",
+    "rom_verified": false,
+    "sha256": "bfb324176949811c6e116cb8e3d434b4937634d95b4f9bdfb54e0157c612dea0",
+    "platform": "gbc"
+  },
+  "CGB-BTNX-0": {
+    "name": "Thunderbirds (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTPP-0": {
+    "name": "Triple Play 2001 (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTQE-1": {
+    "name": "Tom and Jerry in - Mouse Attacks! (USA) (Rev 1)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTQP-0": {
+    "name": "Tom and Jerry in - Mouse Attacks! (Europe) (En,Fr,De,Es,It,Nl,Da)",
+    "rom_verified": false,
+    "sha256": "0375ac3c3bba13797c0201fba356dab5dd77f1aee12590b5af9ff6addca5b6cc",
+    "platform": "gbc"
+  },
+  "CGB-BTUE-0": {
+    "name": "Tech Deck Skateboarding (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "e195c06f44a5eb12ff4b8d41b8c19bbbf819aba0d84a6d7cb3ba79bd2c628e77",
+    "platform": "gbc"
+  },
+  "CGB-BTUP-0": {
+    "name": "Tech Deck Skateboarding (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "e195c06f44a5eb12ff4b8d41b8c19bbbf819aba0d84a6d7cb3ba79bd2c628e77",
+    "platform": "gbc"
+  },
+  "CGB-BTVP-0": {
+    "name": "MTV Sports - T.J. Lavin's Ultimate BMX (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTWE-0": {
+    "name": "Tweety's High-Flying Adventure (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BTWF-0": {
+    "name": "Titi - Le Tour du Monde en 80 Chats (France)",
+    "rom_verified": false,
+    "sha256": "88960cf552df55f60dd27c7e2253e3b6bd8676d0c285803b9f8c31aa1bd886fb",
+    "platform": "gbc"
+  },
+  "CGB-BTWY-0": {
+    "name": "Tweety's High-Flying Adventure (Europe) (En,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BU4P-0": {
+    "name": "Moorhuhn 3 - ...Es Gibt Huhn! (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BUAP-0": {
+    "name": "Dracula - Crazy Vampire (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "c9d909308a2aa15aad79c8a121635665bf089fac1f0c153237fd666ee94821ca",
+    "platform": "gbc"
+  },
+  "CGB-BUCP-0": {
+    "name": "Ultimate Fighting Championship (Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BUGJ-0": {
+    "name": "Grinch (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BUZD-0": {
+    "name": "Captain Buzz Lightyear - Star Command (Germany)",
+    "rom_verified": true,
+    "sha256": "e3369fb4fbb1ee5db1e97e02b33e7b2890d4327e4a364b7f93e4c5ac4c22f4a9",
+    "platform": "gbc"
+  },
+  "CGB-BUZP-0": {
+    "name": "Buzz Lightyear of Star Command (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BVBE-0": {
+    "name": "Power Spike - Pro Beach Volleyball (USA)",
+    "rom_verified": false,
+    "sha256": "31b74f6377aec0043149f6e7c5e9db8ff0603625fa3c9412d8f8d8e5f479f4f5",
+    "platform": "gbc"
+  },
   "CGB-BVBP-0": {
     "name": "Beach'n Ball (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BVIE-0": {
+    "name": "VIP (USA) (En,Fr,Es)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BVIP-0": {
+    "name": "VIP (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": true,
+    "sha256": "cd5e46ddf8b319c0d26ef8e29f97453be2800c958a8199595f767d5c6d61e984",
+    "platform": "gbc"
+  },
+  "CGB-BVOD-0": {
+    "name": "Maus, Die - Verrueckte Olympiade (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BVRD-0": {
+    "name": "Kaept'n Blaubaer - Die verrueckte Schatzsuche (Germany)",
+    "rom_verified": true,
+    "sha256": "570e3ba9d6556348b5f629571a766518aaab1277428220cc5711e147ca6baeac",
+    "platform": "gbc"
+  },
+  "CGB-BVSP-0": {
+    "name": "Buffy the Vampire Slayer (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BW0E-0": {
+    "name": "X-Men - Wolverine's Rage (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWAJ-1": {
+    "name": "Bokujou Monogatari 3 GB - Boy Meets Girl (Japan) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BWCP-0": {
+    "name": "Hands of Time (USA, Europe) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWDP-0": {
+    "name": "Walt Disney World Quest - Magical Racing Tour (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWDX-0": {
+    "name": "Walt Disney World Quest - Magical Racing Tour (Europe) (Fr,De,Es)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BWFP-0": {
+    "name": "WWF Betrayal (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWGE-0": {
+    "name": "Wendy - Every Witch Way (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BWGP-0": {
+    "name": "Wendy - Every Witch Way (USA, Europe)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BWLE-0": {
+    "name": "Warlocked (USA)",
+    "rom_verified": true,
+    "sha256": "d0456720a477d8fa52a221f8853475bdf200430820dc4bf84d47da96deab9510",
+    "platform": "gbc"
+  },
+  "CGB-BWOP-0": {
+    "name": "X-Men - Wolverine's Rage (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWRP-0": {
+    "name": "Woody Woodpecker Racing (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWSE-0": {
+    "name": "International Superstar Soccer 2000 (USA)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BWSP-0": {
+    "name": "International Superstar Soccer 2000 (Europe)",
+    "rom_verified": false,
+    "sha256": "de653c9e7effe16fb298e2d58201ca4722fb72a87304f13fe23e1e4c7d919ce5",
     "platform": "gbc"
   },
   "CGB-BWWJ-0": {
     "name": "Game Boy Wars 3 (Japan)",
     "rom_verified": true,
     "sha256": "ba5e14c23e20ea9003482239ceac6c77bec19b3fcae61fd2863e11c06b345e5e",
+    "platform": "gbc"
+  },
+  "CGB-BWYD-0": {
+    "name": "Wendy - Der Traum von Arizona (Germany)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BXAE-0": {
+    "name": "X-Men - Mutant Academy (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "85c5368af171f9c47e02157222f140ad44ee9f9307f31838ffe9430793d80c65",
+    "platform": "gbc"
+  },
+  "CGB-BXAP-0": {
+    "name": "X-Men - Mutant Academy (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "85c5368af171f9c47e02157222f140ad44ee9f9307f31838ffe9430793d80c65",
+    "platform": "gbc"
+  },
+  "CGB-BXAP-1": {
+    "name": "X-Men - Mutant Academy (USA, Europe) (Rev 1)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BXIF-0": {
+    "name": "Taxi 3 (France)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BXMP-0": {
+    "name": "X-Men - Mutant Wars (USA, Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BXSE-0": {
+    "name": "Road Champs - BXS Stunt Biking (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "c447358cabfb1d72d872732b47684990ba800a4e18d312d82bc70f2b54a83205",
+    "platform": "gbc"
+  },
+  "CGB-BXSP-0": {
+    "name": "Road Champs - BXS Stunt Biking (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "c447358cabfb1d72d872732b47684990ba800a4e18d312d82bc70f2b54a83205",
     "platform": "gbc"
   },
   "CGB-BXTJ-0": {
@@ -267,16 +2514,58 @@
     "sha256": "100a02ebed9b8c09c042c2e23497a7a1b9976f6c0061974582227a89fcf01bd0",
     "platform": "gbc"
   },
+  "CGB-BY3F-0": {
+    "name": "Yu-Gi-Oh! - Duel des Tenebres (France)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BY3I-0": {
+    "name": "Yu-Gi-Oh! - Racconti Oscuri (Italy)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BY3J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters III - Tri Holy God Advant (Japan)",
     "rom_verified": true,
     "sha256": "e2cc3edffd34277ab9af404b4c160431aa1389ddc2c7b15a1273c3a58cd83c70",
     "platform": "gbc"
   },
+  "CGB-BY3P-0": {
+    "name": "Yu-Gi-Oh! - Dark Duel Stories (Europe)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BY3S-0": {
+    "name": "Yu-Gi-Oh! - Duelo en las Tinieblas (Spain)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "CGB-BY4J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Yuugi Deck (Japan)",
     "rom_verified": true,
     "sha256": "5484c00e28a38c7f6feb12ea9e78d912b457036e8672c15cb40ccea2bfc3d85e",
+    "platform": "gbc"
+  },
+  "CGB-BY5J-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Kaiba Deck (Japan)",
+    "rom_verified": true,
+    "sha256": "012b18601675536eaf2c5c3a8192ca3b423660a1c957cc29615258f2e478ee91",
+    "platform": "gbc"
+  },
+  "CGB-BY6J-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters 4 - Battle of Great Duelist - Jounouchi Deck (Japan)",
+    "rom_verified": true,
+    "sha256": "734b915b1d408d7e647757ccfcc019295e1280e7d5d77e1764b6a9c7ca334670",
+    "platform": "gbc"
+  },
+  "CGB-BYKJ-0": {
+    "name": "Minnie & Friends - Yume no Kuni o Sagashite (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BYNE-0": {
+    "name": "Planet of the Apes (USA) (En,Fr,De,Es,It,Nl)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "CGB-BYTD-0": {
@@ -303,9 +2592,45 @@
     "sha256": "178b0da870a3cc58414940412eb6473f515b8941cb83d81a1a42d05ca82749e7",
     "platform": "gbc"
   },
+  "CGB-BYTI-0": {
+    "name": "Pokemon - Versione Cristallo (Italy)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BYTP-1": {
+    "name": "Pokemon - Crystal Version (USA, Europe) (Rev 1)",
+    "rom_verified": true,
+    "sha256": "fdcc3c8c43813cf8731fc037d2a6d191bac75439c34b24ba1c27526e6acdc8a2",
+    "platform": "gbc"
+  },
   "CGB-BYTU-0": {
     "name": "Pokemon - Crystal Version (Australia)",
     "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BZ2J-0": {
+    "name": "Zoids - Shirogane no Juukishin Liger Zero (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BZGJ-0": {
+    "name": "DX Jinsei Game (Japan)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "CGB-BZHJ-0": {
+    "name": "Zok Zok Heroes (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BZNJ-0": {
+    "name": "Muteki Ou Tri-Zenon (Japan)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-BZSP-0": {
+    "name": "Zidane - Football Generation (Europe) (En,Fr,De,Es,It)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "CGB-HF2J-0": {
@@ -332,10 +2657,117 @@
     "sha256": "6cf412aeb1ec60da1a401019d95dee1e76f0297154a7f06b55fb1657a71ed44f",
     "platform": "gbc"
   },
+  "CGB-V33J-0": {
+    "name": "Top Gear Pocket 2 (Japan) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VCAJ-0": {
+    "name": "Chee-Chai Alien (Japan) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "c376115f807178e43e11161938884b37f618674391bcf9d1a1692014516fef72",
+    "platform": "gbc"
+  },
+  "CGB-VGRE-0": {
+    "name": "Top Gear Pocket (USA) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VGRJ-0": {
+    "name": "Top Gear Pocket (Japan) (En) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VGRP-0": {
+    "name": "Top Gear Rally (Europe) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "6e8c24b60ed28efd40779f30a6c69042df7c83e43caccb3af14663f176f17928",
+    "platform": "gbc"
+  },
+  "CGB-VLCE-0": {
+    "name": "Missile Command (USA) (Rumble Version)",
+    "rom_verified": false,
+    "sha256": "0b3e5a9611551cc135cebfa67fe3f9aa1a54ef9855c0888b715351035908e126",
+    "platform": "gbc"
+  },
+  "CGB-VM2E-0": {
+    "name": "Little Mermaid II, The - Pinball Frenzy (USA) (En,Fr,De,Es,It) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "e9e3b8f82c84aabf06f5061567fa23d1bfacb1c2d5cb83e31d93e0cd04716728",
+    "platform": "gbc"
+  },
+  "CGB-VNCE-0": {
+    "name": "NASCAR Challenge (USA) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VPDE-0": {
+    "name": "Perfect Dark (USA, Europe) (En,Fr,De,Es,It) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "f07ac278ae1dab9ce5478192701949f07de866101cd1c73bb0cf6eaa9e648ca3",
+    "platform": "gbc"
+  },
+  "CGB-VPDP-0": {
+    "name": "Perfect Dark (USA, Europe) (En,Fr,De,Es,It) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "f07ac278ae1dab9ce5478192701949f07de866101cd1c73bb0cf6eaa9e648ca3",
+    "platform": "gbc"
+  },
+  "CGB-VPFJ-0": {
+    "name": "Super Real Fishing (Japan) (Rumble Version)",
+    "rom_verified": false,
+    "sha256": "e56962a611bb3a0b6b78228f675d93e6510d61537a3a3b24f297c0cb8c7cbd08",
+    "platform": "gbc"
+  },
+  "CGB-VPSE-0": {
+    "name": "Polaris SnoCross (USA) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "84eb1a0f7ce82719ec81c4cfcb764841b6b0a605eb65bb6d5def4401d60cd080",
+    "platform": "gbc"
+  },
+  "CGB-VRFJ-0": {
+    "name": "Super Black Bass - Real Fight (Japan) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VRRE-0": {
+    "name": "Ready 2 Rumble Boxing (USA) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "82ae6847816b6c92ab766c233f876249bc771760e016a7609ee5f92d70e88352",
+    "platform": "gbc"
+  },
+  "CGB-VTQE-0": {
+    "name": "Tonka Raceway (USA) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VUPE-0": {
+    "name": "3-D Ultra Pinball - Thrillride (USA) (Rumble Version)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "CGB-VV8E-0": {
+    "name": "Vigilante 8 (USA) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "051d4572f04045bf3677f67ef508b208c6b9c9c1d56eeed6001ad5d4608f4d19",
+    "platform": "gbc"
+  },
   "CGB-VYHE-0": {
     "name": "Star Wars Episode I - Racer (USA, Europe) (Rumble Version)",
     "rom_verified": true,
     "sha256": "b6d957a75f12a26a5f3bb40f71c0cb7fae7448db090044c494305d402757efb8",
+    "platform": "gbc"
+  },
+  "CGB-VYHP-0": {
+    "name": "Star Wars Episode I - Racer (USA, Europe) (Rumble Version)",
+    "rom_verified": true,
+    "sha256": "b6d957a75f12a26a5f3bb40f71c0cb7fae7448db090044c494305d402757efb8",
+    "platform": "gbc"
+  },
+  "CGB-VZFE-0": {
+    "name": "Zebco Fishing! (USA) (Rumble Version)",
+    "rom_verified": false,
+    "sha256": "99cf951803b7fb3bfb16bd7c0affa410f56cb9f59b8ade3eeceebdf027d7a4c1",
     "platform": "gbc"
   },
   "DMG-A1J-0": {
@@ -373,6 +2805,16 @@
     "sha256": "d1f49235704e86070bcd04569be7d2d58643cc4021b1f7bc9eb5133e27457329",
     "platform": "gb"
   },
+  "DMG-A2KJ-1": {
+    "name": "Konchuu Hakase 2 (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-A2NJ-0": {
+    "name": "Medarot 2 - Kuwagata Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-A2RP-0": {
     "name": "Mighty Morphin Power Rangers - The Movie (USA, Europe) (SGB Enhanced)",
     "rom_verified": true,
@@ -385,11 +2827,26 @@
     "sha256": "410c1f24cb9b7617f36140b461cbe8ad32d8ea11f08cd9a9aba149c0abe3888d",
     "platform": "gb"
   },
+  "DMG-A2TP-0": {
+    "name": "Turok 2 - Seeds of Evil (USA, Europe) (En,Fr,De,Es) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-A2WJ-0": {
+    "name": "Kakutou Ryouri Densetsu Bistro Recipe - Kettou Bistgarm Hen (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-A2XP-0": {
     "name": "Micro Machines 2 - Turbo Tournament (Europe)",
     "rom_verified": true,
     "sha256": "b85e56c975ee5faf3d9d1f069b2658dc4efa93c671b2e26fc8d78663ef21e1e0",
     "platform": "gb"
+  },
+  "DMG-A37J-0": {
+    "name": "Bokujou Monogatari 2 GB (Japan) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-A3BE-0": {
     "name": "Batman Forever (USA, Europe)",
@@ -427,16 +2884,38 @@
     "sha256": "d37f4baa6d1857606c5bd8569d6f013026509caf326766ce6908d8fd19eae238",
     "platform": "gb"
   },
+  "DMG-A4BJ-0": {
+    "name": "Meitantei Conan - Karakuri Jiin Satsujin Jiken (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-A4J-0": {
     "name": "Aretha II (Japan)",
     "rom_verified": false,
     "sha256": "afaf5380f970c2f07ff585a84bab50295fd17888591511cc1d71e8d7ddad7599",
     "platform": "gb"
   },
+  "DMG-A4KD-0": {
+    "name": "Mortal Kombat 4 (Germany) (En) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d47aaa4ec90c340e61a3e7481000c02d5b6df44ad1c1900479e06318baf12ba9",
+    "platform": "gbc"
+  },
   "DMG-A4RJ-0": {
     "name": "Bakukyuu Renpatsu!! Super B-Daman - Gekitan! Rising Valkyrie!! (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "abfda189356b189abf929609be942cf831eeac16da69766bf34e3090bd0201b3",
+    "platform": "gbc"
+  },
+  "DMG-A5BJ-0": {
+    "name": "Meitantei Conan - Kigantou Hihou Densetsu (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-A5KJ-0": {
+    "name": "Kinniku Banzuke GB - Chousensha wa Kimida! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "8fff611a20cbec94ef5a48a6b2a301d4c4dcf35711b6040e7ac33ee41069024f",
     "platform": "gbc"
   },
   "DMG-A65P-0": {
@@ -463,6 +2942,12 @@
     "sha256": "f25984b31aebc9bfd56de3117211a27d7e1297ff3ac4478f110ac3326701d81d",
     "platform": "gb"
   },
+  "DMG-A6TJ-0": {
+    "name": "Monster Farm Battle Card GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "ee939dd2de75d19c1c4a42a0df633f85fb2094afeeac5827da9f0bf7027a07b7",
+    "platform": "gbc"
+  },
   "DMG-A6W-0": {
     "name": "Bamse (Sweden)",
     "rom_verified": true,
@@ -481,11 +2966,37 @@
     "sha256": "fa725e044f48d567ce9b2c2b84e62470ccb64be49a5d355a3d0e4b8401bc502c",
     "platform": "gb"
   },
+  "DMG-A7BJ-0": {
+    "name": "Bomberman Max - Yami no Senshi (Japan)",
+    "rom_verified": true,
+    "sha256": "65f2488ae1a5be5a2e0a7392e950ca1d48f4912bf0566ca29d32dd7fda8068e4",
+    "platform": "gbc"
+  },
   "DMG-A7KJ-0": {
     "name": "Kawa no Nushi Tsuri 3 (Japan) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "78dbe891ed3f58f253b700cd636d001f1bb203e43d70dd6fdb0150052ac2a01e",
     "platform": "gb"
+  },
+  "DMG-A7YJ-1": {
+    "name": "Minna no Shougi - Shokyuu Hen (Japan) (Rev 1) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-A8CJ-0": {
+    "name": "Medarot Cardrobottle - Kabuto Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-A8EJ-0": {
+    "name": "Elie no Atelier GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-A8MJ-0": {
+    "name": "Marie no Atelier GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-A8NP-0": {
     "name": "NBA Jam (USA, Europe)",
@@ -523,11 +3034,45 @@
     "sha256": "e1a71b44a1c5dcacfe90e76907766fd48518482950531bee34208114d4a03e53",
     "platform": "gb"
   },
+  "DMG-AA3J-0": {
+    "name": "Animal Breeder 3 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AA7E-0": {
+    "name": "720 Degrees (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "f66a6c521c706bf3bf4536731becacf1336a711bd40658d853646cd6b20fdb2b",
+    "platform": "gbc"
+  },
+  "DMG-AA7P-0": {
+    "name": "720 Degrees (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "f66a6c521c706bf3bf4536731becacf1336a711bd40658d853646cd6b20fdb2b",
+    "platform": "gbc"
+  },
+  "DMG-AACE-0": {
+    "name": "Pac-Man - Special Color Edition (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "dcbbc8f8128940a35c9b09624a9987a80cecb2edc8db8e48605de30b4887a3a9",
+    "platform": "gbc"
+  },
+  "DMG-AAFD-0": {
+    "name": "Golden Goal (Germany) (En,Fr,De,Es,It,Nl,Sv) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AAJJ-0": {
     "name": "Animal Breeder 2 (Japan) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "c19a7b18db4e6de0695a870bc96a8234d4b94e3438591151fb7fc6e57dea88ff",
     "platform": "gb"
+  },
+  "DMG-AAKP-0": {
+    "name": "Backgammon (Europe) (En,Fr,De,Es) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "a369e3eef3615d5387114cf9668aefead53d5b25a6fcb4cf75177422621b2635",
+    "platform": "gbc"
   },
   "DMG-AAMJ-0": {
     "name": "Mini Yonku GB Let's & Go!! - All-Star Battle Max (Japan) (SGB Enhanced)",
@@ -535,10 +3080,39 @@
     "sha256": "947961a18107e7a6fb4bbb892858e4ca724e3fd1272df016713440c36a1232a0",
     "platform": "gb"
   },
+  "DMG-AARE-0": {
+    "name": "Asteroids (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "3f0688ed9219c44ce133647f0668cde50fdcba7ed8f04c34c3a0fc5ce596bfe5",
+    "platform": "gbc"
+  },
   "DMG-AAUD-0": {
     "name": "Pokemon - Goldene Edition (Germany) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "542f275f8632ef5265e5cde80a8ba1f0ec11ce714ef9d773088a92680bd17d73",
+    "platform": "gbc"
+  },
+  "DMG-AAUE-0": {
+    "name": "Pokemon - Gold Version (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "fb0016d27b1e5374e1ec9fcad60e6628d8646103b5313ca683417f52b97e7e4e",
+    "platform": "gbc"
+  },
+  "DMG-AAUF-0": {
+    "name": "Pokemon - Version Or (France) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6103cadf2ae505f4b489a8a414c8db27a2307d797ddf8a3a848659b591dd4023",
+    "platform": "gbc"
+  },
+  "DMG-AAUI-0": {
+    "name": "Pokemon - Versione Oro (Italy) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AAUJ-0": {
+    "name": "Pocket Monsters Kin (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "7cfeceae00737a1f0713c9ab0b3a9e6eb8d05ff6002eb81308072a6f85e385e7",
     "platform": "gbc"
   },
   "DMG-AAUJ-1": {
@@ -565,6 +3139,22 @@
     "sha256": "72b190859a59623cbef6c49d601f8de52c1d2331b4f08a8d2acc17274fc19a8c",
     "platform": "gbc"
   },
+  "DMG-AAXF-0": {
+    "name": "Pokemon - Version Argent (France) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AAXJ-1": {
+    "name": "Pocket Monsters Gin (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "99e5267fbf5a7748d4f3b75ba1990cb5d91348339468607a04bfbc6081c62d71",
+    "platform": "gbc"
+  },
+  "DMG-AAZJ-0": {
+    "name": "Other Life - Azure Dreams GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AB2E-0": {
     "name": "Bomberman GB (USA, Europe) (SGB Enhanced)",
     "rom_verified": true,
@@ -588,6 +3178,11 @@
     "rom_verified": false,
     "sha256": "45b15fb0fdede42f3c5f8b01fd7306fdbf9da63a61d91bbff0803bf31013e92c",
     "platform": "gb"
+  },
+  "DMG-AB5J-0": {
+    "name": "Bomberman Quest (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-AB6P-0": {
     "name": "Bugs Bunny - Crazy Castle 3 (USA, Europe) (GB Compatible)",
@@ -643,6 +3238,12 @@
     "sha256": "4079ea30bfafc571decad84ac8419321fabdd41347dc04cd7b7ea159c7f1bac3",
     "platform": "gb"
   },
+  "DMG-ABLP-0": {
+    "name": "Bugs Bunny & Lola Bunny - Operation Carrot Patch (Europe) (En,Fr,De,Es,It,Nl) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6c8a53796be79a934f1393c668057cad38e857922cd552bc52fdf8f3ebdd2cc6",
+    "platform": "gbc"
+  },
   "DMG-ABMJ-0": {
     "name": "Bakuchou Retrieve Master (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -660,6 +3261,11 @@
     "rom_verified": true,
     "sha256": "d13caa883d2ebaf9baa2b6f0803ca5609088853174872a5052ada339f53becf7",
     "platform": "gb"
+  },
+  "DMG-ABQJ-0": {
+    "name": "Super Black Bass Pocket 3 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-ABRP-0": {
     "name": "Brain Drain (Europe) (SGB Enhanced)",
@@ -685,6 +3291,18 @@
     "sha256": "a74bf8700c6a10c110c7f25093682fdefa5b8483e6b4a18e085888e8a57d4707",
     "platform": "gb"
   },
+  "DMG-ABZE-1": {
+    "name": "NFL Blitz (USA, Europe) (Rev 1) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "11183ac1ed08ad438b784fb4aee43cb34e0d038735d11315204ee2be88467e12",
+    "platform": "gbc"
+  },
+  "DMG-ABZP-1": {
+    "name": "NFL Blitz (USA, Europe) (Rev 1) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "11183ac1ed08ad438b784fb4aee43cb34e0d038735d11315204ee2be88467e12",
+    "platform": "gbc"
+  },
   "DMG-AC2J-0": {
     "name": "Goukaku Boy Series - Z-Kai Kyuukyoku no Eitango 1500 (Japan)",
     "rom_verified": false,
@@ -697,11 +3315,22 @@
     "sha256": "b856963ecabcd23ded711bcddd548aa9684c08ee2c19e8f00e00d4dfe56a46bb",
     "platform": "gb"
   },
+  "DMG-AC5P-0": {
+    "name": "Centipede (Europe) (En,Fr,De,Es,It,Nl) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AC8P-0": {
     "name": "CutThroat Island (USA, Europe)",
     "rom_verified": true,
     "sha256": "11991b6a9d19dc7eff45a78052648b298109a0ea57323890063f6a47d89ac04b",
     "platform": "gb"
+  },
+  "DMG-AC9E-0": {
+    "name": "Chessmaster (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "781b31deb923c544b42b2116d973a103fd5c21b3cf25e920968ef392a5df917b",
+    "platform": "gbc"
   },
   "DMG-ACAJ-0": {
     "name": "Nintama Rantarou GB - Eawase Challenge Puzzle (Japan) (SGB Enhanced)",
@@ -751,6 +3380,11 @@
     "sha256": "8a64d5143baee19a034225e9d20df1d5f4c8fd343e0ce7a03107e606c10dd73b",
     "platform": "gb"
   },
+  "DMG-ACJJ-0": {
+    "name": "Jinsei Game - Tomodachi Takusan Tsukurou yo! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-ACKJ-0": {
     "name": "Go Go Ackman (Japan) (SGB Enhanced)",
     "rom_verified": true,
@@ -763,6 +3397,16 @@
     "sha256": "4fc85183e769c27c9d813e1557e337171fcfd765a2831957180801db5c5b0031",
     "platform": "gb"
   },
+  "DMG-ACNE-0": {
+    "name": "Quest for Camelot (USA, Australia) (En,Fr,Es) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-ACNU-0": {
+    "name": "Quest for Camelot (USA, Australia) (En,Fr,Es) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-ACPE-0": {
     "name": "Arcade Classic No. 2 - Centipede & Millipede (USA, Europe) (SGB Enhanced)",
     "rom_verified": true,
@@ -774,6 +3418,17 @@
     "rom_verified": true,
     "sha256": "7cebe1e446c56061f71e94b99cf6dfb7267cac0e21cb37b0f9a8118d5a127eb0",
     "platform": "gb"
+  },
+  "DMG-ACQJ-0": {
+    "name": "Choro Q - Hyper Customable GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ACRE-0": {
+    "name": "Conker's Pocket Tales (USA, Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "a06e5fb235a54ae62d2d969312ffbca4289c4969cb53f476b0996e5046ff4d13",
+    "platform": "gbc"
   },
   "DMG-ACRP-0": {
     "name": "Conker's Pocket Tales (USA, Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
@@ -792,6 +3447,12 @@
     "rom_verified": true,
     "sha256": "9e895ade97572b5391be28e16a7b1aa4e7812f4ddf83103620bffc2a3556c0fe",
     "platform": "gb"
+  },
+  "DMG-ACWE-0": {
+    "name": "Las Vegas Cool Hand (USA) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "b4a41fbf140bb657a52548228fb8f8e6b01a603ad39b0889c1f9ea7eb88dc629",
+    "platform": "gbc"
   },
   "DMG-ACXJ-0": {
     "name": "Pokemon Card GB (Japan) (SGB Enhanced) (GB Compatible)",
@@ -846,6 +3507,11 @@
     "rom_verified": true,
     "sha256": "64d791cadae2500ddd7dfd3ebedc48a182fdc0e027f9bfd74c8ff65b56371dbf",
     "platform": "gb"
+  },
+  "DMG-ADAJ-0": {
+    "name": "Doraemon - Aruke Aruke Labyrinth (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-ADCJ-0": {
     "name": "Meitantei Conan - Chika Yuuenchi Satsujin Jiken (Japan) (SGB Enhanced)",
@@ -931,8 +3597,19 @@
     "sha256": "61cdcf15636646da6bff006bf76e91dacb7fca93667a5cf5258f2435f325ea5a",
     "platform": "gb"
   },
+  "DMG-ADUE-0": {
+    "name": "Midway Presents Arcade Hits - Moon Patrol & Spy Hunter (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "4eb0115c97133a956526f5f552c492e950a798a59ca7f5de05174e621d6c3ef7",
+    "platform": "gbc"
+  },
   "DMG-ADYD-0": {
     "name": "Barbie - Meeres Abenteuer (Germany) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ADYI-0": {
+    "name": "Barbie - Avventure nell'Oceano (Italy) (GB Compatible)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -941,11 +3618,44 @@
     "rom_verified": false,
     "platform": "gbc"
   },
+  "DMG-ADYS-0": {
+    "name": "Barbie - Aventura Submarina (Spain) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ADZJ-0": {
+    "name": "Daikaijuu Monogatari - Poyon no Dungeon Room (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "9e8c11f2163d7e0006073caef0854ee0da5e5494fc0be02aeac0759fb798b100",
+    "platform": "gbc"
+  },
   "DMG-AE8J-0": {
     "name": "Goukaku Boy Series - Shikakui Atama o Maruku Suru - Rika Battle Hen (Japan) (Imagineer)",
     "rom_verified": true,
     "sha256": "ccb0ffb9236abc8e862d28e1436ef830f86da4d122ce347e028076c589dbc2d4",
     "platform": "gb"
+  },
+  "DMG-AEAP-0": {
+    "name": "Sesame Street - Elmo's ABCs (Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AEBP-0": {
+    "name": "Earthworm Jim - Menace 2 the Galaxy (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "715970fe3eeb3e1010808f5bd7d01d64bdbcbeed31be07291e1bdeadee5cbdf7",
+    "platform": "gbc"
+  },
+  "DMG-AECJ-0": {
+    "name": "Real Pro Yakyuu! - Central League Hen (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AEDJ-0": {
+    "name": "Dragon Quest I & II (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "7cae9c90cf50e5b014f700090626e686aaf5978105901b0346410b0a89438caf",
+    "platform": "gbc"
   },
   "DMG-AEE-0": {
     "name": "Aerostar (USA, Europe)",
@@ -959,10 +3669,32 @@
     "sha256": "1773eb728d17031ee7dabb1b925229aa868afd63f9d0bb6b97ae5b4be99d5a22",
     "platform": "gb"
   },
+  "DMG-AELP-0": {
+    "name": "Sesame Street - The Adventures of Elmo in Grouchland (Europe) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AEME-0": {
+    "name": "Madden NFL 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6fd04b08db4f6a23270c924a77a1d43037c998acf139711bc5898b810bf25cc8",
+    "platform": "gbc"
+  },
   "DMG-AEMP-0": {
     "name": "Madden NFL 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "6fd04b08db4f6a23270c924a77a1d43037c998acf139711bc5898b810bf25cc8",
+    "platform": "gbc"
+  },
+  "DMG-AEOJ-0": {
+    "name": "Sei Hai Densetsu (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AEVE-0": {
+    "name": "Evel Knievel (USA) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "5f8d6a6443d7c8a64a87f708da4eb004e84d667cb4a06ab26d4cded66459ec5b",
     "platform": "gbc"
   },
   "DMG-AF3J-0": {
@@ -1007,8 +3739,24 @@
     "sha256": "0d16f9a2d938cc99281c02c9d2e19b8c9cdd025c53c19a371b4607ddd2ee597b",
     "platform": "gb"
   },
+  "DMG-AFLP-0": {
+    "name": "Pitfall - Beyond the Jungle (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AFOP-0": {
     "name": "FIFA 2000 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AFRE-2": {
+    "name": "Frogger (USA) (Rev 2) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "167ab5831b01e964d105a59b176bcaf95987914f9ae4d97db27be25ba99fcc56",
+    "platform": "gbc"
+  },
+  "DMG-AFRP-0": {
+    "name": "Frogger (Europe) (En,Fr,De,Es,It,Nl) (GB Compatible)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -1041,6 +3789,11 @@
     "rom_verified": true,
     "sha256": "fb3ca0a0f548626e076ef4b7443334176ee0140a8eaf58f069b520bcbcece529",
     "platform": "gb"
+  },
+  "DMG-AG9P-0": {
+    "name": "Ghosts'n Goblins (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AGAE-1": {
     "name": "Game & Watch Gallery (USA) (Rev 1) (SGB Enhanced)",
@@ -1114,6 +3867,17 @@
     "sha256": "73b65f66f485da7500cca25e51dd0eea9b2b535d217cbcc5d9c5c188f49e6ae3",
     "platform": "gbc"
   },
+  "DMG-AGLP-0": {
+    "name": "Game & Watch Gallery 2 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "73b65f66f485da7500cca25e51dd0eea9b2b535d217cbcc5d9c5c188f49e6ae3",
+    "platform": "gbc"
+  },
+  "DMG-AGLU-0": {
+    "name": "Game Boy Gallery 3 (Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AGNJ-0": {
     "name": "Nintama Rantarou GB (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -1138,11 +3902,26 @@
     "sha256": "22d2ab0ba8d90bff2113a1c10a7e8838e71a4603c1d6f43969098fed47e8dba5",
     "platform": "gbc"
   },
+  "DMG-AGQJ-0": {
+    "name": "Game Boy Gallery 3 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AGQU-0": {
+    "name": "Game Boy Gallery 4 (Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AGTP-0": {
     "name": "Stargate (USA, Europe)",
     "rom_verified": true,
     "sha256": "2cdf2edac4e6230e063c867c60f92d5bb5f37969a19a32fb65c33fe9fafaa378",
     "platform": "gb"
+  },
+  "DMG-AGUJ-0": {
+    "name": "Ganbare Goemon - Tengutou no Gyakushuu (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AGWJ-0": {
     "name": "Game Boy Wars Turbo (Japan) (SGB Enhanced)",
@@ -1155,11 +3934,33 @@
     "rom_verified": false,
     "platform": "gb"
   },
+  "DMG-AGYJ-0": {
+    "name": "Nobunaga no Yabou - Game Boy Ban 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "5a8eed524c12796f5b54208ce051a603b58bec6fc630e1a36b2121bff615683e",
+    "platform": "gbc"
+  },
+  "DMG-AHAJ-0": {
+    "name": "Monopoly (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AHCP-0": {
     "name": "Hercules (USA, Europe) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "222bfdc74d63735db188e200587614594a861a40c06779187dd9edd87d4fcc86",
     "platform": "gb"
+  },
+  "DMG-AHDE-0": {
+    "name": "International Track & Field (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "d7b1e58add0c2ed685f2ec0d90b75f0f1d2d1f1d8e9fbed9aabe4113cc393705",
+    "platform": "gbc"
+  },
+  "DMG-AHDJ-0": {
+    "name": "Hyper Olympic Series - Track & Field GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AHE-0": {
     "name": "Home Alone 2 - Lost in New York (USA, Europe)",
@@ -1173,17 +3974,43 @@
     "sha256": "fc9d2e5a37521078c4f606a44f3b14f5bb46c362e5be003b52eb5594a44c99fe",
     "platform": "gbc"
   },
+  "DMG-AHKJ-0": {
+    "name": "Hello Kitty no Magical Museum (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AHOP-0": {
+    "name": "Hugo 2 1-2 (Germany) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AHPP-0": {
+    "name": "Shanghai Pocket (Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AHQP-0": {
     "name": "Pocahontas (USA, Europe) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "a11401735f5f16a7a9a7582cbd134ac7c467290278dedf7981bc899ec170619e",
     "platform": "gb"
   },
+  "DMG-AHTJ-0": {
+    "name": "Hanasaka Tenshi Tenten-kun no Beat Breaker (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AHVJ-0": {
     "name": "SD Hiryuu no Ken Gaiden 2 (Japan) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "f1bbcb6be3dd97712be6c22749ab497cf21df3d3cbb2498b720356c58e5df56d",
     "platform": "gb"
+  },
+  "DMG-AICE-0": {
+    "name": "Hexcite - The Shapes of Victory (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "7b059325a2e74ed09ccd1db7e0c9d336e45f39bdcc5f46c2aa99d1868c8df1e4",
+    "platform": "gbc"
   },
   "DMG-AIGP-0": {
     "name": "International Superstar Soccer (USA, Europe) (SGB Enhanced)",
@@ -1197,11 +4024,35 @@
     "sha256": "b739ae455a54b9cc5d6d20625b0d99fd9394bbda3f5c3cc7dee6db8f0b5c2001",
     "platform": "gb"
   },
+  "DMG-AIPE-0": {
+    "name": "Battleship (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d4d9c1a31db1d1dfca9a5e8b2cf7708899d259e7a137a0b336d885056da7540b",
+    "platform": "gbc"
+  },
+  "DMG-AIPP-0": {
+    "name": "Battleship (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d4d9c1a31db1d1dfca9a5e8b2cf7708899d259e7a137a0b336d885056da7540b",
+    "platform": "gbc"
+  },
   "DMG-AISJ-0": {
     "name": "Doraemon no Study Boy 2 - Shou 1 Sansuu Keisan (Japan)",
     "rom_verified": true,
     "sha256": "a33058f27d84ee11c3ae561e2549f6439ba1ca20ca3311a4e86f79fdcec412c1",
     "platform": "gb"
+  },
+  "DMG-AIVE-0": {
+    "name": "Space Invaders (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "48f70d850203beb151f4bbcedd721921c00437fa2c7bda56904ef0a64ac8752a",
+    "platform": "gbc"
+  },
+  "DMG-AIVP-0": {
+    "name": "Space Invaders (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "48f70d850203beb151f4bbcedd721921c00437fa2c7bda56904ef0a64ac8752a",
+    "platform": "gbc"
   },
   "DMG-AJ2J-0": {
     "name": "Mini 4 Boy II (Japan) (SGB Enhanced)",
@@ -1262,6 +4113,16 @@
     "rom_verified": false,
     "sha256": "bf5efde6ed52ac0aed3c77306c88f4ff0a3b53672d9e79abea8640e696efeb67",
     "platform": "gb"
+  },
+  "DMG-AJMP-0": {
+    "name": "NBA Jam 99 (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AJNJ-0": {
+    "name": "Hamster Club (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AJTP-0": {
     "name": "NBA Jam - Tournament Edition (USA, Europe)",
@@ -1395,11 +4256,21 @@
     "sha256": "401b65fbdcf5228ff63ae1d7578d7eb25db8b20fc8f74061ab927c9a5eb8f4f6",
     "platform": "gb"
   },
+  "DMG-AKQP-0": {
+    "name": "Pocket Bomberman (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AKRJ-0": {
     "name": "Kaseki Sousei Reborn (Japan) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "1094fb8791b7e6a43e1c22c4220e771ecf0f88d2825d9174563133ef4eb520a6",
     "platform": "gb"
+  },
+  "DMG-AKSJ-0": {
+    "name": "Koushien Pocket (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-AKTJ-0": {
     "name": "Gegege no Kitarou - Youkai Souzoushu Arawaru! (Japan) (SGB Enhanced)",
@@ -1431,11 +4302,21 @@
     "sha256": "fb1a9712f225146d2acf56e74191400d87267607f8d58c6f99a2c8be5ebee833",
     "platform": "gb"
   },
+  "DMG-AL6J-0": {
+    "name": "Super Robot Taisen - Link Battler (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-ALAP-0": {
     "name": "Aladdin (Europe) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "cb08e0446dad28fd8bb6ed515628af0d99c57e210497d43c4f9cebc6e6e18561",
     "platform": "gb"
+  },
+  "DMG-ALBJ-0": {
+    "name": "Megami Tensei Gaiden - Last Bible (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-ALDJ-0": {
     "name": "Super Chinese Land 1-2-3' (Japan) (SGB Enhanced)",
@@ -1448,6 +4329,18 @@
     "rom_verified": true,
     "sha256": "4f6450321ee163d5fd8a942816b10af1ce41bbcad62185a550c97b16cac125a1",
     "platform": "gb"
+  },
+  "DMG-ALFE-0": {
+    "name": "Black Bass - Lure Fishing (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "4ad5ce27225972410284882a19a996cf891ce61485ec2ff12411ea93e22a6ebc",
+    "platform": "gbc"
+  },
+  "DMG-ALFP-0": {
+    "name": "Black Bass - Lure Fishing (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "4ad5ce27225972410284882a19a996cf891ce61485ec2ff12411ea93e22a6ebc",
+    "platform": "gbc"
   },
   "DMG-ALGP-0": {
     "name": "Alien Olympics (Europe)",
@@ -1473,6 +4366,16 @@
     "sha256": "dad27508244f77aebf33848b13a78388386fdca105b32ca4a216cbe008006d8c",
     "platform": "gb"
   },
+  "DMG-ALTP-0": {
+    "name": "Looney Tunes (Europe) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-ALUP-0": {
+    "name": "Tabaluga (Germany) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-ALWF-0": {
     "name": "Monde Perdu, Le - Jurassic Park (France) (En) (SGB Enhanced)",
     "rom_verified": false,
@@ -1484,6 +4387,11 @@
     "rom_verified": true,
     "sha256": "5ef20093a663a4f9e15884606638ee4e1b5dd3d8f9149b3a6f87e12246fcd2fe",
     "platform": "gb"
+  },
+  "DMG-ALZP-0": {
+    "name": "Speedy Gonzales - Aztec Adventure (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AM3J-0": {
     "name": "Momotarou Collection 2 (Japan) (SGB Enhanced)",
@@ -1513,6 +4421,17 @@
     "name": "Daikaijuu Monogatari - The Miracle of the Zone II (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "9d9af105172d5b72d9c1e7ca09fc56cde33c607d840932b465ae2a5221c2f4a8",
+    "platform": "gbc"
+  },
+  "DMG-AM7J-1": {
+    "name": "Cardcaptor Sakura - Itsumo Sakura-chan to Issho (Japan) (Rev 1) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AM7J-2": {
+    "name": "Cardcaptor Sakura - Itsumo Sakura-chan to Issho (Japan) (Rev 2) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "8815d09f85239fedfc50225d5dff87b37538a965df18c0633b45fe72ae768a35",
     "platform": "gbc"
   },
   "DMG-AMAJ-0": {
@@ -1574,6 +4493,18 @@
     "rom_verified": true,
     "sha256": "575f21cdd880e02a62ca682f15bd714e57781558c5ec3143fbaddce1feb94628",
     "platform": "gb"
+  },
+  "DMG-AMNE-0": {
+    "name": "Men in Black - The Series (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "79b4b7a0eb41b5c20b80bbe1336dd4914666cce94da374c1611451def408cd04",
+    "platform": "gbc"
+  },
+  "DMG-AMNP-0": {
+    "name": "Men in Black - The Series (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "79b4b7a0eb41b5c20b80bbe1336dd4914666cce94da374c1611451def408cd04",
+    "platform": "gbc"
   },
   "DMG-AMOE-0": {
     "name": "Mole Mania (USA, Europe) (SGB Enhanced)",
@@ -1641,6 +4572,12 @@
     "sha256": "a0de1b942d93d020b04dd6c3ac564cd5c3e878279464cc0121eb5f1975df9e01",
     "platform": "gb"
   },
+  "DMG-AN6J-0": {
+    "name": "Tales of Phantasia - Narikiri Dungeon (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "e3853a07e50b8894c6e8f0ffab94354128f270914f60a40d726105021db73a05",
+    "platform": "gbc"
+  },
   "DMG-ANAJ-0": {
     "name": "Midori no Makibaou (Japan) (SGB Enhanced)",
     "rom_verified": true,
@@ -1677,6 +4614,12 @@
     "sha256": "ea0a3f5e924d9c7722a1e14ece3fc18b971a934fbeaa59bfea0480cd419d835e",
     "platform": "gb"
   },
+  "DMG-ANOE-0": {
+    "name": "Monopoly (USA) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "43f1cbd786df89bfcda7f1b25fcc74b6515433a3dbe221e5c7a3e9525842afff",
+    "platform": "gbc"
+  },
   "DMG-ANSJ-0": {
     "name": "Ninku Dai-2-dan - Ninku Sensou Hen (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -1694,6 +4637,28 @@
     "rom_verified": true,
     "sha256": "dbbf3416059db5c8c0cec9aaf81df141dd3086015946ad95aa44ffe3bd9621d0",
     "platform": "gb"
+  },
+  "DMG-ANXE-0": {
+    "name": "Antz (USA) (En,Fr,Es) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-ANXP-0": {
+    "name": "Antz (Europe) (En,Fr,De,Es,It,Nl) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "c7c9fdf4c544c8c04d395ca75bc80f19749f1bd4d45ec162b46a9589e4cdae9d",
+    "platform": "gbc"
+  },
+  "DMG-ANZP-0": {
+    "name": "NBA Pro 99 (Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "5f36bb59aecba47dfd619d246c43d7beb126dfe4340805def69d5aca2eda3112",
+    "platform": "gbc"
+  },
+  "DMG-AO7J-0": {
+    "name": "Othello Millennium (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AO9P-0": {
     "name": "Olympic Summer Games (USA, Europe) (SGB Enhanced)",
@@ -1713,15 +4678,41 @@
     "sha256": "52ad82cb79d557d37c4fd92a9782c594f49340d493f007900b901b3aa232bb9e",
     "platform": "gb"
   },
+  "DMG-AOKJ-0": {
+    "name": "B-Daman Bakugaiden - Victory e no Michi (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AOMJ-0": {
     "name": "Game de Hakken!! Tamagotchi - Osutchi to Mesutchi (Japan) (SGB Enhanced)",
     "rom_verified": true,
     "sha256": "6bc5e7b909ed439a9cd8586ba5f5ae6e293bca33f7573d1adc57f65d992c20db",
     "platform": "gb"
   },
+  "DMG-AOOJ-0": {
+    "name": "Beatmania GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6d18384f8153e53fa6c2b0a3943572754b724548f1ab3c4dd215248ec9afdb9b",
+    "platform": "gbc"
+  },
+  "DMG-AOQP-0": {
+    "name": "Toy Story 2 (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AORP-0": {
     "name": "Ronaldo V-Football (Europe) (En,Fr,De,Es,It,Nl,Pt) (GB Compatible)",
     "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AOSJ-0": {
+    "name": "Ohasuta Yama-chan & Raymond (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AOWP-0": {
+    "name": "Oddworld Adventures 2 (Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc"
   },
   "DMG-AP2J-0": {
@@ -1747,6 +4738,16 @@
     "rom_verified": false,
     "sha256": "ee788829880dcc82bf4d6ee1e1374b1f418a2e73abc926161b309f16acb796d7",
     "platform": "gb"
+  },
+  "DMG-AP8J-0": {
+    "name": "Pocket Densha 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AP9P-0": {
+    "name": "Jim Henson's Muppets (Europe) (En,Fr,De,Es,It,Nl,Sv) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-APAD-0": {
     "name": "Pokemon - Rote Edition (Germany) (SGB Enhanced)",
@@ -1898,6 +4899,16 @@
     "sha256": "6daf2830310346620cf1ed657dfff3f96e5f1e83391cb455a6d041f6e8ecf87b",
     "platform": "gb"
   },
+  "DMG-APQE-0": {
+    "name": "Power Quest (USA) (En-US,En-GB,Fr,De,Es,It) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-APQP-0": {
+    "name": "Power Quest (Europe) (En-US,En-GB,Fr,De,Es,It) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-APRP-0": {
     "name": "PGA European Tour (USA, Europe) (SGB Enhanced)",
     "rom_verified": false,
@@ -1999,6 +5010,17 @@
     "sha256": "4bbf52ae46599bed5e08c6ea97f05220a4a5244f35519003d9b66e9d77328fe1",
     "platform": "gb"
   },
+  "DMG-AQ3P-0": {
+    "name": "4x4 World Trophy (Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AQCE-0": {
+    "name": "Ms. Pac-Man - Special Color Edition (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "8e556307f484b3451429f695391820e896202b1046312473911abb72222acee3",
+    "platform": "gbc"
+  },
   "DMG-AQCP-0": {
     "name": "Ms. Pac-Man - Special Colour Edition (Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
@@ -2022,6 +5044,21 @@
     "sha256": "74ca2f50aa0c60c273c96a8339856f72357d963db866f6c8c75eca04f2075954",
     "platform": "gb"
   },
+  "DMG-AQMP-0": {
+    "name": "Bass Masters Classic (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AQTP-0": {
+    "name": "Holy Magic Century (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AQVP-0": {
+    "name": "Bomberman Quest (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AQZJ-0": {
     "name": "Hayaoshi Quiz - Ouza Ketteisen (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -2033,6 +5070,12 @@
     "rom_verified": false,
     "sha256": "29e12825d55ba568578ecb33dbe63f8e24ffd529aa845faa7013bb39f12394c2",
     "platform": "gb"
+  },
+  "DMG-AR4E-0": {
+    "name": "Caterpillar Construction Zone (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "e74dadc67ab96044b8c3b5dfc9715323ed51b5e4800b0dbc0615f36b886d339c",
+    "platform": "gbc"
   },
   "DMG-AR9P-0": {
     "name": "Primal Rage (USA, Europe)",
@@ -2046,6 +5089,11 @@
     "sha256": "66a361f81b19af107577d36e792c731f61164c514559a86813786b83978b5b1c",
     "platform": "gb"
   },
+  "DMG-ARAJ-0": {
+    "name": "Lodoss-tou Senki - Eiyuu Kishiden GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-ARBJ-0": {
     "name": "Nettou Real Bout Garou Densetsu Special (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -2057,6 +5105,21 @@
     "rom_verified": true,
     "sha256": "06e15dfa6ef075f704956c467864da425cbb09eb39c1b473535dcd76daa6a2ba",
     "platform": "gb"
+  },
+  "DMG-AREJ-0": {
+    "name": "Sakata Gorou Kudan no Renju Kyoushitsu (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ARIE-0": {
+    "name": "Prince of Persia (USA, Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-ARIP-0": {
+    "name": "Prince of Persia (USA, Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-ARJE-0": {
     "name": "Super Star Wars - Return of the Jedi (USA, Europe) (SGB Enhanced)",
@@ -2070,6 +5133,23 @@
     "sha256": "3df76e57f86da7036f396bfbbf6b767e02bf3a8912b6ca2b469df83dabf5369b",
     "platform": "gb"
   },
+  "DMG-ARKE-0": {
+    "name": "Legend of the River King GBC (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "30d75f76a3a04f8dc9b7d57070e72208ecad269ce6b1b92201763d9b8ae70a0f",
+    "platform": "gbc"
+  },
+  "DMG-ARLE-0": {
+    "name": "International Rally (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ARRE-0": {
+    "name": "Roadsters (USA) (En,Fr,De,Es,It,Nl) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "43ddfe9f974fb76e79f83016a40604642c6d0b750e65eac107f9b556139eac0f",
+    "platform": "gbc"
+  },
   "DMG-ARSP-0": {
     "name": "Reservoir Rat (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
@@ -2082,17 +5162,33 @@
     "sha256": "7bff7cad342d4a81354b6446076edf602d79f53c0517d6e4e08764702f91495c",
     "platform": "gb"
   },
+  "DMG-ARXP-0": {
+    "name": "Rox (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-ARYJ-0": {
     "name": "Magic Knight Rayearth (Japan) (SGB Enhanced)",
     "rom_verified": false,
     "sha256": "3be897438e69a22c64be12ab1d5ed41f9f35a54e40a1ce909f9fe080734d7fa4",
     "platform": "gb"
   },
+  "DMG-ARZP-0": {
+    "name": "Rugrats Movie, The (Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AS3J-0": {
     "name": "Goukaku Boy Series - Koukou Nyuushi Derujun - Rika Anki Point 250 (Japan)",
     "rom_verified": false,
     "sha256": "9b2642204ff2e851906d892d8cd1d0a552468ff68444b5725b33fd292d03d621",
     "platform": "gb"
+  },
+  "DMG-AS8J-0": {
+    "name": "Shougi 2 (Japan) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "67b72c50e78c1c3eb11cdd47c7db647dcdce81ff9662f17bf2cce68e363802b9",
+    "platform": "gbc"
   },
   "DMG-ASE-0": {
     "name": "Boomer's Adventure in ASMIK World (USA)",
@@ -2165,6 +5261,21 @@
     "rom_verified": false,
     "sha256": "6cb1fe052995fadd124ec57104a83fd02be7a05a424dafbb0e96390ea576c297",
     "platform": "gb"
+  },
+  "DMG-ASWE-0": {
+    "name": "Shadowgate Classic (USA, Europe) (En,Fr,De,Es,Sv) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-ASWJ-0": {
+    "name": "Shadowgate Return (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ASWP-1": {
+    "name": "Shadowgate Classic (Europe) (En,Fr,De,Es,Sv) (Rev 1) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-ASYJ-0": {
     "name": "Bakuchou Retsuden Shou - Hyper Fishing (Japan) (SGB Enhanced)",
@@ -2261,6 +5372,11 @@
     "rom_verified": true,
     "platform": "gbc"
   },
+  "DMG-ATFJ-1": {
+    "name": "Sanrio Timenet - Mirai Hen (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-ATGJ-0": {
     "name": "Tsumego Series 1 - Fujisawa Hideyuki Meiyo Kisei (Japan) (SGB Enhanced)",
     "rom_verified": false,
@@ -2290,6 +5406,16 @@
     "rom_verified": false,
     "sha256": "2b05c8b04b08b227ae94f150d2bb899c2c9bb1a55f3c02b07675468082e2e49e",
     "platform": "gb"
+  },
+  "DMG-ATPJ-0": {
+    "name": "Sanrio Timenet - Kako Hen (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-ATPJ-1": {
+    "name": "Sanrio Timenet - Kako Hen (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-ATRJ-0": {
     "name": "Tetris Plus (Japan) (SGB Enhanced)",
@@ -2327,6 +5453,11 @@
     "sha256": "39047ae2fb663705029b94c22a1bfc5cfecc7a1780374f4cd0adf9717cd481a5",
     "platform": "gb"
   },
+  "DMG-AUEJ-0": {
+    "name": "Bakusou Senki Metal Walker GB - Koutetsu no Yuujou (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AUFP-0": {
     "name": "Smurfs Travel the World, The (Europe) (En,Fr,De,Es)",
     "rom_verified": true,
@@ -2339,11 +5470,40 @@
     "sha256": "81cd7384e257deca14272b508aa5bff10f2bc15925655fc2cac90ad34ee434a6",
     "platform": "gb"
   },
+  "DMG-AUNE-0": {
+    "name": "Uno (USA) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "102dabffa56271534c651579445c13a375e7978f37bdcccc3271e9320c3710fa",
+    "platform": "gbc"
+  },
   "DMG-AUOP-0": {
     "name": "Spirou (Europe) (En,Fr,De,Es) (SGB Enhanced)",
     "rom_verified": false,
     "sha256": "6c7e8b59255dc27bcc55af21ceb80ab14876c2009ae901f369fca9e8501ff70d",
     "platform": "gb"
+  },
+  "DMG-AUWE-0": {
+    "name": "WWF WrestleMania 2000 (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "e5971b4a0c14a8dc06386844975ea76a65a9f81539e43bbe90a6bed198990b15",
+    "platform": "gbc"
+  },
+  "DMG-AUWP-0": {
+    "name": "WWF WrestleMania 2000 (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "e5971b4a0c14a8dc06386844975ea76a65a9f81539e43bbe90a6bed198990b15",
+    "platform": "gbc"
+  },
+  "DMG-AV2P-0": {
+    "name": "Spacestation Silicon Valley (Europe) (En,Fr,De,Es,It,Nl,Sv) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AVAP-0": {
+    "name": "Babe and Friends (Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "61fb64638804222c32e1749ba65e9751323b1bdab56368cfba21f4abf31640af",
+    "platform": "gbc"
   },
   "DMG-AVBJ-0": {
     "name": "Pocket Bowling (Japan) (GB Compatible)",
@@ -2363,6 +5523,12 @@
     "sha256": "deb9835984215aac71d989ca0a5cabdd8f3e7751703ebce6b7d7ef412acaf373",
     "platform": "gb"
   },
+  "DMG-AVMP-0": {
+    "name": "Rugrats - Time Travelers (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "a1d4ca4eb27f14080bfa7e48be047d33f67b5f43f488fe378efabdd7fef1b262",
+    "platform": "gbc"
+  },
   "DMG-AVPJ-0": {
     "name": "Taito Variety Pack (Japan)",
     "rom_verified": true,
@@ -2375,8 +5541,34 @@
     "sha256": "b94143f91edb0c2f4dee7d13448715cd910204e5fdc680d1c2fe3a72be1e3f1c",
     "platform": "gb"
   },
+  "DMG-AVTP-0": {
+    "name": "Reservoir Rat (Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "068f13f949df33704a54db8a2c7bd251468907c32631dedd6695d8b38b45639c",
+    "platform": "gbc"
+  },
   "DMG-AVUE-0": {
     "name": "Beauty and the Beast - A Board Game Adventure (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AVUP-0": {
+    "name": "Beauty and the Beast - A Board Game Adventure (Europe) (En,Fr,De,Es,It) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AVUU-0": {
+    "name": "Beauty and the Beast - A Board Game Adventure (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AVVJ-0": {
+    "name": "Power Pro Kun Pocket (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AVVJ-1": {
+    "name": "Power Pro Kun Pocket (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
     "platform": "gbc"
   },
@@ -2385,6 +5577,16 @@
     "rom_verified": true,
     "sha256": "f55e542cc82dc5fbefc0fc5f42e95e882fba7895e73a8ff084ce7aa8408bdd85",
     "platform": "gb"
+  },
+  "DMG-AVXP-0": {
+    "name": "Shamus (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AVZP-0": {
+    "name": "Tasmanian Devil - Munching Madness (Europe) (En,Fr,De,Es,It) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AW2E-0": {
     "name": "Wario Land II (USA, Europe) (SGB Enhanced)",
@@ -2464,6 +5666,12 @@
     "sha256": "770a3c6cd89d34af0d452eb4f52cd5a2f9d2651b9b54b247de349ff701f59a52",
     "platform": "gb"
   },
+  "DMG-AWHE-0": {
+    "name": "R-Type DX (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "3d20b3fef48771f0d3ea2cdcf80812b02122a0a04dee0e8c8ae8e3e027f36741",
+    "platform": "gbc"
+  },
   "DMG-AWHP-0": {
     "name": "R-Type DX (USA, Europe) (GB Compatible)",
     "rom_verified": true,
@@ -2482,6 +5690,11 @@
     "sha256": "30fe25b00d72abb736f41dcfa2bd5644ba4500bd33d955e5e6c58b6f3551224b",
     "platform": "gb"
   },
+  "DMG-AWKJ-0": {
+    "name": "Kanji Boy (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-AWLP-0": {
     "name": "Wario Land II (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
@@ -2493,6 +5706,16 @@
     "rom_verified": false,
     "sha256": "f5259b51397c75de496351fa1cb661951ccd76f4f5ae2ef98e9c13d50adfb937",
     "platform": "gb"
+  },
+  "DMG-AWOJ-0": {
+    "name": "Game Boy Wars 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AWQP-0": {
+    "name": "Dragon Warrior Monsters (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-AWSJ-0": {
     "name": "Super Snakey (Japan) (SGB Enhanced)",
@@ -2506,7 +5729,23 @@
     "sha256": "424a6199ee532fa1c27edce468df20e9584d6eb913c190139998a53bcfe50d58",
     "platform": "gb"
   },
+  "DMG-AWZE-0": {
+    "name": "International Superstar Soccer 99 (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AWZP-0": {
+    "name": "International Superstar Soccer 99 (Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AXFE-0": {
+    "name": "New Adventures of Mary-Kate & Ashley, The (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d83fe8332911ae860e18ba58df7daad1571664c1c38511f7f43093a27446ff39",
+    "platform": "gbc"
+  },
+  "DMG-AXFP-0": {
     "name": "New Adventures of Mary-Kate & Ashley, The (USA, Europe) (GB Compatible)",
     "rom_verified": true,
     "sha256": "d83fe8332911ae860e18ba58df7daad1571664c1c38511f7f43093a27446ff39",
@@ -2536,8 +5775,19 @@
     "sha256": "ec7ee66c72c1c13a7f655932aaa7a37d1d355e3eee0c849cd8e57e9150dcf1ca",
     "platform": "gb"
   },
+  "DMG-AXQE-0": {
+    "name": "Pokemon Trading Card Game (USA, Australia) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "a54515bb6b3e364964d3c0226f5a6b0c8c0f7318c9296ef2e321df0bbb8541ce",
+    "platform": "gbc"
+  },
   "DMG-AXQP-0": {
     "name": "Pokemon Trading Card Game (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-AXQP-1": {
+    "name": "Pokemon Trading Card Game (Europe) (En,Fr,De) (Rev 1) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "platform": "gbc"
   },
@@ -2545,6 +5795,11 @@
     "name": "Pokemon Trading Card Game (USA, Australia) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "a54515bb6b3e364964d3c0226f5a6b0c8c0f7318c9296ef2e321df0bbb8541ce",
+    "platform": "gbc"
+  },
+  "DMG-AXQX-1": {
+    "name": "Pokemon Trading Card Game (Europe) (En,Es,It) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
     "platform": "gbc"
   },
   "DMG-AY3J-0": {
@@ -2559,11 +5814,22 @@
     "sha256": "ca705ad8f998e49f394fd6917c60ec0de41ae7df8052d4ac3c87e92b0abb8d6f",
     "platform": "gb"
   },
+  "DMG-AYGP-0": {
+    "name": "Tiger Woods PGA Tour 2000 (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-AYJ-0": {
     "name": "Ayakashi no Shiro (Japan)",
     "rom_verified": true,
     "sha256": "fee5c32ddc8e6c38d184cd100b9fc8651fd40d5b64e6df22f9f13f401a3fd885",
     "platform": "gb"
+  },
+  "DMG-AYKJ-0": {
+    "name": "Yu-Gi-Oh! Duel Monsters II - Dark Duel Stories (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "415d2c1008bb25ab4c11e5218266195232ac544b979e1234ddb8ca5b04b6ead7",
+    "platform": "gbc"
   },
   "DMG-AYLE-1": {
     "name": "Tetris Attack (USA, Europe) (Rev 1) (SGB Enhanced)",
@@ -2595,6 +5861,23 @@
     "sha256": "dee356ead9d73a6fbcb85d340b2d77b28d84fcbdfecdb1c0b3e8a8258955dc25",
     "platform": "gb"
   },
+  "DMG-AYR-0": {
+    "name": "Looney Tunes - Twouble! (USA) (En,Fr,Es) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AYRP-0": {
+    "name": "Sylvester & Tweety - Breakfast on the Run (Europe) (En,Fr,De,Es,It,Nl) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "656d9d66826a80de3c8e7655d1a165232b0cb245df29f4e19691844d19551b11",
+    "platform": "gbc"
+  },
+  "DMG-AYSJ-0": {
+    "name": "Pocket Puyo Puyo Sun (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "c6dedaf6ebfff01371d5793e0bad4df7319f9784146292ceca5dd80f44f4857c",
+    "platform": "gbc"
+  },
   "DMG-AYUJ-0": {
     "name": "Yu-Gi-Oh! Duel Monsters (Japan) (SGB Enhanced)",
     "rom_verified": true,
@@ -2613,16 +5896,69 @@
     "sha256": "e744f074a6c12722174bf0fdd88d1c07a5040bd1d0726c832825991d6081e08f",
     "platform": "gb"
   },
+  "DMG-AYXD-0": {
+    "name": "Harvest Moon GB (Germany) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-AYXE-0": {
+    "name": "Harvest Moon GBC (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "54fe95af5ded33631db84b6ba4ecc4a86f9f7528c9c56ca678150a3246d49623",
+    "platform": "gbc"
+  },
   "DMG-AZGJ-0": {
     "name": "Jinsei Game (Japan) (SGB Enhanced)",
     "rom_verified": false,
     "sha256": "718d721890896b348036b6ff20e7411832c8f8a08a359808f02590dda95955e2",
     "platform": "gb"
   },
+  "DMG-AZLD-1": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (Germany) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6277f3c10740b58953f76fc5ee2a023924d6c6ff82e35b322f179cfd81731f8f",
+    "platform": "gbc"
+  },
+  "DMG-AZLE-0": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "c95dd3d9cb798e86c28e3269554e458d434bf3277b96cadf5bc81cfacfb5ee60",
+    "platform": "gbc"
+  },
+  "DMG-AZLE-2": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (USA, Europe) (Rev 2) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "5dee5816ed9b46cfc4a2d94f275e555dd3c5080eca00ded975a41a881a6d4c06",
+    "platform": "gbc"
+  },
+  "DMG-AZLF-0": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (France) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "4d1cd3432808a4252522a9d16e5dffcb18ecc3b9b8087e9fbeeb5f98311a2952",
+    "platform": "gbc"
+  },
+  "DMG-AZLF-1": {
+    "name": "Legend of Zelda, The - Link's Awakening DX (France) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "211a1d1559dc2684d63d87f62a6b1e9109201a6383b4004e9dd5e18ee926ee83",
+    "platform": "gbc"
+  },
   "DMG-AZLJ-0": {
     "name": "Zelda no Densetsu - Yume o Miru Shima DX (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
     "sha256": "7e46fdfd39c23e8496c0e345c6790ade295a4aa1cbacf6915bbda6af4b1c025a",
+    "platform": "gbc"
+  },
+  "DMG-AZLJ-1": {
+    "name": "Zelda no Densetsu - Yume o Miru Shima DX (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "64f30505c0311a32bed3c154aa2563e21087725920ef9ba88c85c8cbb94b86a8",
+    "platform": "gbc"
+  },
+  "DMG-AZLJ-2": {
+    "name": "Zelda no Densetsu - Yume o Miru Shima DX (Japan) (Rev 2) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "8293aad37c7f493d720a44153a901965b520805fdc8f3b51df08189797639bd1",
     "platform": "gbc"
   },
   "DMG-AZLP-0": {
@@ -2637,11 +5973,22 @@
     "sha256": "5dee5816ed9b46cfc4a2d94f275e555dd3c5080eca00ded975a41a881a6d4c06",
     "platform": "gbc"
   },
+  "DMG-AZME-0": {
+    "name": "Montezuma's Return! (USA) (En,Es) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "003097c7a363da268fa2853262c1924ee72fe23fc546834b247c359f69a684aa",
+    "platform": "gbc"
+  },
   "DMG-AZPP-0": {
     "name": "Zoop (USA, Europe)",
     "rom_verified": true,
     "sha256": "e67484157358ba714f5d4c9c0591c4a4cc92bc41cd17352e60484b361a98f793",
     "platform": "gb"
+  },
+  "DMG-AZTP-0": {
+    "name": "All Star Tennis 2000 (Europe) (AZTP) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-AZZJ-0": {
     "name": "Pro Mahjong Kiwame GB (Japan) (SGB Enhanced)",
@@ -2661,16 +6008,31 @@
     "sha256": "c5ddbb08e8509633853346c5f35850cc3abe5afaabb0d0ee294b40e804253b7f",
     "platform": "gb"
   },
+  "DMG-B2VJ-0": {
+    "name": "Survival Kids 2 - Dasshutsu!! Futago-Jima! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-B6J-0": {
     "name": "Vitamina Oukoku Monogatari (Japan)",
     "rom_verified": true,
     "sha256": "2c4fd2c2f08d19f256b836623ca7da8489d36b673d3fbf81fe954b6396b3fad0",
     "platform": "gb"
   },
+  "DMG-B6KJ-0": {
+    "name": "Kinniku Banzuke GB 2 - Mezase! Muscle Champion (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-B7HJ-0": {
     "name": "Nakayoshi Pet Series 1 - Kawaii Hamster (Japan) (GB Compatible)",
     "rom_verified": true,
     "sha256": "90e94a2539824b6cd62a73ae01fa84cd5df72ed7cc4464d3fd9fc06c9e2ea150",
+    "platform": "gbc"
+  },
+  "DMG-B7UJ-0": {
+    "name": "Nakayoshi Pet Series 2 - Kawaii Usagi (Japan) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc"
   },
   "DMG-BAA-0": {
@@ -2679,17 +6041,32 @@
     "sha256": "d0e4ff010ab013e519abd9950ab465f3369c76e23d82927c0f39b5e259d4febf",
     "platform": "gb"
   },
+  "DMG-BAOP-0": {
+    "name": "Asterix & Obelix Contre Cesar (Europe) (En,Fr,De,Es,Nl) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-BB4J-0": {
     "name": "Goukaku Boy Series - Shikakui Atama o Maruku Suru - Sansuu Battle Hen (Japan) (IE Institute)",
     "rom_verified": true,
     "sha256": "f0daf807b57352ec671507e289012817fb86997b171071aa33ae3b05064bf393",
     "platform": "gb"
   },
+  "DMG-BBDJ-0": {
+    "name": "DT - Lords of Genomes (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-BBE-0": {
     "name": "Bugs Bunny Crazy Castle, The (USA, Europe)",
     "rom_verified": true,
     "sha256": "a0bd5d25545de941e719437f7829f4edf32b3a140a399387f96dda2f8059fe4e",
     "platform": "gb"
+  },
+  "DMG-BC2J-0": {
+    "name": "Bikkuriman 2000 - Charging Card GB (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-BC4J-0": {
     "name": "Goukaku Boy GOLD - Shikakui Atama o Maruku Suru - Keisan no Tatsujin (Japan) (Imagineer)",
@@ -2721,6 +6098,16 @@
     "sha256": "3392d98b440bd9eb13a41b5ea374b83f061ba921311fd75fec16d86eb6d2e735",
     "platform": "gb"
   },
+  "DMG-BDHJ-0": {
+    "name": "Tanimura Hitoshi Ryuu Pachinko Kouryaku Daisakusen - Don Quijote ga Iku (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BDMJ-0": {
+    "name": "Doraemon Memories - Nobita no Omoide Daibouken (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-BE3J-0": {
     "name": "Goukaku Boy Series - Shikakui Atama o Maruku Suru - Shakai Battle Hen (Japan) (IE Institute)",
     "rom_verified": true,
@@ -2733,11 +6120,41 @@
     "sha256": "8790269c73c98f12ed9fba2ca737579824c062126eea09dcb1d3626d127fbf81",
     "platform": "gb"
   },
+  "DMG-BFBJ-0": {
+    "name": "Dancing Furby (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BFPP-0": {
+    "name": "Barbie - Fashion Pack Games (USA, Europe) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BG2J-0": {
+    "name": "Game Conveni 21 (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-BGE-0": {
     "name": "Bubble Ghost (USA, Europe)",
     "rom_verified": true,
     "sha256": "106d5443e092df3dc53035930766061f1ae4eae670470a93d648dc1adcda01c0",
     "platform": "gb"
+  },
+  "DMG-BGQD-0": {
+    "name": "Gute Zeiten Schlechte Zeiten Quiz (Germany) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BGZJ-0": {
+    "name": "Zoids - Jashin Fukkatsu! Genobreaker Hen (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BGZJ-1": {
+    "name": "Zoids - Jashin Fukkatsu! Genobreaker Hen (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-BH4J-0": {
     "name": "Goukaku Boy Series - Shikakui Atama o Maruku Suru - Rika Battle Hen (Japan) (IE Institute)",
@@ -2745,11 +6162,27 @@
     "sha256": "b3e6eddef7fef1a3800e4b36550419a4748fc8a8d174127c4a1f240fc97cdd0b",
     "platform": "gb"
   },
+  "DMG-BHEJ-0": {
+    "name": "Shin Megami Tensei Devil Children - Kuro no Sho (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-BHJ-0": {
     "name": "Ippatsu Gyakuten! DX Bakenou (Japan)",
     "rom_verified": false,
     "sha256": "1a27e810d72972a8dba8afa4e694ce543c1a6ba9cf35a040e03a0e9d05916286",
     "platform": "gb"
+  },
+  "DMG-BHNJ-0": {
+    "name": "Shin Megami Tensei Devil Children - Aka no Sho (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "6c70743e13f41738b80aa393ab20cd1d35f87e47cb50454a235fee5ba062dd0a",
+    "platform": "gbc"
+  },
+  "DMG-BHNJ-1": {
+    "name": "Shin Megami Tensei Devil Children - Aka no Sho (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
   },
   "DMG-BIA-0": {
     "name": "Bomber King - Scenario 2 (Japan)",
@@ -2793,6 +6226,11 @@
     "sha256": "844f18524468d05b1ec3981a55d28639514170ecb07a74754b11dde098bf5827",
     "platform": "gb"
   },
+  "DMG-BKZJ-0": {
+    "name": "Phantom Zona (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-BLA-0": {
     "name": "Blodia (Japan)",
     "rom_verified": false,
@@ -2823,6 +6261,16 @@
     "sha256": "3afc54651b9a6d71d7a5a884c6b86b9e2f6d5c6380aeff2e533cd14280444f21",
     "platform": "gbc"
   },
+  "DMG-BMKJ-0": {
+    "name": "Sylvanian Melodies - Mori no Nakama to Odori Masho! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BO2J-0": {
+    "name": "Star Ocean - Blue Sphere (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-BOX-0": {
     "name": "Bionic Commando (Europe)",
     "rom_verified": true,
@@ -2835,6 +6283,12 @@
     "sha256": "5afbb7354d04c7e3b72fc5545944169ac2a68b09b188c841bfa0828bc907f0fe",
     "platform": "gb"
   },
+  "DMG-BPWJ-0": {
+    "name": "Power Pro Kun Pocket 2 (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "c64928248a43e30f662db0396556ce75fad56217c109a06ef744f3fb69604f01",
+    "platform": "gbc"
+  },
   "DMG-BQ2J-0": {
     "name": "Goukaku Boy GOLD - Shikakui Atama o Maruku Suru - Kanji no Tatsujin (Japan) (IE Institute)",
     "rom_verified": false,
@@ -2845,6 +6299,16 @@
     "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
     "sha256": "90517f73231e52fe3ef733e369b8a3464996e785803fdb583398d40689760ab7",
+    "platform": "gbc"
+  },
+  "DMG-BQLJ-1": {
+    "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-BRAZ-0": {
+    "name": "Sewing Machine Operation Software (Europe) (En,Fr,De,It) (GB Compatible)",
+    "rom_verified": true,
     "platform": "gbc"
   },
   "DMG-BRE-0": {
@@ -2871,6 +6335,16 @@
     "sha256": "1b48b454bb421836c33c2d572c61f69145a077ebcecbf8194dfb05fc6581ff82",
     "platform": "gb"
   },
+  "DMG-BTXJ-0": {
+    "name": "Keitai Denjuu Telefang - Power Version (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
+  "DMG-BTZJ-0": {
+    "name": "Keitai Denjuu Telefang - Speed Version (Japan) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-BUA-0": {
     "name": "Burai Senshi Deluxe (Japan)",
     "rom_verified": false,
@@ -2882,6 +6356,11 @@
     "rom_verified": true,
     "sha256": "704c24466e0f92e280073af3191dae54b842a8736281c697f8c9d1f35f91b065",
     "platform": "gb"
+  },
+  "DMG-BV6J-0": {
+    "name": "Seme COM Dungeon - Drururuaga (Japan) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-BVE-0": {
     "name": "Battletoads (USA, Europe)",
@@ -2907,6 +6386,18 @@
     "sha256": "bfbed25beef74dec194a7330e3f4864a4b82f28927121cf03d9b871965553420",
     "platform": "gb"
   },
+  "DMG-BXFE-0": {
+    "name": "Mary-Kate & Ashley - Get a Clue! (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d3c72565675f4f0de8f761eda91aa86a23d54b8eeac3fea68cc43397db77bf8b",
+    "platform": "gbc"
+  },
+  "DMG-BXFP-0": {
+    "name": "Mary-Kate & Ashley - Get a Clue! (USA, Europe) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "d3c72565675f4f0de8f761eda91aa86a23d54b8eeac3fea68cc43397db77bf8b",
+    "platform": "gbc"
+  },
   "DMG-BYE-0": {
     "name": "Bugs Bunny Crazy Castle 2, The (USA)",
     "rom_verified": true,
@@ -2924,6 +6415,12 @@
     "rom_verified": true,
     "sha256": "b9909506f566ea7998d6170e9610bad62dbda7d38e42830cd187592e262acfed",
     "platform": "gb"
+  },
+  "DMG-BZOJ-0": {
+    "name": "From TV Animation One Piece - Maboroshi no Grand Line Boukenki! (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "de6b8d2982bbb53ecbc5db2e7277ac928dbdff01de568400cf2a64dcc5686915",
+    "platform": "gbc"
   },
   "DMG-C2J-0": {
     "name": "Chibi Maruko-chan 2 - Deluxe Maruko World (Japan)",
@@ -3759,6 +7256,16 @@
     "sha256": "eadb51c24b2a47462b6fbc0ef73632df477824f7e0c25a46af70078c2a92615b",
     "platform": "gb"
   },
+  "DMG-H3UJ-0": {
+    "name": "Robot Poncots - Moon Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
+  "DMG-H5UJ-0": {
+    "name": "Robot Poncots - Comic Bom Bom Special Version (Japan) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "platform": "gbc"
+  },
   "DMG-HAA-0": {
     "name": "Heiankyou Alien (Japan)",
     "rom_verified": false,
@@ -3896,6 +7403,12 @@
     "rom_verified": true,
     "sha256": "9b72e7d44d1cb31a06cf4e630c83abc61fb7218e3d55d7dc6aa1ecbf9e490cf0",
     "platform": "gb"
+  },
+  "DMG-HREE-0": {
+    "name": "Robopon - Sun Version (USA) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "211362382e3637edece46d5ccd470061466a37cd7794777f140ec3f228166e5a",
+    "platform": "gbc"
   },
   "DMG-HREJ-0": {
     "name": "Robot Poncots - Sun Version (Japan) (SGB Enhanced) (GB Compatible)",
@@ -5774,6 +9287,17 @@
     "sha256": "6c98bfb838beb284be3665b3bc60db33fdce8fbd60544f6ee203ef0ba06d571e",
     "platform": "gbc"
   },
+  "DMG-VQ3E-0": {
+    "name": "Test Drive Off-Road 3 (USA) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "sha256": "9ecb72731dce21bbef9b98ea05bb5cd1552673705377f55963d41fcc0e530513",
+    "platform": "gbc"
+  },
+  "DMG-VRKJ-0": {
+    "name": "Get Chuu Club - Minna no Konchuu Daizukan (Japan) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
+  },
   "DMG-VRX-0": {
     "name": "RoboCop versus The Terminator (Europe)",
     "rom_verified": false,
@@ -5803,6 +9327,11 @@
     "rom_verified": true,
     "sha256": "507939ba5a53506d0ee52abb0eb6749f497c492e8be79eb106010020b50065bd",
     "platform": "gb"
+  },
+  "DMG-VUTJ-0": {
+    "name": "Kawa no Nushi Tsuri 4 (Japan) (Rumble Version) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": false,
+    "platform": "gbc"
   },
   "DMG-VVJ-0": {
     "name": "Bakenou V3 (Japan)",

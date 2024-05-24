@@ -9,6 +9,7 @@ use cursive::{
 };
 
 pub trait GbHwDbCursiveExt {
+    fn try_get_edit_view_value(&mut self, id: &str) -> Option<String>;
     fn get_edit_view_value(&mut self, id: &str) -> String;
     fn get_select_view_selection<T>(&mut self, id: &str) -> Option<T>
     where
@@ -17,8 +18,11 @@ pub trait GbHwDbCursiveExt {
 }
 
 impl GbHwDbCursiveExt for Cursive {
-    fn get_edit_view_value(&mut self, id: &str) -> String {
+    fn try_get_edit_view_value(&mut self, id: &str) -> Option<String> {
         self.call_on_name(id, |view: &mut EditView| String::clone(&view.get_content()))
+    }
+    fn get_edit_view_value(&mut self, id: &str) -> String {
+        self.try_get_edit_view_value(id)
             .unwrap_or_else(|| panic!("No EditView with id {:?}", id))
     }
     fn get_select_view_selection<T>(&mut self, id: &str) -> Option<T>

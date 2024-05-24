@@ -4,7 +4,7 @@
 
 use anyhow::{anyhow, Error};
 use cursive::{traits::*, view::Margins, views::*, Cursive, CursiveExt};
-use gbhwdb_backend::config::cartridge::{BoardLayout, GameConfig, GamePlatform};
+use gbhwdb_backend::config::cartridge::{GameConfig, GamePlatform};
 use gbhwdb_tools::{cursive::*, dat::DatFile};
 use glob::glob;
 use itertools::Itertools;
@@ -413,38 +413,6 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     if name.len() == 0 || should_quit() {
         return;
     }
-    let mut layout_radio = RadioGroup::new();
-    let default_layout = match platform {
-        GamePlatform::Gb => BoardLayout::RomMapper,
-        GamePlatform::Gbc => BoardLayout::RomMapperRam,
-        GamePlatform::Gba => BoardLayout::RomMapper,
-    };
-    let layout_container = LinearLayout::vertical()
-        .child(layout_radio.button(BoardLayout::Rom, "Rom"))
-        .child({
-            let mut button = layout_radio.button(BoardLayout::RomMapper, "Rom + mapper");
-            if default_layout == BoardLayout::RomMapper {
-                button = button.selected();
-            }
-            button
-        })
-        .child({
-            let mut button = layout_radio.button(BoardLayout::RomMapperRam, "Rom + mapper + ram");
-            if default_layout == BoardLayout::RomMapperRam {
-                button = button.selected();
-            }
-            button
-        })
-        .child(layout_radio.button(
-            BoardLayout::RomMapperRamXtal,
-            "Rom + mapper + ram + crystal",
-        ))
-        .child(layout_radio.button(BoardLayout::Mbc2, "MBC2"))
-        .child(layout_radio.button(BoardLayout::Mbc6, "MBC6"))
-        .child(layout_radio.button(BoardLayout::Mbc7, "MBC7"))
-        .child(layout_radio.button(BoardLayout::Type15, "Type 15 (MBC5 + dual ROM)"))
-        .child(layout_radio.button(BoardLayout::Huc3, "HuC-3"))
-        .child(layout_radio.button(BoardLayout::Tama, "Tamagotchi 3"));
     let mut dialog = Dialog::new().title("Add a game").content(
         LinearLayout::vertical()
             .child(TextView::new("Name:"))
@@ -452,14 +420,11 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .child(TextView::new("Platform:"))
             .child(TextView::new(format!("{}", platform)))
             .child(TextView::new("Code:"))
-            .child(TextView::new(code.as_str()))
-            .child(TextView::new("Board layout:"))
-            .child(layout_container),
+            .child(TextView::new(code.as_str())),
     );
     dialog.add_button("Ok", move |s| s.quit());
     siv.add_layer(dialog.fixed_width(150));
     siv.run();
-    let layout = layout_radio.selection();
     siv.pop_layer();
     if should_quit() {
         return;
@@ -473,7 +438,6 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             rom_verified,
             sha256,
             platform,
-            layouts: vec![*layout],
         },
     );
 }

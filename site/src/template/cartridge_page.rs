@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::PartRoleConfig;
 use maud::{html, Markup, Render};
 use time::{format_description::FormatItem, macros::format_description};
 
@@ -41,13 +40,11 @@ impl<'a> Render for CartridgePage<'a> {
         let metadata = &self.submission.metadata;
         let photos = &self.submission.photos;
         let board = &metadata.board;
-        let parts = PartRoleConfig::from(board.layout)
-            .into_iter()
-            .map(|(designator, role)| SubmissionPart {
-                designator: designator.as_str(),
-                label: role.display(),
-                part: metadata.board.parts.get(&designator),
-            });
+        let parts = board.cfg.parts().map(|(designator, part)| SubmissionPart {
+            designator: designator.as_str(),
+            label: part.role.display(),
+            part: board.parts.get(&designator),
+        });
         html! {
             article.page-cartridge {
                 h2 { (metadata.cfg.name) ": " (self.submission.title) " [" (self.submission.contributor) "]" }

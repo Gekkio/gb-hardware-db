@@ -246,13 +246,9 @@ fn process_cartridge_submissions(
             );
             let cfg = cfgs.get(&cartridge.code).unwrap();
 
-            let layout = BoardLayout::from_label(&cartridge.board.label).unwrap_or_else(|| {
-                panic!(
-                    "Failed to find board layout for board {}",
-                    cartridge.board.label
-                )
+            let board_cfg = BoardConfig::from_label(&cartridge.board.label).unwrap_or_else(|| {
+                panic!("Failed to find config for board {}", cartridge.board.label)
             });
-            assert!(cfg.layouts.contains(&layout));
 
             if let Some(year) = cartridge.board.year {
                 assert!(year >= 1989 && year < 2010);
@@ -269,7 +265,7 @@ fn process_cartridge_submissions(
                 }
             }
 
-            let board = LegacyBoard::new(cartridge.board, layout);
+            let board = LegacyBoard::new(cartridge.board, board_cfg);
             let metadata = LegacyMetadata {
                 cfg: cfg.clone(),
                 code: cartridge.shell.code,

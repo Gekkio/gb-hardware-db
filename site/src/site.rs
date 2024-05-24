@@ -4,7 +4,7 @@
 
 use anyhow::Error;
 use gbhwdb_backend::{
-    config::cartridge::{BoardLayout, PartRole, PartRoleConfig},
+    config::cartridge::{BoardConfig, PartRole},
     CartridgeClass, Console,
 };
 use itertools::Itertools;
@@ -190,7 +190,7 @@ pub fn build_site() -> Site {
                 id: "no-mapper",
                 name: "No mapper",
                 parts: &[PartRole::Rom],
-                match_fn: Box::new(|layout, _| layout == BoardLayout::Rom),
+                match_fn: Box::new(|cfg, _| cfg == BoardConfig::Aaac || cfg == BoardConfig::DmgAaa),
             },
             MapperCfg {
                 id: "mbc1",
@@ -447,15 +447,15 @@ pub fn build_site() -> Site {
         data.cartridges
             .iter()
             .map(|submission| {
-                let layout = submission.metadata.board.layout;
-                let parts = PartRoleConfig::from(layout);
-                let mapper = parts
-                    .into_iter()
-                    .find(|&(_, role)| role == PartRole::Mapper)
-                    .and_then(|(designator, _)| submission.metadata.board.parts.get(&designator));
+                let board = &submission.metadata.board;
+                let mapper = board
+                    .cfg
+                    .parts()
+                    .find(|(_, part)| part.role == PartRole::Mapper)
+                    .and_then(|(designator, _)| board.parts.get(&designator));
                 let key = mapper_cfgs
                     .iter()
-                    .position(|cfg| (cfg.match_fn)(layout, mapper));
+                    .position(|cfg| (cfg.match_fn)(board.cfg, mapper));
                 (key, submission)
             })
             .sorted_by_key(|&(key, _)| key)

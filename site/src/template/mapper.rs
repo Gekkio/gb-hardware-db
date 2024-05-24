@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{BoardLayout, PartRole, PartRoleConfig};
+use gbhwdb_backend::config::cartridge::{BoardConfig, PartRole};
 use maud::{html, Markup, Render};
 
 use crate::{
@@ -19,7 +19,7 @@ pub struct MapperCfg {
     pub id: &'static str,
     pub name: &'static str,
     pub parts: &'static [PartRole],
-    pub match_fn: Box<dyn Fn(BoardLayout, Option<&ProcessedPart>) -> bool + Send + Sync>,
+    pub match_fn: Box<dyn Fn(BoardConfig, Option<&ProcessedPart>) -> bool + Send + Sync>,
 }
 
 pub struct Mapper<'a> {
@@ -57,7 +57,7 @@ impl<'a> Render for Mapper<'a> {
 
 fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) -> Markup {
     let metadata = &submission.metadata;
-    let parts = PartRoleConfig::from(submission.metadata.board.layout);
+    let board = &metadata.board;
     html! {
         tr {
             (ListingEntryCell {
@@ -70,13 +70,22 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                 (Optional(metadata.code.as_ref()))
             }
             td {
-                div { (metadata.board.kind) }
-                div { (Optional(metadata.board.date_code.calendar())) }
+                div { (board.kind) }
+                div { (Optional(board.date_code.calendar())) }
             }
             @for &role in cfg.parts {
-                @let part = parts.into_iter().find(|&(_, candidate)| candidate == role)
-                    .and_then(|(designator, _)| submission.metadata.board.parts.get(&designator));
-                (ListingPart { part, hide_type: false })
+                @let part = board.cfg.parts().find(|(_, candidate)| candidate.role == role);
+                @if let Some((designator, _)) = part {
+                    (ListingPart {
+                        part: board.parts.get(&designator),
+                        hide_type: false,
+                    })
+                }
+                @else {
+                    td.listing-part.listing-part--not-applicable {
+                        "N/A"
+                    }
+                }
             }
             (ListingPhotosCell { submission })
         }

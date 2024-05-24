@@ -6,16 +6,23 @@ use anyhow::Error;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::{
+    any::Any,
     collections::{BTreeMap, HashMap},
     fmt,
     fs::File,
     io::{BufReader, BufWriter},
-    ops::{Index, IndexMut},
     path::Path,
     sync::OnceLock,
 };
 
-use crate::sha256::Sha256;
+use crate::{
+    parser::{
+        accelerometer::accelerometer, crystal_32kihz::crystal_32kihz, eeprom::eeprom, flash::flash,
+        hex_inverter::hex_inverter, line_decoder::line_decoder, mapper::mapper, mask_rom::mask_rom,
+        ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, LabelParser,
+    },
+    sha256::Sha256,
+};
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
 pub struct GameConfig {
@@ -26,7 +33,6 @@ pub struct GameConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sha256: Option<Sha256>,
     pub platform: GamePlatform,
-    pub layouts: Vec<BoardLayout>,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
@@ -49,95 +55,544 @@ impl fmt::Display for GamePlatform {
     }
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
-pub enum BoardLayout {
-    #[serde(rename = "rom")]
-    Rom,
-    #[serde(rename = "rom_mapper")]
-    RomMapper,
-    #[serde(rename = "rom_mapper_ram")]
-    RomMapperRam,
-    #[serde(rename = "rom_mapper_ram_xtal")]
-    RomMapperRamXtal,
-    #[serde(rename = "mbc2")]
-    Mbc2,
-    #[serde(rename = "mbc6")]
-    Mbc6,
-    #[serde(rename = "mbc7")]
-    Mbc7,
-    #[serde(rename = "type_15")]
-    Type15,
-    #[serde(rename = "huc3")]
-    Huc3,
-    #[serde(rename = "tama")]
-    Tama,
-    #[serde(rename = "agb_fram")]
-    AgbFram,
-    #[serde(rename = "agb_e06")]
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum BoardConfig {
     AgbE06,
+    AgbE11,
+    AgbY11,
+    Tama,
+    Aaac,
+    CgbA32,
+    DmgA02,
+    DmgA03,
+    DmgA04,
+    DmgA06,
+    DmgA07,
+    DmgA08,
+    DmgA09,
+    DmgA11,
+    DmgA14,
+    DmgA15,
+    DmgA16,
+    DmgA40,
+    DmgA47,
+    DmgAaa,
+    DmgBba,
+    DmgBca,
+    DmgBean,
+    DmgBfan,
+    DmgDecn,
+    DmgDedn,
+    DmgDgcu,
+    DmgGdan,
+    DmgKecn,
+    DmgKfcn,
+    DmgKfdn,
+    DmgKgdu,
+    DmgLfdn,
+    DmgMBfan,
+    DmgMcDfcn,
+    DmgMcSfcn,
+    DmgMheu,
+    DmgTedn,
+    DmgTfdn,
+    DmgUedt,
+    DmgUfdt,
+    DmgUgdu,
+    DmgZ02,
+    DmgZ03,
+    DmgZ04,
 }
 
-fn create_map() -> HashMap<&'static str, BoardLayout> {
+impl BoardConfig {
+    pub fn part(&self, designator: PartDesignator) -> Option<BoardPart> {
+        use PartDesignator as D;
+
+        fn part<T: 'static>(
+            role: PartRole,
+            parser: &'static impl LabelParser<T>,
+        ) -> Option<BoardPart> {
+            Some(BoardPart {
+                role,
+                parser: Box::new(move |input| {
+                    let value = parser.parse(input)?;
+                    Ok(Box::new(value))
+                }),
+            })
+        }
+
+        match self {
+            BoardConfig::AgbE06 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-28 RAM
+                D::U2 => part(PartRole::Ram, ram()),
+                // SOP-8 BU9803F
+                D::U3 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::AgbE11 | BoardConfig::AgbY11 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-28 FRAM
+                D::U2 => part(PartRole::Ram, ram()),
+                _ => None,
+            },
+            BoardConfig::Tama => match designator {
+                // SOP-32 TAMA7
+                D::U1 => part(PartRole::Rom, tama()),
+                // SOP-28 TAMA5
+                D::U2 => part(PartRole::Mapper, tama()),
+                // SOP-28 TAMA6
+                D::U3 => part(PartRole::Mcu, tama()),
+                // SOP-20
+                D::U4 => part(PartRole::Rtc, rtc()),
+                // SOP-8 M62021P
+                D::U5 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::Aaac => match designator {
+                // glop top ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                _ => None,
+            },
+            BoardConfig::CgbA32 => match designator {
+                // TQFP-64 MBC6
+                D::U1 => part(PartRole::Mapper, mapper()),
+                // SOP-32 ROM
+                D::U2 => part(PartRole::Rom, mask_rom()),
+                // TSOP-I-40 Flash
+                D::U3 => part(PartRole::Flash, flash()),
+                // SOP-28 RAM
+                D::U4 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U5 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA02 => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA03 | BoardConfig::DmgA08 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA04 => match designator {
+                // TSOP-I-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // MOT1 => motor
+                _ => None,
+            },
+            BoardConfig::DmgA06 => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA07 => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                _ => None,
+            },
+            BoardConfig::DmgA09 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                _ => None,
+            },
+            BoardConfig::DmgA11 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // MOT1 => motor
+                _ => None,
+            },
+            BoardConfig::DmgA14 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-32 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA15 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // TSOP-II-44 ROM
+                D::U5 => part(PartRole::Rom, mask_rom()),
+                // SSOP-8
+                D::U6 => part(PartRole::LineDecoder, line_decoder()),
+                _ => None,
+            },
+            BoardConfig::DmgA16 => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-32 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA40 => match designator {
+                // QFP-56 MBC7
+                D::U1 => part(PartRole::Mapper, mapper()),
+                // SOP-32 ROM
+                D::U2 => part(PartRole::Rom, mask_rom()),
+                // TSSOP-8 EEPROM
+                D::U3 => part(PartRole::Eeprom, eeprom()),
+                // QC-14 accelerometer
+                D::U4 => part(PartRole::Accelerometer, accelerometer()),
+                _ => None,
+            },
+            BoardConfig::DmgA47 => match designator {
+                // QFP-56 MBC7
+                D::U1 => part(PartRole::Mapper, mapper()),
+                // TSOP-II-44 ROM
+                D::U2 => part(PartRole::Rom, mask_rom()),
+                // TSSOP-8 EEPROM
+                D::U3 => part(PartRole::Eeprom, eeprom()),
+                // QC-14 accelerometer
+                D::U4 => part(PartRole::Accelerometer, accelerometer()),
+                _ => None,
+            },
+            BoardConfig::DmgAaa => match designator {
+                // QFP-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                _ => None,
+            },
+            BoardConfig::DmgBba | BoardConfig::DmgBca => match designator {
+                // QFP-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-24 MBC1
+                D::U2 => part(PartRole::Mapper, mapper()),
+                _ => None,
+            },
+            BoardConfig::DmgBean | BoardConfig::DmgBfan | BoardConfig::DmgMBfan => match designator
+            {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-24 MBC1
+                D::U2 => part(PartRole::Mapper, mapper()),
+                _ => None,
+            },
+            BoardConfig::DmgDecn | BoardConfig::DmgDedn | BoardConfig::DmgMcDfcn => {
+                match designator {
+                    // SOP-32 ROM
+                    D::U1 => part(PartRole::Rom, mask_rom()),
+                    // SOP-24 MBC1
+                    D::U2 => part(PartRole::Mapper, mapper()),
+                    // SOP-28 RAM
+                    D::U3 => part(PartRole::Ram, ram()),
+                    // SOP-8 26A
+                    D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                    _ => None,
+                }
+            }
+            BoardConfig::DmgDgcu => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-24 MBC1
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgGdan => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-28 MBC2
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-8 26A
+                D::U3 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgKecn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 26A / MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgKfcn | BoardConfig::DmgKfdn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgKgdu => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgLfdn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgMcSfcn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MMM01
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 26A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgMheu => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC30
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-32 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgTedn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 HuC-1
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 26A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgTfdn => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 HuC-1
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgUedt => match designator {
+                // TSOP-I-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-48 HuC-3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // TSOP-I-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 26A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // TSSOP-14
+                D::U5 => part(PartRole::HexInverter, hex_inverter()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgUfdt => match designator {
+                // TSOP-I-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-48 HuC-3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // TSOP-I-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // TSSOP-14
+                D::U5 => part(PartRole::HexInverter, hex_inverter()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgUgdu => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-48 HuC-3
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // TSOP-I-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // TSSOP-14
+                D::U5 => part(PartRole::HexInverter, hex_inverter()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
+                _ => None,
+            },
+            BoardConfig::DmgZ02 => match designator {
+                // SOP-32 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgZ03 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgZ04 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper()),
+                // SOP-28 RAM
+                D::U3 => part(PartRole::Ram, ram()),
+                // SOP-8 MM1134A
+                D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                // MOT1 => motor
+                _ => None,
+            },
+        }
+    }
+    pub fn parts(&self) -> impl Iterator<Item = (PartDesignator, BoardPart)> + '_ {
+        PartDesignator::ALL.into_iter().filter_map(|designator| {
+            let part = self.part(designator)?;
+            Some((designator, part))
+        })
+    }
+}
+
+pub struct BoardPart {
+    pub role: PartRole,
+    pub parser: Box<dyn Fn(&str) -> Result<Box<dyn Any>, String>>,
+}
+
+fn create_map() -> HashMap<&'static str, BoardConfig> {
     let mut m = HashMap::new();
-    m.insert("AGB-E06", BoardLayout::AgbE06);
-    m.insert("AGB-E11", BoardLayout::AgbFram);
-    m.insert("AGB-Y11", BoardLayout::AgbFram);
-    m.insert("0200309E4-01", BoardLayout::Tama);
-    m.insert("AAAC S", BoardLayout::Rom);
-    m.insert("CGB-A32", BoardLayout::Mbc6);
-    m.insert("DMG-A02", BoardLayout::RomMapperRam);
-    m.insert("DMG-A03", BoardLayout::RomMapperRam);
-    m.insert("DMG-A04", BoardLayout::RomMapperRam);
-    m.insert("DMG-A06", BoardLayout::RomMapperRam);
-    m.insert("DMG-A07", BoardLayout::RomMapper);
-    m.insert("DMG-A08", BoardLayout::RomMapperRam);
-    m.insert("DMG-A09", BoardLayout::RomMapper);
-    m.insert("DMG-A10", BoardLayout::RomMapper);
-    m.insert("DMG-A11", BoardLayout::RomMapperRam);
-    m.insert("DMG-A12", BoardLayout::RomMapperRam);
-    m.insert("DMG-A13", BoardLayout::RomMapper);
-    m.insert("DMG-A14", BoardLayout::RomMapperRam);
-    m.insert("DMG-A15", BoardLayout::Type15);
-    m.insert("DMG-A16", BoardLayout::RomMapperRam);
-    m.insert("DMG-A18", BoardLayout::RomMapper);
-    m.insert("DMG-A40", BoardLayout::Mbc7);
-    m.insert("DMG-A47", BoardLayout::Mbc7);
-    m.insert("DMG-AAA", BoardLayout::Rom);
-    m.insert("DMG-BBA", BoardLayout::RomMapper);
-    m.insert("DMG-BCA", BoardLayout::RomMapper);
-    m.insert("DMG-BEAN", BoardLayout::RomMapper);
-    m.insert("DMG-BEAN(K)", BoardLayout::RomMapper);
-    m.insert("DMG-BFAN", BoardLayout::RomMapper);
-    m.insert("DMG-DECN", BoardLayout::RomMapperRam);
-    m.insert("DMG-DECN(K)", BoardLayout::RomMapperRam);
-    m.insert("DMG-DEDN", BoardLayout::RomMapperRam);
-    m.insert("DMG-DFCN", BoardLayout::RomMapperRam);
-    m.insert("DMG-DGCU", BoardLayout::RomMapperRam);
-    m.insert("DMG-GDAN", BoardLayout::Mbc2);
-    m.insert("DMG-KECN", BoardLayout::RomMapperRamXtal);
-    m.insert("DMG-KFCN", BoardLayout::RomMapperRamXtal);
-    m.insert("DMG-KFDN", BoardLayout::RomMapperRamXtal);
-    m.insert("DMG-KGDU", BoardLayout::RomMapperRamXtal);
-    m.insert("DMG-LFDN", BoardLayout::RomMapperRam);
-    m.insert("DMG-M-BFAN", BoardLayout::RomMapper);
-    m.insert("DMG-MC-DFCN", BoardLayout::RomMapperRam);
-    m.insert("DMG-MC-SFCN", BoardLayout::RomMapperRam);
-    m.insert("DMG-MHEU", BoardLayout::RomMapperRamXtal);
-    m.insert("DMG-TEDN", BoardLayout::RomMapperRam);
-    m.insert("DMG-TFDN", BoardLayout::RomMapperRam);
-    m.insert("DMG-UEDT", BoardLayout::Huc3);
-    m.insert("DMG-UFDT", BoardLayout::Huc3);
-    m.insert("DMG-UGDU", BoardLayout::Huc3);
-    m.insert("DMG-Z01", BoardLayout::RomMapperRam);
-    m.insert("DMG-Z02", BoardLayout::RomMapperRam);
-    m.insert("DMG-Z03", BoardLayout::RomMapperRam);
-    m.insert("DMG-Z04", BoardLayout::RomMapperRam);
+    m.insert("AGB-E06", BoardConfig::AgbE06);
+    m.insert("AGB-E11", BoardConfig::AgbE11);
+    m.insert("AGB-Y11", BoardConfig::AgbY11);
+    m.insert("0200309E4-01", BoardConfig::Tama);
+    m.insert("AAAC S", BoardConfig::Aaac);
+    m.insert("CGB-A32", BoardConfig::CgbA32);
+    m.insert("DMG-A02", BoardConfig::DmgA02);
+    m.insert("DMG-A03", BoardConfig::DmgA03);
+    m.insert("DMG-A04", BoardConfig::DmgA04);
+    m.insert("DMG-A06", BoardConfig::DmgA06);
+    m.insert("DMG-A07", BoardConfig::DmgA07);
+    m.insert("DMG-A08", BoardConfig::DmgA08);
+    m.insert("DMG-A09", BoardConfig::DmgA09);
+    m.insert("DMG-A11", BoardConfig::DmgA11);
+    m.insert("DMG-A14", BoardConfig::DmgA14);
+    m.insert("DMG-A15", BoardConfig::DmgA15);
+    m.insert("DMG-A16", BoardConfig::DmgA16);
+    m.insert("DMG-A40", BoardConfig::DmgA40);
+    m.insert("DMG-A47", BoardConfig::DmgA47);
+    m.insert("DMG-AAA", BoardConfig::DmgAaa);
+    m.insert("DMG-BBA", BoardConfig::DmgBba);
+    m.insert("DMG-BCA", BoardConfig::DmgBca);
+    m.insert("DMG-BEAN", BoardConfig::DmgBean);
+    m.insert("DMG-BEAN(K)", BoardConfig::DmgBean);
+    m.insert("DMG-BFAN", BoardConfig::DmgBfan);
+    m.insert("DMG-DECN", BoardConfig::DmgDecn);
+    m.insert("DMG-DECN(K)", BoardConfig::DmgDecn);
+    m.insert("DMG-DEDN", BoardConfig::DmgDedn);
+    m.insert("DMG-DGCU", BoardConfig::DmgDgcu);
+    m.insert("DMG-GDAN", BoardConfig::DmgGdan);
+    m.insert("DMG-KECN", BoardConfig::DmgKecn);
+    m.insert("DMG-KFCN", BoardConfig::DmgKfcn);
+    m.insert("DMG-KFDN", BoardConfig::DmgKfdn);
+    m.insert("DMG-KGDU", BoardConfig::DmgKgdu);
+    m.insert("DMG-LFDN", BoardConfig::DmgLfdn);
+    m.insert("DMG-M-BFAN", BoardConfig::DmgMBfan);
+    m.insert("DMG-MC-DFCN", BoardConfig::DmgMcDfcn);
+    m.insert("DMG-MC-SFCN", BoardConfig::DmgMcSfcn);
+    m.insert("DMG-MHEU", BoardConfig::DmgMheu);
+    m.insert("DMG-TEDN", BoardConfig::DmgTedn);
+    m.insert("DMG-TFDN", BoardConfig::DmgTfdn);
+    m.insert("DMG-UEDT", BoardConfig::DmgUedt);
+    m.insert("DMG-UFDT", BoardConfig::DmgUfdt);
+    m.insert("DMG-UGDU", BoardConfig::DmgUgdu);
+    m.insert("DMG-Z02", BoardConfig::DmgZ02);
+    m.insert("DMG-Z03", BoardConfig::DmgZ03);
+    m.insert("DMG-Z04", BoardConfig::DmgZ04);
     m
 }
 
-impl BoardLayout {
-    pub fn from_label(label: &str) -> Option<BoardLayout> {
-        static MAP: OnceLock<HashMap<&'static str, BoardLayout>> = OnceLock::new();
+impl BoardConfig {
+    pub fn from_label(label: &str) -> Option<BoardConfig> {
+        static MAP: OnceLock<HashMap<&'static str, BoardConfig>> = OnceLock::new();
         let map = MAP.get_or_init(|| create_map());
         label
             .rfind(|c: char| c == '-')
@@ -167,7 +622,7 @@ pub fn write_cfgs<P: AsRef<Path>>(
     Ok(())
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
 pub enum PartRole {
     Unknown,
     Rom,
@@ -237,166 +692,6 @@ impl PartDesignator {
             PartDesignator::U6 => "U6",
             PartDesignator::U7 => "U7",
             PartDesignator::X1 => "X1",
-        }
-    }
-}
-
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Default)]
-pub struct PartRoleConfig {
-    pub u1: Option<PartRole>,
-    pub u2: Option<PartRole>,
-    pub u3: Option<PartRole>,
-    pub u4: Option<PartRole>,
-    pub u5: Option<PartRole>,
-    pub u6: Option<PartRole>,
-    pub u7: Option<PartRole>,
-    pub x1: Option<PartRole>,
-}
-
-impl Index<PartDesignator> for PartRoleConfig {
-    type Output = Option<PartRole>;
-
-    fn index(&self, index: PartDesignator) -> &Self::Output {
-        match index {
-            PartDesignator::U1 => &self.u1,
-            PartDesignator::U2 => &self.u2,
-            PartDesignator::U3 => &self.u3,
-            PartDesignator::U4 => &self.u4,
-            PartDesignator::U5 => &self.u5,
-            PartDesignator::U6 => &self.u6,
-            PartDesignator::U7 => &self.u7,
-            PartDesignator::X1 => &self.x1,
-        }
-    }
-}
-
-impl IndexMut<PartDesignator> for PartRoleConfig {
-    fn index_mut(&mut self, index: PartDesignator) -> &mut Self::Output {
-        match index {
-            PartDesignator::U1 => &mut self.u1,
-            PartDesignator::U2 => &mut self.u2,
-            PartDesignator::U3 => &mut self.u3,
-            PartDesignator::U4 => &mut self.u4,
-            PartDesignator::U5 => &mut self.u5,
-            PartDesignator::U6 => &mut self.u6,
-            PartDesignator::U7 => &mut self.u7,
-            PartDesignator::X1 => &mut self.x1,
-        }
-    }
-}
-
-impl IntoIterator for PartRoleConfig {
-    type Item = (PartDesignator, PartRole);
-    type IntoIter = Box<dyn Iterator<Item = Self::Item>>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        Box::new(
-            PartDesignator::ALL
-                .into_iter()
-                .filter_map(move |d| self[d].map(|role| (d, role))),
-        )
-    }
-}
-
-impl<'a> IntoIterator for &'a PartRoleConfig {
-    type Item = (PartDesignator, PartRole);
-    type IntoIter = Box<dyn Iterator<Item = Self::Item> + 'a>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        Box::new(
-            PartDesignator::ALL
-                .into_iter()
-                .filter_map(move |d| self[d].map(|role| (d, role))),
-        )
-    }
-}
-
-impl From<BoardLayout> for PartRoleConfig {
-    fn from(layout: BoardLayout) -> Self {
-        match layout {
-            BoardLayout::Rom => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::RomMapper => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::RomMapperRam => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::Ram),
-                u4: Some(PartRole::SupervisorReset),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::RomMapperRamXtal => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::Ram),
-                u4: Some(PartRole::SupervisorReset),
-                x1: Some(PartRole::Crystal),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Mbc2 => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::SupervisorReset),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Mbc6 => PartRoleConfig {
-                u1: Some(PartRole::Mapper),
-                u2: Some(PartRole::Rom),
-                u3: Some(PartRole::Flash),
-                u4: Some(PartRole::Ram),
-                u5: Some(PartRole::SupervisorReset),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Mbc7 => PartRoleConfig {
-                u1: Some(PartRole::Mapper),
-                u2: Some(PartRole::Rom),
-                u3: Some(PartRole::Eeprom),
-                u4: Some(PartRole::Accelerometer),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Type15 => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::Ram),
-                u4: Some(PartRole::SupervisorReset),
-                u5: Some(PartRole::Rom),
-                u6: Some(PartRole::LineDecoder),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Huc3 => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::Ram),
-                u4: Some(PartRole::SupervisorReset),
-                u5: Some(PartRole::HexInverter),
-                x1: Some(PartRole::Crystal),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::Tama => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Mapper),
-                u3: Some(PartRole::Mcu),
-                u4: Some(PartRole::Rtc),
-                u5: Some(PartRole::SupervisorReset),
-                x1: Some(PartRole::Crystal),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::AgbE06 => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Ram),
-                u3: Some(PartRole::SupervisorReset),
-                ..PartRoleConfig::default()
-            },
-            BoardLayout::AgbFram => PartRoleConfig {
-                u1: Some(PartRole::Rom),
-                u2: Some(PartRole::Ram),
-                ..PartRoleConfig::default()
-            },
         }
     }
 }

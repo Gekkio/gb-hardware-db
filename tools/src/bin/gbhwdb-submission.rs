@@ -5,7 +5,7 @@
 use anyhow::Error;
 use cursive::{traits::*, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::{
-    config::cartridge::{BoardLayout, GameConfig, PartRole, PartRoleConfig},
+    config::cartridge::{BoardConfig, BoardPart, GameConfig, PartDesignator, PartRole},
     input::{
         cartridge::{Cartridge, CartridgeBoard, CartridgeShell},
         Part,
@@ -237,20 +237,20 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     if should_quit() {
         return None;
     }
-    let parts = PartRoleConfig::from(BoardLayout::from_label(&label).unwrap());
+    let cfg = BoardConfig::from_label(&label).unwrap();
     siv.add_layer(
         Dialog::new()
             .title("Enter part details")
             .content(
                 LinearLayout::vertical()
-                    .child(part_editor("u1", parts.u1))
-                    .child(part_editor("u2", parts.u2))
-                    .child(part_editor("u3", parts.u3))
-                    .child(part_editor("u4", parts.u4))
-                    .child(part_editor("u5", parts.u5))
-                    .child(part_editor("u6", parts.u6))
-                    .child(part_editor("u7", parts.u7))
-                    .child(part_editor("x1", parts.x1)),
+                    .child(part_editor("u1", cfg.part(PartDesignator::U1)))
+                    .child(part_editor("u2", cfg.part(PartDesignator::U2)))
+                    .child(part_editor("u3", cfg.part(PartDesignator::U3)))
+                    .child(part_editor("u4", cfg.part(PartDesignator::U4)))
+                    .child(part_editor("u5", cfg.part(PartDesignator::U5)))
+                    .child(part_editor("u6", cfg.part(PartDesignator::U6)))
+                    .child(part_editor("u7", cfg.part(PartDesignator::U7)))
+                    .child(part_editor("x1", cfg.part(PartDesignator::X1))),
             )
             .button("Ok", |s| s.quit())
             .fixed_width(150),
@@ -262,14 +262,14 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
         panel_position: trim(&panel_position),
         year: trim(&year).map(|year| u16::from_str(&year).unwrap()),
         month: trim(&month).map(|month| Month::try_from(u8::from_str(&month).unwrap()).unwrap()),
-        u1: add_part(siv, parts.u1, "u1"),
-        u2: add_part(siv, parts.u2, "u2"),
-        u3: add_part(siv, parts.u3, "u3"),
-        u4: add_part(siv, parts.u4, "u4"),
-        u5: add_part(siv, parts.u5, "u5"),
-        u6: add_part(siv, parts.u6, "u6"),
-        u7: add_part(siv, parts.u7, "u7"),
-        x1: add_part(siv, parts.x1, "x1"),
+        u1: add_part(siv, "u1"),
+        u2: add_part(siv, "u2"),
+        u3: add_part(siv, "u3"),
+        u4: add_part(siv, "u4"),
+        u5: add_part(siv, "u5"),
+        u6: add_part(siv, "u6"),
+        u7: add_part(siv, "u7"),
+        x1: add_part(siv, "x1"),
         outlier: false,
     });
     siv.pop_layer();
@@ -280,16 +280,16 @@ fn ask_board(siv: &mut Cursive) -> Option<CartridgeBoard> {
     }
 }
 
-fn part_editor(id: &str, role: Option<PartRole>) -> LinearLayout {
+fn part_editor(id: &str, part: Option<BoardPart>) -> LinearLayout {
     let mut editor = EditView::new();
     let mut result = LinearLayout::vertical();
     let details_id = format!("{}_details", id);
-    if let Some(role) = role {
+    if let Some(part) = part {
         result.add_child(TextView::new(id));
         let details = TextView::new("")
             .with_name(details_id.clone())
             .fixed_height(2);
-        match role {
+        match part.role {
             PartRole::Rom => {
                 add_details_callback(&mut editor, &details_id, parser::mask_rom::mask_rom())
             }
@@ -346,12 +346,13 @@ fn add_details_callback<T: fmt::Debug, F: LabelParser<T>>(
     });
 }
 
-fn add_part(siv: &mut Cursive, role: Option<PartRole>, id: &str) -> Option<Part> {
-    role.map(|_| match siv.get_edit_view_value(id).as_str() {
-        "-" => Part {
+fn add_part(siv: &mut Cursive, id: &str) -> Option<Part> {
+    let value = siv.try_get_edit_view_value(id)?;
+    match value.as_str() {
+        "-" => Some(Part {
             label: None,
             outlier: false,
-        },
-        label => Part::from_label(trim(label)),
-    })
+        }),
+        label => Some(Part::from_label(trim(label))),
+    }
 }

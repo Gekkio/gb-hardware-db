@@ -8,4 +8,8 @@
   &--outlier {
     background-color: rgba(255, 0, 0, 0.4);
   }
+  &--not-applicable {
+    font-style: italic;
+    color: #727781;
+  }
 }

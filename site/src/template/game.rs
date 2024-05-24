@@ -2,8 +2,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{GameConfig, PartRoleConfig};
+use gbhwdb_backend::config::cartridge::{GameConfig, PartDesignator, PartRole};
 use maud::{html, Markup, Render};
+use std::collections::BTreeSet;
 
 use crate::{
     legacy::LegacyCartridgeSubmission,
@@ -22,8 +23,17 @@ pub struct Game<'a> {
 
 impl<'a> Render for Game<'a> {
     fn render(&self) -> Markup {
-        let layout = self.cfg.layouts[0];
-        let parts = PartRoleConfig::from(layout);
+        let parts = self
+            .submissions
+            .iter()
+            .flat_map(|s| {
+                s.metadata
+                    .board
+                    .cfg
+                    .parts()
+                    .map(|(designator, part)| (designator, part.role))
+            })
+            .collect::<BTreeSet<_>>();
         html! {
             article {
                 h2 { (self.cfg.name) }
@@ -50,8 +60,12 @@ impl<'a> Render for Game<'a> {
     }
 }
 
-fn render_submission(submission: &LegacyCartridgeSubmission, parts: &PartRoleConfig) -> Markup {
+fn render_submission(
+    submission: &LegacyCartridgeSubmission,
+    parts: &BTreeSet<(PartDesignator, PartRole)>,
+) -> Markup {
     let metadata = &submission.metadata;
+    let board = &metadata.board;
     html! {
         tr {
             (ListingEntryCell {
@@ -62,14 +76,21 @@ fn render_submission(submission: &LegacyCartridgeSubmission, parts: &PartRoleCon
             })
             td { (Optional(metadata.code.as_ref())) }
             td {
-                div { (metadata.board.kind) }
-                div { (Optional(metadata.board.date_code.calendar())) }
+                div { (board.kind) }
+                div { (Optional(board.date_code.calendar())) }
             }
-            @for (designator, _) in parts {
-                (ListingPart {
-                    part: metadata.board.parts.get(&designator),
-                    hide_type: false,
-                })
+            @for &(designator, role) in parts {
+                @if board.cfg.part(designator).map(|p| p.role) == Some(role) {
+                    (ListingPart {
+                        part: board.parts.get(&designator),
+                        hide_type: false,
+                    })
+                }
+                @else {
+                    td.listing-part.listing-part--not-applicable {
+                        "N/A"
+                    }
+                }
             }
             (ListingPhotosCell { submission })
         }

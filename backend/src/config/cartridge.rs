@@ -127,7 +127,7 @@ impl BoardConfig {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-8 EEPROM
-                D::U2 => part(PartRole::Ram, eeprom()),
+                D::U2 => part(PartRole::Eeprom, eeprom()),
                 _ => None,
             },
             BoardConfig::AgbE06 => match designator {

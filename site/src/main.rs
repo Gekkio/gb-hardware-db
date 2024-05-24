@@ -225,7 +225,7 @@ where
     let csv = BufWriter::new(File::create(format!(
         "build/static/export/consoles/{kind}.csv"
     ))?);
-    write_submission_csv(csv, "https://gbhwdb.gekkio/consoles", submissions)
+    write_submission_csv(csv, "https://gbhwdb.gekkio.fi/consoles", submissions)
 }
 
 fn process_cartridge_submissions(
@@ -291,7 +291,7 @@ fn process_cartridge_submissions(
     }
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
     let csv = BufWriter::new(File::create("build/static/export/cartridges.csv")?);
-    write_submission_csv(csv, "https://gbhwdb.gekkio/cartridges", &submissions)?;
+    write_submission_csv(csv, "https://gbhwdb.gekkio.fi/cartridges", &submissions)?;
     Ok(submissions)
 }
 

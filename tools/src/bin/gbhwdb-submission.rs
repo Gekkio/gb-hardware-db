@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::Error;
+use anyhow::{bail, Error};
 use cursive::{traits::*, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::{
     config::cartridge::{BoardConfig, BoardPart, GameConfig, PartDesignator},
@@ -19,9 +19,11 @@ use std::{
     fs::{create_dir_all, File},
     io::{BufReader, BufWriter, Write},
     path::{Path, PathBuf},
+    process,
     str::FromStr,
     sync::atomic::{self, AtomicBool},
 };
+use temp_dir::TempDir;
 
 static QUIT: AtomicBool = AtomicBool::new(false);
 
@@ -64,6 +66,29 @@ fn main() -> Result<(), Error> {
             let file = File::create(root.join("metadata.json"))?;
             let mut file = BufWriter::new(file);
             file.write_all(&json.into_bytes())?;
+            let dir = TempDir::new()?;
+            if let Some(photos) = ask_photos(&mut siv, dir.path())? {
+                let mut next_id = 1;
+                if let Some(file) = photos.front {
+                    std::fs::copy(file, root.join(format!("{next_id:02}_front.jpg")))?;
+                    next_id += 1;
+                }
+                if let Some(file) = photos.pcb_front {
+                    std::fs::copy(file, root.join(format!("{next_id:02}_pcb_front.jpg")))?;
+                    next_id += 1;
+                }
+                if let Some(file) = photos.pcb_back {
+                    std::fs::copy(file, root.join(format!("{next_id:02}_pcb_back.jpg")))?;
+                    next_id += 1;
+                }
+                if let Some(file) = photos.without_battery {
+                    std::fs::copy(file, root.join(format!("{next_id:02}_without_battery.jpg")))?;
+                    next_id += 1;
+                }
+                if let Some(file) = photos.extra {
+                    std::fs::copy(file, root.join(format!("{next_id:02}_extra.jpg")))?;
+                }
+            }
         }
         Ok(())
     }
@@ -311,5 +336,85 @@ fn add_part(siv: &mut Cursive, id: &str) -> Option<Part> {
             outlier: false,
         }),
         label => Some(Part::from_label(trim(label))),
+    }
+}
+
+#[derive(Debug)]
+struct Photos {
+    front: Option<PathBuf>,
+    pcb_front: Option<PathBuf>,
+    pcb_back: Option<PathBuf>,
+    without_battery: Option<PathBuf>,
+    extra: Option<PathBuf>,
+}
+
+fn ask_photos(siv: &mut Cursive, output_dir: &Path) -> Result<Option<Photos>, Error> {
+    fn photo_path(s: &str) -> Option<PathBuf> {
+        let s = s.trim().trim_matches('\'');
+        if s.is_empty() {
+            return None;
+        };
+        let path = Path::new(s);
+        if path.exists() {
+            Some(PathBuf::from(path))
+        } else {
+            None
+        }
+    }
+    siv.add_layer(
+        Dialog::new()
+            .title("Enter photo paths")
+            .content(
+                LinearLayout::vertical()
+                    .child(TextView::new("Front:"))
+                    .child(EditView::new().with_name("front"))
+                    .child(TextView::new("PCB front:"))
+                    .child(EditView::new().with_name("pcb_front"))
+                    .child(TextView::new("PCB back:"))
+                    .child(EditView::new().with_name("pcb_back"))
+                    .child(TextView::new("Without battery:"))
+                    .child(EditView::new().with_name("without_battery"))
+                    .child(TextView::new("Extra:"))
+                    .child(EditView::new().with_name("extra")),
+            )
+            .button("Ok", |s| s.quit())
+            .full_width(),
+    );
+    siv.run();
+    let photos = Photos {
+        front: photo_path(&siv.get_edit_view_value("front"))
+            .map(|path| process_photo(path, "front", output_dir))
+            .transpose()?,
+        pcb_front: photo_path(&siv.get_edit_view_value("pcb_front"))
+            .map(|path| process_photo(path, "pcb_front", output_dir))
+            .transpose()?,
+        pcb_back: photo_path(&siv.get_edit_view_value("pcb_back"))
+            .map(|path| process_photo(path, "pcb_back", output_dir))
+            .transpose()?,
+        without_battery: photo_path(&siv.get_edit_view_value("without_battery"))
+            .map(|path| process_photo(path, "without_battery", output_dir))
+            .transpose()?,
+        extra: photo_path(&siv.get_edit_view_value("extra"))
+            .map(|path| process_photo(path, "extra", output_dir))
+            .transpose()?,
+    };
+    siv.pop_layer();
+    if should_quit() {
+        return Ok(None);
+    }
+    Ok(Some(photos))
+}
+
+fn process_photo(path: PathBuf, name: &str, output_dir: &Path) -> Result<PathBuf, Error> {
+    let out_path = output_dir.join(format!("{name}.jpg"));
+    let status = process::Command::new("mozjpeg")
+        .arg("-outfile")
+        .arg(&out_path)
+        .arg(&path)
+        .status()?;
+    if status.success() {
+        Ok(out_path)
+    } else {
+        bail!("Failed to run mozjpeg")
     }
 }

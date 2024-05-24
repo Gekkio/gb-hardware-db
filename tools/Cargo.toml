@@ -21,3 +21,4 @@ serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
 slug.workspace = true
 strsim.workspace = true
+temp-dir.workspace = true

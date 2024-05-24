@@ -54,7 +54,7 @@ pub fn macronix_mx29l010() -> &'static impl LabelParser<Flash> {
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::flash::unknown_le26fv10().parse("LE26FV10N1TS-10 3MU50").is_ok());
+/// assert!(parser::flash::sanyo_le26fv10().parse("LE26FV10N1TS-10 3MU50").is_ok());
 /// ```
 pub fn sanyo_le26fv10() -> &'static impl LabelParser<Flash> {
     single_parser!(

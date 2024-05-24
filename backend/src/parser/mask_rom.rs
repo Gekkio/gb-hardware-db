@@ -380,6 +380,28 @@ pub fn fujitsu() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+/// Unknown TSOP-II-44 Mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::unknown_r26v3210f().parse("AGB-TCHK-1 H2 R26V3210F-087 244A239").is_ok());
+/// ```
+pub fn unknown_r26v3210f() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^(AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ R26V3210F-[0-9]{3}\ ([0-9])([0-9]{2})[A-Z][0-9]{3}$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: None,
+                chip_type: Some("R26V3210F".to_owned()),
+                year: Some(year1(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
 fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
     match code {
         "LH5359" => Some("LH53259"),   // Sharp Memory Data Book 1992
@@ -433,5 +455,6 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         samsung(),
         samsung2(),
         fujitsu(),
+        unknown_r26v3210f(),
     )
 }

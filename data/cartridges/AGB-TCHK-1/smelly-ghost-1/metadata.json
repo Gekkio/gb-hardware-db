@@ -1,0 +1,20 @@
+{
+  "code": "AGB-TCHK-1",
+  "slug": "smelly-ghost-1",
+  "contributor": "Smelly-Ghost",
+  "index": 1,
+  "shell": {},
+  "board": {
+    "label": "AGB-E03-10",
+    "circled_letters": "I",
+    "panel_position": "M-3",
+    "year": 2002,
+    "month": 9,
+    "u1": {
+      "label": "AGB-TCHK-1 H2 R26V3210F-087 244A239"
+    },
+    "u2": {
+      "label": "9853 2A46"
+    }
+  }
+}

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{GameConfig, PartDesignator, PartRole};
+use gbhwdb_backend::config::cartridge::{GameConfig, GamePlatform, PartDesignator, PartRole};
 use maud::{html, Markup, Render};
 use std::collections::BTreeSet;
 
@@ -34,9 +34,30 @@ impl<'a> Render for Game<'a> {
                     .map(|(designator, part)| (designator, part.role))
             })
             .collect::<BTreeSet<_>>();
+        let no_intro_href = if self.cfg.no_intro_id.is_empty() {
+            None
+        } else {
+            Some(format!(
+                "https://datomatic.no-intro.org/index.php?page=show_record&s={system}&n={entry}",
+                system = match self.cfg.platform {
+                    GamePlatform::Gb => "46",
+                    GamePlatform::Gbc => "47",
+                    GamePlatform::Gba => "23",
+                },
+                entry = urlencoding::encode(&self.cfg.no_intro_id),
+            ))
+        };
         html! {
             article {
                 h2 { (self.cfg.name) }
+                @if let Some(href) = no_intro_href {
+                    span {
+                        "🔗 "
+                        a href=(href) {
+                            "Game entry in No-Intro Dat-o-Matic"
+                        }
+                    }
+                }
                 table {
                     thead {
                         tr {

@@ -336,6 +336,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     for cfg in cfgs.values_mut() {
         let dat_game = &dats[cfg.platform].games[&cfg.name];
         cfg.rom_verified = dat_game.rom_verified;
+        cfg.no_intro_id = dat_game.id.clone();
         if dat_game.sha256.is_some() {
             cfg.sha256 = dat_game.sha256;
         }
@@ -402,23 +403,26 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             .fixed_width(150),
     );
     siv.run();
-    let (platform, name, rom_verified, sha256) = siv
+    let found_game = siv
         .get_select_view_selection::<Candidate>("search_results")
-        .map(|c| {
-            let dat_game = &dats[c.platform].games[&c.name];
-            (c.platform, c.name, dat_game.rom_verified, dat_game.sha256)
-        })
-        .unwrap_or((GamePlatform::Gb, String::new(), false, None));
+        .and_then(|c| {
+            let dat = &dats[c.platform];
+            let dat_game = dat.games.get(&c.name)?;
+            Some((c, dat_game))
+        });
     siv.pop_layer();
-    if name.len() == 0 || should_quit() {
+    if should_quit() {
         return;
-    }
+    };
+    let Some((candidate, dat_game)) = found_game else {
+        return;
+    };
     let mut dialog = Dialog::new().title("Add a game").content(
         LinearLayout::vertical()
             .child(TextView::new("Name:"))
-            .child(TextView::new(name.as_str()))
+            .child(TextView::new(dat_game.name.as_str()))
             .child(TextView::new("Platform:"))
-            .child(TextView::new(format!("{}", platform)))
+            .child(TextView::new(format!("{}", candidate.platform)))
             .child(TextView::new("Code:"))
             .child(TextView::new(code.as_str())),
     );
@@ -433,11 +437,12 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     cfgs.insert(
         code,
         GameConfig {
-            name,
+            name: dat_game.name.clone(),
             rom_id,
-            rom_verified,
-            sha256,
-            platform,
+            rom_verified: dat_game.rom_verified,
+            sha256: dat_game.sha256,
+            platform: candidate.platform,
+            no_intro_id: dat_game.id.clone(),
         },
     );
 }

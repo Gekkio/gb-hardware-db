@@ -6,7 +6,13 @@ use anyhow::Error;
 use serde::{Deserialize, Serialize};
 use serde_json;
 use std::{
-    any::Any, collections::{BTreeMap, HashMap}, fmt, fs::File, io::{BufReader, BufWriter}, path::Path, sync::OnceLock
+    any::Any,
+    collections::{BTreeMap, HashMap},
+    fmt,
+    fs::File,
+    io::{BufReader, BufWriter},
+    path::Path,
+    sync::OnceLock,
 };
 
 use crate::{
@@ -28,6 +34,7 @@ pub struct GameConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sha256: Option<Sha256>,
     pub platform: GamePlatform,
+    pub no_intro_id: String,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]

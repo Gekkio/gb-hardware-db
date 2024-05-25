@@ -29,4 +29,5 @@ slug.workspace = true
 swc_common = { workspace = true, features = ["anyhow", "sourcemap"] }
 swc_css = { workspace = true, features = ["minifier"] }
 time = { workspace = true, features = ["formatting", "macros", "local-offset"] }
+urlencoding.workspace = true
 walkdir.workspace = true

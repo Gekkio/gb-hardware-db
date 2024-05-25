@@ -1444,6 +1444,7 @@ dependencies = [
  "swc_common",
  "swc_css",
  "time",
+ "urlencoding",
  "walkdir",
 ]
 
@@ -2780,7 +2781,7 @@ checksum = "adad44e29e4c806119491a7f06f03de4d1af22c3a680dd47f1e6e179439d1f56"
 [[package]]
 name = "retro-dat"
 version = "0.0.1"
-source = "git+https://github.com/Gekkio/retro-dat.git#0902976652e891dcb655558a9e728d6ca04d6886"
+source = "git+https://github.com/Gekkio/retro-dat.git#3beb6341f45e905cbf97587dc1a6bb61997923e3"
 dependencies = [
  "quick-xml",
 ]

@@ -16,6 +16,8 @@ pub struct DatFile {
 
 #[derive(Clone, Debug)]
 pub struct DatGame {
+    pub id: String,
+    pub name: String,
     pub rom_verified: bool,
     pub sha256: Option<Sha256>,
 }
@@ -38,8 +40,10 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
                 }
             };
             (
-                game.name,
+                game.name.clone(),
                 DatGame {
+                    id: game.id,
+                    name: game.name,
                     rom_verified,
                     sha256,
                 },

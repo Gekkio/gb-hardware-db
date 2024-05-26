@@ -58,9 +58,7 @@ fn part() -> Builder<ProcessedPart> {
     Builder::<ProcessedPart>::new()
         .add("kind", |c| (&c.kind).csv())
         .add("label", |c| (&c.label).csv())
-        .add("manufacturer", |c| {
-            (&c.manufacturer).map(|m| m.name()).csv()
-        })
+        .add("manufacturer", |c| c.manufacturer.map(|m| m.name()).csv())
         .add_date_code(|c| c.date_code)
 }
 
@@ -110,8 +108,9 @@ impl<T> Builder<T> {
             _phantom: PhantomData,
         }
     }
-    pub fn add<FN: 'static>(mut self, name: &'static str, f: FN) -> Self
+    pub fn add<FN>(mut self, name: &'static str, f: FN) -> Self
     where
+        FN: 'static,
         for<'a> FN: Fn(&'a T) -> Cow<'a, str>,
     {
         self.fields

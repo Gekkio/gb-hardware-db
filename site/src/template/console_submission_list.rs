@@ -124,7 +124,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                 }
                 @for part in self.parts {
                     (ListingPart {
-                        part: (part.getter)(&metadata),
+                        part: (part.getter)(metadata),
                         hide_type: part.hide_type,
                     })
                 }

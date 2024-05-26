@@ -114,7 +114,7 @@ fn ask_contributor_name(siv: &mut Cursive) -> String {
 
 fn trim(text: &str) -> Option<String> {
     let text = text.trim();
-    if text.len() == 0 {
+    if text.is_empty() {
         None
     } else {
         Some(text.to_owned())
@@ -315,9 +315,9 @@ fn part_editor(id: &str, part: Option<BoardPart>) -> LinearLayout {
         let details_id = details_id.to_owned();
         editor.set_on_edit(move |siv, content, _| {
             siv.call_on_name(&details_id, |view: &mut TextView| {
-                match (part.parser)(&content) {
+                match (part.parser)(content) {
                     Ok(part) => view.set_content(format!("{:?}", part)),
-                    Err(err) => view.set_content(format!("{}", err)),
+                    Err(err) => view.set_content(err),
                 }
             })
             .unwrap();

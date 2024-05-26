@@ -80,7 +80,7 @@ pub fn to_full_year(year_hint: Option<u16>, part_year: Option<Year>) -> Option<u
         _ => None,
     })
     .map(|year| {
-        assert!(year >= 1988 && year < 2010);
+        assert!((1988..2010).contains(&year));
         year
     })
 }

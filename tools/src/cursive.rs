@@ -7,6 +7,7 @@ use cursive::{
     views::{EditView, SelectView, TextView},
     Cursive,
 };
+use std::rc::Rc;
 
 pub trait GbHwDbCursiveExt {
     fn try_get_edit_view_value(&mut self, id: &str) -> Option<String>;
@@ -30,7 +31,7 @@ impl GbHwDbCursiveExt for Cursive {
         T: Clone + 'static,
     {
         self.call_on_name(id, |view: &mut SelectView<T>| {
-            view.selection().as_ref().map(|s| T::clone(s))
+            view.selection().map(Rc::unwrap_or_clone)
         })
         .unwrap_or_else(|| panic!("No SelectView with id {:?}", id))
     }

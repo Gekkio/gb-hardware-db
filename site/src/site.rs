@@ -478,11 +478,7 @@ pub fn build_site() -> Site {
                 let page = Page {
                     title: Cow::Borrowed(cfg.name),
                     section: SiteSection::Cartridges(Some(CartridgeClass::Gb)),
-                    content: Mapper {
-                        cfg: &cfg,
-                        submissions,
-                    }
-                    .render(),
+                    content: Mapper { cfg, submissions }.render(),
                 };
                 (path, page)
             })

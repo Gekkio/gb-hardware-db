@@ -103,10 +103,10 @@ fn scan_local_files(root: &Path) -> Result<Vec<LocalFile>, Error> {
         entries.push(entry);
     }
 
-    Ok(entries
+    entries
         .into_par_iter()
         .map(|entry| scan_local_file(root, &entry))
-        .collect::<Result<Vec<_>, _>>()?)
+        .collect::<Result<Vec<_>, _>>()
 }
 
 fn parse_e_tag(e_tag: &str) -> Option<[u8; 16]> {
@@ -136,7 +136,7 @@ async fn scan_remote_files(
                     last_modified: obj.last_modified.and_then(|timestamp| {
                         OffsetDateTime::from_unix_timestamp_nanos(timestamp.as_nanos()).ok()
                     }),
-                    e_tag: obj.e_tag.as_ref().and_then(|e_tag| parse_e_tag(&e_tag)),
+                    e_tag: obj.e_tag.as_ref().and_then(|e_tag| parse_e_tag(e_tag)),
                 });
             }
         }
@@ -153,7 +153,7 @@ async fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
-    let mime_map = MIME_MAPPING.into_iter().copied().collect::<HashMap<_, _>>();
+    let mime_map = MIME_MAPPING.iter().copied().collect::<HashMap<_, _>>();
 
     let build_dir = Path::new("build");
     if !build_dir.exists() {

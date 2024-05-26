@@ -618,7 +618,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
 impl BoardConfig {
     pub fn from_label(label: &str) -> Option<BoardConfig> {
         static MAP: OnceLock<HashMap<&'static str, BoardConfig>> = OnceLock::new();
-        let map = MAP.get_or_init(|| create_map());
+        let map = MAP.get_or_init(create_map);
         label
             .rfind(|c: char| c == '-')
             .map(|pos| label.split_at(pos).0)
@@ -632,7 +632,7 @@ pub fn load_cfgs<P: AsRef<Path>>(path: P) -> Result<BTreeMap<String, GameConfig>
     let file = BufReader::new(file);
     let mut cfgs: BTreeMap<String, GameConfig> = serde_json::from_reader(file)?;
     for (rom_id, cfg) in cfgs.iter_mut() {
-        cfg.rom_id = rom_id.clone();
+        cfg.rom_id.clone_from(rom_id);
     }
     Ok(cfgs)
 }

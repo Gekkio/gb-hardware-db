@@ -102,9 +102,10 @@ fn build_css() -> Result<(), Error> {
 }
 
 fn is_outdated(ref_meta: &Metadata, path: &Path) -> bool {
-    match path.metadata() {
-        Ok(meta) if meta.modified().ok() == ref_meta.modified().ok() => false,
-        _ => true,
+    if let Ok(meta) = path.metadata() {
+        meta.modified().ok() == ref_meta.modified().ok()
+    } else {
+        false
     }
 }
 
@@ -238,7 +239,7 @@ fn process_cartridge_submissions(
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let cartridge: Cartridge = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(cartridge.slug.as_str()),
@@ -251,7 +252,7 @@ fn process_cartridge_submissions(
             });
 
             if let Some(year) = cartridge.board.year {
-                assert!(year >= 1989 && year < 2010);
+                assert!((1989..2010).contains(&year));
             }
 
             if let Some(sha256) = cartridge.dump.as_ref().map(|dump| dump.sha256) {
@@ -273,11 +274,12 @@ fn process_cartridge_submissions(
                 board,
                 dump: cartridge.dump,
             };
-            let mut photos = LegacyCartridgePhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.pcb_front = get_photo(root, "02_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "03_pcb_back.jpg");
-            photos.without_battery = get_photo(root, "04_without_battery.jpg");
+            let photos = LegacyCartridgePhotos {
+                front: get_photo(root, "01_front.jpg"),
+                pcb_front: get_photo(root, "02_pcb_front.jpg"),
+                pcb_back: get_photo(root, "03_pcb_back.jpg"),
+                without_battery: get_photo(root, "04_without_battery.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: cartridge.code,
                 title: format!("Entry #{}", cartridge.index),
@@ -306,7 +308,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: DmgConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -413,7 +415,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .filter(|_| !console.mainboard.outlier)
                 .map(|stamp| {
                     gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
-                        .parse(&stamp)
+                        .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
             let lcd_board_stamp = console
@@ -422,7 +424,7 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
                 .map(|stamp| {
                     gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
-                        .parse(&stamp)
+                        .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
             let stamp = mainboard_stamp.or(lcd_board_stamp);
@@ -463,17 +465,18 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                     .as_ref()
                     .map(|board| board.outlier)
                     .unwrap_or(false);
-            let mut photos = LegacyDmgPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.mainboard_front = get_photo(root, "03_mainboard_front.jpg");
-            photos.mainboard_back = get_photo(root, "04_mainboard_back.jpg");
-            photos.lcd_board_front = get_photo(root, "05_lcd_board_front.jpg");
-            photos.lcd_board_back = get_photo(root, "06_lcd_board_back.jpg");
-            photos.power_board_front = get_photo(root, "07_power_board_front.jpg");
-            photos.power_board_back = get_photo(root, "08_power_board_back.jpg");
-            photos.jack_board_front = get_photo(root, "09_jack_board_front.jpg");
-            photos.jack_board_back = get_photo(root, "10_jack_board_back.jpg");
+            let photos = LegacyDmgPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                mainboard_front: get_photo(root, "03_mainboard_front.jpg"),
+                mainboard_back: get_photo(root, "04_mainboard_back.jpg"),
+                lcd_board_front: get_photo(root, "05_lcd_board_front.jpg"),
+                lcd_board_back: get_photo(root, "06_lcd_board_back.jpg"),
+                power_board_front: get_photo(root, "07_power_board_front.jpg"),
+                power_board_back: get_photo(root, "08_power_board_back.jpg"),
+                jack_board_front: get_photo(root, "09_jack_board_front.jpg"),
+                jack_board_back: get_photo(root, "10_jack_board_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "dmg".to_string(),
                 title: console
@@ -512,7 +515,7 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: SgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -549,11 +552,12 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "sgb".to_string(),
                 title: format!("Unit #{}", console.index),
@@ -581,7 +585,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: MgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -623,7 +627,7 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
-                    .parse(&stamp)
+                    .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
@@ -638,11 +642,12 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
                 lcd_panel,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "mgb".to_string(),
                 title: console
@@ -674,7 +679,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: MglConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -722,7 +727,7 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
-                    .parse(&stamp)
+                    .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
@@ -737,11 +742,12 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
                 lcd_panel,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "mgl".to_string(),
                 title: console
@@ -772,7 +778,7 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: Sgb2Console = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -815,11 +821,12 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "sgb2".to_string(),
                 title: format!("Unit #{}", console.index),
@@ -847,7 +854,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: CgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -888,7 +895,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                         (
                             Some(
                                 gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
-                                    .parse(&stamp)
+                                    .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
                             None,
@@ -898,7 +905,7 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                             None,
                             Some(
                                 gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
-                                    .parse(&stamp)
+                                    .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
                         )
@@ -920,11 +927,12 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "cgb".to_string(),
                 title: console
@@ -956,7 +964,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: AgbConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -1006,7 +1014,7 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
-                    .parse(&stamp)
+                    .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
@@ -1020,11 +1028,12 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "agb".to_string(),
                 title: console
@@ -1055,7 +1064,7 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: AgsConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -1121,12 +1130,13 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyAgsPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.top = get_photo(root, "02_top.jpg");
-            photos.back = get_photo(root, "03_back.jpg");
-            photos.pcb_front = get_photo(root, "04_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "05_pcb_back.jpg");
+            let photos = LegacyAgsPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                top: get_photo(root, "02_top.jpg"),
+                back: get_photo(root, "03_back.jpg"),
+                pcb_front: get_photo(root, "04_pcb_front.jpg"),
+                pcb_back: get_photo(root, "05_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "ags".to_string(),
                 title: console
@@ -1158,7 +1168,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: GbsConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -1203,7 +1213,7 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
                 gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
-                    .parse(&stamp)
+                    .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
 
@@ -1217,11 +1227,12 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "gbs".to_string(),
                 title: format!("Unit #{}", console.index),
@@ -1248,7 +1259,7 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
             debug!("{}", entry.path().display());
-            let file = File::open(&entry.path())?;
+            let file = File::open(entry.path())?;
             let console: OxyConsole = serde_json::from_reader(file)?;
             assert_eq!(
                 Some(console.slug.as_str()),
@@ -1288,11 +1299,12 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
                 mainboard,
             };
 
-            let mut photos = LegacyDefaultPhotos::default();
-            photos.front = get_photo(root, "01_front.jpg");
-            photos.back = get_photo(root, "02_back.jpg");
-            photos.pcb_front = get_photo(root, "03_pcb_front.jpg");
-            photos.pcb_back = get_photo(root, "04_pcb_back.jpg");
+            let photos = LegacyDefaultPhotos {
+                front: get_photo(root, "01_front.jpg"),
+                back: get_photo(root, "02_back.jpg"),
+                pcb_front: get_photo(root, "03_pcb_front.jpg"),
+                pcb_back: get_photo(root, "04_pcb_back.jpg"),
+            };
             submissions.push(LegacySubmission {
                 code: "oxy".to_string(),
                 title: console

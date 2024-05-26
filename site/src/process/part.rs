@@ -39,7 +39,7 @@ pub fn map_part<T: ParsedPart, F: LabelParser<T>>(
 pub type BoxedParser<'a> =
     Box<dyn Fn(Option<u16>, &Part) -> Result<Option<ProcessedPart>, Error> + 'a>;
 
-pub fn boxed_parser<'a, T: ParsedPart, F: LabelParser<T>>(f: &'a F) -> BoxedParser<'a> {
+pub fn boxed_parser<T: ParsedPart, F: LabelParser<T>>(f: &F) -> BoxedParser<'_> {
     Box::new(|year_hint, part| {
         part.label
             .as_ref()
@@ -155,7 +155,6 @@ impl ParsedPart for parser::SgbRom {
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
             rom_code: Some(self.rom_code),
-            ..ProcessedPart::default()
         }
     }
 }

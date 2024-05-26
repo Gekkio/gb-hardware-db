@@ -67,18 +67,18 @@ impl Dats {
         let gb = self
             .gb
             .games
-            .iter()
-            .map(|(name, _)| (GamePlatform::Gb, name.clone()));
+            .keys()
+            .map(|name| (GamePlatform::Gb, name.clone()));
         let gbc = self
             .gbc
             .games
-            .iter()
-            .map(|(name, _)| (GamePlatform::Gbc, name.clone()));
+            .keys()
+            .map(|name| (GamePlatform::Gbc, name.clone()));
         let gba = self
             .gba
             .games
-            .iter()
-            .map(|(name, _)| (GamePlatform::Gba, name.clone()));
+            .keys()
+            .map(|name| (GamePlatform::Gba, name.clone()));
         gb.chain(gbc).chain(gba).collect()
     }
 }
@@ -232,12 +232,12 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
         .iter_mut()
         .filter(|(_, game_cfg)| !names.contains(&game_cfg.name))
         .collect::<Vec<_>>();
-    if name_problems.len() > 0 {
+    if !name_problems.is_empty() {
         let total = name_problems.len();
         for (idx, (code, game_cfg)) in name_problems.into_iter().enumerate() {
             let candidates = games
                 .iter()
-                .map(|(platform, name)| Candidate::new(*platform, &game_cfg.name, &name))
+                .map(|(platform, name)| Candidate::new(*platform, &game_cfg.name, name))
                 .sorted_by(|a, b| b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal))
                 .take(5)
                 .map(|c| (format!("{}", c), Some(c)));
@@ -295,7 +295,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
             _ => None,
         })
         .collect::<Vec<_>>();
-    if platform_problems.len() > 0 {
+    if !platform_problems.is_empty() {
         let total = platform_problems.len();
         for (idx, (code, cfg, platform)) in platform_problems.into_iter().enumerate() {
             let choice = Rc::new(Cell::new(false));
@@ -336,7 +336,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     for cfg in cfgs.values_mut() {
         let dat_game = &dats[cfg.platform].games[&cfg.name];
         cfg.rom_verified = dat_game.rom_verified;
-        cfg.no_intro_id = dat_game.id.clone();
+        cfg.no_intro_id.clone_from(&dat_game.id);
         if dat_game.sha256.is_some() {
             cfg.sha256 = dat_game.sha256;
         }
@@ -363,7 +363,7 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     siv.run();
     let code = siv.get_edit_view_value("code");
     siv.pop_layer();
-    if code.len() == 0 || cfgs.contains_key(&code) {
+    if code.is_empty() || cfgs.contains_key(&code) {
         return;
     }
 
@@ -372,10 +372,10 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
     search.set_on_edit(move |s, text, _| {
         s.call_on_name("search_results", |results: &mut SelectView<Candidate>| {
             results.clear();
-            if text.len() > 0 {
+            if !text.is_empty() {
                 let candidates = games
                     .iter()
-                    .map(|(platform, name)| Candidate::new(*platform, text, &name))
+                    .map(|(platform, name)| Candidate::new(*platform, text, name))
                     .sorted_by(|a, b| b.rating.partial_cmp(&a.rating).unwrap_or(Ordering::Equal))
                     .take(10)
                     .map(|c| (format!("{}", c), c));

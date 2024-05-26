@@ -72,7 +72,6 @@ impl<M: ?Sized> ChipInfo<M> {
 #[derive(Clone, Debug, Default)]
 pub struct LegacyDmgPhotos {
     pub front: Option<LegacyPhoto>,
-    pub top: Option<LegacyPhoto>,
     pub back: Option<LegacyPhoto>,
     pub mainboard_front: Option<LegacyPhoto>,
     pub mainboard_back: Option<LegacyPhoto>,
@@ -1140,7 +1139,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPa
     let ribbon_label = &chip.ribbon_label;
     if let Some(label) = &chip.label {
         let chip = gbhwdb_backend::parser::lcd_chip::lcd_chip()
-            .parse(&label)
+            .parse(label)
             .unwrap_or_else(|_| panic!("{}", label));
         ProcessedPart {
             label: Some(match &ribbon_label {

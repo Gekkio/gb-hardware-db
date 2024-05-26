@@ -243,7 +243,7 @@ fn test_deserialize() {
             },
             dump: Some(CartridgeDump {
                 tool: "MeGa DumPer".to_owned(),
-                log: "Did the thing".to_owned(),
+                log: Some("Did the thing".to_owned()),
                 date: Date::from_calendar_date(1999, time::Month::January, 1).unwrap(),
                 sha256: Sha256::parse(
                     "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"

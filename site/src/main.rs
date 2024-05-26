@@ -103,9 +103,9 @@ fn build_css() -> Result<(), Error> {
 
 fn is_outdated(ref_meta: &Metadata, path: &Path) -> bool {
     if let Ok(meta) = path.metadata() {
-        meta.modified().ok() == ref_meta.modified().ok()
+        meta.modified().ok() != ref_meta.modified().ok()
     } else {
-        false
+        true
     }
 }
 

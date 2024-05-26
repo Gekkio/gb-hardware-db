@@ -19,5 +19,11 @@
     "u2": {
       "label": "E044057G MX29L010TC-15A1 1G0501"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Edicion Verde Hoja (Spain).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           2ca11d59\n* MD5:             765178ed4d402033ef7ed6b82d059f5a\n* SHA-1:           f9ebee5d228cb695f18ef2ced41630a09fa9eb05\n* SHA-256:         f8908e0bd32cf27077a26b557e1eea0ff06ce8059bee5dc7d799aab44a070d48\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-25T10:26:50-06:00\n* Time Elapsed:    1 minute, 52 seconds (145.12 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON LEAF\n* Game Code:       BPGS\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x73)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Edicion Verde Hoja (Spain)\n* Region:          Spain\n* Language(s):     Es\n* Game Code:       AGB-BPGS\n* ROM CRC32:       2ca11d59\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)\n\n",
+    "date": "2024-05-25",
+    "sha256": "f8908e0bd32cf27077a26b557e1eea0ff06ce8059bee5dc7d799aab44a070d48"
   }
 }

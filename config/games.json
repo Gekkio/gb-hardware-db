@@ -1957,6 +1957,7 @@
   "AGB-B24P-0": {
     "name": "Pokemon Mystery Dungeon - Red Rescue Team (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "0f9d125d513d9cba628d97e2c345382eba9ba73b402b24a8fdd81f604c14cbcd",
     "platform": "gba",
     "no_intro_id": "2536"
   },
@@ -3342,12 +3343,14 @@
   "AGB-BPGE-1": {
     "name": "Pokemon - LeafGreen Version (USA, Europe) (Rev 1)",
     "rom_verified": true,
+    "sha256": "2f978f635b9593f6ca26ec42481c53a6b39f6cddd894ad5c062c1419fac58825",
     "platform": "gba",
     "no_intro_id": "1668"
   },
   "AGB-BPGJ-0": {
     "name": "Pocket Monsters - LeafGreen (Japan)",
     "rom_verified": true,
+    "sha256": "2957b392dc09fc8df45a660af5493368d7bd378d299862f4cc115998e9da0bf2",
     "platform": "gba",
     "no_intro_id": "1343"
   },
@@ -3360,6 +3363,7 @@
   "AGB-BPGS-0": {
     "name": "Pokemon - Edicion Verde Hoja (Spain)",
     "rom_verified": false,
+    "sha256": "f8908e0bd32cf27077a26b557e1eea0ff06ce8059bee5dc7d799aab44a070d48",
     "platform": "gba",
     "no_intro_id": "1655"
   },
@@ -3439,6 +3443,7 @@
   "AGB-BPRS-0": {
     "name": "Pokemon - Edicion Rojo Fuego (Spain)",
     "rom_verified": false,
+    "sha256": "ab696c065639e4d73c3c3ed9d4fbf9c7fed593761f3b6746256ff82465596554",
     "platform": "gba",
     "no_intro_id": "1654"
   },

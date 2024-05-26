@@ -102,7 +102,15 @@ impl<'a> Render for CartridgePage<'a> {
                             dt { "Dump date" }
                             dd { (dump.date.format(DATE_FORMAT).unwrap_or_default()) }
                             dt { "SHA256" }
-                            dd { (dump.sha256) }
+                            dd {
+                                pre.page-cartridge__dump-hash { (dump.sha256) }
+                            }
+                            @if let Some(log) = &dump.log {
+                                dt { "Dump log" }
+                                dd {
+                                    pre.page-cartridge__dump-log { (log) }
+                                }
+                            }
                         }
                     }
                 }

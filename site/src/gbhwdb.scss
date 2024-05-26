@@ -86,6 +86,18 @@ tbody > tr:nth-child(even) {
   }
 }
 
+.page-cartridge {
+  &__dump-hash {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  &__dump-log {
+    font-size: 0.8em;
+    line-height: 1;
+  }
+}
+
 .cartridges__mapper-list {
   display: flex;
   gap: 10px;

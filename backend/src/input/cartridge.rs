@@ -93,8 +93,8 @@ impl Index<PartDesignator> for CartridgeBoard {
 #[serde(deny_unknown_fields)]
 pub struct CartridgeDump {
     pub tool: String,
-    #[serde(default)]
-    pub log: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub log: Option<String>,
     #[serde(with = "date_format")]
     pub date: Date,
     pub sha256: Sha256,

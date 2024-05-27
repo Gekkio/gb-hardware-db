@@ -1755,12 +1755,26 @@
     "platform": "gba",
     "no_intro_id": "1218"
   },
+  "AGB-AXPJ-0": {
+    "name": "Pocket Monsters - Sapphire (Japan)",
+    "rom_verified": true,
+    "sha256": "6a5ff7656531ab41d1ea9cd8f2d045ab6228405b43f3ee09ea3ff5077c0f60c9",
+    "platform": "gba",
+    "no_intro_id": "0741"
+  },
   "AGB-AXPJ-1": {
     "name": "Pocket Monsters - Sapphire (Japan) (Rev 1)",
     "rom_verified": true,
     "sha256": "1d0d335740875c52cec8bf185dba6a38887f5c66f6fbef1ba2919008dab75baf",
     "platform": "gba",
     "no_intro_id": "2906"
+  },
+  "AGB-AXPS-1": {
+    "name": "Pokemon - Edicion Zafiro (Spain) (Rev 1)",
+    "rom_verified": false,
+    "sha256": "6b91637f07b902cfe7401eeb237ea44e13354ab5f5b487c9cf24ce3708385f6a",
+    "platform": "gba",
+    "no_intro_id": "1742"
   },
   "AGB-AXRP-0": {
     "name": "Super Street Fighter II Turbo - Revival (Europe)",
@@ -1780,6 +1794,27 @@
     "rom_verified": true,
     "platform": "gba",
     "no_intro_id": "0733"
+  },
+  "AGB-AXVE-0": {
+    "name": "Pokemon - Ruby Version (USA, Europe)",
+    "rom_verified": true,
+    "sha256": "53d591215de2cab847d14fbcf8c516f0128cfa8556f1236065e0535aa5936d4e",
+    "platform": "gba",
+    "no_intro_id": "0891"
+  },
+  "AGB-AXVJ-0": {
+    "name": "Pocket Monsters - Ruby (Japan)",
+    "rom_verified": true,
+    "sha256": "e911caa1ffbf8704cd45bbe064ade40e24efa50dfdce82adf4b2899b5f733852",
+    "platform": "gba",
+    "no_intro_id": "0744"
+  },
+  "AGB-AXVS-0": {
+    "name": "Pokemon - Edicion Rubi (Spain)",
+    "rom_verified": true,
+    "sha256": "b03c3d0230889a40615371bd616f02160dd1e33bb116659d72d98c27462c40d0",
+    "platform": "gba",
+    "no_intro_id": "1093"
   },
   "AGB-AY3E-0": {
     "name": "Army Men - Turf Wars (USA)",
@@ -3326,6 +3361,20 @@
     "rom_verified": false,
     "platform": "gba",
     "no_intro_id": "2181"
+  },
+  "AGB-BPEJ-0": {
+    "name": "Pocket Monsters - Emerald (Japan)",
+    "rom_verified": true,
+    "sha256": "33f5610b9186b4add09fef68895deb00f552b997b3d133b5a961e5123506343c",
+    "platform": "gba",
+    "no_intro_id": "1629"
+  },
+  "AGB-BPES-0": {
+    "name": "Pokemon - Edicion Esmeralda (Spain)",
+    "rom_verified": false,
+    "sha256": "e32c82bd10f174cf4019123b36f3ef7729105fb6634d9aa6b61413ee5101a55e",
+    "platform": "gba",
+    "no_intro_id": "2164"
   },
   "AGB-BPGD-0": {
     "name": "Pokemon - Blattgruene Edition (Germany)",

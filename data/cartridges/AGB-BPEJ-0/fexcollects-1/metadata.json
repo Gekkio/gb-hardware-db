@@ -1,0 +1,33 @@
+{
+  "code": "AGB-BPEJ-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPEJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "G-5",
+    "year": 2004,
+    "month": 7,
+    "u1": {
+      "label": "M043358-M MX23L12807-12C AGB-BPEJ-0 J2 2I850502"
+    },
+    "u2": {
+      "label": "LE26FV10N1TS-10 4DU2A"
+    },
+    "u3": {
+      "label": "S3511 AV33 0582"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pocket Monsters - Emerald (Japan).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           4881f3f8\n* MD5:             92eecf93f1ab828bdf2a83daddacf3e5\n* SHA-1:           d7cf8f156ba9c455d164e1ea780a6bf1945465c2\n* SHA-256:         33f5610b9186b4add09fef68895deb00f552b997b3d133b5a961e5123506343c\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T11:13:55-06:00\n* Time Elapsed:    2 minutes (136.18 KiB/s)\n* Transfer Buffer: 512 bytes\n* Retries:         4\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON EMER\n* Game Code:       BPEJ\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x6D)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: SANYO LE26FV10N1TS (0x6213)\n\n== Database Match ==\n* Game Name:       Pocket Monsters - Emerald (Japan)\n* Region:          Japan\n* Language(s):     Ja\n* Game Code:       AGB-BPEJ\n* ROM CRC32:       4881f3f8\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "sha256": "33f5610b9186b4add09fef68895deb00f552b997b3d133b5a961e5123506343c",
+    "date": "2024-05-26"
+  }
+}

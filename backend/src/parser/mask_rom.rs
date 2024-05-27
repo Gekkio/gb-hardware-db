@@ -381,23 +381,46 @@ pub fn fujitsu() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
-/// Unknown TSOP-II-44 Mask ROM
+/// OKI MR26V TSOP-II-44 Mask ROM
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::unknown_r26v3210f().parse("AGB-TCHK-1 H2 R26V3210F-087 244A239").is_ok());
+/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-TCHK-1 H2 R26V3210F-087 244A239").is_ok());
+/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-AXVJ-0 I2 R26V6414G-0A7 243A262").is_ok());
 /// ```
-pub fn unknown_r26v3210f() -> &'static impl LabelParser<MaskRom> {
+pub fn oki_mr26v() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^(AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ R26V3210F-[0-9]{3}\ ([0-9])([0-9]{2})[A-Z][0-9]{3}$"#,
+        r#"^(AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (R26V[0-9]{4}[A-Z])-[0-9][[:alnum:]][0-9]\ ([0-9])([0-9]{2})[A-Z][0-9]{3}$"#,
         move |c| {
             Ok(MaskRom {
                 rom_code: c[1].to_owned(),
-                manufacturer: None,
-                chip_type: Some("R26V3210F".to_owned()),
-                year: Some(year1(&c[2])?),
-                week: Some(week2(&c[3])?),
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: Some(format!("M{}", &c[2])),
+                year: Some(year1(&c[3])?),
+                week: Some(week2(&c[4])?),
+            })
+        },
+    )
+}
+
+/// OKI MR27V TSOP-II-44 Mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-AXPS-1 J2 R27V12813M-0C7 6145BARJ").is_ok());
+/// ```
+pub fn oki_mr27v() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^(AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (R27V[0-9]{5}[A-Z])-[0-9][[:alnum:]][0-9]\ ([0-9])[0-9]{3}[A-Z]{4}$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: Some(format!("M{}", &c[2])),
+                year: Some(year1(&c[3])?),
+                week: None,
             })
         },
     )
@@ -478,7 +501,8 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         samsung(),
         samsung2(),
         fujitsu(),
-        unknown_r26v3210f(),
+        oki_mr26v(),
+        oki_mr27v(),
         magnachip_ac23v(),
     )
 }

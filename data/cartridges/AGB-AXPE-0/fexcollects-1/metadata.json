@@ -1,0 +1,33 @@
+{
+  "code": "AGB-AXPE-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AXPE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "B-3",
+    "year": 2003,
+    "month": 2,
+    "u1": {
+      "label": "S030658-M MX23L12807-12C AGB-AXPE-0 J2 2H115900"
+    },
+    "u2": {
+      "label": "S025257 MX29L010TC-15A1 1E5689"
+    },
+    "u3": {
+      "label": "S3511 AV31 0081"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Sapphire Version (USA, Europe).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           554dedc4\n* MD5:             f34e91399c719812e66e2c828a2e93d7\n* SHA-1:           3ccbbd45f8553c36463f13b938e833f652b793e4\n* SHA-256:         c36c1b899503e8823ee7eb607eea583adcef7ea92ff804838b193c227f2c6657\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T10:50:30-06:00\n* Time Elapsed:    1 minute, 58 seconds (138.82 KiB/s)\n* Transfer Buffer: 1024 bytes\n* Retries:         3\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON SAPP\n* Game Code:       AXPE\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x55)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Sapphire Version (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       AGB-AXPE\n* ROM CRC32:       554dedc4\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "sha256": "c36c1b899503e8823ee7eb607eea583adcef7ea92ff804838b193c227f2c6657",
+    "date": "2024-05-26"
+  }
+}

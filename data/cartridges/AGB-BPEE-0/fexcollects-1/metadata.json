@@ -1,0 +1,27 @@
+{
+  "code": "AGB-BPEE-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPEE-USA",
+    "stamp": "00 E4"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "B-4",
+    "year": 2005,
+    "month": 8,
+    "u1": {
+      "label": "E053458-MG MX23L12807-12C AGB-BPEE-0 J2 2L699000"
+    },
+    "u2": {
+      "label": "E053157G MX29L010TC-15A1 1G4211"
+    },
+    "u3": {
+      "label": "S3511 AVE8 1968"
+    },
+    "x1": {}
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "code": "AGB-AXPS-1",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AXPS-ESP",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "K",
+    "panel_position": "O-6",
+    "year": 2006,
+    "month": 3,
+    "u1": {
+      "label": "AGB-AXPS-1 J2 R27V12813M-0C7 6145BARJ"
+    },
+    "u2": {
+      "label": "E060757G MX29L010TC-15A1 1G4399"
+    },
+    "u3": {
+      "label": "S3511 AVF1 5119"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Edicion Zafiro (Spain) (Rev 1).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           f2c88931\n* MD5:             a40e90f68309ad1fd0b9efe33dcc6ba8\n* SHA-1:           0fe9ad1e602e2fafa090aee25e43d6980625173c\n* SHA-256:         6b91637f07b902cfe7401eeb237ea44e13354ab5f5b487c9cf24ce3708385f6a\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T13:16:50-06:00\n* Time Elapsed:    2 minutes, 6 seconds (129.92 KiB/s)\n* Transfer Buffer: 256 bytes\n* Retries:         5\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON SAPP\n* Game Code:       AXPS\n* Revision:        1\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x46)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Edicion Zafiro (Spain) (Rev 1)\n* Region:          Spain\n* Language(s):     Es\n* Revision:        Rev 1\n* Game Code:       AGB-AXPS\n* ROM CRC32:       f2c88931\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "sha256": "6b91637f07b902cfe7401eeb237ea44e13354ab5f5b487c9cf24ce3708385f6a",
+    "date": "2024-05-26"
+  }
+}

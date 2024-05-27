@@ -55,17 +55,18 @@ pub fn macronix_mx29l010() -> &'static impl LabelParser<Flash> {
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::flash::sanyo_le26fv10().parse("LE26FV10N1TS-10 3MU50").is_ok());
+/// assert!(parser::flash::sanyo_le26fv10().parse("LE26FV10N1TS-10 4DU2A").is_ok());
 /// ```
 pub fn sanyo_le26fv10() -> &'static impl LabelParser<Flash> {
     single_parser!(
         Flash,
-        r#"^(LE26FV10N1TS-10)\ ([0-9])[A-Z]{2}([0-9]{2})$"#,
+        r#"^(LE26FV10N1TS-10)\ ([0-9])[A-Z]{2}[0-9][[:alnum:]]$"#,
         move |c| {
             Ok(Flash {
                 kind: String::from(&c[1]),
                 manufacturer: Some(Manufacturer::Sanyo),
                 year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
+                week: None,
             })
         },
     )

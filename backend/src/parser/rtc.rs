@@ -3,7 +3,10 @@
 // SPDX-License-Identifier: MIT
 
 use super::{week2, year2, ChipYearWeek, LabelParser};
-use crate::{macros::single_parser, parser::Manufacturer};
+use crate::{
+    macros::{multi_parser, single_parser},
+    parser::Manufacturer,
+};
 
 pub type Rtc = ChipYearWeek;
 
@@ -22,6 +25,22 @@ pub fn toshiba_tc8521am() -> &'static impl LabelParser<Rtc> {
     },)
 }
 
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::rtc::seiko_s3511().parse("S3511 AV31 9812").is_ok());
+/// assert!(parser::rtc::seiko_s3511().parse("S3511 AVEX 2753").is_ok());
+/// ```
+pub fn seiko_s3511() -> &'static impl LabelParser<Rtc> {
+    single_parser!(Rtc, r#"^S3511\ AV[[:alnum:]]{2}\ [0-9]{4}$"#, move |_| {
+        Ok(Rtc {
+            kind: "S-3511".to_owned(),
+            manufacturer: Some(Manufacturer::Seiko),
+            year: None,
+            week: None,
+        })
+    },)
+}
+
 pub fn rtc() -> &'static impl LabelParser<Rtc> {
-    toshiba_tc8521am()
+    multi_parser!(Rtc, toshiba_tc8521am(), seiko_s3511(),)
 }

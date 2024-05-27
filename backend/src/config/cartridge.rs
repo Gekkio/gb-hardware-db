@@ -61,6 +61,7 @@ impl fmt::Display for GamePlatform {
 pub enum BoardConfig {
     AgbE02,
     AgbE03,
+    AgbE05,
     AgbE06,
     AgbE11,
     AgbY11,
@@ -142,6 +143,16 @@ impl BoardConfig {
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-8 EEPROM
                 D::U2 => part(PartRole::Eeprom, eeprom()),
+                _ => None,
+            },
+            BoardConfig::AgbE05 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // TSOP-I-32 Flash
+                D::U2 => part(PartRole::Flash, flash()),
+                // SOP-8 RTC
+                D::U3 => part(PartRole::Rtc, rtc()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
                 _ => None,
             },
             BoardConfig::AgbE06 => match designator {
@@ -565,6 +576,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     let mut m = HashMap::new();
     m.insert("AGB-E02", BoardConfig::AgbE02);
     m.insert("AGB-E03", BoardConfig::AgbE03);
+    m.insert("AGB-E05", BoardConfig::AgbE05);
     m.insert("AGB-E06", BoardConfig::AgbE06);
     m.insert("AGB-E11", BoardConfig::AgbE11);
     m.insert("AGB-Y11", BoardConfig::AgbY11);

@@ -15,7 +15,10 @@ clap.workspace = true
 cursive.workspace = true
 gbhwdb-backend.workspace = true
 glob.workspace = true
+image.workspace = true
 itertools.workspace = true
+mozjpeg.workspace = true
+qcms.workspace = true
 retro-dat.workspace = true
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true

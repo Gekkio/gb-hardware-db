@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::{bail, Error};
+use anyhow::Error;
 use cursive::{traits::*, views::*, Cursive, CursiveExt};
 use gbhwdb_backend::{
     config::cartridge::{BoardConfig, BoardPart, GameConfig, PartDesignator},
@@ -12,14 +12,13 @@ use gbhwdb_backend::{
     },
     time::Month,
 };
-use gbhwdb_tools::cursive::*;
+use gbhwdb_tools::{cursive::*, read_image, scale_to_px_limit, write_jpeg};
 use slug::slugify;
 use std::{
     collections::BTreeMap,
     fs::{create_dir_all, File},
     io::{BufReader, BufWriter, Write},
     path::{Path, PathBuf},
-    process,
     str::FromStr,
     sync::atomic::{self, AtomicBool},
 };
@@ -407,14 +406,9 @@ fn ask_photos(siv: &mut Cursive, output_dir: &Path) -> Result<Option<Photos>, Er
 
 fn process_photo(path: PathBuf, name: &str, output_dir: &Path) -> Result<PathBuf, Error> {
     let out_path = output_dir.join(format!("{name}.jpg"));
-    let status = process::Command::new("mozjpeg")
-        .arg("-outfile")
-        .arg(&out_path)
-        .arg(&path)
-        .status()?;
-    if status.success() {
-        Ok(out_path)
-    } else {
-        bail!("Failed to run mozjpeg")
-    }
+    let image = read_image(&path)?;
+    let image = scale_to_px_limit(image, 5_000_000);
+
+    write_jpeg(&image, &out_path)?;
+    Ok(out_path)
 }

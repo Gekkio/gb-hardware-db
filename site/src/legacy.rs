@@ -121,6 +121,7 @@ pub struct LegacyCartridgePhotos {
     pub pcb_front: Option<LegacyPhoto>,
     pub pcb_back: Option<LegacyPhoto>,
     pub without_battery: Option<LegacyPhoto>,
+    pub extra: Option<LegacyPhoto>,
 }
 
 impl LegacyPhotos for LegacyCartridgePhotos {
@@ -142,6 +143,11 @@ impl LegacyPhotos for LegacyCartridgePhotos {
                 "Without battery",
                 Box::new(|p| p.without_battery.as_ref()),
             ),
+            PhotoInfo::new(
+                PhotoKind::MainBoard,
+                "Extra photo",
+                Box::new(|p| p.extra.as_ref()),
+            ),
         ]
     }
 
@@ -155,6 +161,7 @@ impl LegacyPhotos for LegacyCartridgePhotos {
             &self.pcb_front,
             &self.pcb_back,
             &self.without_battery,
+            &self.extra,
         ]
         .iter()
         .filter_map(|photo| photo.as_ref())

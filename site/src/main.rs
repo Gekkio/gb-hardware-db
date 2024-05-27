@@ -171,25 +171,24 @@ fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
-    let mut data = SiteData::default();
-    create_dir_all("build/static/export/consoles")?;
+    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
 
     info!("Processing submissions");
 
-    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
-
-    data.cartridges = process_cartridge_submissions(&cfgs)?;
-    data.dmg = process_dmg_submissions()?;
-    data.sgb = process_sgb_submissions()?;
-    data.mgb = process_mgb_submissions()?;
-    data.mgl = process_mgl_submissions()?;
-    data.sgb2 = process_sgb2_submissions()?;
-    data.cgb = process_cgb_submissions()?;
-    data.agb = process_agb_submissions()?;
-    data.ags = process_ags_submissions()?;
-    data.gbs = process_gbs_submissions()?;
-    data.oxy = process_oxy_submissions()?;
-    data.cfgs = cfgs;
+    let data = SiteData {
+        cartridges: read_cartridge_submissions(&cfgs)?,
+        dmg: read_dmg_submissions()?,
+        sgb: read_sgb_submissions()?,
+        mgb: read_mgb_submissions()?,
+        mgl: read_mgl_submissions()?,
+        sgb2: read_sgb2_submissions()?,
+        cgb: read_cgb_submissions()?,
+        agb: read_agb_submissions()?,
+        ags: read_ags_submissions()?,
+        gbs: read_gbs_submissions()?,
+        oxy: read_oxy_submissions()?,
+        cfgs,
+    };
 
     info!("Processing photos");
 
@@ -206,6 +205,22 @@ fn main() -> Result<(), Error> {
     process_photos(&data.oxy)?;
 
     info!("Generating site");
+
+    create_dir_all("build/static/export/consoles")?;
+
+    let csv = BufWriter::new(File::create("build/static/export/cartridges.csv")?);
+    write_submission_csv(csv, "https://gbhwdb.gekkio.fi/cartridges", &data.cartridges)?;
+
+    write_console_submission_csv("dmg", &data.dmg)?;
+    write_console_submission_csv("sgb", &data.sgb)?;
+    write_console_submission_csv("mgb", &data.mgb)?;
+    write_console_submission_csv("mgl", &data.mgl)?;
+    write_console_submission_csv("sgb2", &data.sgb2)?;
+    write_console_submission_csv("cgb", &data.cgb)?;
+    write_console_submission_csv("agb", &data.agb)?;
+    write_console_submission_csv("ags", &data.ags)?;
+    write_console_submission_csv("gbs", &data.gbs)?;
+    write_console_submission_csv("oxy", &data.oxy)?;
 
     let mut site = build_site();
     site.generate_all(&data, "build")?;
@@ -229,7 +244,7 @@ where
     write_submission_csv(csv, "https://gbhwdb.gekkio.fi/consoles", submissions)
 }
 
-fn process_cartridge_submissions(
+fn read_cartridge_submissions(
     cfgs: &BTreeMap<String, GameConfig>,
 ) -> Result<Vec<LegacyCartridgeSubmission>, Error> {
     use legacy::cartridge::*;
@@ -279,6 +294,7 @@ fn process_cartridge_submissions(
                 pcb_front: get_photo(root, "02_pcb_front.jpg"),
                 pcb_back: get_photo(root, "03_pcb_back.jpg"),
                 without_battery: get_photo(root, "04_without_battery.jpg"),
+                extra: get_photo(root, "04_extra.jpg").or_else(|| get_photo(root, "05_extra.jpg")),
             };
             submissions.push(LegacySubmission {
                 code: cartridge.code,
@@ -292,12 +308,10 @@ fn process_cartridge_submissions(
         }
     }
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));
-    let csv = BufWriter::new(File::create("build/static/export/cartridges.csv")?);
-    write_submission_csv(csv, "https://gbhwdb.gekkio.fi/cartridges", &submissions)?;
     Ok(submissions)
 }
 
-fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
+fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
     use gbhwdb_backend::input::dmg::*;
     use legacy::console::*;
     use process::part::{boxed_parser, map_part, ProcessedPart};
@@ -501,11 +515,10 @@ fn process_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("dmg", &submissions)?;
     Ok(submissions)
 }
 
-fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
+fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
     use gbhwdb_backend::input::sgb::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -570,11 +583,10 @@ fn process_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("sgb", &submissions)?;
     Ok(submissions)
 }
 
-fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
+fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
     use gbhwdb_backend::input::mgb::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -664,11 +676,10 @@ fn process_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("mgb", &submissions)?;
     Ok(submissions)
 }
 
-fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
+fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
     use gbhwdb_backend::input::mgl::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -764,11 +775,10 @@ fn process_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("mgl", &submissions)?;
     Ok(submissions)
 }
 
-fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
+fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
     use gbhwdb_backend::input::sgb2::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -839,11 +849,10 @@ fn process_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("sgb2", &submissions)?;
     Ok(submissions)
 }
 
-fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
+fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
     use gbhwdb_backend::input::cgb::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -949,11 +958,10 @@ fn process_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("cgb", &submissions)?;
     Ok(submissions)
 }
 
-fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
+fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
     use gbhwdb_backend::input::agb::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -1050,11 +1058,10 @@ fn process_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("agb", &submissions)?;
     Ok(submissions)
 }
 
-fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
+fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
     use gbhwdb_backend::input::ags::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -1153,11 +1160,10 @@ fn process_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("ags", &submissions)?;
     Ok(submissions)
 }
 
-fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
+fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
     use gbhwdb_backend::input::gbs::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -1245,11 +1251,10 @@ fn process_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("gbs", &submissions)?;
     Ok(submissions)
 }
 
-fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
+fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     use gbhwdb_backend::input::oxy::*;
     use legacy::console::*;
     use process::part::map_part;
@@ -1321,7 +1326,6 @@ fn process_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
         }
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
-    write_console_submission_csv("oxy", &submissions)?;
     Ok(submissions)
 }
 

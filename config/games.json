@@ -8,7 +8,8 @@
   },
   "AGB-A2GP-0": {
     "name": "GT Advance 3 - Pro Concept Racing (Europe)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "9ab59e9d4e90792c2d51f05e216a1a4a4c1aa56833e9e6169db83f9bc79479bb",
     "platform": "gba",
     "no_intro_id": "1024"
   },
@@ -404,7 +405,7 @@
   "AGB-AAQE-0": {
     "name": "Animal Snap - Rescue Them 2 by 2 (USA)",
     "rom_verified": true,
-    "sha256": "eed54048fd9fa69d74d6fc4cb428a10ac760e3b2c64834d9190238e057ebb7c4",
+    "sha256": "34f3fe260a7b33febbcf0b6b9fc15af1421477cddf9b909f30c57f85da2ae567",
     "platform": "gba",
     "no_intro_id": "1422"
   },
@@ -606,6 +607,7 @@
   "AGB-AE7X-0": {
     "name": "Fire Emblem (Europe) (En,Fr,De)",
     "rom_verified": true,
+    "sha256": "cfa5c1c3303c5d6e107c0adb37dfd7c7c4c430c8a3cc39de949d59747d834a39",
     "platform": "gba",
     "no_intro_id": "1554"
   },
@@ -890,6 +892,7 @@
   "AGB-AIHP-0": {
     "name": "Mission Impossible - Operation Surma (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "f8d8b2cd133cae19ea867e30f4b9e72bb8865b50d9d0852c6b822a4332507c94",
     "platform": "gba",
     "no_intro_id": "1283"
   },
@@ -1358,7 +1361,7 @@
     "no_intro_id": "0461"
   },
   "AGB-ARQE-0": {
-    "name": "Matchbox Cross Town Heroes (USA)",
+    "name": "Cross Town Heroes (USA)",
     "rom_verified": false,
     "platform": "gba",
     "no_intro_id": "0569"
@@ -1679,12 +1682,14 @@
   "AGB-AWOE-0": {
     "name": "Wolfenstein 3D (USA, Europe)",
     "rom_verified": true,
+    "sha256": "b7d5fdbffd307e7648ba602ccab580d1abcb5ee3b343b5b7c3df6cefd7dbf07a",
     "platform": "gba",
     "no_intro_id": "1028"
   },
   "AGB-AWOP-0": {
     "name": "Wolfenstein 3D (USA, Europe)",
     "rom_verified": true,
+    "sha256": "b7d5fdbffd307e7648ba602ccab580d1abcb5ee3b343b5b7c3df6cefd7dbf07a",
     "platform": "gba",
     "no_intro_id": "1028"
   },
@@ -1860,7 +1865,7 @@
   "AGB-AYFE-0": {
     "name": "Backyard Football (USA)",
     "rom_verified": false,
-    "sha256": "af9223dae1611a24c204a907ca33063557821c91d99bbe093659851c78183096",
+    "sha256": "bf7ed436176eaf4543670213bbf812fee22a37cf44f018c27fc828a41b0dc2d8",
     "platform": "gba",
     "no_intro_id": "0583"
   },
@@ -2166,7 +2171,7 @@
   "AGB-B53E-0": {
     "name": "Crash & Spyro Superpack - Spyro Orange - The Cortex Conspiracy + Crash Bandicoot Purple - Ripto's Rampage (USA)",
     "rom_verified": false,
-    "sha256": "424246a0522d14b4c1d344691363087e2a13bed0aaab1b1262a194dfd4c2f431",
+    "sha256": "2ecbaaedf1252e101fc9e194f6443dd614258b08ca13091d9ae6432e2098b002",
     "platform": "gba",
     "no_intro_id": "2391"
   },
@@ -2864,6 +2869,7 @@
   "AGB-BH3P-0": {
     "name": "Happy Feet (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "250c2595cab72a9831cabccb6285f4bfe8d9847cf6493a862a2baec72f3d2953",
     "platform": "gba",
     "no_intro_id": "2559"
   },
@@ -3061,13 +3067,13 @@
   },
   "AGB-BJVE-0": {
     "name": "Tak - The Great Juju Challenge (USA, Europe)",
-    "rom_verified": false,
+    "rom_verified": true,
     "platform": "gba",
     "no_intro_id": "2122"
   },
   "AGB-BJWE-0": {
     "name": "Tak - The Great Juju Challenge (USA, Europe)",
-    "rom_verified": false,
+    "rom_verified": true,
     "platform": "gba",
     "no_intro_id": "2122"
   },
@@ -3123,7 +3129,8 @@
   },
   "AGB-BKZX-0": {
     "name": "Banjo-Kazooie - Grunty's Revenge (Europe) (En,Fr,De)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "3be0d3cd18628b21472fa79089802e2791d5b0c35478b4f0db61739709ee05b1",
     "platform": "gba",
     "no_intro_id": "1197"
   },
@@ -3524,6 +3531,7 @@
   "AGB-BQ4P-0": {
     "name": "SpongeBob SquarePants - Creature from the Krusty Krab (Europe) (En,Fr,De,Es,It,Nl,Sv,Da)",
     "rom_verified": false,
+    "sha256": "d92623d92fee75f64b55f7a05f21b321a15a042d3b534d065e026d7165ad8347",
     "platform": "gba",
     "no_intro_id": "2531"
   },
@@ -3698,6 +3706,7 @@
   "AGB-BSNX-0": {
     "name": "SpongeBob SquarePants Movie, The (Europe) (En,Fr,De,Es,It,Nl)",
     "rom_verified": true,
+    "sha256": "965a93d0d1a355cb563db32010534995ac5321d8b14f490e098f9f102de3f526",
     "platform": "gba",
     "no_intro_id": "1792"
   },
@@ -3744,6 +3753,7 @@
   "AGB-BSZX-0": {
     "name": "2 Games in 1 - SpongeBob SquarePants - SuperSponge + SpongeBob SquarePants - Battle for Bikini Bottom (Europe) (En+En,Fr,De)",
     "rom_verified": true,
+    "sha256": "8c1fe6710809b1ad3c4a73d92a4d2019581cfc39231b23f0ab1097ceb987abe7",
     "platform": "gba",
     "no_intro_id": "1801"
   },
@@ -3913,7 +3923,8 @@
   },
   "AGB-BWTP-0": {
     "name": "W.i.t.c.h. (Europe) (En,Fr,De,Es,It)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "ee163860b0f249ac5bf704f29e1c443498f1890436e968050ce6cb2c55ac6946",
     "platform": "gba",
     "no_intro_id": "2182"
   },
@@ -3965,6 +3976,7 @@
   "AGB-BXLX-0": {
     "name": "Ratatouille (Europe) (Fr,De,Nl)",
     "rom_verified": false,
+    "sha256": "125ccbc0862f38e6c1c9dc8801160a14beb14dc7339e5d2689b03a7a057b8c83",
     "platform": "gba",
     "no_intro_id": "2734"
   },
@@ -4156,13 +4168,14 @@
   },
   "AGB-FNMJ-0": {
     "name": "Famicom Mini 22 - Nazo no Murasame Jou (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
+    "sha256": "57bc65f88ce383b3ed863cadc9cdfbbd2b6e4e2b06cd00346736c5b0c3d99f98",
     "platform": "gba",
     "no_intro_id": "1596"
   },
   "AGB-FP7P-0": {
     "name": "Classic NES Series - Pac-Man (USA, Europe)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "e5dd09eb171d108131d849c0615a1faced4c9b0df5dee58e724d51e728f8422d",
     "platform": "gba",
     "no_intro_id": "1499"
@@ -4463,6 +4476,7 @@
   "CGB-AHYE-1": {
     "name": "Super Mario Bros. Deluxe (USA, Europe) (Rev 1)",
     "rom_verified": true,
+    "sha256": "db81dd4acbd0c7a3b9004f169ee278450c764c842ae777abd28073fbedf4078b",
     "platform": "gbc",
     "no_intro_id": "1149"
   },
@@ -4476,6 +4490,7 @@
   "CGB-AHYP-1": {
     "name": "Super Mario Bros. Deluxe (USA, Europe) (Rev 1)",
     "rom_verified": true,
+    "sha256": "db81dd4acbd0c7a3b9004f169ee278450c764c842ae777abd28073fbedf4078b",
     "platform": "gbc",
     "no_intro_id": "1149"
   },
@@ -7464,7 +7479,7 @@
   },
   "CGB-VLCE-0": {
     "name": "Missile Command (USA) (Rumble Version)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "0b3e5a9611551cc135cebfa67fe3f9aa1a54ef9855c0888b715351035908e126",
     "platform": "gbc",
     "no_intro_id": "0744"
@@ -7525,7 +7540,7 @@
   },
   "CGB-VTQE-0": {
     "name": "Tonka Raceway (USA) (Rumble Version)",
-    "rom_verified": false,
+    "rom_verified": true,
     "platform": "gbc",
     "no_intro_id": "1225"
   },
@@ -7558,7 +7573,7 @@
   },
   "CGB-VZFE-0": {
     "name": "Zebco Fishing! (USA) (Rumble Version)",
-    "rom_verified": false,
+    "rom_verified": true,
     "sha256": "99cf951803b7fb3bfb16bd7c0affa410f56cb9f59b8ade3eeceebdf027d7a4c1",
     "platform": "gbc",
     "no_intro_id": "1354"
@@ -7998,7 +8013,7 @@
   },
   "DMG-AAXF-0": {
     "name": "Pokemon - Version Argent (France) (SGB Enhanced) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
     "platform": "gbc",
     "no_intro_id": "0912"
   },

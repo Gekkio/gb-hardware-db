@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BSA-0",
+  "slug": "org-1",
+  "contributor": "org",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BSA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-01",
+    "circled_letters": "B",
+    "panel_position": "3",
+    "year": 1989,
+    "month": 3,
+    "u1": {
+      "label": "DMG-BSA-0 SHARP JAPAN B0 8916 D"
+    },
+    "u2": {
+      "label": "DMG MBC1 Nintendo S 8914 T"
+    }
+  }
+}

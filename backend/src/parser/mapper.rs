@@ -83,6 +83,27 @@ pub struct Mapper {
 
 impl ParsedData for Mapper {}
 
+/// Sharp MBC1
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mapper::sharp_mbc1().parse("DMG MBC1 Nintendo S 8914 T").is_ok());
+/// ```
+pub fn sharp_mbc1() -> &'static impl LabelParser<Mapper> {
+    single_parser!(
+        Mapper,
+        r#"^DMG\ MBC1\ Nintendo\ S\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
+        move |c| {
+            Ok(Mapper {
+                mbc_type: MapperType::Mbc1(Mbc1Version::Original),
+                manufacturer: Some(Manufacturer::Sharp),
+                year: Some(year2(&c[1])?),
+                week: Some(week2(&c[2])?),
+            })
+        },
+    )
+}
+
 /// Sharp MBC1A
 ///
 /// ```
@@ -717,6 +738,7 @@ pub fn mmm01() -> &'static impl LabelParser<Mapper> {
 pub fn any_mbc1_sop24() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
+        sharp_mbc1(),
         sharp_mbc1a(),
         sharp_mbc1b(),
         sharp_mbc1b1(),

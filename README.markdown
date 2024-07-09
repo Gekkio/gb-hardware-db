@@ -37,6 +37,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * mattcurrie
 * max-m
 * Miyako
+* org
 * pokechu22
 * pyroesp
 * Red Vázquez

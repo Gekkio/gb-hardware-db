@@ -17,15 +17,14 @@ pub struct GbaCartridges<'a> {
 impl<'a> Render for GbaCartridges<'a> {
     fn render(&self) -> Markup {
         let mut per_game = Vec::new();
-        for (code, group) in &self
-            .submissions
-            .iter()
-            .sorted_by_key(|submission| &submission.code)
-            .chunk_by(|submission| &submission.code)
-        {
-            let cfg = &self.cfgs[code];
+        for (code, cfg) in self.cfgs {
             if CartridgeClass::from(cfg.platform) == CartridgeClass::Gba {
-                per_game.push((cfg, group.collect::<Vec<_>>()));
+                let group = self
+                    .submissions
+                    .iter()
+                    .filter(|&submission| submission.code == *code)
+                    .collect::<Vec<_>>();
+                per_game.push((cfg, group));
             }
         }
         per_game.sort_by_key(|(cfg, _)| &cfg.name);
@@ -73,7 +72,11 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
     html! {
         tr {
             td.submission-list-item {
-                a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } { (cfg.name) }
+                @if submissions.len() > 0 {
+                    a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } { (cfg.name) }
+                } @else {
+                    (cfg.name)
+                }
             }
             td { (cfg.rom_id) }
             td { (multiline(years)) }

@@ -4361,13 +4361,6 @@
     "platform": "gba",
     "no_intro_id": "2519"
   },
-  "AGB-BZLE-0": {
-    "name": "Legend of Zelda, The - A Link to the Past & Four Swords (USA)",
-    "rom_verified": true,
-    "sha256": "f328f8f07d736288a00c80d31cc1630f3aa02aaf20efdcba73d31dae832b5d76",
-    "platform": "gba",
-    "no_intro_id": "0760"
-  },
   "AGB-BZME-0": {
     "name": "Legend of Zelda, The - The Minish Cap (USA)",
     "rom_verified": true,
@@ -4549,13 +4542,6 @@
     "sha256": "036017d870770c164bc65f5de7444f001991e827e09f785d6239f1466faebce7",
     "platform": "gba",
     "no_intro_id": "1942"
-  },
-  "AGB-RZVE-0": {
-    "name": "WarioWare - Twisted! (USA, Australia)",
-    "rom_verified": true,
-    "sha256": "ee1f05e0dde1ca1c3711cc7efddc40e13418b45edc213f70521284444ff87605",
-    "platform": "gba",
-    "no_intro_id": "1975"
   },
   "AGB-RZWE-0": {
     "name": "WarioWare - Twisted! (USA, Australia)",
@@ -15777,13 +15763,6 @@
     "sha256": "098e7c84cfde2f68639c658b1341cc449463c07e3833e723fd60c0bcf9c299ba",
     "platform": "gb",
     "no_intro_id": "1539"
-  },
-  "DMG-UVA-0": {
-    "name": "Dr. Mario (World)",
-    "rom_verified": true,
-    "sha256": "3296ce126e2ebf61f99e39d82e20e0f7d7ade84539ddd48f7c0e21fef5f46932",
-    "platform": "gb",
-    "no_intro_id": "0329"
   },
   "DMG-UVE-0": {
     "name": "Mickey's Ultimate Challenge (USA, Europe)",

@@ -2327,6 +2327,12 @@
     "platform": "gba",
     "no_intro_id": "2469"
   },
+  "AGB-BAUE-0": {
+    "name": "Barbie - The Princess and the Pauper (USA)",
+    "rom_verified": false,
+    "platform": "gba",
+    "no_intro_id": "1625"
+  },
   "AGB-BAVE-0": {
     "name": "Activision Anthology (USA)",
     "rom_verified": true,
@@ -2794,6 +2800,12 @@
     "platform": "gba",
     "no_intro_id": "1640"
   },
+  "AGB-BG7E-0": {
+    "name": "Games Explosion! (USA)",
+    "rom_verified": false,
+    "platform": "gba",
+    "no_intro_id": "2440"
+  },
   "AGB-BGCE-0": {
     "name": "Advance Guardian Heroes (USA)",
     "rom_verified": true,
@@ -3151,6 +3163,12 @@
     "rom_verified": false,
     "platform": "gba",
     "no_intro_id": "2457"
+  },
+  "AGB-BL7E-0": {
+    "name": "LEGO Star Wars II - The Original Trilogy (USA)",
+    "rom_verified": false,
+    "platform": "gba",
+    "no_intro_id": "2449"
   },
   "AGB-BL9E-0": {
     "name": "Let's Ride! - Dreamer (USA)",
@@ -3908,6 +3926,12 @@
     "rom_verified": false,
     "platform": "gba",
     "no_intro_id": "1863"
+  },
+  "AGB-BWIE-0": {
+    "name": "WinX Club (USA)",
+    "rom_verified": false,
+    "platform": "gba",
+    "no_intro_id": "2272"
   },
   "AGB-BWQE-0": {
     "name": "2 Games in 1 - Quad Desert Fury + Monster Trucks (USA)",

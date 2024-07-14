@@ -169,6 +169,7 @@ fn kds_month(text: &str) -> Result<Month, String> {
 pub enum Manufacturer {
     Amic,
     Analog,
+    Atmel,
     AtT,
     Bsi,
     Crosslink,
@@ -208,6 +209,7 @@ impl Manufacturer {
         match self {
             Manufacturer::Amic => "AMIC Technology",
             Manufacturer::Analog => "Analog Devices",
+            Manufacturer::Atmel => "Atmel",
             Manufacturer::AtT => "AT&T Technologies",
             Manufacturer::Bsi => "BSI",
             Manufacturer::Crosslink => "Crosslink Semiconductor",

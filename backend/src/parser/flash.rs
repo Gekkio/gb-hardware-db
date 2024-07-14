@@ -72,11 +72,33 @@ pub fn sanyo_le26fv10() -> &'static impl LabelParser<Flash> {
     )
 }
 
+/// Atmel AT29LV512 flash
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::flash::atmel_at29lv512().parse("AT29LV512 15TC 0114").is_ok());
+/// ```
+pub fn atmel_at29lv512() -> &'static impl LabelParser<Flash> {
+    single_parser!(
+        Flash,
+        r#"^(AT29LV512)\ [12][05]T[CI]\ ([0-9]{2})([0-9]{2})$"#,
+        move |c| {
+            Ok(Flash {
+                kind: String::from(&c[1]),
+                manufacturer: Some(Manufacturer::Atmel),
+                year: Some(year2(&c[2])?),
+                week: Some(week2(&c[3])?),
+            })
+        },
+    )
+}
+
 pub fn flash() -> &'static impl LabelParser<Flash> {
     multi_parser!(
         Flash,
         macronix_mx29f008(),
         macronix_mx29l010(),
         sanyo_le26fv10(),
+        atmel_at29lv512(),
     )
 }

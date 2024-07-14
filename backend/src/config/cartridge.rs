@@ -59,11 +59,13 @@ impl fmt::Display for GamePlatform {
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum BoardConfig {
+    AgbE01,
     AgbE02,
     AgbE03,
     AgbE05,
     AgbE06,
     AgbE11,
+    AgbE24,
     AgbY11,
     Tama,
     Aaac,
@@ -131,6 +133,11 @@ impl BoardConfig {
         }
 
         match self {
+            BoardConfig::AgbE01 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                _ => None,
+            },
             BoardConfig::AgbE02 => match designator {
                 // TSOP-II-44 ROM
                 D::U1 => part(PartRole::Rom, mask_rom()),
@@ -169,6 +176,13 @@ impl BoardConfig {
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-28 FRAM
                 D::U2 => part(PartRole::Ram, ram()),
+                _ => None,
+            },
+            BoardConfig::AgbE24 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-8 EEPROM
+                D::U2 => part(PartRole::Eeprom, eeprom()),
                 _ => None,
             },
             BoardConfig::Tama => match designator {
@@ -574,11 +588,13 @@ pub struct BoardPart {
 
 fn create_map() -> HashMap<&'static str, BoardConfig> {
     let mut m = HashMap::new();
+    m.insert("AGB-E01", BoardConfig::AgbE01);
     m.insert("AGB-E02", BoardConfig::AgbE02);
     m.insert("AGB-E03", BoardConfig::AgbE03);
     m.insert("AGB-E05", BoardConfig::AgbE05);
     m.insert("AGB-E06", BoardConfig::AgbE06);
     m.insert("AGB-E11", BoardConfig::AgbE11);
+    m.insert("AGB-E24", BoardConfig::AgbE24);
     m.insert("AGB-Y11", BoardConfig::AgbY11);
     m.insert("0200309E4-01", BoardConfig::Tama);
     m.insert("AAAC S", BoardConfig::Aaac);

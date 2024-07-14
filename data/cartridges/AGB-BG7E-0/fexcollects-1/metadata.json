@@ -1,0 +1,26 @@
+{
+  "code": "AGB-BG7E-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BG7E-USA",
+    "stamp": "20 E4"
+  },
+  "board": {
+    "label": "AGB-E01-41",
+    "circled_letters": "I",
+    "panel_position": "B-4",
+    "year": 2006,
+    "month": 10,
+    "u1": {
+      "label": "S064421-MG MX23L3206-12B AGB-BG7E-0 H2 2T341304"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Games Explosion! (USA).gba\n* File Size:       4.00 MiB (4194304 bytes)\n* CRC32:           68d63d5f\n* MD5:             05c54425438b4e1fb9944f380df39b4e\n* SHA-1:           f2d95cabf5cd75ee4ebcdf7b8ef669c6d8ede989\n* SHA-256:         07e987e29edc3794f0ec3e771381ffa9be02c3ecbff5a780e7b42647f139f211\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-06-30T17:23:05-06:00\n* Time Elapsed:    28 seconds (145.09 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        4 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      GAMEEXPLSION\n* Game Code:       BG7E\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x51)\n* Save Type:       None\n\n== Database Match ==\n* Game Name:       Games Explosion! (USA)\n* Region:          USA\n* Language(s):     En\n* Game Code:       AGB-BG7E\n* ROM CRC32:       68d63d5f\n* ROM Size:        4 MiB\n* Save Type:       None",
+    "sha256": "07e987e29edc3794f0ec3e771381ffa9be02c3ecbff5a780e7b42647f139f211",
+    "date": "2024-06-30"
+  }
+}

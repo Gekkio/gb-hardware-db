@@ -1,0 +1,29 @@
+{
+  "code": "AGB-AMKE-0",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AMKE-USA",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "AGB-E02-01",
+    "circled_letters": "I",
+    "panel_position": "O-6",
+    "year": 2001,
+    "month": 7,
+    "u1": {
+      "label": "S012821-M MX23L3206-12B AGB-AMKE-0 H2 2E411600"
+    },
+    "u2": {
+      "label": "AT29LV512 15TC 0114"
+    }
+  },
+  "dump": {
+     "tool": "GBxCart RW v1.4a/b/c",
+     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Mario Kart - Super Circuit (USA).gba\n* File Size:       4.00 MiB (4194304 bytes)\n* CRC32:           ed316e37\n* MD5:             784a036ff1aae709e90167186639b75e\n* SHA-1:           9d327c030c3e2d9007990518594f70c3340ac56f\n* SHA-256:         aadc8b9f3c947ff6f610b6c8d7fddaaa9bea98b4bd43576df84f26c457ae1f90\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-06-30T17:40:00-06:00\n* Time Elapsed:    28 seconds (144.69 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        4 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      MARIO KART␀␀\n* Game Code:       AMKE\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x08)\n* Save Type:       512K FLASH (FLASH_V124)\n* Save Flash Chip: Atmel AT29LV512 (0x1F3D)\n\n== Database Match ==\n* Game Name:       Mario Kart - Super Circuit (USA)\n* Region:          USA\n* Language(s):     En\n* Game Code:       AGB-AMKE\n* ROM CRC32:       ed316e37\n* ROM Size:        4 MiB\n* Save Type:       512K FLASH (64 KiB)",
+     "sha256": "aadc8b9f3c947ff6f610b6c8d7fddaaa9bea98b4bd43576df84f26c457ae1f90",
+     "date": "2024-06-30"
+   }
+}

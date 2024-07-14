@@ -44,9 +44,10 @@ pub fn lc56() -> &'static impl LabelParser<Eeprom> {
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::eeprom::unknown_9853().parse("9853 2A46").is_ok());
+/// assert!(parser::eeprom::unknown_9853().parse("9853 6912").is_ok());
 /// ```
 pub fn unknown_9853() -> &'static impl LabelParser<Eeprom> {
-    single_parser!(Eeprom, r#"^9853\ ([0-9])[A-Z][0-9]{2}$"#, move |c| {
+    single_parser!(Eeprom, r#"^9853\ ([0-9])[[:alnum:]][0-9]{2}$"#, move |c| {
         Ok(Eeprom {
             kind: "9853".to_owned(),
             manufacturer: None,
@@ -56,6 +57,24 @@ pub fn unknown_9853() -> &'static impl LabelParser<Eeprom> {
     })
 }
 
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::eeprom::unknown_9854().parse("9854 5S95W").is_ok());
+/// ```
+pub fn unknown_9854() -> &'static impl LabelParser<Eeprom> {
+    single_parser!(
+        Eeprom,
+        r#"^9854\ ([0-9])[[:alnum:]][0-9]{2}[A-Z]$"#,
+        move |c| {
+            Ok(Eeprom {
+                kind: "9854".to_owned(),
+                manufacturer: None,
+                year: Some(year1(&c[1])?),
+                week: None,
+            })
+        }
+    )
+}
 pub fn eeprom() -> &'static impl LabelParser<Eeprom> {
-    multi_parser!(Eeprom, lcs5(), lc56(), unknown_9853())
+    multi_parser!(Eeprom, lcs5(), lc56(), unknown_9853(), unknown_9854())
 }

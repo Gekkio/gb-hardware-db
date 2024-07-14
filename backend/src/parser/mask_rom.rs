@@ -470,6 +470,29 @@ pub fn magnachip_ac23v() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+/// Hynix AC23V Mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::hynix_ac23v().parse("HYNIX AC23V128111 AGB-AY7E-0 J2 NL0013").is_ok());
+/// assert!(parser::mask_rom::hynix_ac23v().parse("HYNIX AC23V32101 AGB-BAUE-0 H2 ZBR4079").is_ok());
+/// ```
+pub fn hynix_ac23v() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^HYNIX\ (AC23V[0-9]{5,6})\ (AGB-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [A-Z]{2,3}[0-9]{4}$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[2].to_owned(),
+                manufacturer: Some(Manufacturer::Hynix),
+                chip_type: Some(c[1].to_owned()),
+                year: None,
+                week: None,
+            })
+        },
+    )
+}
+
 fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
     match code {
         "LH5359" => Some("LH53259"),   // Sharp Memory Data Book 1992
@@ -527,5 +550,6 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         oki_mr26v(),
         oki_mr27v(),
         magnachip_ac23v(),
+        hynix_ac23v(),
     )
 }

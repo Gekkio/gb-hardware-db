@@ -1865,6 +1865,13 @@
     "platform": "gba",
     "no_intro_id": "1218"
   },
+  "AGB-AXPE-2": {
+    "name": "Pokemon - Sapphire Version (USA, Europe) (Rev 2)",
+    "rom_verified": true,
+    "sha256": "02ca41513580a8b780989dee428df747b52a0b1a55bec617886b4059eb1152fb",
+    "platform": "gba",
+    "no_intro_id": "1986"
+  },
   "AGB-AXPJ-0": {
     "name": "Pocket Monsters - Sapphire (Japan)",
     "rom_verified": true,

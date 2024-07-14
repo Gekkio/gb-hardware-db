@@ -1,0 +1,32 @@
+{
+  "code": "AGB-AXPE-1",
+  "slug": "fexcollects-1",
+  "contributor": "FexCollects",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AXPE-USA"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "L-3",
+    "year": 2003,
+    "month": 9,
+    "u1": {
+      "label": "S033658-M MX23L12807-12C AGB-AXPE-1 J2 2H863000"
+    },
+    "u2": {
+      "label": "E031857 MX29L010TC-15A1 1E8814"
+    },
+    "u3": {
+      "label": "S3516 AEV42 7505"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Sapphire Version (USA, Europe) (Rev 1).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           bafedae5\n* MD5:             3a32fd98b065283d09eeba1ce0542888\n* SHA-1:           4722efb8cd45772ca32555b98fd3b9719f8e60a9\n* SHA-256:         2f680a43e5c57aede4cb3b2cb04f7e15079efc122c88edaacfd6026db6e920ac\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-07-02T17:18:30-06:00\n* Time Elapsed:    1 minute, 52 seconds (145.05 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON SAPP\n* Game Code:       AXPE\n* Revision:        1\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x54)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Sapphire Version (USA, Europe) (Rev 1)\n* Region:          USA, Europe\n* Language(s):     En\n* Revision:        Rev 1\n* Game Code:       AGB-AXPE\n* ROM CRC32:       bafedae5\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "sha256": "2f680a43e5c57aede4cb3b2cb04f7e15079efc122c88edaacfd6026db6e920ac",
+    "date": "2024-07-02"
+  }
+}

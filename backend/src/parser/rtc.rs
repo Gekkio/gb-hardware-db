@@ -41,6 +41,21 @@ pub fn seiko_s3511() -> &'static impl LabelParser<Rtc> {
     },)
 }
 
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::rtc::seiko_s3516().parse("S3516 AEV42 7505").is_ok());
+/// ```
+pub fn seiko_s3516() -> &'static impl LabelParser<Rtc> {
+    single_parser!(Rtc, r#"^S3516\ AEV[[:alnum:]]{2}\ [0-9]{4}$"#, move |_| {
+        Ok(Rtc {
+            kind: "S-3516".to_owned(),
+            manufacturer: Some(Manufacturer::Seiko),
+            year: None,
+            week: None,
+        })
+    },)
+}
+
 pub fn rtc() -> &'static impl LabelParser<Rtc> {
-    multi_parser!(Rtc, toshiba_tc8521am(), seiko_s3511(),)
+    multi_parser!(Rtc, toshiba_tc8521am(), seiko_s3511(), seiko_s3516())
 }

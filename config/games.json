@@ -469,11 +469,11 @@
     "no_intro_id": "0160"
   },
   "AGB-ABWE-0": {
-    "name": "Buffy the Vampire Slayer - Wrath of the Darkhul King (USA, Europe)",
-    "rom_verified": false,
-    "sha256": "7c41ec9557f97ee126222c0d45a3541b10fc7561d9e524139e954c1e904254f5",
+    "name": "Butt-Ugly Martians - B.K.M. Battles (USA)",
+    "rom_verified": true,
+    "sha256": "264fdc8b3f1dd6770694f3e0f39a05ea2ac05b48a9695cb8051e2005189be51f",
     "platform": "gba",
-    "no_intro_id": "1067"
+    "no_intro_id": "0614"
   },
   "AGB-ABYE-0": {
     "name": "Britney's Dance Beat (USA)",
@@ -1574,10 +1574,10 @@
     "no_intro_id": "0880"
   },
   "AGB-ATZJ-0": {
-    "name": "Konjiki no Gashbell!! - Unare! Yuujou no Zakeru (Japan)",
+    "name": "Zoids Saga (Japan)",
     "rom_verified": false,
     "platform": "gba",
-    "no_intro_id": "1304"
+    "no_intro_id": "0252"
   },
   "AGB-ATZJ-1": {
     "name": "Zoids Saga (Japan) (Rev 1)",
@@ -12590,11 +12590,11 @@
     "no_intro_id": "1402"
   },
   "DMG-FPA-0": {
-    "name": "Flipull (USA)",
+    "name": "Flipull - An Exciting Cube Game (Japan)",
     "rom_verified": false,
-    "sha256": "23fe1e88229645354f665908eb0dcd39cd8f3fbbeebec4bd93d11f7740a478e4",
+    "sha256": "457f90f5dc811d35a620f97e8eed07f225eeac8da5685686eeda063265ed3b5f",
     "platform": "gb",
-    "no_intro_id": "0399"
+    "no_intro_id": "0398"
   },
   "DMG-FPE-0": {
     "name": "Flipull (USA)",

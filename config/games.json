@@ -11007,6 +11007,13 @@
     "platform": "gbc",
     "no_intro_id": "0539"
   },
+  "DMG-AWLE-0": {
+    "name": "Wario Land II (USA, Europe) (SGB Enhanced) (GB Compatible)",
+    "rom_verified": true,
+    "sha256": "40f366ccd5bd6a9643dc317db63a286f9104f164f9fc46ff037e548d5e83ed52",
+    "platform": "gbc",
+    "no_intro_id": "1293"
+  },
   "DMG-AWLP-0": {
     "name": "Wario Land II (USA, Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,

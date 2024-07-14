@@ -136,6 +136,28 @@ pub fn macronix2() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+/// Very old OKI mask ROM chip
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::oki_old().parse("DMG-QXA-0 OKI JAPAN B0 03 X0 02").is_ok());
+/// ```
+pub fn oki_old() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^(DMG-[[:alnum:]]{3}-[0-9])\ OKI\ JAPAN\ [[:alnum:]]{2}\ [0-9]{2}\ [[:alnum:]]{2}\ [0-9]{2}$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: None,
+                year: None,
+                week: None,
+            })
+        },
+    )
+}
+
 /// OKI Semiconductor MSM538011E mask ROM
 ///
 /// ```
@@ -501,6 +523,7 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         samsung(),
         samsung2(),
         fujitsu(),
+        oki_old(),
         oki_mr26v(),
         oki_mr27v(),
         magnachip_ac23v(),

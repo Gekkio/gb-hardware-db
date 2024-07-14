@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MEA-0",
+  "slug": "creeps-1",
+  "contributor": "creeps",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ME-USA-1",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-MEA-0 S LH532MN5 JAPAN D1 9746 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9746 3 A"
+    },
+    "u3": {
+      "label": "LH5168N-10PL MOSEL-VITELIC JAPAN N745 01 BH"
+    },
+    "u4": {
+      "label": "742 26A"
+    }
+  }
+}

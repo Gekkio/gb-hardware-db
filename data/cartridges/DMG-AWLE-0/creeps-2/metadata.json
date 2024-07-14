@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AWLE-0",
+  "slug": "creeps-2",
+  "contributor": "creeps",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AWLE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "M",
+    "panel_position": "6",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AWLE-0 S LH537MT6 JAPAN G2 9851 D"
+    },
+    "u2": {
+      "label": "MBC5 P-1 849U1L"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9842 3 SO"
+    },
+    "u4": {
+      "label": "848 134A"
+    }
+  }
+}

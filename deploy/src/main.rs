@@ -156,6 +156,7 @@ async fn main() -> Result<(), Error> {
 
     let bucket = std::env::var("GBHWDB_BUCKET")?;
     let distribution = std::env::var("GBHWDB_DISTRIBUTION")?;
+    let invalidation_ref = std::env::var("GBHWDB_INVALIDATION_REF")?;
     let mime_map = MIME_MAPPING.iter().copied().collect::<HashMap<_, _>>();
 
     let build_dir = Path::new("build");
@@ -253,7 +254,8 @@ async fn main() -> Result<(), Error> {
         .distribution_id(distribution)
         .invalidation_batch(
             InvalidationBatch::builder()
-                .paths(Paths::builder().items("/*").build()?)
+                .paths(Paths::builder().quantity(1).items("/*").build()?)
+                .caller_reference(invalidation_ref)
                 .build()?,
         )
         .send()

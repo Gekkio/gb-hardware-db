@@ -56,4 +56,5 @@ jobs:
         run: target/release/gbhwdb-deploy
         env:
           GBHWDB_BUCKET: ${{ secrets.GBHWDB_BUCKET }}
+          GBHWDB_INVALIDATION_REF: ${{ env.GITHUB_SHA }}
           GBHWDB_DISTRIBUTION: ${{ secrets.GBHWDB_DISTRIBUTION }}

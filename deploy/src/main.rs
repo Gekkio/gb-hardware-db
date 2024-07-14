@@ -4,6 +4,7 @@
 
 use anyhow::{anyhow, Error};
 use aws_config::BehaviorVersion;
+use aws_sdk_cloudfront::types::{InvalidationBatch, Paths};
 use aws_sdk_s3::primitives::ByteStream;
 use base64::Engine;
 use log::{debug, info};
@@ -153,6 +154,8 @@ async fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
+    let bucket = std::env::var("GBHWDB_BUCKET")?;
+    let distribution = std::env::var("GBHWDB_DISTRIBUTION")?;
     let mime_map = MIME_MAPPING.iter().copied().collect::<HashMap<_, _>>();
 
     let build_dir = Path::new("build");
@@ -165,10 +168,10 @@ async fn main() -> Result<(), Error> {
 
     let config = aws_config::load_defaults(BehaviorVersion::latest()).await;
     let s3 = aws_sdk_s3::Client::new(&config);
-    let bucket = "gbhwdb.gekkio.fi";
+    let cloudfront = aws_sdk_cloudfront::Client::new(&config);
 
     info!("Scanning remote files...");
-    let remote_files = scan_remote_files(&s3, bucket).await?;
+    let remote_files = scan_remote_files(&s3, &bucket).await?;
     info!("Scanned {} remote files", remote_files.len());
 
     info!("Building deployment plan...");
@@ -225,7 +228,7 @@ async fn main() -> Result<(), Error> {
         info!("Uploading {}", local_file.key);
         let body = ByteStream::from_path(&local_file.absolute_path).await?;
         s3.put_object()
-            .bucket(bucket)
+            .bucket(&bucket)
             .key(&local_file.key)
             .body(body)
             .content_type(*mime)
@@ -238,11 +241,23 @@ async fn main() -> Result<(), Error> {
     for remote_file in to_delete {
         info!("Deleting {}", remote_file.key);
         s3.delete_object()
-            .bucket(bucket)
+            .bucket(&bucket)
             .key(&remote_file.key)
             .send()
             .await?;
     }
+
+    info!("Triggering invalidation...");
+    cloudfront
+        .create_invalidation()
+        .distribution_id(distribution)
+        .invalidation_batch(
+            InvalidationBatch::builder()
+                .paths(Paths::builder().items("/*").build()?)
+                .build()?,
+        )
+        .send()
+        .await?;
 
     info!("Site deployment complete");
     Ok(())

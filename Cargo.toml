@@ -16,6 +16,7 @@ publish = false
 anyhow = "1.0.86"
 axum = "0.7.5"
 aws-config = "1.5.4"
+aws-sdk-cloudfront = "1.37.0"
 aws-sdk-s3 = "1.40.0"
 base64 = "0.22.1"
 clap = "4.5.9"

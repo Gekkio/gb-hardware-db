@@ -54,3 +54,6 @@ jobs:
       - name: Run site deployment
         if: github.ref == 'refs/heads/master' && github.repository == 'Gekkio/gb-hardware-db'
         run: target/release/gbhwdb-deploy
+        env:
+          GBHWDB_BUCKET: ${{ secrets.GBHWDB_BUCKET }}
+          GBHWDB_DISTRIBUTION: ${{ secrets.GBHWDB_DISTRIBUTION }}

@@ -1,0 +1,29 @@
+{
+  "code": "AGB-B24E-0",
+  "slug": "hdr-4",
+  "contributor": "hdr",
+  "index": 4,
+  "shell": {
+    "code": "AGB-B24E-USA",
+    "stamp": "00 E4"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "I-5",
+    "year": 2006,
+    "month": 10,
+    "u1": {
+      "label": "S064453-MG MX23L25607-12D2 AGB-B24E-0 K2 2T550100"
+    },
+    "u2": {
+      "label": "E064157G MX29L010TC-15A1 1H4971"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.3",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon Mystery Dungeon - Red Rescue Team (USA, Australia).gba\n* File Size:       32.00 MiB (33554432 bytes)\n* CRC32:           dd0ac86c\n* MD5:             2100cf6f17e12cd34f1513647dfa506b\n* SHA-1:           9f4cfc5b5f4859d17169a485462e977c7aac2b89\n* SHA-256:         ad316814c77ed083734d816ebcde2ece390efae8d15bcb6c66d7c2862d82eb68\n\n== General Information ==\n* Hardware:        GBxCart RW v1.3 – Firmware L1\n* Software:        FlashGBX v4.0.1\n* OS Platform:     Windows-10-10.0.22631-SP0\n* Baud Rate:       1000000\n* Dump Time:       2024-07-14T16:56:24+02:00\n* Time Elapsed:    5 minutes, 40 seconds (96.28 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         2\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        32 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Single\n\n== Parsed Data ==\n* Game Title:      POKE DUNGEON\n* Game Code:       B24E\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xA4)\n* Save Type:       1M FLASH (FLASH1M_V102)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon Mystery Dungeon - Red Rescue Team (USA, Australia)\n* Region:          USA, Australia\n* Language(s):     En\n* Game Code:       AGB-B24E\n* ROM CRC32:       dd0ac86c\n* ROM Size:        32 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "sha256": "ad316814c77ed083734d816ebcde2ece390efae8d15bcb6c66d7c2862d82eb68",
+    "date": "2024-07-14"
+  }
+}

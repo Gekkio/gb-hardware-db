@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render, DOCTYPE};
+use maud::{html, Markup, PreEscaped, Render, DOCTYPE};
 
 use crate::{
     site::SiteSection,
@@ -55,6 +55,9 @@ pub fn page(title: &str, section: SiteSection, content: Markup) -> String {
                     div.site-main__content { (content) }
                 }
                 (SiteFooter)
+            }
+            script {
+                (PreEscaped("document.querySelectorAll('.jsonly').forEach((m) => { m.hidden = false; });"))
             }
         }
     }

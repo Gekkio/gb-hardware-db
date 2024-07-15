@@ -32,6 +32,14 @@ impl<'a> Render for GbCartridges<'a> {
             }
         }
         per_game.sort_by_key(|(cfg, _)| &cfg.name);
+        let toggle_js = "\
+var shouldHide = event.currentTarget.innerText.includes('Show only');
+event.currentTarget.innerHTML = (shouldHide)
+    ? 'Show all games'
+    : 'Show only games with submissions';
+document.querySelectorAll('tr.empty').forEach((m) => {
+    m.hidden = shouldHide;
+});";
         html! {
             article {
                 h2 { "Game Boy cartridges" }
@@ -44,6 +52,9 @@ impl<'a> Render for GbCartridges<'a> {
                     }
                 }
                 h3 { "Cartridges by game" }
+                button.jsonly onclick=( toggle_js ) hidden {
+                    "Show only games with submissions"
+                }
                 table {
                     thead {
                         tr {
@@ -111,7 +122,7 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         mappers.and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
     });
     html! {
-        tr {
+        tr.empty[submissions.len() == 0] {
             td.submission-list-item {
                 @if submissions.len() > 0 {
                     a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } { (cfg.name) }

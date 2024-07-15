@@ -7,7 +7,7 @@ use gbhwdb_backend::{
     input::cartridge::*,
     parser::{
         Accelerometer, Crystal, Eeprom, Flash, HexInverter, LineDecoder, Mapper, MaskRom, Rtc,
-        StaticRam, SupervisorReset, Tama,
+        StaticRam, SupervisorReset, Tama, UnknownChip,
     },
 };
 use std::{any::Any, collections::HashMap};
@@ -61,6 +61,7 @@ impl LegacyBoard {
                     .or_else(|parsed| try_process::<HexInverter>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Rtc>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Tama>(board.year, label, parsed))
+                    .or_else(|parsed| try_process::<UnknownChip>(board.year, label, parsed))
                     .unwrap_or_else(|_| {
                         println!("{board:?}");
                         panic!("Failed to process {designator:?}")

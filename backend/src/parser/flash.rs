@@ -93,6 +93,27 @@ pub fn atmel_at29lv512() -> &'static impl LabelParser<Flash> {
     )
 }
 
+/// SST SST39VF512 flash
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::flash::sst_sst39vf512().parse("39VF512 70-4C-WH 0350077-D").is_ok());
+/// ```
+pub fn sst_sst39vf512() -> &'static impl LabelParser<Flash> {
+    single_parser!(
+        Flash,
+        r#"^(39VF512)\ [0-9]{2}-[0-9][CI]-[A-Z]{2}\ [0-9]{7}-[A-Z]$"#,
+        move |_| {
+            Ok(Flash {
+                kind: "SST39VF512".to_owned(),
+                manufacturer: Some(Manufacturer::Sst),
+                year: None,
+                week: None,
+            })
+        },
+    )
+}
+
 pub fn flash() -> &'static impl LabelParser<Flash> {
     multi_parser!(
         Flash,
@@ -100,5 +121,6 @@ pub fn flash() -> &'static impl LabelParser<Flash> {
         macronix_mx29l010(),
         sanyo_le26fv10(),
         atmel_at29lv512(),
+        sst_sst39vf512(),
     )
 }

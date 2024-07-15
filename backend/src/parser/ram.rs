@@ -834,22 +834,23 @@ pub fn hynix_hy62wt08081e() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Fujitsu MB85R256A
+/// Fujitsu MB85R256
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::ram::fujitsu_mb85r256a().parse("JAPAN MB85R256A 0412 M88").is_ok());
+/// assert!(parser::ram::fujitsu_mb85r256().parse("JAPAN MB85R256A 0412 M88").is_ok());
+/// assert!(parser::ram::fujitsu_mb85r256().parse("JAPAN MB85R256S 0511 M22 E1").is_ok());
 /// ```
-pub fn fujitsu_mb85r256a() -> &'static impl LabelParser<Ram> {
+pub fn fujitsu_mb85r256() -> &'static impl LabelParser<Ram> {
     single_parser!(
         Ram,
-        r#"^JAPAN\ (MB85R256A)\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
+        r#"^JAPAN\ (MB85R256(A|S))\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}(\ [A-Z][0-9])?$"#,
         move |c| {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Fujitsu),
-                year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
+                year: Some(year2(&c[3])?),
+                week: Some(week2(&c[4])?),
             })
         },
     )
@@ -897,6 +898,6 @@ pub fn ram() -> &'static impl LabelParser<Ram> {
         crosslink_lh5268anf(),
         mosel_vitelic_lh52a64n_pl(),
         hynix_hy62wt08081e(),
-        fujitsu_mb85r256a(),
+        fujitsu_mb85r256(),
     )
 }

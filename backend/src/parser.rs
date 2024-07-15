@@ -6,7 +6,10 @@ use log::warn;
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::{any::Any, fmt, str::FromStr};
 
-use crate::time::{Month, Week};
+use crate::{
+    macros::single_parser,
+    time::{Month, Week},
+};
 
 pub use self::{
     accelerometer::Accelerometer,
@@ -196,6 +199,7 @@ pub enum Manufacturer {
     Seiko,
     Sharp,
     Smsc,
+    Sst,
     StMicro,
     Tdk,
     TexasInstruments,
@@ -236,6 +240,7 @@ impl Manufacturer {
             Manufacturer::Seiko => "Seiko Instruments Inc.",
             Manufacturer::Sharp => "Sharp",
             Manufacturer::Smsc => "Standard Microsystems Corporation",
+            Manufacturer::Sst => "SST",
             Manufacturer::StMicro => "STMicroelectronics",
             Manufacturer::Tdk => "TDK",
             Manufacturer::TexasInstruments => "Texas Instruments",
@@ -358,4 +363,13 @@ where
     fn parsers(&self) -> Vec<&SingleParser<T>> {
         self.parsers.clone()
     }
+}
+
+#[derive(Copy, Clone, Debug)]
+pub struct UnknownChip;
+
+impl ParsedData for UnknownChip {}
+
+pub fn unknown_chip() -> &'static impl LabelParser<UnknownChip> {
+    single_parser!(UnknownChip, r#"^.*$"#, move |_| Ok(UnknownChip))
 }

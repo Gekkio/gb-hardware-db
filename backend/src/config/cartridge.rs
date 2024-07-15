@@ -19,8 +19,8 @@ use crate::{
     parser::{
         accelerometer::accelerometer, crystal_32kihz::crystal_32kihz, eeprom::eeprom, flash::flash,
         hex_inverter::hex_inverter, line_decoder::line_decoder, mapper, mask_rom::mask_rom,
-        ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, LabelParser,
-        ParsedData,
+        ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, unknown_chip,
+        LabelParser, ParsedData,
     },
     sha256::Sha256,
 };
@@ -65,6 +65,7 @@ pub enum BoardConfig {
     AgbE05,
     AgbE06,
     AgbE11,
+    AgbE18,
     AgbE24,
     AgbY11,
     Tama,
@@ -176,6 +177,18 @@ impl BoardConfig {
                 D::U1 => part(PartRole::Rom, mask_rom()),
                 // SOP-28 FRAM
                 D::U2 => part(PartRole::Ram, ram()),
+                _ => None,
+            },
+            BoardConfig::AgbE18 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom()),
+                // SOP-8 EEPROM
+                D::U2 => part(PartRole::Eeprom, eeprom()),
+                // SOP-8 RTC
+                D::U3 => part(PartRole::Rtc, rtc()),
+                D::U4 => part(PartRole::Unknown, unknown_chip()),
+                D::U5 => part(PartRole::Unknown, unknown_chip()),
+                D::X1 => part(PartRole::Crystal, crystal_32kihz()),
                 _ => None,
             },
             BoardConfig::AgbE24 => match designator {
@@ -594,6 +607,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("AGB-E05", BoardConfig::AgbE05);
     m.insert("AGB-E06", BoardConfig::AgbE06);
     m.insert("AGB-E11", BoardConfig::AgbE11);
+    m.insert("AGB-E18", BoardConfig::AgbE18);
     m.insert("AGB-E24", BoardConfig::AgbE24);
     m.insert("AGB-Y11", BoardConfig::AgbY11);
     m.insert("0200309E4-01", BoardConfig::Tama);

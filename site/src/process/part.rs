@@ -53,6 +53,18 @@ pub fn boxed_parser<T: ParsedPart, F: LabelParser<T>>(f: &F) -> BoxedParser<'_> 
     })
 }
 
+impl ParsedPart for parser::UnknownChip {
+    fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
+            kind: None,
+            label: Some(label),
+            manufacturer: None,
+            date_code: DateCode::default(),
+            rom_code: None,
+        }
+    }
+}
+
 impl ParsedPart for parser::Gen1Soc {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         use gbhwdb_backend::parser::Gen1SocKind::*;

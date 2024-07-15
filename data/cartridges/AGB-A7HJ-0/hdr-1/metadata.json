@@ -1,0 +1,29 @@
+{
+  "code": "AGB-A7HJ-0",
+  "slug": "hdr-1",
+  "contributor": "HDR",
+  "index": 1,
+  "shell": {
+    "code": "AGB-A7HJ-JPN",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "MB",
+    "panel_position": "P-2",
+    "year": 2002,
+    "month": 10,
+    "u1": {
+      "label": "AGB-A7HJ-0 I2 R26V6413G-0A9 242A273"
+    },
+    "u2": {
+      "label": "9853 2956"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.3",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Harry Potter to Himitsu no Heya (Japan).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           b485dabf\n* MD5:             d31db14855a0de7ea8789f853c2af3c6\n* SHA-1:           bacf6db02e14599f5dbc8202243eac134566e96f\n* SHA-256:         4402cda973089a4a12b2a77ec681fb977a625a4d9af8b4f0073135a7efa19f42\n\n== General Information ==\n* Hardware:        GBxCart RW v1.3 – Firmware L1\n* Software:        FlashGBX v4.0.1\n* OS Platform:     Windows-10-10.0.22631-SP0\n* Baud Rate:       1000000\n* Dump Time:       2024-07-14T17:48:19+02:00\n* Time Elapsed:    1 minute, 24 seconds (97.03 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Single\n\n== Parsed Data ==\n* Game Title:      HPOTTER COS␀\n* Game Code:       A7HJ\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xB8)\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\n\n== Database Match ==\n* Game Name:       Harry Potter to Himitsu no Heya (Japan)\n* Region:          Japan\n* Language(s):     Ja\n* Game Code:       AGB-A7HJ\n* ROM CRC32:       b485dabf\n* ROM Size:        8 MiB\n* Save Type:       4K EEPROM (512 Bytes)",
+    "sha256": "4402cda973089a4a12b2a77ec681fb977a625a4d9af8b4f0073135a7efa19f42",
+    "date": "2024-07-14"
+  }
+}

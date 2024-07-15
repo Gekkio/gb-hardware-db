@@ -198,6 +198,7 @@
   "AGB-A5ME-0": {
     "name": "MLB SlugFest 2004 (USA)",
     "rom_verified": false,
+    "sha256": "78c1cba53d3fb0ac51d52ebe3f624fa60e5ee1a8cfaed198c7a2ef4546dad551",
     "platform": "gba",
     "no_intro_id": "0902"
   },
@@ -232,12 +233,14 @@
   "AGB-A6MP-0": {
     "name": "Megaman & Bass (Europe)",
     "rom_verified": true,
+    "sha256": "9885919ca76cfc90411dafade72a99b1942593dc6ce1255b0729b8cc3ea87009",
     "platform": "gba",
     "no_intro_id": "1029"
   },
   "AGB-A6TP-0": {
     "name": "Dr. Muto (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "56c56856b869b2da1c1f94a44a1a7185867bdf03f767815a72d91ca38d93fa05",
     "platform": "gba",
     "no_intro_id": "0899"
   },
@@ -475,6 +478,7 @@
   "AGB-ABSJ-0": {
     "name": "Bomberman Story (Japan)",
     "rom_verified": true,
+    "sha256": "138df33ff85dbfdc5c0e75b2e1c091982e898f8137e1de94057df757fadc1ba8",
     "platform": "gba",
     "no_intro_id": "0026"
   },
@@ -992,12 +996,14 @@
   "AGB-AJNE-0": {
     "name": "Jimmy Neutron - Boy Genius (USA)",
     "rom_verified": true,
+    "sha256": "bf2c1899bb63797da6f54b5025a18749189e94c70e2f330558d90d1d77395836",
     "platform": "gba",
     "no_intro_id": "0177"
   },
   "AGB-AJPJ-1": {
     "name": "J.League Pocket (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "1e32b563187732db34a3fcbf62f1984a6b00dfbc9b09205c6ce56285e85b3247",
     "platform": "gba",
     "no_intro_id": "2874"
   },
@@ -1011,6 +1017,7 @@
   "AGB-AK8E-0": {
     "name": "Medabots AX - Metabee Ver. (USA)",
     "rom_verified": false,
+    "sha256": "7560329757ded622667f414acaa82eca6d1ecb76123e890524feb82163c780e4",
     "platform": "gba",
     "no_intro_id": "0478"
   },
@@ -1129,12 +1136,14 @@
   "AGB-ALUE-0": {
     "name": "Super Monkey Ball Jr. (USA)",
     "rom_verified": false,
+    "sha256": "de40cac26ae34908b91885d1faaa60e5cf5cbd66b60b2ffdf9c96d354ca5e897",
     "platform": "gba",
     "no_intro_id": "0747"
   },
   "AGB-ALUP-0": {
     "name": "Super Monkey Ball Jr. (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "8725f545f19362b1c72243ef9b9a848572ae5193c7a863a88f521a4cdd279be6",
     "platform": "gba",
     "no_intro_id": "0921"
   },
@@ -1239,6 +1248,7 @@
   "AGB-AMOJ-1": {
     "name": "EX Monopoly (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "a12637951daa55b6a21ac0d454e1bbf42eadd9900db6232b00affb6929b418a2",
     "platform": "gba",
     "no_intro_id": "2881"
   },
@@ -1399,6 +1409,7 @@
   "AGB-AQAJ-1": {
     "name": "Choro Q Advance (Japan) (Rev 1)",
     "rom_verified": true,
+    "sha256": "541dfa2b827e460db47d8df6f8d0ebd9754ca5a3744e9596ece8746ace43f6b4",
     "platform": "gba",
     "no_intro_id": "2888"
   },
@@ -1419,6 +1430,7 @@
   "AGB-AREP-0": {
     "name": "Megaman - Battle Network (Europe)",
     "rom_verified": true,
+    "sha256": "b8ddb8e0b334c944c5fef82db8733911780764f7c12fb3e24cb1b32a018f7eb1",
     "platform": "gba",
     "no_intro_id": "0243"
   },
@@ -1446,6 +1458,7 @@
   "AGB-ARQE-0": {
     "name": "Cross Town Heroes (USA)",
     "rom_verified": false,
+    "sha256": "21ec9e1cce05932b8e62e3ef126b2afcf0eb791598ab3c077beb26fa525f91d2",
     "platform": "gba",
     "no_intro_id": "0569"
   },
@@ -1557,6 +1570,7 @@
   "AGB-ASTJ-0": {
     "name": "Densetsu no Starfy (Japan)",
     "rom_verified": true,
+    "sha256": "b606b80bd68edf8d3829475322ed51737f3c970bf051fc47a8d8e716daa2a9bb",
     "platform": "gba",
     "no_intro_id": "0564"
   },
@@ -1682,6 +1696,7 @@
   "AGB-ATZJ-1": {
     "name": "Zoids Saga (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "c307db042aed8d4cdd97dbfe3a169b5880ef5360dc672f7ec9352ba9a6be56e1",
     "platform": "gba",
     "no_intro_id": "2885"
   },
@@ -1702,6 +1717,7 @@
   "AGB-AVBE-0": {
     "name": "Barbie Software - Groovy Games (USA)",
     "rom_verified": false,
+    "sha256": "6f1be00d689168a35c9a04f21dad9b26026423dd3bfa1225339ac4c2af1f99c8",
     "platform": "gba",
     "no_intro_id": "0584"
   },
@@ -1848,6 +1864,7 @@
   "AGB-AX4P-0": {
     "name": "Super Mario Advance 4 - Super Mario Bros. 3 (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "8f5f0f3dc8dc2cc5a3f036831c1ac5fba83632bb770dc9076261717caf501e47",
     "platform": "gba",
     "no_intro_id": "1171"
   },
@@ -2022,6 +2039,7 @@
   "AGB-AZ2E-0": {
     "name": "Zoids - Legacy (USA)",
     "rom_verified": false,
+    "sha256": "0379d0e57d77783ed1d18f28c78b9dd1a964e842aac023e6803377f2e86ddc7d",
     "platform": "gba",
     "no_intro_id": "1627"
   },
@@ -3015,6 +3033,7 @@
   "AGB-BGTP-0": {
     "name": "Grand Theft Auto (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "48892e001bd86836d619a875b2a0605927cae9f922224686efa01bc7e470272a",
     "platform": "gba",
     "no_intro_id": "1718"
   },
@@ -3441,6 +3460,7 @@
   "AGB-BM5P-0": {
     "name": "Mario vs. Donkey Kong (Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "771ef10cbc0a0af9b108867de12b915d17df7a5ce625fcd1b353e9c0fda6787a",
     "platform": "gba",
     "no_intro_id": "1753"
   },
@@ -3503,6 +3523,7 @@
   "AGB-BMRJ-1": {
     "name": "Matantei Loki Ragnarok - Gensou no Labyrinth (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "fab994c494cca2f210380499522a943c666f6a13e9595cae9d3367c187b98c45",
     "platform": "gba",
     "no_intro_id": "2882"
   },
@@ -3523,6 +3544,7 @@
   "AGB-BN7P-0": {
     "name": "Need for Speed - Carbon - Own the City (USA, Europe) (En,Fr,De,Es,It)",
     "rom_verified": true,
+    "sha256": "a355eac15b1b7c2c233208902d12fb9efdd23617a9f4c04f9dfec902f5605bb7",
     "platform": "gba",
     "no_intro_id": "2525"
   },
@@ -3536,6 +3558,7 @@
   "AGB-BNDE-0": {
     "name": "Codename - Kids Next Door - Operation S.O.D.A. (USA)",
     "rom_verified": false,
+    "sha256": "9462aa17c8e9c5e4f7ee079a7469da41d06d1aee92c42e31b6948046d4f3b7b0",
     "platform": "gba",
     "no_intro_id": "1739"
   },
@@ -3682,6 +3705,7 @@
   "AGB-BPMP-1": {
     "name": "Premier Manager 2003-04 (Europe) (En,Fr,De,It) (Rev 1)",
     "rom_verified": false,
+    "sha256": "51684e6d484754838844cc9b37c07da9f12f5630e4ef8a4760caa33657ec1b51",
     "platform": "gba",
     "no_intro_id": "2891"
   },
@@ -3863,6 +3887,7 @@
   "AGB-BREJ-1": {
     "name": "Riviera - Yakusoku no Chi Riviera (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "824af6ff84fd5cef2c21ff174213792b8c43f3da7faecfc62ab0daed86b09fe9",
     "platform": "gba",
     "no_intro_id": "2884"
   },
@@ -4058,6 +4083,7 @@
   "AGB-BTNE-0": {
     "name": "Tron 2.0 - Killer App (USA)",
     "rom_verified": false,
+    "sha256": "f6ff155faa1eb321915875c21c82f7bd25d8f42ce6ba780354d197a62e276ea6",
     "platform": "gba",
     "no_intro_id": "1686"
   },
@@ -4239,6 +4265,7 @@
   "AGB-BXAE-0": {
     "name": "Texas Hold 'em Poker (USA)",
     "rom_verified": true,
+    "sha256": "6b6787b2c91ad5e30a7c668424962122eb2fa8811a93dc4e61d41dbaecd030e3",
     "platform": "gba",
     "no_intro_id": "1720"
   },
@@ -4455,7 +4482,7 @@
   "AGB-FMRP-0": {
     "name": "Classic NES Series - Metroid (USA, Europe)",
     "rom_verified": false,
-    "sha256": "3d5c2f242710da7d34345bf7cd05fa7ae753b3ff1eabebfde7ba87a78737f6d4",
+    "sha256": "038ee8d37fadf7711fe331a0d3c96c93dd85d2b5f57fdd1575030f57ced85db4",
     "platform": "gba",
     "no_intro_id": "1724"
   },
@@ -4623,6 +4650,7 @@
   "CGB-A33X-0": {
     "name": "TG Rally 2 (United Kingdom)",
     "rom_verified": false,
+    "sha256": "a7f3b054a290b04c030c74fabdfb99f0e38a2440c68060595af5c2308b318186",
     "platform": "gbc",
     "no_intro_id": "1193"
   },
@@ -4832,6 +4860,7 @@
   "CGB-AIWU-0": {
     "name": "Alice in Wonderland (USA, Australia)",
     "rom_verified": false,
+    "sha256": "f8eba0d0f74c5fc5da5a13381bfc085fea9d21f8deaddf040d140ba2a9fd16a4",
     "platform": "gbc",
     "no_intro_id": "0023"
   },
@@ -4957,12 +4986,14 @@
   "CGB-ANUE-0": {
     "name": "Mr. Nutz (USA) (En,Fr,Es)",
     "rom_verified": false,
+    "sha256": "d3148649d39fc4f5a8ca3624e022a6c92afbb82b335a3b568b514c60894bfd6b",
     "platform": "gbc",
     "no_intro_id": "0773"
   },
   "CGB-AO4F-0": {
     "name": "Bugs Bunny et le Chateau des Catastrophes (France) (En)",
     "rom_verified": false,
+    "sha256": "dc7b48b71d4a55ecf181e1f95d9d40270c2208b1c45e134c145c57d54db9c319",
     "platform": "gbc",
     "no_intro_id": "1394"
   },
@@ -4983,6 +5014,7 @@
   "CGB-AOXP-0": {
     "name": "Armorines - Project S.W.A.R.M. (USA, Europe) (En,De)",
     "rom_verified": true,
+    "sha256": "001f0d444877a72dc4faa62205684c985f3df5a327c7af94fe5473b486d3c9ed",
     "platform": "gbc",
     "no_intro_id": "0046"
   },
@@ -5080,6 +5112,7 @@
   "CGB-AT7J-1": {
     "name": "Tetris Adventure - Susume Mickey to Nakama-tachi (Japan) (Rev 1)",
     "rom_verified": false,
+    "sha256": "2f262ae2621b2cab27bd85cf279fadb49cebe540a48f05c488c596c40d68ea41",
     "platform": "gbc",
     "no_intro_id": "1473"
   },
@@ -5247,6 +5280,7 @@
   "CGB-AX9P-0": {
     "name": "Jim Henson's Muppets (Europe) (En,Fr,De,Es,It,Nl,Sv)",
     "rom_verified": false,
+    "sha256": "e7f92b429bbb6985931eefbe9ad0387229d277d7c47a569afca58b673e50b861",
     "platform": "gbc",
     "no_intro_id": "0785"
   },
@@ -5568,18 +5602,21 @@
   "CGB-B4QP-1": {
     "name": "Monsters, Inc. (Europe) (Rev 1)",
     "rom_verified": false,
+    "sha256": "76d5fcc21f7263e40c3969dc4e82d1d4531975dcb82b3729e26fcf0112877a0d",
     "platform": "gbc",
     "no_intro_id": "1370"
   },
   "CGB-B4QX-0": {
     "name": "Monsters, Inc. (Europe) (En,Es,Nl)",
     "rom_verified": false,
+    "sha256": "e5124c27ce6562b463de5966e0121b16e3a853e73d708bf30e3fc743116d50fd",
     "platform": "gbc",
     "no_intro_id": "0760"
   },
   "CGB-B4QY-0": {
     "name": "Monsters, Inc. (Europe) (En,Fr,It)",
     "rom_verified": false,
+    "sha256": "6dedcfc2641dcc253cb9ae7e8e9cf63b7b5f3ff378772834a23e1daeddf1c053",
     "platform": "gbc",
     "no_intro_id": "0761"
   },
@@ -5915,6 +5952,7 @@
   "CGB-BBQP-0": {
     "name": "Bob et Bobette - Les Dompteurs du Temps (Europe) (Fr,Nl)",
     "rom_verified": false,
+    "sha256": "31d40ab7e65bd154dad9321654214b6846a3cf912ab20cf8e278c89a90375aa6",
     "platform": "gbc",
     "no_intro_id": "0129"
   },
@@ -6194,6 +6232,7 @@
   "CGB-BEAX-0": {
     "name": "Austin Powers - Welcome to My Underground Lair! (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "29aa9d6d5a6236cf586924c07becf2d8f93d851f5c4b935da0894d140680ee53",
     "platform": "gbc",
     "no_intro_id": "0065"
   },
@@ -6214,6 +6253,7 @@
   "CGB-BEOP-0": {
     "name": "E.T. - The Extra-Terrestrial and the Cosmic Garden (Europe) (En,Fr,De,Es,It,Nl)",
     "rom_verified": true,
+    "sha256": "dc7679d33a5c32d54c476c0979f657e05d31883bb5fb0e296518e4570303fa5c",
     "platform": "gbc",
     "no_intro_id": "0321"
   },
@@ -6332,6 +6372,7 @@
   "CGB-BFWJ-0": {
     "name": "Fushigi no Dungeon - Fuurai no Shiren GB 2 - Sabaku no Majou (Japan) (BFWJ)",
     "rom_verified": true,
+    "sha256": "ff91ebd64d542dca9b692016462c890607ce6c8ca181af3cbb306db8c0955c5c",
     "platform": "gbc",
     "no_intro_id": "1493"
   },
@@ -6618,6 +6659,7 @@
   "CGB-BJJP-0": {
     "name": "Powerpuff Girls, The - Bad Mojo Jojo (Europe) (BJJP)",
     "rom_verified": false,
+    "sha256": "3b36fec05f3122718d4d3a946a4414c4227d6aecbf6bb672d302369747f49e88",
     "platform": "gbc",
     "no_intro_id": "1372"
   },
@@ -6827,12 +6869,14 @@
   "CGB-BMDJ-0": {
     "name": "Mr. Driller (Japan)",
     "rom_verified": true,
+    "sha256": "bfb234d917222063e8343830a0ec0919a45b066a1ebdb903d9b3f546ae149df5",
     "platform": "gbc",
     "no_intro_id": "0774"
   },
   "CGB-BMDP-0": {
     "name": "Mr. Driller (Europe)",
     "rom_verified": false,
+    "sha256": "1b16e619d672eecad5b8b00fed296f14cf487b8bddb8ed6c66e62e5d339f61be",
     "platform": "gbc",
     "no_intro_id": "1371"
   },
@@ -6881,6 +6925,7 @@
   "CGB-BMTP-0": {
     "name": "MTV Sports - Skateboarding Featuring Andy MacDonald (USA, Europe)",
     "rom_verified": false,
+    "sha256": "528c39b67e245ec7cfd5ba1a39f4e1faf6f11d719de5b2ae56a59f9d7ba96a6b",
     "platform": "gbc",
     "no_intro_id": "0779"
   },
@@ -6985,6 +7030,7 @@
   "CGB-BPFE-0": {
     "name": "Hype - The Time Quest (Brazil) (En)",
     "rom_verified": false,
+    "sha256": "2f55b6d51498c81456e4beca7028eab1985793423f103f2b843e8305e02e1194",
     "platform": "gbc",
     "no_intro_id": "1470"
   },
@@ -7005,7 +7051,7 @@
   "CGB-BPLE-1": {
     "name": "Pro Pool (USA) (En,Fr,De)",
     "rom_verified": false,
-    "sha256": "a13d04ebfc4fbc67cd44134d5ce7b4150c5a06c291ccdeb1203e4461394e950f",
+    "sha256": "2c67b700546b9f4c3ec8790218a473316e824b8cc0baf5cb79afb0e8eb3ca33b",
     "platform": "gbc",
     "no_intro_id": "1489"
   },
@@ -7061,6 +7107,7 @@
   "CGB-BPTP-0": {
     "name": "Powerpuff Girls, The - Paint the Townsville Green (Europe) (BPTP)",
     "rom_verified": true,
+    "sha256": "b7238891fc1cb59928f7f6c8be9e2d1089311508074a745fae6266031332374a",
     "platform": "gbc",
     "no_intro_id": "1387"
   },
@@ -7459,6 +7506,7 @@
   "CGB-BTJP-1": {
     "name": "Tom and Jerry - Mousehunt (Europe) (En,Fr,De,Es,It) (Rev 1)",
     "rom_verified": false,
+    "sha256": "907bb1393c77f1a234f0a827239172d22e95c3e3092f28ad6dfd38cf5ef4cf86",
     "platform": "gbc",
     "no_intro_id": "1483"
   },
@@ -7514,6 +7562,7 @@
   "CGB-BTVP-0": {
     "name": "MTV Sports - T.J. Lavin's Ultimate BMX (USA, Europe)",
     "rom_verified": false,
+    "sha256": "4e3291e8b0d729e02ed950de1b09a7dcb2eacbb82a6e4f3988ebae3085e0edf7",
     "platform": "gbc",
     "no_intro_id": "0780"
   },
@@ -7541,6 +7590,7 @@
   "CGB-BU4P-0": {
     "name": "Moorhuhn 3 - ...Es Gibt Huhn! (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "d33fbd840707c73d2d8b6d1392a8732b82bb14679ab6520ffa1dabcc60385fac",
     "platform": "gbc",
     "no_intro_id": "0767"
   },
@@ -7911,6 +7961,7 @@
   "CGB-BYTU-0": {
     "name": "Pokemon - Crystal Version (Australia)",
     "rom_verified": true,
+    "sha256": "3321b0e495a10952b9a75ce91445f94542f889261c411f7069861e42cef9ff05",
     "platform": "gbc",
     "no_intro_id": "1472"
   },
@@ -7945,6 +7996,7 @@
   "CGB-BZSP-0": {
     "name": "Zidane - Football Generation (Europe) (En,Fr,De,Es,It)",
     "rom_verified": false,
+    "sha256": "b4f7387b9a74d7501147567be9539007a0baa7f27bdd150a6743984b31f6bb3a",
     "platform": "gbc",
     "no_intro_id": "1361"
   },
@@ -8161,6 +8213,7 @@
   "DMG-A2KJ-1": {
     "name": "Konchuu Hakase 2 (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "74eb6e2e11b5ae6514e615c7c9d2711324e6945f2894bd306745f66e1512b6ae",
     "platform": "gbc",
     "no_intro_id": "1492"
   },
@@ -8370,6 +8423,7 @@
   "DMG-A7YJ-1": {
     "name": "Minna no Shougi - Shokyuu Hen (Japan) (Rev 1) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "4b8ce182323fbbb9dafcd7da72559a72290fcf0bc4db4461de4e0ce6105bbfd1",
     "platform": "gbc",
     "no_intro_id": "1467"
   },
@@ -8614,6 +8668,7 @@
   "DMG-AB5J-0": {
     "name": "Bomberman Quest (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "7e98a14b81ed607089e84fe441e82afb8508e853ba42315bf429663bfbf45c85",
     "platform": "gbc",
     "no_intro_id": "0143"
   },
@@ -8872,12 +8927,14 @@
   "DMG-ACNE-0": {
     "name": "Quest for Camelot (USA, Australia) (En,Fr,Es) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "d6f87bca0273bed53e657b241bee53e9d760759eaed318507906dbe8f10ef277",
     "platform": "gbc",
     "no_intro_id": "0982"
   },
   "DMG-ACNU-0": {
     "name": "Quest for Camelot (USA, Australia) (En,Fr,Es) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "d6f87bca0273bed53e657b241bee53e9d760759eaed318507906dbe8f10ef277",
     "platform": "gbc",
     "no_intro_id": "0982"
   },
@@ -9129,6 +9186,7 @@
   "DMG-ADYP-0": {
     "name": "Barbie - Ocean Discovery (United Kingdom) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "5301c979581dbe6fd8bee3577610d19b7abbe00993497cadf2fcddaf215343df",
     "platform": "gbc",
     "no_intro_id": "0092"
   },
@@ -9219,7 +9277,7 @@
   "DMG-AEOJ-0": {
     "name": "Sei Hai Densetsu (Japan) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
-    "sha256": "42334625ebd71080013af116e3cc295837e4d775590547b6ff8de5d6327bd520",
+    "sha256": "47b16036ef1d91f8bfccc42cd654422b23509bd1aee2ce4dadcc7329a2bc42fb",
     "platform": "gbc",
     "no_intro_id": "1067"
   },
@@ -9513,7 +9571,7 @@
   "DMG-AGX-0": {
     "name": "Pang (Europe)",
     "rom_verified": true,
-    "sha256": "cbe25adb2ac89a6f3ebcb9fd9cb10ff1ee7b41965545bacdb5d8900d138bc73e",
+    "sha256": "50fbd4f89e665b7ba05a1aece765afcb5c905403430fa475066b3ef75c56db3b",
     "platform": "gb",
     "no_intro_id": "0974"
   },
@@ -9583,6 +9641,7 @@
   "DMG-AHPP-0": {
     "name": "Shanghai Pocket (Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "1cafe73e3cf49720d7ca64ea14ef695b6a742f3909cb895802432d995300666b",
     "platform": "gbc",
     "no_intro_id": "1079"
   },
@@ -10492,6 +10551,7 @@
   "DMG-AP9P-0": {
     "name": "Jim Henson's Muppets (Europe) (En,Fr,De,Es,It,Nl,Sv) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "de0ca2718ad6122d8730c46f4fa24a3b0d23df982b29b5a8facc90940cdcd96f",
     "platform": "gbc",
     "no_intro_id": "1376"
   },
@@ -10673,12 +10733,14 @@
   "DMG-APQE-0": {
     "name": "Power Quest (USA) (En-US,En-GB,Fr,De,Es,It) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "8fe813c33c533bbee15419090eac90205f7a04ba1aa9ab6943ad7a27c31378e6",
     "platform": "gbc",
     "no_intro_id": "0946"
   },
   "DMG-APQP-0": {
     "name": "Power Quest (Europe) (En-US,En-GB,Fr,De,Es,It) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "73f83c7ca3decf638be281d23977f0e3c7e9fe882e085be44092bc90e9bcd816",
     "platform": "gbc",
     "no_intro_id": "0945"
   },
@@ -10818,6 +10880,7 @@
   "DMG-AQCP-0": {
     "name": "Ms. Pac-Man - Special Colour Edition (Europe) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "d36073f91ac8a0db8c9bf934547cbe7a450496eaec0e3709743ae0ed2b14771f",
     "platform": "gbc",
     "no_intro_id": "0777"
   },
@@ -11125,6 +11188,7 @@
   "DMG-ASWP-1": {
     "name": "Shadowgate Classic (Europe) (En,Fr,De,Es,Sv) (Rev 1) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "0c3a0a0504d7babc64cdc39e6e24cf14731a9de38d111a8b4748b8869180ad3b",
     "platform": "gbc",
     "no_intro_id": "1073"
   },
@@ -11453,6 +11517,7 @@
   "DMG-AVUE-0": {
     "name": "Beauty and the Beast - A Board Game Adventure (USA, Australia) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "1cbdbf760d84d62933f1b66410a80dda4185b138d964e6ec51780d391d09143d",
     "platform": "gbc",
     "no_intro_id": "0114"
   },
@@ -11466,6 +11531,7 @@
   "DMG-AVUU-0": {
     "name": "Beauty and the Beast - A Board Game Adventure (USA, Australia) (SGB Enhanced) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "1cbdbf760d84d62933f1b66410a80dda4185b138d964e6ec51780d391d09143d",
     "platform": "gbc",
     "no_intro_id": "0114"
   },
@@ -11990,6 +12056,7 @@
   "DMG-AZTP-0": {
     "name": "All Star Tennis 2000 (Europe) (AZTP) (GB Compatible)",
     "rom_verified": false,
+    "sha256": "bd0427cecea939e2647bd5ccc67d3a9b0d07d2a313924306a8ff68bc05ffdb6a",
     "platform": "gbc",
     "no_intro_id": "0025"
   },
@@ -12381,12 +12448,14 @@
   "DMG-BQLJ-1": {
     "name": "Dragon Quest Monsters 2 - Maruta no Fushigi na Kagi - Ruka no Tabidachi (Japan) (Rev 1) (SGB Enhanced) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "9016f94820737c3c268023ed9f4d05317bd5fa693573cce0d9c97249e72856d6",
     "platform": "gbc",
     "no_intro_id": "1468"
   },
   "DMG-BRAZ-0": {
     "name": "Sewing Machine Operation Software (Europe) (En,Fr,De,It) (GB Compatible)",
     "rom_verified": true,
+    "sha256": "f9e6e02cc938d355a65dff48eff69002d7248c4ab6a84f335fe360e0f9aa5c8c",
     "platform": "gbc",
     "no_intro_id": "1477"
   },

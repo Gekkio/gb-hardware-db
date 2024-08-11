@@ -14,7 +14,7 @@ pub type OxyU5 = ChipYearWeek;
 pub fn unknown() -> &'static impl LabelParser<OxyU5> {
     single_parser!(
         OxyU5,
-        r#"^CP6465\ B\ 02\ KOR([0-9]{2})([0-9]{2})\ [0-9]{6}$"#,
+        r#"^CP6465\ B\ 0[0-9]\ KOR([0-9]{2})([0-9]{2})\ [0-9]{6}$"#,
         move |c| {
             Ok(OxyU5 {
                 kind: "CP6465".to_owned(),

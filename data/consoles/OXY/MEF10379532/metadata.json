@@ -1,0 +1,26 @@
+{
+  "slug": "MEF10379532",
+  "contributor": "Sono",
+  "shell": {
+    "color": "Pink",
+    "release_code": "C/OXY-EUR",
+    "serial": "MEF10379532"
+  },
+  "mainboard": {
+    "label": "OXY-CPU-02",
+    "circled_letters": "CM",
+    "year": 2005,
+    "u1": {
+      "label": "0535 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM"
+    },
+    "u2": {
+      "label": "MITSUMI JAPAN 518D PM C"
+    },
+    "u4": {
+      "label": "AKV 522"
+    },
+    "u5": {
+      "label": "CP6465 B 04 KOR0531 633017"
+    }
+  }
+}

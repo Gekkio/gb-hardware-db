@@ -43,6 +43,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Red Vázquez
 * Smelly-Ghost
 * Smileynator
+* Sono
 * terinjokes
 * tobiasvl
 * zear

@@ -311,7 +311,7 @@ where
         if let Some(captures) = self.regex.captures(label) {
             (self.f)(captures)
         } else {
-            Err("no match".to_owned())
+            Err(format!("no match for {label}"))
         }
     }
     fn parsers(&self) -> Vec<&SingleParser<T>> {
@@ -357,7 +357,7 @@ where
         matches
             .iter()
             .find_map(|m| self.parsers[m].parse(label).ok())
-            .ok_or_else(|| "no match".to_owned())
+            .ok_or_else(|| format!("no match for {label}"))
     }
 
     fn parsers(&self) -> Vec<&SingleParser<T>> {

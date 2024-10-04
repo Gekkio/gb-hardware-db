@@ -35,7 +35,7 @@ mozjpeg = "0.10.9"
 pulldown-cmark = "0.11.2"
 qcms = "0.3.0"
 rayon = "1.10.0"
-regex = "1.10.5"
+regex = "1.11.0"
 retro-dat = { git = "https://github.com/Gekkio/retro-dat.git" }
 serde = "1.0.204"
 serde_json = "1.0.120"

@@ -595,8 +595,8 @@ impl BoardConfig {
 
 pub struct BoardPart {
     pub role: PartRole,
-    pub parser: Box<dyn Fn(&str) -> Result<Box<dyn ParsedData>, String>>,
-    pub parse_any: Box<dyn Fn(&str) -> Result<Box<dyn Any>, String>>,
+    pub parser: Box<dyn Fn(&str) -> Result<Box<dyn ParsedData>, String> + Send + Sync>,
+    pub parse_any: Box<dyn Fn(&str) -> Result<Box<dyn Any>, String> + Send + Sync>,
 }
 
 fn create_map() -> HashMap<&'static str, BoardConfig> {

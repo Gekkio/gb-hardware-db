@@ -7,14 +7,14 @@ use cursive::{
     views::{EditView, SelectView, TextView},
     Cursive,
 };
-use std::rc::Rc;
+use std::sync::Arc;
 
 pub trait GbHwDbCursiveExt {
     fn try_get_edit_view_value(&mut self, id: &str) -> Option<String>;
     fn get_edit_view_value(&mut self, id: &str) -> String;
     fn get_select_view_selection<T>(&mut self, id: &str) -> Option<T>
     where
-        T: Clone + 'static;
+        T: Clone + Send + Sync + 'static;
     fn set_text_view_content<S: Into<StyledString>>(&mut self, id: &str, content: S);
 }
 
@@ -28,10 +28,10 @@ impl GbHwDbCursiveExt for Cursive {
     }
     fn get_select_view_selection<T>(&mut self, id: &str) -> Option<T>
     where
-        T: Clone + 'static,
+        T: Clone + Send + Sync + 'static,
     {
         self.call_on_name(id, |view: &mut SelectView<T>| {
-            view.selection().map(Rc::unwrap_or_clone)
+            view.selection().map(Arc::unwrap_or_clone)
         })
         .unwrap_or_else(|| panic!("No SelectView with id {:?}", id))
     }

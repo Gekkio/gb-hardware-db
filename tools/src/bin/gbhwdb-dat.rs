@@ -9,7 +9,6 @@ use gbhwdb_tools::{cursive::*, dat::DatFile};
 use glob::glob;
 use itertools::Itertools;
 use std::{
-    cell::Cell,
     cmp::Ordering,
     collections::{BTreeMap, HashSet},
     fmt,
@@ -17,8 +16,10 @@ use std::{
     io::{BufReader, BufWriter},
     ops::Index,
     path::Path,
-    rc::Rc,
-    sync::atomic::{self, AtomicBool},
+    sync::{
+        atomic::{self, AtomicBool},
+        Arc,
+    },
 };
 use strsim::jaro;
 
@@ -298,7 +299,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
     if !platform_problems.is_empty() {
         let total = platform_problems.len();
         for (idx, (code, cfg, platform)) in platform_problems.into_iter().enumerate() {
-            let choice = Rc::new(Cell::new(false));
+            let choice = Arc::new(AtomicBool::new(false));
             let mut dialog = Dialog::new()
                 .title(format!("Fix platform problem {}/{}", idx + 1, total))
                 .content(
@@ -308,16 +309,16 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
                         .child(TextView::new(format!("After:  {}", platform))),
                 );
             {
-                let choice = choice.clone();
+                let choice = Arc::clone(&choice);
                 dialog.add_button("Ok", move |s| {
-                    choice.set(true);
+                    choice.store(true, atomic::Ordering::SeqCst);
                     s.quit();
                 });
             }
             {
                 let choice = choice.clone();
                 dialog.add_button("Cancel", move |s| {
-                    choice.set(false);
+                    choice.store(false, atomic::Ordering::SeqCst);
                     s.quit();
                 });
             }
@@ -327,7 +328,7 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
             if should_quit() {
                 return;
             }
-            if choice.get() {
+            if choice.load(atomic::Ordering::SeqCst) {
                 cfg.platform = platform;
             }
         }

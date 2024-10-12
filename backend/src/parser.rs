@@ -292,7 +292,7 @@ pub fn month2(text: &str) -> Result<Month, String> {
         .ok_or_else(|| format!("Invalid 2-digit month: {}", text))
 }
 
-pub trait LabelParser<T> {
+pub trait LabelParser<T>: Send + Sync {
     fn parse(&self, label: &str) -> Result<T, String>;
     fn parsers(&self) -> Vec<&SingleParser<T>>;
 }

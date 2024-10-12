@@ -75,7 +75,7 @@ pub fn scale_to_px_limit(image: RgbImage, px_limit: u32) -> RgbImage {
 }
 
 pub fn read_image(path: &Path) -> Result<RgbImage, Error> {
-    let reader = image::io::Reader::new(BufReader::new(File::open(path)?));
+    let reader = image::ImageReader::new(BufReader::new(File::open(path)?));
     let mut decoder = reader.with_guessed_format()?.into_decoder()?;
     let icc = decoder
         .icc_profile()?

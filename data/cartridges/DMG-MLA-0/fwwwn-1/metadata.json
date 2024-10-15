@@ -1,0 +1,28 @@
+{
+  "code": "DMG-MLA-0",
+  "slug": "fwwwn-1",
+  "contributor": "fwwwn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MLA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BBA-01",
+    "circled_letters": "J",
+    "panel_position": "2",
+    "year": 1989,
+    "month": 4,
+    "u1": {
+      "label": "DMG-MLA-0 SHARP JAPAN B0 8921 D"
+    },
+    "u2": {
+      "label": "DMG MBC1 Nintendo S 8919 T"
+    }
+  },
+  "dump": {
+    "tool": "GB Operator (Software: v1.3.1, Device Version: v9.2.0, Core Version: v2.0.0)",
+    "date": "2024-10-15",
+    "sha256": "470d6c45c9bcf7f0397d00c1ae6de727c63dd471049c8eedbefdc540ceea80b4"
+  }
+}

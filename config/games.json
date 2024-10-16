@@ -21524,6 +21524,13 @@
     "platform": "gbc",
     "no_intro_id": "0313"
   },
+  "CGB-ADME-0": {
+    "name": "Game Boy Color (World) (Demo) (Kiosk)",
+    "rom_verified": true,
+    "sha256": "b1b0b2318383440c73bf942ad828debb78713fc5bc3bda44e1c2ae8ffcc49ae3",
+    "platform": "gbc",
+    "no_intro_id": "0379"
+  },
   "CGB-ADTE-0": {
     "name": "Deja Vu I & II - The Casebooks of Ace Harding (USA)",
     "rom_verified": false,

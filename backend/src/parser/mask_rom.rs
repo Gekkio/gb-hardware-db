@@ -159,16 +159,16 @@ pub fn oki_old() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
-/// OKI Semiconductor MSM538011E mask ROM
+/// OKI Semiconductor MSM534011E / MSM538011E mask ROM
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::mask_rom::oki_msm538011e().parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
 /// ```
-pub fn oki_msm538011e() -> &'static impl LabelParser<MaskRom> {
+pub fn oki_msm53x011e() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M538011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
+        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M53[48]011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(MaskRom {
                 rom_code: c[1].to_owned(),
@@ -537,7 +537,7 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         sharp3(),
         macronix(),
         macronix2(),
-        oki_msm538011e(),
+        oki_msm53x011e(),
         oki_mr531614g(),
         nec(),
         nec_like(),

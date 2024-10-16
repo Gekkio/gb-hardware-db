@@ -1,0 +1,36 @@
+{
+  "code": "CGB-AAXK-0",
+  "slug": "smelly-ghost-1",
+  "contributor": "Smelly-Ghost",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AAXK-KOR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2002,
+    "month": 9,
+    "u1": {
+      "label": "M034204-M MX23C1603-12A CGB-AAXK-0 G2 1D0991A2A0"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 148 H68"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2828W13088.1N F0318 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 2933"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBFlash v1.2",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pocket Monsters Eun (Korea).gbc\n* File Size:       2.00 MiB (2097152 bytes)\n* CRC32:           9cc1f90f\n* MD5:             f5e14b069eaddee42735572bd23f7ef8\n* SHA-1:           cb22d7e03a74dc3a563fde6be8626626b2b392e7\n* SHA-256:         ebbac63c0c4309c82dbb6723e7163369784f962b4fd3e2f486075307c3008a22\n\n== General Information ==\n* Hardware:        GBFlash v1.2 – Firmware L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.27723-SP0\n* Baud Rate:       2000000\n* Dump Time:       2024-10-15T16:32:38-07:00\n* Time Elapsed:    4 seconds (511.84 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        2 MiB\n* Mapper Type:     MBC3\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      POKEMON_SLV\n* Game Code:       AAXK\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  Required\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xE7)\n* ROM Checksum:    OK (0x985B)\n* ROM Size:        2 MiB (0x06)\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\n* Mapper Type:     MBC3+RTC+SRAM+BATTERY (0x10)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Pocket Monsters Eun (Korea)\n* Region:          Korea\n* Language(s):     Ko\n* Game Code:       CGB-AAXK\n* ROM CRC32:       9cc1f90f\n* ROM Size:        2 MiB",
+    "sha256": "ebbac63c0c4309c82dbb6723e7163369784f962b4fd3e2f486075307c3008a22",
+    "date": "2024-10-15"
+  }
+}

@@ -482,17 +482,19 @@ pub fn sharp_lh52a64n_l() -> &'static impl LabelParser<Ram> {
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::ram::bsi_bs62lv256sc().parse("BSI BS62LV256SC-70 S2827V52155 A0106 TAIWAN").is_ok());
 /// assert!(parser::ram::bsi_bs62lv256sc().parse("BSI BS62LV256SC-70 S2828W11075.1 F0231 TAIWAN").is_ok());
+/// assert!(parser::ram::bsi_bs62lv256sc().parse("BSI BS62LV256SCG70 S2828CA30125 A D05502 TAIWAN").is_ok());
+/// assert!(parser::ram::bsi_bs62lv256sc().parse("BSI BS62LV256SC-70 S2828W13088.1N F0318 TAIWAN").is_ok());
 /// ```
 pub fn bsi_bs62lv256sc() -> &'static impl LabelParser<Ram> {
     single_parser!(
         Ram,
-        r#"^BSI\ (BS62LV256SC-[0-9]{2})\ [[:alnum:]]{10,11}(.[0-9])?\ [A-Z]([0-9]{2})([0-9]{2})\ TAIWAN$"#,
+        r#"^BSI\ (BS62LV256SC[G\-][0-9]{2})\ [[:alnum:]]{10,12}(.[0-9][A-Z]?)?(\ A)?\ [A-Z]([0-9]{2})([0-9]{2})[0-9]?\ TAIWAN$"#,
         move |c| {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Bsi),
-                year: Some(year2(&c[3])?),
-                week: Some(week2(&c[4])?),
+                year: Some(year2(&c[4])?),
+                week: Some(week2(&c[5])?),
             })
         },
     )

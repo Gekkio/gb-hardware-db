@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DFJ-0",
+  "slug": "der-gespenster-1",
+  "contributor": "Der Gespenster",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DFJ",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "5",
+    "year": 1992,
+    "month": 11,
+    "u1": {
+      "label": "DMG-DFJ-0 S LH5321FL JAPAN D1 9249 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9208 7 A"
+    }
+  }
+}

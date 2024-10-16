@@ -16,6 +16,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * creeps
 * curbsideaudio
 * davidslv
+* Der Gespenster
 * Duo (http://gameboy.mongenel.com)
 * EchelonPrime
 * endrift

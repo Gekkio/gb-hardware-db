@@ -163,7 +163,8 @@ pub fn oki_old() -> &'static impl LabelParser<MaskRom> {
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_msm538011e().parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
+/// assert!(parser::mask_rom::oki_msm53x011e().parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
+/// assert!(parser::mask_rom::oki_msm53x011e().parse("CGB-ADME-0 E1 M534011E-09 841232A").is_ok());
 /// ```
 pub fn oki_msm53x011e() -> &'static impl LabelParser<MaskRom> {
     single_parser!(

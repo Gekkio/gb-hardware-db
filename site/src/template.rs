@@ -55,9 +55,9 @@ pub fn page(title: &str, section: SiteSection, content: Markup) -> String {
                     div.site-main__content { (content) }
                 }
                 (SiteFooter)
-            }
-            script {
-                (PreEscaped("document.querySelectorAll('.jsonly').forEach((m) => { m.hidden = false; });"))
+                script {
+                    (PreEscaped("document.querySelectorAll('.jsonly').forEach((m) => { m.hidden = false; });"))
+                }
             }
         }
     }

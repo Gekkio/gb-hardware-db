@@ -7,9 +7,9 @@ use std::fmt;
 use config::cartridge::GamePlatform;
 
 pub mod config;
+pub mod hash;
 pub mod input;
 pub mod parser;
-pub mod sha256;
 pub mod time;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]

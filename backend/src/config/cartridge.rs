@@ -16,13 +16,13 @@ use std::{
 };
 
 use crate::{
+    hash::{Crc32, Md5, Sha1, Sha256},
     parser::{
         accelerometer::accelerometer, crystal_32kihz::crystal_32kihz, eeprom::eeprom, flash::flash,
         hex_inverter::hex_inverter, line_decoder::line_decoder, mapper, mask_rom::mask_rom,
         ram::ram, rtc::rtc, supervisor_reset::supervisor_reset, tama::tama, unknown_chip,
         LabelParser, ParsedData,
     },
-    sha256::Sha256,
 };
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
@@ -31,6 +31,12 @@ pub struct GameConfig {
     pub rom_id: String,
     pub name: String,
     pub rom_verified: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crc32: Option<Crc32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub md5: Option<Md5>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sha1: Option<Sha1>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub sha256: Option<Sha256>,
     pub platform: GamePlatform,

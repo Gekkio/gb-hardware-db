@@ -8,8 +8,8 @@ use time::Date;
 
 use crate::{
     config::cartridge::PartDesignator,
+    hash::Sha256,
     input::{is_not_outlier, Part},
-    sha256::Sha256,
     time::Month,
     ParseError,
 };

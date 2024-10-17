@@ -338,6 +338,15 @@ fn sync(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats)
         let dat_game = &dats[cfg.platform].games[&cfg.name];
         cfg.rom_verified = dat_game.rom_verified;
         cfg.no_intro_id.clone_from(&dat_game.id);
+        if dat_game.crc32.is_some() {
+            cfg.crc32 = dat_game.crc32;
+        }
+        if dat_game.md5.is_some() {
+            cfg.md5 = dat_game.md5;
+        }
+        if dat_game.sha1.is_some() {
+            cfg.sha1 = dat_game.sha1;
+        }
         if dat_game.sha256.is_some() {
             cfg.sha256 = dat_game.sha256;
         }
@@ -441,6 +450,9 @@ fn add(siv: &mut Cursive, cfgs: &mut BTreeMap<String, GameConfig>, dats: &Dats) 
             name: dat_game.name.clone(),
             rom_id,
             rom_verified: dat_game.rom_verified,
+            crc32: dat_game.crc32,
+            md5: dat_game.md5,
+            sha1: dat_game.sha1,
             sha256: dat_game.sha256,
             platform: candidate.platform,
             no_intro_id: dat_game.id.clone(),

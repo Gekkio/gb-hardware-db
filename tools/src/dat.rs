@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::Error;
-use gbhwdb_backend::sha256::Sha256;
+use gbhwdb_backend::hash::{Crc32, Md5, Sha1, Sha256};
 use retro_dat::{DatReader, Status};
 use std::{collections::HashMap, path::Path};
 
@@ -19,6 +19,9 @@ pub struct DatGame {
     pub id: String,
     pub name: String,
     pub rom_verified: bool,
+    pub crc32: Option<Crc32>,
+    pub md5: Option<Md5>,
+    pub sha1: Option<Sha1>,
     pub sha256: Option<Sha256>,
 }
 
@@ -30,13 +33,16 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
         .games
         .into_iter()
         .map(|game| {
-            let (rom_verified, sha256) = {
+            let (rom_verified, crc32, md5, sha1, sha256) = {
                 match game.roms.first() {
                     Some(rom) => (
                         rom.status == Status::Verified,
+                        Crc32::parse(&rom.crc).ok(),
+                        Md5::parse(&rom.md5).ok(),
+                        Sha1::parse(&rom.sha1).ok(),
                         Sha256::parse(&rom.sha256).ok(),
                     ),
-                    None => (false, None),
+                    None => (false, None, None, None, None),
                 }
             };
             (
@@ -45,6 +51,9 @@ pub fn from_path<P: AsRef<Path>>(path: P) -> Result<DatFile, Error> {
                     id: game.id,
                     name: game.name,
                     rom_verified,
+                    crc32,
+                    md5,
+                    sha1,
                     sha256,
                 },
             )

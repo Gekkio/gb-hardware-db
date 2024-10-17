@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AW3P-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW3P-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "1",
+    "year": 1995,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AW3P-0 S LH532MVB JAPAN D1 9608 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9549 5 A"
+    }
+  }
+}

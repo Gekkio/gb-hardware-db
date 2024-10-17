@@ -10,6 +10,7 @@ Site source code for https://gbhwdb.gekkio.fi
 
 ## Contributors
 
+* Alex G
 * Ben Black
 * Bruno Bertuga
 * Comrade Claire

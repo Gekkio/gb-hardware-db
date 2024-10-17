@@ -1,0 +1,29 @@
+{
+  "code": "DMG-XGE-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-XG-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "panel_position": "4",
+    "year": 1996,
+    "month": 12,
+    "u1": {
+      "label": "DMG-XGE-0 S LH531HPD JAPAN C1 9702 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'D8"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "1009c6c0",
+    "sha1": "fb3770e2da5c668d23e5f96a4806a6d3db24eaeb"
+  }
+}

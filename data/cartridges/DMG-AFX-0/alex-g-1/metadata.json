@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AFX-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AF-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1992,
+    "month": 6,
+    "u1": {
+      "label": "DMG-AFX-0 S LH5308Z1 JAPAN C1 9224 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9206 1 AB"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "28fa451e",
+    "sha1": "2246dbdb6c58c77814cf034ae9224be8e73c5084"
+  }
+}

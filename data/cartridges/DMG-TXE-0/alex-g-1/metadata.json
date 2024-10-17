@@ -1,0 +1,23 @@
+{
+  "code": "DMG-TXE-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TX-FAH",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1992,
+    "month": 7,
+    "u1": {
+      "label": "DMG-TXE-0 S LH5308BH JAPAN C1 9229 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9218BA005"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ALLP-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ALLP-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-10",
+    "circled_letters": "Cs",
+    "panel_position": "3",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ALLP-0 S LH532MU9 JAPAN D1 9708 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'16"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "538e0591",
+    "sha1": "7d67aa8b17d7208d8ed234bd70b4def9582b362d"
+  }
+}

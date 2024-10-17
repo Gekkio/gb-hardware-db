@@ -1,0 +1,36 @@
+{
+  "code": "DMG-AAUF-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "MB",
+    "panel_position": "1",
+    "year": 2000,
+    "month": 11,
+    "u1": {
+      "label": "E010219-M MX23C1603-12A DMG-AAUF-0 G2 2D515600"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 049 H67"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 050 180NA"
+    },
+    "u4": {
+      "label": "6735 0C90"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "37a70702",
+    "sha1": "c147c0d8c2b71b7628a7233436f5c052b5b17081"
+  }
+}

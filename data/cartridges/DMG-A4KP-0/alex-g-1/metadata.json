@@ -1,0 +1,29 @@
+{
+  "code": "DMG-A4KP-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A4KP-EUU",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1998,
+    "month": 11,
+    "u1": {
+      "label": "DMG-A4KP-0 S LH538WY2 JAPAN F1 9850 D"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 843 146"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "4eb71448",
+    "sha1": "ea54fb35cd8c4d4cea234423a81f8f953b1d33e4"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "code": "DMG-AAXF-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAXF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "K",
+    "panel_position": "5",
+    "year": 2000,
+    "month": 12,
+    "u1": {
+      "label": "M010204-M MX23C1603-12A DMG-AAXF-0 G2 1C6526A1"
+    },
+    "u2": {
+      "label": "MBC3 B P-2 035U5E"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 048 130NA"
+    },
+    "u4": {
+      "label": "6735 0C89"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "e0c216ea",
+    "sha1": "a4a7e8079b7a53e4d9ef43382bbb1090b9d45d1a"
+  }
+}

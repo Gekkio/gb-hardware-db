@@ -1,0 +1,29 @@
+{
+  "code": "DMG-TZE-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TZ-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1998,
+    "month": 7,
+    "u1": {
+      "label": "DMG-TZE-0 C1 N-1001EUGW-J40 9833E7003"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'43"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "21848101",
+    "sha1": "d2b94304971900dc2ff4945ad5cb445bfe434a5c"
+  }
+}

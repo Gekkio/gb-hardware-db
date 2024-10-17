@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AYQP-0",
+  "slug": "alex-g-1",
+  "contributor": "Alex G",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AYQP-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A09-01",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 2000,
+    "month": 6,
+    "u1": {
+      "label": "M003495-M MX23C3203-12A2 CGB-AYQP-0 H2 1R2474A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 030U1M"
+    }
+  },
+  "dump": {
+    "tool": "GBFlash",
+    "date": "2024-10-16",
+    "crc32": "c430a89a",
+    "sha1": "2e2d674426f2d29195a4bfbd82dca4c25416e475"
+  }
+}

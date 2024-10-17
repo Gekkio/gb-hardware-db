@@ -1,0 +1,28 @@
+{
+  "code": "DMG-MQE-2",
+  "slug": "melongx-1",
+  "contributor": "MelonGx",
+  "index": 1,
+  "shell": {
+    "code": "DMG-401CHN"
+  },
+  "board": {
+    "label": "DMG-DECN-M01",
+    "circled_letters": "HS",
+    "panel_position": "3",
+    "year": 1994,
+    "month": 10,
+    "u1": {
+      "label": "MANI DMG-MQE-2 23C4001EAGW-J22 9447X9200"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9423BA012"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9422B KOREA"
+    },
+    "u4": {
+      "label": "6129A 4A16"
+    }
+  }
+}

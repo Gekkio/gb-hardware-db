@@ -292,6 +292,28 @@ pub fn smsc() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+/// MANI mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::mask_rom::mani().parse("MANI DMG-MQE-2 23C4001EAGW-J22 9447X9200").is_ok());
+/// ```
+pub fn mani() -> &'static impl LabelParser<MaskRom> {
+    single_parser!(
+        MaskRom,
+        r#"^MANI\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
+        move |c| {
+            Ok(MaskRom {
+                rom_code: c[1].to_owned(),
+                manufacturer: Some(Manufacturer::Mani),
+                chip_type: Some(c[3].to_owned()),
+                year: Some(year2(&c[4])?),
+                week: Some(week2(&c[5])?),
+            })
+        },
+    )
+}
+
 /// Glop top mask ROM.
 ///
 /// Probably manufactured by Sharp (?)
@@ -544,6 +566,7 @@ pub fn mask_rom() -> &'static impl LabelParser<MaskRom> {
         nec_like(),
         at_t(),
         smsc(),
+        mani(),
         glop_top(),
         toshiba(),
         samsung(),

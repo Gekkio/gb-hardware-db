@@ -38,6 +38,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Lance Kindle
 * mattcurrie
 * max-m
+* MelonGx
 * Miyako
 * org
 * pokechu22

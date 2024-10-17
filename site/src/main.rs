@@ -57,6 +57,11 @@ fn get_photo(root: &Path, name: &str) -> Option<LegacyPhoto> {
 #[derive(Default)]
 pub struct SiteData {
     cfgs: BTreeMap<String, GameConfig>,
+    submissions: Submissions,
+}
+
+#[derive(Default)]
+pub struct Submissions {
     cartridges: Vec<LegacyCartridgeSubmission>,
     dmg: Vec<LegacyDmgSubmission>,
     sgb: Vec<LegacySgbSubmission>,
@@ -70,7 +75,7 @@ pub struct SiteData {
     oxy: Vec<LegacyOxySubmission>,
 }
 
-impl SiteData {
+impl Submissions {
     pub fn counts(&self) -> SubmissionCounts {
         SubmissionCounts {
             cartridges: self.cartridges.len() as u32,
@@ -87,6 +92,31 @@ impl SiteData {
                 (Console::Oxy, self.oxy.len() as u32),
             ]),
         }
+    }
+    pub fn by_contributor(&self) -> BTreeMap<&str, Submissions> {
+        fn collect<'a, M: Clone, P: Clone>(
+            submissions: &'a [LegacySubmission<M, P>],
+            result: &mut BTreeMap<&'a str, Submissions>,
+            mut field: impl FnMut(&mut Submissions) -> &mut Vec<LegacySubmission<M, P>>,
+        ) {
+            for submission in submissions {
+                let entry = result.entry(&submission.contributor).or_default();
+                field(entry).push(submission.clone());
+            }
+        }
+        let mut result: BTreeMap<&str, Submissions> = BTreeMap::new();
+        collect(&self.cartridges, &mut result, |s| &mut s.cartridges);
+        collect(&self.dmg, &mut result, |s| &mut s.dmg);
+        collect(&self.sgb, &mut result, |s| &mut s.sgb);
+        collect(&self.mgb, &mut result, |s| &mut s.mgb);
+        collect(&self.mgl, &mut result, |s| &mut s.mgl);
+        collect(&self.sgb2, &mut result, |s| &mut s.sgb2);
+        collect(&self.cgb, &mut result, |s| &mut s.cgb);
+        collect(&self.agb, &mut result, |s| &mut s.agb);
+        collect(&self.ags, &mut result, |s| &mut s.ags);
+        collect(&self.gbs, &mut result, |s| &mut s.gbs);
+        collect(&self.oxy, &mut result, |s| &mut s.oxy);
+        result
     }
 }
 
@@ -176,51 +206,57 @@ fn main() -> Result<(), Error> {
     info!("Processing submissions");
 
     let data = SiteData {
-        cartridges: read_cartridge_submissions(&cfgs)?,
-        dmg: read_dmg_submissions()?,
-        sgb: read_sgb_submissions()?,
-        mgb: read_mgb_submissions()?,
-        mgl: read_mgl_submissions()?,
-        sgb2: read_sgb2_submissions()?,
-        cgb: read_cgb_submissions()?,
-        agb: read_agb_submissions()?,
-        ags: read_ags_submissions()?,
-        gbs: read_gbs_submissions()?,
-        oxy: read_oxy_submissions()?,
+        submissions: Submissions {
+            cartridges: read_cartridge_submissions(&cfgs)?,
+            dmg: read_dmg_submissions()?,
+            sgb: read_sgb_submissions()?,
+            mgb: read_mgb_submissions()?,
+            mgl: read_mgl_submissions()?,
+            sgb2: read_sgb2_submissions()?,
+            cgb: read_cgb_submissions()?,
+            agb: read_agb_submissions()?,
+            ags: read_ags_submissions()?,
+            gbs: read_gbs_submissions()?,
+            oxy: read_oxy_submissions()?,
+        },
         cfgs,
     };
 
     info!("Processing photos");
 
-    process_photos(&data.cartridges)?;
-    process_photos(&data.dmg)?;
-    process_photos(&data.sgb)?;
-    process_photos(&data.mgb)?;
-    process_photos(&data.mgl)?;
-    process_photos(&data.sgb2)?;
-    process_photos(&data.cgb)?;
-    process_photos(&data.agb)?;
-    process_photos(&data.ags)?;
-    process_photos(&data.gbs)?;
-    process_photos(&data.oxy)?;
+    process_photos(&data.submissions.cartridges)?;
+    process_photos(&data.submissions.dmg)?;
+    process_photos(&data.submissions.sgb)?;
+    process_photos(&data.submissions.mgb)?;
+    process_photos(&data.submissions.mgl)?;
+    process_photos(&data.submissions.sgb2)?;
+    process_photos(&data.submissions.cgb)?;
+    process_photos(&data.submissions.agb)?;
+    process_photos(&data.submissions.ags)?;
+    process_photos(&data.submissions.gbs)?;
+    process_photos(&data.submissions.oxy)?;
 
     info!("Generating site");
 
     create_dir_all("build/static/export/consoles")?;
 
     let csv = BufWriter::new(File::create("build/static/export/cartridges.csv")?);
-    write_submission_csv(csv, "https://gbhwdb.gekkio.fi/cartridges", &data.cartridges)?;
+    write_submission_csv(
+        csv,
+        "https://gbhwdb.gekkio.fi/cartridges",
+        &data.submissions.cartridges,
+    )?;
 
-    write_console_submission_csv("dmg", &data.dmg)?;
-    write_console_submission_csv("sgb", &data.sgb)?;
-    write_console_submission_csv("mgb", &data.mgb)?;
-    write_console_submission_csv("mgl", &data.mgl)?;
-    write_console_submission_csv("sgb2", &data.sgb2)?;
-    write_console_submission_csv("cgb", &data.cgb)?;
-    write_console_submission_csv("agb", &data.agb)?;
-    write_console_submission_csv("ags", &data.ags)?;
-    write_console_submission_csv("gbs", &data.gbs)?;
-    write_console_submission_csv("oxy", &data.oxy)?;
+    write_console_submission_csv("dmg", &data.submissions.dmg)?;
+    write_console_submission_csv("sgb", &data.submissions.sgb)?;
+    write_console_submission_csv("mgb", &data.submissions.mgb)?;
+    write_console_submission_csv("mgl", &data.submissions.mgl)?;
+    write_console_submission_csv("sgb2", &data.submissions.sgb2)?;
+    write_console_submission_csv("cgb", &data.submissions.cgb)?;
+    write_console_submission_csv("agb", &data.submissions.agb)?;
+    write_console_submission_csv("ags", &data.submissions.ags)?;
+    write_console_submission_csv("gbs", &data.submissions.gbs)?;
+    write_console_submission_csv("oxy", &data.submissions.oxy)?;
 
     let mut site = build_site();
     site.generate_all(&data, "build")?;

@@ -94,6 +94,7 @@ fn render_submission(
                 primary_text: &submission.title,
                 secondary_texts: &[],
                 submission,
+                show_contributor: true,
             })
             td { (Optional(metadata.code.as_ref())) }
             td {

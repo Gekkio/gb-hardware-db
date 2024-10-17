@@ -43,7 +43,7 @@ pub struct GameConfig {
     pub no_intro_id: String,
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[derive(Copy, Clone, Debug, Eq, PartialEq, Hash, Deserialize, Serialize)]
 pub enum GamePlatform {
     #[serde(rename = "gb")]
     Gb,

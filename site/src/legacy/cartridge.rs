@@ -79,6 +79,12 @@ impl LegacyBoard {
             parts,
         }
     }
+    pub fn mapper(&self) -> Option<&ProcessedPart> {
+        self.cfg
+            .parts()
+            .find(|(_, part)| part.role == PartRole::Mapper)
+            .and_then(|(designator, _)| self.parts.get(&designator))
+    }
 }
 
 fn try_process<T: ParsedPart + 'static>(

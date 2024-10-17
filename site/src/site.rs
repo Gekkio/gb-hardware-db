@@ -10,6 +10,7 @@ use gbhwdb_backend::{
 use itertools::Itertools;
 use log::error;
 use maud::{Markup, Render};
+use slug::slugify;
 use std::{
     borrow::Cow,
     collections::HashMap,
@@ -26,6 +27,7 @@ use crate::{
         cartridges::Cartridges,
         console_page::ConsolePage,
         console_submission_list::ConsoleSubmissionList,
+        contributor_cartridges::ContributorCartridges,
         dmg_console_page::DmgConsolePage,
         dmg_submission_list::DmgSubmissionList,
         game::Game,
@@ -49,7 +51,7 @@ pub fn build_site() -> Site {
         let today = OffsetDateTime::now_local()
             .unwrap_or_else(|_| OffsetDateTime::now_utc())
             .date();
-        let counts = data.counts();
+        let counts = data.submissions.counts();
         let cartridge_submission_count = counts.cartridges;
         let console_submission_count = counts.consoles.values().sum();
         Ok(Page {
@@ -102,6 +104,7 @@ pub fn build_site() -> Site {
     );
     for console in Console::ALL {
         site.add_page(["consoles", console.id(), "index"], move |data| {
+            let data = &data.submissions;
             Ok(Page {
                 title: format!("{} ({})", console.name(), console.code()).into(),
                 section: SiteSection::Consoles(Some(console)),
@@ -153,34 +156,54 @@ pub fn build_site() -> Site {
         }
         site.page_sets.push(match console {
             Console::Dmg => Box::new(move |data| {
-                create_pages(console, &data.dmg, |s| DmgConsolePage::new(s).render())
+                create_pages(console, &data.submissions.dmg, |s| {
+                    DmgConsolePage::new(s).render()
+                })
             }),
             Console::Sgb => Box::new(move |data| {
-                create_pages(console, &data.sgb, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.sgb, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Mgb => Box::new(move |data| {
-                create_pages(console, &data.mgb, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.mgb, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Mgl => Box::new(move |data| {
-                create_pages(console, &data.mgl, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.mgl, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Sgb2 => Box::new(move |data| {
-                create_pages(console, &data.sgb2, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.sgb2, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Cgb => Box::new(move |data| {
-                create_pages(console, &data.cgb, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.cgb, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Agb => Box::new(move |data| {
-                create_pages(console, &data.agb, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.agb, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Ags => Box::new(move |data| {
-                create_pages(console, &data.ags, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.ags, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Gbs => Box::new(move |data| {
-                create_pages(console, &data.gbs, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.gbs, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
             Console::Oxy => Box::new(move |data| {
-                create_pages(console, &data.oxy, |s| ConsolePage::new(s).render())
+                create_pages(console, &data.submissions.oxy, |s| {
+                    ConsolePage::new(s).render()
+                })
             }),
         });
     }
@@ -375,7 +398,7 @@ pub fn build_site() -> Site {
             content: GbCartridges {
                 mapper_cfgs,
                 cfgs: &data.cfgs,
-                submissions: &data.cartridges,
+                submissions: &data.submissions.cartridges,
             }
             .render(),
         })
@@ -386,13 +409,14 @@ pub fn build_site() -> Site {
             section: SiteSection::Cartridges(Some(CartridgeClass::Gba)),
             content: GbaCartridges {
                 cfgs: &data.cfgs,
-                submissions: &data.cartridges,
+                submissions: &data.submissions.cartridges,
             }
             .render(),
         })
     });
     site.page_sets.push(Box::new(move |data| {
-        data.cartridges
+        data.submissions
+            .cartridges
             .iter()
             .sorted_by_key(|submission| &submission.code)
             .chunk_by(|submission| &submission.code)
@@ -419,7 +443,8 @@ pub fn build_site() -> Site {
             .collect()
     }));
     site.page_sets.push(Box::new(move |data| {
-        data.cartridges
+        data.submissions
+            .cartridges
             .iter()
             .map(move |submission| {
                 let cfg = &submission.metadata.cfg;
@@ -444,7 +469,8 @@ pub fn build_site() -> Site {
             .collect()
     }));
     site.page_sets.push(Box::new(move |data| {
-        data.cartridges
+        data.submissions
+            .cartridges
             .iter()
             .map(|submission| {
                 let board = &submission.metadata.board;
@@ -483,6 +509,31 @@ pub fn build_site() -> Site {
                 (path, page)
             })
             .collect()
+    }));
+    site.page_sets.push(Box::new(move |data| {
+        let mut result = Vec::new();
+
+        for (contributor, submissions) in data.submissions.by_contributor() {
+            if submissions.counts().cartridges > 0 {
+                let contributor_slug = slugify(&contributor);
+                let path = SitePath(vec![
+                    Cow::Borrowed("cartridges"),
+                    Cow::Borrowed("contributors"),
+                    Cow::Owned(contributor_slug),
+                ]);
+                let page = Page {
+                    title: Cow::from(format!("Cartridge submissions by {contributor}")),
+                    section: SiteSection::Cartridges(None),
+                    content: ContributorCartridges {
+                        contributor,
+                        submissions: &submissions,
+                    }
+                    .render(),
+                };
+                result.push((path, page))
+            }
+        }
+        result
     }));
 
     site

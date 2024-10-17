@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use maud::{html, Markup, Render};
+use slug::slugify;
 use time::{format_description::FormatItem, macros::format_description};
 
 use crate::{
@@ -45,9 +46,13 @@ impl<'a> Render for CartridgePage<'a> {
             label: part.role.display(),
             part: board.parts.get(&designator),
         });
+        let contributor_url = format!(
+            "/cartridges/contributors/{contributor}.html",
+            contributor = slugify(&self.submission.contributor)
+        );
         html! {
             article.page-cartridge {
-                h2 { (metadata.cfg.name) ": " (self.submission.title) " [" (self.submission.contributor) "]" }
+                h2 { (metadata.cfg.name) ": " (self.submission.title) " [" a href=(contributor_url) { (self.submission.contributor) } "]" }
                 div.page-cartridge__photo {
                     @if let Some(photo) = &photos.front {
                         (self.render_photo(photo))

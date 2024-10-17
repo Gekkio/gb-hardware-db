@@ -74,6 +74,7 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                 primary_text: &submission.metadata.cfg.name,
                 secondary_texts: &[&submission.code, &submission.title],
                 submission,
+                show_contributor: true,
             })
             td {
                 (Optional(metadata.code.as_ref()))

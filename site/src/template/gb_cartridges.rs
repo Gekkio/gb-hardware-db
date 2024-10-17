@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_backend::{
-    config::cartridge::{GameConfig, GamePlatform, PartRole},
+    config::cartridge::{GameConfig, GamePlatform},
     CartridgeClass,
 };
 use itertools::Itertools;
@@ -114,12 +114,9 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         .map(|submission| Cow::Borrowed(submission.metadata.board.kind.as_ref()));
     let mappers = submissions.iter().filter_map(|submission| {
         let board = &submission.metadata.board;
-        let mappers = board
-            .cfg
-            .parts()
-            .find(|(_, part)| part.role == PartRole::Mapper)
-            .and_then(|(designator, _)| board.parts.get(&designator));
-        mappers.and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
+        board
+            .mapper()
+            .and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
     });
     html! {
         tr.empty[submissions.len() == 0] {

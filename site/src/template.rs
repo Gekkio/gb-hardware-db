@@ -13,6 +13,7 @@ pub mod cartridge_page;
 pub mod cartridges;
 pub mod console_page;
 pub mod console_submission_list;
+pub mod contributor_cartridges;
 pub mod dmg_console_page;
 pub mod dmg_submission_list;
 pub mod game;

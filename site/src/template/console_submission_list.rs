@@ -99,6 +99,7 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                     primary_text: &self.submission.title,
                     secondary_texts: &[],
                     submission: self.submission,
+                    show_contributor: true,
                 })
                 @if self.render_console_column {
                     td {

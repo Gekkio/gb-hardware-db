@@ -8,7 +8,7 @@ use time::Date;
 
 use crate::{
     config::cartridge::PartDesignator,
-    hash::Sha256,
+    hash::{Crc32, Md5, Sha1, Sha256},
     input::{is_not_outlier, Part},
     time::Month,
     ParseError,
@@ -97,7 +97,14 @@ pub struct CartridgeDump {
     pub log: Option<String>,
     #[serde(with = "date_format")]
     pub date: Date,
-    pub sha256: Sha256,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crc32: Option<Crc32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub md5: Option<Md5>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sha1: Option<Sha1>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sha256: Option<Sha256>,
 }
 
 impl std::error::Error for ParseError {}
@@ -245,10 +252,15 @@ fn test_deserialize() {
                 tool: "MeGa DumPer".to_owned(),
                 log: Some("Did the thing".to_owned()),
                 date: Date::from_calendar_date(1999, time::Month::January, 1).unwrap(),
-                sha256: Sha256::parse(
-                    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-                )
-                .unwrap(),
+                crc32: None,
+                md5: None,
+                sha1: None,
+                sha256: Some(
+                    Sha256::parse(
+                        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    )
+                    .unwrap()
+                ),
             })
         }
     );

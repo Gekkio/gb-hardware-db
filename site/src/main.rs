@@ -270,14 +270,43 @@ fn read_cartridge_submissions(
                 assert!((1989..2010).contains(&year));
             }
 
-            if let Some(sha256) = cartridge.dump.as_ref().map(|dump| dump.sha256) {
-                match cfg.sha256 {
-                    None => warn!(
-                        "Submission has SHA256 but config doesn't: {}",
-                        cartridge.code
-                    ),
-                    Some(cfg_sha) if cfg_sha == sha256 => (),
-                    _ => panic!("SHA256 mismatch: {}", cartridge.code),
+            if let Some(dump) = cartridge.dump.as_ref() {
+                if let Some(crc32) = dump.crc32 {
+                    match cfg.crc32 {
+                        None => warn!(
+                            "Submission has CRC-32 but config doesn't: {}",
+                            cartridge.code
+                        ),
+                        Some(cfg_sha) if cfg_sha == crc32 => (),
+                        _ => panic!("CRC-32 mismatch: {}", cartridge.code),
+                    }
+                }
+                if let Some(md5) = dump.md5 {
+                    match cfg.md5 {
+                        None => warn!("Submission has MD5 but config doesn't: {}", cartridge.code),
+                        Some(cfg_sha) if cfg_sha == md5 => (),
+                        _ => panic!("MD5 mismatch: {}", cartridge.code),
+                    }
+                }
+                if let Some(sha1) = dump.sha1 {
+                    match cfg.sha1 {
+                        None => warn!(
+                            "Submission has SHA-1 but config doesn't: {}",
+                            cartridge.code
+                        ),
+                        Some(cfg_sha) if cfg_sha == sha1 => (),
+                        _ => panic!("SHA-1 mismatch: {}", cartridge.code),
+                    }
+                }
+                if let Some(sha256) = dump.sha256 {
+                    match cfg.sha256 {
+                        None => warn!(
+                            "Submission has SHA-256 but config doesn't: {}",
+                            cartridge.code
+                        ),
+                        Some(cfg_sha) if cfg_sha == sha256 => (),
+                        _ => panic!("SHA-256 mismatch: {}", cartridge.code),
+                    }
                 }
             }
 

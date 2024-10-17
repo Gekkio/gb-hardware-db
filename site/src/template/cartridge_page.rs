@@ -101,9 +101,61 @@ impl<'a> Render for CartridgePage<'a> {
                             dd { (dump.tool) }
                             dt { "Dump date" }
                             dd { (dump.date.format(DATE_FORMAT).unwrap_or_default()) }
-                            dt { "SHA256" }
-                            dd {
-                                pre.page-cartridge__dump-hash { (dump.sha256) }
+                            @if let Some(hash) = dump.crc32 {
+                                dt { "CRC-32" }
+                                dd {
+                                    pre.page-cartridge__dump-hash { (hash) }
+                                    @if let Some(cfg_hash) = metadata.cfg.crc32 {
+                                        @if hash == cfg_hash {
+                                            " ✅"
+                                        }
+                                        @else {
+                                            " ❌"
+                                        }
+                                    }
+                                }
+                            }
+                            @if let Some(hash) = dump.md5 {
+                                dt { "MD5" }
+                                dd {
+                                    pre.page-cartridge__dump-hash { (hash) }
+                                    @if let Some(cfg_hash) = metadata.cfg.md5 {
+                                        @if hash == cfg_hash {
+                                            " ✅"
+                                        }
+                                        @else {
+                                            " ❌"
+                                        }
+                                    }
+                                }
+                            }
+                            @if let Some(hash) = dump.sha1 {
+                                dt { "SHA-1" }
+                                dd {
+                                    pre.page-cartridge__dump-hash { (hash) }
+                                    @if let Some(cfg_hash) = metadata.cfg.sha1 {
+                                        @if hash == cfg_hash {
+                                            " ✅"
+                                        }
+                                        @else {
+                                            " ❌"
+                                        }
+                                    }
+                                }
+                            }
+                            @if let Some(hash) = dump.sha256 {
+                                dt { "SHA-256" }
+                                dd {
+                                    pre.page-cartridge__dump-hash { (hash) }
+                                    @if let Some(cfg_hash) = metadata.cfg.sha256 {
+                                        @if hash == cfg_hash {
+                                            " ✅"
+                                        }
+                                        @else {
+                                            " ❌"
+                                        }
+                                    }
+                                }
                             }
                             @if let Some(log) = &dump.log {
                                 dt { "Dump log" }

@@ -27,59 +27,26 @@ impl<'a> Render for ContributorCartridges<'a> {
         html! {
             article {
                 h2 { "Cartridge submissions by " (self.contributor) }
-                @if by_platform.contains_key(&GamePlatform::Gb) || by_platform.contains_key(&GamePlatform::Gbc) {
-                    table {
-                        thead {
-                            tr {
-                                th { "Entry" }
-                                th { "ROM ID" }
-                                th { "Year" }
-                                th { "Release" }
-                                th { "Board type" }
-                                th { "Mapper" }
-                            }
-                        }
-                        @if let Some(submissions) = by_platform.get(&GamePlatform::Gb) {
-                            tbody.divider {
+                @for platform in GamePlatform::ALL {
+                    @if let Some(submissions) = by_platform.get(&platform) {
+                        h3 { (platform.name()) " cartridges" }
+                        table {
+                            thead {
                                 tr {
-                                    th colspan="6" { "Game Boy" }
+                                    th { "Entry" }
+                                    th { "ROM ID" }
+                                    th { "Year" }
+                                    th { "Release" }
+                                    th { "Board type" }
+                                    @if platform.has_mappers() {
+                                        th { "Mapper" }
+                                    }
                                 }
                             }
                             tbody {
                                 @for submission in submissions {
-                                    (render_gb_submission(submission))
+                                    (render_submission(submission, platform.has_mappers()))
                                 }
-                            }
-                        }
-                        @if let Some(submissions) = by_platform.get(&GamePlatform::Gbc) {
-                            tbody.divider {
-                                tr {
-                                    th colspan="6" { "Game Boy Color" }
-                                }
-                            }
-                            tbody {
-                                @for submission in submissions {
-                                    (render_gb_submission(submission))
-                                }
-                            }
-                        }
-                    }
-                }
-                @if let Some(submissions) = by_platform.get(&GamePlatform::Gba) {
-                    h2 { "Game Boy Advance cartridges" }
-                    table {
-                        thead {
-                            tr {
-                                th { "Entry" }
-                                th { "ROM ID" }
-                                th { "Year" }
-                                th { "Release" }
-                                th { "Board type" }
-                            }
-                        }
-                        tbody {
-                            @for submission in submissions {
-                                (render_gba_submission(submission))
                             }
                         }
                     }
@@ -89,7 +56,7 @@ impl<'a> Render for ContributorCartridges<'a> {
     }
 }
 
-fn render_gb_submission(submission: &LegacyCartridgeSubmission) -> Markup {
+fn render_submission(submission: &LegacyCartridgeSubmission, show_mapper: bool) -> Markup {
     let mapper = submission
         .metadata
         .board
@@ -108,25 +75,9 @@ fn render_gb_submission(submission: &LegacyCartridgeSubmission) -> Markup {
             td { (Optional(submission.metadata.board.date_code.year.as_ref())) }
             td { (Optional(submission.metadata.code.as_ref())) }
             td { (submission.metadata.board.kind) }
-            td { (Optional(mapper)) }
-        }
-    }
-}
-
-fn render_gba_submission(submission: &LegacyCartridgeSubmission) -> Markup {
-    html! {
-        tr {
-            (ListingEntryCell {
-                url_prefix: "/cartridges",
-                primary_text: &submission.metadata.cfg.name,
-                secondary_texts: &[&submission.title],
-                submission,
-                show_contributor: false,
-            })
-            td { (submission.metadata.cfg.rom_id) }
-            td { (Optional(submission.metadata.board.date_code.year.as_ref())) }
-            td { (Optional(submission.metadata.code.as_ref())) }
-            td { (submission.metadata.board.kind) }
+            @if show_mapper {
+                td { (Optional(mapper)) }
+            }
         }
     }
 }

@@ -2,27 +2,25 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::{
-    config::cartridge::{GameConfig, GamePlatform},
-    CartridgeClass,
-};
+use gbhwdb_backend::config::cartridge::{GameConfig, GamePlatform};
 use itertools::Itertools;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};
 
 use crate::{legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg};
 
-pub struct GbCartridges<'a> {
+pub struct PlatformCartridges<'a> {
+    pub platform: GamePlatform,
     pub mapper_cfgs: &'a [MapperCfg],
     pub cfgs: &'a BTreeMap<String, GameConfig>,
     pub submissions: &'a [LegacyCartridgeSubmission],
 }
 
-impl<'a> Render for GbCartridges<'a> {
+impl<'a> Render for PlatformCartridges<'a> {
     fn render(&self) -> Markup {
         let mut per_game = Vec::new();
         for (code, cfg) in self.cfgs {
-            if CartridgeClass::from(cfg.platform) == CartridgeClass::Gb {
+            if cfg.platform == self.platform {
                 let group = self
                     .submissions
                     .iter()
@@ -42,12 +40,14 @@ document.querySelectorAll('tr.empty').forEach((m) => {
 });";
         html! {
             article {
-                h2 { "Game Boy cartridges" }
-                h3 { "Cartridges by mapper" }
-                ul.cartridges__mapper-list {
-                    @for cfg in self.mapper_cfgs {
-                        li {
-                            a href={ "/cartridges/" (cfg.id) ".html" } { (cfg.name) }
+                h2 { (self.platform.name()) " cartridges" }
+                @if self.platform.has_mappers() {
+                    h3 { "GB/GBC cartridges by mapper" }
+                    ul.cartridges__mapper-list {
+                        @for cfg in self.mapper_cfgs {
+                            li {
+                                a href={ "/cartridges/" (cfg.id) ".html" } { (cfg.name) }
+                            }
                         }
                     }
                 }
@@ -63,32 +63,15 @@ document.querySelectorAll('tr.empty').forEach((m) => {
                             th { "Year(s)" }
                             th { "Release(s)" }
                             th { "Board type(s)" }
-                            th { "Mapper(s)" }
+                            @if self.platform.has_mappers() {
+                                th { "Mapper(s)" }
+                            }
                             th { "Submissions" }
                         }
                     }
-                    tbody.divider {
-                        tr {
-                            th colspan="7" { "Game Boy" }
-                        }
-                    }
                     tbody {
                         @for (cfg, submissions) in &per_game {
-                            @if cfg.platform == GamePlatform::Gb {
-                                (render_game(cfg, submissions))
-                            }
-                        }
-                    }
-                    tbody.divider {
-                        tr {
-                            th colspan="7" { "Game Boy Color" }
-                        }
-                    }
-                    tbody {
-                        @for (cfg, submissions) in &per_game {
-                            @if cfg.platform == GamePlatform::Gbc {
-                                (render_game(cfg, submissions))
-                            }
+                            (render_game(cfg, submissions))
                         }
                     }
                 }
@@ -131,7 +114,9 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
             td { (multiline(years)) }
             td { (multiline(releases)) }
             td { (multiline(board_types)) }
-            td { (multiline(mappers)) }
+            @if cfg.platform.has_mappers() {
+                td { (multiline(mappers)) }
+            }
             td { (submissions.len()) }
         }
     }

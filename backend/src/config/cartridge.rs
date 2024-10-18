@@ -53,6 +53,30 @@ pub enum GamePlatform {
     Gba,
 }
 
+impl GamePlatform {
+    pub const ALL: [GamePlatform; 3] = [GamePlatform::Gb, GamePlatform::Gbc, GamePlatform::Gba];
+    pub const fn id(&self) -> &'static str {
+        match self {
+            GamePlatform::Gb => "gb",
+            GamePlatform::Gbc => "gbc",
+            GamePlatform::Gba => "gba",
+        }
+    }
+    pub const fn name(&self) -> &'static str {
+        match self {
+            GamePlatform::Gb => "Game Boy",
+            GamePlatform::Gbc => "Game Boy Color",
+            GamePlatform::Gba => "Game Boy Advance",
+        }
+    }
+    pub const fn has_mappers(&self) -> bool {
+        match self {
+            GamePlatform::Gb | GamePlatform::Gbc => true,
+            GamePlatform::Gba => false,
+        }
+    }
+}
+
 impl fmt::Display for GamePlatform {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {

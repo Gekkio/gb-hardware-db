@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::{CartridgeClass, Console};
+use gbhwdb_backend::{config::cartridge::GamePlatform, Console};
 use maud::{html, Markup, Render};
 
 use crate::site::SiteSection;
@@ -44,7 +44,7 @@ impl SiteHeader {
                 }
                 @if let SiteSection::Cartridges(selected) = self.section {
                     ul {
-                        @for class in CartridgeClass::ALL {
+                        @for class in GamePlatform::ALL {
                             li.active[selected == Some(class)] {
                                 a href={ "/cartridges/" (class.id()) ".html" } {
                                     strong { (class.name()) }

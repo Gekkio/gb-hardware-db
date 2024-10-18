@@ -6,5 +6,6 @@ SPDX-License-Identifier: MIT
 
 ## Game Cartridges
 
-- [Game Boy](gb.html) (includes original Game Boy and Game Boy Color games)
+- [Game Boy](gb.html)
+- [Game Boy Color](gbc.html)
 - [Game Boy Advance](gba.html)

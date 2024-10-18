@@ -7,7 +7,7 @@ use itertools::Itertools;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};
 
-use crate::{legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg};
+use crate::{legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg, LegacyPhotos};
 
 pub struct PlatformCartridges<'a> {
     pub platform: GamePlatform,
@@ -101,11 +101,30 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
             .mapper()
             .and_then(|part| part.kind.as_deref().map(Cow::Borrowed))
     });
+    let photo_submissions = submissions
+        .into_iter()
+        .filter(|s| s.photos.front().is_some())
+        .take(1)
+        .collect::<Vec<_>>();
     html! {
         tr.empty[submissions.len() == 0] {
             td.submission-list-item {
                 @if submissions.len() > 0 {
-                    a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } { (cfg.name) }
+                    a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } {
+                        @for submission in &photo_submissions {
+                            @let code = &submission.code;
+                            @let slug = &submission.slug;
+                            img
+                                src=(format!("/static/{code}/{slug}_thumbnail_80.jpg"))
+                                srcSet=(format!("/static/{code}/{slug}_thumbnail_50.jpg 50w, /static/{code}/{slug}_thumbnail_80.jpg 80w"))
+                                sizes="(min-width: 1000px) 80px, 50px"
+                                role="presentation";
+                        }
+                        @if photo_submissions.len() > 0 {
+                            br;
+                        }
+                        (cfg.name)
+                    }
                 } @else {
                     (cfg.name)
                 }

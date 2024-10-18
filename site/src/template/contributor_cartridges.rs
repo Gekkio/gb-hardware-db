@@ -1,7 +1,7 @@
 use gbhwdb_backend::config::cartridge::GamePlatform;
 use itertools::Itertools;
 use maud::{html, Markup, Render};
-use std::{borrow::Cow, collections::HashMap};
+use std::borrow::Cow;
 
 use crate::{
     template::{listing_entry_cell::ListingEntryCell, Optional},

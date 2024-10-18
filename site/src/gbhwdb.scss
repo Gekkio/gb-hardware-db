@@ -63,7 +63,7 @@ tbody.divider > tr {
   color: #fff;
   background-color: $main-color-3;
 }
-tbody > tr:nth-child(even) {
+tbody > tr:nth-child(even of :not([hidden])) {
   background-color: #f0f0f0;
 }
 

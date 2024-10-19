@@ -10,6 +10,7 @@ Site source code for https://gbhwdb.gekkio.fi
 
 ## Contributors
 
+* 3615Retro (https://github.com/3615Retro)
 * Alex G
 * Ben Black
 * Bruno Bertuga

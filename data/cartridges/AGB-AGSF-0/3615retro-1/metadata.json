@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AGSF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AGSF-FRA",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "AGB-E02-10",
+    "circled_letters": "YG",
+    "panel_position": "J-1",
+    "year": 2002,
+    "month": 6,
+    "u1": {
+      "label": "M022807-M MX23L6406-12B1 AGB-AGSF-0 I2 2E825103"
+    },
+    "u2": {
+      "label": "39VF512 70-4C-WH 0216049-D"
+    }
+  }
+}

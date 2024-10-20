@@ -3,6 +3,12 @@
 // SPDX-License-Identifier: MIT
 
 use log::warn;
+use nom::{
+    character::streaming::{one_of, satisfy},
+    combinator::all_consuming,
+    error::{ParseError, VerboseError},
+    IResult, Parser as _,
+};
 use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
 use std::{any::Any, fmt, str::FromStr};
 
@@ -290,20 +296,31 @@ pub fn year1(text: &str) -> Result<Year, String> {
     }
 }
 
-pub fn seiko_year1(text: &str) -> Result<Year, String> {
-    match text {
-        "0" => Ok(Year::Partial(0)),
-        "1" | "A" => Ok(Year::Partial(1)),
-        "2" | "B" => Ok(Year::Partial(2)),
-        "3" | "C" => Ok(Year::Partial(3)),
-        "4" | "D" => Ok(Year::Partial(4)),
-        "5" | "E" => Ok(Year::Partial(5)),
-        "6" | "F" => Ok(Year::Partial(6)),
-        "7" | "G" => Ok(Year::Partial(7)),
-        "8" | "H" => Ok(Year::Partial(8)),
-        "9" | "J" => Ok(Year::Partial(9)),
-        _ => Err(format!("Invalid Seiko 1-digit year: {}", text)),
-    }
+fn seiko_year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
+    one_of("0123456789ABCDEFGHJ")
+        .map(|ch| match ch {
+            '0' => Year::Partial(0),
+            '1' | 'A' => Year::Partial(1),
+            '2' | 'B' => Year::Partial(2),
+            '3' | 'C' => Year::Partial(3),
+            '4' | 'D' => Year::Partial(4),
+            '5' | 'E' => Year::Partial(5),
+            '6' | 'F' => Year::Partial(6),
+            '7' | 'G' => Year::Partial(7),
+            '8' | 'H' => Year::Partial(8),
+            '9' | 'J' => Year::Partial(9),
+            _ => unreachable!(),
+        })
+        .parse(input)
+}
+
+fn alnum_upper<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, char, E> {
+    satisfy(|c| match c {
+        'A'..='Z' => true,
+        '0'..='9' => true,
+        _ => false,
+    })
+    .parse(input)
 }
 
 pub fn year2(text: &str) -> Result<Year, String> {
@@ -413,6 +430,54 @@ where
 
     fn parsers(&self) -> Vec<&SingleParser<T>> {
         self.parsers.clone()
+    }
+}
+
+pub struct NomFnParser<T> {
+    pub name: &'static str,
+    f: fn(label: &str) -> IResult<&str, T, VerboseError<&str>>,
+}
+
+impl<T> LabelParser<T> for NomFnParser<T> {
+    fn parse(&self, label: &str) -> Result<T, String> {
+        match all_consuming(self.f).parse(label) {
+            Ok((_, chip)) => Ok(chip),
+            Err(err) => Err(format!("{err:?}")),
+        }
+    }
+
+    fn parsers(&self) -> Vec<&crate::parser::SingleParser<T>> {
+        unimplemented!()
+    }
+}
+
+#[derive(Clone)]
+pub struct MultiNomFnParser<T: 'static> {
+    parsers: &'static [&'static NomFnParser<T>],
+}
+
+impl<T> MultiNomFnParser<T> {
+    pub const fn new(parsers: &'static [&'static NomFnParser<T>]) -> Self {
+        MultiNomFnParser { parsers }
+    }
+}
+
+impl<T> LabelParser<T> for MultiNomFnParser<T> {
+    fn parse(&self, label: &str) -> Result<T, String> {
+        let mut iter = self.parsers.iter();
+        while let Some(parser) = iter.next() {
+            if let Ok(m) = parser.parse(label) {
+                if iter.any(|parser| parser.parse(label).is_ok()) {
+                    warn!("Warning: multiple matches for {}", label);
+                }
+                return Ok(m);
+            }
+        }
+        Err(format!("no match for {label}"))
+    }
+
+    fn parsers(&self) -> Vec<&SingleParser<T>> {
+        unimplemented!()
     }
 }
 

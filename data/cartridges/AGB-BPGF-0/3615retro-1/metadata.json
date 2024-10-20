@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BPGF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPGF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "F-5",
+    "year": 2004,
+    "month": 7,
+    "u1": {
+      "label": "S043238-M MX23L12806-12C AGB-BPGF-0 J2 2K525002"
+    },
+    "u2": {
+      "label": "E040257 MX29L010TC-15A1 1F468900A0"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Version Vert Feuille (France).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           ba3285e3\n* MD5:             c5bc831107f459816508b45d9392afc9\n* SHA-1:           4b5758c14d0a07b70ef3ef0bd7fa5e7ce6978672\n* SHA-256:         cc0fa93f4631d0814afcd5a273edf28f2876e126e8ef0df4dd39dd6f36e53ed3\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-20T00:55:13+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.00 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      POKEMON LEAF\n* Game Code:       BPGF\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x80)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Version Vert Feuille (France)\n* Region:          France\n* Language(s):     Fr\n* Game Code:       AGB-BPGF\n* ROM CRC32:       ba3285e3\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "crc32": "ba3285e3",
+    "md5": "c5bc831107f459816508b45d9392afc9",
+    "sha1": "4b5758c14d0a07b70ef3ef0bd7fa5e7ce6978672",
+    "sha256": "cc0fa93f4631d0814afcd5a273edf28f2876e126e8ef0df4dd39dd6f36e53ed3",
+    "date": "2024-10-20"
+  }
+}

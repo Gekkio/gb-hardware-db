@@ -15,11 +15,12 @@ use crate::{
 /// assert!(parser::flash::tsop_i_32::macronix_mx29l010().parse("B063857G MX29L010TC-15A1 1H4751").is_ok());
 /// assert!(parser::flash::tsop_i_32::macronix_mx29l010().parse("E032457 MX29L010TC-15A1 1E8980").is_ok());
 /// assert!(parser::flash::tsop_i_32::macronix_mx29l010().parse("E023057 MX29L010TC-15 1E0290").is_ok());
+/// assert!(parser::flash::tsop_i_32::macronix_mx29l010().parse("E040257 MX29L010TC-15A1 1F468900A0").is_ok());
 /// ```
 pub fn macronix_mx29l010() -> &'static impl LabelParser<Flash> {
     single_parser!(
         Flash,
-        r#"^[A-Z](?<year>[0-9]{2})(?<week>[0-9]{2})[0-9]{2}G?\ (?<kind>MX29L010)(?<package>T)(?<grade>C)-(?<speed>15)([A-Z][0-9])?\ [0-9][A-Z][0-9]{4}$"#,
+        r#"^[A-Z](?<year>[0-9]{2})(?<week>[0-9]{2})[0-9]{2}G?\ (?<kind>MX29L010)(?<package>T)(?<grade>C)-(?<speed>15)([A-Z][0-9])?\ [0-9][A-Z][0-9]{4}([0-9]{2}[A-Z][0-9])?$"#,
         move |c| {
             Ok(Flash {
                 kind: String::from(&c["kind"]),

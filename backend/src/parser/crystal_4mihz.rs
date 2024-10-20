@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{kds_month, week2, year1, year2, Crystal, LabelParser, Manufacturer};
+use super::{kds_month1, week2, year1, year2, Crystal, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
 const FREQUENCY: u32 = 4_194_304;
@@ -39,7 +39,7 @@ pub fn kds_4194_short() -> &'static impl LabelParser<Crystal> {
             manufacturer: Some(Manufacturer::Kds),
             frequency: FREQUENCY,
             year: Some(year1(&c[1])?),
-            month: Some(kds_month(&c[2])?),
+            month: Some(kds_month1(&c[2])?),
             week: None,
         })
     })
@@ -56,7 +56,7 @@ pub fn kds_d419() -> &'static impl LabelParser<Crystal> {
             manufacturer: Some(Manufacturer::Kds),
             frequency: FREQUENCY,
             year: Some(year1(&c[2])?),
-            month: Some(kds_month(&c[1])?),
+            month: Some(kds_month1(&c[1])?),
             week: None,
         })
     })
@@ -73,7 +73,7 @@ pub fn kinseki_4194() -> &'static impl LabelParser<Crystal> {
             manufacturer: Some(Manufacturer::Kinseki),
             frequency: FREQUENCY,
             year: Some(year1(&c[1])?),
-            month: Some(kds_month(&c[2])?),
+            month: Some(kds_month1(&c[2])?),
             week: None,
         })
     })

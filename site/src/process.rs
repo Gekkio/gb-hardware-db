@@ -25,6 +25,17 @@ impl DateCode {
             ..DateCode::default()
         }
     }
+    pub fn loose_year_month(
+        year_hint: Option<u16>,
+        year: Option<Year>,
+        month: Option<Month>,
+    ) -> Self {
+        DateCode {
+            year: to_full_year(year_hint, year),
+            month,
+            ..DateCode::default()
+        }
+    }
     pub fn loose_year_week(year_hint: Option<u16>, year: Option<Year>, week: Option<Week>) -> Self {
         DateCode {
             year: to_full_year(year_hint, year),
@@ -80,7 +91,10 @@ pub fn to_full_year(year_hint: Option<u16>, part_year: Option<Year>) -> Option<u
         _ => None,
     })
     .map(|year| {
-        assert!((1988..2010).contains(&year));
+        assert!(
+            (1988..2010).contains(&year),
+            "suspicious year {year} calculated from {year_hint:?}:{part_year:?}"
+        );
         year
     })
 }

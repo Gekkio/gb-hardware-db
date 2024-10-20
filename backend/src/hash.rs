@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use std::str;
 
 fn parse_hash<const N: usize>(text: &str) -> Option<[u8; N]> {

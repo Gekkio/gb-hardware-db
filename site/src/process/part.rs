@@ -5,8 +5,7 @@
 use anyhow::{anyhow, Error};
 use gbhwdb_backend::{
     input::Part,
-    parser,
-    parser::{LabelParser, Manufacturer},
+    parser::{self, ChipDateCode, LabelParser, Manufacturer},
 };
 
 use crate::{process::to_full_year, process::DateCode};
@@ -17,7 +16,7 @@ pub struct ProcessedPart {
     pub label: Option<String>,
     pub manufacturer: Option<Manufacturer>,
     pub date_code: DateCode,
-    pub rom_code: Option<String>,
+    pub rom_id: Option<String>,
 }
 
 pub trait ParsedPart {
@@ -60,7 +59,7 @@ impl ParsedPart for parser::UnknownChip {
             label: Some(label),
             manufacturer: None,
             date_code: DateCode::default(),
-            rom_code: None,
+            rom_id: None,
         }
     }
 }
@@ -166,7 +165,7 @@ impl ParsedPart for parser::SgbRom {
             kind: self.chip_type,
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            rom_code: Some(self.rom_code),
+            rom_id: Some(self.rom_id),
         }
     }
 }
@@ -178,6 +177,29 @@ impl ParsedPart for parser::ChipYearWeek {
             kind: Some(self.kind),
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
+            ..ProcessedPart::default()
+        }
+    }
+}
+
+impl ParsedPart for parser::GenericChip {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
+            label: Some(label),
+            kind: Some(self.kind),
+            manufacturer: self.manufacturer,
+            date_code: match self.date_code {
+                Some(ChipDateCode::Year { year }) => {
+                    DateCode::loose_year_week(year_hint, Some(year), None)
+                }
+                Some(ChipDateCode::YearMonth { year, month }) => {
+                    DateCode::loose_year_month(year_hint, Some(year), Some(month))
+                }
+                Some(ChipDateCode::YearWeek { year, week }) => {
+                    DateCode::loose_year_week(year_hint, Some(year), Some(week))
+                }
+                None => DateCode::loose_year_week(year_hint, None, None),
+            },
             ..ProcessedPart::default()
         }
     }

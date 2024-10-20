@@ -28,6 +28,7 @@ pub use self::{
     dmg_stamp::DmgStamp,
     eeprom::Eeprom,
     flash::Flash,
+    fram::Fram,
     gbs_dol::GbsDol,
     gbs_reg::GbsReg,
     gen1_soc::{Gen1Soc, Gen1SocKind},
@@ -44,9 +45,9 @@ pub use self::{
     oxy_pmic::OxyPmic,
     oxy_u4::OxyU4,
     oxy_u5::OxyU5,
-    ram::Ram,
     rtc::Rtc,
     sgb_rom::SgbRom,
+    sram::StaticRam,
     supervisor_reset::SupervisorReset,
     tama::{Tama, TamaType},
 };
@@ -76,6 +77,7 @@ pub mod dmg_reg;
 pub mod dmg_stamp;
 pub mod eeprom;
 pub mod flash;
+pub mod fram;
 pub mod gbs_dol;
 pub mod gbs_reg;
 pub mod gen1_soc;
@@ -92,14 +94,29 @@ pub mod mgl_transformer;
 pub mod oxy_pmic;
 pub mod oxy_u4;
 pub mod oxy_u5;
-pub mod ram;
 pub mod rtc;
 pub mod sgb_rom;
-pub mod sram_tsop1_48;
+pub mod sram;
 pub mod supervisor_reset;
 pub mod tama;
 
 pub trait ParsedData: fmt::Debug + Any {}
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub enum ChipDateCode {
+    Year { year: Year },
+    YearMonth { year: Year, month: Month },
+    YearWeek { year: Year, week: Week },
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct GenericChip {
+    pub kind: String,
+    pub manufacturer: Option<Manufacturer>,
+    pub date_code: Option<ChipDateCode>,
+}
+
+impl ParsedData for GenericChip {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearWeek {
@@ -112,15 +129,15 @@ pub struct ChipYearWeek {
 impl ParsedData for ChipYearWeek {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct StaticRam {
-    pub family: Option<&'static str>,
-    pub part: Option<String>,
+pub struct ChipYearMonthWeek {
+    pub kind: String,
     pub manufacturer: Option<Manufacturer>,
     pub year: Option<Year>,
+    pub month: Option<Month>,
     pub week: Option<Week>,
 }
 
-impl ParsedData for StaticRam {}
+impl ParsedData for ChipYearMonthWeek {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Crystal {
@@ -149,7 +166,11 @@ impl Crystal {
     }
 }
 
-fn kds_month(text: &str) -> Result<Month, String> {
+fn kds_month1(text: &str) -> Result<Month, String> {
+    month1_alpha(text)
+}
+
+fn month1_alpha(text: &str) -> Result<Month, String> {
     match text {
         "A" => Ok(Month::January),
         "B" => Ok(Month::February),
@@ -260,13 +281,35 @@ pub enum Year {
 }
 
 pub fn year1(text: &str) -> Result<Year, String> {
+    if text.len() != 1 {
+        return Err(format!("Invalid 1-digit year: {}", text));
+    }
     match u8::from_str(text) {
         Ok(value) => Ok(Year::Partial(value)),
         _ => Err(format!("Invalid 1-digit year: {}", text)),
     }
 }
 
+pub fn seiko_year1(text: &str) -> Result<Year, String> {
+    match text {
+        "0" => Ok(Year::Partial(0)),
+        "1" | "A" => Ok(Year::Partial(1)),
+        "2" | "B" => Ok(Year::Partial(2)),
+        "3" | "C" => Ok(Year::Partial(3)),
+        "4" | "D" => Ok(Year::Partial(4)),
+        "5" | "E" => Ok(Year::Partial(5)),
+        "6" | "F" => Ok(Year::Partial(6)),
+        "7" | "G" => Ok(Year::Partial(7)),
+        "8" | "H" => Ok(Year::Partial(8)),
+        "9" | "J" => Ok(Year::Partial(9)),
+        _ => Err(format!("Invalid Seiko 1-digit year: {}", text)),
+    }
+}
+
 pub fn year2(text: &str) -> Result<Year, String> {
+    if text.len() != 2 {
+        return Err(format!("Invalid 2-digit year: {}", text));
+    }
     if text == "AL" {
         return Ok(Year::Full(2000));
     }
@@ -281,6 +324,9 @@ pub fn year2(text: &str) -> Result<Year, String> {
 }
 
 pub fn week2(text: &str) -> Result<Week, String> {
+    if text.len() != 2 {
+        return Err(format!("Invalid 2-digit week: {}", text));
+    }
     u8::from_str(text)
         .ok()
         .and_then(|v| Week::try_from(v).ok())
@@ -288,6 +334,9 @@ pub fn week2(text: &str) -> Result<Week, String> {
 }
 
 pub fn month2(text: &str) -> Result<Month, String> {
+    if text.len() != 2 {
+        return Err(format!("Invalid 2-digit month: {}", text));
+    }
     u8::from_str(text)
         .ok()
         .and_then(|v| Month::try_from(v).ok())

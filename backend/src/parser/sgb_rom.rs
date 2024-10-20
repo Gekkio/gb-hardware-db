@@ -10,7 +10,7 @@ use crate::{
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct SgbRom {
-    pub rom_code: String,
+    pub rom_id: String,
     pub manufacturer: Option<Manufacturer>,
     pub chip_type: Option<String>,
     pub year: Option<Year>,
@@ -29,7 +29,7 @@ pub fn unknown() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: None,
                 year: Some(year2(&c[3])?),
@@ -49,7 +49,7 @@ pub fn unknown2() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: None,
                 year: Some(year2(&c[3])?),
@@ -69,7 +69,7 @@ pub fn unknown3() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-(NT|2))\ JAPAN\ ©\ 1994\ Nintendo\ [[:alnum:]]{5}\ [[:alnum:]]{3}\ [A-Z]{3}$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: None,
                 year: None,
@@ -89,7 +89,7 @@ pub fn unknown4() -> &'static impl LabelParser<SgbRom> {
         r#"^©\ 1994\ Nintendo\ (SYS-SGB-(NT|2))\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: Some(c[3].to_owned()),
                 year: Some(year2(&c[4])?),
@@ -111,7 +111,7 @@ pub fn toshiba() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-(NT|2))\ ©\ 1994\ Nintendo\ (TC53[0-9]{4}[A-Z]{2})-[A-Z][0-9]{3}\ JAPAN\ ([0-9]{2})([0-9]{2})EAI$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Toshiba),
                 chip_type: (Some(c[3].to_owned())),
                 year: Some(year2(&c[4])?),
@@ -133,7 +133,7 @@ pub fn sharp_sgb() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-NT|SYS-SGB-2)\ ©\ 1994\ Nintendo\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
                 chip_type: Some(c[2].to_owned()),
                 year: Some(year2(&c[3])?),
@@ -155,7 +155,7 @@ pub fn sharp_sgb2() -> &'static impl LabelParser<SgbRom> {
         r#"^©\ 1998\ Nintendo\ (SYS-SGB2-10)\ (LH[[:alnum:]]{4})[[:alnum:]]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
                 chip_type: Some(c[2].to_owned()),
                 year: Some(year2(&c[3])?),
@@ -177,7 +177,7 @@ pub fn oki() -> &'static impl LabelParser<SgbRom> {
         r#"^(SYS-SGB-NT|SYS-SGB-2|SYS-SGB2-10)\ ©\ 1998\ Nintendo\ (M534011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
         move |c| {
             Ok(SgbRom {
-                rom_code: c[1].to_owned(),
+                rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: Some(c[2].to_owned()),
                 year: Some(year1(&c[3])?),

@@ -6,8 +6,8 @@ use gbhwdb_backend::{
     config::cartridge::*,
     input::cartridge::*,
     parser::{
-        Accelerometer, Crystal, Eeprom, Flash, HexInverter, LineDecoder, Mapper, MaskRom, Rtc,
-        StaticRam, SupervisorReset, Tama, UnknownChip,
+        Accelerometer, Crystal, Eeprom, Flash, GenericChip, HexInverter, LineDecoder, Mapper,
+        MaskRom, Rtc, StaticRam, SupervisorReset, Tama, UnknownChip,
     },
 };
 use std::{any::Any, collections::HashMap};
@@ -51,6 +51,7 @@ impl LegacyBoard {
 
                 let part = try_process::<MaskRom>(board.year, label, parsed)
                     .or_else(|parsed| try_process::<Mapper>(board.year, label, parsed))
+                    .or_else(|parsed| try_process::<GenericChip>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<StaticRam>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<SupervisorReset>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Crystal>(board.year, label, parsed))

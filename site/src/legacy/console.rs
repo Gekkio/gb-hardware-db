@@ -1154,7 +1154,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPa
                 month: chip.month,
                 jun: None,
             },
-            rom_code: None,
+            rom_id: None,
         }
     } else {
         ProcessedPart {

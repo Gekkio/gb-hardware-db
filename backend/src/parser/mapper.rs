@@ -735,7 +735,7 @@ pub fn mmm01() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-pub fn any_mbc1_sop24() -> &'static impl LabelParser<Mapper> {
+pub fn mbc1_sop24() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
         sharp_mbc1(),
@@ -750,11 +750,11 @@ pub fn any_mbc1_sop24() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-pub fn any_mbc2_sop28() -> &'static impl LabelParser<Mapper> {
+pub fn mbc2_sop28() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, nec_mbc2a(), panasonic_mbc2a(), sharp_mbc2a(),)
 }
 
-pub fn any_mbc3_qfp32() -> &'static impl LabelParser<Mapper> {
+pub fn mbc3_qfp32() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
         panasonic_mbc3a(),
@@ -767,11 +767,11 @@ pub fn any_mbc3_qfp32() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-pub fn any_mbc30_qfp32() -> &'static impl LabelParser<Mapper> {
+pub fn mbc30_qfp32() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, panasonic_mbc30(), rohm_mbc30(),)
 }
 
-pub fn any_mbc5_qfp32() -> &'static impl LabelParser<Mapper> {
+pub fn mbc5_qfp32() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
         panasonic_mbc5(),
@@ -781,22 +781,22 @@ pub fn any_mbc5_qfp32() -> &'static impl LabelParser<Mapper> {
     )
 }
 
-pub fn any_mbc6_qfp64() -> &'static impl LabelParser<Mapper> {
+pub fn mbc6_qfp64() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, nec_like_mbc6(),)
 }
 
-pub fn any_mbc7_qfp56() -> &'static impl LabelParser<Mapper> {
+pub fn mbc7_qfp56() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, rohm_mbc7(),)
 }
 
-pub fn any_mmm01_qfp32() -> &'static impl LabelParser<Mapper> {
+pub fn mmm01_qfp32() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, mmm01(),)
 }
 
-pub fn any_huc1_qfp32() -> &'static impl LabelParser<Mapper> {
+pub fn huc1_qfp32() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, huc1(), huc1a(),)
 }
 
-pub fn any_huc3_qfp48() -> &'static impl LabelParser<Mapper> {
+pub fn huc3_qfp48() -> &'static impl LabelParser<Mapper> {
     multi_parser!(Mapper, huc3(),)
 }

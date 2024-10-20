@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{kds_month, year1, Crystal, LabelParser, Manufacturer};
+use super::{kds_month1, year1, Crystal, LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
 const FREQUENCY: u32 = 32_768;
@@ -17,7 +17,7 @@ pub fn kds_short() -> &'static impl LabelParser<Crystal> {
             manufacturer: Some(Manufacturer::Kds),
             frequency: FREQUENCY,
             year: Some(year1(&c[1])?),
-            month: Some(kds_month(&c[2])?),
+            month: Some(kds_month1(&c[2])?),
             week: None,
         })
     })

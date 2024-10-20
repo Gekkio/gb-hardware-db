@@ -2,18 +2,21 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, StaticRam};
-use crate::macros::{multi_parser, single_parser};
+use super::StaticRam;
+use crate::{
+    macros::single_parser,
+    parser::{week2, year1, year2, LabelParser, Manufacturer},
+};
 
-/// NEC μPD442012A-X
+/// NEC μPD442012A-X (TSOP-I-48)
 ///
 /// Source:
 ///   "NEC data sheet - MOS integrated circuit μPD442012A-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BB85X-MJH 0037K7027").is_ok());
-/// assert!(parser::sram_tsop1_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BC85X-MJH 0330K7043").is_ok());
+/// assert!(parser::sram::tsop_i_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BB85X-MJH 0037K7027").is_ok());
+/// assert!(parser::sram::tsop_i_48::nec_upd442012a().parse("NEC JAPAN D442012AGY-BC85X-MJH 0330K7043").is_ok());
 /// ```
 pub fn nec_upd442012a() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -35,14 +38,14 @@ pub fn nec_upd442012a() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// NEC μPD442012L-X
+/// NEC μPD442012L-X (TSOP-I-48)
 ///
 /// Source:
 ///   "NEC data sheet - MOS integrated circuit μPD442012L-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::nec_upd442012l().parse("NEC JAPAN D442012LGY-B85X-MJH 0138K7037").is_ok());
+/// assert!(parser::sram::tsop_i_48::nec_upd442012l().parse("NEC JAPAN D442012LGY-B85X-MJH 0138K7037").is_ok());
 /// ```
 pub fn nec_upd442012l() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -64,11 +67,11 @@ pub fn nec_upd442012l() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// Fujitsu MB82D12160
+/// Fujitsu MB82D12160 (TSOP-I-48)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::fujitsu_mb82d12160().parse("JAPAN 82D12160-10FN 0238 M88N").is_ok());
+/// assert!(parser::sram::tsop_i_48::fujitsu_mb82d12160().parse("JAPAN 82D12160-10FN 0238 M88N").is_ok());
 /// ```
 pub fn fujitsu_mb82d12160() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -86,14 +89,14 @@ pub fn fujitsu_mb82d12160() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// Hynix HY62LF16206A
+/// Hynix HY62LF16206A (TSOP-I-48)
 ///
 /// Source:
 ///   "hynix HY62LF16206A-LT12C 128kx16bit full CMOS SRAM"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::hynix_hy62lf16206a().parse("Hynix KOREA HY62LF16206A 0223A LT12C").is_ok());
+/// assert!(parser::sram::tsop_i_48::hynix_hy62lf16206a().parse("Hynix KOREA HY62LF16206A 0223A LT12C").is_ok());
 /// ```
 pub fn hynix_hy62lf16206a() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -111,11 +114,11 @@ pub fn hynix_hy62lf16206a() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// STMicro M68AS128
+/// STMicro M68AS128 (TSOP-I-48)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::st_micro_m68as128dl70n6().parse("M68AS128 DL70N6 AANFG F6 TWN 8B 414").is_ok());
+/// assert!(parser::sram::tsop_i_48::st_micro_m68as128dl70n6().parse("M68AS128 DL70N6 AANFG F6 TWN 8B 414").is_ok());
 /// ```
 pub fn st_micro_m68as128dl70n6() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -133,14 +136,14 @@ pub fn st_micro_m68as128dl70n6() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// AMIC LP62S16128BW-T
+/// AMIC LP62S16128BW-T (TSOP-I-48)
 ///
 /// Source:
 ///   "AMIC LP62S16128BW-T series - 128k x 16 bit low voltage CMOS SRAM"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::amic_lp62s16128bw().parse("AMIC LP62S16128BW-70LLTF P4060473FB 0540A").is_ok());
+/// assert!(parser::sram::tsop_i_48::amic_lp62s16128bw().parse("AMIC LP62S16128BW-70LLTF P4060473FB 0540A").is_ok());
 /// ```
 pub fn amic_lp62s16128bw() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -162,15 +165,15 @@ pub fn amic_lp62s16128bw() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// BSI BS616LV2018
+/// BSI BS616LV2018 (TSOP-I-48)
 ///
 /// Source:
 ///   "BSI BS616LV2018 - Very Low Power/Voltage CMOS SRAM 128k x 16 bit"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN").is_ok());
-/// assert!(parser::sram_tsop1_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN").is_ok());
+/// assert!(parser::sram::tsop_i_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY24092.1 L0314 TAIWAN").is_ok());
+/// assert!(parser::sram::tsop_i_48::bsi_bs616lv2018().parse("BSI BS616LV2018TC-70 S31686-2FY10121.1 L0230 TAIWAN").is_ok());
 /// ```
 pub fn bsi_bs616lv2018() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -192,16 +195,16 @@ pub fn bsi_bs616lv2018() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// BSI BS616LV2019
+/// BSI BS616LV2019 (TSOP-I-48)
 ///
 /// Source:
 ///   "BSI BS616LV2019 - Very Low Power CMOS SRAM 128k x 16 bit"
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ26013.1 L0335 TAIWAN").is_ok());
-/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN").is_ok());
-/// assert!(parser::sram_tsop1_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ31012.1 L0410 TAIWAN").is_ok());
+/// assert!(parser::sram::tsop_i_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ26013.1 L0335 TAIWAN").is_ok());
+/// assert!(parser::sram::tsop_i_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ27050.1 L0336 TAIWAN").is_ok());
+/// assert!(parser::sram::tsop_i_48::bsi_bs616lv2019().parse("BSI BS616LV2019TC-70 S31687FZ31012.1 L0410 TAIWAN").is_ok());
 /// ```
 pub fn bsi_bs616lv2019() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -223,11 +226,11 @@ pub fn bsi_bs616lv2019() -> &'static impl LabelParser<StaticRam> {
     )
 }
 
-/// Toshiba TC55V200
+/// Toshiba TC55V200 (TSOP-I-48)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram_tsop1_48::toshiba_tc55v200().parse("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_ok());
+/// assert!(parser::sram::tsop_i_48::toshiba_tc55v200().parse("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_ok());
 /// ```
 pub fn toshiba_tc55v200() -> &'static impl LabelParser<StaticRam> {
     single_parser!(
@@ -242,20 +245,5 @@ pub fn toshiba_tc55v200() -> &'static impl LabelParser<StaticRam> {
                 week: Some(week2(&c[2])?),
             })
         },
-    )
-}
-
-pub fn sram_tsop1_48() -> &'static impl LabelParser<StaticRam> {
-    multi_parser!(
-        StaticRam,
-        nec_upd442012a(),
-        nec_upd442012l(),
-        fujitsu_mb82d12160(),
-        hynix_hy62lf16206a(),
-        st_micro_m68as128dl70n6(),
-        amic_lp62s16128bw(),
-        bsi_bs616lv2018(),
-        bsi_bs616lv2019(),
-        toshiba_tc55v200(),
     )
 }

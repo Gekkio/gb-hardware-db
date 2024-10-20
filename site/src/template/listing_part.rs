@@ -20,7 +20,7 @@ impl<'a> Render for ListingPart<'a> {
                     @if !self.hide_type {
                         div { (Optional(part.kind.as_ref())) }
                     }
-                    div { (Optional(part.rom_code.as_ref())) }
+                    div { (Optional(part.rom_id.as_ref())) }
                     div { (Optional(part.date_code.calendar())) }
                     div { (Optional(part.manufacturer.as_ref().map(|m| m.name()))) }
                 }

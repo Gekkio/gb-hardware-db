@@ -3,13 +3,8 @@
 // SPDX-License-Identifier: MIT
 
 use log::warn;
-use nom::{
-    character::streaming::{one_of, satisfy},
-    combinator::all_consuming,
-    error::{ParseError, VerboseError},
-    IResult, Parser as _,
-};
-use regex::{Captures, Regex, RegexBuilder, RegexSet, RegexSetBuilder};
+use nom::{combinator::all_consuming, error::VerboseError, IResult, Parser as _};
+use regex::{Captures, Regex, RegexBuilder};
 use std::{any::Any, fmt, str::FromStr};
 
 use crate::{
@@ -296,31 +291,213 @@ pub fn year1(text: &str) -> Result<Year, String> {
     }
 }
 
-fn seiko_year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
-    one_of("0123456789ABCDEFGHJ")
-        .map(|ch| match ch {
-            '0' => Year::Partial(0),
-            '1' | 'A' => Year::Partial(1),
-            '2' | 'B' => Year::Partial(2),
-            '3' | 'C' => Year::Partial(3),
-            '4' | 'D' => Year::Partial(4),
-            '5' | 'E' => Year::Partial(5),
-            '6' | 'F' => Year::Partial(6),
-            '7' | 'G' => Year::Partial(7),
-            '8' | 'H' => Year::Partial(8),
-            '9' | 'J' => Year::Partial(9),
-            _ => unreachable!(),
+mod seiko {
+    use nom::{
+        character::streaming::{anychar, satisfy},
+        combinator::map_opt,
+        error::ParseError,
+        multi::count,
+        IResult, Parser,
+    };
+
+    use super::Year;
+
+    pub fn year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
+        map_opt(anychar, |ch| match ch {
+            '0' => Some(Year::Partial(0)),
+            '1' | 'A' => Some(Year::Partial(1)),
+            '2' | 'B' => Some(Year::Partial(2)),
+            '3' | 'C' => Some(Year::Partial(3)),
+            '4' | 'D' => Some(Year::Partial(4)),
+            '5' | 'E' => Some(Year::Partial(5)),
+            '6' | 'F' => Some(Year::Partial(6)),
+            '7' | 'G' => Some(Year::Partial(7)),
+            '8' | 'H' => Some(Year::Partial(8)),
+            '9' | 'J' => Some(Year::Partial(9)),
+            _ => None,
         })
         .parse(input)
+    }
+
+    pub fn lot_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, (), E> {
+        count(satisfy(|c| c.is_ascii_digit()), 4)
+            .map(|_| ())
+            .parse(input)
+    }
 }
 
-fn alnum_upper<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, char, E> {
-    satisfy(|c| match c {
-        'A'..='Z' => true,
-        '0'..='9' => true,
-        _ => false,
-    })
-    .parse(input)
+mod macronix {
+    use nom::{
+        character::streaming::satisfy,
+        combinator::{opt, recognize},
+        error::ParseError,
+        sequence::tuple,
+        IResult, Parser as _,
+    };
+
+    use super::{
+        for_nom::{self, digits, uppers},
+        ChipDateCode,
+    };
+
+    pub fn assembly_vendor_code<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, char, E> {
+        satisfy(|c| match c {
+            'a' => true, // ChipMOS
+            'B' => true, // OSE / Orient Semiconductor Electronics
+            'E' => true, // ???
+            'K' => true, // ASEKS
+            'J' => true, // ASEJ
+            'L' => true, // LINGSEN
+            'M' => true, // ???
+            'N' => true, // ???
+            'S' => true, // SPIL
+            'T' => true, // STS
+            'X' => true, // ASECL
+            _ => false,
+        })
+        .parse(input)
+    }
+
+    pub fn date_code<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, ChipDateCode, E> {
+        for_nom::year2_week2(input)
+    }
+
+    pub fn lot_code_new<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, &'a str, E> {
+        // [0-9][A-Z][0-9]{4} + [0-9]{2}[A-Z][0-9]
+        recognize(tuple((
+            tuple((digits(1), uppers(1), digits(4))),
+            opt(nom::bytes::complete::take(4_usize).and_then(tuple((
+                digits(2),
+                uppers(1),
+                digits(1),
+            )))),
+        )))
+        .parse(input)
+    }
+
+    pub fn lot_code_old<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, &'a str, E> {
+        digits(5).parse(input)
+    }
+}
+
+mod toshiba {
+    #[derive(Copy, Clone, Debug, PartialEq, Eq)]
+    pub enum Package {
+        SOP,
+    }
+
+    impl Package {
+        pub const fn code_char(&self) -> char {
+            match self {
+                Package::SOP => 'M',
+            }
+        }
+    }
+}
+
+mod for_nom {
+    use nom::{
+        bytes::streaming::take,
+        character::streaming::satisfy,
+        combinator::{map_opt, recognize},
+        error::ParseError,
+        multi::fold_many_m_n,
+        sequence::tuple,
+        IResult, Parser,
+    };
+
+    use super::{ChipDateCode, Year};
+    use crate::time::{Month, Week};
+
+    pub fn satisfy_m_n<'a, E: ParseError<&'a str>>(
+        min: usize,
+        max: usize,
+        f: impl Fn(char) -> bool,
+    ) -> impl Parser<&'a str, &'a str, E> {
+        recognize(fold_many_m_n(min, max, satisfy(f), || (), |_, _| ()))
+    }
+
+    pub fn alnum_uppers<'a, E: ParseError<&'a str>>(
+        count: usize,
+    ) -> impl Parser<&'a str, &'a str, E> {
+        satisfy_m_n(count, count, |c| {
+            c.is_ascii_digit() || c.is_ascii_uppercase()
+        })
+    }
+
+    pub fn uppers<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+        satisfy_m_n(count, count, |c| c.is_ascii_uppercase())
+    }
+
+    pub fn digits<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+        satisfy_m_n(count, count, |c| c.is_ascii_digit())
+    }
+
+    pub fn year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
+        map_opt(take(1_usize), |text| match u8::from_str_radix(text, 10) {
+            Ok(value) => Some(Year::Partial(value)),
+            _ => None,
+        })
+        .parse(input)
+    }
+
+    pub fn year2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
+        map_opt(take(2_usize), |text| match text {
+            "AA" => Some(Year::Full(2000)),
+            "AL" => Some(Year::Full(2001)),
+            _ => match u16::from_str_radix(text, 10) {
+                Ok(value @ 0..=87) => Some(Year::Full(value + 2000)),
+                Ok(value @ 88..=99) => Some(Year::Full(value + 1900)),
+                _ => None,
+            },
+        })
+        .parse(input)
+    }
+
+    pub fn year2_week2<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, ChipDateCode, E> {
+        tuple((year2, week2))
+            .map(|(year, week)| ChipDateCode::YearWeek { year, week })
+            .parse(input)
+    }
+
+    pub fn month1_alpha<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+        map_opt(take(1_usize), |text| match text {
+            "A" => Some(Month::January),
+            "B" => Some(Month::February),
+            "C" => Some(Month::March),
+            "D" => Some(Month::April),
+            "E" => Some(Month::May),
+            "F" => Some(Month::June),
+            "G" => Some(Month::July),
+            "H" => Some(Month::August),
+            // I is intentionally skipped
+            "J" => Some(Month::September),
+            "K" => Some(Month::October),
+            "L" => Some(Month::November),
+            "M" => Some(Month::December),
+            _ => None,
+        })
+        .parse(input)
+    }
+
+    pub fn week2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Week, E> {
+        map_opt(take(2_usize), |text| {
+            u8::from_str_radix(text, 10)
+                .ok()
+                .and_then(|v| Week::try_from(v).ok())
+        })
+        .parse(input)
+    }
 }
 
 pub fn year2(text: &str) -> Result<Year, String> {
@@ -362,16 +539,15 @@ pub fn month2(text: &str) -> Result<Month, String> {
 
 pub trait LabelParser<T>: Send + Sync {
     fn parse(&self, label: &str) -> Result<T, String>;
-    fn parsers(&self) -> Vec<&SingleParser<T>>;
 }
 
 #[derive(Clone)]
-pub struct SingleParser<T> {
+pub struct RegexParser<T> {
     regex: Regex,
     f: fn(Captures) -> Result<T, String>,
 }
 
-impl<T> LabelParser<T> for SingleParser<T>
+impl<T> LabelParser<T> for RegexParser<T>
 where
     T: ParsedData,
 {
@@ -382,87 +558,44 @@ where
             Err(format!("no match for {label}"))
         }
     }
-    fn parsers(&self) -> Vec<&SingleParser<T>> {
-        vec![self]
-    }
 }
 
-impl<T> SingleParser<T> {
-    pub fn compile(regex: &str, f: fn(Captures) -> Result<T, String>) -> SingleParser<T> {
+impl<T> RegexParser<T> {
+    pub fn compile(regex: &str, f: fn(Captures) -> Result<T, String>) -> RegexParser<T> {
         let regex = RegexBuilder::new(regex)
             .ignore_whitespace(true)
             .build()
             .expect("Failed to compile regex");
-        SingleParser { regex, f }
+        RegexParser { regex, f }
     }
 }
 
-#[derive(Clone)]
-pub struct MultiParser<T: 'static> {
-    parsers: Vec<&'static SingleParser<T>>,
-    regex_set: RegexSet,
-}
-
-impl<T> MultiParser<T> {
-    pub fn compile(parsers: Vec<&'static SingleParser<T>>) -> MultiParser<T> {
-        let regex_set = RegexSetBuilder::new(parsers.iter().map(|m| m.regex.as_str()))
-            .ignore_whitespace(true)
-            .build()
-            .expect("Failed to compile regex set");
-        MultiParser { parsers, regex_set }
-    }
-}
-
-impl<T> LabelParser<T> for MultiParser<T>
-where
-    T: ParsedData,
-{
-    fn parse(&self, label: &str) -> Result<T, String> {
-        let matches = self.regex_set.matches(label);
-        if matches.iter().count() > 1 {
-            warn!("Warning: multiple matches for {}", label);
-        }
-        matches
-            .iter()
-            .find_map(|m| self.parsers[m].parse(label).ok())
-            .ok_or_else(|| format!("no match for {label}"))
-    }
-
-    fn parsers(&self) -> Vec<&SingleParser<T>> {
-        self.parsers.clone()
-    }
-}
-
-pub struct NomFnParser<T> {
+pub struct NomParser<T> {
     pub name: &'static str,
     f: fn(label: &str) -> IResult<&str, T, VerboseError<&str>>,
 }
 
-impl<T> LabelParser<T> for NomFnParser<T> {
+impl<T> LabelParser<T> for NomParser<T> {
     fn parse(&self, label: &str) -> Result<T, String> {
         match all_consuming(self.f).parse(label) {
             Ok((_, chip)) => Ok(chip),
             Err(err) => Err(format!("{err:?}")),
         }
     }
-
-    fn parsers(&self) -> Vec<&crate::parser::SingleParser<T>> {
-        unimplemented!()
-    }
 }
 
 #[derive(Clone)]
-pub struct MultiNomFnParser<T: 'static> {
-    parsers: &'static [&'static NomFnParser<T>],
+pub struct MultiParser<T: 'static> {
+    parsers: &'static [&'static dyn LabelParser<T>],
 }
 
-impl<T> MultiNomFnParser<T> {
-    pub const fn new(parsers: &'static [&'static NomFnParser<T>]) -> Self {
-        MultiNomFnParser { parsers }
+impl<T> MultiParser<T> {
+    pub const fn new(parsers: &'static [&'static dyn LabelParser<T>]) -> Self {
+        MultiParser { parsers }
     }
 }
 
-impl<T> LabelParser<T> for MultiNomFnParser<T> {
+impl<T> LabelParser<T> for MultiParser<T> {
     fn parse(&self, label: &str) -> Result<T, String> {
         let mut iter = self.parsers.iter();
         while let Some(parser) = iter.next() {
@@ -474,10 +607,6 @@ impl<T> LabelParser<T> for MultiNomFnParser<T> {
             }
         }
         Err(format!("no match for {label}"))
-    }
-
-    fn parsers(&self) -> Vec<&SingleParser<T>> {
-        unimplemented!()
     }
 }
 

@@ -2,31 +2,34 @@
 //
 // SPDX-License-Identifier: MIT
 
+use nom::{bytes::streaming::tag, character::streaming::char, sequence::tuple, Parser as _};
+
 use super::Flash;
-use crate::{
-    macros::single_parser,
-    parser::{week2, year2, ChipDateCode, LabelParser, Manufacturer},
-};
+use crate::parser::{macronix, Manufacturer, NomParser};
 
 /// Macronix MX29F008 (TSOP-I-40)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::flash::tsop_i_40::macronix_mx29f008().parse("E991012 29F008TC-14 21534 TAIWAN").is_ok());
+/// assert!(parser::flash::tsop_i_40::MACRONIX_MX29F008.parse("E991012 29F008TC-14 21534 TAIWAN").is_ok());
 /// ```
-pub fn macronix_mx29f008() -> &'static impl LabelParser<Flash> {
-    single_parser!(
-        Flash,
-        r#"^[A-Z](?<year>[0-9]{2})(?<week>[0-9]{2})[0-9]{2}\ (?<kind>29F008)(?<package>T)(?<grade>C)-(?<speed>14)\ [0-9]{5}\ TAIWAN$"#,
-        move |c| {
-            Ok(Flash {
-                kind: format!("MX{}", &c["kind"]),
-                manufacturer: Some(Manufacturer::Macronix),
-                date_code: Some(ChipDateCode::YearWeek {
-                    year: year2(&c["year"])?,
-                    week: week2(&c["week"])?,
-                }),
-            })
-        },
-    )
-}
+pub static MACRONIX_MX29F008: NomParser<Flash> = NomParser {
+    name: "Macronix MX29F008",
+    f: |input| {
+        tuple((
+            macronix::assembly_vendor_code,
+            macronix::date_code,
+            tag("12"), // digits 3 and 4 of "product body" (?)
+            tag(" 29F008TC-14"),
+            char(' '),
+            macronix::lot_code_old,
+            tag(" TAIWAN"),
+        ))
+        .map(|(_, date_code, _, _, _, _, _)| Flash {
+            kind: String::from("MX29F008TC-14"),
+            manufacturer: Some(Manufacturer::Macronix),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};

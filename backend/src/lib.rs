@@ -100,22 +100,21 @@ impl fmt::Display for ParseError {
 pub(crate) mod macros {
     macro_rules! single_parser {
         ($t:ty, $re:literal, $f:expr $(,)?) => {{
-            static PARSER: std::sync::OnceLock<crate::parser::SingleParser<$t>> =
+            static PARSER: std::sync::OnceLock<crate::parser::RegexParser<$t>> =
                 std::sync::OnceLock::new();
-            PARSER.get_or_init(|| crate::parser::SingleParser::compile($re, $f))
+            PARSER.get_or_init(|| crate::parser::RegexParser::compile($re, $f))
         }};
     }
     pub(crate) use single_parser;
 
     macro_rules! multi_parser {
         ($t:ty, $($m:expr),+ $(,)?) => {{
+            static PARSERS: std::sync::OnceLock<Vec<&'static dyn crate::parser::LabelParser<$t>>> =
+                std::sync::OnceLock::new();
             static PARSER: std::sync::OnceLock<crate::parser::MultiParser<$t>> =
                 std::sync::OnceLock::new();
             PARSER.get_or_init(|| {
-                use crate::parser::LabelParser;
-                let parsers: Vec<&'static dyn LabelParser<$t>> = vec![$($m),+];
-                let parsers: Vec<&'static crate::parser::SingleParser<$t>> = parsers.into_iter().flat_map(|p| p.parsers()).collect();
-                crate::parser::MultiParser::compile(parsers)
+                crate::parser::MultiParser::new(&PARSERS.get_or_init(|| vec![$($m),+]))
             })
         }};
     }

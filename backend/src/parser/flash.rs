@@ -13,13 +13,13 @@ pub type Flash = GenericChip;
 pub fn flash_tsop_i_32() -> &'static impl LabelParser<Flash> {
     multi_parser!(
         Flash,
-        tsop_i_32::macronix_mx29l010(),
-        tsop_i_32::sanyo_le26fv10(),
-        tsop_i_32::atmel_at29lv512(),
-        tsop_i_32::sst_sst39vf512(),
+        &tsop_i_32::MACRONIX_MX29L010,
+        &tsop_i_32::SANYO_LE26FV10,
+        &tsop_i_32::ATMEL_AT29LV512,
+        &tsop_i_32::SST_SST39VF512,
     )
 }
 
 pub fn flash_tsop_i_40() -> &'static impl LabelParser<Flash> {
-    multi_parser!(Flash, tsop_i_40::macronix_mx29f008(),)
+    multi_parser!(Flash, &tsop_i_40::MACRONIX_MX29F008)
 }

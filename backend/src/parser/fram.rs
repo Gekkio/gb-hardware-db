@@ -8,39 +8,53 @@ use crate::{
 };
 
 pub mod sop_28 {
+    use nom::{
+        bytes::streaming::tag,
+        character::{complete::one_of, streaming::char},
+        combinator::opt,
+        sequence::tuple,
+        Parser as _,
+    };
+
     use super::Fram;
-    use crate::{
-        macros::single_parser,
-        parser::{week2, year2, ChipDateCode, LabelParser, Manufacturer},
+    use crate::parser::{
+        for_nom::{digits, uppers, year2_week2},
+        Manufacturer, NomParser,
     };
 
     /// Fujitsu MB85R256 (SOP-28)
     ///
     /// ```
     /// use gbhwdb_backend::parser::{self, LabelParser};
-    /// assert!(parser::fram::sop_28::fujitsu_mb85r256().parse("JAPAN MB85R256A 0412 M88").is_ok());
-    /// assert!(parser::fram::sop_28::fujitsu_mb85r256().parse("JAPAN MB85R256S 0511 M22 E1").is_ok());
+    /// assert!(parser::fram::sop_28::FUJITSU_MB85R256.parse("JAPAN MB85R256A 0412 M88").is_ok());
+    /// assert!(parser::fram::sop_28::FUJITSU_MB85R256.parse("JAPAN MB85R256S 0511 M22 E1").is_ok());
     /// ```
-    pub fn fujitsu_mb85r256() -> &'static impl LabelParser<Fram> {
-        single_parser!(
-            Fram,
-            r#"^JAPAN\ (?<kind>MB85R256(A|S))\ (?<year>[0-9]{2})(?<week>[0-9]{2})\ [A-Z][0-9]{2}(\ E1)?$"#,
-            move |c| {
-                Ok(Fram {
-                    kind: c["kind"].to_owned(),
-                    manufacturer: Some(Manufacturer::Fujitsu),
-                    date_code: Some(ChipDateCode::YearWeek {
-                        year: year2(&c["year"])?,
-                        week: week2(&c["week"])?,
-                    }),
-                })
-            },
-        )
-    }
+    pub static FUJITSU_MB85R256: NomParser<Fram> = NomParser {
+        name: "Fujitsu MB85R256",
+        f: |input| {
+            tuple((
+                tag("JAPAN "),
+                tag("MB85R256"),
+                one_of("AS"),
+                char(' '),
+                year2_week2,
+                char(' '),
+                uppers(1),
+                digits(2),
+                opt(nom::bytes::complete::tag(" E1")),
+            ))
+            .map(|(_, kind, rev, _, date_code, _, _, _, _)| Fram {
+                kind: format!("{kind}{rev}"),
+                manufacturer: Some(Manufacturer::Fujitsu),
+                date_code: Some(date_code),
+            })
+            .parse(input)
+        },
+    };
 }
 
 pub type Fram = GenericChip;
 
 pub fn fram_sop_28() -> &'static impl LabelParser<Fram> {
-    multi_parser!(Fram, sop_28::fujitsu_mb85r256(),)
+    multi_parser!(Fram, &sop_28::FUJITSU_MB85R256,)
 }

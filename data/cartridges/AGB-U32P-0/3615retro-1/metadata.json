@@ -1,0 +1,42 @@
+{
+  "code": "AGB-U32P-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-U32P-EUR-1",
+    "stamp": "22 E3"
+  },
+  "board": {
+    "label": "AGB-E18-01",
+    "circled_letters": "I",
+    "panel_position": "L-6",
+    "year": 2004,
+    "month": 11,
+    "u1": {
+      "label": "AGB-U32P-0 J2 R27V12813M-0D2 5175204J"
+    },
+    "u2": {
+      "label": "9854 5E34W"
+    },
+    "u3": {
+      "label": "S3511 AVE3 5195"
+    },
+    "u4": {
+      "label": "49DJYYK 74LV4040A"
+    },
+    "u5": {
+      "label": "T272C 49M A8H6"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Boktai 2 - Solar Boy Django (Europe) (En,Fr,De,Es,It).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           748189b5\n* MD5:             66c0b2e21872f8e9af56292d881c1516\n* SHA-1:           eeacdf5a9d3d2173a4a96689b72dc6b7ad92153c\n* SHA-256:         8a8cc80b597fa30f0792fd0d7e9b006552e4dbcf521b025563be268f7a2351d9\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T12:24:35+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.12 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      BOKTAI2␀␀␀␀␀\n* Game Code:       U32P\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xE6)\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\n\n== Database Match ==\n* Game Name:       Boktai 2 - Solar Boy Django (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-U32P\n* ROM CRC32:       748189b5\n* ROM Size:        16 MiB\n* Save Type:       64K EEPROM (8 KiB)",
+    "crc32": "748189b5",
+    "md5": "66c0b2e21872f8e9af56292d881c1516",
+    "sha1": "eeacdf5a9d3d2173a4a96689b72dc6b7ad92153c",
+    "sha256": "8a8cc80b597fa30f0792fd0d7e9b006552e4dbcf521b025563be268f7a2351d9",
+    "date": "2024-10-22"
+  }
+}

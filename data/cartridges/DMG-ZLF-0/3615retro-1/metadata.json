@@ -1,0 +1,38 @@
+{
+  "code": "DMG-ZLF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZL-FRA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1993,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ZLF-0 S LH543MNC JAPAN E1 9346 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 3'85"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9336B KOREA"
+    },
+    "u4": {
+      "label": "6129 3A96"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Legend of Zelda, The - Link's Awakening (France).gb\n* File Size:       512.0 KiB (524288 bytes)\n* CRC32:           bf2ab18b\n* MD5:             5bc0913d533000522c7c9cac1ef6f97f\n* SHA-1:           af93e1b3140f61fcd614f1ef9266d6892224767f\n* SHA-256:         b0f366203a3a5622f0948e294703c4cdbe716589d0ba505b59b78112c90cc5fa\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T11:47:11+02:00\n* Time Elapsed:    4 seconds (112.46 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        512 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      ZELDA\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x6C)\n* ROM Checksum:    OK (0x744C)\n* ROM Size:        512 KiB (0x04)\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Legend of Zelda, The - Link's Awakening (France)\n* Region:          France\n* Language(s):     Fr\n* Game Code:       DMG-ZLF\n* ROM CRC32:       bf2ab18b\n* ROM Size:        512 KiB",
+    "crc32": "bf2ab18b",
+    "md5": "5bc0913d533000522c7c9cac1ef6f97f",
+    "sha1": "af93e1b3140f61fcd614f1ef9266d6892224767f",
+    "sha256": "b0f366203a3a5622f0948e294703c4cdbe716589d0ba505b59b78112c90cc5fa",
+    "date": "2024-10-22"
+  }
+}

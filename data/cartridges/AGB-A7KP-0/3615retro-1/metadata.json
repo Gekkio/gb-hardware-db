@@ -1,0 +1,32 @@
+{
+  "code": "AGB-A7KP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-A7KP-EUR",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E11-01",
+    "circled_letters": "MB",
+    "panel_position": "N-1",
+    "year": 2003,
+    "month": 7,
+    "u1": {
+      "label": "M033238-M MX23L12806-12C AGB-A7KP-0 J2 2F459900"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256 0319 M08"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Kirby - Nightmare in Dream Land (Europe) (En,Fr,De,Es,It).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           3b7a7477\n* MD5:             6dd162a103fb55ddf99b6e688019354f\n* SHA-1:           39b00beee4558e6738859cfa250e4e0fcaae626e\n* SHA-256:         c9e7ede4f74b291cd0dd1414e7579c613775c0be7836a919609f6354e3e8698a\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T11:18:46+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.09 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      AGB KIRBY DX\n* Game Code:       A7KP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xB6)\n* Save Type:       256K SRAM (SRAM_V112)\n\n== Database Match ==\n* Game Name:       Kirby - Nightmare in Dream Land (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-A7KP\n* ROM CRC32:       3b7a7477\n* ROM Size:        16 MiB\n* Save Type:       256K SRAM/FRAM (32 KiB)",
+    "crc32": "3b7a7477",
+    "md5": "6dd162a103fb55ddf99b6e688019354f",
+    "sha1": "39b00beee4558e6738859cfa250e4e0fcaae626e",
+    "sha256": "c9e7ede4f74b291cd0dd1414e7579c613775c0be7836a919609f6354e3e8698a",
+    "date": "2024-10-22"
+  }
+}

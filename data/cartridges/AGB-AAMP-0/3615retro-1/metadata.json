@@ -1,0 +1,35 @@
+{
+  "code": "AGB-AAMP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AAMP-EUR-1",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E06-01",
+    "circled_letters": "MB",
+    "panel_position": "L-5",
+    "year": 2001,
+    "month": 5,
+    "u1": {
+      "label": "S012407-M MX23L6406-12B AGB-AAMP-0 I2 2E255601"
+    },
+    "u2": {
+      "label": "HYUNDAI GM76V256CLLFW10 0115 KOREA"
+    },
+    "u3": {
+      "label": "LV2416 13M A8R3"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Castlevania (Europe) (EUR-1).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           611535dc\n* MD5:             b7b0e7a5f8e8bd22ac9f5766d1acef56\n* SHA-1:           a127e0c62ce61cd72661a1af6f0bda18bcad26b3\n* SHA-256:         f2a7d5dca15d5a0f11cc4135517b5ddb4d76d522bac6f40b38b76439dafd2292\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T17:39:25+02:00\n* Time Elapsed:    57 seconds (143.60 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      DRACULA AGB1\n* Game Code:       AAMP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xA6)\n* Save Type:       256K SRAM (SRAM_V110)\n\n== Database Match ==\n* Game Name:       Castlevania (Europe)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       AGB-AAMP\n* ROM CRC32:       611535dc\n* ROM Size:        8 MiB\n* Save Type:       256K SRAM/FRAM (32 KiB)",
+    "crc32": "611535dc",
+    "md5": "b7b0e7a5f8e8bd22ac9f5766d1acef56",
+    "sha1": "a127e0c62ce61cd72661a1af6f0bda18bcad26b3",
+    "sha256": "f2a7d5dca15d5a0f11cc4135517b5ddb4d76d522bac6f40b38b76439dafd2292",
+    "date": "2024-10-22"
+  }
+}

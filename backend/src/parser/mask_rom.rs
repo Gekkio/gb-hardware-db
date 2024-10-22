@@ -477,11 +477,13 @@ pub fn oki_mr26v() -> &'static impl LabelParser<MaskRom> {
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::mask_rom::oki_mr27v().parse("AGB-AXPS-1 J2 R27V12813M-0C7 6145BARJ").is_ok());
+/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-FADP-0 F2 R27V810F-059 4475BB4J").is_ok());
+/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-U32P-0 J2 R27V12813M-0D2 5175204J").is_ok());
 /// ```
 pub fn oki_mr27v() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R27V[0-9]{5}[A-Z])-[0-9][[:alnum:]][0-9]\ ([0-9])[0-9]{3}[A-Z]{4}$"#,
+        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R27V[0-9]{3,5}[A-Z])-[0-9][[:alnum:]][0-9]\ ([0-9])[0-9]{3}[[:alnum:]]{3}[A-Z]$"#,
         move |c| {
             Ok(MaskRom {
                 rom_id: c[1].to_owned(),

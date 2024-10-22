@@ -35,7 +35,7 @@ pub mod sop_28 {
             tuple((
                 tag("JAPAN "),
                 tag("MB85R256"),
-                one_of("AS"),
+                opt(one_of("AS")),
                 char(' '),
                 year2_week2,
                 char(' '),
@@ -44,7 +44,10 @@ pub mod sop_28 {
                 opt(nom::bytes::complete::tag(" E1")),
             ))
             .map(|(_, kind, rev, _, date_code, _, _, _, _)| Fram {
-                kind: format!("{kind}{rev}"),
+                kind: match rev {
+                    None => String::from(kind),
+                    Some(rev) => format!("{kind}{rev}"),
+                },
                 manufacturer: Some(Manufacturer::Fujitsu),
                 date_code: Some(date_code),
             })

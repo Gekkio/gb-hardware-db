@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BMXP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BMXP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E11-10",
+    "circled_letters": "MB",
+    "panel_position": "O-6",
+    "year": 2004,
+    "month": 1,
+    "u1": {
+      "label": "AGB-BMXP-0 I2 R26V6415G-0T8 409ABBR"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256A 0352 M72"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Metroid - Zero Mission (Europe) (En,Fr,De,Es,It).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           f1d92e63\n* MD5:             07930e72d4824bd63827a1a823cc8829\n* SHA-1:           0fd107445a42e6f3a3e5ce8c865f412583179903\n* SHA-256:         0d061ff36c62ebbf2220e106ea34abdb8d813943515b35007fd8fdba3ed019b0\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T11:17:09+02:00\n* Time Elapsed:    57 seconds (143.63 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      ZEROMISSIONP\n* Game Code:       BMXP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x07)\n* Save Type:       256K SRAM (SRAM_V113)\n\n== Database Match ==\n* Game Name:       Metroid - Zero Mission (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-BMXP\n* ROM CRC32:       f1d92e63\n* ROM Size:        8 MiB\n* Save Type:       256K SRAM/FRAM (32 KiB)",
+    "crc32": "f1d92e63",
+    "md5": "07930e72d4824bd63827a1a823cc8829",
+    "sha1": "0fd107445a42e6f3a3e5ce8c865f412583179903",
+    "sha256": "0d061ff36c62ebbf2220e106ea34abdb8d813943515b35007fd8fdba3ed019b0",
+    "date": "2024-10-22"
+  }
+}

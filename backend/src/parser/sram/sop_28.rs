@@ -37,16 +37,39 @@ pub fn bsi_bs62lv256() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Hyundai GM76C256C (SOP-28)
+/// Hyundai GM76C256 (SOP-28)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram::sop_28::hyundai_gm76c256c().parse("HYUNDAI GM76C256CLLFW70 0047 KOREA").is_ok());
+/// assert!(parser::sram::sop_28::hyundai_gm76c256().parse("HYUNDAI GM76C256CLLFW70 0047 KOREA").is_ok());
 /// ```
-pub fn hyundai_gm76c256c() -> &'static impl LabelParser<Ram> {
+pub fn hyundai_gm76c256() -> &'static impl LabelParser<Ram> {
     single_parser!(
         Ram,
         r#"^HYUNDAI\ (?<kind>GM76C256[ABC]LL)FW70\ (?<year>[0-9]{2})(?<week>[0-9]{2})\ KOREA$"#,
+        move |c| {
+            Ok(Ram {
+                kind: c["kind"].to_owned(),
+                manufacturer: Some(Manufacturer::Hyundai),
+                date_code: Some(ChipDateCode::YearWeek {
+                    year: year2(&c["year"])?,
+                    week: week2(&c["week"])?,
+                }),
+            })
+        },
+    )
+}
+
+/// Hyundai GM76V256 (SOP-28)
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::sram::sop_28::hyundai_gm76v256().parse("HYUNDAI GM76V256CLLFW10 0115 KOREA").is_ok());
+/// ```
+pub fn hyundai_gm76v256() -> &'static impl LabelParser<Ram> {
+    single_parser!(
+        Ram,
+        r#"^HYUNDAI\ (?<kind>GM76V256[ABC]LL)FW10\ (?<year>[0-9]{2})(?<week>[0-9]{2})\ KOREA$"#,
         move |c| {
             Ok(Ram {
                 kind: c["kind"].to_owned(),

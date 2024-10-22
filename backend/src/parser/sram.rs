@@ -470,7 +470,8 @@ pub fn sram_sop_28() -> &'static impl LabelParser<Ram> {
     multi_parser!(
         Ram,
         sop_28::bsi_bs62lv256(),
-        sop_28::hyundai_gm76c256c(),
+        sop_28::hyundai_gm76c256(),
+        sop_28::hyundai_gm76v256(),
         sop_28::hyundai_hy6264_new(),
         sop_28::hyundai_hy6264_old(),
         sop_28::lgs_gm76c256(),

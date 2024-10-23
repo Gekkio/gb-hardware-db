@@ -146,11 +146,12 @@ pub fn rohm_ba6735() -> &'static impl LabelParser<SupervisorReset> {
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::supervisor_reset::ti_sn74lv2416().parse("LV2416 17M A23D").is_ok());
 /// assert!(parser::supervisor_reset::ti_sn74lv2416().parse("LV2416 13M A8R3").is_ok());
+/// assert!(parser::supervisor_reset::ti_sn74lv2416().parse("LV2416 0CM A73E").is_ok());
 /// ```
 pub fn ti_sn74lv2416() -> &'static impl LabelParser<SupervisorReset> {
     single_parser!(
         SupervisorReset,
-        r#"^LV2416\ ([0-9])([0-9])[[:alnum:]]\ [A-Z][[:alnum:]]{3}$"#,
+        r#"^LV2416\ ([0-9])[[:alnum:]][[:alnum:]]\ [A-Z][[:alnum:]]{3}$"#,
         move |c| {
             Ok(SupervisorReset {
                 chip_type: "SN74LV2416".to_owned(),

@@ -1,0 +1,32 @@
+{
+  "code": "AGB-AZEP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AZEP-EUR",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "AGB-E02-10",
+    "circled_letters": "I",
+    "panel_position": "K-6",
+    "year": 2002,
+    "month": 4,
+    "u1": {
+      "label": "E021707-M MX23L6406-12B AGB-AZEP-0 I2 2F824500"
+    },
+    "u2": {
+      "label": "39VF512 70-4C-WH 0143078-D"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Zone of the Enders - The Fist of Mars (Europe) (En,Fr,De).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           973496e0\n* MD5:             55b8193f7a2e96d6af029e2411fe22cb\n* SHA-1:           2441dcc18125514596c36b7ebc090f3fb3644fdb\n* SHA-256:         4516368570d8319b533b9e61caf047cf886443ebe139659519ee69d6f58696d1\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T23:26:16+02:00\n* Time Elapsed:    57 seconds (143.50 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      Z.O.E EU␀␀␀␀\n* Game Code:       AZEP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xA8)\n* Save Type:       512K FLASH (FLASH_V126)\n* Save Flash Chip: SST 39VF512 (0xBFD4)\n\n== Database Match ==\n* Game Name:       Zone of the Enders - The Fist of Mars (Europe) (En,Fr,De)\n* Region:          Europe\n* Language(s):     En,Fr,De\n* Game Code:       AGB-AZEP\n* ROM CRC32:       973496e0\n* ROM Size:        8 MiB\n* Save Type:       512K FLASH (64 KiB)",
+    "crc32": "973496e0",
+    "md5": "55b8193f7a2e96d6af029e2411fe22cb",
+    "sha1": "2441dcc18125514596c36b7ebc090f3fb3644fdb",
+    "sha256": "4516368570d8319b533b9e61caf047cf886443ebe139659519ee69d6f58696d1",
+    "date": "2024-10-22"
+  }
+}

@@ -150,7 +150,7 @@ pub fn rohm_ba6735() -> &'static impl LabelParser<SupervisorReset> {
 pub fn ti_sn74lv2416() -> &'static impl LabelParser<SupervisorReset> {
     single_parser!(
         SupervisorReset,
-        r#"^LV2416\ ([0-9])([0-9])[[:alnum:]]\ [A-Z][0-9][[:alnum:]]{2}$"#,
+        r#"^LV2416\ ([0-9])([0-9])[[:alnum:]]\ [A-Z][[:alnum:]]{3}$"#,
         move |c| {
             Ok(SupervisorReset {
                 chip_type: "SN74LV2416".to_owned(),

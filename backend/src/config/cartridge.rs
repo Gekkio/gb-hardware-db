@@ -109,6 +109,7 @@ pub enum BoardConfig {
     AgbE05,
     AgbE06,
     AgbE11,
+    AgbE12,
     AgbE18,
     AgbE24,
     AgbY11,
@@ -228,6 +229,16 @@ impl BoardConfig {
                 D::U1 => part(PartRole::Rom, agb_mask_rom_tsop_ii_44()),
                 // SOP-28 FRAM
                 D::U2 => part(PartRole::Ram, fram_sop_28()),
+                _ => None,
+            },
+            BoardConfig::AgbE12 => match designator {
+                // QFP-32
+                D::U1 => part(PartRole::Unknown, unknown_chip()),
+                // TSOP-II-44 ROM
+                D::U2 => part(PartRole::Rom, agb_mask_rom_tsop_ii_44()),
+                // SOP-8 EEPROM
+                D::U3 => part(PartRole::Eeprom, eeprom()),
+                D::U4 => part(PartRole::Accelerometer, accelerometer()),
                 _ => None,
             },
             BoardConfig::AgbE18 => match designator {
@@ -659,6 +670,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("AGB-E05", BoardConfig::AgbE05);
     m.insert("AGB-E06", BoardConfig::AgbE06);
     m.insert("AGB-E11", BoardConfig::AgbE11);
+    m.insert("AGB-E12", BoardConfig::AgbE12);
     m.insert("AGB-E18", BoardConfig::AgbE18);
     m.insert("AGB-E24", BoardConfig::AgbE24);
     m.insert("AGB-Y11", BoardConfig::AgbY11);

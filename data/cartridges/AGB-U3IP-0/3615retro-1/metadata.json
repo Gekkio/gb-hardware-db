@@ -1,0 +1,42 @@
+{
+  "code": "AGB-U3IP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-U3IP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E18-01",
+    "circled_letters": "I",
+    "panel_position": "B-1",
+    "year": 2004,
+    "month": 3,
+    "u1": {
+      "label": "M042058-M MX23L12807-12C AGB-U3IP-0 J2 2I819502A1"
+    },
+    "u2": {
+      "label": "9854 4J06W"
+    },
+    "u3": {
+      "label": "S3511 AV39 4632"
+    },
+    "u4": {
+      "label": "39D5LCK 74LV4040A"
+    },
+    "u5": {
+      "label": "T272C 37M A4E4"
+    },
+    "x1": {}
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Boktai - The Sun Is in Your Hand (Europe) (En,Fr,De,Es,It).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           9686c36b\n* MD5:             c8b49c53003b8d9a15d91a5a5d5cc91b\n* SHA-1:           64f7bf0f0560f6e94da33b549d3206678b29f557\n* SHA-256:         214285b09200848d5f8639a688051a627ec4aa648e078ad6d77579633822dd6c\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T10:51:02+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.26 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      BOKTAI␀␀␀␀␀␀\n* Game Code:       U3IP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x01)\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\n\n== Database Match ==\n* Game Name:       Boktai - The Sun Is in Your Hand (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-U3IP\n* ROM CRC32:       9686c36b\n* ROM Size:        16 MiB\n* Save Type:       64K EEPROM (8 KiB)",
+    "crc32": "9686c36b",
+    "md5": "c8b49c53003b8d9a15d91a5a5d5cc91b",
+    "sha1": "64f7bf0f0560f6e94da33b549d3206678b29f557",
+    "sha256": "214285b09200848d5f8639a688051a627ec4aa648e078ad6d77579633822dd6c",
+    "date": "2024-10-22"
+  }
+}

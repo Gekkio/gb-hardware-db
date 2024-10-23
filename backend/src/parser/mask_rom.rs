@@ -455,11 +455,12 @@ pub fn fujitsu() -> &'static impl LabelParser<MaskRom> {
 /// assert!(parser::mask_rom::oki_mr26v().parse("AGB-TCHK-1 H2 R26V3210F-087 244A239").is_ok());
 /// assert!(parser::mask_rom::oki_mr26v().parse("AGB-AXVJ-0 I2 R26V6414G-0A7 243A262").is_ok());
 /// assert!(parser::mask_rom::oki_mr26v().parse("AGB-BR4J-0 I2 R26V6415G-02L 427ABA3").is_ok());
+/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-BR3P-0 H2 R26V3211F-0T6 442ABAJJ").is_ok());
 /// ```
 pub fn oki_mr26v() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R26V[0-9]{4}[A-Z])-[0-9][[:alnum:]][[:alnum:]]\ ([0-9])([0-9]{2})[A-Z][[:alnum:]]{3}$"#,
+        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R26V[0-9]{4}[A-Z])-[0-9][[:alnum:]][[:alnum:]]\ ([0-9])([0-9]{2})[A-Z][[:alnum:]]{3}[A-Z]?$"#,
         move |c| {
             Ok(MaskRom {
                 rom_id: c[1].to_owned(),

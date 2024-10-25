@@ -5,7 +5,7 @@
 use anyhow::{anyhow, Error};
 use gbhwdb_backend::{
     input::Part,
-    parser::{self, ChipDateCode, LabelParser, Manufacturer},
+    parser::{self, LabelParser, Manufacturer, PartDateCode},
 };
 
 use crate::{process::to_full_year, process::DateCode};
@@ -107,18 +107,6 @@ impl ParsedPart for parser::Gen2Soc {
     }
 }
 
-impl ParsedPart for parser::StaticRam {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: self.part,
-            manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}
-
 impl ParsedPart for parser::Crystal {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {
@@ -137,17 +125,6 @@ impl ParsedPart for parser::Crystal {
 }
 
 impl ParsedPart for parser::Coil {
-    fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(self.kind),
-            manufacturer: self.manufacturer,
-            ..ProcessedPart::default()
-        }
-    }
-}
-
-impl ParsedPart for parser::Transformer {
     fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {
             label: Some(label),
@@ -182,24 +159,26 @@ impl ParsedPart for parser::ChipYearWeek {
     }
 }
 
-impl ParsedPart for parser::GenericChip {
+fn loose_datecode(year_hint: Option<u16>, date_code: Option<PartDateCode>) -> DateCode {
+    match date_code {
+        Some(PartDateCode::Year { year }) => DateCode::loose_year_week(year_hint, Some(year), None),
+        Some(PartDateCode::YearMonth { year, month }) => {
+            DateCode::loose_year_month(year_hint, Some(year), Some(month))
+        }
+        Some(PartDateCode::YearWeek { year, week }) => {
+            DateCode::loose_year_week(year_hint, Some(year), Some(week))
+        }
+        None => DateCode::loose_year_week(year_hint, None, None),
+    }
+}
+
+impl ParsedPart for parser::GenericPart {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {
             label: Some(label),
             kind: Some(self.kind),
             manufacturer: self.manufacturer,
-            date_code: match self.date_code {
-                Some(ChipDateCode::Year { year }) => {
-                    DateCode::loose_year_week(year_hint, Some(year), None)
-                }
-                Some(ChipDateCode::YearMonth { year, month }) => {
-                    DateCode::loose_year_month(year_hint, Some(year), Some(month))
-                }
-                Some(ChipDateCode::YearWeek { year, week }) => {
-                    DateCode::loose_year_week(year_hint, Some(year), Some(week))
-                }
-                None => DateCode::loose_year_week(year_hint, None, None),
-            },
+            date_code: loose_datecode(year_hint, self.date_code),
             ..ProcessedPart::default()
         }
     }
@@ -211,7 +190,7 @@ impl ParsedPart for parser::MaskRom {
             label: Some(label),
             kind: self.chip_type,
             manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
+            date_code: loose_datecode(year_hint, self.date_code),
             ..ProcessedPart::default()
         }
     }
@@ -222,18 +201,6 @@ impl ParsedPart for parser::Mapper {
         ProcessedPart {
             label: Some(label),
             kind: Some(self.mbc_type.display_name().to_owned()),
-            manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}
-
-impl ParsedPart for parser::SupervisorReset {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(self.chip_type),
             manufacturer: self.manufacturer,
             date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
             ..ProcessedPart::default()

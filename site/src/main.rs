@@ -408,7 +408,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             let year_hint = cpu.as_ref().map(|cpu| cpu.date_code.year.unwrap_or(1996));
 
             let work_ram = console.mainboard.u2.as_ref().map(|part| {
-                boxed_parser(parser::sram::sram_sop_28())(year_hint, part)
+                boxed_parser(parser::sram::sram_sop_28_5v())(year_hint, part)
                     .unwrap()
                     .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
@@ -416,7 +416,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                     })
             });
             let video_ram = console.mainboard.u3.as_ref().map(|part| {
-                boxed_parser(parser::sram::sram_sop_28())(year_hint, part)
+                boxed_parser(parser::sram::sram_sop_28_5v())(year_hint, part)
                     .unwrap()
                     .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
@@ -424,7 +424,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                     })
             });
             let amplifier = console.mainboard.u4.as_ref().map(|part| {
-                boxed_parser(parser::dmg_amp::dmg_amp())(year_hint, part)
+                boxed_parser(parser::dmg_amp())(year_hint, part)
                     .unwrap()
                     .unwrap_or_else(|| ProcessedPart {
                         kind: Some("blob".to_string()),
@@ -450,7 +450,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             };
 
             let lcd_board = console.lcd_board.as_ref().map(|board| {
-                let regulator = map_part(year_hint, &board.chip, parser::dmg_reg::dmg_reg());
+                let regulator = map_part(year_hint, &board.chip, parser::dmg_reg());
                 let lcd_panel = board
                     .screen
                     .as_ref()
@@ -610,12 +610,12 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
-                parser::sram::sram_sop_28(),
+                parser::sram::sram_sop_28_5v(),
             );
             let video_ram = map_part(
                 year_hint,
                 &console.mainboard.u4,
-                parser::sram::sram_sop_28(),
+                parser::sram::sram_sop_28_5v(),
             );
             let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
             let cic = map_part(year_hint, &console.mainboard.u6, parser::cic::cic());
@@ -689,10 +689,10 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
-                parser::sram::sram_sop_28(),
+                parser::sram::sram_sop_28_5v(),
             );
-            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
             let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
@@ -786,20 +786,16 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
-                parser::sram::sram_sop_28(),
+                parser::sram::sram_sop_28_5v(),
             );
-            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg::dmg_reg());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
             let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
                 parser::crystal_4mihz::crystal_4mihz(),
             );
-            let t1 = map_part(
-                year_hint,
-                &console.mainboard.t1,
-                parser::mgl_transformer::mgl_transformer(),
-            );
+            let t1 = map_part(year_hint, &console.mainboard.t1, parser::mgl_transformer());
             let mainboard = LegacyMglMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -886,7 +882,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
-                parser::sram::sram_sop_28(),
+                parser::sram::sram_sop_28_5v(),
             );
             let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
             let cic = map_part(year_hint, &console.mainboard.u5, parser::cic::cic());
@@ -965,8 +961,8 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 &console.mainboard.u2,
                 parser::sram::sram_tsop_i_28(),
             );
-            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp::mgb_amp());
-            let regulator = map_part(year_hint, &console.mainboard.u4, parser::cgb_reg::cgb_reg());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::cgb_reg());
             let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
@@ -1082,13 +1078,9 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 &console.mainboard.u2,
                 parser::sram::sram_tsop_i_48(),
             );
-            let regulator = map_part(year_hint, &console.mainboard.u3, parser::agb_reg::agb_reg());
-            let u4 = map_part(
-                year_hint,
-                &console.mainboard.u4,
-                parser::agb_pmic::agb_pmic(),
-            );
-            let amplifier = map_part(year_hint, &console.mainboard.u6, parser::agb_amp::agb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u3, parser::agb_reg());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::agb_pmic());
+            let amplifier = map_part(year_hint, &console.mainboard.u6, parser::agb_amp());
             let crystal = map_part(
                 year_hint,
                 &console.mainboard.x1,
@@ -1183,18 +1175,12 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             );
             let amplifier = match console.mainboard.label.as_str() {
                 // FIXME: Not really an amplifier
-                "C/AGS-CPU-30" | "C/AGT-CPU-01" => map_part(
-                    year_hint,
-                    &console.mainboard.u3,
-                    parser::ags_pmic_new::ags_pmic_new(),
-                ),
-                _ => map_part(year_hint, &console.mainboard.u3, parser::agb_amp::agb_amp()),
+                "C/AGS-CPU-30" | "C/AGT-CPU-01" => {
+                    map_part(year_hint, &console.mainboard.u3, parser::ags_pmic_new())
+                }
+                _ => map_part(year_hint, &console.mainboard.u3, parser::agb_amp()),
             };
-            let u4 = map_part(
-                year_hint,
-                &console.mainboard.u4,
-                parser::ags_pmic_old::ags_pmic_old(),
-            );
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::ags_pmic_old());
             let u5 = map_part(
                 year_hint,
                 &console.mainboard.u5,
@@ -1282,8 +1268,8 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 parser::sram::sram_tsop_i_48(),
             );
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
-            let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg::gbs_reg());
-            let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg::gbs_reg());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg());
+            let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg());
             let crystal = map_part(
                 year_hint,
                 &console.mainboard.y1,
@@ -1369,11 +1355,7 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
                 &console.mainboard.u1,
                 parser::agb_soc_bga::agb_soc_bga(),
             );
-            let u2 = map_part(
-                year_hint,
-                &console.mainboard.u2,
-                parser::oxy_pmic::oxy_pmic(),
-            );
+            let u2 = map_part(year_hint, &console.mainboard.u2, parser::oxy_pmic());
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
             let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
             let mainboard = LegacyOxyMainboard {

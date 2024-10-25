@@ -5,10 +5,7 @@
 use gbhwdb_backend::{
     config::cartridge::*,
     input::cartridge::*,
-    parser::{
-        Accelerometer, Crystal, Eeprom, Flash, GenericChip, HexInverter, LineDecoder, Mapper,
-        MaskRom, Rtc, StaticRam, SupervisorReset, Tama, UnknownChip,
-    },
+    parser::{Accelerometer, Crystal, Eeprom, GenericPart, Mapper, MaskRom, Tama, UnknownChip},
 };
 use std::{any::Any, collections::HashMap};
 
@@ -51,16 +48,10 @@ impl LegacyBoard {
 
                 let part = try_process::<MaskRom>(board.year, label, parsed)
                     .or_else(|parsed| try_process::<Mapper>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<GenericChip>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<StaticRam>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<SupervisorReset>(board.year, label, parsed))
+                    .or_else(|parsed| try_process::<GenericPart>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Crystal>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Flash>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Eeprom>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Accelerometer>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<LineDecoder>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<HexInverter>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Rtc>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Tama>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<UnknownChip>(board.year, label, parsed))
                     .unwrap_or_else(|_| {

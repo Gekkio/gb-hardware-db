@@ -2,49 +2,63 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, ChipYearWeek, LabelParser, Manufacturer};
-use crate::macros::{multi_parser, single_parser};
+use nom::{bytes::streaming::tag, character::streaming::char, sequence::tuple, Parser as _};
 
-pub type Accelerometer = ChipYearWeek;
+use super::{
+    for_nom::{digits, uppers, year2_week2},
+    GenericPart, LabelParser, Manufacturer, NomParser,
+};
+use crate::macros::multi_parser;
 
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::accelerometer::accelerometer().parse("2738109451 0028 ADXL202JQC").is_ok());
-/// ```
-pub fn analog_adxl202jqc() -> &'static impl LabelParser<ChipYearWeek> {
-    single_parser!(
-        ChipYearWeek,
-        r#"^[0-9]{10}\ ([0-9]{2})([0-9]{2})\ ADXL202JQC$"#,
-        move |c| {
-            Ok(ChipYearWeek {
-                kind: "ADXL202JQC".to_owned(),
-                manufacturer: Some(Manufacturer::Analog),
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
-            })
-        }
-    )
-}
+pub type Accelerometer = GenericPart;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::accelerometer::accelerometer().parse("06245 202JE 0501A").is_ok());
+/// assert!(parser::accelerometer::ANALOG_ADXL202JQC.parse("2738109451 0028 ADXL202JQC").is_ok());
 /// ```
-pub fn analog_adxl202je() -> &'static impl LabelParser<ChipYearWeek> {
-    single_parser!(
-        ChipYearWeek,
-        r#"^[0-9]{5}\ 202JE\ [0-9]{4}[A-Z]$"#,
-        move |_| {
-            Ok(ChipYearWeek {
-                kind: "ADXL202JE".to_owned(),
-                manufacturer: Some(Manufacturer::Analog),
-                year: None,
-                week: None,
-            })
-        }
-    )
-}
+pub static ANALOG_ADXL202JQC: NomParser<Accelerometer> = NomParser {
+    name: "Analog ADXL202JQC",
+    f: |input| {
+        tuple((
+            digits(10),
+            char(' '),
+            year2_week2,
+            char(' '),
+            tag("ADXL202JQC"),
+        ))
+        .map(|(_, _, date_code, _, kind)| Accelerometer {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Analog),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::accelerometer::ANALOG_ADXL202JE.parse("06245 202JE 0501A").is_ok());
+/// ```
+pub static ANALOG_ADXL202JE: NomParser<Accelerometer> = NomParser {
+    name: "Analog ADXL202JE",
+    f: |input| {
+        tuple((
+            digits(5),
+            char(' '),
+            tag("202JE"),
+            char(' '),
+            digits(4),
+            uppers(1),
+        ))
+        .map(|(_, _, kind, _, _, _)| Accelerometer {
+            kind: format!("ADXL{kind}"),
+            manufacturer: Some(Manufacturer::Analog),
+            date_code: None,
+        })
+        .parse(input)
+    },
+};
 
 pub fn accelerometer() -> &'static impl LabelParser<Accelerometer> {
-    multi_parser!(Accelerometer, analog_adxl202jqc(), analog_adxl202je(),)
+    multi_parser!(Accelerometer, &ANALOG_ADXL202JQC, &ANALOG_ADXL202JE)
 }

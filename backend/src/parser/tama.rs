@@ -3,10 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use super::{week2, year2, LabelParser, ParsedData, Year};
-use crate::{
-    macros::{multi_parser, single_parser},
-    time::Week,
-};
+use crate::{macros::single_parser, time::Week};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Tama {
@@ -82,8 +79,4 @@ pub fn tama7() -> &'static impl LabelParser<Tama> {
             })
         },
     )
-}
-
-pub fn tama() -> &'static impl LabelParser<Tama> {
-    multi_parser!(Tama, tama5(), tama6(), tama7())
 }

@@ -1,7 +1,7 @@
 use super::Ram;
 use crate::{
     macros::single_parser,
-    parser::{week2, year1, year2, ChipDateCode, LabelParser, Manufacturer},
+    parser::{week2, year1, year2, LabelParser, Manufacturer, PartDateCode},
 };
 
 /// Sharp LH52256
@@ -24,7 +24,7 @@ pub fn sharp_lh52256() -> &'static impl LabelParser<Ram> {
                     extra = c.name("extra").map_or("", |m| m.as_str())
                 ),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c["year"])?,
                     week: week2(&c["week"])?,
                 }),
@@ -47,7 +47,7 @@ pub fn sharp_lh52cv256() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -71,7 +71,7 @@ pub fn sharp_lh51d256() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[3])?,
                     week: week2(&c[4])?,
                 }),

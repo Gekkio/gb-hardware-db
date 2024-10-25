@@ -2,30 +2,33 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, ChipYearWeek, LabelParser};
-use crate::macros::single_parser;
-
-pub type OxyU5 = ChipYearWeek;
+use super::{week2, year2, LabelParser};
+use crate::{
+    macros::single_parser,
+    parser::{GenericPart, PartDateCode},
+};
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::oxy_u5::unknown().parse("CP6465 B 02 KOR0531 635963").is_ok());
 /// ```
-pub fn unknown() -> &'static impl LabelParser<OxyU5> {
+pub fn unknown() -> &'static impl LabelParser<GenericPart> {
     single_parser!(
-        OxyU5,
+        GenericPart,
         r#"^CP6465\ B\ 0[0-9]\ KOR([0-9]{2})([0-9]{2})\ [0-9]{6}$"#,
         move |c| {
-            Ok(OxyU5 {
+            Ok(GenericPart {
                 kind: "CP6465".to_owned(),
                 manufacturer: None,
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[1])?,
+                    week: week2(&c[2])?,
+                }),
             })
         },
     )
 }
 
-pub fn oxy_u5() -> &'static impl LabelParser<OxyU5> {
+pub fn oxy_u5() -> &'static impl LabelParser<GenericPart> {
     unknown()
 }

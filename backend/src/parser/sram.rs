@@ -1,27 +1,20 @@
-use super::{LabelParser, Manufacturer, ParsedData, Year};
+// SPDX-FileCopyrightText: Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
+use super::{LabelParser, Manufacturer};
 use crate::{
     macros::{multi_parser, single_parser},
-    parser::{week2, year1, year2, ChipDateCode, GenericChip},
-    time::Week,
+    parser::{
+        amic, bsi, fujitsu, hynix, hyundai, lgs, nec, sanyo, st_micro, toshiba, victronix, week2,
+        winbond, year1, year2, GenericPart, PartDateCode,
+    },
 };
 
 pub mod sop_28;
-pub mod sop_32;
 pub mod tsop_i_28;
-pub mod tsop_i_48;
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct StaticRam {
-    pub family: Option<&'static str>,
-    pub part: Option<String>,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<Week>,
-}
-
-impl ParsedData for StaticRam {}
-
-pub type Ram = GenericChip;
+pub type Ram = GenericPart;
 
 /// LSI Logic LH52xx 64 kbit
 ///
@@ -39,7 +32,7 @@ pub fn lsi_logic_lh52xx() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -48,7 +41,7 @@ pub fn lsi_logic_lh52xx() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// LSI Logic LH52B256
+/// LSI Logic LH52B256 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -62,7 +55,7 @@ pub fn lsi_logic_lh52b256() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -71,7 +64,7 @@ pub fn lsi_logic_lh52b256() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// LSI Logic LH5168
+/// LSI Logic LH5168 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -85,7 +78,7 @@ pub fn lsi_logic_lh5168() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::LsiLogic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -94,7 +87,7 @@ pub fn lsi_logic_lh5168() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Mosel-Vitelic LH52B256
+/// Mosel-Vitelic LH52B256 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -108,7 +101,7 @@ pub fn mosel_vitelic_lh52b256() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -117,7 +110,7 @@ pub fn mosel_vitelic_lh52b256() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Mosel-Vitelic LH5168
+/// Mosel-Vitelic LH5168 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -132,7 +125,7 @@ pub fn mosel_vitelic_lh5168() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -141,7 +134,7 @@ pub fn mosel_vitelic_lh5168() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Mosel-Vitelic LH5268A
+/// Mosel-Vitelic LH5268A (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -155,7 +148,7 @@ pub fn mosel_vitelic_lh5268a() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -164,7 +157,7 @@ pub fn mosel_vitelic_lh5268a() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Sharp LH5160
+/// Sharp LH5160 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -178,7 +171,7 @@ pub fn sharp_lh5160() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -187,7 +180,7 @@ pub fn sharp_lh5160() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Sharp LH5168
+/// Sharp LH5168 (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -203,7 +196,7 @@ pub fn sharp_lh5168() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -226,7 +219,7 @@ pub fn sharp_lh5164an() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -249,7 +242,7 @@ pub fn sharp_lh5164an_2() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -272,7 +265,7 @@ pub fn sharp_lh5164ln() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -296,7 +289,7 @@ pub fn sharp_lh5264n() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -319,7 +312,7 @@ pub fn sharp_lh5264tn_l() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -342,7 +335,7 @@ pub fn sharp_lh5164n() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -365,7 +358,7 @@ pub fn sharp_lh52a64n_l() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -388,7 +381,7 @@ pub fn crosslink_lh52a64n_yl() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Crosslink),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -397,7 +390,7 @@ pub fn crosslink_lh52a64n_yl() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Crosslink LH5268ANF-10YLL
+/// Crosslink LH5268ANF-10YLL (4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -411,7 +404,7 @@ pub fn crosslink_lh5268anf() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Crosslink),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -434,7 +427,7 @@ pub fn mosel_vitelic_lh52a64n_pl() -> &'static impl LabelParser<Ram> {
             Ok(Ram {
                 kind: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::MoselVitelic),
-                date_code: Some(ChipDateCode::YearWeek {
+                date_code: Some(PartDateCode::YearWeek {
                     year: year1(&c[2])?,
                     week: week2(&c[3])?,
                 }),
@@ -443,47 +436,22 @@ pub fn mosel_vitelic_lh52a64n_pl() -> &'static impl LabelParser<Ram> {
     )
 }
 
-/// Hynix HY62WT08081E (SOP-28 or TSOP-I-28)
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::sram::hynix_hy62wt08081e().parse("hynix 0231A HY62WT081ED70C KOREA").is_ok());
-/// ```
-pub fn hynix_hy62wt08081e() -> &'static impl LabelParser<Ram> {
-    single_parser!(
-        Ram,
-        r#"^hynix\ ([0-9]{2})([0-9]{2})[A-Z]\ (HY62WT081E[LD][0-9][0-9][CEI])\ KOREA$"#,
-        move |c| {
-            Ok(Ram {
-                kind: c[3].to_owned(),
-                manufacturer: Some(Manufacturer::Hynix),
-                date_code: Some(ChipDateCode::YearWeek {
-                    year: year2(&c[1])?,
-                    week: week2(&c[2])?,
-                }),
-            })
-        },
-    )
-}
-
-pub fn sram_sop_28() -> &'static impl LabelParser<Ram> {
+pub fn sram_sop_28_5v() -> &'static impl LabelParser<Ram> {
     multi_parser!(
         Ram,
-        sop_28::bsi_bs62lv256(),
-        sop_28::hyundai_gm76c256(),
-        sop_28::hyundai_gm76v256(),
-        sop_28::hyundai_hy6264_new(),
-        sop_28::hyundai_hy6264_old(),
-        sop_28::lgs_gm76c256(),
-        sop_28::sanyo_lc35256(),
-        sop_28::sanyo_lc3564(),
+        &bsi::BSI_BS62LV256,
+        &lgs::LGS_GM76C256,
+        &lgs::HYUNDAI_GM76C256,
+        &hyundai::HYUNDAI_HY6264,
+        &sanyo::SANYO_LC35256,
+        &sanyo::SANYO_LC3564,
         sop_28::rohm_br62256f(),
         sop_28::rohm_br6265(),
         sop_28::rohm_xlj6265(),
-        sop_28::victronix_vn4464(),
-        sop_28::winbond_w24257(),
-        sop_28::winbond_w24258(),
-        sop_28::winbond_w2465(),
+        &victronix::VICTRONIX_VN4464,
+        &winbond::WINBOND_W24257,
+        &winbond::WINBOND_W24258,
+        &winbond::WINBOND_W2465,
         sop_28::sharp_lh52256(),
         lsi_logic_lh5168(),
         lsi_logic_lh52b256(),
@@ -503,35 +471,46 @@ pub fn sram_sop_28() -> &'static impl LabelParser<Ram> {
         crosslink_lh52a64n_yl(),
         crosslink_lh5268anf(),
         mosel_vitelic_lh52a64n_pl(),
-        hynix_hy62wt08081e(),
+        &hynix::HYNIX_HY62WT08081,
     )
 }
 
-pub fn sram_sop_32() -> &'static impl LabelParser<GenericChip> {
-    multi_parser!(GenericChip, sop_32::hyundai_hy628100(),)
+pub fn sram_sop_28_3v3() -> &'static impl LabelParser<Ram> {
+    multi_parser!(
+        Ram,
+        &bsi::BSI_BS62LV256,
+        &lgs::HYUNDAI_GM76V256,
+        &sanyo::SANYO_LC35256,
+        &sanyo::SANYO_LC3564,
+        sop_28::sharp_lh52256(),
+        &hynix::HYNIX_HY62WT08081,
+    )
 }
 
-pub fn sram_tsop_i_28() -> &'static impl LabelParser<GenericChip> {
+pub fn sram_sop_32_5v() -> &'static impl LabelParser<Ram> {
+    multi_parser!(GenericPart, &hyundai::HYUNDAI_HY628100,)
+}
+
+pub fn sram_tsop_i_28() -> &'static impl LabelParser<Ram> {
     multi_parser!(
-        GenericChip,
+        GenericPart,
         tsop_i_28::sharp_lh52256(),
         tsop_i_28::sharp_lh51d256(),
         tsop_i_28::sharp_lh52cv256(),
-        hynix_hy62wt08081e(),
     )
 }
 
-pub fn sram_tsop_i_48() -> &'static impl LabelParser<StaticRam> {
+pub fn sram_tsop_i_48() -> &'static impl LabelParser<Ram> {
     multi_parser!(
-        StaticRam,
-        tsop_i_48::nec_upd442012a(),
-        tsop_i_48::nec_upd442012l(),
-        tsop_i_48::fujitsu_mb82d12160(),
-        tsop_i_48::hynix_hy62lf16206a(),
-        tsop_i_48::st_micro_m68as128dl70n6(),
-        tsop_i_48::amic_lp62s16128bw(),
-        tsop_i_48::bsi_bs616lv2018(),
-        tsop_i_48::bsi_bs616lv2019(),
-        tsop_i_48::toshiba_tc55v200(),
+        Ram,
+        &nec::NEC_UPD442012A_X,
+        &nec::NEC_UPD442012L_X,
+        &fujitsu::FUJITSU_MB82D12160,
+        &hynix::HYNIX_HY62LF16206,
+        &st_micro::ST_MICRO_M68AS128,
+        &amic::AMIC_LP62S16128,
+        &bsi::BSI_BS616LV2018,
+        &bsi::BSI_BS616LV2019,
+        &toshiba::TOSHIBA_TC55V200
     )
 }

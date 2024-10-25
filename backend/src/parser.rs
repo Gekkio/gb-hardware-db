@@ -8,62 +8,39 @@ use regex::{Captures, Regex, RegexBuilder};
 use std::{any::Any, fmt, str::FromStr};
 
 use crate::{
-    macros::single_parser,
+    macros::{multi_parser, single_parser},
     time::{Month, Week},
 };
 
 pub use self::{
     accelerometer::Accelerometer,
-    agb_amp::AgbAmp,
-    agb_pmic::AgbPmic,
-    agb_reg::AgbReg,
     ags_charge_ctrl::AgsChargeController,
-    ags_pmic_old::AgsPmicOld,
-    cgb_reg::CgbReg,
     cgb_soc::CgbSoc,
     cgb_stamp::CgbStamp,
     cic::Cic,
     coil::Coil,
-    dmg_amp::DmgAmp,
-    dmg_reg::DmgReg,
     dmg_stamp::DmgStamp,
     eeprom::Eeprom,
-    flash::Flash,
-    fram::Fram,
     gbs_dol::GbsDol,
-    gbs_reg::GbsReg,
     gen1_soc::{Gen1Soc, Gen1SocKind},
     gen2_soc::{Gen2Soc, Gen2SocKind},
-    hex_inverter::HexInverter,
     icd2::Icd2,
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
-    line_decoder::LineDecoder,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
     mask_rom::MaskRom,
-    mgb_amp::MgbAmp,
-    mgl_transformer::Transformer,
-    oxy_pmic::OxyPmic,
-    oxy_u4::OxyU4,
-    oxy_u5::OxyU5,
-    rtc::Rtc,
     sgb_rom::SgbRom,
-    sram::StaticRam,
-    supervisor_reset::SupervisorReset,
     tama::{Tama, TamaType},
 };
 
 pub mod accelerometer;
-pub mod agb_amp;
-pub mod agb_pmic;
-pub mod agb_reg;
 pub mod agb_soc_bga;
 pub mod agb_soc_qfp_128;
 pub mod agb_soc_qfp_156;
 pub mod ags_charge_ctrl;
-pub mod ags_pmic_new;
-pub mod ags_pmic_old;
-pub mod cgb_reg;
+pub mod amic;
+pub mod atmel;
+pub mod bsi;
 pub mod cgb_soc;
 pub mod cgb_stamp;
 pub mod cic;
@@ -73,51 +50,57 @@ pub mod crystal_32kihz;
 pub mod crystal_32mihz;
 pub mod crystal_4mihz;
 pub mod crystal_8mihz;
-pub mod dmg_amp;
-pub mod dmg_reg;
 pub mod dmg_stamp;
 pub mod eeprom;
-pub mod flash;
-pub mod fram;
+pub mod fujitsu;
 pub mod gbs_dol;
-pub mod gbs_reg;
 pub mod gen1_soc;
 pub mod gen2_soc;
-pub mod hex_inverter;
+pub mod hynix;
+pub mod hyundai;
 pub mod icd2;
 pub mod lcd_chip;
 pub mod lcd_screen;
-pub mod line_decoder;
+pub mod lgs;
+pub mod macronix;
 pub mod mapper;
 pub mod mask_rom;
-pub mod mgb_amp;
-pub mod mgl_transformer;
-pub mod oxy_pmic;
+pub mod mitsubishi;
+pub mod mitsumi;
+pub mod nec;
 pub mod oxy_u4;
 pub mod oxy_u5;
-pub mod rtc;
+pub mod rohm;
+pub mod sanyo;
+pub mod seiko;
 pub mod sgb_rom;
+pub mod sharp;
 pub mod sram;
-pub mod supervisor_reset;
+pub mod sst;
+pub mod st_micro;
 pub mod tama;
+pub mod ti;
+pub mod toshiba;
+pub mod victronix;
+pub mod winbond;
 
 pub trait ParsedData: fmt::Debug + Any {}
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
-pub enum ChipDateCode {
+pub enum PartDateCode {
     Year { year: Year },
     YearMonth { year: Year, month: Month },
     YearWeek { year: Year, week: Week },
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
-pub struct GenericChip {
+pub struct GenericPart {
     pub kind: String,
     pub manufacturer: Option<Manufacturer>,
-    pub date_code: Option<ChipDateCode>,
+    pub date_code: Option<PartDateCode>,
 }
 
-impl ParsedData for GenericChip {}
+impl ParsedData for GenericPart {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearWeek {
@@ -291,122 +274,10 @@ pub fn year1(text: &str) -> Result<Year, String> {
     }
 }
 
-mod seiko {
-    use nom::{
-        character::streaming::{anychar, satisfy},
-        combinator::map_opt,
-        error::ParseError,
-        multi::count,
-        IResult, Parser,
-    };
-
-    use super::Year;
-
-    pub fn year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
-        map_opt(anychar, |ch| match ch {
-            '0' => Some(Year::Partial(0)),
-            '1' | 'A' => Some(Year::Partial(1)),
-            '2' | 'B' => Some(Year::Partial(2)),
-            '3' | 'C' => Some(Year::Partial(3)),
-            '4' | 'D' => Some(Year::Partial(4)),
-            '5' | 'E' => Some(Year::Partial(5)),
-            '6' | 'F' => Some(Year::Partial(6)),
-            '7' | 'G' => Some(Year::Partial(7)),
-            '8' | 'H' => Some(Year::Partial(8)),
-            '9' | 'J' => Some(Year::Partial(9)),
-            _ => None,
-        })
-        .parse(input)
-    }
-
-    pub fn lot_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, (), E> {
-        count(satisfy(|c| c.is_ascii_digit()), 4)
-            .map(|_| ())
-            .parse(input)
-    }
-}
-
-mod macronix {
-    use nom::{
-        character::streaming::satisfy,
-        combinator::{opt, recognize},
-        error::ParseError,
-        sequence::tuple,
-        IResult, Parser as _,
-    };
-
-    use super::{
-        for_nom::{self, digits, uppers},
-        ChipDateCode,
-    };
-
-    pub fn assembly_vendor_code<'a, E: ParseError<&'a str>>(
-        input: &'a str,
-    ) -> IResult<&'a str, char, E> {
-        satisfy(|c| match c {
-            'a' => true, // ChipMOS
-            'B' => true, // OSE / Orient Semiconductor Electronics
-            'E' => true, // ???
-            'K' => true, // ASEKS
-            'J' => true, // ASEJ
-            'L' => true, // LINGSEN
-            'M' => true, // ???
-            'N' => true, // ???
-            'S' => true, // SPIL
-            'T' => true, // STS
-            'X' => true, // ASECL
-            _ => false,
-        })
-        .parse(input)
-    }
-
-    pub fn date_code<'a, E: ParseError<&'a str>>(
-        input: &'a str,
-    ) -> IResult<&'a str, ChipDateCode, E> {
-        for_nom::year2_week2(input)
-    }
-
-    pub fn lot_code_new<'a, E: ParseError<&'a str>>(
-        input: &'a str,
-    ) -> IResult<&'a str, &'a str, E> {
-        // [0-9][A-Z][0-9]{4} + [0-9]{2}[A-Z][0-9]
-        recognize(tuple((
-            tuple((digits(1), uppers(1), digits(4))),
-            opt(nom::bytes::complete::take(4_usize).and_then(tuple((
-                digits(2),
-                uppers(1),
-                digits(1),
-            )))),
-        )))
-        .parse(input)
-    }
-
-    pub fn lot_code_old<'a, E: ParseError<&'a str>>(
-        input: &'a str,
-    ) -> IResult<&'a str, &'a str, E> {
-        digits(5).parse(input)
-    }
-}
-
-mod toshiba {
-    #[derive(Copy, Clone, Debug, PartialEq, Eq)]
-    pub enum Package {
-        SOP,
-    }
-
-    impl Package {
-        pub const fn code_char(&self) -> char {
-            match self {
-                Package::SOP => 'M',
-            }
-        }
-    }
-}
-
 mod for_nom {
     use nom::{
-        bytes::streaming::take,
-        character::streaming::satisfy,
+        bytes::streaming::{tag, take},
+        character::streaming::{anychar, char, satisfy},
         combinator::{map_opt, recognize},
         error::ParseError,
         multi::fold_many_m_n,
@@ -414,8 +285,25 @@ mod for_nom {
         IResult, Parser,
     };
 
-    use super::{ChipDateCode, Year};
+    use super::{PartDateCode, Year};
     use crate::time::{Month, Week};
+
+    pub fn dmg_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
+        recognize(tuple((
+            tag("DMG-"),
+            satisfy_m_n(3, 4, |c| c.is_ascii_digit() || c.is_ascii_uppercase()),
+            char('-'),
+            digits(1),
+        )))
+    }
+
+    pub fn cgb_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
+        recognize(tuple((tag("CGB-"), alnum_uppers(4), char('-'), digits(1))))
+    }
+
+    pub fn agb_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
+        recognize(tuple((tag("AGB-"), alnum_uppers(4), char('-'), digits(1))))
+    }
 
     pub fn satisfy_m_n<'a, E: ParseError<&'a str>>(
         min: usize,
@@ -435,6 +323,10 @@ mod for_nom {
 
     pub fn uppers<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
         satisfy_m_n(count, count, |c| c.is_ascii_uppercase())
+    }
+
+    pub fn alphas<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+        satisfy_m_n(count, count, |c| c.is_ascii_alphabetic())
     }
 
     pub fn digits<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
@@ -462,29 +354,75 @@ mod for_nom {
         .parse(input)
     }
 
-    pub fn year2_week2<'a, E: ParseError<&'a str>>(
+    pub fn year1_week2<'a, E: ParseError<&'a str>>(
         input: &'a str,
-    ) -> IResult<&'a str, ChipDateCode, E> {
-        tuple((year2, week2))
-            .map(|(year, week)| ChipDateCode::YearWeek { year, week })
+    ) -> IResult<&'a str, PartDateCode, E> {
+        tuple((year1, week2))
+            .map(|(year, week)| PartDateCode::YearWeek { year, week })
             .parse(input)
     }
 
-    pub fn month1_alpha<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+    pub fn year2_week2<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, PartDateCode, E> {
+        tuple((year2, week2))
+            .map(|(year, week)| PartDateCode::YearWeek { year, week })
+            .parse(input)
+    }
+
+    pub fn month1_123abc<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
         map_opt(take(1_usize), |text| match text {
-            "A" => Some(Month::January),
-            "B" => Some(Month::February),
-            "C" => Some(Month::March),
-            "D" => Some(Month::April),
-            "E" => Some(Month::May),
-            "F" => Some(Month::June),
-            "G" => Some(Month::July),
-            "H" => Some(Month::August),
+            "1" => Some(Month::January),
+            "2" => Some(Month::February),
+            "3" => Some(Month::March),
+            "4" => Some(Month::April),
+            "5" => Some(Month::May),
+            "6" => Some(Month::June),
+            "7" => Some(Month::July),
+            "8" => Some(Month::August),
+            "9" => Some(Month::September),
+            "A" => Some(Month::October),
+            "B" => Some(Month::November),
+            "C" => Some(Month::December),
+            _ => None,
+        })
+        .parse(input)
+    }
+
+    pub fn month1_123xyz<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+        map_opt(anychar, |ch| match ch {
+            '1' => Some(Month::January),
+            '2' => Some(Month::February),
+            '3' => Some(Month::March),
+            '4' => Some(Month::April),
+            '5' => Some(Month::May),
+            '6' => Some(Month::June),
+            '7' => Some(Month::July),
+            '8' => Some(Month::August),
+            '9' => Some(Month::September),
+            'X' => Some(Month::October),
+            'Y' => Some(Month::November),
+            'Z' => Some(Month::December),
+            _ => None,
+        })
+        .parse(input)
+    }
+
+    pub fn month1_abc<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+        map_opt(anychar, |text| match text {
+            'A' => Some(Month::January),
+            'B' => Some(Month::February),
+            'C' => Some(Month::March),
+            'D' => Some(Month::April),
+            'E' => Some(Month::May),
+            'F' => Some(Month::June),
+            'G' => Some(Month::July),
+            'H' => Some(Month::August),
             // I is intentionally skipped
-            "J" => Some(Month::September),
-            "K" => Some(Month::October),
-            "L" => Some(Month::November),
-            "M" => Some(Month::December),
+            'J' => Some(Month::September),
+            'K' => Some(Month::October),
+            'L' => Some(Month::November),
+            'M' => Some(Month::December),
             _ => None,
         })
         .parse(input)
@@ -579,7 +517,7 @@ impl<T> LabelParser<T> for NomParser<T> {
     fn parse(&self, label: &str) -> Result<T, String> {
         match all_consuming(self.f).parse(label) {
             Ok((_, chip)) => Ok(chip),
-            Err(err) => Err(format!("{err:?}")),
+            Err(err) => Err(format!("{label}:{err:?}")),
         }
     }
 }
@@ -617,4 +555,103 @@ impl ParsedData for UnknownChip {}
 
 pub fn unknown_chip() -> &'static impl LabelParser<UnknownChip> {
     single_parser!(UnknownChip, r#"^.*$"#, move |_| Ok(UnknownChip))
+}
+
+pub fn mgb_amp() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &sharp::SHARP_IR3R53, &sharp::SHARP_IR3R56)
+}
+
+pub fn agb_amp() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &sharp::SHARP_IR3R60, &rohm::ROHM_BH7835AFS,)
+}
+
+pub fn agb_reg() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_IR3E09
+}
+
+pub fn cgb_reg() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_IR3E06
+}
+
+pub fn dmg_amp() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_IR3R40
+}
+
+pub fn dmg_reg() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_IR3E02
+}
+
+pub fn rtc_sop_8() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &seiko::SEIKO_S3511A, &seiko::SEIKO_S3516AE)
+}
+
+pub fn rtc_sop_20() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &toshiba::TOSHIBA_TC8521AM)
+}
+
+pub fn line_decoder() -> &'static impl LabelParser<GenericPart> {
+    &toshiba::TOSHIBA_TC7W139F
+}
+
+pub fn hex_inverter() -> &'static impl LabelParser<GenericPart> {
+    &toshiba::TOSHIBA_TC74LVX04FT
+}
+
+pub fn flash_tsop_i_32_3v3() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &macronix::MACRONIX_MX29L010,
+        &sanyo::SANYO_LE26FV10,
+        &atmel::ATMEL_AT29LV512,
+        &sst::SST_SST39VF512,
+    )
+}
+
+pub fn flash_tsop_i_40_5v() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &macronix::MACRONIX_MX29F008)
+}
+
+pub fn supervisor_reset() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &mitsumi::MITSUMI_MM1026A,
+        &mitsumi::MITSUMI_MM1134A,
+        &rohm::ROHM_BA6129,
+        &rohm::ROHM_BA6735,
+        &mitsubishi::MITSUBISHI_M62021P,
+        &ti::TI_SN74LV2416,
+    )
+}
+
+pub fn gbs_reg() -> &'static impl LabelParser<GenericPart> {
+    &mitsumi::MITSUMI_MM1592F
+}
+
+pub fn oxy_pmic() -> &'static impl LabelParser<GenericPart> {
+    &mitsumi::MITSUMI_PM
+}
+
+pub fn ags_pmic_new() -> &'static impl LabelParser<GenericPart> {
+    &mitsumi::MITSUMI_PM
+}
+
+pub fn mgl_transformer() -> &'static impl LabelParser<GenericPart> {
+    &mitsumi::MITSUMI_MGL_TRANSFORMER
+}
+
+pub fn agb_pmic() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &mitsumi::MITSUMI_MM1514X,
+        &seiko::SEIKO_S6960E,
+        &rohm::ROHM_9750
+    )
+}
+
+pub fn ags_pmic_old() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &seiko::SEIKO_S6403, &rohm::ROHM_9753)
+}
+
+pub fn fram_sop_28_3v3() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &fujitsu::FUJITSU_MB85R256,)
 }

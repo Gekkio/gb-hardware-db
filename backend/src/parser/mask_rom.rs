@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, PartDateCode};
 use crate::{
     macros::{multi_parser, single_parser},
-    time::Week,
+    parser::{fujitsu::FUJITSU_MASK_ROM, macronix, nec, toshiba},
 };
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -13,8 +13,7 @@ pub struct MaskRom {
     pub rom_id: String,
     pub manufacturer: Option<Manufacturer>,
     pub chip_type: Option<String>,
-    pub year: Option<Year>,
-    pub week: Option<Week>,
+    pub date_code: Option<PartDateCode>,
 }
 
 impl ParsedData for MaskRom {}
@@ -36,8 +35,10 @@ pub fn sharp() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
                 chip_type: Some(map_sharp_mask_rom(&c[3]).unwrap_or(&c[3]).to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[4])?,
+                    week: week2(&c[5])?,
+                }),
             })
         },
     )
@@ -58,8 +59,10 @@ pub fn sharp2() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
                 chip_type: None,
-                year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[2])?,
+                    week: week2(&c[3])?,
+                }),
             })
         },
     )
@@ -80,79 +83,10 @@ pub fn sharp3() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Sharp),
                 chip_type: None,
-                year: Some(year2(&c[2])?),
-                week: Some(week2(&c[3])?),
-            })
-        },
-    )
-}
-
-/// Macronix MX23C mask ROM chip (1999+)
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::macronix_mx23c_new().parse("M003119-M MX23C1603-12A DMG-VPHP-0 G2 2C882503").is_ok());
-/// assert!(parser::mask_rom::macronix_mx23c_new().parse("E013104-M MX23C1603-12A CGB-BFPU-0 G2 1D2907A1B1").is_ok());
-/// assert!(parser::mask_rom::macronix_mx23c_new().parse("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
-/// assert!(parser::mask_rom::macronix_mx23c_new().parse("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
-/// ```
-pub fn macronix_mx23c_new() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^[aA-Z]([0-9]{2})([0-9]{2})[0-9]{2}-MG?\ (MX23C[0-9]{4,5}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [0-9][[:alnum:]]{7,9}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[5].to_owned(),
-                manufacturer: Some(Manufacturer::Macronix),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
-            })
-        },
-    )
-}
-
-/// Macronix MX23C mask ROM chip (pre-1999)
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::macronix_mx23c_old().parse("C9745-M MX23C4002-20 DMG-APOJ-0 E1 43824C").is_ok());
-/// ```
-pub fn macronix_mx23c_old() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^[A-Z]([0-9]{2})([0-9]{2})-M\ (MX23C[0-9]{4}-[0-9]{2}[A-Z]?[0-9]?)\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]?\ [[:alnum:]]{6}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[4].to_owned(),
-                manufacturer: Some(Manufacturer::Macronix),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
-            })
-        },
-    )
-}
-
-/// Macronix MX23L mask ROM chip
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::macronix_mx23l().parse("S013607-M MX23L6406-12B AGB-AWAP-0 I2 2E489301").is_ok());
-/// assert!(parser::mask_rom::macronix_mx23l().parse("B063953-MG MX23L25607-12D2 AGB-B24P-0 K2 2T016800").is_ok());
-/// assert!(parser::mask_rom::macronix_mx23l().parse("a064553-MG MX23L25607-12D2 AGB-B24E-0 K2 2T536900").is_ok());
-/// ```
-pub fn macronix_mx23l() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^[aA-Z]([0-9]{2})([0-9]{2})[0-9]{2}-MG?\ (MX23L[0-9]{4,5}-[0-9]{2}[A-Z]?[0-9]?)\ ([0-9]\ )? (AGB-[[:alnum:]]{3,4}-[0-9])\ ([0-9][0-9]\ )? [A-Z][0-9]?\ [[:alnum:]]{8,10}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[5].to_owned(),
-                manufacturer: Some(Manufacturer::Macronix),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[2])?,
+                    week: week2(&c[3])?,
+                }),
             })
         },
     )
@@ -173,8 +107,7 @@ pub fn oki_old() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: None,
-                year: None,
-                week: None,
+                date_code: None,
             })
         },
     )
@@ -196,8 +129,10 @@ pub fn oki_msm53x011e() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: Some(format!("MS{}", &c[3])),
-                year: Some(year1(&c[4])?),
-                week: Some(week2(&c[5])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year1(&c[4])?,
+                    week: week2(&c[5])?,
+                }),
             })
         },
     )
@@ -218,118 +153,10 @@ pub fn oki_mr531614g() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: Some(format!("M{}", &c[3])),
-                year: Some(year1(&c[4])?),
-                week: Some(week2(&c[5])?),
-            })
-        },
-    )
-}
-
-/// NEC mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::nec().parse("NEC JAPAN DMG-SAJ-0 C1 UPD23C1001EGW-J01 9010E9702").is_ok());
-/// ```
-pub fn nec() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^NEC\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (UPD23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Nec),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
-            })
-        },
-    )
-}
-
-/// Unknown mask ROM with NEC-like labeling
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::nec_like().parse("DMG-ZLE-0 E1 N-4001EAGW-J14 9329X7007").is_ok());
-/// ```
-pub fn nec_like() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (N-[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: None,
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
-            })
-        },
-    )
-}
-
-/// AT&T mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::at_t().parse("Ⓜ AT&T JAPAN DMG-Q6E-0 C1 23C1001EAGW-K37 9351E9005").is_ok());
-/// ```
-pub fn at_t() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^Ⓜ\ AT&T\ JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::AtT),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
-            })
-        },
-    )
-}
-
-/// Standard Microsystems mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::smsc().parse("STANDARD MICRO DMG-BIA-0 C1 23C1001EGW-J61 9140E9017").is_ok());
-/// ```
-pub fn smsc() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^STANDARD\ MICRO\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Smsc),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
-            })
-        },
-    )
-}
-
-/// MANI mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::mani().parse("MANI DMG-MQE-2 23C4001EAGW-J22 9447X9200").is_ok());
-/// ```
-pub fn mani() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^MANI\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ (23C[0-9]{4}[[:alnum:]]{3,4})-[A-Z][0-9]{2}\ ([0-9]{2})([0-9]{2})[A-Z][0-9]{4}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Mani),
-                chip_type: Some(c[3].to_owned()),
-                year: Some(year2(&c[4])?),
-                week: Some(week2(&c[5])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year1(&c[4])?,
+                    week: week2(&c[5])?,
+                }),
             })
         },
     )
@@ -352,30 +179,10 @@ pub fn sharp_glop_top_28() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[2].to_owned(),
                 manufacturer: None,
                 chip_type: Some(c[1].to_owned()),
-                year: Some(year2(&c[3])?),
-                week: Some(week2(&c[4])?),
-            })
-        },
-    )
-}
-
-/// Toshiba mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::toshiba().parse("TOSHIBA 9136EAI TC531001CF DMG-NCE-0 C1 J541 JAPAN").is_ok());
-/// ```
-pub fn toshiba() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^TOSHIBA\ ([0-9]{2})([0-9]{2})EAI\ (TC53[0-9]{4}[A-Z]{2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [A-Z][0-9]{3}\ JAPAN$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[4].to_owned(),
-                manufacturer: Some(Manufacturer::Toshiba),
-                chip_type: (Some(c[3].to_owned())),
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[3])?,
+                    week: week2(&c[4])?,
+                }),
             })
         },
     )
@@ -396,8 +203,7 @@ pub fn samsung() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[2].to_owned(),
                 manufacturer: Some(Manufacturer::Samsung),
                 chip_type: (Some(c[1].to_owned())),
-                year: None,
-                week: None,
+                date_code: None,
             })
         },
     )
@@ -418,31 +224,7 @@ pub fn samsung2() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[2].to_owned(),
                 manufacturer: Some(Manufacturer::Samsung),
                 chip_type: (Some(c[1].to_owned())),
-                year: None,
-                week: None,
-            })
-        },
-    )
-}
-
-/// Fujitsu Mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::fujitsu().parse("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
-/// assert!(parser::mask_rom::fujitsu().parse("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
-/// ```
-pub fn fujitsu() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^JAPAN\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [0-9][A-Z][[:alnum:]]\ [A-Z]{2}\ ([0-9]{2})([0-9]{2})\ [A-Z][0-9]{2}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Fujitsu),
-                chip_type: None,
-                year: Some(year2(&c[3])?),
-                week: Some(week2(&c[4])?),
+                date_code: None,
             })
         },
     )
@@ -466,8 +248,10 @@ pub fn oki_mr26v() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: Some(format!("M{}", &c[2])),
-                year: Some(year1(&c[3])?),
-                week: Some(week2(&c[4])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year1(&c[3])?,
+                    week: week2(&c[4])?,
+                }),
             })
         },
     )
@@ -490,8 +274,9 @@ pub fn oki_mr27v() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: Some(Manufacturer::Oki),
                 chip_type: Some(format!("M{}", &c[2])),
-                year: Some(year1(&c[3])?),
-                week: None,
+                date_code: Some(PartDateCode::Year {
+                    year: year1(&c[3])?,
+                }),
             })
         },
     )
@@ -512,8 +297,10 @@ pub fn magnachip_ac23v() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c["rom_id"].to_owned(),
                 manufacturer: Some(Manufacturer::Magnachip),
                 chip_type: Some(c["kind"].to_owned()),
-                year: Some(year2(&c["year"])?),
-                week: Some(week2(&c["week"])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c["year"])?,
+                    week: week2(&c["week"])?,
+                }),
             })
         },
     )
@@ -535,8 +322,7 @@ pub fn hynix_ac23v() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[2].to_owned(),
                 manufacturer: Some(Manufacturer::Hynix),
                 chip_type: Some(c[1].to_owned()),
-                year: None,
-                week: None,
+                date_code: None,
             })
         },
     )
@@ -572,6 +358,8 @@ fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
         // Unknown 16 Mb
         // maybe: LH5316400 / LH5316500 series / LH5316P00 series
         "LH537M" => None,
+        // Unknown 32 Mb
+        "LHMN5M" => None,
         _ => None,
     }
 }
@@ -581,7 +369,12 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
         MaskRom,
         magnachip_ac23v(),
         hynix_ac23v(),
-        macronix_mx23l(),
+        &macronix::MACRONIX_MX23L3206,
+        &macronix::MACRONIX_MX23L6406,
+        &macronix::MACRONIX_MX23L6407,
+        &macronix::MACRONIX_MX23L12806,
+        &macronix::MACRONIX_MX23L12807,
+        &macronix::MACRONIX_MX23L25607,
         oki_mr26v(),
         oki_mr27v(),
     )
@@ -597,19 +390,24 @@ pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
         sharp(),
         sharp2(),
         sharp3(),
-        macronix_mx23c_new(),
-        macronix_mx23c_old(),
+        &macronix::MACRONIX_MX23C4002,
+        &macronix::MACRONIX_MX23C8003,
+        &macronix::MACRONIX_MX23C8005,
         oki_msm53x011e(),
         oki_mr531614g(),
-        nec(),
-        nec_like(),
-        at_t(),
-        smsc(),
-        mani(),
-        toshiba(),
+        &nec::NEC_UPD23C1001E,
+        &nec::NEC_UPD23C2001E,
+        &nec::NEC_UPD23C4001E,
+        &nec::NEC_UPD23C8001E,
+        &nec::AT_T_UPD23C1001E,
+        &nec::SMSC_UPD23C1001E,
+        &nec::MANI_UPD23C4001E,
+        &toshiba::TOSHIBA_TC531001,
+        &toshiba::TOSHIBA_TC532000,
+        &toshiba::TOSHIBA_TC534000,
         samsung(),
         samsung2(),
-        fujitsu(),
+        &FUJITSU_MASK_ROM,
         oki_old(),
     )
 }
@@ -618,40 +416,28 @@ pub fn mask_rom_tsop_i_32() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
         sharp(),
-        macronix_mx23c_new(),
+        &macronix::MACRONIX_MX23C8006,
         oki_msm53x011e(),
         oki_mr531614g(),
-        nec(),
-        nec_like(),
-        at_t(),
-        smsc(),
-        mani(),
-        toshiba(),
         samsung(),
         samsung2(),
-        fujitsu(),
         oki_old(),
     )
 }
 
-pub fn mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
+pub fn mask_rom_tsop_ii_44_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
         sharp(),
         sharp2(),
         sharp3(),
-        macronix_mx23c_new(),
+        &macronix::MACRONIX_MX23C1603,
+        &macronix::MACRONIX_MX23C3203,
         oki_msm53x011e(),
         oki_mr531614g(),
-        nec(),
-        nec_like(),
-        at_t(),
-        smsc(),
-        mani(),
-        toshiba(),
+        &nec::NEC_UPD23C16019W,
         samsung(),
         samsung2(),
-        fujitsu(),
         oki_old(),
     )
 }
@@ -664,15 +450,8 @@ pub fn mask_rom_qfp_44() -> &'static impl LabelParser<MaskRom> {
         sharp3(),
         oki_msm53x011e(),
         oki_mr531614g(),
-        nec(),
-        nec_like(),
-        at_t(),
-        smsc(),
-        mani(),
-        toshiba(),
         samsung(),
         samsung2(),
-        fujitsu(),
         oki_old(),
     )
 }

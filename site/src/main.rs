@@ -606,7 +606,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
                 &console.mainboard.u1,
                 parser::gen1_soc::gen1_soc(),
             );
-            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
@@ -878,7 +878,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
                 &console.mainboard.u1,
                 parser::gen2_soc::gen2_soc(),
             );
-            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2::icd2());
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
@@ -1267,7 +1267,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 &console.mainboard.u3,
                 parser::sram::sram_tsop_i_48(),
             );
-            let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol::gbs_dol());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol());
             let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg());
             let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg());
             let crystal = map_part(

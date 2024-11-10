@@ -7,7 +7,7 @@ use nom::{
     bytes::streaming::tag,
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
-    sequence::tuple,
+    sequence::{terminated, tuple},
     Parser as _,
 };
 
@@ -107,6 +107,31 @@ pub static FUJITSU_MASK_ROM: NomParser<MaskRom> = NomParser {
                 date_code: Some(date_code),
             },
         )
+        .parse(input)
+    },
+};
+
+/// Fujitsu SGB mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::fujitsu::FUJITSU_SGB_ROM.parse("SYS-SGB-2 © 1994 Nintendo 9429 R77").is_ok());
+/// ```
+pub static FUJITSU_SGB_ROM: NomParser<MaskRom> = NomParser {
+    name: "Fujitsu SGB ROM",
+    f: |input| {
+        tuple((
+            terminated(tag("SYS-SGB-2"), tag(" © 1994 Nintendo ")),
+            year2_week2,
+            char(' '),
+            uppers(1).and(digits(2)),
+        ))
+        .map(|(rom_id, date_code, _, _)| MaskRom {
+            rom_id: String::from(rom_id),
+            manufacturer: Some(Manufacturer::Fujitsu),
+            chip_type: None,
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };

@@ -7,7 +7,7 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::recognize,
-    sequence::tuple,
+    sequence::{preceded, tuple},
     Parser as _,
 };
 
@@ -152,7 +152,7 @@ pub static ROHM_9753: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// BH7835AFS AGB amplifier
+/// ROHM BH7835AFS AGB amplifier
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -163,6 +163,32 @@ pub static ROHM_BH7835AFS: NomParser<GenericPart> = NomParser {
     f: |input| {
         tuple((
             tag("BH7835AFS"),
+            char(' '),
+            year1_week2,
+            char(' '),
+            alnum_uppers(1),
+            digits(2),
+        ))
+        .map(|(kind, _, date_code, _, _, _)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM ICD2-R
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_ICD2_R.parse("Nintendo ICD2-R 435 179").is_ok());
+/// ```
+pub static ROHM_ICD2_R: NomParser<GenericPart> = NomParser {
+    name: "ROHM ICD2_R",
+    f: |input| {
+        tuple((
+            preceded(tag("Nintendo "), tag("ICD2-R")),
             char(' '),
             year1_week2,
             char(' '),

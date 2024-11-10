@@ -3,8 +3,13 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt, bytes::streaming::tag, character::streaming::char, combinator::value,
-    error::ParseError, sequence::tuple, Parser,
+    branch::alt,
+    bytes::streaming::tag,
+    character::streaming::char,
+    combinator::{recognize, value},
+    error::ParseError,
+    sequence::{terminated, tuple},
+    Parser,
 };
 
 use super::{
@@ -181,6 +186,34 @@ pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
         ))
         .map(|(_, _, date_code, _, kind, _, (_, speed))| Ram {
             kind: format!("{kind}FT-{speed}"),
+            manufacturer: Some(Manufacturer::Toshiba),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Toshiba SGB mask ROM
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::toshiba::TOSHIBA_SGB_ROM.parse("SYS-SGB-2 © 1994 Nintendo TC532000BF-N807 JAPAN 9431EAI").is_ok());
+/// ```
+pub static TOSHIBA_SGB_ROM: NomParser<MaskRom> = NomParser {
+    name: "Toshiba SGB ROM",
+    f: |input| {
+        tuple((
+            terminated(tag("SYS-SGB-2"), tag(" © 1994 Nintendo")),
+            char(' '),
+            recognize(tag("TC532000B").and(char(Package::SOP32.code_char())))
+                .and(char('-').and(uppers(1)).and(digits(3))),
+            tag(" JAPAN "),
+            year2_week2,
+            tag("EAI"),
+        ))
+        .map(|(rom_id, _, (kind, _), _, date_code, _)| MaskRom {
+            rom_id: String::from(rom_id),
+            chip_type: Some(String::from(kind)),
             manufacturer: Some(Manufacturer::Toshiba),
             date_code: Some(date_code),
         })

@@ -21,15 +21,12 @@ pub use self::{
     coil::Coil,
     dmg_stamp::DmgStamp,
     eeprom::Eeprom,
-    gbs_dol::GbsDol,
     gen1_soc::{Gen1Soc, Gen1SocKind},
     gen2_soc::{Gen2Soc, Gen2SocKind},
-    icd2::Icd2,
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
     mask_rom::MaskRom,
-    sgb_rom::SgbRom,
     tama::{Tama, TamaType},
 };
 
@@ -53,12 +50,10 @@ pub mod crystal_8mihz;
 pub mod dmg_stamp;
 pub mod eeprom;
 pub mod fujitsu;
-pub mod gbs_dol;
 pub mod gen1_soc;
 pub mod gen2_soc;
 pub mod hynix;
 pub mod hyundai;
-pub mod icd2;
 pub mod lcd_chip;
 pub mod lcd_screen;
 pub mod lgs;
@@ -68,6 +63,7 @@ pub mod mask_rom;
 pub mod mitsubishi;
 pub mod mitsumi;
 pub mod nec;
+pub mod oki;
 pub mod oxy_u4;
 pub mod oxy_u5;
 pub mod rohm;
@@ -311,6 +307,20 @@ mod for_nom {
         f: impl Fn(char) -> bool,
     ) -> impl Parser<&'a str, &'a str, E> {
         recognize(fold_many_m_n(min, max, satisfy(f), || (), |_, _| ()))
+    }
+
+    pub fn satisfy_m_n_complete<'a, E: ParseError<&'a str>>(
+        min: usize,
+        max: usize,
+        f: impl Fn(char) -> bool,
+    ) -> impl Parser<&'a str, &'a str, E> {
+        recognize(fold_many_m_n(
+            min,
+            max,
+            nom::character::complete::satisfy(f),
+            || (),
+            |_, _| (),
+        ))
     }
 
     pub fn alnum_uppers<'a, E: ParseError<&'a str>>(
@@ -654,4 +664,17 @@ pub fn ags_pmic_old() -> &'static impl LabelParser<GenericPart> {
 
 pub fn fram_sop_28_3v3() -> &'static impl LabelParser<GenericPart> {
     multi_parser!(GenericPart, &fujitsu::FUJITSU_MB85R256,)
+}
+
+pub fn gbs_dol() -> &'static impl LabelParser<GenericPart> {
+    &nec::NEC_GBS_DOL
+}
+
+pub fn icd2() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &rohm::ROHM_ICD2_R,
+        &nec::NEC_ICD2_N,
+        &nec::NEC_ICD2_R
+    )
 }

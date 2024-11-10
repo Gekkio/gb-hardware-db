@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, PartDateCode};
+use super::{week2, year2, LabelParser, Manufacturer, ParsedData, PartDateCode};
 use crate::{
     macros::{multi_parser, single_parser},
-    parser::{fujitsu::FUJITSU_MASK_ROM, macronix, nec, toshiba},
+    parser::{fujitsu::FUJITSU_MASK_ROM, macronix, nec, oki, toshiba},
 };
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -92,76 +92,6 @@ pub fn sharp3() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
-/// Very old OKI mask ROM chip
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_old().parse("DMG-QXA-0 OKI JAPAN B0 03 X0 02").is_ok());
-/// ```
-pub fn oki_old() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(DMG-[[:alnum:]]{3}-[0-9])\ OKI\ JAPAN\ [[:alnum:]]{2}\ [0-9]{2}\ [[:alnum:]]{2}\ [0-9]{2}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: None,
-                date_code: None,
-            })
-        },
-    )
-}
-
-/// OKI Semiconductor MSM534011E / MSM538011E mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_msm53x011e().parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
-/// assert!(parser::mask_rom::oki_msm53x011e().parse("CGB-ADME-0 E1 M534011E-09 841232A").is_ok());
-/// ```
-pub fn oki_msm53x011e() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (M53[48]011E)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(format!("MS{}", &c[3])),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year1(&c[4])?,
-                    week: week2(&c[5])?,
-                }),
-            })
-        },
-    )
-}
-
-/// OKI Semiconductor MR531614G mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_mr531614g().parse("CGB-BPTE-0 G2 R531614G-44 044232E").is_ok());
-/// ```
-pub fn oki_mr531614g() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ (R531614G)-[[:alnum:]]{2}\ ([0-9])([0-9]{2})[0-9]{3}[[:alnum:]]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(format!("M{}", &c[3])),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year1(&c[4])?,
-                    week: week2(&c[5])?,
-                }),
-            })
-        },
-    )
-}
-
 /// Glop top mask ROM.
 ///
 /// Probably manufactured by Sharp (?)
@@ -225,58 +155,6 @@ pub fn samsung2() -> &'static impl LabelParser<MaskRom> {
                 manufacturer: Some(Manufacturer::Samsung),
                 chip_type: (Some(c[1].to_owned())),
                 date_code: None,
-            })
-        },
-    )
-}
-
-/// OKI MR26V TSOP-II-44 Mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-TCHK-1 H2 R26V3210F-087 244A239").is_ok());
-/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-AXVJ-0 I2 R26V6414G-0A7 243A262").is_ok());
-/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-BR4J-0 I2 R26V6415G-02L 427ABA3").is_ok());
-/// assert!(parser::mask_rom::oki_mr26v().parse("AGB-BR3P-0 H2 R26V3211F-0T6 442ABAJJ").is_ok());
-/// ```
-pub fn oki_mr26v() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R26V[0-9]{4}[A-Z])-[0-9][[:alnum:]][[:alnum:]]\ ([0-9])([0-9]{2})[A-Z][[:alnum:]]{3}[A-Z]?$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(format!("M{}", &c[2])),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year1(&c[3])?,
-                    week: week2(&c[4])?,
-                }),
-            })
-        },
-    )
-}
-
-/// OKI MR27V TSOP-II-44 Mask ROM
-///
-/// ```
-/// use gbhwdb_backend::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-AXPS-1 J2 R27V12813M-0C7 6145BARJ").is_ok());
-/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-FADP-0 F2 R27V810F-059 4475BB4J").is_ok());
-/// assert!(parser::mask_rom::oki_mr27v().parse("AGB-U32P-0 J2 R27V12813M-0D2 5175204J").is_ok());
-/// ```
-pub fn oki_mr27v() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (R27V[0-9]{3,5}[A-Z])-[0-9][[:alnum:]][0-9]\ ([0-9])[0-9]{3}[[:alnum:]]{3}[A-Z]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(format!("M{}", &c[2])),
-                date_code: Some(PartDateCode::Year {
-                    year: year1(&c[3])?,
-                }),
             })
         },
     )
@@ -375,8 +253,13 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
         &macronix::MACRONIX_MX23L12806,
         &macronix::MACRONIX_MX23L12807,
         &macronix::MACRONIX_MX23L25607,
-        oki_mr26v(),
-        oki_mr27v(),
+        &oki::OKI_MR26V3210,
+        &oki::OKI_MR26V3211,
+        &oki::OKI_MR26V6413,
+        &oki::OKI_MR26V6414,
+        &oki::OKI_MR26V6415,
+        &oki::OKI_MR27V810,
+        &oki::OKI_MR27V12813,
     )
 }
 
@@ -393,8 +276,8 @@ pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
         &macronix::MACRONIX_MX23C4002,
         &macronix::MACRONIX_MX23C8003,
         &macronix::MACRONIX_MX23C8005,
-        oki_msm53x011e(),
-        oki_mr531614g(),
+        &oki::OKI_MSM534011,
+        &oki::OKI_MSM538011,
         &nec::NEC_UPD23C1001E,
         &nec::NEC_UPD23C2001E,
         &nec::NEC_UPD23C4001E,
@@ -408,7 +291,6 @@ pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
         samsung(),
         samsung2(),
         &FUJITSU_MASK_ROM,
-        oki_old(),
     )
 }
 
@@ -417,11 +299,8 @@ pub fn mask_rom_tsop_i_32() -> &'static impl LabelParser<MaskRom> {
         MaskRom,
         sharp(),
         &macronix::MACRONIX_MX23C8006,
-        oki_msm53x011e(),
-        oki_mr531614g(),
         samsung(),
         samsung2(),
-        oki_old(),
     )
 }
 
@@ -433,12 +312,10 @@ pub fn mask_rom_tsop_ii_44_5v() -> &'static impl LabelParser<MaskRom> {
         sharp3(),
         &macronix::MACRONIX_MX23C1603,
         &macronix::MACRONIX_MX23C3203,
-        oki_msm53x011e(),
-        oki_mr531614g(),
+        &oki::OKI_MR531614,
         &nec::NEC_UPD23C16019W,
         samsung(),
         samsung2(),
-        oki_old(),
     )
 }
 
@@ -448,10 +325,8 @@ pub fn mask_rom_qfp_44() -> &'static impl LabelParser<MaskRom> {
         sharp(),
         sharp2(),
         sharp3(),
-        oki_msm53x011e(),
-        oki_mr531614g(),
         samsung(),
         samsung2(),
-        oki_old(),
+        &oki::OKI_OLD_MASK_ROM,
     )
 }

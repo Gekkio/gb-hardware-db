@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, ChipYearWeek, LabelParser};
-use crate::macros::single_parser;
+use super::{week2, year2, GenericPart, LabelParser};
+use crate::{macros::single_parser, parser::PartDateCode};
 
-pub type AgbSoc = ChipYearWeek;
+pub type AgbSoc = GenericPart;
 
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
@@ -19,8 +19,10 @@ pub fn agb_soc_bga() -> &'static impl LabelParser<AgbSoc> {
             Ok(AgbSoc {
                 kind: c[3].to_owned(),
                 manufacturer: None,
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[1])?,
+                    week: week2(&c[2])?,
+                }),
             })
         },
     )

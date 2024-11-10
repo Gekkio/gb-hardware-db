@@ -135,18 +135,6 @@ impl ParsedPart for parser::Coil {
     }
 }
 
-impl ParsedPart for parser::SgbRom {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: self.chip_type,
-            manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            rom_id: Some(self.rom_id),
-        }
-    }
-}
-
 impl ParsedPart for parser::ChipYearWeek {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {

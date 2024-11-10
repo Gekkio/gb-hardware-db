@@ -1,0 +1,38 @@
+{
+  "code": "DMG-ATEA-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ATEA-EUR-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-20",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 8,
+    "u1": {
+      "label": "C013438-M MX23C4002-20 DMG-ATEA-0 E1 1P2035A1B0"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 9'25"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 130 162N"
+    },
+    "u4": {
+      "label": "123 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Tetris DX (World) (SGB Enhanced) (GB Compatible).gbc\n* File Size:       512.0 KiB (524288 bytes)\n* CRC32:           69989152\n* MD5:             65973d7a1446346294f8ca9d2d1b7e66\n* SHA-1:           7183bcb54dd35f3a07d8fe63339b768f13b8168d\n* SHA-256:         d349dc93423c6abcd775d3b6a8797df715a44a42ec837afb21bf17ae43b40a9e\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:42:13+02:00\n* Time Elapsed:    4 seconds (112.69 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        512 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      TETRIS DX\n* Revision:        0\n* Super Game Boy:  Supported\n* Game Boy Color:  Supported\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x30)\n* ROM Checksum:    OK (0xC800)\n* ROM Size:        512 KiB (0x04)\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Tetris DX (World) (SGB Enhanced) (GB Compatible)\n* Region:          World\n* Language(s):     En\n* Game Code:       DMG-ATEA\n* ROM CRC32:       69989152\n* ROM Size:        512 KiB",
+    "crc32": "69989152",
+    "md5": "65973d7a1446346294f8ca9d2d1b7e66",
+    "sha1": "7183bcb54dd35f3a07d8fe63339b768f13b8168d",
+    "sha256": "d349dc93423c6abcd775d3b6a8797df715a44a42ec837afb21bf17ae43b40a9e",
+    "date": "2024-10-24"
+  }
+}

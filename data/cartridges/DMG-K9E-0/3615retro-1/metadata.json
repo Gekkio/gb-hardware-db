@@ -1,0 +1,35 @@
+{
+  "code": "DMG-K9E-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-K9-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1993,
+    "month": 11,
+    "u1": {
+      "label": "DMG-K9E-0 S LH532MAF JAPAN D1 9352 D"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9349 5 AB"
+    },
+    "u3": {
+      "label": "6129 3B15"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Kirby's Pinball Land (USA, Europe).gb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           31cb6526\n* MD5:             f711ed10307d4ea27223fe965595b123\n* SHA-1:           06efdb138ff56cd9522dece44adadd3fae169c76\n* SHA-256:         43bbc3111fe66b5d87940da810a1a0839ab7d48b50c327807538026241b40295\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T20:49:17+02:00\n* Time Elapsed:    2 seconds (108.08 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     0x05\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      KIRBY'S PINBALL\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xBF)\n* ROM Checksum:    OK (0xF74B)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC2+SRAM+BATTERY (0x06)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Kirby's Pinball Land (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-K9E\n* ROM CRC32:       31cb6526\n* ROM Size:        256 KiB",
+    "crc32": "31cb6526",
+    "md5": "f711ed10307d4ea27223fe965595b123",
+    "sha1": "06efdb138ff56cd9522dece44adadd3fae169c76",
+    "sha256": "43bbc3111fe66b5d87940da810a1a0839ab7d48b50c327807538026241b40295",
+    "date": "2024-10-24"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "code": "DMG-W3X-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-W3-FAH",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Ca",
+    "panel_position": "4",
+    "year": 1993,
+    "month": 12,
+    "u1": {
+      "label": "DMG-W3X-0 D1 N-2001EGW-J43 9408X9007"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9344BA011"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Mega Man III (Europe).gb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           03b0d4ec\n* MD5:             f155c9c04ef01a99b26478c1121c8069\n* SHA-1:           ecadbc9e273e4d99ccd87f98bbbd912aec43c077\n* SHA-256:         719f2b1d0cf345430cfb85ec27452f842726318fa5c16012c8ea163059e1c606\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:19:02+02:00\n* Time Elapsed:    2 seconds (105.56 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      MEGAMAN3\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xB8)\n* ROM Checksum:    OK (0x46C3)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Mega Man III (Europe)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       DMG-W3X\n* ROM CRC32:       03b0d4ec\n* ROM Size:        256 KiB",
+    "crc32": "03b0d4ec",
+    "md5": "f155c9c04ef01a99b26478c1121c8069",
+    "sha1": "ecadbc9e273e4d99ccd87f98bbbd912aec43c077",
+    "sha256": "719f2b1d0cf345430cfb85ec27452f842726318fa5c16012c8ea163059e1c606",
+    "date": "2024-10-24"
+  }
+}

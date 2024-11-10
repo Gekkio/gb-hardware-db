@@ -1,0 +1,32 @@
+{
+  "code": "DMG-REE-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RE-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1991,
+    "month": 7,
+    "u1": {
+      "label": "DMG-REE-0 C1 N-1001EGW-J36 9128E9006"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9129 3 A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       R-Type (USA, Europe).gb\n* File Size:       128.0 KiB (131072 bytes)\n* CRC32:           e0f23fc0\n* MD5:             972dc35b3b2bd0762999b1ae48da94f6\n* SHA-1:           28531a4eb668477df98caf0e87cedc0e5fdfe53b\n* SHA-256:         8cebc4b128b79dd1b53a5b5a99450bb2783b86840ec61b22e70245dd6df8c39b\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:42:39+02:00\n* Time Elapsed:    1 second (94.01 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        128 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      RTYPE\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x06)\n* ROM Checksum:    OK (0xCF46)\n* ROM Size:        128 KiB (0x02)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       R-Type (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-REE\n* ROM CRC32:       e0f23fc0\n* ROM Size:        128 KiB",
+    "crc32": "e0f23fc0",
+    "md5": "972dc35b3b2bd0762999b1ae48da94f6",
+    "sha1": "28531a4eb668477df98caf0e87cedc0e5fdfe53b",
+    "sha256": "8cebc4b128b79dd1b53a5b5a99450bb2783b86840ec61b22e70245dd6df8c39b",
+    "date": "2024-10-24"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "code": "DMG-NMX-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NM-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "T",
+    "panel_position": "1",
+    "year": 1991,
+    "month": 10,
+    "u1": {
+      "label": "TOSHIBA 9140EAI TC531001CF DMG-NMX-0 C1 J597 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9146 5 AA"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Nemesis (Europe).gb\n* File Size:       128.0 KiB (131072 bytes)\n* CRC32:           19930ea5\n* MD5:             4d4eae6560062b9a12d9770653f1a53f\n* SHA-1:           e95e7a476a160bc0a685112d80239a5d669fd192\n* SHA-256:         e807eef2018cb12c73a5395a47936ce0b24b1e8876c10e3dff6b2d30873e52f3\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:44:15+02:00\n* Time Elapsed:    1 second (94.08 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        128 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      NEMESIS\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x2B)\n* ROM Checksum:    OK (0x080B)\n* ROM Size:        128 KiB (0x02)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Nemesis (Europe)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       DMG-NMX\n* ROM CRC32:       19930ea5\n* ROM Size:        128 KiB",
+    "crc32": "19930ea5",
+    "md5": "4d4eae6560062b9a12d9770653f1a53f",
+    "sha1": "e95e7a476a160bc0a685112d80239a5d669fd192",
+    "sha256": "e807eef2018cb12c73a5395a47936ce0b24b1e8876c10e3dff6b2d30873e52f3",
+    "date": "2024-10-24"
+  }
+}

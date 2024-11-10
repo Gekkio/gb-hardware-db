@@ -110,6 +110,17 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
     )
 }
 
+/// Macronix MX23L8006 (TSOP-II-44, 3.3V)
+///
+/// ```
+/// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::macronix::MACRONIX_MX23L8006.parse("M042021-M MX23L8006-12B AGB-FBMP-0 F2 2K151900").is_ok());
+/// ```
+pub static MACRONIX_MX23L8006: NomParser<MaskRom> = NomParser {
+    name: "Macronix MX23L8006",
+    f: |input| agb_mx23l("MX23L8006-12B", "21", "F2").parse(input),
+};
+
 /// Macronix MX23L2306 (TSOP-II-44, 3.3V)
 ///
 /// ```
@@ -187,11 +198,18 @@ pub static MACRONIX_MX23L12807: NomParser<MaskRom> = NomParser {
 ///
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
+/// assert!(parser::macronix::MACRONIX_MX23L25607.parse("E053953-MG MX23L25607-12D1 AGB-BE8P-0 K2 2N007800").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L25607.parse("M064053-MG MX23L25607-12D2 AGB-BH3E-0 K2 2T151000").is_ok());
 /// ```
 pub static MACRONIX_MX23L25607: NomParser<MaskRom> = NomParser {
     name: "Macronix MX23L25607",
-    f: |input| agb_mx23l("MX23L25607-12D2", "53", "K2").parse(input),
+    f: |input| {
+        alt((
+            agb_mx23l("MX23L25607-12D1", "53", "K2"),
+            agb_mx23l("MX23L25607-12D2", "53", "K2"),
+        ))
+        .parse(input)
+    },
 };
 
 fn dmg_mx23c_old<'a, E: ParseError<&'a str>>(

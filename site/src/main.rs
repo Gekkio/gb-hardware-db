@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::Error;
+use anyhow::{Context as _, Error};
 use csv_export::{write_submission_csv, ToCsv};
 use filetime::{set_file_mtime, FileTime};
 use gbhwdb_backend::{
@@ -283,93 +283,105 @@ where
 fn read_cartridge_submissions(
     cfgs: &BTreeMap<String, GameConfig>,
 ) -> Result<Vec<LegacyCartridgeSubmission>, Error> {
+    fn read_cartridge_submission(
+        cfgs: &BTreeMap<String, GameConfig>,
+        root: &Path,
+        path: &Path,
+    ) -> Result<LegacyCartridgeSubmission, Error> {
+        let file = File::open(path)?;
+        let cartridge: Cartridge = serde_json::from_reader(file)?;
+        assert_eq!(
+            Some(cartridge.slug.as_str()),
+            root.file_name().and_then(|name| name.to_str())
+        );
+        let cfg = cfgs.get(&cartridge.code).unwrap();
+
+        let board_cfg = BoardConfig::from_label(&cartridge.board.label)
+            .unwrap_or_else(|| panic!("Failed to find config for board {}", cartridge.board.label));
+
+        if let Some(year) = cartridge.board.year {
+            assert!((1989..2010).contains(&year));
+        }
+
+        if let Some(dump) = cartridge.dump.as_ref() {
+            if let Some(crc32) = dump.crc32 {
+                match cfg.crc32 {
+                    None => warn!(
+                        "Submission has CRC-32 but config doesn't: {}",
+                        cartridge.code
+                    ),
+                    Some(cfg_sha) if cfg_sha == crc32 => (),
+                    _ => panic!("CRC-32 mismatch: {}", cartridge.code),
+                }
+            }
+            if let Some(md5) = dump.md5 {
+                match cfg.md5 {
+                    None => warn!("Submission has MD5 but config doesn't: {}", cartridge.code),
+                    Some(cfg_sha) if cfg_sha == md5 => (),
+                    _ => panic!("MD5 mismatch: {}", cartridge.code),
+                }
+            }
+            if let Some(sha1) = dump.sha1 {
+                match cfg.sha1 {
+                    None => warn!(
+                        "Submission has SHA-1 but config doesn't: {}",
+                        cartridge.code
+                    ),
+                    Some(cfg_sha) if cfg_sha == sha1 => (),
+                    _ => panic!("SHA-1 mismatch: {}", cartridge.code),
+                }
+            }
+            if let Some(sha256) = dump.sha256 {
+                match cfg.sha256 {
+                    None => warn!(
+                        "Submission has SHA-256 but config doesn't: {}",
+                        cartridge.code
+                    ),
+                    Some(cfg_sha) if cfg_sha == sha256 => (),
+                    _ => panic!("SHA-256 mismatch: {}", cartridge.code),
+                }
+            }
+        }
+
+        let board = LegacyBoard::new(cartridge.board, board_cfg);
+        let metadata = LegacyMetadata {
+            cfg: cfg.clone(),
+            code: cartridge.shell.code,
+            stamp: cartridge.shell.stamp,
+            board,
+            dump: cartridge.dump,
+        };
+        let photos = LegacyCartridgePhotos {
+            front: get_photo(root, "01_front.jpg"),
+            pcb_front: get_photo(root, "02_pcb_front.jpg"),
+            pcb_back: get_photo(root, "03_pcb_back.jpg"),
+            without_battery: get_photo(root, "04_without_battery.jpg"),
+            extra: get_photo(root, "04_extra.jpg").or_else(|| get_photo(root, "05_extra.jpg")),
+        };
+        Ok(LegacySubmission {
+            code: cartridge.code,
+            title: format!("Entry #{}", cartridge.index),
+            slug: cartridge.slug,
+            sort_group: None,
+            contributor: cartridge.contributor,
+            metadata,
+            photos,
+        })
+    }
     use legacy::cartridge::*;
     let walker = WalkDir::new("data/cartridges").min_depth(3).max_depth(3);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
         let entry = entry?;
         if let Some(root) = entry.path().parent() {
-            debug!("{}", entry.path().display());
-            let file = File::open(entry.path())?;
-            let cartridge: Cartridge = serde_json::from_reader(file)?;
-            assert_eq!(
-                Some(cartridge.slug.as_str()),
-                root.file_name().and_then(|name| name.to_str())
+            submissions.push(
+                read_cartridge_submission(&cfgs, root, entry.path()).with_context(|| {
+                    format!(
+                        "failed to read cartridge submission from {root}",
+                        root = root.display()
+                    )
+                })?,
             );
-            let cfg = cfgs.get(&cartridge.code).unwrap();
-
-            let board_cfg = BoardConfig::from_label(&cartridge.board.label).unwrap_or_else(|| {
-                panic!("Failed to find config for board {}", cartridge.board.label)
-            });
-
-            if let Some(year) = cartridge.board.year {
-                assert!((1989..2010).contains(&year));
-            }
-
-            if let Some(dump) = cartridge.dump.as_ref() {
-                if let Some(crc32) = dump.crc32 {
-                    match cfg.crc32 {
-                        None => warn!(
-                            "Submission has CRC-32 but config doesn't: {}",
-                            cartridge.code
-                        ),
-                        Some(cfg_sha) if cfg_sha == crc32 => (),
-                        _ => panic!("CRC-32 mismatch: {}", cartridge.code),
-                    }
-                }
-                if let Some(md5) = dump.md5 {
-                    match cfg.md5 {
-                        None => warn!("Submission has MD5 but config doesn't: {}", cartridge.code),
-                        Some(cfg_sha) if cfg_sha == md5 => (),
-                        _ => panic!("MD5 mismatch: {}", cartridge.code),
-                    }
-                }
-                if let Some(sha1) = dump.sha1 {
-                    match cfg.sha1 {
-                        None => warn!(
-                            "Submission has SHA-1 but config doesn't: {}",
-                            cartridge.code
-                        ),
-                        Some(cfg_sha) if cfg_sha == sha1 => (),
-                        _ => panic!("SHA-1 mismatch: {}", cartridge.code),
-                    }
-                }
-                if let Some(sha256) = dump.sha256 {
-                    match cfg.sha256 {
-                        None => warn!(
-                            "Submission has SHA-256 but config doesn't: {}",
-                            cartridge.code
-                        ),
-                        Some(cfg_sha) if cfg_sha == sha256 => (),
-                        _ => panic!("SHA-256 mismatch: {}", cartridge.code),
-                    }
-                }
-            }
-
-            let board = LegacyBoard::new(cartridge.board, board_cfg);
-            let metadata = LegacyMetadata {
-                cfg: cfg.clone(),
-                code: cartridge.shell.code,
-                stamp: cartridge.shell.stamp,
-                board,
-                dump: cartridge.dump,
-            };
-            let photos = LegacyCartridgePhotos {
-                front: get_photo(root, "01_front.jpg"),
-                pcb_front: get_photo(root, "02_pcb_front.jpg"),
-                pcb_back: get_photo(root, "03_pcb_back.jpg"),
-                without_battery: get_photo(root, "04_without_battery.jpg"),
-                extra: get_photo(root, "04_extra.jpg").or_else(|| get_photo(root, "05_extra.jpg")),
-            };
-            submissions.push(LegacySubmission {
-                code: cartridge.code,
-                title: format!("Entry #{}", cartridge.index),
-                slug: cartridge.slug,
-                sort_group: None,
-                contributor: cartridge.contributor,
-                metadata,
-                photos,
-            });
         }
     }
     submissions.sort_by_key(|submission| (submission.code.clone(), submission.slug.clone()));

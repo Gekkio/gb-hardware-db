@@ -1,0 +1,38 @@
+{
+  "code": "DMG-APSF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2000,
+    "month": 6,
+    "u1": {
+      "label": "DMG-APSF-0 F1 M538011E-G9 0285402"
+    },
+    "u2": {
+      "label": "MBC5 P-1 023U2M"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0023 KOREA"
+    },
+    "u4": {
+      "label": "022 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Version Jaune - Edition Speciale Pikachu (France) (CGB+SGB Enhanced).gbc\n* File Size:       1.00 MiB (1048576 bytes)\n* CRC32:           d03426e9\n* MD5:             2df6b439a35e0d511d52fa75c6a7849a\n* SHA-1:           0aceec0ef7aa2ca5aa831554598d91f61a925591\n* SHA-256:         77b31f874fd877fbf48757f315ffc3144e06fc7222aba6ac4eda2045ebf5d3fa\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-30T11:36:39+01:00\n* Time Elapsed:    8 seconds (118.28 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        1 MiB\n* Mapper Type:     MBC5\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      POKEMON YEL\n* Game Code:       APSF\n* Revision:        0\n* Super Game Boy:  Supported\n* Game Boy Color:  Supported\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x5F)\n* ROM Checksum:    OK (0xB7C1)\n* ROM Size:        1 MiB (0x05)\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Pokemon - Version Jaune - Edition Speciale Pikachu (France) (CGB+SGB Enhanced)\n* Region:          France\n* Language(s):     Fr\n* Game Code:       DMG-APSF\n* ROM CRC32:       d03426e9\n* ROM Size:        1 MiB",
+    "crc32": "d03426e9",
+    "md5": "2df6b439a35e0d511d52fa75c6a7849a",
+    "sha1": "0aceec0ef7aa2ca5aa831554598d91f61a925591",
+    "sha256": "77b31f874fd877fbf48757f315ffc3144e06fc7222aba6ac4eda2045ebf5d3fa",
+    "date": "2024-10-30"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ADNP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADNP-EUR",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "3",
+    "year": 1997,
+    "month": 12,
+    "u1": {
+      "label": "DMG-ADNP-0 S LH532MRS JAPAN D1 9806 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9751 5 A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Castlevania Legends (USA, Europe) (SGB Enhanced).sgb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           ad9c17fb\n* MD5:             1475824e7262c0d6359f43c287e034a5\n* SHA-1:           91a8e49bf6eac5fe62ec2cc5e6decbd08ce9b515\n* SHA-256:         56d3dee063b8801704a284bd1bc229b94f15a3a448f485d347f04283d9bd16d7\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:17:19+02:00\n* Time Elapsed:    2 seconds (105.83 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      CASTLEVANIA\n* Revision:        0\n* Super Game Boy:  Supported\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x0C)\n* ROM Checksum:    OK (0x66F5)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Super Game Boy\n\n== Database Match ==\n* Game Name:       Castlevania Legends (USA, Europe) (SGB Enhanced)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-ADNE\n* ROM CRC32:       ad9c17fb\n* ROM Size:        256 KiB",
+    "crc32": "ad9c17fb",
+    "md5": "1475824e7262c0d6359f43c287e034a5",
+    "sha1": "91a8e49bf6eac5fe62ec2cc5e6decbd08ce9b515",
+    "sha256": "56d3dee063b8801704a284bd1bc229b94f15a3a448f485d347f04283d9bd16d7",
+    "date": "2024-10-24"
+  }
+}

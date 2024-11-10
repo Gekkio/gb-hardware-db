@@ -1,0 +1,38 @@
+{
+  "code": "CGB-B2XP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-B2XP-EUR",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "NC",
+    "panel_position": "6",
+    "year": 2001,
+    "month": 10,
+    "u1": {
+      "label": "S015149-M MX23C8005-12 CGB-B2XP-0 F1 1D2817A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 144 H16"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 144 144N"
+    },
+    "u4": {
+      "label": "6735 1A98"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Mega Man Xtreme 2 (USA, Europe).gbc\n* File Size:       1.00 MiB (1048576 bytes)\n* CRC32:           8fedb6d8\n* MD5:             1f64989765f605d05cbd013e7ffcc352\n* SHA-1:           cb1811ac8969f6b683df954b57138dd28ebb40ff\n* SHA-256:         e37a14a8e61bd64f2226dacc26a7ee75dd90abfcf88c5016eb97b76ecda0ddca\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:17:44+02:00\n* Time Elapsed:    8 seconds (117.83 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        1 MiB\n* Mapper Type:     MBC5\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      MEGAMANX2SE\n* Game Code:       B2XE\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  Required\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x40)\n* ROM Checksum:    OK (0xA615)\n* ROM Size:        1 MiB (0x05)\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Mega Man Xtreme 2 (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       CGB-B2XE\n* ROM CRC32:       8fedb6d8\n* ROM Size:        1 MiB",
+    "crc32": "8fedb6d8",
+    "md5": "1f64989765f605d05cbd013e7ffcc352",
+    "sha1": "cb1811ac8969f6b683df954b57138dd28ebb40ff",
+    "sha256": "e37a14a8e61bd64f2226dacc26a7ee75dd90abfcf88c5016eb97b76ecda0ddca",
+    "date": "2024-10-24"
+  }
+}

@@ -247,6 +247,7 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
         MaskRom,
         magnachip_ac23v(),
         hynix_ac23v(),
+        &macronix::MACRONIX_MX23L8006,
         &macronix::MACRONIX_MX23L3206,
         &macronix::MACRONIX_MX23L6406,
         &macronix::MACRONIX_MX23L6407,

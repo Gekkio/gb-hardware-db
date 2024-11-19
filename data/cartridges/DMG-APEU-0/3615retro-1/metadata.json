@@ -1,0 +1,38 @@
+{
+  "code": "DMG-APEU-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEU-EUR",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "K",
+    "panel_position": "3",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "SEC KM23C8000DG DMG-APEU-0 F1 KFX327U"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 950U4E"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0006 3 SO"
+    },
+    "u4": {
+      "label": "001 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Pokemon - Blue Version (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           d6da8a1a\r\n* MD5:             50927e843568814f7ed45ec4f944bd8b\r\n* SHA-1:           d7037c83e1ae5b39bde3c30787637ba1d4c48ce2\r\n* SHA-256:         2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-13T03:31:15+01:00\r\n* Time Elapsed:    8 seconds (119.23 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC3\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      POKEMON BLUE\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xD3)\r\n* ROM Checksum:    OK (0x9D0A)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\r\n* Mapper Type:     MBC3+SRAM+BATTERY (0x13)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Pokemon - Blue Version (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-APEE\r\n* ROM CRC32:       d6da8a1a\r\n* ROM Size:        1 MiB",
+    "crc32": "d6da8a1a",
+    "md5": "50927e843568814f7ed45ec4f944bd8b",
+    "sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+    "sha256": "2a951313c2640e8c2cb21f25d1db019ae6245d9c7121f754fa61afd7bee6452d",
+    "date": "2024-11-13"
+  }
+}

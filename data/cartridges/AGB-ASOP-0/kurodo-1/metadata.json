@@ -1,0 +1,23 @@
+{
+  "code": "AGB-ASOP-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-ASOP-FRA",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "AGB-E02-20",
+    "circled_letters": "I",
+    "panel_position": "E-3",
+    "year": 2004,
+    "month": 1,
+    "u1": {
+      "label": "M040307-M MX23L6406-12B1 AGB-ASOP-0 I2 2I679900"
+    },
+    "u2": {
+      "label": "39VF512 70-4C-WH 0339171-D"
+    }
+  }
+}

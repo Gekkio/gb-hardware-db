@@ -36,6 +36,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * jrra
 * Kai
 * kay-kidoutai (https://kidoutai.com)
+* Kurodo
 * l0k1
 * Lance Kindle
 * mattcurrie

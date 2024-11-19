@@ -1,0 +1,23 @@
+{
+  "code": "AGB-A2NP-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-A2NP-FAH",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E02-20",
+    "circled_letters": "YG",
+    "panel_position": "K-1",
+    "year": 2002,
+    "month": 10,
+    "u1": {
+      "label": "M030838-M MX23L12806-12C AGB-A2NP-0 J2 2F034400"
+    },
+    "u2": {
+      "label": "39VF512 70-4C-WH 0235069-D"
+    }
+  }
+}

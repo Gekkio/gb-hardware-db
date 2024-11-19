@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AZLE-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AZLE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "I",
+    "panel_position": "N-4",
+    "year": 2002,
+    "month": 10,
+    "u1": {
+      "label": "S024346-M MX23L6406-12C AGB-AZLE-0 I2 2G525000"
+    },
+    "u2": {
+      "label": "9854 2S17W"
+    }
+  }
+}

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Joonas Javanainen <joonas.javanainen@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 use super::Ram;
 use crate::{
     macros::single_parser,

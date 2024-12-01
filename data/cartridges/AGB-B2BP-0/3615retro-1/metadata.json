@@ -1,0 +1,32 @@
+{
+  "code": "AGB-B2BP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-B2BP-EUR",
+    "stamp": "00 E3"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "GB",
+    "panel_position": "G-4",
+    "year": 2005,
+    "month": 8,
+    "u1": {
+      "label": "S053738-MG MX23L12806-12C AGB-B2BP-0 J2 2K619900"
+    },
+    "u2": {
+      "label": "9853 5971"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       2 Games in 1 - The SpongeBob SquarePants Movie + SpongeBob SquarePants and Friends in Freeze Frame Frenzy (Europe) (En,Fr,De,Es,It,Nl+En,Fr,De,Es,Nl).gba\r\n* File Size:       16.00 MiB (16777216 bytes)\r\n* CRC32:           a04cebfe\r\n* MD5:             61c2b1e42c45705bc19cb905ae25bd2d\r\n* SHA-1:           0286e31772601f7c7420722e8fbf8a210d562a06\r\n* SHA-256:         92557eb4c104a883d5cc66b59df1cc2c1368c0107608ea57cdff4738177cdd02\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-01T17:23:10+01:00\r\n* Time Elapsed:    1 minute, 53 seconds (144.26 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        16 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      SBSPMOVIEFFF\r\n* Game Code:       B2BP\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x52)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       2 Games in 1 - The SpongeBob SquarePants Movie + SpongeBob SquarePants and Friends in Freeze Frame Frenzy (Europe) (En,Fr,De,Es,It,Nl+En,Fr,De,Es,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl+En,Fr,De,Es,Nl\r\n* Game Code:       AGB-B2BP\r\n* ROM CRC32:       a04cebfe\r\n* ROM Size:        16 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-12-01",
+    "crc32": "a04cebfe",
+    "md5": "61c2b1e42c45705bc19cb905ae25bd2d",
+    "sha1": "0286e31772601f7c7420722e8fbf8a210d562a06",
+    "sha256": "92557eb4c104a883d5cc66b59df1cc2c1368c0107608ea57cdff4738177cdd02"
+  }
+}

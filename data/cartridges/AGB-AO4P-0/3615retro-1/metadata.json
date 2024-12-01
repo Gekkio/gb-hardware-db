@@ -1,0 +1,32 @@
+{
+  "code": "AGB-AO4P-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AO4P-EUR",
+    "stamp": "07"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "K",
+    "panel_position": "I-6",
+    "year": 2003,
+    "month": 3,
+    "u1": {
+      "label": "AGB-AO4P-0 I2 R26V6415G-0H5 314A254"
+    },
+    "u2": {
+      "label": "9853 2B58"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tom Clancy's Splinter Cell (Europe) (En,Fr,De,Es,It,Nl).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           7ecd29ce\r\n* MD5:             ab7b66435bcecb60a786fd62a532e4ab\r\n* SHA-1:           d623cbd1019665eee78846a2a60d17adaf8ec0fe\r\n* SHA-256:         aa8d89a89e5c827e185a3ae86f279e4b9e7055195451ac9c17916ba7a02498fa\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T17:54:04+01:00\r\n* Time Elapsed:    1 minute (136.23 KiB/s)\r\n* Transfer Buffer: 1024 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      TOM CLANCY'S\r\n* Game Code:       AO4P\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x94)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\r\n\r\n== Database Match ==\r\n* Game Name:       Tom Clancy's Splinter Cell (Europe) (En,Fr,De,Es,It,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl\r\n* Game Code:       AGB-AO4P\r\n* ROM CRC32:       7ecd29ce\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "7ecd29ce",
+    "md5": "ab7b66435bcecb60a786fd62a532e4ab",
+    "sha1": "d623cbd1019665eee78846a2a60d17adaf8ec0fe",
+    "sha256": "aa8d89a89e5c827e185a3ae86f279e4b9e7055195451ac9c17916ba7a02498fa"
+  }
+}

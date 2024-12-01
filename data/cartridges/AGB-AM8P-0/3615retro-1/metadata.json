@@ -1,0 +1,32 @@
+{
+  "code": "AGB-AM8P-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AM8P-EUR",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "AGB-E03-10",
+    "circled_letters": "I",
+    "panel_position": "B-2",
+    "year": 2002,
+    "month": 7,
+    "u1": {
+      "label": "E023007-M MX23L6406-12B1 AGB-AM8P-0 I2 2F895000"
+    },
+    "u2": {
+      "label": "9853 2770"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Monster Force (Europe) (En,Fr,De,Es,It).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           137b0f9a\r\n* MD5:             4e1b65a22eddc145fd7efecabff0282e\r\n* SHA-1:           4b1578129de4b82003806f7a9b193a8ec813dc46\r\n* SHA-256:         247acd70070f9ce5984d0c805e484f80f1380715859d0e170e0de88a1ad95a1f\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T17:56:37+01:00\r\n* Time Elapsed:    1 minute (135.86 KiB/s)\r\n* Transfer Buffer: 1024 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      MONSTERFORCE\r\n* Game Code:       AM8P\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x29)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\r\n\r\n== Database Match ==\r\n* Game Name:       Monster Force (Europe) (En,Fr,De,Es,It)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It\r\n* Game Code:       AGB-AM8P\r\n* ROM CRC32:       137b0f9a\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "137b0f9a",
+    "md5": "4e1b65a22eddc145fd7efecabff0282e",
+    "sha1": "4b1578129de4b82003806f7a9b193a8ec813dc46",
+    "sha256": "247acd70070f9ce5984d0c805e484f80f1380715859d0e170e0de88a1ad95a1f"
+  }
+}

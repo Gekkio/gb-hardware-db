@@ -110,7 +110,7 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
     )
 }
 
-/// Macronix MX23L8006 (TSOP-II-44, 3.3V)
+/// Macronix MX23L8006 (TSOP-II-44, 3.3V, 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -121,7 +121,7 @@ pub static MACRONIX_MX23L8006: NomParser<MaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L8006-12B", "21", "F2").parse(input),
 };
 
-/// Macronix MX23L2306 (TSOP-II-44, 3.3V)
+/// Macronix MX23L3206 (TSOP-II-44, 3.3V, 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -133,7 +133,18 @@ pub static MACRONIX_MX23L3206: NomParser<MaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L3206-12B", "21", "H2").parse(input),
 };
 
-/// Macronix MX23L6406 (TSOP-II-44, 3.3V)
+/// Macronix MX23L3406 (TSOP-II-44, 3.3V, 8 MiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::macronix::MACRONIX_MX23L3406.parse("S035046-M MX23L3406-12C AGB-BBRX-0 I2 2I904402").is_ok());
+/// ```
+pub static MACRONIX_MX23L3406: NomParser<MaskRom> = NomParser {
+    name: "Macronix MX23L3406",
+    f: |input| agb_mx23l("MX23L3406-12C", "46", "I2").parse(input),
+};
+
+/// Macronix MX23L6406 (TSOP-II-44, 3.3V, 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -152,7 +163,7 @@ pub static MACRONIX_MX23L6406: NomParser<MaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23L6407 (TSOP-II-44, 3.3V)
+/// Macronix MX23L6407 (TSOP-II-44, 3.3V, 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -170,7 +181,7 @@ pub static MACRONIX_MX23L6407: NomParser<MaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23L12806 (TSOP-II-44, 3.3V)
+/// Macronix MX23L12806 (TSOP-II-44, 3.3V, 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -182,7 +193,7 @@ pub static MACRONIX_MX23L12806: NomParser<MaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L12806-12C", "38", "J2").parse(input),
 };
 
-/// Macronix MX23L12807 (TSOP-II-44, 3.3V)
+/// Macronix MX23L12807 (TSOP-II-44, 3.3V, 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -194,7 +205,7 @@ pub static MACRONIX_MX23L12807: NomParser<MaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L12807-12C", "58", "J2").parse(input),
 };
 
-/// Macronix MX23L25607 (TSOP-II-44, 3.3V)
+/// Macronix MX23L25607 (TSOP-II-44, 3.3V, 32 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

@@ -1,0 +1,29 @@
+{
+  "code": "AGB-AZIX-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AZIX-EUR",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "AGB-E01-30",
+    "circled_letters": "I",
+    "panel_position": "E-4",
+    "year": 2003,
+    "month": 9,
+    "u1": {
+      "label": "S033746-M MX23L6406-12C AGB-AZIX-0 I2 2I030400"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Finding Nemo (Europe) (Fr,Nl).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           269af7dd\r\n* MD5:             4c863f423cd8052bb3d780da001745b0\r\n* SHA-1:           587f8cc627329ee76a129d7d6e7c56f20f6cd832\r\n* SHA-256:         37417d14cde26d63127fae382d8384460bef907667d36a4b6ad5899bec3c7f49\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:29:31+01:00\r\n* Time Elapsed:    58 seconds (139.19 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      FINDING NEMO\r\n* Game Code:       AZIX\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x58)\r\n* Save Type:       None\r\n\r\n== Database Match ==\r\n* Game Name:       Finding Nemo (Europe) (Fr,Nl)\r\n* Region:          Europe\r\n* Language(s):     Fr,Nl\r\n* Game Code:       AGB-AZIX\r\n* ROM CRC32:       269af7dd\r\n* ROM Size:        8 MiB\r\n* Save Type:       None",
+    "date": "2024-11-30",
+    "crc32": "269af7dd",
+    "md5": "4c863f423cd8052bb3d780da001745b0",
+    "sha1": "587f8cc627329ee76a129d7d6e7c56f20f6cd832",
+    "sha256": "37417d14cde26d63127fae382d8384460bef907667d36a4b6ad5899bec3c7f49"
+  }
+}

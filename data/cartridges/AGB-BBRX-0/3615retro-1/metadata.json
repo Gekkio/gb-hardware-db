@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BBRX-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BBRX-EUR",
+    "stamp": "19"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-4",
+    "year": 2003,
+    "month": 10,
+    "u1": {
+      "label": "S035046-M MX23L3406-12C AGB-BBRX-0 I2 2I904402"
+    },
+    "u2": {
+      "label": "9853 3A90"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Brother Bear (Europe) (Fr,De,Es,It,Nl,Sv,Da).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           fd814097\r\n* MD5:             b8b752c5659e94c0474fe6050df498f2\r\n* SHA-1:           7e217e5f644b0333c51f3827df5fd64023ac7c0e\r\n* SHA-256:         d7e6d7f35eeb08bd61184c7b386c468ecd342d5606d8c6668f82fba854e098db\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:39:03+01:00\r\n* Time Elapsed:    1 minute (135.61 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         2\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      BROTHER BEAR\r\n* Game Code:       BBRX\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x64)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\r\n\r\n== Database Match ==\r\n* Game Name:       Brother Bear (Europe) (Fr,De,Es,It,Nl,Sv,Da)\r\n* Region:          Europe\r\n* Language(s):     Fr,De,Es,It,Nl,Sv,Da\r\n* Game Code:       AGB-BBRX\r\n* ROM CRC32:       fd814097\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "fd814097",
+    "md5": "b8b752c5659e94c0474fe6050df498f2",
+    "sha1": "7e217e5f644b0333c51f3827df5fd64023ac7c0e",
+    "sha256": "d7e6d7f35eeb08bd61184c7b386c468ecd342d5606d8c6668f82fba854e098db"
+  }
+}

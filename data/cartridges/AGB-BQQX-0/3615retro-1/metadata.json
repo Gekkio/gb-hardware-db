@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BQQX-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BQQX-EUR",
+    "stamp": "19 E3"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "K",
+    "panel_position": "E-4",
+    "year": 2005,
+    "month": 9,
+    "u1": {
+      "label": "MAGNACHIP AC23V64101 AGB-BQQX-0 I2 GB0249 PS"
+    },
+    "u2": {
+      "label": "9853 5913"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       SpongeBob SquarePants - Lights, Camera, Pants! (Europe) (En,Fr,De,Es,It,Nl,Sv).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           c189013d\r\n* MD5:             24a24025a5e3b15512d4b5858b07c662\r\n* SHA-1:           09d945acc251000c49539a3f18b21e48520ec8ad\r\n* SHA-256:         f9e9ba7b0d798009e553f96b71cb4278401499b305df0430b2e432a696c3ff61\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-01T17:19:40+01:00\r\n* Time Elapsed:    57 seconds (143.70 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      SBSPLIGHTS␀␀\r\n* Game Code:       BQQX\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xA3)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       SpongeBob SquarePants - Lights, Camera, Pants! (Europe) (En,Fr,De,Es,It,Nl,Sv)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl,Sv\r\n* Game Code:       AGB-BQQX\r\n* ROM CRC32:       c189013d\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-12-01",
+    "crc32": "c189013d",
+    "md5": "24a24025a5e3b15512d4b5858b07c662",
+    "sha1": "09d945acc251000c49539a3f18b21e48520ec8ad",
+    "sha256": "f9e9ba7b0d798009e553f96b71cb4278401499b305df0430b2e432a696c3ff61"
+  }
+}

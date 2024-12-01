@@ -1,0 +1,29 @@
+{
+  "code": "AGB-AQPF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AQPF-FRA",
+    "stamp": "22 E3"
+  },
+  "board": {
+    "label": "AGB-E01-41",
+    "circled_letters": "A",
+    "panel_position": "L-2",
+    "year": 2005,
+    "month": 4,
+    "u1": {
+      "label": "E053046-MG MX23L6406-12C AGB-AQPF-0 I2 2M281004A1"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Disney Princesse (France).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           3944bd7e\r\n* MD5:             bbb91114b96a3b57bf40b15edfc12187\r\n* SHA-1:           b357f21432a55584779e84f200181d655ef3ba10\r\n* SHA-256:         1615147e0c63dc65ba71934642ffed7cbaba172d16606743aae14d2f2ebde7cd\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:07:01+01:00\r\n* Time Elapsed:    1 minute (134.63 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         2\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      DISNEY PRINC\r\n* Game Code:       AQPF\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x52)\r\n* Save Type:       None\r\n\r\n== Database Match ==\r\n* Game Name:       Disney Princesse (France)\r\n* Region:          France\r\n* Language(s):     Fr\r\n* Game Code:       AGB-AQPF\r\n* ROM CRC32:       3944bd7e\r\n* ROM Size:        8 MiB\r\n* Save Type:       None",
+    "date": "2024-11-30",
+    "crc32": "3944bd7e",
+    "md5": "bbb91114b96a3b57bf40b15edfc12187",
+    "sha1": "b357f21432a55584779e84f200181d655ef3ba10",
+    "sha256": "1615147e0c63dc65ba71934642ffed7cbaba172d16606743aae14d2f2ebde7cd"
+  }
+}

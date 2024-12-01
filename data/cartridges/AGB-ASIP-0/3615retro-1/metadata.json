@@ -1,0 +1,32 @@
+{
+  "code": "AGB-ASIP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-ASIP-EUR",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-5",
+    "year": 2003,
+    "month": 9,
+    "u1": {
+      "label": "M034658-M MX23L12807-12C AGB-ASIP-0 J2 2I833100"
+    },
+    "u2": {
+      "label": "9854 3T86W"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Sims, The - Bustin' Out (USA, Europe) (En,Fr,De,Es,It,Nl).gba\r\n* File Size:       16.00 MiB (16777216 bytes)\r\n* CRC32:           abaf519c\r\n* MD5:             e429ce307fe06dbcd7724552ff0339d7\r\n* SHA-1:           fb5662172fadebf4577f6f6f163741fc041c11e6\r\n* SHA-256:         92ead9ff9467dbc23780e768278fe2e4bf7a0708447a0785770c129a5dbdb06e\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T17:50:54+01:00\r\n* Time Elapsed:    1 minute, 58 seconds (138.26 KiB/s)\r\n* Transfer Buffer: 1024 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        16 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      THE SIMS ADV\r\n* Game Code:       ASIE\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x88)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Sims, The - Bustin' Out (USA, Europe) (En,Fr,De,Es,It,Nl)\r\n* Region:          USA, Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl\r\n* Game Code:       AGB-ASIE\r\n* ROM CRC32:       abaf519c\r\n* ROM Size:        16 MiB\r\n* Save Type:       64K EEPROM (8 KiB)",
+    "date": "2024-11-30",
+    "crc32": "abaf519c",
+    "md5": "e429ce307fe06dbcd7724552ff0339d7",
+    "sha1": "fb5662172fadebf4577f6f6f163741fc041c11e6",
+    "sha256": "92ead9ff9467dbc23780e768278fe2e4bf7a0708447a0785770c129a5dbdb06e"
+  }
+}

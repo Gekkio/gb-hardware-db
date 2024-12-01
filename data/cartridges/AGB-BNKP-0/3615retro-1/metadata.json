@@ -1,0 +1,29 @@
+{
+  "code": "AGB-BNKP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BNKP-FRA",
+    "stamp": "15 E3"
+  },
+  "board": {
+    "label": "AGB-E01-41",
+    "circled_letters": "K",
+    "panel_position": "A-3",
+    "year": 2005,
+    "month": 9,
+    "u1": {
+      "label": "B054221-MG MX23L3206-12B AGB-BNKP-0 H2 2N114600A1"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Noddy - A Day in Toyland (Europe) (En,Fr,Es,It,Nl,Pt,Da).gba\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           607ddc6b\r\n* MD5:             59aee0a5bc39a0a026dcde89d6ccd4a4\r\n* SHA-1:           9a1eb8224d5bd68f0d3d2417fe233472e7b80713\r\n* SHA-256:         875095649d984ed610eb8ac9b617c0bdeca3c17ceb39c18311d8f239221ba2aa\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T19:08:42+01:00\r\n* Time Elapsed:    28 seconds (142.63 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        4 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      NODDYTOYLAND\r\n* Game Code:       BNKP\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xFC)\r\n* Save Type:       None\r\n\r\n== Database Match ==\r\n* Game Name:       Noddy - A Day in Toyland (Europe) (En,Fr,Es,It,Nl,Pt,Da)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,Es,It,Nl,Pt,Da\r\n* Game Code:       AGB-BNKP\r\n* ROM CRC32:       607ddc6b\r\n* ROM Size:        4 MiB\r\n* Save Type:       None",
+    "date": "2024-11-30",
+    "crc32": "607ddc6b",
+    "md5": "59aee0a5bc39a0a026dcde89d6ccd4a4",
+    "sha1": "9a1eb8224d5bd68f0d3d2417fe233472e7b80713",
+    "sha256": "875095649d984ed610eb8ac9b617c0bdeca3c17ceb39c18311d8f239221ba2aa"
+  }
+}

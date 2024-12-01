@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BLPF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BLPF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-3",
+    "year": 2004,
+    "month": 8,
+    "u1": {
+      "label": "M044338-M MX23L12806-12C AGB-BLPF-0 J2 2K984300"
+    },
+    "u2": {
+      "label": "9853 4A32"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       2 Games in 1 - Disney Princesse + Le Roi Lion (France) (Fr+En,Fr,De,Es,It,Nl,Sv,Da).gba\r\n* File Size:       16.00 MiB (16777216 bytes)\r\n* CRC32:           cce9c2e2\r\n* MD5:             6f95dd3e97e52d41c5ba69adf8e506af\r\n* SHA-1:           d11eb620645fcac8d18a9e384d0c6ccf134d01c2\r\n* SHA-256:         d98a22b074237cea59dd5b4c773b55c6aaeb378468b53f368e3f5919b25bc623\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:32:09+01:00\r\n* Time Elapsed:    1 minute, 53 seconds (144.05 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        16 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      LK_AND_DPFRE\r\n* Game Code:       BLPF\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x25)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       2 Games in 1 - Disney Princesse + Le Roi Lion (France) (Fr+En,Fr,De,Es,It,Nl,Sv,Da)\r\n* Region:          France\r\n* Language(s):     Fr+En,Fr,De,Es,It,Nl,Sv,Da\r\n* Game Code:       AGB-BLPF\r\n* ROM CRC32:       cce9c2e2\r\n* ROM Size:        16 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "cce9c2e2",
+    "md5": "6f95dd3e97e52d41c5ba69adf8e506af",
+    "sha1": "d11eb620645fcac8d18a9e384d0c6ccf134d01c2",
+    "sha256": "d98a22b074237cea59dd5b4c773b55c6aaeb378468b53f368e3f5919b25bc623"
+  }
+}

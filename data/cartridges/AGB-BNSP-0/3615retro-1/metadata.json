@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BNSP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BNSP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-5",
+    "year": 2003,
+    "month": 10,
+    "u1": {
+      "label": "S040446-M MX23L6406-12C AGB-BNSP-0 I2 2I828206"
+    },
+    "u2": {
+      "label": "9853 3B40"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Need for Speed - Underground (USA, Europe) (En,Fr,De,It).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           828020e9\r\n* MD5:             0053467f8f43c893299c1c18a2e971d9\r\n* SHA-1:           ddd304481617a748aa9f37535908a37452dd2f03\r\n* SHA-256:         53817aec76a623dc2c7782ddf841f89f369aebe5a92a28c9afc69feaf914a593\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:28:11+01:00\r\n* Time Elapsed:    57 seconds (143.58 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      NFSUG␀␀␀␀␀␀␀\r\n* Game Code:       BNSE\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x37)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Need for Speed - Underground (USA, Europe) (En,Fr,De,It)\r\n* Region:          USA, Europe\r\n* Language(s):     En,Fr,De,It\r\n* Game Code:       AGB-BNSE\r\n* ROM CRC32:       828020e9\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "828020e9",
+    "md5": "0053467f8f43c893299c1c18a2e971d9",
+    "sha1": "ddd304481617a748aa9f37535908a37452dd2f03",
+    "sha256": "53817aec76a623dc2c7782ddf841f89f369aebe5a92a28c9afc69feaf914a593"
+  }
+}

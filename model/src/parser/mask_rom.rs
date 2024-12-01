@@ -165,20 +165,18 @@ pub fn samsung2() -> &'static impl LabelParser<MaskRom> {
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::mask_rom::magnachip_ac23v().parse("MAGNACHIP AC23V128111 AGB-BPRE-1 J2 SP0730 PS").is_ok());
+/// assert!(parser::mask_rom::magnachip_ac23v().parse("MAGNACHIP AC23V32101 AGB-BCRP-0 H2 GB1191 PS").is_ok());
 /// ```
 pub fn magnachip_ac23v() -> &'static impl LabelParser<MaskRom> {
     single_parser!(
         MaskRom,
-        r#"^MAGNACHIP\ (?<kind>AC23V[0-9]{6})\ (?<rom_id>AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ SP(?<year>[0-9]{2})(?<week>[0-9]{2})\ PS$"#,
+        r#"^MAGNACHIP\ (?<kind>AC23V[0-9]{5,6})\ (?<rom_id>AGB-[[:alnum:]]{4}-[0-9])\ [A-Z][0-9]\ (SP|GB)([0-9]{2})([0-9]{2})\ PS$"#,
         move |c| {
             Ok(MaskRom {
                 rom_id: c["rom_id"].to_owned(),
                 manufacturer: Some(Manufacturer::Magnachip),
                 chip_type: Some(c["kind"].to_owned()),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year2(&c["year"])?,
-                    week: week2(&c["week"])?,
-                }),
+                date_code: None,
             })
         },
     )
@@ -249,6 +247,7 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
         hynix_ac23v(),
         &macronix::MACRONIX_MX23L8006,
         &macronix::MACRONIX_MX23L3206,
+        &macronix::MACRONIX_MX23L3406,
         &macronix::MACRONIX_MX23L6406,
         &macronix::MACRONIX_MX23L6407,
         &macronix::MACRONIX_MX23L12806,
@@ -260,6 +259,7 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
         &oki::OKI_MR26V6414,
         &oki::OKI_MR26V6415,
         &oki::OKI_MR27V810,
+        &oki::OKI_MR27V6416,
         &oki::OKI_MR27V12813,
     )
 }

@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BFKP-2",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BFKP-EUR",
+    "stamp": "19A 19B"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-1",
+    "year": 2004,
+    "month": 9,
+    "u1": {
+      "label": "AGB-BFKP-2 H2 R26V3211F-0R5 447ABAMJ"
+    },
+    "u2": {
+      "label": "9853 4A02"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Franklin the Turtle (Europe) (En,Fr,De,Es,It,Sv,No,Da,Fi) (Rev 2).gba\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           a0952cd0\r\n* MD5:             fc13f41345df4aba40ffc69402e64704\r\n* SHA-1:           ce978dbda60ddbee77657a60cf2102722e645dcf\r\n* SHA-256:         a34ed93e2c398c50ec68fe58dffab37a81fa8385da63d3a0a532a5b51cebc10d\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:18:50+01:00\r\n* Time Elapsed:    28 seconds (142.53 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        4 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      FRANKLIN␀␀␀␀\r\n* Game Code:       BFKP\r\n* Revision:        2\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x46)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Franklin the Turtle (Europe) (En,Fr,De,Es,It,Sv,No,Da,Fi) (Rev 2)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Sv,No,Da,Fi\r\n* Revision:        Rev 2\r\n* Game Code:       AGB-BFKP\r\n* ROM CRC32:       a0952cd0\r\n* ROM Size:        4 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "a0952cd0",
+    "md5": "fc13f41345df4aba40ffc69402e64704",
+    "sha1": "ce978dbda60ddbee77657a60cf2102722e645dcf",
+    "sha256": "a34ed93e2c398c50ec68fe58dffab37a81fa8385da63d3a0a532a5b51cebc10d"
+  }
+}

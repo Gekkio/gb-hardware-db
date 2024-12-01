@@ -1,0 +1,32 @@
+{
+  "code": "AGB-B2LP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-B2LP-EUR",
+    "stamp": "09 E4"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "CS",
+    "panel_position": "I-1",
+    "year": 2006,
+    "month": 9,
+    "u1": {
+      "label": "AGB-B2LP-0 I2 R27V6416M-0TB 6445BJ9J"
+    },
+    "u2": {
+      "label": "9853 6950"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Totally Spies! 2 - Undercover (Europe) (En,Fr,De,Es,It,Nl).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           ca245559\r\n* MD5:             a5775a65801ccdd6c88778262d9a4d0a\r\n* SHA-1:           fca3563c20334b215966b4a4f270a03f413517b7\r\n* SHA-256:         2753ad44365dba3d39b0ece322cc8fe191b5941c60fc64e44345d1b39f440888\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:02:34+01:00\r\n* Time Elapsed:    57 seconds (143.54 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      TSPIES 2␀␀␀␀\r\n* Game Code:       B2LP\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xB0)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Totally Spies! 2 - Undercover (Europe) (En,Fr,De,Es,It,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl\r\n* Game Code:       AGB-B2LP\r\n* ROM CRC32:       ca245559\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "ca245559",
+    "md5": "a5775a65801ccdd6c88778262d9a4d0a",
+    "sha1": "fca3563c20334b215966b4a4f270a03f413517b7",
+    "sha256": "2753ad44365dba3d39b0ece322cc8fe191b5941c60fc64e44345d1b39f440888"
+  }
+}

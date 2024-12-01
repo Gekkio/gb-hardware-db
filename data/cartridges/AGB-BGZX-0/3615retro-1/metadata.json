@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BGZX-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BGZX-EUR",
+    "stamp": "19 E4"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "A",
+    "panel_position": "D-4",
+    "year": 2006,
+    "month": 3,
+    "u1": {
+      "label": "S061546-MG MX23L6406-12C AGB-BGZX-0 I2 2O651305"
+    },
+    "u2": {
+      "label": "9853 6365"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Madagascar (Europe) (Fr,De,Pt).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           274c9135\r\n* MD5:             b06f2e981aa7702e7a13602f8e5013d1\r\n* SHA-1:           e86f17cdb49be8751ee5000e519e02f1e32d733b\r\n* SHA-256:         dc9fbf6d91bce59eb25aa3203bcfc69965c1624375495df46a169cdc2a0b4c38\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:04:21+01:00\r\n* Time Elapsed:    57 seconds (143.61 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      MADAGASCAR␀␀\r\n* Game Code:       BGZX\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xEB)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Madagascar (Europe) (Fr,De,Pt)\r\n* Region:          Europe\r\n* Language(s):     Fr,De,Pt\r\n* Game Code:       AGB-BGZX\r\n* ROM CRC32:       274c9135\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "274c9135",
+    "md5": "b06f2e981aa7702e7a13602f8e5013d1",
+    "sha1": "e86f17cdb49be8751ee5000e519e02f1e32d733b",
+    "sha256": "dc9fbf6d91bce59eb25aa3203bcfc69965c1624375495df46a169cdc2a0b4c38"
+  }
+}

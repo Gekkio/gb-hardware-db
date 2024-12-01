@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BLXP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BLXP-FAH",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "YG",
+    "panel_position": "H-5",
+    "year": 2004,
+    "month": 4,
+    "u1": {
+      "label": "AGB-BLXP-0 I2 R26V6415G-01N 419ABAZ"
+    },
+    "u2": {
+      "label": "9853 4301"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Asterix & Obelix XXL (Europe) (En,Fr,De,Es,It,Nl).gba\r\n* File Size:       8.00 MiB (8388608 bytes)\r\n* CRC32:           a9b1ece5\r\n* MD5:             920882439cd994c2f0ab63d32a64eb80\r\n* SHA-1:           7145d02143c1a81f6ea72063ac798642b2aaec3c\r\n* SHA-256:         559331d2398113a5286448f595a21df1fb4e05ae40b2141c24bd9fa78d99a236\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:30:42+01:00\r\n* Time Elapsed:    1 minute (134.71 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         2\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        8 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      ASTERIX␀␀␀␀␀\r\n* Game Code:       BLXP\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x94)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Asterix & Obelix XXL (Europe) (En,Fr,De,Es,It,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl\r\n* Game Code:       AGB-BLXP\r\n* ROM CRC32:       a9b1ece5\r\n* ROM Size:        8 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "a9b1ece5",
+    "md5": "920882439cd994c2f0ab63d32a64eb80",
+    "sha1": "7145d02143c1a81f6ea72063ac798642b2aaec3c",
+    "sha256": "559331d2398113a5286448f595a21df1fb4e05ae40b2141c24bd9fa78d99a236"
+  }
+}

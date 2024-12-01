@@ -1,0 +1,32 @@
+{
+  "code": "AGB-BCRP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BCRP-EUR",
+    "stamp": "41 E4"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "I",
+    "panel_position": "C-1",
+    "year": 2006,
+    "month": 5,
+    "u1": {
+      "label": "MAGNACHIP AC23V32101 AGB-BCRP-0 H2 GB1191 PS"
+    },
+    "u2": {
+      "label": "9853 6588"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Crazy Frog Racer (Europe) (En,Fr,De,Nl).gba\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           2723236b\r\n* MD5:             f341bab11f2bfd79b995554d40a61cba\r\n* SHA-1:           9ff4bd804f75bb526849a5da97e3803f69f31aa1\r\n* SHA-256:         da409e1d41e86d05ad2326113935bbd50a21ec72206f0734782aca22be7a8189\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-11-30T18:19:40+01:00\r\n* Time Elapsed:    28 seconds (142.56 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        4 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      CRAZY FROG K\r\n* Game Code:       BCRP\r\n* Revision:        0\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x50)\r\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\r\n\r\n== Database Match ==\r\n* Game Name:       Crazy Frog Racer (Europe) (En,Fr,De,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Nl\r\n* Game Code:       AGB-BCRP\r\n* ROM CRC32:       2723236b\r\n* ROM Size:        4 MiB\r\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-11-30",
+    "crc32": "2723236b",
+    "md5": "f341bab11f2bfd79b995554d40a61cba",
+    "sha1": "9ff4bd804f75bb526849a5da97e3803f69f31aa1",
+    "sha256": "da409e1d41e86d05ad2326113935bbd50a21ec72206f0734782aca22be7a8189"
+  }
+}

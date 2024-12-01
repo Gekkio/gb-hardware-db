@@ -4,6 +4,7 @@
 
 use gbhwdb_model::config::cartridge::GamePlatform;
 use itertools::Itertools;
+use lexical_sort::natural_lexical_cmp;
 use maud::{html, Markup, Render};
 use std::borrow::Cow;
 
@@ -26,7 +27,10 @@ impl<'a> Render for ContributorCartridges<'a> {
             .into_group_map_by(|s| s.metadata.cfg.platform);
 
         for submissions in by_platform.values_mut() {
-            submissions.sort_by_key(|s| (&s.metadata.cfg.name, &s.slug));
+            submissions.sort_unstable_by(|a, b| {
+                natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                    .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
+            });
         }
         html! {
             article {

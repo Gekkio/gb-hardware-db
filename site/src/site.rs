@@ -8,6 +8,7 @@ use gbhwdb_model::{
     Console,
 };
 use itertools::Itertools;
+use lexical_sort::natural_lexical_cmp;
 use log::error;
 use maud::{Markup, Render};
 use slug::slugify;
@@ -508,11 +509,9 @@ pub fn build_site() -> Site {
             .map(|(cfg_idx, group)| {
                 let cfg = &mapper_cfgs[cfg_idx];
                 let submissions = group
-                    .sorted_by_key(|submission| {
-                        (
-                            &submission.metadata.cfg.name,
-                            submission.sort_group.as_ref(),
-                        )
+                    .sorted_unstable_by(|a, b| {
+                        natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                            .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
                     })
                     .collect::<Vec<_>>();
                 let path = SitePath(vec![Cow::Borrowed("cartridges"), Cow::Borrowed(cfg.id)]);

@@ -4,6 +4,7 @@
 
 use gbhwdb_model::config::cartridge::{GameConfig, GamePlatform};
 use itertools::Itertools;
+use lexical_sort::natural_lexical_cmp;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};
 
@@ -29,7 +30,7 @@ impl<'a> Render for PlatformCartridges<'a> {
                 per_game.push((cfg, group));
             }
         }
-        per_game.sort_by_key(|(cfg, _)| &cfg.name);
+        per_game.sort_unstable_by(|(a, _), (b, _)| natural_lexical_cmp(&a.name, &b.name));
         let toggle_js = "\
 var shouldHide = event.currentTarget.innerText.includes('Show only');
 event.currentTarget.innerHTML = (shouldHide)

@@ -5,7 +5,7 @@
 use anyhow::{Context as _, Error};
 use csv_export::{write_submission_csv, ToCsv};
 use filetime::{set_file_mtime, FileTime};
-use gbhwdb_backend::{
+use gbhwdb_model::{
     config::cartridge::*,
     input::cartridge::*,
     parser::{self, LabelParser},
@@ -201,7 +201,7 @@ fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
-    let cfgs = gbhwdb_backend::config::cartridge::load_cfgs("config/games.json")?;
+    let cfgs = gbhwdb_model::config::cartridge::load_cfgs("config/games.json")?;
 
     info!("Processing submissions");
 
@@ -389,7 +389,7 @@ fn read_cartridge_submissions(
 }
 
 fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
-    use gbhwdb_backend::input::dmg::*;
+    use gbhwdb_model::input::dmg::*;
     use legacy::console::*;
     use process::part::{boxed_parser, map_part, ProcessedPart};
     use process::to_full_year;
@@ -505,7 +505,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .as_ref()
                 .filter(|_| !console.mainboard.outlier)
                 .map(|stamp| {
-                    gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                    gbhwdb_model::parser::dmg_stamp::dmg_stamp()
                         .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
@@ -514,7 +514,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .as_ref()
                 .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
                 .map(|stamp| {
-                    gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                    gbhwdb_model::parser::dmg_stamp::dmg_stamp()
                         .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
@@ -596,7 +596,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
 }
 
 fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
-    use gbhwdb_backend::input::sgb::*;
+    use gbhwdb_model::input::sgb::*;
     use legacy::console::*;
     use process::part::map_part;
     let walker = WalkDir::new("data/consoles/SGB").min_depth(2).max_depth(2);
@@ -672,7 +672,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
 }
 
 fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
-    use gbhwdb_backend::input::mgb::*;
+    use gbhwdb_model::input::mgb::*;
     use legacy::console::*;
     use process::part::map_part;
     use process::to_full_year;
@@ -727,7 +727,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                gbhwdb_model::parser::dmg_stamp::dmg_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -769,7 +769,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
 }
 
 fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
-    use gbhwdb_backend::input::mgl::*;
+    use gbhwdb_model::input::mgl::*;
     use legacy::console::*;
     use process::part::map_part;
     use process::to_full_year;
@@ -826,7 +826,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -868,7 +868,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
 }
 
 fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
-    use gbhwdb_backend::input::sgb2::*;
+    use gbhwdb_model::input::sgb2::*;
     use legacy::console::*;
     use process::part::map_part;
     let walker = WalkDir::new("data/consoles/SGB2").min_depth(2).max_depth(2);
@@ -946,7 +946,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
 }
 
 fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
-    use gbhwdb_backend::input::cgb::*;
+    use gbhwdb_model::input::cgb::*;
     use legacy::console::*;
     use process::part::map_part;
     use process::to_full_year;
@@ -1000,7 +1000,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                     if stamp.starts_with(&['6', '7', '8', '9'][..]) {
                         (
                             Some(
-                                gbhwdb_backend::parser::dmg_stamp::dmg_stamp()
+                                gbhwdb_model::parser::dmg_stamp::dmg_stamp()
                                     .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
@@ -1010,7 +1010,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                         (
                             None,
                             Some(
-                                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
                                     .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
@@ -1059,7 +1059,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
 }
 
 fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
-    use gbhwdb_backend::input::agb::*;
+    use gbhwdb_model::input::agb::*;
     use legacy::console::*;
     use process::part::map_part;
     use process::to_full_year;
@@ -1114,7 +1114,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -1155,7 +1155,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
 }
 
 fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
-    use gbhwdb_backend::input::ags::*;
+    use gbhwdb_model::input::ags::*;
     use legacy::console::*;
     use process::part::map_part;
     let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
@@ -1251,7 +1251,7 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
 }
 
 fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
-    use gbhwdb_backend::input::gbs::*;
+    use gbhwdb_model::input::gbs::*;
     use legacy::console::*;
     use process::part::map_part;
     use process::to_full_year;
@@ -1305,7 +1305,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_backend::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -1342,7 +1342,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
 }
 
 fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
-    use gbhwdb_backend::input::oxy::*;
+    use gbhwdb_model::input::oxy::*;
     use legacy::console::*;
     use process::part::map_part;
     let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);

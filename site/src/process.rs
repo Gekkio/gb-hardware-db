@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::{
+use gbhwdb_model::{
     parser::Year,
     time::{Jun, Month, Week},
 };

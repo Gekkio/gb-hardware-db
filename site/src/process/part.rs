@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::{anyhow, Error};
-use gbhwdb_backend::{
+use gbhwdb_model::{
     input::Part,
     parser::{self, LabelParser, Manufacturer, PartDateCode},
 };
@@ -66,7 +66,7 @@ impl ParsedPart for parser::UnknownChip {
 
 impl ParsedPart for parser::Gen1Soc {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        use gbhwdb_backend::parser::Gen1SocKind::*;
+        use gbhwdb_model::parser::Gen1SocKind::*;
         ProcessedPart {
             label: Some(label),
             kind: Some(
@@ -90,7 +90,7 @@ impl ParsedPart for parser::Gen1Soc {
 
 impl ParsedPart for parser::Gen2Soc {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        use gbhwdb_backend::parser::Gen2SocKind::*;
+        use gbhwdb_model::parser::Gen2SocKind::*;
         ProcessedPart {
             label: Some(label),
             kind: Some(

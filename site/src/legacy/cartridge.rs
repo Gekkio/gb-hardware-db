@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::{
+use gbhwdb_model::{
     config::cartridge::*,
     input::cartridge::*,
     parser::{Accelerometer, Crystal, Eeprom, GenericPart, Mapper, MaskRom, Tama, UnknownChip},

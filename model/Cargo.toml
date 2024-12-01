@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2017-2023 Joonas Javanainen <joonas.javanainen@gmail.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "gbhwdb-model"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+log.workspace = true
+nom.workspace = true
+regex.workspace = true
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+time = { workspace = true, features = ["serde", "parsing", "formatting", "macros"] }

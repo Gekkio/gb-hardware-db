@@ -1174,19 +1174,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gbhwdb-backend"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "log",
- "nom",
- "regex",
- "serde",
- "serde_json",
- "time",
-]
-
-[[package]]
 name = "gbhwdb-deploy"
 version = "0.0.0"
 dependencies = [
@@ -1215,13 +1202,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "gbhwdb-model"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "log",
+ "nom",
+ "regex",
+ "serde",
+ "serde_json",
+ "time",
+]
+
+[[package]]
 name = "gbhwdb-site"
 version = "0.0.0"
 dependencies = [
  "anyhow",
  "csv",
  "filetime",
- "gbhwdb-backend",
+ "gbhwdb-model",
  "glob",
  "grass",
  "image",

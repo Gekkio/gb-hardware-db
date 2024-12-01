@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::PartDesignator;
+use gbhwdb_model::config::cartridge::PartDesignator;
 
 use crate::{
     csv_export::{part, Builder, Field, ToCsv},

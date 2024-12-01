@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{GameConfig, GamePlatform};
+use gbhwdb_model::config::cartridge::{GameConfig, GamePlatform};
 use itertools::Itertools;
 use maud::{html, Markup, Render};
 use std::{borrow::Cow, collections::BTreeMap};

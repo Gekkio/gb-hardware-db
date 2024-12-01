@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_backend::config::cartridge::{BoardConfig, PartRole};
+use gbhwdb_model::config::cartridge::{BoardConfig, PartRole};
 use maud::{html, Markup, Render};
 
 use crate::{

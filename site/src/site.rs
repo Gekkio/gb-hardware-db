@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use anyhow::Error;
-use gbhwdb_backend::{
+use gbhwdb_model::{
     config::cartridge::{BoardConfig, GamePlatform, PartRole},
     Console,
 };

@@ -1,0 +1,30 @@
+{
+  "code": "CGB-BYTF-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BYTF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 8,
+    "u1": {
+      "label": "M013404-M MX23C1603-12A CGB-BYTF-0 G2 1D4293A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 128 H42"
+    },
+    "u3": {
+      "label": "BSI BS62LV256SC-70 S2827V45169 F0052 TAIWAN"
+    },
+    "u4": {
+      "label": "6735 1762"
+    },
+    "x1": {}
+  }
+}

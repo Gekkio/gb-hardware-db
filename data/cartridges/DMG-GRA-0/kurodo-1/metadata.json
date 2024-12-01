@@ -1,0 +1,23 @@
+{
+  "code": "DMG-GRA-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GR-FAH",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "panel_position": "6",
+    "year": 1991,
+    "month": 12,
+    "u1": {
+      "label": "DMG-GRA-0 S LH5308SI JAPAN C1 9151 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9149BA061"
+    }
+  }
+}

@@ -8,7 +8,7 @@ use nom::{
 };
 
 use super::{
-    for_nom::{digits, uppers, year1_week2},
+    for_nom::{alnum_uppers, digits, uppers, year1_week2},
     sram::Ram,
     Manufacturer, NomParser,
 };
@@ -82,6 +82,7 @@ pub static WINBOND_W24258: NomParser<Ram> = NomParser {
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::winbond::WINBOND_W2465.parse("Winbond W2465S-70LL 140SD21331480-II1RA").is_ok());
+/// assert!(parser::winbond::WINBOND_W2465.parse("Winbond W2465S-70LL 127AD21212050-811RA").is_ok());
 /// ```
 pub static WINBOND_W2465: NomParser<Ram> = NomParser {
     name: "Winbond W2465",
@@ -96,10 +97,18 @@ pub static WINBOND_W2465: NomParser<Ram> = NomParser {
                 tag("LL"), // power
             )),
             char(' '),
-            tuple((year1_week2, uppers(2), digits(8), tag("-II1RA"))),
+            tuple((
+                year1_week2,
+                uppers(2),
+                digits(8),
+                char('-'),
+                alnum_uppers(1),
+                alnum_uppers(1),
+                tag("1RA"),
+            )),
         ))
         .map(
-            |(_, (kind, package, _, speed, power), _, (date_code, _, _, _))| Ram {
+            |(_, (kind, package, _, speed, power), _, (date_code, _, _, _, _, _, _))| Ram {
                 kind: format!("{kind}{package}-{speed}{power}", package = package.code()),
                 manufacturer: Some(Manufacturer::Winbond),
                 date_code: Some(date_code),

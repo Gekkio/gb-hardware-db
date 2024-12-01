@@ -93,11 +93,12 @@ pub fn rohm_xlj6265() -> &'static impl LabelParser<Ram> {
 /// ```
 /// use gbhwdb_backend::parser::{self, LabelParser};
 /// assert!(parser::sram::sop_28::sharp_lh52256().parse("LH52256CN-10LL SHARP JAPAN 9832 1 SN").is_ok());
+/// assert!(parser::sram::sop_28::sharp_lh52256().parse("LH52256CN-10LL SHARP A9802 3 EC").is_ok());
 /// ```
 pub fn sharp_lh52256() -> &'static impl LabelParser<Ram> {
     single_parser!(
         Ram,
-        r#"^(?<kind>LH52256C?)(?<package>N)-(?<speed>10)(?<power>LL)\ SHARP\ JAPAN\ (?<year>[0-9]{2})(?<week>[0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        r#"^(?<kind>LH52256C?)(?<package>N)-(?<speed>10)(?<power>LL)\ SHARP\ ((JAPAN\ )|A)(?<year>[0-9]{2})(?<week>[0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
         move |c| {
             Ok(Ram {
                 kind: format!(

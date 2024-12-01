@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ7P-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZ7P-EUR",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "CM",
+    "panel_position": "3",
+    "year": 2001,
+    "month": 7,
+    "u1": {
+      "label": "M013104-M MX23C1603-12A CGB-AZ7P-0 G2 1C9464A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 113 H31"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 127AD21212050-811RA"
+    },
+    "u4": {
+      "label": "6735 1718"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPGF-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPGF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "B-6",
+    "year": 2004,
+    "month": 7,
+    "u1": {
+      "label": "M043238-M MX23L12806-12C AGB-BPGF-0 J2 2K702300"
+    },
+    "u2": {
+      "label": "E040957 MX29L010TC-15A1 1F4976"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-L3E-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "DMG-L3-FAH",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "panel_position": "4",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "DMG-L3E-0 S LH531HPN JAPAN C1 9643 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'08"
+    }
+  }
+}

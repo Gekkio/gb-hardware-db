@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AYRP-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYRP-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "panel_position": "6",
+    "year": 1999,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AYRP-0 S LH538WNM JAPAN F1 9904 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9850 A"
+    }
+  }
+}

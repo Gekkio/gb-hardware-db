@@ -128,7 +128,7 @@ impl<T> Builder<T> {
         result = result.add("week", move |v| f(v).week.csv());
         result
     }
-    pub fn record<'a>(&'a self, value: &'a T) -> impl Iterator<Item = Cow<[u8]>> + '_ {
+    pub fn record<'a>(&'a self, value: &'a T) -> impl Iterator<Item = Cow<'a, [u8]>> + 'a {
         self.fields.iter().map(|(_, f)| match f(value) {
             Cow::Borrowed(s) => Cow::Borrowed(s.as_bytes()),
             Cow::Owned(s) => Cow::Owned(s.into_bytes()),

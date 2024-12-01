@@ -129,6 +129,6 @@ fn year1<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E
     .parse(input)
 }
 
-fn lot_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, &str, E> {
+fn lot_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, &'a str, E> {
     recognize(alnum_uppers(1).and(digits(3))).parse(input)
 }

@@ -94,6 +94,6 @@ fn date_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Par
     year2_week2(input)
 }
 
-fn process_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, &str, E> {
+fn process_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, &'a str, E> {
     uppers(1).parse(input)
 }

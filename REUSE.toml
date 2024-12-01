@@ -1,0 +1,22 @@
+version = 1
+SPDX-PackageName = "gb-hardware-db"
+SPDX-PackageSupplier = "Joonas Javanainen <joonas.javanainen@gmail.com>"
+SPDX-PackageDownloadLocation = "https://github.com/Gekkio/gb-hardware-db"
+
+[[annotations]]
+path = "config/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017-2024 Joonas Javanainen <joonas.javanainen@gmail.com>"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = "data/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017-2024 gbhwdb contributors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+[[annotations]]
+path = "site/static/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2017-2024 Joonas Javanainen <joonas.javanainen@gmail.com>"
+SPDX-License-Identifier = "MIT"

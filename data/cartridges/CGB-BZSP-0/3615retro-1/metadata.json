@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BZSP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BZSP-EUR",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "NC",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "CGB-BZSP-0 F1 M538011E-4U 1175413"
+    },
+    "u2": {
+      "label": "12C9K3T MBC5 2417"
+    },
+    "u3": {
+      "label": "SANYO LC3564BM-70 JAPAN 1AK2G"
+    },
+    "u4": {
+      "label": "6735 1221"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Zidane - Football Generation (Europe) (En,Fr,De,Es,It).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           e96dbfb5\r\n* MD5:             0044c80fb6c6c7c49466dafe6637d61a\r\n* SHA-1:           06385470bb0b4ef6c743ab6a5e7f8d7a97f6100b\r\n* SHA-256:         b4f7387b9a74d7501147567be9539007a0baa7f27bdd150a6743984b31f6bb3a\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:23:51+01:00\r\n* Time Elapsed:    8 seconds (118.00 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      ZIDANE FOOT\r\n* Game Code:       BZSP\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xF6)\r\n* ROM Checksum:    OK (0xCDAC)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Zidane - Football Generation (Europe) (En,Fr,De,Es,It)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It\r\n* Game Code:       CGB-BZSP\r\n* ROM CRC32:       e96dbfb5\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "e96dbfb5",
+    "md5": "0044c80fb6c6c7c49466dafe6637d61a",
+    "sha1": "06385470bb0b4ef6c743ab6a5e7f8d7a97f6100b",
+    "sha256": "b4f7387b9a74d7501147567be9539007a0baa7f27bdd150a6743984b31f6bb3a"
+  }
+}

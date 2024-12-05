@@ -25,7 +25,7 @@ use crate::{
         mapper,
         mask_rom::{
             agb_mask_rom_tsop_ii_44, mask_rom_glop_top_28, mask_rom_qfp_44, mask_rom_sop_32,
-            mask_rom_tsop_i_32, mask_rom_tsop_ii_44_5v,
+            mask_rom_sop_44_5v, mask_rom_tsop_i_32, mask_rom_tsop_ii_44_5v,
         },
         rtc_sop_20, rtc_sop_8,
         sram::{sram_sop_28_3v3, sram_sop_28_5v, sram_sop_32_5v, sram_tsop_i_28},
@@ -124,6 +124,7 @@ pub enum BoardConfig {
     DmgA14,
     DmgA15,
     DmgA16,
+    DmgA18,
     DmgA40,
     DmgA47,
     DmgAaa,
@@ -395,6 +396,13 @@ impl BoardConfig {
                 D::U3 => part(PartRole::Ram, sram_sop_32_5v()),
                 // SOP-8 MM1134A
                 D::U4 => part(PartRole::SupervisorReset, supervisor_reset()),
+                _ => None,
+            },
+            BoardConfig::DmgA18 => match designator {
+                // SOP-44 ROM
+                D::U1 => part(PartRole::Rom, mask_rom_sop_44_5v()),
+                // QFP-32 MBC5
+                D::U2 => part(PartRole::Mapper, mapper::mbc5_qfp32()),
                 _ => None,
             },
             BoardConfig::DmgA40 => match designator {
@@ -685,6 +693,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("DMG-A14", BoardConfig::DmgA14);
     m.insert("DMG-A15", BoardConfig::DmgA15);
     m.insert("DMG-A16", BoardConfig::DmgA16);
+    m.insert("DMG-A18", BoardConfig::DmgA18);
     m.insert("DMG-A40", BoardConfig::DmgA40);
     m.insert("DMG-A47", BoardConfig::DmgA47);
     m.insert("DMG-AAA", BoardConfig::DmgAaa);

@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BXIF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BXIF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 2002,
+    "month": 9,
+    "u1": {
+      "label": "S024149-M MX23C8005-12 CGB-BXIF-0 F1 1C4711A1B0"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 240 H45"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Taxi 3 (France).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           2838996f\r\n* MD5:             72b6216fe3094d7798a359b9a4cdf7ed\r\n* SHA-1:           e43817c673d47b7587f542dcc9f74190c63629ff\r\n* SHA-256:         670c023f77ba86bcc1205064b5c5282f50731e41e2b33b15e7605a44c444d907\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:13:38+01:00\r\n* Time Elapsed:    8 seconds (118.36 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TAXI 3\r\n* Game Code:       BXIF\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xBE)\r\n* ROM Checksum:    OK (0x0F93)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC5 (0x19)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Taxi 3 (France)\r\n* Region:          France\r\n* Language(s):     Fr\r\n* Game Code:       CGB-BXIF\r\n* ROM CRC32:       2838996f\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "2838996f",
+    "md5": "72b6216fe3094d7798a359b9a4cdf7ed",
+    "sha1": "e43817c673d47b7587f542dcc9f74190c63629ff",
+    "sha256": "670c023f77ba86bcc1205064b5c5282f50731e41e2b33b15e7605a44c444d907"
+  }
+}

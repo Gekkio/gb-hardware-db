@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BBHF-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BBHF-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2001,
+    "month": 5,
+    "u1": {
+      "label": "S012304-M MX23C1603-12A CGB-BBHF-0 G2 1D1064A1"
+    },
+    "u2": {
+      "label": "12AFJVT MBC5 2417"
+    },
+    "u3": {
+      "label": "Winbond W2465S-70LL 116AD20531390-II1RA"
+    },
+    "u4": {
+      "label": "112 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Powerpuff Girls, The - Bulle Contre Lui (France).gbc\r\n* File Size:       2.00 MiB (2097152 bytes)\r\n* CRC32:           7085270c\r\n* MD5:             fd5d1ad9fa778895fa24d1fe1eca52b7\r\n* SHA-1:           5c1c53b9c002680c2da8b24aa31d4a247586263d\r\n* SHA-256:         30c6e2954dcb2d0c2ea3d2319a6dfb8a036823ea141785e4d345c6ca584b49f3\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:21:58+01:00\r\n* Time Elapsed:    17 seconds (120.19 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        2 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      PPGBUBBLES\r\n* Game Code:       BBHF\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x56)\r\n* ROM Checksum:    OK (0x3021)\r\n* ROM Size:        2 MiB (0x06)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Powerpuff Girls, The - Bulle Contre Lui (France)\r\n* Region:          France\r\n* Language(s):     Fr\r\n* Game Code:       CGB-BBHF\r\n* ROM CRC32:       7085270c\r\n* ROM Size:        2 MiB",
+    "date": "2024-12-03",
+    "crc32": "7085270c",
+    "md5": "fd5d1ad9fa778895fa24d1fe1eca52b7",
+    "sha1": "5c1c53b9c002680c2da8b24aa31d4a247586263d",
+    "sha256": "30c6e2954dcb2d0c2ea3d2319a6dfb8a036823ea141785e4d345c6ca584b49f3"
+  }
+}

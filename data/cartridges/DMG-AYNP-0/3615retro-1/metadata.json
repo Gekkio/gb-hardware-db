@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AYNP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYNP-FRA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "4",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AYNP-0 S LH5317VR JAPAN B1 9850 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'N9"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Yannick Noah Tennis (France) (En).gb\r\n* File Size:       64.0 KiB (65536 bytes)\r\n* CRC32:           402d4d47\r\n* MD5:             38412ba58b750d1a838137ade975f62a\r\n* SHA-1:           5bc39c44da587a89bef7478617c402855a1b5b24\r\n* SHA-256:         dee356ead9d73a6fbcb85d340b2d77b28d84fcbdfecdb1c0b3e8a8258955dc25\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:12:57+01:00\r\n* Time Elapsed:    0 seconds (77.09 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        64 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      Y NOAH TENNIS\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xBC)\r\n* ROM Checksum:    OK (0xF4D4)\r\n* ROM Size:        64 KiB (0x01)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Yannick Noah Tennis (France) (En)\r\n* Region:          France\r\n* Language(s):     En\r\n* Game Code:       DMG-AYNP\r\n* ROM CRC32:       402d4d47\r\n* ROM Size:        64 KiB",
+    "date": "2024-12-03",
+    "crc32": "402d4d47",
+    "md5": "38412ba58b750d1a838137ade975f62a",
+    "sha1": "5bc39c44da587a89bef7478617c402855a1b5b24",
+    "sha256": "dee356ead9d73a6fbcb85d340b2d77b28d84fcbdfecdb1c0b3e8a8258955dc25"
+  }
+}

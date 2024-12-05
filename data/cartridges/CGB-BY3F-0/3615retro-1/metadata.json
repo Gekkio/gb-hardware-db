@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BY3F-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BY3F-FRA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 2002,
+    "month": 10,
+    "u1": {
+      "label": "S024923-M MX23C3203-12A2 CGB-BY3F-0 H2 2G518600"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 239 H77"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 243 120N"
+    },
+    "u4": {
+      "label": "6735 2988"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Yu-Gi-Oh! - Duel des Tenebres (France).gbc\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           5b72bab5\r\n* MD5:             ca9d65eba8af25068242c946c50b6753\r\n* SHA-1:           566e9c4a02efd2e15c8758d0a6aab4519b6af102\r\n* SHA-256:         493f10371ae7e15083a197de54e8ee7ba4d2df1aada470271b074f1450e970c8\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:12:11+01:00\r\n* Time Elapsed:    33 seconds (121.62 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        4 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      YU GI OH\r\n* Game Code:       BY3F\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x31)\r\n* ROM Checksum:    OK (0xA34F)\r\n* ROM Size:        4 MiB (0x07)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Yu-Gi-Oh! - Duel des Tenebres (France)\r\n* Region:          France\r\n* Language(s):     Fr\r\n* Game Code:       CGB-BY3F\r\n* ROM CRC32:       5b72bab5\r\n* ROM Size:        4 MiB",
+    "date": "2024-12-03",
+    "crc32": "5b72bab5",
+    "md5": "ca9d65eba8af25068242c946c50b6753",
+    "sha1": "566e9c4a02efd2e15c8758d0a6aab4519b6af102",
+    "sha256": "493f10371ae7e15083a197de54e8ee7ba4d2df1aada470271b074f1450e970c8"
+  }
+}

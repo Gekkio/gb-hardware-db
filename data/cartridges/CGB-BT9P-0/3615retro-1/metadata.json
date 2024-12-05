@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BT9P-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BT9P-FRA-1",
+    "stamp": "15"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2003,
+    "month": 1,
+    "u1": {
+      "label": "S030349-M MX23C8005-12 CGB-BT9P-0 F1 1C7688A2"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 240 H44"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tootuff (Europe) (En,Fr,De,Es,It,Nl).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           1972cbf7\r\n* MD5:             4639d79e2e02a687a44d19d9c9c3c28a\r\n* SHA-1:           e38c16213c6bb0c1511ade138e3e8eeabd7b8898\r\n* SHA-256:         2c858be7f821072dd099673e597282d03d0d85ce7ac7fce39d3740017ef78151\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:14:22+01:00\r\n* Time Elapsed:    8 seconds (118.41 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TITEUF\r\n* Game Code:       BT9P\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x7E)\r\n* ROM Checksum:    OK (0x61BB)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC5 (0x19)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Tootuff (Europe) (En,Fr,De,Es,It,Nl)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl\r\n* Game Code:       CGB-BT9P\r\n* ROM CRC32:       1972cbf7\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "1972cbf7",
+    "md5": "4639d79e2e02a687a44d19d9c9c3c28a",
+    "sha1": "e38c16213c6bb0c1511ade138e3e8eeabd7b8898",
+    "sha256": "2c858be7f821072dd099673e597282d03d0d85ce7ac7fce39d3740017ef78151"
+  }
+}

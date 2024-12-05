@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ZKE-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZK-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-10",
+    "circled_letters": "Cs",
+    "panel_position": "1",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ZKE-0 S LH531HWA JAPAN C1 9716 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'17"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tarzan - Lord of the Jungle (USA, Europe).gb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           c2f50fb3\r\n* MD5:             3485e210e798df389e4ffc1270f86382\r\n* SHA-1:           eaff826c9256358d7920de3956a8ab563d004d51\r\n* SHA-256:         731385527be39125a2044edbc46da9f5d9bc48cff7e320b213c45d77c5069067\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:13:20+01:00\r\n* Time Elapsed:    1 second (93.70 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TARZAN\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xBF)\r\n* ROM Checksum:    OK (0xE81D)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Tarzan - Lord of the Jungle (USA, Europe)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-ZKE\r\n* ROM CRC32:       c2f50fb3\r\n* ROM Size:        128 KiB",
+    "date": "2024-12-03",
+    "crc32": "c2f50fb3",
+    "md5": "3485e210e798df389e4ffc1270f86382",
+    "sha1": "eaff826c9256358d7920de3956a8ab563d004d51",
+    "sha256": "731385527be39125a2044edbc46da9f5d9bc48cff7e320b213c45d77c5069067"
+  }
+}

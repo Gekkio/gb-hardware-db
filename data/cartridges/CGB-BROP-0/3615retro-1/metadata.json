@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BROP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BROP-EUR",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 2001,
+    "month": 5,
+    "u1": {
+      "label": "CGB-BROP-0 F1 M538011E-6P 1222442"
+    },
+    "u2": {
+      "label": "13D5X4T MBC5 2417"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Dexter's Laboratory - Robot Rampage (USA, Europe).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           d24d6601\r\n* MD5:             2a147b2d7731ac26a999390c3f5ff2ac\r\n* SHA-1:           db107af55df07fb8c771c712b05d6aebb175e3c5\r\n* SHA-256:         4663390575ada987fd7a130545a07c2a00354e0be355e9c97cba93446c5aff7f\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:13:56+01:00\r\n* Time Elapsed:    8 seconds (118.23 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      DEXTERS LAB\r\n* Game Code:       BROE\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x1D)\r\n* ROM Checksum:    OK (0xAB05)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC5 (0x19)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Dexter's Laboratory - Robot Rampage (USA, Europe)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       CGB-BROE\r\n* ROM CRC32:       d24d6601\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "d24d6601",
+    "md5": "2a147b2d7731ac26a999390c3f5ff2ac",
+    "sha1": "db107af55df07fb8c771c712b05d6aebb175e3c5",
+    "sha256": "4663390575ada987fd7a130545a07c2a00354e0be355e9c97cba93446c5aff7f"
+  }
+}

@@ -295,6 +295,10 @@ pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
+pub fn mask_rom_sop_44_5v() -> &'static impl LabelParser<MaskRom> {
+    multi_parser!(MaskRom, &macronix::MACRONIX_MX23C1605,)
+}
+
 pub fn mask_rom_tsop_i_32() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,

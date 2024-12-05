@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BLPP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BLPP-EUU",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-Z02-01",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "S004149-M MX23C8005-12 CGB-BLPP-0 F1 1C3096A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 039 H74"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0038 5 LO"
+    },
+    "u4": {
+      "label": "036 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       LEGO Alpha Team (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           690c0373\r\n* MD5:             e041a65713ac7070c9d16cb6501e1a6e\r\n* SHA-1:           4bd3bf401e861fe9991a58b523622c68138274e6\r\n* SHA-256:         df5f4ddd5c74851c9e02edc2b1de247db9f8978752b09cbfdd3da4a75057e811\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:16:55+01:00\r\n* Time Elapsed:    8 seconds (118.57 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      LEGO ATEAM \r\n* Game Code:       BLPP\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x4E)\r\n* ROM Checksum:    OK (0xB6DD)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       LEGO Alpha Team (Europe) (En,Fr,De,Es,It,Nl,Pt,Sv,No,Da)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It,Nl,Pt,Sv,No,Da\r\n* Game Code:       CGB-BLPP\r\n* ROM CRC32:       690c0373\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "690c0373",
+    "md5": "e041a65713ac7070c9d16cb6501e1a6e",
+    "sha1": "4bd3bf401e861fe9991a58b523622c68138274e6",
+    "sha256": "df5f4ddd5c74851c9e02edc2b1de247db9f8978752b09cbfdd3da4a75057e811"
+  }
+}

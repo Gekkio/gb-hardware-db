@@ -1,0 +1,37 @@
+{
+  "code": "CGB-AT9P-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AT9P-EUR-1"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 2002,
+    "month": 8,
+    "u1": {
+      "label": "S023695-M MX23C3203-12A2 CGB-AT9P-0 H2 1R5435A1"
+    },
+    "u2": {
+      "label": "1BAJ86T MBC5 2417"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 234 120N"
+    },
+    "u4": {
+      "label": "6735 2883"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tomb Raider (USA, Europe) (En,Fr,De,Es,It).gbc\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           2988fc78\r\n* MD5:             74b9b221c2b32147422144b327bd5f30\r\n* SHA-1:           208b054ca63c43f32befa989c75e8de96847f4fe\r\n* SHA-256:         ebcba74ab890e56676a4c1720f89719a489b73c7c688d1fd0c6a98074dc7afeb\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:17:17+01:00\r\n* Time Elapsed:    33 seconds (121.64 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        4 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TOMB RAIDER\r\n* Game Code:       AT9E\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x44)\r\n* ROM Checksum:    OK (0x26B2)\r\n* ROM Size:        4 MiB (0x07)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Tomb Raider (USA, Europe) (En,Fr,De,Es,It)\r\n* Region:          USA, Europe\r\n* Language(s):     En,Fr,De,Es,It\r\n* Game Code:       CGB-AT9E\r\n* ROM CRC32:       2988fc78\r\n* ROM Size:        4 MiB",
+    "date": "2024-12-03",
+    "crc32": "2988fc78",
+    "md5": "74b9b221c2b32147422144b327bd5f30",
+    "sha1": "208b054ca63c43f32befa989c75e8de96847f4fe",
+    "sha256": "ebcba74ab890e56676a4c1720f89719a489b73c7c688d1fd0c6a98074dc7afeb"
+  }
+}

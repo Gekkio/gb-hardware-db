@@ -352,6 +352,17 @@ pub static MACRONIX_MX23C1603: NomParser<MaskRom> = NomParser {
     },
 };
 
+/// Macronix MX23C1605 (SOP-44, 4.5-5.5V)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::macronix::MACRONIX_MX23C1605.parse("C004219-M MX23C1605-12A CGB-BTKP-0 G1 2D246301").is_ok());
+/// ```
+pub static MACRONIX_MX23C1605: NomParser<MaskRom> = NomParser {
+    name: "Macronix MX23C1605",
+    f: |input| gb_mx23c("MX23C1605-12A", "19", "G1").parse(input),
+};
+
 /// Macronix MX23C3203 (TSOP-II-44, 4.5-5.5V)
 ///
 /// ```

@@ -1,0 +1,38 @@
+{
+  "code": "CGB-BDNP-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BDNP-EUR",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A08-01",
+    "circled_letters": "K",
+    "panel_position": "2",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "M003419-M MX23C1603-12A CGB-BDNP-0 G2 2C881300"
+    },
+    "u2": {
+      "label": "MBC5 P-1 027U4M"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A0022 5 CB"
+    },
+    "u4": {
+      "label": "025 134A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Dinosaur (Europe) (En,Fr,De,Es,It).gbc\r\n* File Size:       2.00 MiB (2097152 bytes)\r\n* CRC32:           0aa8d0cc\r\n* MD5:             6d0d0d7de2730b9f9fdeeb4e202d5115\r\n* SHA-1:           9123d3528bf295c5cba4284ca276af23a32ec725\r\n* SHA-256:         00dc2c5d8c462a62088af4593c3d82476c756b165a74fca6ad929bf40030ba74\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:09:19+01:00\r\n* Time Elapsed:    16 seconds (120.49 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        2 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      DINOSAUR\r\n* Game Code:       BDNP\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xE2)\r\n* ROM Checksum:    OK (0xBB20)\r\n* ROM Size:        2 MiB (0x06)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Dinosaur (Europe) (En,Fr,De,Es,It)\r\n* Region:          Europe\r\n* Language(s):     En,Fr,De,Es,It\r\n* Game Code:       CGB-BDNP\r\n* ROM CRC32:       0aa8d0cc\r\n* ROM Size:        2 MiB",
+    "date": "2024-12-03",
+    "crc32": "0aa8d0cc",
+    "md5": "6d0d0d7de2730b9f9fdeeb4e202d5115",
+    "sha1": "9123d3528bf295c5cba4284ca276af23a32ec725",
+    "sha256": "00dc2c5d8c462a62088af4593c3d82476c756b165a74fca6ad929bf40030ba74"
+  }
+}

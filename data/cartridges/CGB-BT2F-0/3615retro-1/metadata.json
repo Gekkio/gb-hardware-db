@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BT2F-0",
+  "slug": "3615retro-1",
+  "contributor": "3615Retro",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BT2F-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "MB",
+    "panel_position": "1",
+    "year": 2000,
+    "month": 8,
+    "u1": {
+      "label": "C003749-M MX23C8005-12 CGB-BT2F-0 F1 1C1583A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 034U6M"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Taxi 2 (France).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           0fd9fff0\r\n* MD5:             400d3090f58e68e3fc7d186c370c74be\r\n* SHA-1:           76927fbf52a4c53dcd58208439eb3f285ec568fb\r\n* SHA-256:         41740f44fdf1987848996cd3ed29233412527ff160805822e9f033ea75091ebd\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\r\n* Software:        FlashGBX v4.3\r\n* OS Platform:     Windows-10-10.0.19045-SP0\r\n* Baud Rate:       1700000\r\n* Dump Time:       2024-12-03T20:10:52+01:00\r\n* Time Elapsed:    8 seconds (118.17 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TAXI 2\r\n* Game Code:       BT2F\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xDA)\r\n* ROM Checksum:    OK (0xDBCD)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC5 (0x19)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Taxi 2 (France)\r\n* Region:          France\r\n* Language(s):     Fr\r\n* Game Code:       CGB-BT2F\r\n* ROM CRC32:       0fd9fff0\r\n* ROM Size:        1 MiB",
+    "date": "2024-12-03",
+    "crc32": "0fd9fff0",
+    "md5": "400d3090f58e68e3fc7d186c370c74be",
+    "sha1": "76927fbf52a4c53dcd58208439eb3f285ec568fb",
+    "sha256": "41740f44fdf1987848996cd3ed29233412527ff160805822e9f033ea75091ebd"
+  }
+}

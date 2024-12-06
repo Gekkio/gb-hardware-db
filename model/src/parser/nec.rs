@@ -94,11 +94,12 @@ pub static NEC_UPD442012L_X: NomParser<GenericPart> = NomParser {
 fn upd23c<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
+    unknown: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        uppers(1).and(digits(1)),
+        tag(unknown),
         char(' '),
         tuple((
             value("μPD23C", tag("N-")),
@@ -122,12 +123,13 @@ fn upd23c<'a, E: ParseError<&'a str>>(
 fn upd23c_old<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
+    unknown: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         tag("NEC JAPAN "),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        uppers(1).and(digits(1)),
+        tag(unknown),
         char(' '),
         tuple((
             value("μPD23C", tag("UPD23C")),
@@ -152,13 +154,13 @@ fn upd23c_licensed<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
     (manufacturer_text, manufacturer): (&'static str, Manufacturer),
-    long: bool,
+    unknown: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         tag(manufacturer_text),
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
-        cond(long, tuple((char(' '), uppers(1).and(digits(1))))),
+        cond(!unknown.is_empty(), tuple((char(' '), tag(unknown)))),
         char(' '),
         tuple((
             value("μPD23C", tag("23C")),
@@ -191,10 +193,10 @@ pub static NEC_UPD23C1001E: NomParser<MaskRom> = NomParser {
     f: |input| {
         let package = Package::Sop32;
         alt((
-            upd23c_old("1001E", package),
-            upd23c("1001E", package),
-            upd23c("1001EA", package),
-            upd23c("1001EU", package),
+            upd23c_old("1001E", package, "C1"),
+            upd23c("1001E", package, "C1"),
+            upd23c("1001EA", package, "C1"),
+            upd23c("1001EU", package, "C1"),
         ))
         .parse(input)
     },
@@ -210,7 +212,11 @@ pub static NEC_UPD23C2001E: NomParser<MaskRom> = NomParser {
     name: "NEC μPD23C2001E",
     f: |input| {
         let package = Package::Sop32;
-        alt((upd23c("2001E", package), upd23c("2001EU", package))).parse(input)
+        alt((
+            upd23c("2001E", package, "D1"),
+            upd23c("2001EU", package, "D1"),
+        ))
+        .parse(input)
     },
 };
 
@@ -226,9 +232,9 @@ pub static NEC_UPD23C4001E: NomParser<MaskRom> = NomParser {
     f: |input| {
         let package = Package::Sop32;
         alt((
-            upd23c("4001EA", package),
-            upd23c("4001EJ", package),
-            upd23c("4001EU", package),
+            upd23c("4001EA", package, "E1"),
+            upd23c("4001EJ", package, "E1"),
+            upd23c("4001EU", package, "E1"),
         ))
         .parse(input)
     },
@@ -242,7 +248,7 @@ pub static NEC_UPD23C4001E: NomParser<MaskRom> = NomParser {
 /// ```
 pub static NEC_UPD23C8001E: NomParser<MaskRom> = NomParser {
     name: "NEC μPD23C8001E",
-    f: |input| upd23c("8001EJ", Package::Sop32).parse(input),
+    f: |input| upd23c("8001EJ", Package::Sop32, "F1").parse(input),
 };
 
 /// NEC μPD23C16019W (TSOP-II-44, 5V)
@@ -253,7 +259,7 @@ pub static NEC_UPD23C8001E: NomParser<MaskRom> = NomParser {
 /// ```
 pub static NEC_UPD23C16019W: NomParser<MaskRom> = NomParser {
     name: "NEC μPD23C16019W",
-    f: |input| upd23c("16019W", Package::TsopIi44).parse(input),
+    f: |input| upd23c("16019W", Package::TsopIi44, "G2").parse(input),
 };
 
 /// AT&T μPD23C1001E (SOP-32, 5V)
@@ -271,7 +277,7 @@ pub static AT_T_UPD23C1001E: NomParser<MaskRom> = NomParser {
             "1001EA",
             Package::Sop32,
             ("Ⓜ AT&T JAPAN", Manufacturer::AtT),
-            true,
+            "C1",
         )
         .parse(input)
     },
@@ -291,8 +297,8 @@ pub static SMSC_UPD23C1001E: NomParser<MaskRom> = NomParser {
         let package = Package::Sop32;
         let manufacturer = ("STANDARD MICRO", Manufacturer::Smsc);
         alt((
-            upd23c_licensed("1001E", package, manufacturer, true),
-            upd23c_licensed("1001EA", package, manufacturer, true),
+            upd23c_licensed("1001E", package, manufacturer, "C1"),
+            upd23c_licensed("1001EA", package, manufacturer, "C1"),
         ))
         .parse(input)
     },
@@ -309,13 +315,7 @@ pub static SMSC_UPD23C1001E: NomParser<MaskRom> = NomParser {
 pub static MANI_UPD23C4001E: NomParser<MaskRom> = NomParser {
     name: "MANI μPD23C4001E",
     f: |input| {
-        upd23c_licensed(
-            "4001EA",
-            Package::Sop32,
-            ("MANI", Manufacturer::Mani),
-            false,
-        )
-        .parse(input)
+        upd23c_licensed("4001EA", Package::Sop32, ("MANI", Manufacturer::Mani), "").parse(input)
     },
 };
 

@@ -89,7 +89,7 @@ pub static FUJITSU_MASK_ROM: NomParser<MaskRom> = NomParser {
             tag("JAPAN "),
             alt((dmg_rom_code(), cgb_rom_code())),
             char(' '),
-            uppers(1).and(digits(1)),
+            alt((tag("D1"), tag("E1"))), // D1 = 2Mbit, E1 = 4Mbit ?
             char(' '),
             digits(1).and(uppers(1)).and(alnum_uppers(1)),
             char(' '),

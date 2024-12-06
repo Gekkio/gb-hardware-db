@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, LabelParser, Manufacturer, ParsedData, PartDateCode};
+use super::{LabelParser, Manufacturer, ParsedData, PartDateCode};
 use crate::{
     macros::{multi_parser, single_parser},
-    parser::{fujitsu::FUJITSU_MASK_ROM, macronix, nec, oki, toshiba},
+    parser::{fujitsu, macronix, nec, oki, samsung, sharp, toshiba},
 };
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -17,148 +17,6 @@ pub struct MaskRom {
 }
 
 impl ParsedData for MaskRom {}
-
-/// Sharp ROM chip (1990+)
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::sharp().parse("DMG-WJA-0 S LH534M05 JAPAN E1 9606 D").is_ok());
-/// assert!(parser::mask_rom::sharp().parse("DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D").is_ok());
-/// assert!(parser::mask_rom::sharp().parse("DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E").is_ok());
-/// ```
-pub fn sharp() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ S\ (LH[[:alnum:]]{4})[[:alnum:]]{2} \ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Sharp),
-                chip_type: Some(map_sharp_mask_rom(&c[3]).unwrap_or(&c[3]).to_owned()),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year2(&c[4])?,
-                    week: week2(&c[5])?,
-                }),
-            })
-        },
-    )
-}
-
-/// Old sharp ROM chip with no chip type (1989 - 1991)
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::sharp2().parse("DMG-TRA-1 SHARP JAPAN A0 9019 D").is_ok());
-/// ```
-pub fn sharp2() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(DMG-[[:alnum:]]{3}-[0-9])\ SHARP\ JAPAN\ [A-Z][0-9]?\ ([0-9]{2})([0-9]{2})\ [A-Z]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Sharp),
-                chip_type: None,
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year2(&c[2])?,
-                    week: week2(&c[3])?,
-                }),
-            })
-        },
-    )
-}
-
-/// Very old Sharp mask ROM chip (1989 and older)
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::sharp3().parse("DMG-AWA-0 SHARP JAPAN 8909 D A").is_ok());
-/// ```
-pub fn sharp3() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(DMG-[[:alnum:]]{3}-[0-9])\ SHARP\ JAPAN\ ([0-9]{2})([0-9]{2})\ [A-Z]\ [A-Z]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[1].to_owned(),
-                manufacturer: Some(Manufacturer::Sharp),
-                chip_type: None,
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year2(&c[2])?,
-                    week: week2(&c[3])?,
-                }),
-            })
-        },
-    )
-}
-
-/// Glop top mask ROM.
-///
-/// Probably manufactured by Sharp (?)
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::sharp_glop_top_28().parse("LR0G150 DMG-TRA-1 97141").is_ok());
-/// ```
-pub fn sharp_glop_top_28() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^(LR0G150)\ (DMG-[[:alnum:]]{3}-[0-9])\ ([0-9]{2})([0-9]{2})[0-9]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[2].to_owned(),
-                manufacturer: None,
-                chip_type: Some(c[1].to_owned()),
-                date_code: Some(PartDateCode::YearWeek {
-                    year: year2(&c[3])?,
-                    week: week2(&c[4])?,
-                }),
-            })
-        },
-    )
-}
-
-/// Samsung mask ROM
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::samsung().parse("SEC KM23C16120DT CGB-BHMJ-0 G2 K3N5C317GD").is_ok());
-/// ```
-pub fn samsung() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^SEC\ (KM23C[0-9]{4,5}[A-Z]{1,2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ [[:alnum:]]{10}$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[2].to_owned(),
-                manufacturer: Some(Manufacturer::Samsung),
-                chip_type: (Some(c[1].to_owned())),
-                date_code: None,
-            })
-        },
-    )
-}
-
-/// Old samsung mask ROM
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::mask_rom::samsung2().parse("SEC KM23C8000DG DMG-AAUJ-1 F1 KFX331U").is_ok());
-/// ```
-pub fn samsung2() -> &'static impl LabelParser<MaskRom> {
-    single_parser!(
-        MaskRom,
-        r#"^SEC\ (KM23C[0-9]{4,5}[A-Z]{1,2})\ ((DMG|CGB)-[[:alnum:]]{3,4}-[0-9])\ [A-Z][0-9]\ KF[[:alnum:]]{4}[A-Z]$"#,
-        move |c| {
-            Ok(MaskRom {
-                rom_id: c[2].to_owned(),
-                manufacturer: Some(Manufacturer::Samsung),
-                chip_type: (Some(c[1].to_owned())),
-                date_code: None,
-            })
-        },
-    )
-}
 
 /// Magnachip AC23V Mask ROM
 ///
@@ -204,43 +62,7 @@ pub fn hynix_ac23v() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
-fn map_sharp_mask_rom(code: &str) -> Option<&'static str> {
-    match code {
-        "LH5359" => Some("LH53259"),   // Sharp Memory Data Book 1992
-        "LH5317" => Some("LH53517"),   // Unknown mask ROM listing scan
-        "LH531H" => Some("LH530800A"), // Sharp Memory Data Book 1992
-        // reasonable guesses
-        "LH5308" => Some("LH530800"), // unknown 1Mb JEDEC, compatible with LH530800A
-        "LH5314" => Some("LH53514"),  // unknown 512Kb JEDEC, compatible with LH53517
-        "LH5321" => Some("LH532100"), // unknown 2Mb JEDEC
-        // unknown 2Mb JEDEC
-        // maybe: LH532100 series / LH532300 / LH532700 series
-        "LH532D" => None,
-        "LH532M" => None,
-        "LH532W" => None,
-        "LHMN2E" => None,
-        // Unknown 4Mb JEDEC
-        // maybe: LH534100 series / LH534300 series / LH534R00
-        "LH534M" => None,
-        "LH5S4M" => None,
-        "LHMN4M" => None,
-        // Unknown 8Mb JEDEC
-        // maybe: LH538300 series / LH538400 series / LH538700 / LH538R00 series
-        "LH538M" => None,
-        "LH538W" => None,
-        "LH5S8M" => None,
-        "LHMN8J" => None,
-        "LHMN8M" => None,
-        // Unknown 16 Mb
-        // maybe: LH5316400 / LH5316500 series / LH5316P00 series
-        "LH537M" => None,
-        // Unknown 32 Mb
-        "LHMN5M" => None,
-        _ => None,
-    }
-}
-
-pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
+pub fn agb_mask_rom_tsop_ii_44_3v3() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
         magnachip_ac23v(),
@@ -264,16 +86,21 @@ pub fn agb_mask_rom_tsop_ii_44() -> &'static impl LabelParser<MaskRom> {
     )
 }
 
-pub fn mask_rom_glop_top_28() -> &'static impl LabelParser<MaskRom> {
-    sharp_glop_top_28()
+pub fn mask_rom_glop_top_28_5v() -> &'static impl LabelParser<MaskRom> {
+    &sharp::SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT
 }
 
-pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
+pub fn mask_rom_sop_32_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
-        sharp(),
-        sharp2(),
-        sharp3(),
+        &sharp::SHARP_MASK_ROM_SOP_32_1_MIBIT,
+        &sharp::SHARP_LH53514Z,
+        &sharp::SHARP_LH53517Z,
+        &sharp::SHARP_LH530800N,
+        &sharp::SHARP_LH532100N,
+        &sharp::SHARP_LH532XXXN,
+        &sharp::SHARP_LH534XXXN,
+        &sharp::SHARP_LH538XXXN,
         &macronix::MACRONIX_MX23C4002,
         &macronix::MACRONIX_MX23C8003,
         &macronix::MACRONIX_MX23C8005,
@@ -289,9 +116,9 @@ pub fn mask_rom_sop_32() -> &'static impl LabelParser<MaskRom> {
         &toshiba::TOSHIBA_TC531001,
         &toshiba::TOSHIBA_TC532000,
         &toshiba::TOSHIBA_TC534000,
-        samsung(),
-        samsung2(),
-        &FUJITSU_MASK_ROM,
+        &samsung::SAMSUNG_KM23C4000,
+        &samsung::SAMSUNG_KM23C8000,
+        &fujitsu::FUJITSU_MASK_ROM,
     )
 }
 
@@ -299,39 +126,33 @@ pub fn mask_rom_sop_44_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(MaskRom, &macronix::MACRONIX_MX23C1605,)
 }
 
-pub fn mask_rom_tsop_i_32() -> &'static impl LabelParser<MaskRom> {
+pub fn mask_rom_tsop_i_32_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
-        sharp(),
+        &sharp::SHARP_LH534XXXS,
+        &sharp::SHARP_LH538XXXS,
         &macronix::MACRONIX_MX23C8006,
-        samsung(),
-        samsung2(),
     )
 }
 
 pub fn mask_rom_tsop_ii_44_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
-        sharp(),
-        sharp2(),
-        sharp3(),
+        &sharp::SHARP_LH5316XXX,
+        &sharp::SHARP_LH5332XXX,
         &macronix::MACRONIX_MX23C1603,
         &macronix::MACRONIX_MX23C3203,
         &oki::OKI_MR531614,
         &nec::NEC_UPD23C16019W,
-        samsung(),
-        samsung2(),
+        &samsung::SAMSUNG_KM23C16120,
     )
 }
 
-pub fn mask_rom_qfp_44() -> &'static impl LabelParser<MaskRom> {
+pub fn mask_rom_qfp_44_5v() -> &'static impl LabelParser<MaskRom> {
     multi_parser!(
         MaskRom,
-        sharp(),
-        sharp2(),
-        sharp3(),
-        samsung(),
-        samsung2(),
+        &sharp::SHARP_LH53259M,
+        &sharp::SHARP_LH53515M,
         &oki::OKI_OLD_MASK_ROM,
     )
 }

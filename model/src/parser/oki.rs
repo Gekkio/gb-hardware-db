@@ -10,7 +10,7 @@ use nom::{
 use super::{
     for_nom::{
         agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, satisfy_m_n_complete,
-        uppers, year1_week2,
+        year1_week2,
     },
     MaskRom,
 };
@@ -49,11 +49,12 @@ pub static OKI_OLD_MASK_ROM: NomParser<MaskRom> = NomParser {
 fn gb<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     chip_type: &'static str,
+    unknown: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        uppers(1).and(digits(1)),
+        tag(unknown),
         char(' '),
         tag(chip_type).and(char('-').and(alnum_uppers(2))),
         char(' '),
@@ -69,7 +70,7 @@ fn gb<'a, E: ParseError<&'a str>>(
     )
 }
 
-/// OKI MSM534011 (SOP-32, 5V)
+/// OKI MSM534011 (SOP-32, 5V, 4 Mibit / 512 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -77,10 +78,10 @@ fn gb<'a, E: ParseError<&'a str>>(
 /// ```
 pub static OKI_MSM534011: NomParser<MaskRom> = NomParser {
     name: "OKI MSM534011",
-    f: |input| gb("MS", "M534011E").parse(input),
+    f: |input| gb("MS", "M534011E", "E1").parse(input),
 };
 
-/// OKI MSM538011 (SOP-32, 5V)
+/// OKI MSM538011 (SOP-32, 5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -89,10 +90,10 @@ pub static OKI_MSM534011: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MSM538011: NomParser<MaskRom> = NomParser {
     name: "OKI MSM538011",
-    f: |input| gb("MS", "M538011E").parse(input),
+    f: |input| gb("MS", "M538011E", "F1").parse(input),
 };
 
-/// OKI MR531614 (TSOP-II-44, 5V)
+/// OKI MR531614 (TSOP-II-44, 5V, 16 Mibit / 2 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -100,17 +101,18 @@ pub static OKI_MSM538011: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR531614: NomParser<MaskRom> = NomParser {
     name: "OKI MR531614",
-    f: |input| gb("M", "R531614G").parse(input),
+    f: |input| gb("M", "R531614G", "G2").parse(input),
 };
 
 fn gba<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     chip_type: &'static str,
+    unknown: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         agb_rom_code(),
         char(' '),
-        uppers(1).and(digits(1)),
+        tag(unknown),
         char(' '),
         tag(chip_type).and(char('-').and(char('0').and(alnum_uppers(2)))),
         char(' '),
@@ -129,7 +131,7 @@ fn gba<'a, E: ParseError<&'a str>>(
     )
 }
 
-/// OKI MR26V3210 (TSOP-II-44, 3.3V, 4 MiB)
+/// OKI MR26V3210 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -137,10 +139,10 @@ fn gba<'a, E: ParseError<&'a str>>(
 /// ```
 pub static OKI_MR26V3210: NomParser<MaskRom> = NomParser {
     name: "OKI MR26V3210",
-    f: |input| gba("M", "R26V3210F").parse(input),
+    f: |input| gba("M", "R26V3210F", "H2").parse(input),
 };
 
-/// OKI MR26V3211 (TSOP-II-44, 3.3V, 4 MiB)
+/// OKI MR26V3211 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -148,10 +150,10 @@ pub static OKI_MR26V3210: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR26V3211: NomParser<MaskRom> = NomParser {
     name: "OKI MR26V3211",
-    f: |input| gba("M", "R26V3211F").parse(input),
+    f: |input| gba("M", "R26V3211F", "H2").parse(input),
 };
 
-/// OKI MR26V6413 (TSOP-II-44, 3.3V, 8 MiB)
+/// OKI MR26V6413 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -159,10 +161,10 @@ pub static OKI_MR26V3211: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR26V6413: NomParser<MaskRom> = NomParser {
     name: "OKI MR26V6413",
-    f: |input| gba("M", "R26V6413G").parse(input),
+    f: |input| gba("M", "R26V6413G", "I2").parse(input),
 };
 
-/// OKI MR26V6414 (TSOP-II-44, 3.3V, 8 MiB)
+/// OKI MR26V6414 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -170,10 +172,10 @@ pub static OKI_MR26V6413: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR26V6414: NomParser<MaskRom> = NomParser {
     name: "OKI MR26V6414",
-    f: |input| gba("M", "R26V6414G").parse(input),
+    f: |input| gba("M", "R26V6414G", "I2").parse(input),
 };
 
-/// OKI MR26V6415 (TSOP-II-44, 3.3V, 8 MiB)
+/// OKI MR26V6415 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -181,10 +183,10 @@ pub static OKI_MR26V6414: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR26V6415: NomParser<MaskRom> = NomParser {
     name: "OKI MR26V6415",
-    f: |input| gba("M", "R26V6415G").parse(input),
+    f: |input| gba("M", "R26V6415G", "I2").parse(input),
 };
 
-/// OKI MR27V810 (TSOP-II-44, 3.3V, 1 MiB)
+/// OKI MR27V810 (TSOP-II-44, 3.3V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -192,10 +194,10 @@ pub static OKI_MR26V6415: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR27V810: NomParser<MaskRom> = NomParser {
     name: "OKI MR27V810",
-    f: |input| gba("M", "R27V810F").parse(input),
+    f: |input| gba("M", "R27V810F", "F2").parse(input),
 };
 
-/// OKI MR27V6416 (TSOP-II-44, 3.3V, 8 MiB)
+/// OKI MR27V6416 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -203,10 +205,10 @@ pub static OKI_MR27V810: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR27V6416: NomParser<MaskRom> = NomParser {
     name: "OKI MR27V6416",
-    f: |input| gba("M", "R27V6416M").parse(input),
+    f: |input| gba("M", "R27V6416M", "I2").parse(input),
 };
 
-/// OKI MR27V12813 (TSOP-II-44, 3.3V, 16 MiB)
+/// OKI MR27V12813 (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -214,10 +216,10 @@ pub static OKI_MR27V6416: NomParser<MaskRom> = NomParser {
 /// ```
 pub static OKI_MR27V12813: NomParser<MaskRom> = NomParser {
     name: "OKI MR27V12813",
-    f: |input| gba("M", "R27V12813M").parse(input),
+    f: |input| gba("M", "R27V12813M", "J2").parse(input),
 };
 
-/// OKI SGB mask ROM
+/// OKI SGB mask ROM, MSM534011 (SOP-32, 5V, 4 Mibit / 512 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

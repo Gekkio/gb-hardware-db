@@ -67,6 +67,7 @@ pub mod oki;
 pub mod oxy_u4;
 pub mod oxy_u5;
 pub mod rohm;
+pub mod samsung;
 pub mod sanyo;
 pub mod seiko;
 pub mod sgb_rom;

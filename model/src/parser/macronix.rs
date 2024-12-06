@@ -282,7 +282,7 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
     )
 }
 
-/// Macronix MX23C4002 (SOP-32, 4.5-5.5V)
+/// Macronix MX23C4002 (SOP-32, 4.5-5.5V, 4 Mibit / 512 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -300,7 +300,7 @@ pub static MACRONIX_MX23C4002: NomParser<MaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23C8003 (SOP-32, 4.5-5.5V)
+/// Macronix MX23C8003 (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -311,7 +311,7 @@ pub static MACRONIX_MX23C8003: NomParser<MaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8003-20", "49", "F1").parse(input),
 };
 
-/// Macronix MX23C8005 (SOP-32, 4.5-5.5V)
+/// Macronix MX23C8005 (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -322,7 +322,7 @@ pub static MACRONIX_MX23C8005: NomParser<MaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8005-12", "49", "F1").parse(input),
 };
 
-/// Macronix MX23C8006 (TSOP-I-32, 4.5-5.5V)
+/// Macronix MX23C8006 (TSOP-I-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -333,7 +333,7 @@ pub static MACRONIX_MX23C8006: NomParser<MaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8006-12", "49", "F").parse(input),
 };
 
-/// Macronix MX23C1603 (TSOP-II-44, 4.5-5.5V)
+/// Macronix MX23C1603 (TSOP-II-44, 4.5-5.5V, 16 Mibit / 2 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -352,7 +352,7 @@ pub static MACRONIX_MX23C1603: NomParser<MaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23C1605 (SOP-44, 4.5-5.5V)
+/// Macronix MX23C1605 (SOP-44, 4.5-5.5V, 16 Mibit / 2 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -363,7 +363,7 @@ pub static MACRONIX_MX23C1605: NomParser<MaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C1605-12A", "19", "G1").parse(input),
 };
 
-/// Macronix MX23C3203 (TSOP-II-44, 4.5-5.5V)
+/// Macronix MX23C3203 (TSOP-II-44, 4.5-5.5V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

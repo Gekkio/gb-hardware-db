@@ -54,6 +54,10 @@ pub static LC56: NomParser<Eeprom> = NomParser {
     },
 };
 
-pub fn eeprom() -> &'static impl LabelParser<Eeprom> {
-    multi_parser!(Eeprom, &LCS5, &LC56, &rohm::ROHM_9853, &rohm::ROHM_9854)
+pub fn eeprom_sop_8_3v3() -> &'static impl LabelParser<Eeprom> {
+    multi_parser!(Eeprom, &rohm::ROHM_9853, &rohm::ROHM_9854)
+}
+
+pub fn eeprom_tssop_8_5v() -> &'static impl LabelParser<Eeprom> {
+    multi_parser!(Eeprom, &LCS5, &LC56)
 }

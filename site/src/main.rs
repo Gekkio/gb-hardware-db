@@ -441,11 +441,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                         ..ProcessedPart::default()
                     })
             });
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_4mihz::crystal_4mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::dmg_crystal());
 
             let mainboard = LegacyDmgMainboard {
                 kind: console.mainboard.label.clone(),
@@ -503,7 +499,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .as_ref()
                 .filter(|_| !console.mainboard.outlier)
                 .map(|stamp| {
-                    gbhwdb_model::parser::dmg_stamp::dmg_stamp()
+                    gbhwdb_model::parser::dmg_stamp()
                         .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
@@ -512,7 +508,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 .as_ref()
                 .and_then(|board| board.stamp.as_ref().filter(|_| !board.outlier))
                 .map(|stamp| {
-                    gbhwdb_model::parser::dmg_stamp::dmg_stamp()
+                    gbhwdb_model::parser::dmg_stamp()
                         .parse(stamp)
                         .unwrap_or_else(|_| panic!("{}", stamp))
                 });
@@ -623,7 +619,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
                 &console.mainboard.u4,
                 parser::sram::sram_sop_28_5v(),
             );
-            let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
+            let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom());
             let cic = map_part(year_hint, &console.mainboard.u6, parser::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
@@ -695,11 +691,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             );
             let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
             let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_4mihz::crystal_4mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
             let mainboard = LegacyMgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -717,7 +709,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::dmg_stamp::dmg_stamp()
+                gbhwdb_model::parser::dmg_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -788,11 +780,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             );
             let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
             let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_4mihz::crystal_4mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
             let t1 = map_part(year_hint, &console.mainboard.t1, parser::mgl_transformer());
             let mainboard = LegacyMglMainboard {
                 kind: console.mainboard.label.clone(),
@@ -812,7 +800,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -878,14 +866,10 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
                 &console.mainboard.u3,
                 parser::sram::sram_sop_28_5v(),
             );
-            let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
+            let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb2_rom());
             let cic = map_part(year_hint, &console.mainboard.u5, parser::cic());
-            let coil = map_part(year_hint, &console.mainboard.coil1, parser::coil::coil());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.xtal1,
-                parser::crystal_20mihz::crystal_20mihz(),
-            );
+            let coil = map_part(year_hint, &console.mainboard.coil1, parser::sgb2_coil());
+            let crystal = map_part(year_hint, &console.mainboard.xtal1, parser::sgb2_crystal());
             let mainboard = LegacySgb2Mainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -968,11 +952,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             );
             let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
             let regulator = map_part(year_hint, &console.mainboard.u4, parser::cgb_reg());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_8mihz::crystal_8mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::cgb_crystal());
             let mainboard = LegacyCgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -993,7 +973,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                     if stamp.starts_with(&['6', '7', '8', '9'][..]) {
                         (
                             Some(
-                                gbhwdb_model::parser::dmg_stamp::dmg_stamp()
+                                gbhwdb_model::parser::dmg_stamp()
                                     .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
@@ -1003,7 +983,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                         (
                             None,
                             Some(
-                                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
+                                gbhwdb_model::parser::cgb_stamp()
                                     .parse(stamp)
                                     .unwrap_or_else(|_| panic!("{}", stamp)),
                             ),
@@ -1082,11 +1062,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             let regulator = map_part(year_hint, &console.mainboard.u3, parser::agb_reg());
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::agb_pmic());
             let amplifier = map_part(year_hint, &console.mainboard.u6, parser::agb_amp());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_4mihz::crystal_4mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::agb_crystal());
             let mainboard = LegacyAgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -1103,7 +1079,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -1178,16 +1154,8 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
                 _ => map_part(year_hint, &console.mainboard.u3, parser::agb_amp()),
             };
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::ags_pmic_old());
-            let u5 = map_part(
-                year_hint,
-                &console.mainboard.u5,
-                parser::ags_charge_ctrl::ags_charge_ctrl(),
-            );
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.x1,
-                parser::crystal_4mihz::crystal_4mihz(),
-            );
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::ags_charge_ctrl());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::ags_crystal());
             let mainboard = LegacyAgsMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -1263,11 +1231,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol());
             let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg());
             let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg());
-            let crystal = map_part(
-                year_hint,
-                &console.mainboard.y1,
-                parser::crystal_32mihz::crystal_32mihz(),
-            );
+            let crystal = map_part(year_hint, &console.mainboard.y1, parser::gbs_crystal());
             let mainboard = LegacyGbsMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -1286,7 +1250,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             };
 
             let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp::cgb_stamp()
+                gbhwdb_model::parser::cgb_stamp()
                     .parse(stamp)
                     .unwrap_or_else(|_| panic!("{}", stamp))
             });
@@ -1345,8 +1309,8 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
             let year_hint = console.mainboard.year.or(Some(2005));
             let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_bga());
             let u2 = map_part(year_hint, &console.mainboard.u2, parser::oxy_pmic());
-            let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
-            let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5());
             let mainboard = LegacyOxyMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),

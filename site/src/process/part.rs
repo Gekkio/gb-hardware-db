@@ -8,7 +8,7 @@ use gbhwdb_model::{
     parser::{self, LabelParser, Manufacturer, PartDateCode},
 };
 
-use crate::{process::to_full_year, process::DateCode};
+use crate::process::DateCode;
 
 #[derive(Clone, Debug, Eq, PartialEq, Default)]
 pub struct ProcessedPart {
@@ -70,23 +70,7 @@ impl ParsedPart for parser::Crystal {
             label: Some(label),
             kind: Some(self.format_frequency()),
             manufacturer: self.manufacturer,
-            date_code: DateCode {
-                year: to_full_year(year_hint, self.year),
-                week: self.week,
-                month: self.month,
-                ..DateCode::default()
-            },
-            ..ProcessedPart::default()
-        }
-    }
-}
-
-impl ParsedPart for parser::Coil {
-    fn process(self, _: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(self.kind),
-            manufacturer: self.manufacturer,
+            date_code: loose_datecode(year_hint, self.date_code),
             ..ProcessedPart::default()
         }
     }

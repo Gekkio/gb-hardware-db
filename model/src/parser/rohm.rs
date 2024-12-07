@@ -12,8 +12,8 @@ use nom::{
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, month1_123abc, year1, year1_week2},
-    Eeprom, GenericPart, Manufacturer, NomParser, PartDateCode,
+    for_nom::{alnum_uppers, digits, lines2, month1_123abc, year1, year1_week2},
+    GenericPart, Manufacturer, NomParser, PartDateCode,
 };
 
 /// ROHM ??9853 EEPROM (SOP-8)
@@ -23,11 +23,11 @@ use super::{
 /// assert!(parser::rohm::ROHM_9853.parse("9853 2A46").is_ok());
 /// assert!(parser::rohm::ROHM_9853.parse("9853 6912").is_ok());
 /// ```
-pub static ROHM_9853: NomParser<Eeprom> = NomParser {
+pub static ROHM_9853: NomParser<GenericPart> = NomParser {
     name: "ROHM 9853",
     f: |input| {
-        tuple((tag("9853"), char(' '), year1, month1_123abc, digits(2)))
-            .map(|(kind, _, year, month, _)| Eeprom {
+        lines2(tag("9853"), tuple((year1, month1_123abc, digits(2))))
+            .map(|(kind, (year, month, _))| GenericPart {
                 kind: String::from(kind),
                 manufacturer: Some(Manufacturer::Rohm),
                 date_code: Some(PartDateCode::YearMonth { year, month }),
@@ -42,18 +42,14 @@ pub static ROHM_9853: NomParser<Eeprom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::rohm::ROHM_9854.parse("9854 5S95W").is_ok());
 /// ```
-pub static ROHM_9854: NomParser<Eeprom> = NomParser {
+pub static ROHM_9854: NomParser<GenericPart> = NomParser {
     name: "ROHM 9854",
     f: |input| {
-        tuple((
+        lines2(
             tag("9854"),
-            char(' '),
-            year1,
-            alnum_uppers(1),
-            digits(2),
-            char('W'),
-        ))
-        .map(|(kind, _, year, _, _, _)| Eeprom {
+            tuple((year1, alnum_uppers(1), digits(2), char('W'))),
+        )
+        .map(|(kind, (year, _, _, _))| GenericPart {
             kind: String::from(kind),
             manufacturer: Some(Manufacturer::Rohm),
             date_code: Some(PartDateCode::Year { year }),

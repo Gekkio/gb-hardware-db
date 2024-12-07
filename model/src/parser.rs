@@ -5,6 +5,7 @@
 use log::warn;
 use nom::{combinator::all_consuming, error::VerboseError, IResult, Parser as _};
 use regex::{Captures, Regex, RegexBuilder};
+use stamp::{CgbStamp, DmgStamp};
 use std::str::FromStr;
 
 use crate::{
@@ -13,33 +14,20 @@ use crate::{
 };
 
 pub use self::{
-    ags_charge_ctrl::AgsChargeController,
-    cgb_stamp::CgbStamp,
-    coil::Coil,
-    dmg_stamp::DmgStamp,
-    eeprom::Eeprom,
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
 };
 
-pub mod ags_charge_ctrl;
 pub mod amic;
 pub mod analog;
 pub mod atmel;
 pub mod bsi;
-pub mod cgb_stamp;
-pub mod coil;
-pub mod crystal_20mihz;
-pub mod crystal_32kihz;
-pub mod crystal_32mihz;
-pub mod crystal_4mihz;
-pub mod crystal_8mihz;
-pub mod dmg_stamp;
-pub mod eeprom;
 pub mod fujitsu;
 pub mod hynix;
 pub mod hyundai;
+pub mod kds;
+pub mod kinseki;
 pub mod lcd_chip;
 pub mod lcd_screen;
 pub mod lgs;
@@ -50,20 +38,20 @@ pub mod mitsubishi;
 pub mod mitsumi;
 pub mod nec;
 pub mod oki;
-pub mod oxy_u4;
-pub mod oxy_u5;
 pub mod rohm;
 pub mod samsung;
 pub mod sanyo;
 pub mod seiko;
-pub mod sgb_rom;
 pub mod sharp;
 pub mod sram;
 pub mod sst;
 pub mod st_micro;
+pub mod stamp;
 pub mod tama;
+pub mod tdk;
 pub mod ti;
 pub mod toshiba;
+pub mod unknown;
 pub mod victronix;
 pub mod winbond;
 
@@ -85,12 +73,15 @@ pub struct GenericPart {
 pub struct Crystal {
     pub manufacturer: Option<Manufacturer>,
     pub frequency: u32,
-    pub year: Option<Year>,
-    pub month: Option<Month>,
-    pub week: Option<Week>,
+    pub date_code: Option<PartDateCode>,
 }
 
 impl Crystal {
+    pub const FREQ_32_KIHZ: u32 = 32_768;
+    pub const FREQ_4_MIHZ: u32 = 4_194_304;
+    pub const FREQ_8_MIHZ: u32 = 8_388_608;
+    pub const FREQ_20_MIHZ: u32 = 20_971_520;
+    pub const FREQ_32_MIHZ: u32 = 33_554_432;
     pub fn format_frequency(&self) -> String {
         if self.frequency > 1_000_000 {
             format!(
@@ -103,29 +94,6 @@ impl Crystal {
         } else {
             format!("{} Hz", self.frequency)
         }
-    }
-}
-
-fn kds_month1(text: &str) -> Result<Month, String> {
-    month1_alpha(text)
-}
-
-fn month1_alpha(text: &str) -> Result<Month, String> {
-    match text {
-        "A" => Ok(Month::January),
-        "B" => Ok(Month::February),
-        "C" => Ok(Month::March),
-        "D" => Ok(Month::April),
-        "E" => Ok(Month::May),
-        "F" => Ok(Month::June),
-        "G" => Ok(Month::July),
-        "H" => Ok(Month::August),
-        // I is intentionally skipped
-        "J" => Ok(Month::September),
-        "K" => Ok(Month::October),
-        "L" => Ok(Month::November),
-        "M" => Ok(Month::December),
-        _ => Err(format!("Invalid 1-letter month: {}", text)),
     }
 }
 
@@ -220,7 +188,7 @@ pub enum Year {
     Partial(u8),
 }
 
-pub fn year1(text: &str) -> Result<Year, String> {
+fn year1(text: &str) -> Result<Year, String> {
     if text.len() != 1 {
         return Err(format!("Invalid 1-digit year: {}", text));
     }
@@ -341,6 +309,14 @@ mod for_nom {
             .parse(input)
     }
 
+    pub fn year1_month1_abc<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, PartDateCode, E> {
+        tuple((year1, month1_abc))
+            .map(|(year, month)| PartDateCode::YearMonth { year, month })
+            .parse(input)
+    }
+
     pub fn month1_123abc<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
         map_opt(take(1_usize), |text| match text {
             "1" => Some(Month::January),
@@ -408,6 +384,15 @@ mod for_nom {
         .parse(input)
     }
 
+    pub fn month2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+        map_opt(take(2_usize), |text| {
+            u8::from_str_radix(text, 10)
+                .ok()
+                .and_then(|v| Month::try_from(v).ok())
+        })
+        .parse(input)
+    }
+
     fn line_sep<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, char, E> {
         alt((char(' '), char('\n'))).parse(input)
     }
@@ -448,7 +433,7 @@ mod for_nom {
     }
 }
 
-pub fn year2(text: &str) -> Result<Year, String> {
+fn year2(text: &str) -> Result<Year, String> {
     if text.len() != 2 {
         return Err(format!("Invalid 2-digit year: {}", text));
     }
@@ -465,7 +450,7 @@ pub fn year2(text: &str) -> Result<Year, String> {
     }
 }
 
-pub fn week2(text: &str) -> Result<Week, String> {
+fn week2(text: &str) -> Result<Week, String> {
     if text.len() != 2 {
         return Err(format!("Invalid 2-digit week: {}", text));
     }
@@ -475,7 +460,7 @@ pub fn week2(text: &str) -> Result<Week, String> {
         .ok_or_else(|| format!("Invalid 2-digit week: {}", text))
 }
 
-pub fn month2(text: &str) -> Result<Month, String> {
+fn month2(text: &str) -> Result<Month, String> {
     if text.len() != 2 {
         return Err(format!("Invalid 2-digit month: {}", text));
     }
@@ -636,6 +621,22 @@ pub fn oxy_pmic() -> &'static impl LabelParser<GenericPart> {
     &mitsumi::MITSUMI_PM
 }
 
+pub fn oxy_u4() -> &'static impl LabelParser<GenericPart> {
+    &unknown::UNKNOWN_OXY_U4
+}
+
+pub fn oxy_u5() -> &'static impl LabelParser<GenericPart> {
+    &unknown::UNKNOWN_OXY_U5
+}
+
+pub fn ags_charge_ctrl() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &mitsumi::MITSUMI_MM1581A,
+        &unknown::UNKNOWN_AGS_CHARGE_CONTROLLER
+    )
+}
+
 pub fn ags_pmic_new() -> &'static impl LabelParser<GenericPart> {
     &mitsumi::MITSUMI_PM
 }
@@ -676,6 +677,88 @@ pub fn icd2() -> &'static impl LabelParser<GenericPart> {
         &nec::NEC_ICD2_N,
         &nec::NEC_ICD2_R
     )
+}
+
+pub fn sgb_rom() -> &'static impl LabelParser<MaskRom> {
+    multi_parser!(
+        MaskRom,
+        &toshiba::TOSHIBA_SGB_ROM,
+        &sharp::SHARP_SGB_ROM,
+        &fujitsu::FUJITSU_SGB_ROM,
+        &unknown::UNKNOWN_SGB_ROM,
+        &nec::NEC_SGB_ROM,
+    )
+}
+
+pub fn sgb2_coil() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &tdk::TDK_ZJY_M4A, &tdk::TDK_ZJY_M4PA,)
+}
+
+pub fn sgb2_rom() -> &'static impl LabelParser<MaskRom> {
+    multi_parser!(MaskRom, &sharp::SHARP_SGB2_ROM, &oki::OKI_SGB2_ROM,)
+}
+
+pub fn dmg_stamp() -> &'static impl LabelParser<DmgStamp> {
+    &stamp::DMG_STAMP
+}
+
+pub fn cgb_stamp() -> &'static impl LabelParser<CgbStamp> {
+    &stamp::CGB_STAMP
+}
+
+pub fn rtc_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        &kds::KDS_32_KIHZ,
+        &unknown::UNKNOWN_CRYSTAL_32_KIHZ
+    )
+}
+
+pub fn dmg_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        &kds::KDS_D419_OLD,
+        &unknown::UNKNOWN_DMG_CRYSTAL_4_MIHZ
+    )
+}
+
+pub fn mgb_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        &kds::KDS_4_MIHZ_OLD,
+        &kinseki::KINSEKI_4_MIHZ,
+        &unknown::UNKNOWN_MGB_CRYSTAL_4_MIHZ
+    )
+}
+
+pub fn sgb2_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(Crystal, &kds::KDS_D209, &kinseki::KINSEKI_20_MIHZ,)
+}
+
+pub fn cgb_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        &kds::KDS_D838,
+        &kds::KDS_8_MIHZ,
+        &kinseki::KINSEKI_8_MIHZ
+    )
+}
+
+pub fn agb_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(
+        Crystal,
+        &kds::KDS_D419_NEW,
+        &kds::KDS_4_MIHZ_NEW,
+        &kinseki::KINSEKI_4_MIHZ,
+    )
+}
+
+pub fn ags_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(Crystal, &kds::KDS_4_MIHZ_AGS, &kinseki::KINSEKI_4_MIHZ,)
+}
+
+pub fn gbs_crystal() -> &'static impl LabelParser<Crystal> {
+    multi_parser!(Crystal, &kinseki::KINSEKI_32_MIHZ,)
 }
 
 pub fn dmg_soc_qfp_80() -> &'static impl LabelParser<GenericPart> {
@@ -886,5 +969,17 @@ pub fn gb_mask_rom_qfp_44_5v() -> &'static impl LabelParser<GameMaskRom> {
         &sharp::SHARP_LH53259M,
         &sharp::SHARP_LH53515M,
         &oki::OKI_MASK_ROM_QFP_44_512_KIBIT,
+    )
+}
+
+pub fn eeprom_sop_8_3v3() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &rohm::ROHM_9853, &rohm::ROHM_9854)
+}
+
+pub fn eeprom_tssop_8_5v() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        &unknown::UNKNOWN_LCS5_EEPROM,
+        &unknown::UNKNOWN_LC56_EEPROM
     )
 }

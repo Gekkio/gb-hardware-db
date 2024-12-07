@@ -231,14 +231,14 @@ pub static OKI_MR27V12813: NomParser<GameMaskRom> = NomParser {
     f: |input| gba("M", "R27V12813M", GameRomType::J2).parse(input),
 };
 
-/// OKI SGB mask ROM, MSM534011 (SOP-32, 5V, 4 Mibit / 512 KiB)
+/// OKI SGB2 mask ROM, MSM534011 (SOP-32, 5V, 4 Mibit / 512 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::oki::OKI_SGB_ROM.parse("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_ok());
+/// assert!(parser::oki::OKI_SGB2_ROM.parse("SYS-SGB2-10 © 1998 Nintendo M534011E-05 8012354").is_ok());
 /// ```
-pub static OKI_SGB_ROM: NomParser<MaskRom> = NomParser {
-    name: "OKI SGB ROM",
+pub static OKI_SGB2_ROM: NomParser<MaskRom> = NomParser {
+    name: "OKI SGB2 ROM",
     f: |input| {
         tuple((
             tag("SYS-SGB2-10"),

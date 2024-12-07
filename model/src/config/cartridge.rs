@@ -17,13 +17,11 @@ use std::{
 use crate::{
     hash::{Crc32, Md5, Sha1, Sha256},
     parser::{
-        agb_mask_rom_tsop_ii_44_3v3, analog,
-        crystal_32kihz::crystal_32kihz,
-        eeprom::{eeprom_sop_8_3v3, eeprom_tssop_8_5v},
+        agb_mask_rom_tsop_ii_44_3v3, analog, eeprom_sop_8_3v3, eeprom_tssop_8_5v,
         flash_tsop_i_32_3v3, flash_tsop_i_40_5v, fram_sop_28_3v3, gb_mask_rom_glop_top_28_5v,
         gb_mask_rom_qfp_44_5v, gb_mask_rom_sop_32_5v, gb_mask_rom_sop_44_5v,
         gb_mask_rom_tsop_i_32_5v, gb_mask_rom_tsop_ii_44_5v, hex_inverter, line_decoder, mapper,
-        rtc_sop_20, rtc_sop_8,
+        rtc_crystal, rtc_sop_20, rtc_sop_8,
         sram::{sram_sop_28_3v3, sram_sop_28_5v, sram_sop_32_5v, sram_tsop_i_28},
         supervisor_reset,
         tama::{tama5, tama6, tama7},
@@ -189,7 +187,7 @@ impl BoardConfig {
                 D::U2 => Some(BoardPart::Flash(flash_tsop_i_32_3v3())),
                 // SOP-8 RTC
                 D::U3 => Some(BoardPart::Rtc(rtc_sop_8())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::AgbE06 => match designator {
@@ -227,7 +225,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Rtc(rtc_sop_8())),
                 D::U4 => Some(BoardPart::Unknown(unknown_chip())),
                 D::U5 => Some(BoardPart::Unknown(unknown_chip())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::AgbE24 => match designator {
@@ -248,7 +246,7 @@ impl BoardConfig {
                 D::U4 => Some(BoardPart::Rtc(rtc_sop_20())),
                 // SOP-8 M62021P
                 D::U5 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::Aaac => match designator {
@@ -468,7 +466,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 26A / MM1134
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgKfcn | BoardConfig::DmgKfdn => match designator {
@@ -480,7 +478,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 MM1134
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgKgdu => match designator {
@@ -492,7 +490,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 MM1134
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgLfdn => match designator {
@@ -526,7 +524,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_32_5v())),
                 // SOP-8 MM1134
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgTedn => match designator {
@@ -538,7 +536,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 26A
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgTfdn => match designator {
@@ -550,7 +548,7 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 1134A
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgUedt => match designator {
@@ -564,7 +562,7 @@ impl BoardConfig {
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
                 // TSSOP-14
                 D::U5 => Some(BoardPart::HexInverter(hex_inverter())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgUfdt => match designator {
@@ -578,7 +576,7 @@ impl BoardConfig {
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
                 // TSSOP-14
                 D::U5 => Some(BoardPart::HexInverter(hex_inverter())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgUgdu => match designator {
@@ -592,7 +590,7 @@ impl BoardConfig {
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
                 // TSSOP-14
                 D::U5 => Some(BoardPart::HexInverter(hex_inverter())),
-                D::X1 => Some(BoardPart::Crystal(crystal_32kihz())),
+                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgZ02 => match designator {

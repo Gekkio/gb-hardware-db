@@ -8,12 +8,12 @@ use nom::{
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
     error::ParseError,
-    sequence::tuple,
+    sequence::{preceded, separated_pair, tuple},
     Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
+    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, lines3, uppers},
     GameMaskRom, GameRomType, Manufacturer, NomParser,
 };
 
@@ -23,25 +23,29 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
     rom_type: GameRomType,
     unknown2: &'static str,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
-        tag("SEC "),
-        recognize(tuple((
-            tag("KM23C"),
-            tag(chip_type),
-            opt(one_of("ABCD")),
-            tag(package.code()),
-        ))),
-        char(' '),
-        alt((dmg_rom_code(), cgb_rom_code())),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
-        tag(unknown2)
-            .and(digits(1))
-            .and(alnum_uppers(2))
-            .and(uppers(1)),
-    ))
-    .map(move |(_, kind, _, rom_id, _, _, _, _)| GameMaskRom {
+    lines3(
+        preceded(
+            tag("SEC "),
+            recognize(tuple((
+                tag("KM23C"),
+                tag(chip_type),
+                opt(one_of("ABCD")),
+                tag(package.code()),
+            ))),
+        ),
+        separated_pair(
+            alt((dmg_rom_code(), cgb_rom_code())),
+            char(' '),
+            tag(rom_type.as_str()),
+        ),
+        recognize(
+            tag(unknown2)
+                .and(digits(1))
+                .and(alnum_uppers(2))
+                .and(uppers(1)),
+        ),
+    )
+    .map(move |(kind, (rom_id, _), _)| GameMaskRom {
         rom_id: String::from(rom_id),
         rom_type,
         manufacturer: Some(Manufacturer::Samsung),
@@ -57,22 +61,24 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
     rom_type: GameRomType,
     unknown2: &'static str,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
-        tag("SEC "),
-        recognize(tuple((
-            tag("KM23C"),
-            tag(chip_type),
-            opt(one_of("ABCD")),
-            tag(package.code()),
-        ))),
-        char(' '),
-        alt((dmg_rom_code(), cgb_rom_code())),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
+    lines3(
+        preceded(
+            tag("SEC "),
+            recognize(tuple((
+                tag("KM23C"),
+                tag(chip_type),
+                opt(one_of("ABCD")),
+                tag(package.code()),
+            ))),
+        ),
+        separated_pair(
+            alt((dmg_rom_code(), cgb_rom_code())),
+            char(' '),
+            tag(rom_type.as_str()),
+        ),
         recognize(tag(unknown2).and(digits(3)).and(uppers(2))),
-    ))
-    .map(move |(_, kind, _, rom_id, _, _, _, _)| GameMaskRom {
+    )
+    .map(move |(kind, (rom_id, _), _)| GameMaskRom {
         rom_id: String::from(rom_id),
         rom_type,
         manufacturer: Some(Manufacturer::Samsung),

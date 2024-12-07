@@ -422,7 +422,7 @@ mod for_nom {
         alt((char(' '), char('\n'))).parse(input)
     }
 
-    pub fn lines2<'a, O1, O2, O3, E: ParseError<&'a str>>(
+    pub fn lines2<'a, O1, O2, E: ParseError<&'a str>>(
         a: impl Parser<&'a str, O1, E>,
         b: impl Parser<&'a str, O2, E>,
     ) -> impl Parser<&'a str, (O1, O2), E> {

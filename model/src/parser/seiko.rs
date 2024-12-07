@@ -3,17 +3,19 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt,
     bytes::streaming::tag,
-    character::streaming::{anychar, char},
+    character::{
+        complete::one_of,
+        streaming::{anychar, char},
+    },
     combinator::{map_opt, recognize},
     error::ParseError,
-    sequence::tuple,
+    sequence::{preceded, tuple},
     IResult, Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, month1_123xyz},
+    for_nom::{alnum_uppers, digits, lines3, month1_123xyz},
     GenericPart, Manufacturer, NomParser, PartDateCode, Year,
 };
 
@@ -27,8 +29,8 @@ use super::{
 pub static SEIKO_S3511A: NomParser<GenericPart> = NomParser {
     name: "Seiko S-3511A",
     f: |input| {
-        tuple((tag("S3511 AV"), date_code, char(' '), lot_code))
-            .map(|(_, date_code, _, _)| GenericPart {
+        lines3(tag("S3511"), preceded(tag("AV"), date_code), lot_code)
+            .map(|(_, date_code, _)| GenericPart {
                 kind: String::from("S-3511A"),
                 manufacturer: Some(Manufacturer::Seiko),
                 date_code: Some(date_code),
@@ -46,8 +48,8 @@ pub static SEIKO_S3511A: NomParser<GenericPart> = NomParser {
 pub static SEIKO_S3516AE: NomParser<GenericPart> = NomParser {
     name: "Seiko S-3516AE",
     f: |input| {
-        tuple((tag("S3516 AEV"), date_code, char(' '), lot_code))
-            .map(|(_, date_code, _, _)| GenericPart {
+        lines3(tag("S3516"), preceded(tag("AEV"), date_code), lot_code)
+            .map(|(_, date_code, _)| GenericPart {
                 kind: String::from("S-3516AE"),
                 manufacturer: Some(Manufacturer::Seiko),
                 date_code: Some(date_code),
@@ -65,19 +67,13 @@ pub static SEIKO_S3516AE: NomParser<GenericPart> = NomParser {
 pub static SEIKO_S6403: NomParser<GenericPart> = NomParser {
     name: "Seiko S-6403",
     f: |input| {
-        tuple((
-            alt((
-                tag("S6403 AU").map(|_| "S-6403A"),
-                tag("S6403 CU").map(|_| "S-6403C"),
-            )),
-            year1,
-            alnum_uppers(1),
-            digits(1),
-            char(' '),
+        lines3(
+            tag("S6403"),
+            tuple((one_of("AC"), char('U'), year1, alnum_uppers(1), digits(1))),
             lot_code,
-        ))
-        .map(|(kind, year, _, _, _, _)| GenericPart {
-            kind: String::from(kind),
+        )
+        .map(|(_, (revision, _, year, _, _), _)| GenericPart {
+            kind: format!("S-6403{revision}"),
             manufacturer: Some(Manufacturer::Seiko),
             date_code: Some(PartDateCode::Year { year }),
         })
@@ -95,8 +91,8 @@ pub static SEIKO_S6403: NomParser<GenericPart> = NomParser {
 pub static SEIKO_S6960E: NomParser<GenericPart> = NomParser {
     name: "Seiko S-6960E",
     f: |input| {
-        tuple((tag("S6960 E-U"), date_code, char(' '), lot_code))
-            .map(|(_, date_code, _, _)| GenericPart {
+        lines3(tag("S6960"), preceded(tag("E-U"), date_code), lot_code)
+            .map(|(_, date_code, _)| GenericPart {
                 kind: String::from("S-6960E"),
                 manufacturer: Some(Manufacturer::Seiko),
                 date_code: Some(date_code),

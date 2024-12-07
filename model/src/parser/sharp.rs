@@ -6,14 +6,17 @@ use nom::{
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
-    combinator::{consumed, opt, value},
+    combinator::{consumed, opt, recognize, value},
     error::ParseError,
-    sequence::{terminated, tuple},
+    sequence::{separated_pair, terminated, tuple},
     Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, uppers, year2_week2},
+    for_nom::{
+        alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, uppers,
+        year2_week2,
+    },
     GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskCode, MaskRom, NomParser,
 };
 
@@ -96,18 +99,13 @@ fn ir3<'a, E: ParseError<&'a str>>(
     kind: &'static str,
     pkg: Package,
 ) -> impl Parser<&'a str, GenericPart, E> {
-    tuple((
+    lines3(
         tag(prefix),
-        char(' '),
-        tag(kind),
-        package(pkg),
-        char(' '),
-        year2_week2,
-        char(' '),
-        alphas(1),
-    ))
-    .map(|(_, _, kind, package, _, date_code, _, _)| GenericPart {
-        kind: format!("{kind}{package}", package = package.code()),
+        recognize(tag(kind).and(package(pkg))),
+        separated_pair(year2_week2, char(' '), alphas(1)),
+    )
+    .map(|(_, kind, (date_code, _))| GenericPart {
+        kind: String::from(kind),
         manufacturer: Some(Manufacturer::Sharp),
         date_code: Some(date_code),
     })
@@ -117,19 +115,18 @@ fn ir3_old<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     kind: &'static str,
 ) -> impl Parser<&'a str, GenericPart, E> {
-    tuple((
+    lines3(
         tag(prefix),
-        char(' '),
         tag(kind),
-        char(' '),
-        year2_week2,
-        char(' '),
-        alphas(1),
-        opt(nom::character::complete::satisfy(|c| {
-            c.is_ascii_uppercase()
-        })),
-    ))
-    .map(|(_, _, kind, _, date_code, _, _, _)| GenericPart {
+        separated_pair(
+            year2_week2,
+            char(' '),
+            alphas(1).and(opt(nom::character::complete::satisfy(|c| {
+                c.is_ascii_uppercase()
+            }))),
+        ),
+    )
+    .map(|(_, kind, (date_code, _))| GenericPart {
         kind: String::from(kind),
         manufacturer: Some(Manufacturer::Sharp),
         date_code: Some(date_code),
@@ -187,73 +184,58 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
     rom_type: GameRomType,
     unknown: char,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+    lines4(
         dmg_rom_code(),
-        char(' '),
-        tag("SHARP JAPAN"),
-        char(' '),
-        year2_week2,
-        char(' '),
-        alphas(1),
-        char(' '),
-        char(unknown),
-    ))
-    .map(
-        move |(rom_id, _, _, _, date_code, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: kind.map(String::from),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
+        tag("SHARP"),
+        tag("JAPAN"),
+        tuple((year2_week2, char(' '), alphas(1), char(' '), char(unknown))),
     )
+    .map(move |(rom_id, _, _, (date_code, _, _, _, _))| GameMaskRom {
+        rom_id: String::from(rom_id),
+        rom_type,
+        manufacturer: Some(Manufacturer::Sharp),
+        chip_type: kind.map(String::from),
+        mask_code: None,
+        date_code: Some(date_code),
+    })
 }
 
 fn lh53_old<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
     rom_type: GameRomType,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+    lines4(
         dmg_rom_code(),
-        char(' '),
-        tag("SHARP JAPAN"),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
-        year2_week2,
-        char(' '),
-        alphas(1),
-    ))
-    .map(
-        move |(rom_id, _, _, _, _, _, date_code, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: kind.map(String::from),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
+        tag("SHARP"),
+        separated_pair(tag("JAPAN"), char(' '), tag(rom_type.as_str())),
+        separated_pair(year2_week2, char(' '), alphas(1)),
     )
+    .map(move |(rom_id, _, _, (date_code, _))| GameMaskRom {
+        rom_id: String::from(rom_id),
+        rom_type,
+        manufacturer: Some(Manufacturer::Sharp),
+        chip_type: kind.map(String::from),
+        mask_code: None,
+        date_code: Some(date_code),
+    })
 }
 
 fn lh53_new<'a, E: ParseError<&'a str>>(
     model: impl Parser<&'a str, Option<&'a str>, E>,
     rom_type: GameRomType,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+    lines4(
         alt((dmg_rom_code(), cgb_rom_code())),
-        tag(" S "),
-        consumed(terminated(model, alnum_uppers(2))),
-        tag(" JAPAN "),
-        tag(rom_type.as_str()),
-        char(' '),
-        year2_week2,
-        char(' '),
-        alphas(1),
-    ))
+        separated_pair(
+            tag("S"),
+            char(' '),
+            consumed(terminated(model, alnum_uppers(2))),
+        ),
+        separated_pair(tag("JAPAN"), char(' '), tag(rom_type.as_str())),
+        separated_pair(year2_week2, char(' '), alphas(1)),
+    )
     .map(
-        move |(rom_id, _, (mask_code, kind), _, _, _, date_code, _, _)| GameMaskRom {
+        move |(rom_id, (_, (mask_code, kind)), _, (date_code, _))| GameMaskRom {
             rom_id: String::from(rom_id),
             rom_type,
             manufacturer: Some(Manufacturer::Sharp),
@@ -493,24 +475,19 @@ fn sgb_rom<'a, E: ParseError<&'a str>>(
     model: impl Parser<&'a str, (&'a str, Option<&'a str>), E>,
     rom_id: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
-    tuple((
+    lines4(
         tag(rom_id),
-        tag(" © 1994 Nintendo "),
+        tag("© 1994 Nintendo"),
         model,
-        char(' '),
-        year2_week2,
-        char(' '),
-        uppers(1),
-    ))
-    .map(
-        |(rom_id, _, (mask_code, kind), _, date_code, _, _)| MaskRom {
-            rom_id: String::from(rom_id),
-            chip_type: kind.map(String::from),
-            manufacturer: Some(Manufacturer::Sharp),
-            mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
-            date_code: Some(date_code),
-        },
+        separated_pair(year2_week2, char(' '), uppers(1)),
     )
+    .map(|(rom_id, _, (mask_code, kind), (date_code, _))| MaskRom {
+        rom_id: String::from(rom_id),
+        chip_type: kind.map(String::from),
+        manufacturer: Some(Manufacturer::Sharp),
+        mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+        date_code: Some(date_code),
+    })
 }
 
 /// Sharp SGB mask ROM
@@ -551,25 +528,19 @@ pub static SHARP_SGB_ROM: NomParser<MaskRom> = NomParser {
 pub static SHARP_SGB2_ROM: NomParser<MaskRom> = NomParser {
     name: "Sharp SGB2 ROM",
     f: |input| {
-        tuple((
-            tag("© 1998 Nintendo "),
+        lines4(
+            tag("© 1998 Nintendo"),
             tag("SYS-SGB2-10"),
-            char(' '),
             consumed(value(Some("LH534R00B"), tag("LH5S4R").and(tag("Y4")))),
-            char(' '),
-            year2_week2,
-            char(' '),
-            uppers(1),
-        ))
-        .map(
-            |(_, rom_id, _, (mask_code, kind), _, date_code, _, _)| MaskRom {
-                rom_id: String::from(rom_id),
-                manufacturer: Some(Manufacturer::Sharp),
-                chip_type: kind.map(String::from),
-                mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
-                date_code: Some(date_code),
-            },
+            separated_pair(year2_week2, char(' '), uppers(1)),
         )
+        .map(|(_, rom_id, (mask_code, kind), (date_code, _))| MaskRom {
+            rom_id: String::from(rom_id),
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: kind.map(String::from),
+            mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };

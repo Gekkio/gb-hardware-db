@@ -6,12 +6,12 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{opt, recognize},
-    sequence::tuple,
+    sequence::{preceded, separated_pair, tuple},
     Parser as _,
 };
 
 use super::{
-    for_nom::{alnum_uppers, uppers, year1_week2},
+    for_nom::{alnum_uppers, lines4, uppers, year1_week2},
     GenericPart,
 };
 use crate::parser::{Manufacturer, NomParser};
@@ -25,30 +25,31 @@ use crate::parser::{Manufacturer, NomParser};
 pub static ST_MICRO_M68AS128: NomParser<GenericPart> = NomParser {
     name: "STMicro M68AS128",
     f: |input| {
-        tuple((
+        preceded(
             opt(tag("E ")),
-            tag("M68AS128"),
-            char(' '),
-            recognize(tuple((
-                tag("DL"),
-                tag("70"), // speed
-                tag("N"),  // package
-                tag("6"),  // temperature
-            ))),
-            char(' '),
-            uppers(5),
-            tag(" F6 TWN "),
-            alnum_uppers(2),
-            char(' '),
-            year1_week2,
-        ))
-        .map(
-            |(_, kind, _, attrs, _, _, _, _, _, date_code)| GenericPart {
-                kind: format!("{kind}{attrs}"),
-                manufacturer: Some(Manufacturer::StMicro),
-                date_code: Some(date_code),
-            },
+            lines4(
+                tag("M68AS128"),
+                recognize(tuple((
+                    tag("DL"),
+                    tag("70"), // speed
+                    tag("N"),  // package
+                    tag("6"),  // temperature
+                ))),
+                separated_pair(uppers(5), char(' '), tag("F6")),
+                tuple((
+                    tag("TWN"),
+                    char(' '),
+                    alnum_uppers(2),
+                    char(' '),
+                    year1_week2,
+                )),
+            ),
         )
+        .map(|(kind, attrs, _, (_, _, _, _, date_code))| GenericPart {
+            kind: format!("{kind}{attrs}"),
+            manufacturer: Some(Manufacturer::StMicro),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };

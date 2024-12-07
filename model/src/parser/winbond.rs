@@ -3,12 +3,16 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    bytes::streaming::tag, character::streaming::char, combinator::value, error::ParseError,
-    sequence::tuple, Parser,
+    bytes::streaming::tag,
+    character::streaming::char,
+    combinator::{recognize, value},
+    error::ParseError,
+    sequence::tuple,
+    Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, uppers, year1_week2},
+    for_nom::{alnum_uppers, digits, lines3, uppers, year1_week2},
     sram::Ram,
     Manufacturer, NomParser,
 };
@@ -22,25 +26,22 @@ use super::{
 pub static WINBOND_W24257: NomParser<Ram> = NomParser {
     name: "Winbond W24257",
     f: |input| {
-        tuple((
-            tag("Winbond "),
-            tuple((
+        lines3(
+            tag("Winbond"),
+            recognize(tuple((
                 tag("W24257"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"), // speed
                 tag("LL"), // power
-            )),
-            char(' '),
+            ))),
             tuple((year1_week2, uppers(2), digits(9), uppers(2))),
-        ))
-        .map(
-            |(_, (kind, package, _, speed, power), _, (date_code, _, _, _))| Ram {
-                kind: format!("{kind}{package}-{speed}{power}", package = package.code()),
-                manufacturer: Some(Manufacturer::Winbond),
-                date_code: Some(date_code),
-            },
         )
+        .map(|(_, kind, (date_code, _, _, _))| Ram {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Winbond),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };
@@ -54,25 +55,22 @@ pub static WINBOND_W24257: NomParser<Ram> = NomParser {
 pub static WINBOND_W24258: NomParser<Ram> = NomParser {
     name: "Winbond W24258",
     f: |input| {
-        tuple((
-            tag("Winbond "),
-            tuple((
+        lines3(
+            tag("Winbond"),
+            recognize(tuple((
                 tag("W24258"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"),
                 tag("LE"),
-            )),
-            char(' '),
+            ))),
             tuple((year1_week2, uppers(2), digits(9), uppers(2))),
-        ))
-        .map(
-            |(_, (kind, package, _, speed, power), _, (date_code, _, _, _))| Ram {
-                kind: format!("{kind}{package}-{speed}{power}", package = package.code()),
-                manufacturer: Some(Manufacturer::Winbond),
-                date_code: Some(date_code),
-            },
         )
+        .map(|(_, kind, (date_code, _, _, _))| Ram {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Winbond),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };
@@ -87,16 +85,15 @@ pub static WINBOND_W24258: NomParser<Ram> = NomParser {
 pub static WINBOND_W2465: NomParser<Ram> = NomParser {
     name: "Winbond W2465",
     f: |input| {
-        tuple((
-            tag("Winbond "),
-            tuple((
+        lines3(
+            tag("Winbond"),
+            recognize(tuple((
                 tag("W2465"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"), // speed
                 tag("LL"), // power
-            )),
-            char(' '),
+            ))),
             tuple((
                 year1_week2,
                 uppers(2),
@@ -106,14 +103,12 @@ pub static WINBOND_W2465: NomParser<Ram> = NomParser {
                 alnum_uppers(1),
                 tag("1RA"),
             )),
-        ))
-        .map(
-            |(_, (kind, package, _, speed, power), _, (date_code, _, _, _, _, _, _))| Ram {
-                kind: format!("{kind}{package}-{speed}{power}", package = package.code()),
-                manufacturer: Some(Manufacturer::Winbond),
-                date_code: Some(date_code),
-            },
         )
+        .map(|(_, kind, (date_code, _, _, _, _, _, _))| Ram {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Winbond),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };

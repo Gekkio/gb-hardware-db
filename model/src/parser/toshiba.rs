@@ -8,12 +8,15 @@ use nom::{
     character::streaming::char,
     combinator::{recognize, value},
     error::ParseError,
-    sequence::{terminated, tuple},
+    sequence::{delimited, separated_pair, terminated, tuple},
     Parser,
 };
 
 use super::{
-    for_nom::{cgb_rom_code, digits, dmg_rom_code, uppers, week2, year1, year2_week2},
+    for_nom::{
+        cgb_rom_code, digits, dmg_rom_code, lines2, lines3, lines4, uppers, week2, year1,
+        year2_week2,
+    },
     sram::Ram,
     GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
 };
@@ -35,19 +38,15 @@ pub static TOSHIBA_TC8521AM: NomParser<GenericPart> = NomParser {
 fn toshiba_tc8521a<'a, E: ParseError<&'a str>>(
     package: Package,
 ) -> impl Parser<&'a str, GenericPart, E> {
-    tuple((
-        tag("T "),
-        tuple((year2_week2, tag("HB"))),
-        char(' '),
+    lines2(
+        delimited(tag("T "), year2_week2, tag("HB")),
         tag("8521A").and(nom::character::streaming::char(package.code_char())),
-    ))
-    .map(
-        move |(_, (date_code, _), _, (_, package_code))| GenericPart {
-            kind: format!("TC8521A{package_code}"),
-            manufacturer: Some(Manufacturer::Toshiba),
-            date_code: Some(date_code),
-        },
     )
+    .map(move |(date_code, (_, package_code))| GenericPart {
+        kind: format!("TC8521A{package_code}"),
+        manufacturer: Some(Manufacturer::Toshiba),
+        date_code: Some(date_code),
+    })
 }
 
 /// Toshiba TC7W139F
@@ -59,15 +58,14 @@ fn toshiba_tc8521a<'a, E: ParseError<&'a str>>(
 pub static TOSHIBA_TC7W139F: NomParser<GenericPart> = NomParser {
     name: "Toshiba TC7W139F",
     f: |input| {
-        tuple((
+        lines2(
             alt((
                 value("TC7W139FU", tag("7W139")),
                 value("TC7W139F", tag("7W139F")),
             )),
-            char(' '),
             year1.and(uppers(1)),
-        ))
-        .map(|(kind, _, (year, _))| GenericPart {
+        )
+        .map(|(kind, (year, _))| GenericPart {
             kind: String::from(kind),
             manufacturer: Some(Manufacturer::Toshiba),
             date_code: Some(PartDateCode::Year { year }),
@@ -85,13 +83,17 @@ pub static TOSHIBA_TC7W139F: NomParser<GenericPart> = NomParser {
 pub static TOSHIBA_TC74LVX04FT: NomParser<GenericPart> = NomParser {
     name: "Toshiba TC74LVX04FT",
     f: |input| {
-        tuple((tag("LVX 04 "), year1, char(' '), week2))
-            .map(|(_, year, _, week)| GenericPart {
-                kind: "TC74LVX04FT".to_owned(),
-                manufacturer: Some(Manufacturer::Toshiba),
-                date_code: Some(PartDateCode::YearWeek { year, week }),
-            })
-            .parse(input)
+        lines3(
+            tag("LVX"),
+            tag("04"),
+            separated_pair(year1, char(' '), week2),
+        )
+        .map(|(_, _, (year, week))| GenericPart {
+            kind: "TC74LVX04FT".to_owned(),
+            manufacturer: Some(Manufacturer::Toshiba),
+            date_code: Some(PartDateCode::YearWeek { year, week }),
+        })
+        .parse(input)
     },
 };
 
@@ -100,32 +102,28 @@ fn tc53<'a, E: ParseError<&'a str>>(
     rom_type: GameRomType,
     package: Package,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
-        tag("TOSHIBA "),
-        tuple((
-            year2_week2,
-            tag("EAI "),
-            tag(chip_type),
-            char(package.code_char()),
-        )),
-        char(' '),
-        alt((dmg_rom_code(), cgb_rom_code())),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
-        uppers(1).and(digits(3)), // mask_code?
-        tag(" JAPAN"),
-    ))
-    .map(
-        move |(_, (date_code, _, kind, package), _, rom_id, _, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Toshiba),
-            chip_type: Some(format!("{kind}{package}")),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
+    lines4(
+        separated_pair(
+            tag("TOSHIBA"),
+            char(' '),
+            terminated(year2_week2, tag("EAI")),
+        ),
+        recognize(tag(chip_type).and(char(package.code_char()))),
+        separated_pair(
+            alt((dmg_rom_code(), cgb_rom_code())),
+            char(' '),
+            tag(rom_type.as_str()),
+        ),
+        separated_pair(uppers(1).and(digits(3)), char(' '), tag("JAPAN")),
     )
+    .map(move |((_, date_code), kind, (rom_id, _), _)| GameMaskRom {
+        rom_id: String::from(rom_id),
+        rom_type,
+        manufacturer: Some(Manufacturer::Toshiba),
+        chip_type: Some(String::from(kind)),
+        mask_code: None,
+        date_code: Some(date_code),
+    })
 }
 
 /// Toshiba TC531001 (SOP-32, 4.5-5.5V)
@@ -177,16 +175,13 @@ pub static TOSHIBA_TC534000: NomParser<GameMaskRom> = NomParser {
 pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
     name: "Toshiba TC55V200",
     f: |input| {
-        tuple((
+        lines4(
             uppers(1).and(digits(5)),
-            tag(" JAPAN "),
-            year2_week2,
-            tag(" MAD "),
+            tuple((tag("JAPAN"), char(' '), year2_week2, char(' '), tag("MAD"))),
             tag("TC55V200"),
-            char(' '),
             tag("FT-").and(alt((tag("70"), tag("85"), tag("10")))),
-        ))
-        .map(|(_, _, date_code, _, kind, _, (_, speed))| Ram {
+        )
+        .map(|(_, (_, _, date_code, _, _), kind, (_, speed))| Ram {
             kind: format!("{kind}FT-{speed}"),
             manufacturer: Some(Manufacturer::Toshiba),
             date_code: Some(date_code),
@@ -204,16 +199,14 @@ pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
 pub static TOSHIBA_SGB_ROM: NomParser<MaskRom> = NomParser {
     name: "Toshiba SGB ROM",
     f: |input| {
-        tuple((
-            terminated(tag("SYS-SGB-2"), tag(" © 1994 Nintendo")),
-            char(' '),
+        lines4(
+            tag("SYS-SGB-2"),
+            tag("© 1994 Nintendo"),
             recognize(tag("TC532000B").and(char(Package::SOP32.code_char())))
                 .and(char('-').and(uppers(1)).and(digits(3))),
-            tag(" JAPAN "),
-            year2_week2,
-            tag("EAI"),
-        ))
-        .map(|(rom_id, _, (kind, _), _, date_code, _)| MaskRom {
+            separated_pair(tag("JAPAN"), char(' '), terminated(year2_week2, tag("EAI"))),
+        )
+        .map(|(rom_id, _, (kind, _), (_, date_code))| MaskRom {
             rom_id: String::from(rom_id),
             manufacturer: Some(Manufacturer::Toshiba),
             chip_type: Some(String::from(kind)),

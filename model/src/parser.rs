@@ -679,3 +679,46 @@ pub fn icd2() -> &'static impl LabelParser<GenericPart> {
         &nec::NEC_ICD2_R
     )
 }
+
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+pub enum GameRomType {
+    A0, // 256 Kibit / 32 KiB,  QFP
+    B0, // 512 Kibit / 64 KiB,  QFP
+    B1, // 512 Kibit / 64 KiB,  SOP
+    C1, // 1 Mibit   / 128 KiB, SOP
+    D1, // 2 Mibit   / 256 KiB, SOP
+    E,  // 4 Mibit   / 512 KiB, TSOP-I
+    E1, // 4 Mibit   / 512 KiB, SOP
+    F,  // 8 Mibit   / 1 MiB,   TSOP-I
+    F1, // 8 Mibit   / 1 MiB,   SOP
+    F2, // 8 Mibit   / 1 MiB,   TSOP-II
+    G1, // 16 Mibit  / 2 MiB,   SOP
+    G2, // 16 Mibit  / 2 MiB,   TSOP-II
+    H2, // 32 Mibit  / 4 MiB,   TSOP-II
+    I2, // 64 Mibit  / 8 MiB,   TSOP-II
+    J2, // 128 Mibit / 16 MiB,  TSOP-II
+    K2, // 256 Mibit / 32 MiB,  TSOP-II
+}
+
+impl GameRomType {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            GameRomType::A0 => "A0",
+            GameRomType::B0 => "B0",
+            GameRomType::B1 => "B1",
+            GameRomType::C1 => "C1",
+            GameRomType::D1 => "D1",
+            GameRomType::E1 => "E1",
+            GameRomType::E => "E",
+            GameRomType::F1 => "F1",
+            GameRomType::F2 => "F2",
+            GameRomType::F => "F",
+            GameRomType::G1 => "G1",
+            GameRomType::G2 => "G2",
+            GameRomType::H2 => "H2",
+            GameRomType::I2 => "I2",
+            GameRomType::J2 => "J2",
+            GameRomType::K2 => "K2",
+        }
+    }
+}

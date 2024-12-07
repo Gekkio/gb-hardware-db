@@ -14,7 +14,7 @@ use nom::{
 
 use super::{
     for_nom::{alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, uppers, year2_week2},
-    GenericPart, Manufacturer, MaskRom, NomParser,
+    GameRomType, GenericPart, Manufacturer, MaskRom, NomParser,
 };
 
 /// ```
@@ -205,14 +205,14 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
 
 fn lh53_old<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
-    unknown: &'static str,
+    rom_type: GameRomType,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         dmg_rom_code(),
         char(' '),
         tag("SHARP JAPAN"),
         char(' '),
-        tag(unknown),
+        tag(rom_type.as_str()),
         char(' '),
         year2_week2,
         char(' '),
@@ -228,14 +228,14 @@ fn lh53_old<'a, E: ParseError<&'a str>>(
 
 fn lh53_new<'a, E: ParseError<&'a str>>(
     model: impl Parser<&'a str, Option<&'a str>, E>,
-    unknown: &'static str,
+    rom_type: GameRomType,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
         alt((dmg_rom_code(), cgb_rom_code())),
         tag(" S "),
         model,
         tag(" JAPAN "),
-        tag(unknown),
+        tag(rom_type.as_str()),
         char(' '),
         year2_week2,
         char(' '),
@@ -262,11 +262,11 @@ pub static SHARP_LH53259M: NomParser<MaskRom> = NomParser {
     f: |input| {
         alt((
             lh53_ancient(Some("LH53259"), 'A'),
-            lh53_old(Some("LH53259"), "A0"),
+            lh53_old(Some("LH53259"), GameRomType::A0),
             lh53_new(
                 // Sharp Memory Data Book 1992
                 value(Some("LH53259"), tag("LH5359").and(alnum_uppers(2))),
-                "A0",
+                GameRomType::A0,
             ),
         ))
         .parse(input)
@@ -281,7 +281,7 @@ pub static SHARP_LH53259M: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SHARP_LH53515M: NomParser<MaskRom> = NomParser {
     name: "Sharp LH53515",
-    f: |input| lh53_old(Some("LH53515"), "B0").parse(input),
+    f: |input| lh53_old(Some("LH53515"), GameRomType::B0).parse(input),
 };
 
 /// Sharp LH53514Z mask ROM (SOP-32, 512 Kibit / 64 KiB)
@@ -296,7 +296,7 @@ pub static SHARP_LH53514Z: NomParser<MaskRom> = NomParser {
         lh53_new(
             // reasonable guess
             value(Some("LH53514"), tag("LH5314").and(alnum_uppers(2))),
-            "B1",
+            GameRomType::B1,
         )
         .parse(input)
     },
@@ -314,7 +314,7 @@ pub static SHARP_LH53517Z: NomParser<MaskRom> = NomParser {
         lh53_new(
             // reasonable guess
             value(Some("LH53517"), tag("LH5317").and(alnum_uppers(2))),
-            "B1",
+            GameRomType::B1,
         )
         .parse(input)
     },
@@ -336,7 +336,7 @@ pub static SHARP_LH530800N: NomParser<MaskRom> = NomParser {
                 // Sharp Memory Data Book 1992
                 value(Some("LH530800A"), tag("LH531H").and(alnum_uppers(2))),
             )),
-            "C1",
+            GameRomType::C1,
         )
         .parse(input)
     },
@@ -349,7 +349,7 @@ pub static SHARP_LH530800N: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SHARP_MASK_ROM_SOP_32_1_MIBIT: NomParser<MaskRom> = NomParser {
     name: "Sharp mask ROM",
-    f: |input| lh53_old(None, "C1").parse(input),
+    f: |input| lh53_old(None, GameRomType::C1).parse(input),
 };
 
 /// Sharp LH532100N mask ROM (SOP-32, 2 Mibit / 256 KiB)
@@ -362,7 +362,7 @@ pub static SHARP_LH532100N: NomParser<MaskRom> = NomParser {
     f: |input| {
         lh53_new(
             value(Some("LH532100"), tag("LH5321").and(alnum_uppers(2))),
-            "D1",
+            GameRomType::D1,
         )
         .parse(input)
     },
@@ -389,7 +389,7 @@ pub static SHARP_LH532XXXN: NomParser<MaskRom> = NomParser {
                 ))
                 .and(alnum_uppers(2)),
             ),
-            "D1",
+            GameRomType::D1,
         )
         .parse(input)
     },
@@ -409,7 +409,7 @@ pub static SHARP_LH534XXXN: NomParser<MaskRom> = NomParser {
                 None,
                 alt((tag("LH534M"), tag("LH5S4M"), tag("LHMN4M"))).and(alnum_uppers(2)),
             ),
-            "E1",
+            GameRomType::E1,
         )
         .parse(input)
     },
@@ -436,7 +436,7 @@ pub static SHARP_LH538XXXN: NomParser<MaskRom> = NomParser {
                 ))
                 .and(alnum_uppers(2)),
             ),
-            "F1",
+            GameRomType::F1,
         )
         .parse(input)
     },
@@ -449,7 +449,13 @@ pub static SHARP_LH538XXXN: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SHARP_LH534XXXS: NomParser<MaskRom> = NomParser {
     name: "Sharp LH534???",
-    f: |input| lh53_new(value(None, tag("LHMN4M").and(alnum_uppers(2))), "E").parse(input),
+    f: |input| {
+        lh53_new(
+            value(None, tag("LHMN4M").and(alnum_uppers(2))),
+            GameRomType::E,
+        )
+        .parse(input)
+    },
 };
 
 /// Sharp LH538xxxS mask ROM (TSOP-I-32, 8 Mibit / 1 MiB)
@@ -459,7 +465,13 @@ pub static SHARP_LH534XXXS: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SHARP_LH538XXXS: NomParser<MaskRom> = NomParser {
     name: "Sharp LH538???",
-    f: |input| lh53_new(value(None, tag("LH5S8M").and(alnum_uppers(2))), "F").parse(input),
+    f: |input| {
+        lh53_new(
+            value(None, tag("LH5S8M").and(alnum_uppers(2))),
+            GameRomType::F,
+        )
+        .parse(input)
+    },
 };
 
 /// Sharp LH5316xxx mask ROM (TSOP-II-44, 16 Mibit / 2 MiB)
@@ -471,7 +483,13 @@ pub static SHARP_LH538XXXS: NomParser<MaskRom> = NomParser {
 pub static SHARP_LH5316XXX: NomParser<MaskRom> = NomParser {
     // maybe: LH5316400 / LH5316500 series / LH5316P00 series
     name: "Sharp LH5316???",
-    f: |input| lh53_new(value(None, tag("LH537M").and(alnum_uppers(2))), "G2").parse(input),
+    f: |input| {
+        lh53_new(
+            value(None, tag("LH537M").and(alnum_uppers(2))),
+            GameRomType::G2,
+        )
+        .parse(input)
+    },
 };
 
 /// Sharp LH5332xxx mask ROM (TSOP-II-44, 32 Mibit / 4 MiB)
@@ -482,7 +500,13 @@ pub static SHARP_LH5316XXX: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SHARP_LH5332XXX: NomParser<MaskRom> = NomParser {
     name: "Sharp LH5332???",
-    f: |input| lh53_new(value(None, tag("LHMN5M").and(alnum_uppers(2))), "H2").parse(input),
+    f: |input| {
+        lh53_new(
+            value(None, tag("LHMN5M").and(alnum_uppers(2))),
+            GameRomType::H2,
+        )
+        .parse(input)
+    },
 };
 
 fn sgb_rom<'a, E: ParseError<&'a str>>(

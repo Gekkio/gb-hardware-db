@@ -15,7 +15,7 @@ use nom::{
 use super::{
     for_nom::{cgb_rom_code, digits, dmg_rom_code, uppers, week2, year1, year2_week2},
     sram::Ram,
-    GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
+    GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
 };
 
 /// Toshiba TC8521AM (SOP-20)
@@ -97,7 +97,7 @@ pub static TOSHIBA_TC74LVX04FT: NomParser<GenericPart> = NomParser {
 
 fn tc53<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
-    unknown: &'static str,
+    rom_type: GameRomType,
     package: Package,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
@@ -111,7 +111,7 @@ fn tc53<'a, E: ParseError<&'a str>>(
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        tag(unknown),
+        tag(rom_type.as_str()),
         char(' '),
         uppers(1).and(digits(3)),
         tag(" JAPAN"),
@@ -134,7 +134,7 @@ fn tc53<'a, E: ParseError<&'a str>>(
 /// ```
 pub static TOSHIBA_TC531001: NomParser<MaskRom> = NomParser {
     name: "Toshiba TC531001",
-    f: |input| tc53("TC531001C", "C1", Package::SOP32).parse(input),
+    f: |input| tc53("TC531001C", GameRomType::C1, Package::SOP32).parse(input),
 };
 
 /// Toshiba TC532000 (SOP-32, 4.5-5.5V)
@@ -145,7 +145,7 @@ pub static TOSHIBA_TC531001: NomParser<MaskRom> = NomParser {
 /// ```
 pub static TOSHIBA_TC532000: NomParser<MaskRom> = NomParser {
     name: "Toshiba TC532000",
-    f: |input| tc53("TC532000B", "D1", Package::SOP32).parse(input),
+    f: |input| tc53("TC532000B", GameRomType::D1, Package::SOP32).parse(input),
 };
 
 /// Toshiba TC534000 (SOP-32, 4.5-5.5V)
@@ -159,8 +159,8 @@ pub static TOSHIBA_TC534000: NomParser<MaskRom> = NomParser {
     name: "Toshiba TC534000",
     f: |input| {
         alt((
-            tc53("TC534000B", "E1", Package::SOP32),
-            tc53("TC534000D", "E1", Package::SOP32),
+            tc53("TC534000B", GameRomType::E1, Package::SOP32),
+            tc53("TC534000D", GameRomType::E1, Package::SOP32),
         ))
         .parse(input)
     },

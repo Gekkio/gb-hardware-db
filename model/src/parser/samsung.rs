@@ -14,13 +14,13 @@ use nom::{
 
 use super::{
     for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
-    Manufacturer, MaskRom, NomParser,
+    GameRomType, Manufacturer, MaskRom, NomParser,
 };
 
 fn gb_km23c_old<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
-    unknown: &'static str,
+    rom_type: GameRomType,
     unknown2: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
@@ -34,7 +34,7 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        tag(unknown),
+        tag(rom_type.as_str()),
         char(' '),
         tag(unknown2)
             .and(digits(1))
@@ -52,7 +52,7 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
 fn gb_km23c_new<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
-    unknown: &'static str,
+    rom_type: GameRomType,
     unknown2: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
@@ -66,7 +66,7 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
-        tag(unknown),
+        tag(rom_type.as_str()),
         char(' '),
         recognize(tag(unknown2).and(digits(3)).and(uppers(2))),
     ))
@@ -86,7 +86,7 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
 /// ```
 pub static SAMSUNG_KM23C4000: NomParser<MaskRom> = NomParser {
     name: "Samsung KM23C4000",
-    f: |input| gb_km23c_old("4000", Package::Sop, "E1", "KF5").parse(input),
+    f: |input| gb_km23c_old("4000", Package::Sop, GameRomType::E1, "KF5").parse(input),
 };
 
 /// Samsung KM23C8000 (SOP-32, 5V, 8 Mibit / 1 MiB)
@@ -98,7 +98,7 @@ pub static SAMSUNG_KM23C4000: NomParser<MaskRom> = NomParser {
 /// ```
 pub static SAMSUNG_KM23C8000: NomParser<MaskRom> = NomParser {
     name: "Samsung KM23C8000",
-    f: |input| gb_km23c_old("8000", Package::Sop, "F1", "KFX").parse(input),
+    f: |input| gb_km23c_old("8000", Package::Sop, GameRomType::F1, "KFX").parse(input),
 };
 
 /// Samsung KM23C16120 (TSOP-II-44, 5V, 16 Mibit / 2 MiB)
@@ -113,8 +113,8 @@ pub static SAMSUNG_KM23C16120: NomParser<MaskRom> = NomParser {
     name: "Samsung KM23C16120",
     f: |input| {
         alt((
-            gb_km23c_old("16120", Package::Tsop, "G2", "KF6"),
-            gb_km23c_new("16120", Package::Tsop, "G2", "K3N5C"),
+            gb_km23c_old("16120", Package::Tsop, GameRomType::G2, "KF6"),
+            gb_km23c_new("16120", Package::Tsop, GameRomType::G2, "K3N5C"),
         ))
         .parse(input)
     },

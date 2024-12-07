@@ -118,7 +118,8 @@ pub fn mask_rom_sop_32_5v() -> &'static impl LabelParser<MaskRom> {
         &toshiba::TOSHIBA_TC534000,
         &samsung::SAMSUNG_KM23C4000,
         &samsung::SAMSUNG_KM23C8000,
-        &fujitsu::FUJITSU_MASK_ROM,
+        &fujitsu::FUJITSU_MASK_ROM_SOP_32_2_MIBIT,
+        &fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT,
     )
 }
 
@@ -153,6 +154,6 @@ pub fn mask_rom_qfp_44_5v() -> &'static impl LabelParser<MaskRom> {
         MaskRom,
         &sharp::SHARP_LH53259M,
         &sharp::SHARP_LH53515M,
-        &oki::OKI_OLD_MASK_ROM,
+        &oki::OKI_MASK_ROM_QFP_44_512_KIBIT,
     )
 }

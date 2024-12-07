@@ -7,8 +7,9 @@ use nom::{
     bytes::streaming::tag,
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
+    error::ParseError,
     sequence::{terminated, tuple},
-    Parser as _,
+    Parser,
 };
 
 use crate::parser::{
@@ -18,7 +19,7 @@ use crate::parser::{
 
 use super::{
     for_nom::{alnum_uppers, cgb_rom_code, dmg_rom_code},
-    GenericPart, MaskRom,
+    GameRomType, GenericPart, MaskRom,
 };
 
 /// Fujitsu MB85R256 (SOP-28, 3.0-3.6V)
@@ -75,40 +76,51 @@ pub static FUJITSU_MB82D12160: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Fujitsu mask ROM (SOP-32, 5V)
+fn mask_rom<'a, E: ParseError<&'a str>>(rom_type: GameRomType) -> impl Parser<&'a str, MaskRom, E> {
+    tuple((
+        tag("JAPAN "),
+        alt((dmg_rom_code(), cgb_rom_code())),
+        char(' '),
+        tag(rom_type.as_str()),
+        char(' '),
+        digits(1).and(uppers(1)).and(alnum_uppers(1)),
+        char(' '),
+        tag("AK"),
+        char(' '),
+        year2_week2,
+        char(' '),
+        uppers(1).and(digits(2)),
+    ))
+    .map(
+        |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| MaskRom {
+            rom_id: String::from(rom_id),
+            manufacturer: Some(Manufacturer::Fujitsu),
+            chip_type: None,
+            date_code: Some(date_code),
+        },
+    )
+}
+
+/// Fujitsu mask ROM (SOP-32, 5V, 2 Mibit / 256 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::fujitsu::FUJITSU_MASK_ROM.parse("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
-/// assert!(parser::fujitsu::FUJITSU_MASK_ROM.parse("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
+/// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_2_MIBIT.parse("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
 /// ```
-pub static FUJITSU_MASK_ROM: NomParser<MaskRom> = NomParser {
+pub static FUJITSU_MASK_ROM_SOP_32_2_MIBIT: NomParser<MaskRom> = NomParser {
     name: "Fujitsu mask ROM",
-    f: |input| {
-        tuple((
-            tag("JAPAN "),
-            alt((dmg_rom_code(), cgb_rom_code())),
-            char(' '),
-            alt((tag("D1"), tag("E1"))), // D1 = 2Mbit, E1 = 4Mbit ?
-            char(' '),
-            digits(1).and(uppers(1)).and(alnum_uppers(1)),
-            char(' '),
-            tag("AK"),
-            char(' '),
-            year2_week2,
-            char(' '),
-            uppers(1).and(digits(2)),
-        ))
-        .map(
-            |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| MaskRom {
-                rom_id: String::from(rom_id),
-                manufacturer: Some(Manufacturer::Fujitsu),
-                chip_type: None,
-                date_code: Some(date_code),
-            },
-        )
-        .parse(input)
-    },
+    f: |input| mask_rom(GameRomType::D1).parse(input),
+};
+
+/// Fujitsu mask ROM (SOP-32, 5V, 4 Mibit / 512 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT.parse("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
+/// ```
+pub static FUJITSU_MASK_ROM_SOP_32_4_MIBIT: NomParser<MaskRom> = NomParser {
+    name: "Fujitsu mask ROM",
+    f: |input| mask_rom(GameRomType::E1).parse(input),
 };
 
 /// Fujitsu SGB mask ROM

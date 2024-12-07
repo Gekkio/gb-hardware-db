@@ -2,12 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::{
-    config::cartridge::*,
-    input::cartridge::*,
-    parser::{Accelerometer, Crystal, Eeprom, GameMaskRom, GenericPart, Mapper, Tama, UnknownChip},
-};
-use std::{any::Any, collections::HashMap};
+use gbhwdb_model::{config::cartridge::*, input::cartridge::*, parser::LabelParser};
+use std::collections::HashMap;
 
 use crate::{
     process::part::{ParsedPart, ProcessedPart},
@@ -40,26 +36,35 @@ impl LegacyBoard {
         let parts = cfg
             .parts()
             .filter_map(|(designator, part)| {
-                let submission_part = &board[designator];
-                let label = &submission_part.as_ref()?.label.as_ref()?;
+                fn parse<T: ParsedPart>(
+                    board: &CartridgeBoard,
+                    designator: PartDesignator,
+                    parser: &dyn LabelParser<T>,
+                ) -> Option<(PartDesignator, ProcessedPart)> {
+                    let submission_part = &board[designator];
+                    let label = submission_part.as_ref()?.label.as_ref()?;
 
-                let parsed = (part.parse_any)(label)
-                    .unwrap_or_else(|_| panic!("Failed to parse {designator:?}:{label}"));
+                    let parsed = parser
+                        .parse(label)
+                        .unwrap_or_else(|_| panic!("Failed to parse {designator:?}:{label}"));
 
-                let part = try_process::<GameMaskRom>(board.year, label, parsed)
-                    .or_else(|parsed| try_process::<Mapper>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<GenericPart>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Crystal>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Eeprom>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Accelerometer>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<Tama>(board.year, label, parsed))
-                    .or_else(|parsed| try_process::<UnknownChip>(board.year, label, parsed))
-                    .unwrap_or_else(|_| {
-                        println!("{board:?}");
-                        panic!("Failed to process {designator:?}")
-                    });
-
-                Some((designator, part))
+                    Some((designator, parsed.process(board.year, String::from(label))))
+                }
+                match part {
+                    BoardPart::Unknown(parser) => parse(&board, designator, parser),
+                    BoardPart::Rom(parser) => parse(&board, designator, parser),
+                    BoardPart::Mapper(parser) => parse(&board, designator, parser),
+                    BoardPart::Ram(parser) => parse(&board, designator, parser),
+                    BoardPart::SupervisorReset(parser) => parse(&board, designator, parser),
+                    BoardPart::Crystal(parser) => parse(&board, designator, parser),
+                    BoardPart::Flash(parser) => parse(&board, designator, parser),
+                    BoardPart::Eeprom(parser) => parse(&board, designator, parser),
+                    BoardPart::Accelerometer(parser) => parse(&board, designator, parser),
+                    BoardPart::LineDecoder(parser) => parse(&board, designator, parser),
+                    BoardPart::HexInverter(parser) => parse(&board, designator, parser),
+                    BoardPart::Mcu(parser) => parse(&board, designator, parser),
+                    BoardPart::Rtc(parser) => parse(&board, designator, parser),
+                }
             })
             .collect();
         LegacyBoard {
@@ -74,17 +79,7 @@ impl LegacyBoard {
     pub fn mapper(&self) -> Option<&ProcessedPart> {
         self.cfg
             .parts()
-            .find(|(_, part)| part.role == PartRole::Mapper)
+            .find(|(_, part)| matches!(part, BoardPart::Mapper(_)))
             .and_then(|(designator, _)| self.parts.get(&designator))
     }
-}
-
-fn try_process<T: ParsedPart + 'static>(
-    year: Option<u16>,
-    label: &str,
-    parsed: Box<dyn Any>,
-) -> Result<ProcessedPart, Box<dyn Any>> {
-    parsed
-        .downcast::<T>()
-        .map(|m| m.process(year, String::from(label)))
 }

@@ -5,7 +5,7 @@
 use log::warn;
 use nom::{combinator::all_consuming, error::VerboseError, IResult, Parser as _};
 use regex::{Captures, Regex, RegexBuilder};
-use std::{any::Any, fmt, str::FromStr};
+use std::str::FromStr;
 
 use crate::{
     macros::{multi_parser, single_parser},
@@ -26,7 +26,6 @@ pub use self::{
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
-    tama::{Tama, TamaType},
 };
 
 pub mod accelerometer;
@@ -80,8 +79,6 @@ pub mod toshiba;
 pub mod victronix;
 pub mod winbond;
 
-pub trait ParsedData: fmt::Debug + Any {}
-
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum PartDateCode {
     Year { year: Year },
@@ -96,8 +93,6 @@ pub struct GenericPart {
     pub date_code: Option<PartDateCode>,
 }
 
-impl ParsedData for GenericPart {}
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearWeek {
     pub kind: String,
@@ -105,8 +100,6 @@ pub struct ChipYearWeek {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
-
-impl ParsedData for ChipYearWeek {}
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct ChipYearMonthWeek {
@@ -117,8 +110,6 @@ pub struct ChipYearMonthWeek {
     pub week: Option<Week>,
 }
 
-impl ParsedData for ChipYearMonthWeek {}
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Crystal {
     pub manufacturer: Option<Manufacturer>,
@@ -127,8 +118,6 @@ pub struct Crystal {
     pub month: Option<Month>,
     pub week: Option<Week>,
 }
-
-impl ParsedData for Crystal {}
 
 impl Crystal {
     pub fn format_frequency(&self) -> String {
@@ -495,10 +484,7 @@ pub struct RegexParser<T> {
     f: fn(Captures) -> Result<T, String>,
 }
 
-impl<T> LabelParser<T> for RegexParser<T>
-where
-    T: ParsedData,
-{
+impl<T> LabelParser<T> for RegexParser<T> {
     fn parse(&self, label: &str) -> Result<T, String> {
         if let Some(captures) = self.regex.captures(label) {
             (self.f)(captures)
@@ -560,8 +546,6 @@ impl<T> LabelParser<T> for MultiParser<T> {
 
 #[derive(Copy, Clone, Debug)]
 pub struct UnknownChip;
-
-impl ParsedData for UnknownChip {}
 
 pub fn unknown_chip() -> &'static impl LabelParser<UnknownChip> {
     single_parser!(UnknownChip, r#"^.*$"#, move |_| Ok(UnknownChip))
@@ -741,8 +725,6 @@ pub struct GameMaskRom {
     pub date_code: Option<PartDateCode>,
 }
 
-impl ParsedData for GameMaskRom {}
-
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MaskRom {
     pub rom_id: String,
@@ -751,8 +733,6 @@ pub struct MaskRom {
     pub mask_code: Option<MaskCode>,
     pub date_code: Option<PartDateCode>,
 }
-
-impl ParsedData for MaskRom {}
 
 pub fn agb_mask_rom_tsop_ii_44_3v3() -> &'static impl LabelParser<GameMaskRom> {
     multi_parser!(

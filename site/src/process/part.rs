@@ -207,19 +207,3 @@ impl ParsedPart for parser::Mapper {
         }
     }
 }
-
-impl ParsedPart for parser::Tama {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: match self.tama_type {
-                parser::TamaType::Tama5 => Some("TAMA5".to_owned()),
-                parser::TamaType::Tama6 => Some("TAMA6".to_owned()),
-                parser::TamaType::Tama7 => Some("TAMA7".to_owned()),
-            },
-            manufacturer: None,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}

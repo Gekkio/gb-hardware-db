@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{month2, year1, LabelParser, ParsedData, Year};
+use super::{month2, year1, LabelParser, Year};
 use crate::{macros::single_parser, time::Month};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -10,8 +10,6 @@ pub struct DmgStamp {
     pub year: Option<Year>,
     pub month: Option<Month>,
 }
-
-impl ParsedData for DmgStamp {}
 
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

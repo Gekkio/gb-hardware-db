@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{LabelParser, Manufacturer, ParsedData};
+use super::{LabelParser, Manufacturer};
 use crate::macros::{multi_parser, single_parser};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -10,8 +10,6 @@ pub struct Coil {
     pub kind: String,
     pub manufacturer: Option<Manufacturer>,
 }
-
-impl ParsedData for Coil {}
 
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

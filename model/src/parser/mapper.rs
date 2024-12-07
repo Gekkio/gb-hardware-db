@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, ParsedData, Year};
+use super::{week2, year1, year2, LabelParser, Manufacturer, Year};
 use crate::{
     macros::{multi_parser, single_parser},
     time::Week,
@@ -47,6 +47,7 @@ pub enum MapperType {
     Huc1(Huc1Version),
     Huc3,
     Mmm01,
+    Tama5,
 }
 
 impl MapperType {
@@ -69,6 +70,7 @@ impl MapperType {
             MapperType::Huc3 => "HuC-3",
             MapperType::Huc1(Huc1Version::Original) => "HuC-1",
             MapperType::Huc1(Huc1Version::A) => "HuC-1A",
+            MapperType::Tama5 => "TAMA5",
         }
     }
 }
@@ -80,8 +82,6 @@ pub struct Mapper {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
-
-impl ParsedData for Mapper {}
 
 /// Sharp MBC1
 ///

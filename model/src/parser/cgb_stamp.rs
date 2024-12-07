@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, LabelParser, ParsedData, Year};
+use super::{week2, year1, LabelParser, Year};
 use crate::{macros::single_parser, time::Week};
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -10,8 +10,6 @@ pub struct CgbStamp {
     pub year: Option<Year>,
     pub week: Option<Week>,
 }
-
-impl ParsedData for CgbStamp {}
 
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

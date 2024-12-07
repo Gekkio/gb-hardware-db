@@ -84,7 +84,7 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
                 div { (Optional(board.date_code.calendar())) }
             }
             @for &role in cfg.parts {
-                @let part = board.cfg.parts().find(|(_, candidate)| candidate.role == role);
+                @let part = board.cfg.parts().find(|(_, candidate)| candidate.role() == role);
                 @if let Some((designator, _)) = part {
                     (ListingPart {
                         part: board.parts.get(&designator),

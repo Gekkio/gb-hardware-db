@@ -31,7 +31,7 @@ impl<'a> Render for Game<'a> {
                     .board
                     .cfg
                     .parts()
-                    .map(|(designator, part)| (designator, part.role))
+                    .map(|(designator, part)| (designator, part.role()))
             })
             .collect::<BTreeSet<_>>();
         let no_intro_href = if self.cfg.no_intro_id.is_empty() {
@@ -102,7 +102,7 @@ fn render_submission(
                 div { (Optional(board.date_code.calendar())) }
             }
             @for &(designator, role) in parts {
-                @if board.cfg.part(designator).map(|p| p.role) == Some(role) {
+                @if board.cfg.part(designator).map(|p| p.role()) == Some(role) {
                     (ListingPart {
                         part: board.parts.get(&designator),
                         hide_type: false,

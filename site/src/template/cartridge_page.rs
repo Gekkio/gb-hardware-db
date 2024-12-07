@@ -43,7 +43,7 @@ impl<'a> Render for CartridgePage<'a> {
         let board = &metadata.board;
         let parts = board.cfg.parts().map(|(designator, part)| SubmissionPart {
             designator: designator.as_str(),
-            label: part.role.display(),
+            label: part.role().display(),
             part: board.parts.get(&designator),
         });
         let contributor_url = format!(

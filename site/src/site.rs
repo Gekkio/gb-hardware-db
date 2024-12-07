@@ -4,7 +4,7 @@
 
 use anyhow::Error;
 use gbhwdb_model::{
-    config::cartridge::{BoardConfig, GamePlatform, PartRole},
+    config::cartridge::{BoardConfig, BoardPart, GamePlatform, PartRole},
     Console,
 };
 use itertools::Itertools;
@@ -493,7 +493,7 @@ pub fn build_site() -> Site {
                 let mapper = board
                     .cfg
                     .parts()
-                    .find(|(_, part)| part.role == PartRole::Mapper)
+                    .find(|(_, part)| matches!(part, BoardPart::Mapper(_)))
                     .and_then(|(designator, _)| board.parts.get(&designator));
                 let key = mapper_cfgs
                     .iter()

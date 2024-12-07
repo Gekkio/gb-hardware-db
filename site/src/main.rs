@@ -409,14 +409,12 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 assert_eq!(&console.slug, serial);
             }
 
-            let cpu = console.mainboard.u1.as_ref().map(|part| {
-                boxed_parser(parser::gen1_soc::gen1_soc())(None, part)
-                    .unwrap()
-                    .unwrap_or_else(|| ProcessedPart {
-                        kind: Some("blob".to_string()),
-                        ..ProcessedPart::default()
-                    })
-            });
+            let cpu = match console.mainboard.label.as_str() {
+                "DMG-CPU-07" | "DMG-CPU-08" => {
+                    map_part(None, &console.mainboard.u1, parser::dmg_soc_glop_top())
+                }
+                _ => map_part(None, &console.mainboard.u1, parser::dmg_soc_qfp_80()),
+            };
             let year_hint = cpu.as_ref().map(|cpu| cpu.date_code.year.unwrap_or(1996));
 
             let work_ram = console.mainboard.u2.as_ref().map(|part| {
@@ -613,11 +611,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::gen1_soc::gen1_soc(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::sgb_soc_qfp_80());
             let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
             let work_ram = map_part(
                 year_hint,
@@ -630,7 +624,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
                 parser::sram::sram_sop_28_5v(),
             );
             let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom::sgb_rom());
-            let cic = map_part(year_hint, &console.mainboard.u6, parser::cic::cic());
+            let cic = map_part(year_hint, &console.mainboard.u6, parser::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
                 circled_letters: console.mainboard.circled_letters.clone(),
@@ -693,11 +687,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::gen2_soc::gen2_soc(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
@@ -790,11 +780,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::gen2_soc::gen2_soc(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
@@ -885,11 +871,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::gen2_soc::gen2_soc(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::sgb2_soc_qfp_80());
             let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
             let work_ram = map_part(
                 year_hint,
@@ -897,7 +879,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
                 parser::sram::sram_sop_28_5v(),
             );
             let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb_rom::sgb_rom());
-            let cic = map_part(year_hint, &console.mainboard.u5, parser::cic::cic());
+            let cic = map_part(year_hint, &console.mainboard.u5, parser::cic());
             let coil = map_part(year_hint, &console.mainboard.coil1, parser::coil::coil());
             let crystal = map_part(
                 year_hint,
@@ -967,7 +949,18 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(1998));
-            let cpu = map_part(year_hint, &console.mainboard.u1, parser::cgb_soc::cgb_soc());
+            let cpu = match console.mainboard.label.as_str() {
+                "CGB-CPU-06" => map_part(
+                    year_hint,
+                    &console.mainboard.u1,
+                    parser::cgb_soc_qfp_128_new(),
+                ),
+                _ => map_part(
+                    year_hint,
+                    &console.mainboard.u1,
+                    parser::cgb_soc_qfp_128_old(),
+                ),
+            };
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
@@ -1080,11 +1073,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::agb_soc_qfp_128::agb_soc_qfp_128(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_128());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
@@ -1175,11 +1164,7 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::agb_soc_qfp_156::agb_soc_qfp_156(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_156());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
@@ -1269,11 +1254,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u2,
-                parser::agb_soc_qfp_128::agb_soc_qfp_128(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u2, parser::agb_soc_qfp_128());
             let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
@@ -1362,11 +1343,7 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_part(
-                year_hint,
-                &console.mainboard.u1,
-                parser::agb_soc_bga::agb_soc_bga(),
-            );
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_bga());
             let u2 = map_part(year_hint, &console.mainboard.u2, parser::oxy_pmic());
             let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4::oxy_u4());
             let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5::oxy_u5());

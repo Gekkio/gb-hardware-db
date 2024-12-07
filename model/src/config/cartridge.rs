@@ -17,8 +17,7 @@ use std::{
 use crate::{
     hash::{Crc32, Md5, Sha1, Sha256},
     parser::{
-        accelerometer::accelerometer,
-        agb_mask_rom_tsop_ii_44_3v3,
+        agb_mask_rom_tsop_ii_44_3v3, analog,
         crystal_32kihz::crystal_32kihz,
         eeprom::{eeprom_sop_8_3v3, eeprom_tssop_8_5v},
         flash_tsop_i_32_3v3, flash_tsop_i_40_5v, fram_sop_28_3v3, gb_mask_rom_glop_top_28_5v,
@@ -216,7 +215,7 @@ impl BoardConfig {
                 D::U2 => Some(BoardPart::Rom(agb_mask_rom_tsop_ii_44_3v3())),
                 // SOP-8 EEPROM
                 D::U3 => Some(BoardPart::Eeprom(eeprom_sop_8_3v3())),
-                D::U4 => Some(BoardPart::Accelerometer(accelerometer())),
+                D::U4 => Some(BoardPart::Accelerometer(&analog::ANALOG_ADXL202JE)),
                 _ => None,
             },
             BoardConfig::AgbE18 => match designator {
@@ -393,7 +392,7 @@ impl BoardConfig {
                 // TSSOP-8 EEPROM
                 D::U3 => Some(BoardPart::Eeprom(eeprom_tssop_8_5v())),
                 // QC-14 accelerometer
-                D::U4 => Some(BoardPart::Accelerometer(accelerometer())),
+                D::U4 => Some(BoardPart::Accelerometer(&analog::ANALOG_ADXL202JQC)),
                 _ => None,
             },
             BoardConfig::DmgA47 => match designator {
@@ -404,7 +403,7 @@ impl BoardConfig {
                 // TSSOP-8 EEPROM
                 D::U3 => Some(BoardPart::Eeprom(eeprom_tssop_8_5v())),
                 // QC-14 accelerometer
-                D::U4 => Some(BoardPart::Accelerometer(accelerometer())),
+                D::U4 => Some(BoardPart::Accelerometer(&analog::ANALOG_ADXL202JQC)),
                 _ => None,
             },
             BoardConfig::DmgAaa => match designator {

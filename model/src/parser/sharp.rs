@@ -5,7 +5,7 @@
 use nom::{
     branch::alt,
     bytes::streaming::tag,
-    character::streaming::char,
+    character::{complete::one_of, streaming::char},
     combinator::{consumed, opt, recognize, value},
     error::ParseError,
     sequence::{separated_pair, terminated, tuple},
@@ -14,8 +14,8 @@ use nom::{
 
 use super::{
     for_nom::{
-        alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, uppers,
-        year2_week2,
+        alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, lines5,
+        satisfy_m_n_complete, uppers, year2_week2,
     },
     GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskCode, MaskRom, NomParser,
 };
@@ -539,6 +539,367 @@ pub static SHARP_SGB2_ROM: NomParser<MaskRom> = NomParser {
             manufacturer: Some(Manufacturer::Sharp),
             chip_type: kind.map(String::from),
             mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+fn cic<'a, E: ParseError<&'a str>>(
+    model: &'static str,
+    copyright: &'static str,
+) -> impl Parser<&'a str, GenericPart, E> {
+    lines4(
+        recognize(tag(model).and(opt(one_of("AB")))),
+        tag(copyright),
+        tag("Nintendo"),
+        separated_pair(year2_week2, char(' '), alphas(1)),
+    )
+    .map(|(kind, _, _, (date_code, _))| GenericPart {
+        kind: String::from(kind),
+        manufacturer: Some(Manufacturer::Sharp),
+        date_code: Some(date_code),
+    })
+}
+
+/// Sharp F411
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_F411.parse("F411A © 1990 Nintendo 9428 a").is_ok());
+/// ```
+pub static SHARP_F411: NomParser<GenericPart> = NomParser {
+    name: "Sharp F411",
+    f: |input| cic("F411", "© 1990").parse(input),
+};
+
+/// Sharp F413
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_F413.parse("F413A © 1992 Nintendo 9425 a").is_ok());
+/// ```
+pub static SHARP_F413: NomParser<GenericPart> = NomParser {
+    name: "Sharp F413",
+    f: |input| cic("F413", "© 1992").parse(input),
+};
+
+/// Sharp LR35902 (QFP-80)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LR35902.parse("DMG-CPU LR35902 8907 D").is_ok());
+/// ```
+pub static SHARP_LR35902: NomParser<GenericPart> = NomParser {
+    name: "Sharp LR35902",
+    f: |input| {
+        lines3(
+            tag("DMG-CPU"),
+            tag("LR35902"),
+            separated_pair(year2_week2, char(' '), uppers(1)),
+        )
+        .map(|(kind, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp DMG-CPU (QFP-80)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_DMG_CPU.parse("DMG-CPU © 1989 Nintendo JAPAN 8913 D").is_ok());
+/// assert!(parser::sharp::SHARP_DMG_CPU.parse("DMG-CPU A © 1989 Nintendo JAPAN 8937 D").is_ok());
+/// assert!(parser::sharp::SHARP_DMG_CPU.parse("DMG-CPU B © 1989 Nintendo JAPAN 9207 D").is_ok());
+/// assert!(parser::sharp::SHARP_DMG_CPU.parse("DMG-CPU C © 1989 Nintendo JAPAN 9835 D").is_ok());
+/// ```
+pub static SHARP_DMG_CPU: NomParser<GenericPart> = NomParser {
+    name: "Sharp DMG-CPU",
+    f: |input| {
+        lines4(
+            alt((
+                tag("DMG-CPU A"),
+                tag("DMG-CPU B"),
+                tag("DMG-CPU C"),
+                tag("DMG-CPU"),
+            )),
+            tag("© 1989 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp DMG-CPU (glop top)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_DMG_CPU_GLOP_TOP.parse("B").is_ok());
+/// assert!(parser::sharp::SHARP_DMG_CPU_GLOP_TOP.parse("C").is_ok());
+/// ```
+pub static SHARP_DMG_CPU_GLOP_TOP: NomParser<GenericPart> = NomParser {
+    name: "Sharp DMG-CPU glop top",
+    f: |input| {
+        alt((
+            value("DMG-CPU B (blob)", tag("B")),
+            value("DMG-CPU C (blob)", tag("C")),
+        ))
+        .map(|kind| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: None,
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp SGB-CPU (QFP-80)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_SGB_CPU.parse("SGB-CPU 01 © 1994 Nintendo Ⓜ 1989 Nintendo JAPAN 9434 7 D").is_ok());
+/// ```
+pub static SHARP_SGB_CPU: NomParser<GenericPart> = NomParser {
+    name: "Sharp SGB-CPU",
+    f: |input| {
+        lines5(
+            tag("SGB-CPU 01"),
+            tag("© 1994 Nintendo"),
+            tag("Ⓜ 1989 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                digits(1)
+                    .and(opt(nom::character::complete::char(' ')))
+                    .and(uppers(1)),
+            ),
+        )
+        .map(|(kind, _, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU MGB (QFP-80)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_MGB.parse("CPU MGB Ⓜ © 1996 Nintendo JAPAN 9629 D").is_ok());
+/// ```
+pub static SHARP_CPU_MGB: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU MGB",
+    f: |input| {
+        lines4(
+            tag("CPU MGB"),
+            tag("Ⓜ © 1996 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU SGB2 (QFP-80)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_SGB2.parse("CPU SGB2 Ⓜ 1996 Nintendo © 1997 Nintendo JAPAN 9810 7E").is_ok());
+/// ```
+pub static SHARP_CPU_SGB2: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU SGB2",
+    f: |input| {
+        lines5(
+            tag("CPU SGB2"),
+            tag("Ⓜ 1996 Nintendo"),
+            tag("© 1997 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                digits(1)
+                    .and(opt(nom::character::complete::char(' ')))
+                    .and(uppers(1)),
+            ),
+        )
+        .map(|(kind, _, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU CGB (QFP-128)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_CGB.parse("CPU CGB Ⓜ © 1998 Nintendo JAPAN 9832 I").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_CGB.parse("CPU CGB A Ⓜ © 1998 Nintendo JAPAN 9837 I").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_CGB.parse("CPU CGB B Ⓜ © 1998 Nintendo JAPAN 9840 I").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_CGB.parse("CPU CGB C Ⓜ © 1998 Nintendo JAPAN 9927 IA").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_CGB.parse("CPU CGB D Ⓜ © 1998 Nintendo JAPAN 0026 I").is_ok());
+/// ```
+pub static SHARP_CPU_CGB: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU CGB",
+    f: |input| {
+        lines4(
+            alt((
+                tag("CPU CGB A"),
+                tag("CPU CGB B"),
+                tag("CPU CGB C"),
+                tag("CPU CGB D"),
+                tag("CPU CGB"),
+            )),
+            tag("Ⓜ © 1998 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU CGB E (QFP-128)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_CGB_E.parse("CPU CGB E Ⓜ © 2000 Nintendo JAPAN 0052 I").is_ok());
+/// ```
+pub static SHARP_CPU_CGB_E: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU CGB E",
+    f: |input| {
+        lines4(
+            tag("CPU CGB E"),
+            tag("Ⓜ © 2000 Nintendo"),
+            tag("JAPAN"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU AGB (QFP-128)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_AGB.parse("CPU AGB Ⓜ © 2000 Nintendo JAPAN ARM 0104 I").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_AGB.parse("CPU AGB A Ⓜ © 2000 Nintendo JAPAN ARM 0228 mE").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_AGB.parse("CPU AGB A E Ⓜ © 2000 Nintendo JAPAN ARM 0503 O").is_ok());
+/// ```
+pub static SHARP_CPU_AGB: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU AGB",
+    f: |input| {
+        lines4(
+            alt((tag("CPU AGB A E"), tag("CPU AGB A"), tag("CPU AGB"))),
+            tag("Ⓜ © 2000 Nintendo"),
+            tag("JAPAN ARM"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_alphabetic()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU AGB B (QFP-156)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_AGB_B.parse("CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0311 mB").is_ok());
+/// assert!(parser::sharp::SHARP_CPU_AGB_B.parse("CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0602 UB").is_ok());
+/// ```
+pub static SHARP_CPU_AGB_B: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU AGB B",
+    f: |input| {
+        lines4(
+            alt((tag("CPU AGB B E"), tag("CPU AGB B"))),
+            tag("Ⓜ © 2002 Nintendo"),
+            tag("JAPAN ARM"),
+            separated_pair(
+                year2_week2,
+                char(' '),
+                satisfy_m_n_complete(1, 2, |c| c.is_ascii_alphabetic()),
+            ),
+        )
+        .map(|(kind, _, _, (date_code, _))| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp CPU AGB E (BGA)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_CPU_AGB_E.parse("0529 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM").is_ok());
+/// ```
+pub static SHARP_CPU_AGB_E: NomParser<GenericPart> = NomParser {
+    name: "Sharp CPU AGB E",
+    f: |input| {
+        lines5(
+            terminated(year2_week2, tag(" 2m")),
+            tag("CPU AGB E"),
+            tag("Ⓜ © 2004"),
+            tag("Nintendo"),
+            tag("JAPAN ARM"),
+        )
+        .map(|(date_code, kind, _, _, _)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
             date_code: Some(date_code),
         })
         .parse(input)

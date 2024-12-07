@@ -13,30 +13,22 @@ use crate::{
 };
 
 pub use self::{
-    accelerometer::Accelerometer,
     ags_charge_ctrl::AgsChargeController,
     cgb_stamp::CgbStamp,
     coil::Coil,
     dmg_stamp::DmgStamp,
     eeprom::Eeprom,
-    gen1_soc::{Gen1Soc, Gen1SocKind},
-    gen2_soc::{Gen2Soc, Gen2SocKind},
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
 };
 
-pub mod accelerometer;
-pub mod agb_soc_bga;
-pub mod agb_soc_qfp_128;
-pub mod agb_soc_qfp_156;
 pub mod ags_charge_ctrl;
 pub mod amic;
+pub mod analog;
 pub mod atmel;
 pub mod bsi;
-pub mod cgb_soc;
 pub mod cgb_stamp;
-pub mod cic;
 pub mod coil;
 pub mod crystal_20mihz;
 pub mod crystal_32kihz;
@@ -46,8 +38,6 @@ pub mod crystal_8mihz;
 pub mod dmg_stamp;
 pub mod eeprom;
 pub mod fujitsu;
-pub mod gen1_soc;
-pub mod gen2_soc;
 pub mod hynix;
 pub mod hyundai;
 pub mod lcd_chip;
@@ -445,6 +435,17 @@ mod for_nom {
     ) -> impl Parser<&'a str, (O1, O2, O3, O4), E> {
         tuple((a, line_sep, b, line_sep, c, line_sep, d)).map(|(a, _, b, _, c, _, d)| (a, b, c, d))
     }
+
+    pub fn lines5<'a, O1, O2, O3, O4, O5, E: ParseError<&'a str>>(
+        a: impl Parser<&'a str, O1, E>,
+        b: impl Parser<&'a str, O2, E>,
+        c: impl Parser<&'a str, O3, E>,
+        d: impl Parser<&'a str, O4, E>,
+        e: impl Parser<&'a str, O5, E>,
+    ) -> impl Parser<&'a str, (O1, O2, O3, O4, O5), E> {
+        tuple((a, line_sep, b, line_sep, c, line_sep, d, line_sep, e))
+            .map(|(a, _, b, _, c, _, d, _, e)| (a, b, c, d, e))
+    }
 }
 
 pub fn year2(text: &str) -> Result<Year, String> {
@@ -664,6 +665,10 @@ pub fn gbs_dol() -> &'static impl LabelParser<GenericPart> {
     &nec::NEC_GBS_DOL
 }
 
+pub fn cic() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &sharp::SHARP_F411, &sharp::SHARP_F413,)
+}
+
 pub fn icd2() -> &'static impl LabelParser<GenericPart> {
     multi_parser!(
         GenericPart,
@@ -671,6 +676,46 @@ pub fn icd2() -> &'static impl LabelParser<GenericPart> {
         &nec::NEC_ICD2_N,
         &nec::NEC_ICD2_R
     )
+}
+
+pub fn dmg_soc_qfp_80() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(GenericPart, &sharp::SHARP_LR35902, &sharp::SHARP_DMG_CPU)
+}
+
+pub fn dmg_soc_glop_top() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_DMG_CPU_GLOP_TOP
+}
+
+pub fn sgb_soc_qfp_80() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_SGB_CPU
+}
+
+pub fn mgb_soc_qfp_80() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_MGB
+}
+
+pub fn sgb2_soc_qfp_80() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_SGB2
+}
+
+pub fn cgb_soc_qfp_128_old() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_CGB
+}
+
+pub fn cgb_soc_qfp_128_new() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_CGB_E
+}
+
+pub fn agb_soc_qfp_128() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_AGB
+}
+
+pub fn agb_soc_qfp_156() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_AGB_B
+}
+
+pub fn agb_soc_bga() -> &'static impl LabelParser<GenericPart> {
+    &sharp::SHARP_CPU_AGB_E
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]

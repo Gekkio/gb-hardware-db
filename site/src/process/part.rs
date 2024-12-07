@@ -64,49 +64,6 @@ impl ParsedPart for parser::UnknownChip {
     }
 }
 
-impl ParsedPart for parser::Gen1Soc {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        use gbhwdb_model::parser::Gen1SocKind::*;
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(
-                match self.kind {
-                    Dmg0 => "DMG-CPU",
-                    DmgA => "DMG-CPU A",
-                    DmgB => "DMG-CPU B",
-                    DmgC => "DMG-CPU C",
-                    DmgBlobB => "DMG-CPU B (blob)",
-                    DmgBlobC => "DMG-CPU C (blob)",
-                    Sgb => "SGB-CPU 01",
-                }
-                .to_owned(),
-            ),
-            manufacturer: Some(Manufacturer::Sharp),
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}
-
-impl ParsedPart for parser::Gen2Soc {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        use gbhwdb_model::parser::Gen2SocKind::*;
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(
-                match self.kind {
-                    Mgb => "CPU MGB",
-                    Sgb2 => "CPU SGB2",
-                }
-                .to_owned(),
-            ),
-            manufacturer: Some(Manufacturer::Sharp),
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}
-
 impl ParsedPart for parser::Crystal {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {

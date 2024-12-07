@@ -4,11 +4,11 @@
 
 use nom::{
     branch::alt, bytes::streaming::tag, character::streaming::char, error::ParseError,
-    sequence::tuple, Parser,
+    sequence::separated_pair, Parser,
 };
 
 use super::{
-    for_nom::{agb_rom_code, digits},
+    for_nom::{agb_rom_code, digits, lines4},
     GameMaskRom, GameRomType,
 };
 use crate::parser::{Manufacturer, NomParser};
@@ -17,19 +17,17 @@ fn ac23v<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
-        tag("MAGNACHIP "),
+    lines4(
+        tag("MAGNACHIP"),
         tag(chip_type),
-        char(' '),
-        agb_rom_code(),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
-        alt((tag("GB"), tag("SP"))),
-        digits(4),
-        tag(" PS"),
-    ))
-    .map(move |(_, kind, _, rom_id, _, _, _, _, _, _)| GameMaskRom {
+        separated_pair(agb_rom_code(), char(' '), tag(rom_type.as_str())),
+        separated_pair(
+            alt((tag("GB"), tag("SP"))).and(digits(4)),
+            char(' '),
+            tag("PS"),
+        ),
+    )
+    .map(move |(_, kind, (rom_id, _), _)| GameMaskRom {
         rom_id: String::from(rom_id),
         rom_type,
         manufacturer: Some(Manufacturer::Magnachip),

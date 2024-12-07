@@ -8,12 +8,12 @@ use nom::{
     character::streaming::{char, one_of},
     combinator::{opt, recognize, value},
     error::ParseError,
-    sequence::tuple,
+    sequence::{separated_pair, tuple},
     IResult, Parser,
 };
 
 use super::{
-    for_nom::{agb_rom_code, digits, uppers, year2_week2},
+    for_nom::{agb_rom_code, digits, lines3, lines4, uppers, year2_week2},
     sram::Ram,
     GameMaskRom, GameRomType, PartDateCode,
 };
@@ -31,21 +31,22 @@ use crate::parser::{Manufacturer, NomParser};
 pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
     name: "Hynix HY62LF16206",
     f: |input| {
-        tuple((
-            tag("Hynix KOREA "),
+        lines3(
+            separated_pair(tag("Hynix"), char(' '), tag("KOREA")),
             recognize(tag("HY62LF16206").and(opt(one_of("AB")))),
-            char(' '),
-            date_code.and(process_code),
-            char(' '),
-            tuple((
-                tag("L"),  // power
-                tag("T"),  // package
-                tag("12"), // speed
-                tag("C"),  // temperature
-            )),
-        ))
+            separated_pair(
+                date_code.and(process_code),
+                char(' '),
+                tuple((
+                    tag("L"),  // power
+                    tag("T"),  // package
+                    tag("12"), // speed
+                    tag("C"),  // temperature
+                )),
+            ),
+        )
         .map(
-            |(_, kind, _, (date_code, _), _, (power, package, speed, temp))| Ram {
+            |(_, kind, ((date_code, _), (power, package, speed, temp)))| Ram {
                 kind: format!("{kind}-{power}{package}{speed}{temp}"),
                 manufacturer: Some(Manufacturer::Hynix),
                 date_code: Some(date_code),
@@ -67,25 +68,21 @@ pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
 pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
     name: "Hynix HY62WT08081",
     f: |input| {
-        tuple((
-            tag("hynix "),
-            date_code.and(process_code),
-            char(' '),
+        lines3(
+            separated_pair(tag("hynix"), char(' '), date_code.and(process_code)),
             tuple((
                 recognize(value("HY62WT08081", tag("HY62WT081")).and(opt(one_of("ABCDE")))),
                 alt((tag("L"), tag("D"))),           // power
                 alt((tag("50"), tag("70"))),         // speed
                 alt((tag("C"), tag("E"), tag("I"))), // temperature
             )),
-            tag(" KOREA"),
-        ))
-        .map(
-            |(_, (date_code, _), _, (kind, power, speed, temp), _)| Ram {
-                kind: format!("{kind}{power}{speed}{temp}"),
-                manufacturer: Some(Manufacturer::Hynix),
-                date_code: Some(date_code),
-            },
+            tag("KOREA"),
         )
+        .map(|((_, (date_code, _)), (kind, power, speed, temp), _)| Ram {
+            kind: format!("{kind}{power}{speed}{temp}"),
+            manufacturer: Some(Manufacturer::Hynix),
+            date_code: Some(date_code),
+        })
         .parse(input)
     },
 };
@@ -94,18 +91,13 @@ fn ac23v<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
 ) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
-        tag("HYNIX "),
+    lines4(
+        tag("HYNIX"),
         tag(chip_type),
-        char(' '),
-        agb_rom_code(),
-        char(' '),
-        tag(rom_type.as_str()),
-        char(' '),
-        alt((tag("NL"), tag("ZBR"))),
-        digits(4),
-    ))
-    .map(move |(_, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
+        separated_pair(agb_rom_code(), char(' '), tag(rom_type.as_str())),
+        alt((tag("NL"), tag("ZBR"))).and(digits(4)),
+    )
+    .map(move |(_, kind, (rom_id, _), _)| GameMaskRom {
         rom_id: String::from(rom_id),
         rom_type,
         manufacturer: Some(Manufacturer::Hynix),

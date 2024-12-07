@@ -242,6 +242,7 @@ pub fn year1(text: &str) -> Result<Year, String> {
 
 mod for_nom {
     use nom::{
+        branch::alt,
         bytes::streaming::{tag, take},
         character::streaming::{anychar, char, satisfy},
         combinator::{map_opt, recognize},
@@ -415,6 +416,34 @@ mod for_nom {
                 .and_then(|v| Week::try_from(v).ok())
         })
         .parse(input)
+    }
+
+    fn line_sep<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, char, E> {
+        alt((char(' '), char('\n'))).parse(input)
+    }
+
+    pub fn lines2<'a, O1, O2, O3, E: ParseError<&'a str>>(
+        a: impl Parser<&'a str, O1, E>,
+        b: impl Parser<&'a str, O2, E>,
+    ) -> impl Parser<&'a str, (O1, O2), E> {
+        tuple((a, line_sep, b)).map(|(a, _, b)| (a, b))
+    }
+
+    pub fn lines3<'a, O1, O2, O3, E: ParseError<&'a str>>(
+        a: impl Parser<&'a str, O1, E>,
+        b: impl Parser<&'a str, O2, E>,
+        c: impl Parser<&'a str, O3, E>,
+    ) -> impl Parser<&'a str, (O1, O2, O3), E> {
+        tuple((a, line_sep, b, line_sep, c)).map(|(a, _, b, _, c)| (a, b, c))
+    }
+
+    pub fn lines4<'a, O1, O2, O3, O4, E: ParseError<&'a str>>(
+        a: impl Parser<&'a str, O1, E>,
+        b: impl Parser<&'a str, O2, E>,
+        c: impl Parser<&'a str, O3, E>,
+        d: impl Parser<&'a str, O4, E>,
+    ) -> impl Parser<&'a str, (O1, O2, O3, O4), E> {
+        tuple((a, line_sep, b, line_sep, c, line_sep, d)).map(|(a, _, b, _, c, _, d)| (a, b, c, d))
     }
 }
 

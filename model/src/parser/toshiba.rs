@@ -15,7 +15,7 @@ use nom::{
 use super::{
     for_nom::{cgb_rom_code, digits, dmg_rom_code, uppers, week2, year1, year2_week2},
     sram::Ram,
-    GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
 };
 
 /// Toshiba TC8521AM (SOP-20)
@@ -99,7 +99,7 @@ fn tc53<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
     package: Package,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         tag("TOSHIBA "),
         tuple((
@@ -113,14 +113,16 @@ fn tc53<'a, E: ParseError<&'a str>>(
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
-        uppers(1).and(digits(3)),
+        uppers(1).and(digits(3)), // mask_code?
         tag(" JAPAN"),
     ))
     .map(
-        |(_, (date_code, _, kind, package), _, rom_id, _, _, _, _, _)| MaskRom {
+        move |(_, (date_code, _, kind, package), _, rom_id, _, _, _, _, _)| GameMaskRom {
             rom_id: String::from(rom_id),
-            chip_type: Some(format!("{kind}{package}")),
+            rom_type,
             manufacturer: Some(Manufacturer::Toshiba),
+            chip_type: Some(format!("{kind}{package}")),
+            mask_code: None,
             date_code: Some(date_code),
         },
     )
@@ -132,7 +134,7 @@ fn tc53<'a, E: ParseError<&'a str>>(
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::toshiba::TOSHIBA_TC531001.parse("TOSHIBA 9144EAI TC531001CF DMG-FAE-0 C1 J619 JAPAN").is_ok());
 /// ```
-pub static TOSHIBA_TC531001: NomParser<MaskRom> = NomParser {
+pub static TOSHIBA_TC531001: NomParser<GameMaskRom> = NomParser {
     name: "Toshiba TC531001",
     f: |input| tc53("TC531001C", GameRomType::C1, Package::SOP32).parse(input),
 };
@@ -143,7 +145,7 @@ pub static TOSHIBA_TC531001: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::toshiba::TOSHIBA_TC532000.parse("TOSHIBA 9114EAI TC532000BF DMG-GWJ-0 D1 J542 JAPAN").is_ok());
 /// ```
-pub static TOSHIBA_TC532000: NomParser<MaskRom> = NomParser {
+pub static TOSHIBA_TC532000: NomParser<GameMaskRom> = NomParser {
     name: "Toshiba TC532000",
     f: |input| tc53("TC532000B", GameRomType::D1, Package::SOP32).parse(input),
 };
@@ -155,7 +157,7 @@ pub static TOSHIBA_TC532000: NomParser<MaskRom> = NomParser {
 /// assert!(parser::toshiba::TOSHIBA_TC534000.parse("TOSHIBA 9301EAI TC534000BF DMG-MQE-2 E1 N516 JAPAN").is_ok());
 /// assert!(parser::toshiba::TOSHIBA_TC534000.parse("TOSHIBA 9614EAI TC534000DF DMG-WJA-0 E1 N750 JAPAN").is_ok());
 /// ```
-pub static TOSHIBA_TC534000: NomParser<MaskRom> = NomParser {
+pub static TOSHIBA_TC534000: NomParser<GameMaskRom> = NomParser {
     name: "Toshiba TC534000",
     f: |input| {
         alt((
@@ -213,8 +215,9 @@ pub static TOSHIBA_SGB_ROM: NomParser<MaskRom> = NomParser {
         ))
         .map(|(rom_id, _, (kind, _), _, date_code, _)| MaskRom {
             rom_id: String::from(rom_id),
-            chip_type: Some(String::from(kind)),
             manufacturer: Some(Manufacturer::Toshiba),
+            chip_type: Some(String::from(kind)),
+            mask_code: None,
             date_code: Some(date_code),
         })
         .parse(input)

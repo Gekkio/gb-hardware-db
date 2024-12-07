@@ -19,7 +19,7 @@ use crate::parser::{
 
 use super::{
     for_nom::{alnum_uppers, cgb_rom_code, dmg_rom_code},
-    GameRomType, GenericPart, MaskRom,
+    GameMaskRom, GameRomType, GenericPart, MaskRom,
 };
 
 /// Fujitsu MB85R256 (SOP-28, 3.0-3.6V)
@@ -76,14 +76,16 @@ pub static FUJITSU_MB82D12160: NomParser<GenericPart> = NomParser {
     },
 };
 
-fn mask_rom<'a, E: ParseError<&'a str>>(rom_type: GameRomType) -> impl Parser<&'a str, MaskRom, E> {
+fn mask_rom<'a, E: ParseError<&'a str>>(
+    rom_type: GameRomType,
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         tag("JAPAN "),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
-        digits(1).and(uppers(1)).and(alnum_uppers(1)),
+        digits(1).and(uppers(1)).and(alnum_uppers(1)), // mask_code?
         char(' '),
         tag("AK"),
         char(' '),
@@ -92,10 +94,12 @@ fn mask_rom<'a, E: ParseError<&'a str>>(rom_type: GameRomType) -> impl Parser<&'
         uppers(1).and(digits(2)),
     ))
     .map(
-        |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| MaskRom {
+        move |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| GameMaskRom {
             rom_id: String::from(rom_id),
+            rom_type,
             manufacturer: Some(Manufacturer::Fujitsu),
             chip_type: None,
+            mask_code: None,
             date_code: Some(date_code),
         },
     )
@@ -107,7 +111,7 @@ fn mask_rom<'a, E: ParseError<&'a str>>(rom_type: GameRomType) -> impl Parser<&'
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_2_MIBIT.parse("JAPAN DMG-GKX-0 D1 1P0 AK 9328 R09").is_ok());
 /// ```
-pub static FUJITSU_MASK_ROM_SOP_32_2_MIBIT: NomParser<MaskRom> = NomParser {
+pub static FUJITSU_MASK_ROM_SOP_32_2_MIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Fujitsu mask ROM",
     f: |input| mask_rom(GameRomType::D1).parse(input),
 };
@@ -118,7 +122,7 @@ pub static FUJITSU_MASK_ROM_SOP_32_2_MIBIT: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT.parse("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
 /// ```
-pub static FUJITSU_MASK_ROM_SOP_32_4_MIBIT: NomParser<MaskRom> = NomParser {
+pub static FUJITSU_MASK_ROM_SOP_32_4_MIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Fujitsu mask ROM",
     f: |input| mask_rom(GameRomType::E1).parse(input),
 };
@@ -142,6 +146,7 @@ pub static FUJITSU_SGB_ROM: NomParser<MaskRom> = NomParser {
             rom_id: String::from(rom_id),
             manufacturer: Some(Manufacturer::Fujitsu),
             chip_type: None,
+            mask_code: None,
             date_code: Some(date_code),
         })
         .parse(input)

@@ -13,9 +13,9 @@ use nom::{
 };
 
 use super::{
-    for_nom::{uppers, year2_week2},
+    for_nom::{agb_rom_code, digits, uppers, year2_week2},
     sram::Ram,
-    PartDateCode,
+    GameMaskRom, GameRomType, PartDateCode,
 };
 use crate::parser::{Manufacturer, NomParser};
 
@@ -88,6 +88,64 @@ pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
         )
         .parse(input)
     },
+};
+
+fn ac23v<'a, E: ParseError<&'a str>>(
+    chip_type: &'static str,
+    rom_type: GameRomType,
+) -> impl Parser<&'a str, GameMaskRom, E> {
+    tuple((
+        tag("HYNIX "),
+        tag(chip_type),
+        char(' '),
+        agb_rom_code(),
+        char(' '),
+        tag(rom_type.as_str()),
+        char(' '),
+        alt((tag("NL"), tag("ZBR"))),
+        digits(4),
+    ))
+    .map(move |(_, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
+        rom_id: String::from(rom_id),
+        rom_type,
+        manufacturer: Some(Manufacturer::Hynix),
+        chip_type: Some(String::from(kind)),
+        mask_code: None,
+        date_code: None,
+    })
+}
+
+/// Hynix AC23V32101 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::hynix::HYNIX_AC23V32101.parse("HYNIX AC23V32101 AGB-BAUE-0 H2 ZBR4079").is_ok());
+/// ```
+pub static HYNIX_AC23V32101: NomParser<GameMaskRom> = NomParser {
+    name: "Hynix AC23V32101",
+    f: |input| ac23v("AC23V32101", GameRomType::H2).parse(input),
+};
+
+/// Hynix AC23V64101 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::hynix::HYNIX_AC23V64101.parse("HYNIX AC23V64101 AGB-AZLP-0 I2 ZBR1467").is_ok());
+/// ```
+pub static HYNIX_AC23V64101: NomParser<GameMaskRom> = NomParser {
+    name: "Hynix AC23V64101",
+    f: |input| ac23v("AC23V64101", GameRomType::I2).parse(input),
+};
+
+/// Hynix AC23V128111 (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::hynix::HYNIX_AC23V128111.parse("HYNIX AC23V128111 AGB-AY7E-0 J2 NL0013").is_ok());
+/// ```
+pub static HYNIX_AC23V128111: NomParser<GameMaskRom> = NomParser {
+    name: "Hynix AC23V128111",
+    f: |input| ac23v("AC23V128111", GameRomType::J2).parse(input),
 };
 
 fn date_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, PartDateCode, E> {

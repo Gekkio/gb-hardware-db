@@ -172,6 +172,18 @@ impl ParsedPart for parser::GenericPart {
     }
 }
 
+impl ParsedPart for parser::GameMaskRom {
+    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
+        ProcessedPart {
+            label: Some(label),
+            kind: self.chip_type,
+            manufacturer: self.manufacturer,
+            date_code: loose_datecode(year_hint, self.date_code),
+            ..ProcessedPart::default()
+        }
+    }
+}
+
 impl ParsedPart for parser::MaskRom {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {

@@ -5,7 +5,7 @@
 use gbhwdb_model::{
     config::cartridge::*,
     input::cartridge::*,
-    parser::{Accelerometer, Crystal, Eeprom, GenericPart, Mapper, MaskRom, Tama, UnknownChip},
+    parser::{Accelerometer, Crystal, Eeprom, GameMaskRom, GenericPart, Mapper, Tama, UnknownChip},
 };
 use std::{any::Any, collections::HashMap};
 
@@ -46,7 +46,7 @@ impl LegacyBoard {
                 let parsed = (part.parse_any)(label)
                     .unwrap_or_else(|_| panic!("Failed to parse {designator:?}:{label}"));
 
-                let part = try_process::<MaskRom>(board.year, label, parsed)
+                let part = try_process::<GameMaskRom>(board.year, label, parsed)
                     .or_else(|parsed| try_process::<Mapper>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<GenericPart>(board.year, label, parsed))
                     .or_else(|parsed| try_process::<Crystal>(board.year, label, parsed))

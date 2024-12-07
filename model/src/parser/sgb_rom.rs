@@ -21,6 +21,7 @@ pub fn unknown2() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: None,
+                mask_code: None,
                 date_code: Some(PartDateCode::YearWeek {
                     year: year2(&c[3])?,
                     week: week2(&c[4])?,
@@ -43,6 +44,7 @@ pub fn unknown3() -> &'static impl LabelParser<MaskRom> {
                 rom_id: c[1].to_owned(),
                 manufacturer: None,
                 chip_type: None,
+                mask_code: None,
                 date_code: None,
             })
         },

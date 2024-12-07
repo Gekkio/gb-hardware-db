@@ -14,7 +14,7 @@ use nom::{
 
 use super::{
     for_nom::{self, agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
-    GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, NomParser, PartDateCode,
 };
 
 /// Macronix MX29F008 (TSOP-I-40, 4.5-5.5V)
@@ -84,7 +84,7 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     product_body: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         assembly_vendor_code,
         date_code,
@@ -101,10 +101,12 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
         lot_code_new,
     ))
     .map(
-        |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _)| MaskRom {
+        move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _)| GameMaskRom {
             rom_id: String::from(rom_id),
-            chip_type: Some(String::from(kind)),
+            rom_type,
             manufacturer: Some(Manufacturer::Macronix),
+            chip_type: Some(String::from(kind)),
+            mask_code: None,
             date_code: Some(date_code),
         },
     )
@@ -116,7 +118,7 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23L8006.parse("M042021-M MX23L8006-12B AGB-FBMP-0 F2 2K151900").is_ok());
 /// ```
-pub static MACRONIX_MX23L8006: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L8006: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L8006",
     f: |input| agb_mx23l("MX23L8006-12B", "21", GameRomType::F2).parse(input),
 };
@@ -128,7 +130,7 @@ pub static MACRONIX_MX23L8006: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L3206.parse("M043821-M MX23L3206-12B AGB-BP9E-0 H2 2K194300").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L3206.parse("S064421-MG MX23L3206-12B AGB-BG7E-0 H2 2T341304").is_ok());
 /// ```
-pub static MACRONIX_MX23L3206: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L3206: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L3206",
     f: |input| agb_mx23l("MX23L3206-12B", "21", GameRomType::H2).parse(input),
 };
@@ -139,7 +141,7 @@ pub static MACRONIX_MX23L3206: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23L3406.parse("S035046-M MX23L3406-12C AGB-BBRX-0 I2 2I904402").is_ok());
 /// ```
-pub static MACRONIX_MX23L3406: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L3406: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L3406",
     f: |input| agb_mx23l("MX23L3406-12C", "46", GameRomType::I2).parse(input),
 };
@@ -151,7 +153,7 @@ pub static MACRONIX_MX23L3406: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L6406.parse("M022807-M MX23L6406-12B1 AGB-AGSF-0 I2 2E825103").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L6406.parse("S051746-MG MX23L6406-12C AGB-BRKP-0 I2 2L261801").is_ok());
 /// ```
-pub static MACRONIX_MX23L6406: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L6406: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L6406",
     f: |input| {
         alt((
@@ -170,7 +172,7 @@ pub static MACRONIX_MX23L6406: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L6407.parse("S024358-M MX23L6407-12C AGB-AXPJ-0 I2 2G447800").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L6407.parse("M053257-MG MX23L6407-12C1 AGB-KYGP-0 I2 2M219701A1").is_ok());
 /// ```
-pub static MACRONIX_MX23L6407: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L6407: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L6407",
     f: |input| {
         alt((
@@ -188,7 +190,7 @@ pub static MACRONIX_MX23L6407: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L12806.parse("E033938-M MX23L12806-12C AGB-BPPP-0 J2 2F478700").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L12806.parse("S052638-MG MX23L12806-12C AGB-BPRS-0 J2 2M396503A1").is_ok());
 /// ```
-pub static MACRONIX_MX23L12806: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L12806: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L12806",
     f: |input| agb_mx23l("MX23L12806-12C", "38", GameRomType::J2).parse(input),
 };
@@ -200,7 +202,7 @@ pub static MACRONIX_MX23L12806: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L12807.parse("E055058-MG MX23L12807-12C AGB-BPES-0 J2 2N422000A1").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L12807.parse("N032358-M MX23L12807-12C AGB-AXVS-0 J2 2H552600").is_ok());
 /// ```
-pub static MACRONIX_MX23L12807: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L12807: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L12807",
     f: |input| agb_mx23l("MX23L12807-12C", "58", GameRomType::J2).parse(input),
 };
@@ -212,7 +214,7 @@ pub static MACRONIX_MX23L12807: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23L25607.parse("E053953-MG MX23L25607-12D1 AGB-BE8P-0 K2 2N007800").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23L25607.parse("M064053-MG MX23L25607-12D2 AGB-BH3E-0 K2 2T151000").is_ok());
 /// ```
-pub static MACRONIX_MX23L25607: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23L25607: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23L25607",
     f: |input| {
         alt((
@@ -226,7 +228,7 @@ pub static MACRONIX_MX23L25607: NomParser<MaskRom> = NomParser {
 fn dmg_mx23c_old<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         assembly_vendor_code,
         date_code,
@@ -242,10 +244,12 @@ fn dmg_mx23c_old<'a, E: ParseError<&'a str>>(
         uppers(1),
     ))
     .map(
-        |(_, date_code, _, _, kind, _, rom_id, _, _, _, _, _)| MaskRom {
+        move |(_, date_code, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
             rom_id: String::from(rom_id),
-            chip_type: Some(String::from(kind)),
+            rom_type,
             manufacturer: Some(Manufacturer::Macronix),
+            chip_type: Some(String::from(kind)),
+            mask_code: None,
             date_code: Some(date_code),
         },
     )
@@ -255,7 +259,7 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     product_body: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         assembly_vendor_code,
         date_code,
@@ -273,10 +277,12 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
         lot_code_new,
     ))
     .map(
-        |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _, _)| MaskRom {
+        move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
             rom_id: String::from(rom_id),
-            chip_type: Some(String::from(kind)),
+            rom_type,
             manufacturer: Some(Manufacturer::Macronix),
+            chip_type: Some(String::from(kind)),
+            mask_code: None,
             date_code: Some(date_code),
         },
     )
@@ -289,7 +295,7 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
 /// assert!(parser::macronix::MACRONIX_MX23C4002.parse("J9720-M MX23C4002-20 DMG-ATAJ-0 E1 43282F").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23C4002.parse("C983938-M MX23C4002-20 DMG-AD3E-1 E1 1P0221Y3").is_ok());
 /// ```
-pub static MACRONIX_MX23C4002: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C4002: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C4002",
     f: |input| {
         alt((
@@ -306,7 +312,7 @@ pub static MACRONIX_MX23C4002: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23C8003.parse("S010649-M MX23C8003-20 DMG-BMAP-0 F1 1C3876A1").is_ok());
 /// ```
-pub static MACRONIX_MX23C8003: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C8003: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C8003",
     f: |input| gb_mx23c("MX23C8003-20", "49", GameRomType::F1).parse(input),
 };
@@ -317,7 +323,7 @@ pub static MACRONIX_MX23C8003: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23C8005.parse("C010649-M MX23C8005-12 CGB-BHFE-0 F1 1C5450LB").is_ok());
 /// ```
-pub static MACRONIX_MX23C8005: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C8005: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C8005",
     f: |input| gb_mx23c("MX23C8005-12", "49", GameRomType::F1).parse(input),
 };
@@ -328,7 +334,7 @@ pub static MACRONIX_MX23C8005: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23C8006.parse("T991349-M MX23C8006-12 DMG-VPHJ-0 F 1A4891A2").is_ok());
 /// ```
-pub static MACRONIX_MX23C8006: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C8006: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C8006",
     f: |input| gb_mx23c("MX23C8006-12", "49", GameRomType::F).parse(input),
 };
@@ -340,7 +346,7 @@ pub static MACRONIX_MX23C8006: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23C1603.parse("E052804-MG MX23C1603-12A CGB-AAUK-0 G2 1D4499A2A1").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23C1603.parse("M994395-M MX23C1603-12 1 CGB-VYHE-0 G2 1Q6065A1").is_ok());
 /// ```
-pub static MACRONIX_MX23C1603: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C1603: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C1603",
     f: |input| {
         alt((
@@ -358,7 +364,7 @@ pub static MACRONIX_MX23C1603: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::macronix::MACRONIX_MX23C1605.parse("C004219-M MX23C1605-12A CGB-BTKP-0 G1 2D246301").is_ok());
 /// ```
-pub static MACRONIX_MX23C1605: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C1605: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C1605",
     f: |input| gb_mx23c("MX23C1605-12A", "19", GameRomType::G1).parse(input),
 };
@@ -371,7 +377,7 @@ pub static MACRONIX_MX23C1605: NomParser<MaskRom> = NomParser {
 /// assert!(parser::macronix::MACRONIX_MX23C3203.parse("M004523-M MX23C3203-11A2 CGB-B82J-0 02 H2 2D224301").is_ok());
 /// assert!(parser::macronix::MACRONIX_MX23C3203.parse("M002595-M MX23C3203-12 1 CGB-BY3J-0 H2 1R0833A1").is_ok());
 /// ```
-pub static MACRONIX_MX23C3203: NomParser<MaskRom> = NomParser {
+pub static MACRONIX_MX23C3203: NomParser<GameMaskRom> = NomParser {
     name: "Macronix MX23C3203",
     f: |input| {
         alt((

@@ -6,15 +6,15 @@ use nom::{
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
-    combinator::{opt, value},
+    combinator::{consumed, opt, value},
     error::ParseError,
-    sequence::tuple,
+    sequence::{terminated, tuple},
     Parser,
 };
 
 use super::{
     for_nom::{alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, uppers, year2_week2},
-    GameRomType, GenericPart, Manufacturer, MaskRom, NomParser,
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskCode, MaskRom, NomParser,
 };
 
 /// ```
@@ -159,7 +159,7 @@ impl Package {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT.parse("LR0G150 DMG-TRA-1 97141").is_ok());
 /// ```
-pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<MaskRom> = NomParser {
+pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Sharp mask ROM",
     f: |input| {
         tuple((
@@ -170,10 +170,12 @@ pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<MaskRom> = NomParser 
             year2_week2,
             digits(1),
         ))
-        .map(|(_, _, rom_id, _, date_code, _)| MaskRom {
+        .map(|(_, _, rom_id, _, date_code, _)| GameMaskRom {
             rom_id: String::from(rom_id),
+            rom_type: GameRomType::GlopTop,
             manufacturer: Some(Manufacturer::Sharp),
             chip_type: None,
+            mask_code: None,
             date_code: Some(date_code),
         })
         .parse(input)
@@ -182,8 +184,9 @@ pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<MaskRom> = NomParser 
 
 fn lh53_ancient<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
+    rom_type: GameRomType,
     unknown: char,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         dmg_rom_code(),
         char(' '),
@@ -195,18 +198,22 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
         char(' '),
         char(unknown),
     ))
-    .map(move |(rom_id, _, _, _, date_code, _, _, _, _)| MaskRom {
-        rom_id: String::from(rom_id),
-        manufacturer: Some(Manufacturer::Sharp),
-        chip_type: kind.map(String::from),
-        date_code: Some(date_code),
-    })
+    .map(
+        move |(rom_id, _, _, _, date_code, _, _, _, _)| GameMaskRom {
+            rom_id: String::from(rom_id),
+            rom_type,
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: kind.map(String::from),
+            mask_code: None,
+            date_code: Some(date_code),
+        },
+    )
 }
 
 fn lh53_old<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         dmg_rom_code(),
         char(' '),
@@ -218,22 +225,26 @@ fn lh53_old<'a, E: ParseError<&'a str>>(
         char(' '),
         alphas(1),
     ))
-    .map(move |(rom_id, _, _, _, _, _, date_code, _, _)| MaskRom {
-        rom_id: String::from(rom_id),
-        manufacturer: Some(Manufacturer::Sharp),
-        chip_type: kind.map(String::from),
-        date_code: Some(date_code),
-    })
+    .map(
+        move |(rom_id, _, _, _, _, _, date_code, _, _)| GameMaskRom {
+            rom_id: String::from(rom_id),
+            rom_type,
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: kind.map(String::from),
+            mask_code: None,
+            date_code: Some(date_code),
+        },
+    )
 }
 
 fn lh53_new<'a, E: ParseError<&'a str>>(
     model: impl Parser<&'a str, Option<&'a str>, E>,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         alt((dmg_rom_code(), cgb_rom_code())),
         tag(" S "),
-        model,
+        consumed(terminated(model, alnum_uppers(2))),
         tag(" JAPAN "),
         tag(rom_type.as_str()),
         char(' '),
@@ -241,12 +252,16 @@ fn lh53_new<'a, E: ParseError<&'a str>>(
         char(' '),
         alphas(1),
     ))
-    .map(|(rom_id, _, kind, _, _, _, date_code, _, _)| MaskRom {
-        rom_id: String::from(rom_id),
-        manufacturer: Some(Manufacturer::Sharp),
-        chip_type: kind.map(String::from),
-        date_code: Some(date_code),
-    })
+    .map(
+        move |(rom_id, _, (mask_code, kind), _, _, _, date_code, _, _)| GameMaskRom {
+            rom_id: String::from(rom_id),
+            rom_type,
+            manufacturer: Some(Manufacturer::Sharp),
+            chip_type: kind.map(String::from),
+            mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+            date_code: Some(date_code),
+        },
+    )
 }
 
 /// Sharp LH53259M mask ROM (QFP-44, 256 Kibit / 32 KiB)
@@ -257,15 +272,15 @@ fn lh53_new<'a, E: ParseError<&'a str>>(
 /// assert!(parser::sharp::SHARP_LH53259M.parse("DMG-AWA-0 SHARP JAPAN A0 8938 D").is_ok());
 /// assert!(parser::sharp::SHARP_LH53259M.parse("DMG-OPX-0 S LH5359UZ JAPAN A0 9722 D").is_ok());
 /// ```
-pub static SHARP_LH53259M: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH53259M: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH53259",
     f: |input| {
         alt((
-            lh53_ancient(Some("LH53259"), 'A'),
+            lh53_ancient(Some("LH53259"), GameRomType::A0, 'A'),
             lh53_old(Some("LH53259"), GameRomType::A0),
             lh53_new(
                 // Sharp Memory Data Book 1992
-                value(Some("LH53259"), tag("LH5359").and(alnum_uppers(2))),
+                value(Some("LH53259"), tag("LH5359")),
                 GameRomType::A0,
             ),
         ))
@@ -279,7 +294,7 @@ pub static SHARP_LH53259M: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH53515M.parse("DMG-CVJ-0 SHARP JAPAN B0 8941 D").is_ok());
 /// ```
-pub static SHARP_LH53515M: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH53515M: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH53515",
     f: |input| lh53_old(Some("LH53515"), GameRomType::B0).parse(input),
 };
@@ -290,12 +305,12 @@ pub static SHARP_LH53515M: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH53514Z.parse("DMG-AYJ-0 S LH5314H1 JAPAN B1 9014 E").is_ok());
 /// ```
-pub static SHARP_LH53514Z: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH53514Z: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH53514",
     f: |input| {
         lh53_new(
             // reasonable guess
-            value(Some("LH53514"), tag("LH5314").and(alnum_uppers(2))),
+            value(Some("LH53514"), tag("LH5314")),
             GameRomType::B1,
         )
         .parse(input)
@@ -308,12 +323,12 @@ pub static SHARP_LH53514Z: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH53517Z.parse("DMG-AYNP-0 S LH5317VR JAPAN B1 9850 E").is_ok());
 /// ```
-pub static SHARP_LH53517Z: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH53517Z: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH53517",
     f: |input| {
         lh53_new(
             // reasonable guess
-            value(Some("LH53517"), tag("LH5317").and(alnum_uppers(2))),
+            value(Some("LH53517"), tag("LH5317")),
             GameRomType::B1,
         )
         .parse(input)
@@ -326,15 +341,15 @@ pub static SHARP_LH53517Z: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH530800N.parse("DMG-A6W-0 S LH531HF8 JAPAN C1 9709 E").is_ok());
 /// ```
-pub static SHARP_LH530800N: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH530800N: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH530800",
     f: |input| {
         lh53_new(
             alt((
                 // reasonable guess
-                value(Some("LH530800"), tag("LH5308").and(alnum_uppers(2))),
+                value(Some("LH530800"), tag("LH5308")),
                 // Sharp Memory Data Book 1992
-                value(Some("LH530800A"), tag("LH531H").and(alnum_uppers(2))),
+                value(Some("LH530800A"), tag("LH531H")),
             )),
             GameRomType::C1,
         )
@@ -347,7 +362,7 @@ pub static SHARP_LH530800N: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_MASK_ROM_SOP_32_1_MIBIT.parse("DMG-NME-0 SHARP JAPAN C1 9009 E").is_ok());
 /// ```
-pub static SHARP_MASK_ROM_SOP_32_1_MIBIT: NomParser<MaskRom> = NomParser {
+pub static SHARP_MASK_ROM_SOP_32_1_MIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Sharp mask ROM",
     f: |input| lh53_old(None, GameRomType::C1).parse(input),
 };
@@ -357,15 +372,9 @@ pub static SHARP_MASK_ROM_SOP_32_1_MIBIT: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH532100N.parse("DMG-DFJ-0 S LH5321FL JAPAN D1 9249 D").is_ok());
 /// ```
-pub static SHARP_LH532100N: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH532100N: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH532100N",
-    f: |input| {
-        lh53_new(
-            value(Some("LH532100"), tag("LH5321").and(alnum_uppers(2))),
-            GameRomType::D1,
-        )
-        .parse(input)
-    },
+    f: |input| lh53_new(value(Some("LH532100"), tag("LH5321")), GameRomType::D1).parse(input),
 };
 
 /// Sharp LH532xxxN mask ROM (SOP-32, 2 Mibit / 256 KiB)
@@ -373,7 +382,7 @@ pub static SHARP_LH532100N: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH532XXXN.parse("DMG-DIJ-0 S LH532D17 JAPAN D1 9223 D").is_ok());
 /// ```
-pub static SHARP_LH532XXXN: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH532XXXN: NomParser<GameMaskRom> = NomParser {
     // maybe: LH532100 series / LH532300 / LH532700 series
     name: "Sharp LH532???",
     f: |input| {
@@ -386,8 +395,7 @@ pub static SHARP_LH532XXXN: NomParser<MaskRom> = NomParser {
                     tag("LH532M"),
                     tag("LH532W"),
                     tag("LHMN2E"),
-                ))
-                .and(alnum_uppers(2)),
+                )),
             ),
             GameRomType::D1,
         )
@@ -400,15 +408,12 @@ pub static SHARP_LH532XXXN: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH534XXXN.parse("DMG-A3ME-0 S LH534MW1 JAPAN E1 9547 E").is_ok());
 /// ```
-pub static SHARP_LH534XXXN: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH534XXXN: NomParser<GameMaskRom> = NomParser {
     // maybe: LH534100 series / LH534300 series / LH534R00
     name: "Sharp LH534???",
     f: |input| {
         lh53_new(
-            value(
-                None,
-                alt((tag("LH534M"), tag("LH5S4M"), tag("LHMN4M"))).and(alnum_uppers(2)),
-            ),
+            value(None, alt((tag("LH534M"), tag("LH5S4M"), tag("LHMN4M")))),
             GameRomType::E1,
         )
         .parse(input)
@@ -420,7 +425,7 @@ pub static SHARP_LH534XXXN: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH538XXXN.parse("CGB-AHYE-0 S LH538WV9 JAPAN F1 9916 D").is_ok());
 /// ```
-pub static SHARP_LH538XXXN: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH538XXXN: NomParser<GameMaskRom> = NomParser {
     // maybe: LH538300 series / LH538400 series / LH538700 / LH538R00 series
     name: "Sharp LH538???",
     f: |input| {
@@ -433,8 +438,7 @@ pub static SHARP_LH538XXXN: NomParser<MaskRom> = NomParser {
                     tag("LH5S8M"),
                     tag("LHMN8J"),
                     tag("LHMN8M"),
-                ))
-                .and(alnum_uppers(2)),
+                )),
             ),
             GameRomType::F1,
         )
@@ -447,15 +451,9 @@ pub static SHARP_LH538XXXN: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH534XXXS.parse("DMG-HFAJ-0 S LHMN4MTI JAPAN E 9838 E").is_ok());
 /// ```
-pub static SHARP_LH534XXXS: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH534XXXS: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH534???",
-    f: |input| {
-        lh53_new(
-            value(None, tag("LHMN4M").and(alnum_uppers(2))),
-            GameRomType::E,
-        )
-        .parse(input)
-    },
+    f: |input| lh53_new(value(None, tag("LHMN4M")), GameRomType::E).parse(input),
 };
 
 /// Sharp LH538xxxS mask ROM (TSOP-I-32, 8 Mibit / 1 MiB)
@@ -463,15 +461,9 @@ pub static SHARP_LH534XXXS: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH538XXXS.parse("DMG-HRCJ-0 S LH5S8MTI JAPAN F 9846 E").is_ok());
 /// ```
-pub static SHARP_LH538XXXS: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH538XXXS: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH538???",
-    f: |input| {
-        lh53_new(
-            value(None, tag("LH5S8M").and(alnum_uppers(2))),
-            GameRomType::F,
-        )
-        .parse(input)
-    },
+    f: |input| lh53_new(value(None, tag("LH5S8M")), GameRomType::F).parse(input),
 };
 
 /// Sharp LH5316xxx mask ROM (TSOP-II-44, 16 Mibit / 2 MiB)
@@ -480,16 +472,10 @@ pub static SHARP_LH538XXXS: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH5316XXX.parse("CGB-AFIP-0 S LH537MTJ JAPAN G2 9929 D").is_ok());
 /// ```
-pub static SHARP_LH5316XXX: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH5316XXX: NomParser<GameMaskRom> = NomParser {
     // maybe: LH5316400 / LH5316500 series / LH5316P00 series
     name: "Sharp LH5316???",
-    f: |input| {
-        lh53_new(
-            value(None, tag("LH537M").and(alnum_uppers(2))),
-            GameRomType::G2,
-        )
-        .parse(input)
-    },
+    f: |input| lh53_new(value(None, tag("LH537M")), GameRomType::G2).parse(input),
 };
 
 /// Sharp LH5332xxx mask ROM (TSOP-II-44, 32 Mibit / 4 MiB)
@@ -498,19 +484,13 @@ pub static SHARP_LH5316XXX: NomParser<MaskRom> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH5332XXX.parse("CGB-AYQE-0 S LHMN5MTF JAPAN H2 0010 D").is_ok());
 /// ```
-pub static SHARP_LH5332XXX: NomParser<MaskRom> = NomParser {
+pub static SHARP_LH5332XXX: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH5332???",
-    f: |input| {
-        lh53_new(
-            value(None, tag("LHMN5M").and(alnum_uppers(2))),
-            GameRomType::H2,
-        )
-        .parse(input)
-    },
+    f: |input| lh53_new(value(None, tag("LHMN5M")), GameRomType::H2).parse(input),
 };
 
 fn sgb_rom<'a, E: ParseError<&'a str>>(
-    model: impl Parser<&'a str, Option<&'a str>, E>,
+    model: impl Parser<&'a str, (&'a str, Option<&'a str>), E>,
     rom_id: &'static str,
 ) -> impl Parser<&'a str, MaskRom, E> {
     tuple((
@@ -522,12 +502,15 @@ fn sgb_rom<'a, E: ParseError<&'a str>>(
         char(' '),
         uppers(1),
     ))
-    .map(|(rom_id, _, kind, _, date_code, _, _)| MaskRom {
-        rom_id: String::from(rom_id),
-        chip_type: kind.map(String::from),
-        manufacturer: Some(Manufacturer::Sharp),
-        date_code: Some(date_code),
-    })
+    .map(
+        |(rom_id, _, (mask_code, kind), _, date_code, _, _)| MaskRom {
+            rom_id: String::from(rom_id),
+            chip_type: kind.map(String::from),
+            manufacturer: Some(Manufacturer::Sharp),
+            mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+            date_code: Some(date_code),
+        },
+    )
 }
 
 /// Sharp SGB mask ROM
@@ -543,14 +526,17 @@ pub static SHARP_SGB_ROM: NomParser<MaskRom> = NomParser {
     f: |input| {
         alt((
             sgb_rom(
-                value(Some("LH532100B"), tag("LH532K").and(tag("N8"))),
+                consumed(value(Some("LH532100B"), tag("LH532K").and(tag("N8")))),
                 "SYS-SGB-NT",
             ),
             sgb_rom(
-                value(Some("LH532100B"), tag("LH532K").and(tag("ND"))),
+                consumed(value(Some("LH532100B"), tag("LH532K").and(tag("ND")))),
                 "SYS-SGB-2",
             ),
-            sgb_rom(value(None, tag("LH532M").and(tag("0M"))), "SYS-SGB-2"),
+            sgb_rom(
+                consumed(value(None, tag("LH532M").and(tag("0M")))),
+                "SYS-SGB-2",
+            ),
         ))
         .parse(input)
     },
@@ -569,18 +555,21 @@ pub static SHARP_SGB2_ROM: NomParser<MaskRom> = NomParser {
             tag("© 1998 Nintendo "),
             tag("SYS-SGB2-10"),
             char(' '),
-            value(Some("LH534R00B"), tag("LH5S4R").and(tag("Y4"))),
+            consumed(value(Some("LH534R00B"), tag("LH5S4R").and(tag("Y4")))),
             char(' '),
             year2_week2,
             char(' '),
             uppers(1),
         ))
-        .map(|(_, rom_id, _, kind, _, date_code, _, _)| MaskRom {
-            rom_id: String::from(rom_id),
-            chip_type: kind.map(String::from),
-            manufacturer: Some(Manufacturer::Sharp),
-            date_code: Some(date_code),
-        })
+        .map(
+            |(_, rom_id, _, (mask_code, kind), _, date_code, _, _)| MaskRom {
+                rom_id: String::from(rom_id),
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: kind.map(String::from),
+                mask_code: Some(MaskCode::Sharp(String::from(mask_code))),
+                date_code: Some(date_code),
+            },
+        )
         .parse(input)
     },
 };

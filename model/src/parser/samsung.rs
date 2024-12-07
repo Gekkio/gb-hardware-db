@@ -14,7 +14,7 @@ use nom::{
 
 use super::{
     for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
-    GameRomType, Manufacturer, MaskRom, NomParser,
+    GameMaskRom, GameRomType, Manufacturer, NomParser,
 };
 
 fn gb_km23c_old<'a, E: ParseError<&'a str>>(
@@ -22,7 +22,7 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
     package: Package,
     rom_type: GameRomType,
     unknown2: &'static str,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         tag("SEC "),
         recognize(tuple((
@@ -41,10 +41,12 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
             .and(alnum_uppers(2))
             .and(uppers(1)),
     ))
-    .map(|(_, kind, _, rom_id, _, _, _, _)| MaskRom {
+    .map(move |(_, kind, _, rom_id, _, _, _, _)| GameMaskRom {
         rom_id: String::from(rom_id),
-        chip_type: Some(String::from(kind)),
+        rom_type,
         manufacturer: Some(Manufacturer::Samsung),
+        chip_type: Some(String::from(kind)),
+        mask_code: None,
         date_code: None,
     })
 }
@@ -54,7 +56,7 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
     package: Package,
     rom_type: GameRomType,
     unknown2: &'static str,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, GameMaskRom, E> {
     tuple((
         tag("SEC "),
         recognize(tuple((
@@ -70,10 +72,12 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
         char(' '),
         recognize(tag(unknown2).and(digits(3)).and(uppers(2))),
     ))
-    .map(|(_, kind, _, rom_id, _, _, _, _)| MaskRom {
+    .map(move |(_, kind, _, rom_id, _, _, _, _)| GameMaskRom {
         rom_id: String::from(rom_id),
-        chip_type: Some(String::from(kind)),
+        rom_type,
         manufacturer: Some(Manufacturer::Samsung),
+        chip_type: Some(String::from(kind)),
+        mask_code: None,
         date_code: None,
     })
 }
@@ -84,7 +88,7 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::samsung::SAMSUNG_KM23C4000.parse("SEC KM23C4000DG DMG-ATEA-0 E1 KF5304U").is_ok());
 /// ```
-pub static SAMSUNG_KM23C4000: NomParser<MaskRom> = NomParser {
+pub static SAMSUNG_KM23C4000: NomParser<GameMaskRom> = NomParser {
     name: "Samsung KM23C4000",
     f: |input| gb_km23c_old("4000", Package::Sop, GameRomType::E1, "KF5").parse(input),
 };
@@ -96,7 +100,7 @@ pub static SAMSUNG_KM23C4000: NomParser<MaskRom> = NomParser {
 /// assert!(parser::samsung::SAMSUNG_KM23C8000.parse("SEC KM23C8000DG DMG-APSJ-0 F1 KFX3ALY").is_ok());
 /// assert!(parser::samsung::SAMSUNG_KM23C8000.parse("SEC KM23C8000DG DMG-AAUJ-1 F1 KFX331U").is_ok());
 /// ```
-pub static SAMSUNG_KM23C8000: NomParser<MaskRom> = NomParser {
+pub static SAMSUNG_KM23C8000: NomParser<GameMaskRom> = NomParser {
     name: "Samsung KM23C8000",
     f: |input| gb_km23c_old("8000", Package::Sop, GameRomType::F1, "KFX").parse(input),
 };
@@ -109,7 +113,7 @@ pub static SAMSUNG_KM23C8000: NomParser<MaskRom> = NomParser {
 /// assert!(parser::samsung::SAMSUNG_KM23C16120.parse("SEC KM23C16120DT DMG-AWLP-0 G2 KF6409G").is_ok());
 /// assert!(parser::samsung::SAMSUNG_KM23C16120.parse("SEC KM23C16120DT CGB-BHMJ-0 G2 K3N5C317GD").is_ok());
 /// ```
-pub static SAMSUNG_KM23C16120: NomParser<MaskRom> = NomParser {
+pub static SAMSUNG_KM23C16120: NomParser<GameMaskRom> = NomParser {
     name: "Samsung KM23C16120",
     f: |input| {
         alt((

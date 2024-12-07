@@ -26,7 +26,6 @@ pub use self::{
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
     mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
-    mask_rom::MaskRom,
     tama::{Tama, TamaType},
 };
 
@@ -58,8 +57,8 @@ pub mod lcd_chip;
 pub mod lcd_screen;
 pub mod lgs;
 pub mod macronix;
+pub mod magnachip;
 pub mod mapper;
-pub mod mask_rom;
 pub mod mitsubishi;
 pub mod mitsumi;
 pub mod nec;
@@ -682,27 +681,29 @@ pub fn icd2() -> &'static impl LabelParser<GenericPart> {
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum GameRomType {
-    A0, // 256 Kibit / 32 KiB,  QFP
-    B0, // 512 Kibit / 64 KiB,  QFP
-    B1, // 512 Kibit / 64 KiB,  SOP
-    C1, // 1 Mibit   / 128 KiB, SOP
-    D1, // 2 Mibit   / 256 KiB, SOP
-    E,  // 4 Mibit   / 512 KiB, TSOP-I
-    E1, // 4 Mibit   / 512 KiB, SOP
-    F,  // 8 Mibit   / 1 MiB,   TSOP-I
-    F1, // 8 Mibit   / 1 MiB,   SOP
-    F2, // 8 Mibit   / 1 MiB,   TSOP-II
-    G1, // 16 Mibit  / 2 MiB,   SOP
-    G2, // 16 Mibit  / 2 MiB,   TSOP-II
-    H2, // 32 Mibit  / 4 MiB,   TSOP-II
-    I2, // 64 Mibit  / 8 MiB,   TSOP-II
-    J2, // 128 Mibit / 16 MiB,  TSOP-II
-    K2, // 256 Mibit / 32 MiB,  TSOP-II
+    GlopTop, // 256 Kibit / 32 KiBit, gloptop
+    A0,      // 256 Kibit / 32 KiB,  QFP
+    B0,      // 512 Kibit / 64 KiB,  QFP
+    B1,      // 512 Kibit / 64 KiB,  SOP
+    C1,      // 1 Mibit   / 128 KiB, SOP
+    D1,      // 2 Mibit   / 256 KiB, SOP
+    E,       // 4 Mibit   / 512 KiB, TSOP-I
+    E1,      // 4 Mibit   / 512 KiB, SOP
+    F,       // 8 Mibit   / 1 MiB,   TSOP-I
+    F1,      // 8 Mibit   / 1 MiB,   SOP
+    F2,      // 8 Mibit   / 1 MiB,   TSOP-II
+    G1,      // 16 Mibit  / 2 MiB,   SOP
+    G2,      // 16 Mibit  / 2 MiB,   TSOP-II
+    H2,      // 32 Mibit  / 4 MiB,   TSOP-II
+    I2,      // 64 Mibit  / 8 MiB,   TSOP-II
+    J2,      // 128 Mibit / 16 MiB,  TSOP-II
+    K2,      // 256 Mibit / 32 MiB,  TSOP-II
 }
 
 impl GameRomType {
     pub fn as_str(&self) -> &'static str {
         match self {
+            GameRomType::GlopTop => "",
             GameRomType::A0 => "A0",
             GameRomType::B0 => "B0",
             GameRomType::B1 => "B1",
@@ -721,4 +722,134 @@ impl GameRomType {
             GameRomType::K2 => "K2",
         }
     }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum MaskCode {
+    Nec(String),
+    Oki(String),
+    Sharp(String),
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct GameMaskRom {
+    pub rom_id: String,
+    pub rom_type: GameRomType,
+    pub manufacturer: Option<Manufacturer>,
+    pub chip_type: Option<String>,
+    pub mask_code: Option<MaskCode>,
+    pub date_code: Option<PartDateCode>,
+}
+
+impl ParsedData for GameMaskRom {}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct MaskRom {
+    pub rom_id: String,
+    pub manufacturer: Option<Manufacturer>,
+    pub chip_type: Option<String>,
+    pub mask_code: Option<MaskCode>,
+    pub date_code: Option<PartDateCode>,
+}
+
+impl ParsedData for MaskRom {}
+
+pub fn agb_mask_rom_tsop_ii_44_3v3() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(
+        GameMaskRom,
+        &magnachip::MAGNACHIP_AC23V32101,
+        &magnachip::MAGNACHIP_AC23V64101,
+        &magnachip::MAGNACHIP_AC23V128111,
+        &hynix::HYNIX_AC23V32101,
+        &hynix::HYNIX_AC23V64101,
+        &hynix::HYNIX_AC23V128111,
+        &macronix::MACRONIX_MX23L8006,
+        &macronix::MACRONIX_MX23L3206,
+        &macronix::MACRONIX_MX23L3406,
+        &macronix::MACRONIX_MX23L6406,
+        &macronix::MACRONIX_MX23L6407,
+        &macronix::MACRONIX_MX23L12806,
+        &macronix::MACRONIX_MX23L12807,
+        &macronix::MACRONIX_MX23L25607,
+        &oki::OKI_MR26V3210,
+        &oki::OKI_MR26V3211,
+        &oki::OKI_MR26V6413,
+        &oki::OKI_MR26V6414,
+        &oki::OKI_MR26V6415,
+        &oki::OKI_MR27V810,
+        &oki::OKI_MR27V6416,
+        &oki::OKI_MR27V12813,
+    )
+}
+
+pub fn gb_mask_rom_glop_top_28_5v() -> &'static impl LabelParser<GameMaskRom> {
+    &sharp::SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT
+}
+
+pub fn gb_mask_rom_sop_32_5v() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(
+        GameMaskRom,
+        &sharp::SHARP_MASK_ROM_SOP_32_1_MIBIT,
+        &sharp::SHARP_LH53514Z,
+        &sharp::SHARP_LH53517Z,
+        &sharp::SHARP_LH530800N,
+        &sharp::SHARP_LH532100N,
+        &sharp::SHARP_LH532XXXN,
+        &sharp::SHARP_LH534XXXN,
+        &sharp::SHARP_LH538XXXN,
+        &macronix::MACRONIX_MX23C4002,
+        &macronix::MACRONIX_MX23C8003,
+        &macronix::MACRONIX_MX23C8005,
+        &oki::OKI_MSM534011,
+        &oki::OKI_MSM538011,
+        &nec::NEC_UPD23C1001E,
+        &nec::NEC_UPD23C2001E,
+        &nec::NEC_UPD23C4001E,
+        &nec::NEC_UPD23C8001E,
+        &nec::AT_T_UPD23C1001E,
+        &nec::SMSC_UPD23C1001E,
+        &nec::MANI_UPD23C4001E,
+        &toshiba::TOSHIBA_TC531001,
+        &toshiba::TOSHIBA_TC532000,
+        &toshiba::TOSHIBA_TC534000,
+        &samsung::SAMSUNG_KM23C4000,
+        &samsung::SAMSUNG_KM23C8000,
+        &fujitsu::FUJITSU_MASK_ROM_SOP_32_2_MIBIT,
+        &fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT,
+    )
+}
+
+pub fn gb_mask_rom_sop_44_5v() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(GameMaskRom, &macronix::MACRONIX_MX23C1605,)
+}
+
+pub fn gb_mask_rom_tsop_i_32_5v() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(
+        GameMaskRom,
+        &sharp::SHARP_LH534XXXS,
+        &sharp::SHARP_LH538XXXS,
+        &macronix::MACRONIX_MX23C8006,
+    )
+}
+
+pub fn gb_mask_rom_tsop_ii_44_5v() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(
+        GameMaskRom,
+        &sharp::SHARP_LH5316XXX,
+        &sharp::SHARP_LH5332XXX,
+        &macronix::MACRONIX_MX23C1603,
+        &macronix::MACRONIX_MX23C3203,
+        &oki::OKI_MR531614,
+        &nec::NEC_UPD23C16019W,
+        &samsung::SAMSUNG_KM23C16120,
+    )
+}
+
+pub fn gb_mask_rom_qfp_44_5v() -> &'static impl LabelParser<GameMaskRom> {
+    multi_parser!(
+        GameMaskRom,
+        &sharp::SHARP_LH53259M,
+        &sharp::SHARP_LH53515M,
+        &oki::OKI_MASK_ROM_QFP_44_512_KIBIT,
+    )
 }

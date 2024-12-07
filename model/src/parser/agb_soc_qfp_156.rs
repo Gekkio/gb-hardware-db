@@ -2,25 +2,28 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, ChipYearWeek, LabelParser};
-use crate::macros::single_parser;
-
-pub type AgbSoc = ChipYearWeek;
+use super::{week2, year2, LabelParser};
+use crate::{
+    macros::single_parser,
+    parser::{GenericPart, PartDateCode},
+};
 
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::agb_soc_qfp_156::agb_soc_qfp_156().parse("CPU AGB B E Ⓜ © 2002 Nintendo JAPAN ARM 0602 UB").is_ok());
 /// ```
-pub fn agb_soc_qfp_156() -> &'static impl LabelParser<AgbSoc> {
+pub fn agb_soc_qfp_156() -> &'static impl LabelParser<GenericPart> {
     single_parser!(
-        AgbSoc,
+        GenericPart,
         r#"^(CPU\ AGB\ B(\ E)?)\ Ⓜ\ ©\ 2002\ Nintendo\ JAPAN\ ARM\ ([0-9]{2})([0-9]{2})\ [a-zA-Z]{1,2}$"#,
         move |c| {
-            Ok(AgbSoc {
+            Ok(GenericPart {
                 kind: c[1].to_owned(),
                 manufacturer: None,
-                year: Some(year2(&c[3])?),
-                week: Some(week2(&c[4])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[3])?,
+                    week: week2(&c[4])?,
+                }),
             })
         },
     )

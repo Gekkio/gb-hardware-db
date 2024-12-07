@@ -5,18 +5,16 @@
 use super::{week2, year2, GenericPart, LabelParser};
 use crate::{macros::single_parser, parser::PartDateCode};
 
-pub type AgbSoc = GenericPart;
-
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::agb_soc_bga::agb_soc_bga().parse("0529 2m CPU AGB E Ⓜ © 2004 Nintendo JAPAN ARM").is_ok());
 /// ```
-pub fn agb_soc_bga() -> &'static impl LabelParser<AgbSoc> {
+pub fn agb_soc_bga() -> &'static impl LabelParser<GenericPart> {
     single_parser!(
-        AgbSoc,
+        GenericPart,
         r#"^([0-9]{2})([0-9]{2})\ 2m\ (CPU\ AGB\ E)\ Ⓜ\ ©\ 2004\ Nintendo\ JAPAN\ ARM$"#,
         move |c| {
-            Ok(AgbSoc {
+            Ok(GenericPart {
                 kind: c[3].to_owned(),
                 manufacturer: None,
                 date_code: Some(PartDateCode::YearWeek {

@@ -135,18 +135,6 @@ impl ParsedPart for parser::Coil {
     }
 }
 
-impl ParsedPart for parser::ChipYearWeek {
-    fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
-        ProcessedPart {
-            label: Some(label),
-            kind: Some(self.kind),
-            manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
-            ..ProcessedPart::default()
-        }
-    }
-}
-
 fn loose_datecode(year_hint: Option<u16>, date_code: Option<PartDateCode>) -> DateCode {
     match date_code {
         Some(PartDateCode::Year { year }) => DateCode::loose_year_week(year_hint, Some(year), None),

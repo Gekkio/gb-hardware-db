@@ -15,9 +15,7 @@ use crate::{
 pub use self::{
     accelerometer::Accelerometer,
     ags_charge_ctrl::AgsChargeController,
-    cgb_soc::CgbSoc,
     cgb_stamp::CgbStamp,
-    cic::Cic,
     coil::Coil,
     dmg_stamp::DmgStamp,
     eeprom::Eeprom,
@@ -91,23 +89,6 @@ pub struct GenericPart {
     pub kind: String,
     pub manufacturer: Option<Manufacturer>,
     pub date_code: Option<PartDateCode>,
-}
-
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct ChipYearWeek {
-    pub kind: String,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub week: Option<Week>,
-}
-
-#[derive(Clone, Debug, Eq, PartialEq)]
-pub struct ChipYearMonthWeek {
-    pub kind: String,
-    pub manufacturer: Option<Manufacturer>,
-    pub year: Option<Year>,
-    pub month: Option<Month>,
-    pub week: Option<Week>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]

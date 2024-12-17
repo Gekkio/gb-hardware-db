@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AZLP-0",
+  "slug": "kurodo-2",
+  "contributor": "Kurodo",
+  "index": 2,
+  "shell": {
+    "code": "AGB-AZLP-EUR",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-3",
+    "year": 2003,
+    "month": 9,
+    "u1": {
+      "label": "S034346-M MX23L6406-12C AGB-AZLP-0 I2 2I035805"
+    },
+    "u2": {
+      "label": "9854 3S89W"
+    }
+  }
+}

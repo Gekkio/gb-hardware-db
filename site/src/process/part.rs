@@ -129,9 +129,9 @@ impl ParsedPart for parser::Mapper {
     fn process(self, year_hint: Option<u16>, label: String) -> ProcessedPart {
         ProcessedPart {
             label: Some(label),
-            kind: Some(self.mbc_type.display_name().to_owned()),
+            kind: Some(self.kind.display_name().to_owned()),
             manufacturer: self.manufacturer,
-            date_code: DateCode::loose_year_week(year_hint, self.year, self.week),
+            date_code: loose_datecode(year_hint, self.date_code),
             ..ProcessedPart::default()
         }
     }

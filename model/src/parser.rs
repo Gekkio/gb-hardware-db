@@ -16,7 +16,7 @@ use crate::{
 pub use self::{
     lcd_chip::LcdChip,
     lcd_screen::LcdScreen,
-    mapper::{Huc1Version, Mapper, MapperType, Mbc1Version, Mbc2Version, Mbc3Version},
+    mapper::{Mapper, MapperChip},
 };
 
 pub mod amic;

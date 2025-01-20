@@ -8,7 +8,7 @@ use nom::{
     character::{complete::one_of, streaming::char},
     combinator::{consumed, opt, recognize, value},
     error::ParseError,
-    sequence::{separated_pair, terminated, tuple},
+    sequence::{delimited, separated_pair, terminated, tuple},
     Parser,
 };
 
@@ -17,7 +17,8 @@ use super::{
         alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, lines5,
         satisfy_m_n_complete, uppers, year2_week2,
     },
-    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskCode, MaskRom, NomParser,
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, Mapper, MapperChip, MaskCode, MaskRom,
+    NomParser,
 };
 
 /// ```
@@ -899,6 +900,221 @@ pub static SHARP_CPU_AGB_E: NomParser<GenericPart> = NomParser {
         )
         .map(|(date_code, kind, _, _, _)| GenericPart {
             kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC1
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC1.parse("DMG MBC1 Nintendo S 8914 T").is_ok());
+/// ```
+pub static SHARP_MBC1: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC1",
+    f: |input| {
+        lines4(
+            tag("DMG"),
+            value(MapperChip::Mbc1, tag("MBC1")),
+            tag("Nintendo"),
+            delimited(tag("S "), year2_week2, char(' ').and(uppers(1))),
+        )
+        .map(|(_, kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC1A
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC1A.parse("DMG MBC1A Nintendo S 9025 1 A").is_ok());
+/// ```
+pub static SHARP_MBC1A: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC1A",
+    f: |input| {
+        lines4(
+            tag("DMG"),
+            value(MapperChip::Mbc1A, tag("MBC1A")),
+            tag("Nintendo"),
+            delimited(
+                tag("S "),
+                year2_week2,
+                tuple((char(' '), digits(1), char(' '), uppers(1))),
+            ),
+        )
+        .map(|(_, kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC1B
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC1B.parse("DMG MBC1B Nintendo S 9107 5 A").is_ok());
+/// ```
+pub static SHARP_MBC1B: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC1B",
+    f: |input| {
+        lines4(
+            tag("DMG"),
+            value(MapperChip::Mbc1B, tag("MBC1B")),
+            tag("Nintendo"),
+            delimited(
+                tag("S "),
+                year2_week2,
+                tuple((
+                    char(' '),
+                    digits(1),
+                    char(' '),
+                    satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+                )),
+            ),
+        )
+        .map(|(_, kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC1B1
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC1B1.parse("DMG MBC1B1 Nintendo S 9838 5 A").is_ok());
+/// ```
+pub static SHARP_MBC1B1: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC1B1",
+    f: |input| {
+        lines4(
+            tag("DMG"),
+            value(MapperChip::Mbc1B1, tag("MBC1B1")),
+            tag("Nintendo"),
+            delimited(
+                tag("S "),
+                year2_week2,
+                tuple((char(' '), digits(1), char(' '), uppers(1))),
+            ),
+        )
+        .map(|(_, kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC2A
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC2A.parse("DMG MBC2A Nintendo S 9730 5 AB").is_ok());
+/// ```
+pub static SHARP_MBC2A: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC2A",
+    f: |input| {
+        lines4(
+            tag("DMG"),
+            value(MapperChip::Mbc2A, tag("MBC2A")),
+            tag("Nintendo"),
+            delimited(
+                tag("S "),
+                year2_week2,
+                tuple((
+                    char(' '),
+                    digits(1),
+                    char(' '),
+                    satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
+                )),
+            ),
+        )
+        .map(|(_, kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC3
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC3.parse("MBC3 LR385364 9743 A").is_ok());
+/// ```
+pub static SHARP_MBC3: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC3",
+    f: |input| {
+        lines3(
+            value(MapperChip::Mbc3, tag("MBC3")),
+            tag("LR385364"),
+            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+        )
+        .map(|(kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC3A
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC3A.parse("MBC3 A LR38536B 9935 A").is_ok());
+/// ```
+pub static SHARP_MBC3A: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC3A",
+    f: |input| {
+        lines3(
+            value(MapperChip::Mbc3A, tag("MBC3 A")),
+            tag("LR38536B"),
+            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+        )
+        .map(|(kind, _, date_code)| Mapper {
+            kind,
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Sharp MBC5
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MBC5.parse("MBC5 LZ9GB31 AL23 A").is_ok());
+/// ```
+pub static SHARP_MBC5: NomParser<Mapper> = NomParser {
+    name: "Sharp MBC5",
+    f: |input| {
+        lines3(
+            value(MapperChip::Mbc5, tag("MBC5")),
+            tag("LZ9GB31"),
+            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+        )
+        .map(|(kind, _, date_code)| Mapper {
+            kind,
             manufacturer: Some(Manufacturer::Sharp),
             date_code: Some(date_code),
         })

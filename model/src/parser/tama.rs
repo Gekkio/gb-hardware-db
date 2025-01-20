@@ -5,7 +5,7 @@
 use super::{week2, year2, GameMaskRom, GenericPart, LabelParser};
 use crate::{
     macros::single_parser,
-    parser::{GameRomType, Mapper, MapperType, PartDateCode},
+    parser::{mapper::MapperChip, GameRomType, Mapper, PartDateCode},
 };
 
 /// TAMA5
@@ -20,10 +20,12 @@ pub fn tama5() -> &'static impl LabelParser<Mapper> {
         r#"^TAMA5\ ([0-9]{2})([0-9]{2})\ EA[A-Z]1$"#,
         move |c| {
             Ok(Mapper {
-                mbc_type: MapperType::Tama5,
+                kind: MapperChip::Tama5,
                 manufacturer: None,
-                year: Some(year2(&c[1])?),
-                week: Some(week2(&c[2])?),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c[1])?,
+                    week: week2(&c[2])?,
+                }),
             })
         }
     )

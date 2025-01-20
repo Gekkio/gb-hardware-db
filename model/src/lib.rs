@@ -108,13 +108,13 @@ pub(crate) mod macros {
     pub(crate) use single_parser;
 
     macro_rules! multi_parser {
-        ($t:ty, $($m:expr),+ $(,)?) => {{
+        ($t:ty, $($m:expr),* $(,)?) => {{
             static PARSERS: std::sync::OnceLock<Vec<&'static dyn crate::parser::LabelParser<$t>>> =
                 std::sync::OnceLock::new();
             static PARSER: std::sync::OnceLock<crate::parser::MultiParser<$t>> =
                 std::sync::OnceLock::new();
             PARSER.get_or_init(|| {
-                crate::parser::MultiParser::new(&PARSERS.get_or_init(|| vec![$($m),+]))
+                crate::parser::MultiParser::new(&PARSERS.get_or_init(|| vec![$($m),*]))
             })
         }};
     }

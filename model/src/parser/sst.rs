@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, sequence::tuple, Parser as _};
+use nom::{bytes::streaming::tag, Parser as _};
 
 use crate::parser::{
     for_nom::{digits, year2_week2},
@@ -24,7 +24,7 @@ pub static SST_SST39VF512: NomParser<GenericPart> = NomParser {
         lines3(
             tag("39VF512"),
             tag("70-4C-WH"), // speed, durability, grade, package
-            tuple((year2_week2, digits(3), tag("-D"))),
+            (year2_week2, digits(3), tag("-D")),
         )
         .map(|(kind, attrs, (date_code, _, _))| GenericPart {
             kind: format!("SST{kind}-{attrs}"),

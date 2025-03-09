@@ -6,7 +6,7 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{opt, recognize},
-    sequence::{preceded, separated_pair, tuple},
+    sequence::{preceded, separated_pair},
     Parser as _,
 };
 
@@ -29,20 +29,20 @@ pub static ST_MICRO_M68AS128: NomParser<GenericPart> = NomParser {
             opt(tag("E ")),
             lines4(
                 tag("M68AS128"),
-                recognize(tuple((
+                recognize((
                     tag("DL"),
                     tag("70"), // speed
                     tag("N"),  // package
                     tag("6"),  // temperature
-                ))),
+                )),
                 separated_pair(uppers(5), char(' '), tag("F6")),
-                tuple((
+                (
                     tag("TWN"),
                     char(' '),
                     alnum_uppers(2),
                     char(' '),
                     year1_week2,
-                )),
+                ),
             ),
         )
         .map(|(kind, attrs, _, (_, _, _, _, date_code))| GenericPart {

@@ -7,7 +7,6 @@ use nom::{
     character::streaming::char,
     combinator::{recognize, value},
     error::ParseError,
-    sequence::tuple,
     Parser,
 };
 
@@ -28,14 +27,14 @@ pub static WINBOND_W24257: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             tag("Winbond"),
-            recognize(tuple((
+            recognize((
                 tag("W24257"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"), // speed
                 tag("LL"), // power
-            ))),
-            tuple((year1_week2, uppers(2), digits(9), uppers(2))),
+            )),
+            (year1_week2, uppers(2), digits(9), uppers(2)),
         )
         .map(|(_, kind, (date_code, _, _, _))| Ram {
             kind: String::from(kind),
@@ -57,14 +56,14 @@ pub static WINBOND_W24258: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             tag("Winbond"),
-            recognize(tuple((
+            recognize((
                 tag("W24258"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"),
                 tag("LE"),
-            ))),
-            tuple((year1_week2, uppers(2), digits(9), uppers(2))),
+            )),
+            (year1_week2, uppers(2), digits(9), uppers(2)),
         )
         .map(|(_, kind, (date_code, _, _, _))| Ram {
             kind: String::from(kind),
@@ -87,14 +86,14 @@ pub static WINBOND_W2465: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             tag("Winbond"),
-            recognize(tuple((
+            recognize((
                 tag("W2465"),
                 package(Package::Sop28),
                 char('-'),
                 tag("70"), // speed
                 tag("LL"), // power
-            ))),
-            tuple((
+            )),
+            (
                 year1_week2,
                 uppers(2),
                 digits(8),
@@ -102,7 +101,7 @@ pub static WINBOND_W2465: NomParser<Ram> = NomParser {
                 alnum_uppers(1),
                 alnum_uppers(1),
                 tag("1RA"),
-            )),
+            ),
         )
         .map(|(_, kind, (date_code, _, _, _, _, _, _))| Ram {
             kind: String::from(kind),
@@ -113,7 +112,9 @@ pub static WINBOND_W2465: NomParser<Ram> = NomParser {
     },
 };
 
-fn package<'a, E: ParseError<&'a str>>(package: Package) -> impl Parser<&'a str, Package, E> {
+fn package<'a, E: ParseError<&'a str>>(
+    package: Package,
+) -> impl Parser<&'a str, Output = Package, Error = E> {
     value(package, tag(package.code()))
 }
 

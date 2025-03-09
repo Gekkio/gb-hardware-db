@@ -16,7 +16,7 @@ use crate::parser::{Manufacturer, NomParser};
 fn ac23v<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         tag("MAGNACHIP"),
         tag(chip_type),

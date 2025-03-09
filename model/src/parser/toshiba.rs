@@ -8,7 +8,7 @@ use nom::{
     character::streaming::char,
     combinator::{recognize, value},
     error::ParseError,
-    sequence::{delimited, separated_pair, terminated, tuple},
+    sequence::{delimited, separated_pair, terminated},
     Parser,
 };
 
@@ -37,7 +37,7 @@ pub static TOSHIBA_TC8521AM: NomParser<GenericPart> = NomParser {
 
 fn toshiba_tc8521a<'a, E: ParseError<&'a str>>(
     package: Package,
-) -> impl Parser<&'a str, GenericPart, E> {
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
     lines2(
         delimited(tag("T "), year2_week2, tag("HB")),
         tag("8521A").and(nom::character::streaming::char(package.code_char())),
@@ -101,7 +101,7 @@ fn tc53<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
     package: Package,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         separated_pair(
             tag("TOSHIBA"),
@@ -177,7 +177,7 @@ pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
     f: |input| {
         lines4(
             uppers(1).and(digits(5)),
-            tuple((tag("JAPAN"), char(' '), year2_week2, char(' '), tag("MAD"))),
+            (tag("JAPAN"), char(' '), year2_week2, char(' '), tag("MAD")),
             tag("TC55V200"),
             tag("FT-").and(alt((tag("70"), tag("85"), tag("10")))),
         )

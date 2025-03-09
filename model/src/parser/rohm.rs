@@ -7,7 +7,7 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::recognize,
-    sequence::{preceded, tuple},
+    sequence::preceded,
     Parser as _,
 };
 
@@ -26,7 +26,7 @@ use super::{
 pub static ROHM_9853: NomParser<GenericPart> = NomParser {
     name: "ROHM 9853",
     f: |input| {
-        lines2(tag("9853"), tuple((year1, month1_123abc, digits(2))))
+        lines2(tag("9853"), (year1, month1_123abc, digits(2)))
             .map(|(kind, (year, month, _))| GenericPart {
                 kind: String::from(kind),
                 manufacturer: Some(Manufacturer::Rohm),
@@ -45,16 +45,13 @@ pub static ROHM_9853: NomParser<GenericPart> = NomParser {
 pub static ROHM_9854: NomParser<GenericPart> = NomParser {
     name: "ROHM 9854",
     f: |input| {
-        lines2(
-            tag("9854"),
-            tuple((year1, alnum_uppers(1), digits(2), char('W'))),
-        )
-        .map(|(kind, (year, _, _, _))| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Rohm),
-            date_code: Some(PartDateCode::Year { year }),
-        })
-        .parse(input)
+        lines2(tag("9854"), (year1, alnum_uppers(1), digits(2), char('W')))
+            .map(|(kind, (year, _, _, _))| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Rohm),
+                date_code: Some(PartDateCode::Year { year }),
+            })
+            .parse(input)
     },
 };
 
@@ -68,19 +65,19 @@ pub static ROHM_9854: NomParser<GenericPart> = NomParser {
 pub static ROHM_BA6129: NomParser<GenericPart> = NomParser {
     name: "ROHM BA6129",
     f: |input| {
-        tuple((
+        (
             alt((tag("6129A"), tag("6129"))),
             char(' '),
             year1,
             alnum_uppers(1),
             digits(2),
-        ))
-        .map(|(kind, _, year, _, _)| GenericPart {
-            kind: format!("BA{kind}"),
-            manufacturer: Some(Manufacturer::Rohm),
-            date_code: Some(PartDateCode::Year { year }),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, year, _, _)| GenericPart {
+                kind: format!("BA{kind}"),
+                manufacturer: Some(Manufacturer::Rohm),
+                date_code: Some(PartDateCode::Year { year }),
+            })
+            .parse(input)
     },
 };
 
@@ -93,7 +90,7 @@ pub static ROHM_BA6129: NomParser<GenericPart> = NomParser {
 pub static ROHM_BA6735: NomParser<GenericPart> = NomParser {
     name: "ROHM BA6735",
     f: |input| {
-        tuple((tag("6735"), char(' '), year1, month1_123abc, digits(2)))
+        (tag("6735"), char(' '), year1, month1_123abc, digits(2))
             .map(|(_, _, year, month, _)| GenericPart {
                 kind: "BA6735".to_owned(),
                 manufacturer: Some(Manufacturer::Rohm),
@@ -113,19 +110,19 @@ pub static ROHM_BA6735: NomParser<GenericPart> = NomParser {
 pub static ROHM_9750: NomParser<GenericPart> = NomParser {
     name: "ROHM 9750",
     f: |input| {
-        tuple((
+        (
             recognize(tag("9750").and(one_of("AB"))),
             char(' '),
             year1,
             month1_123abc,
             digits(2),
-        ))
-        .map(|(kind, _, year, month, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Rohm),
-            date_code: Some(PartDateCode::YearMonth { year, month }),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, year, month, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Rohm),
+                date_code: Some(PartDateCode::YearMonth { year, month }),
+            })
+            .parse(input)
     },
 };
 
@@ -138,7 +135,7 @@ pub static ROHM_9750: NomParser<GenericPart> = NomParser {
 pub static ROHM_9753: NomParser<GenericPart> = NomParser {
     name: "ROHM 9753",
     f: |input| {
-        tuple((tag("9753"), char(' '), year1, month1_123abc, digits(2)))
+        (tag("9753"), char(' '), year1, month1_123abc, digits(2))
             .map(|(kind, _, year, month, _)| GenericPart {
                 kind: String::from(kind),
                 manufacturer: Some(Manufacturer::Rohm),
@@ -157,20 +154,20 @@ pub static ROHM_9753: NomParser<GenericPart> = NomParser {
 pub static ROHM_BH7835AFS: NomParser<GenericPart> = NomParser {
     name: "ROHM BH7835AFS",
     f: |input| {
-        tuple((
+        (
             tag("BH7835AFS"),
             char(' '),
             year1_week2,
             char(' '),
             alnum_uppers(1),
             digits(2),
-        ))
-        .map(|(kind, _, date_code, _, _, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Rohm),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, date_code, _, _, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Rohm),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -183,19 +180,19 @@ pub static ROHM_BH7835AFS: NomParser<GenericPart> = NomParser {
 pub static ROHM_ICD2_R: NomParser<GenericPart> = NomParser {
     name: "ROHM ICD2_R",
     f: |input| {
-        tuple((
+        (
             preceded(tag("Nintendo "), tag("ICD2-R")),
             char(' '),
             year1_week2,
             char(' '),
             alnum_uppers(1),
             digits(2),
-        ))
-        .map(|(kind, _, date_code, _, _, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Rohm),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, date_code, _, _, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Rohm),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };

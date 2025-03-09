@@ -4,7 +4,7 @@
 
 use nom::{
     branch::alt, bytes::streaming::tag, character::streaming::char, combinator::value,
-    error::ParseError, sequence::tuple, IResult, Parser,
+    error::ParseError, IResult, Parser,
 };
 
 use super::{
@@ -23,27 +23,27 @@ use crate::parser::{Manufacturer, NomParser};
 pub static HYUNDAI_HY628100: NomParser<Ram> = NomParser {
     name: "Hyundai HY628100",
     f: |input| {
-        tuple((
+        (
             tag("HYUNDAI KOREA "),
             alt((tag("HY628100A"), tag("HY628100B"), tag("HY628100"))),
             char(' '),
             date_code.and(process_code),
             char(' '),
-            tuple((
+            (
                 alt((tag("LL"), tag("L"))), // power
                 package(Package::Sop32),    // package
                 char('-'),
                 alt((tag("50"), tag("55"), tag("70"), tag("85"))), // speed
-            )),
-        ))
-        .map(
-            |(_, kind, _, (date_code, _), _, (power, package, _, speed))| Ram {
-                kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
-                manufacturer: Some(Manufacturer::Hyundai),
-                date_code: Some(date_code),
-            },
+            ),
         )
-        .parse(input)
+            .map(
+                |(_, kind, _, (date_code, _), _, (power, package, _, speed))| Ram {
+                    kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
+                    manufacturer: Some(Manufacturer::Hyundai),
+                    date_code: Some(date_code),
+                },
+            )
+            .parse(input)
     },
 };
 
@@ -58,47 +58,47 @@ pub static HYUNDAI_HY6264: NomParser<Ram> = NomParser {
     name: "Hyundai HY6264",
     f: |input| {
         // 1992-1994
-        let old_format = tuple((
+        let old_format = (
             tag("HYUNDAI "),
-            tuple((
+            (
                 alt((tag("HY6264A"), tag("HY6264"))),
                 alt((tag("LL"), tag("L"))), // power
                 package(Package::Sop28),    // package
                 char('-'),
                 alt((tag("70"), tag("85"), tag("10"), tag("12"), tag("15"))), // speed
-            )),
+            ),
             char(' '),
             date_code.and(process_code),
             tag(" KOREA"),
-        ))
-        .map(
-            |(_, (kind, power, package, _, speed), _, (date_code, _), _)| Ram {
-                kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
-                manufacturer: Some(Manufacturer::Hyundai),
-                date_code: Some(date_code),
-            },
-        );
+        )
+            .map(
+                |(_, (kind, power, package, _, speed), _, (date_code, _), _)| Ram {
+                    kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
+                    manufacturer: Some(Manufacturer::Hyundai),
+                    date_code: Some(date_code),
+                },
+            );
         // 1994-
-        let new_format = tuple((
+        let new_format = (
             alt((tag("HY6264A"), tag("HY6264"))),
             char(' '),
-            tuple((
+            (
                 alt((tag("LL"), tag("L"))), // power
                 package(Package::Sop28),    // package
                 char('-'),
                 alt((tag("70"), tag("85"), tag("10"), tag("12"), tag("15"))), // speed
-            )),
+            ),
             char(' '),
             date_code.and(process_code),
             tag(" KOREA"),
-        ))
-        .map(
-            |(kind, _, (power, package, _, speed), _, (date_code, _), _)| Ram {
-                kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
-                manufacturer: Some(Manufacturer::Hyundai),
-                date_code: Some(date_code),
-            },
-        );
+        )
+            .map(
+                |(kind, _, (power, package, _, speed), _, (date_code, _), _)| Ram {
+                    kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
+                    manufacturer: Some(Manufacturer::Hyundai),
+                    date_code: Some(date_code),
+                },
+            );
         alt((new_format, old_format)).parse(input)
     },
 };
@@ -111,7 +111,9 @@ fn process_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, 
     uppers(1).parse(input)
 }
 
-fn package<'a, E: ParseError<&'a str>>(package: Package) -> impl Parser<&'a str, Package, E> {
+fn package<'a, E: ParseError<&'a str>>(
+    package: Package,
+) -> impl Parser<&'a str, Output = Package, Error = E> {
     value(package, tag(package.code()))
 }
 

@@ -8,7 +8,7 @@ use nom::{
     character::streaming::char,
     combinator::{cond, consumed, recognize, value},
     error::ParseError,
-    sequence::{delimited, preceded, terminated, tuple},
+    sequence::{delimited, preceded, terminated},
     IResult, Parser,
 };
 
@@ -31,9 +31,9 @@ use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
 pub static NEC_UPD442012A_X: NomParser<GenericPart> = NomParser {
     name: "NEC μPD442012A-X",
     f: |input| {
-        tuple((
+        (
             tag("NEC JAPAN "),
-            recognize(tuple((
+            recognize((
                 tag("D442012A"),
                 tag("GY"), // package
                 char('-'),
@@ -42,16 +42,16 @@ pub static NEC_UPD442012A_X: NomParser<GenericPart> = NomParser {
                 char('X'),                   // temperature
                 char('-'),
                 tag("MJH"),
-            ))),
+            )),
             char(' '),
             date_and_lot_code,
-        ))
-        .map(|(_, kind, _, date_code)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Nec),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, date_code)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -67,9 +67,9 @@ pub static NEC_UPD442012A_X: NomParser<GenericPart> = NomParser {
 pub static NEC_UPD442012L_X: NomParser<GenericPart> = NomParser {
     name: "NEC μPD442012L-X",
     f: |input| {
-        tuple((
+        (
             tag("NEC JAPAN "),
-            recognize(tuple((
+            recognize((
                 tag("D442012L"),
                 tag("GY"), // package
                 char('-'),
@@ -78,16 +78,16 @@ pub static NEC_UPD442012L_X: NomParser<GenericPart> = NomParser {
                 char('X'),                 // temperature
                 char('-'),
                 tag("MJH"),
-            ))),
+            )),
             char(' '),
             date_and_lot_code,
-        ))
-        .map(|(_, kind, _, date_code)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Nec),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, date_code)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -95,69 +95,71 @@ fn upd23c<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
         consumed(terminated(
-            tuple((
+            (
                 value("μPD23C", tag("N-")),
                 tag(chip_type),
                 tag(package.code()),
-            )),
+            ),
             char('-').and(uppers(1)).and(digits(2)),
         )),
         char(' '),
         date_and_lot_code,
-    ))
-    .map(
-        move |(rom_id, _, _, _, (mask_code, (series, kind, package)), _, date_code)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Nec),
-            chip_type: Some(format!("{series}{kind}{package}")),
-            mask_code: Some(MaskCode::Nec(String::from(mask_code))),
-            date_code: Some(date_code),
-        },
     )
+        .map(
+            move |(rom_id, _, _, _, (mask_code, (series, kind, package)), _, date_code)| {
+                GameMaskRom {
+                    rom_id: String::from(rom_id),
+                    rom_type,
+                    manufacturer: Some(Manufacturer::Nec),
+                    chip_type: Some(format!("{series}{kind}{package}")),
+                    mask_code: Some(MaskCode::Nec(String::from(mask_code))),
+                    date_code: Some(date_code),
+                }
+            },
+        )
 }
 
 fn upd23c_old<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     package: Package,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         tag("NEC JAPAN "),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
         consumed(terminated(
-            tuple((
+            (
                 value("μPD23C", tag("UPD23C")),
                 tag(chip_type),
                 tag(package.code()),
-            )),
+            ),
             char('-').and(uppers(1)).and(digits(2)),
         )),
         char(' '),
         date_and_lot_code,
-    ))
-    .map(
-        move |(_, rom_id, _, _, _, (mask_code, (series, kind, package)), _, date_code)| {
-            GameMaskRom {
-                rom_id: String::from(rom_id),
-                rom_type,
-                manufacturer: Some(Manufacturer::Nec),
-                chip_type: Some(format!("{series}{kind}{package}")),
-                mask_code: Some(MaskCode::Nec(String::from(mask_code))),
-                date_code: Some(date_code),
-            }
-        },
     )
+        .map(
+            move |(_, rom_id, _, _, _, (mask_code, (series, kind, package)), _, date_code)| {
+                GameMaskRom {
+                    rom_id: String::from(rom_id),
+                    rom_type,
+                    manufacturer: Some(Manufacturer::Nec),
+                    chip_type: Some(format!("{series}{kind}{package}")),
+                    mask_code: Some(MaskCode::Nec(String::from(mask_code))),
+                    date_code: Some(date_code),
+                }
+            },
+        )
 }
 
 fn upd23c_licensed<'a, E: ParseError<&'a str>>(
@@ -166,36 +168,36 @@ fn upd23c_licensed<'a, E: ParseError<&'a str>>(
     (manufacturer_text, manufacturer): (&'static str, Manufacturer),
     rom_type: GameRomType,
     has_rom_type: bool,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         tag(manufacturer_text),
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
-        cond(has_rom_type, tuple((char(' '), tag(rom_type.as_str())))),
+        cond(has_rom_type, (char(' '), tag(rom_type.as_str()))),
         char(' '),
         consumed(terminated(
-            tuple((
+            (
                 value("μPD23C", tag("23C")),
                 tag(chip_type),
                 tag(package.code()),
-            )),
+            ),
             char('-').and(uppers(1)).and(digits(2)),
         )),
         char(' '),
         date_and_lot_code,
-    ))
-    .map(
-        move |(_, _, rom_id, _, _, (mask_code, (series, kind, package)), _, date_code)| {
-            GameMaskRom {
-                rom_id: String::from(rom_id),
-                rom_type,
-                manufacturer: Some(manufacturer),
-                chip_type: Some(format!("{series}{kind}{package}")),
-                mask_code: Some(MaskCode::Nec(String::from(mask_code))),
-                date_code: Some(date_code),
-            }
-        },
     )
+        .map(
+            move |(_, _, rom_id, _, _, (mask_code, (series, kind, package)), _, date_code)| {
+                GameMaskRom {
+                    rom_id: String::from(rom_id),
+                    rom_type,
+                    manufacturer: Some(manufacturer),
+                    chip_type: Some(format!("{series}{kind}{package}")),
+                    mask_code: Some(MaskCode::Nec(String::from(mask_code))),
+                    date_code: Some(date_code),
+                }
+            },
+        )
 }
 
 /// NEC μPD23C1001E (SOP-32, 5V)
@@ -353,17 +355,17 @@ pub static MANI_UPD23C4001E: NomParser<GameMaskRom> = NomParser {
 pub static NEC_GBS_DOL: NomParser<GenericPart> = NomParser {
     name: "NEC GBS-DOL",
     f: |input| {
-        tuple((
+        (
             delimited(tag("Nintendo "), tag("GBS-DOL"), tag(" 011")),
             char(' '),
             date_and_lot_code,
-        ))
-        .map(|(kind, _, date_code)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Nec),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, date_code)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -376,18 +378,18 @@ pub static NEC_GBS_DOL: NomParser<GenericPart> = NomParser {
 pub static NEC_ICD2_N: NomParser<GenericPart> = NomParser {
     name: "NEC ICD2-N",
     f: |input| {
-        tuple((
+        (
             preceded(tag("Nintendo "), tag("ICD2-N")),
             char(' '),
             date_and_lot_code,
             tag(" D93115"),
-        ))
-        .map(|(kind, _, date_code, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Nec),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, date_code, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -400,18 +402,18 @@ pub static NEC_ICD2_N: NomParser<GenericPart> = NomParser {
 pub static NEC_ICD2_R: NomParser<GenericPart> = NomParser {
     name: "NEC ICD2-R",
     f: |input| {
-        tuple((
+        (
             preceded(tag("Nintendo "), tag("ICD2-R")),
             char(' '),
             date_and_lot_code,
             tag(" D93128"),
-        ))
-        .map(|(kind, _, date_code, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Nec),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(kind, _, date_code, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -425,28 +427,28 @@ pub static NEC_SGB_ROM: NomParser<MaskRom> = NomParser {
     name: "NEC SGB ROM",
     f: |input| {
         let mask_code = "J56";
-        tuple((
+        (
             preceded(tag("© 1994 Nintendo "), tag("SYS-SGB-NT")),
             char(' '),
-            tuple((
+            (
                 value("μPD23C", tag("N-")),
                 tag("2001E"),
                 tag(Package::Sop32.code()),
-            ))
-            .and(char('-').and(tag(mask_code))),
+            )
+                .and(char('-').and(tag(mask_code))),
             char(' '),
             date_and_lot_code,
-        ))
-        .map(
-            |(rom_id, _, ((series, kind, package), _), _, date_code)| MaskRom {
-                rom_id: String::from(rom_id),
-                manufacturer: Some(Manufacturer::Nec),
-                chip_type: Some(format!("{series}{kind}{package}")),
-                mask_code: Some(MaskCode::Nec(String::from(mask_code))),
-                date_code: Some(date_code),
-            },
         )
-        .parse(input)
+            .map(
+                |(rom_id, _, ((series, kind, package), _), _, date_code)| MaskRom {
+                    rom_id: String::from(rom_id),
+                    manufacturer: Some(Manufacturer::Nec),
+                    chip_type: Some(format!("{series}{kind}{package}")),
+                    mask_code: Some(MaskCode::Nec(String::from(mask_code))),
+                    date_code: Some(date_code),
+                },
+            )
+            .parse(input)
     },
 };
 

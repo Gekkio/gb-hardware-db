@@ -8,7 +8,7 @@ use nom::{
     character::{complete::one_of, streaming::char},
     combinator::{consumed, opt, recognize, value},
     error::ParseError,
-    sequence::{delimited, separated_pair, terminated, tuple},
+    sequence::{delimited, separated_pair, terminated},
     Parser,
 };
 
@@ -99,7 +99,7 @@ fn ir3<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     kind: &'static str,
     pkg: Package,
-) -> impl Parser<&'a str, GenericPart, E> {
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
     lines3(
         tag(prefix),
         recognize(tag(kind).and(package(pkg))),
@@ -115,7 +115,7 @@ fn ir3<'a, E: ParseError<&'a str>>(
 fn ir3_old<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     kind: &'static str,
-) -> impl Parser<&'a str, GenericPart, E> {
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
     lines3(
         tag(prefix),
         tag(kind),
@@ -134,7 +134,9 @@ fn ir3_old<'a, E: ParseError<&'a str>>(
     })
 }
 
-fn package<'a, E: ParseError<&'a str>>(package: Package) -> impl Parser<&'a str, Package, E> {
+fn package<'a, E: ParseError<&'a str>>(
+    package: Package,
+) -> impl Parser<&'a str, Output = Package, Error = E> {
     value(package, tag(package.code()))
 }
 
@@ -160,23 +162,23 @@ impl Package {
 pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Sharp mask ROM",
     f: |input| {
-        tuple((
+        (
             tag("LR0G150"),
             char(' '),
             dmg_rom_code(),
             char(' '),
             year2_week2,
             digits(1),
-        ))
-        .map(|(_, _, rom_id, _, date_code, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type: GameRomType::GlopTop,
-            manufacturer: Some(Manufacturer::Sharp),
-            chip_type: None,
-            mask_code: None,
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, _, rom_id, _, date_code, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type: GameRomType::GlopTop,
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: None,
+                mask_code: None,
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -184,12 +186,12 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
     rom_type: GameRomType,
     unknown: char,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         dmg_rom_code(),
         tag("SHARP"),
         tag("JAPAN"),
-        tuple((year2_week2, char(' '), alphas(1), char(' '), char(unknown))),
+        (year2_week2, char(' '), alphas(1), char(' '), char(unknown)),
     )
     .map(move |(rom_id, _, _, (date_code, _, _, _, _))| GameMaskRom {
         rom_id: String::from(rom_id),
@@ -204,7 +206,7 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
 fn lh53_old<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         dmg_rom_code(),
         tag("SHARP"),
@@ -222,9 +224,9 @@ fn lh53_old<'a, E: ParseError<&'a str>>(
 }
 
 fn lh53_new<'a, E: ParseError<&'a str>>(
-    model: impl Parser<&'a str, Option<&'a str>, E>,
+    model: impl Parser<&'a str, Output = Option<&'a str>, Error = E>,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         alt((dmg_rom_code(), cgb_rom_code())),
         separated_pair(
@@ -473,9 +475,9 @@ pub static SHARP_LH5332XXX: NomParser<GameMaskRom> = NomParser {
 };
 
 fn sgb_rom<'a, E: ParseError<&'a str>>(
-    model: impl Parser<&'a str, (&'a str, Option<&'a str>), E>,
+    model: impl Parser<&'a str, Output = (&'a str, Option<&'a str>), Error = E>,
     rom_id: &'static str,
-) -> impl Parser<&'a str, MaskRom, E> {
+) -> impl Parser<&'a str, Output = MaskRom, Error = E> {
     lines4(
         tag(rom_id),
         tag("© 1994 Nintendo"),
@@ -549,7 +551,7 @@ pub static SHARP_SGB2_ROM: NomParser<MaskRom> = NomParser {
 fn cic<'a, E: ParseError<&'a str>>(
     model: &'static str,
     copyright: &'static str,
-) -> impl Parser<&'a str, GenericPart, E> {
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
     lines4(
         recognize(tag(model).and(opt(one_of("AB")))),
         tag(copyright),
@@ -947,7 +949,7 @@ pub static SHARP_MBC1A: NomParser<Mapper> = NomParser {
             delimited(
                 tag("S "),
                 year2_week2,
-                tuple((char(' '), digits(1), char(' '), uppers(1))),
+                (char(' '), digits(1), char(' '), uppers(1)),
             ),
         )
         .map(|(_, kind, _, date_code)| Mapper {
@@ -975,12 +977,12 @@ pub static SHARP_MBC1B: NomParser<Mapper> = NomParser {
             delimited(
                 tag("S "),
                 year2_week2,
-                tuple((
+                (
                     char(' '),
                     digits(1),
                     char(' '),
                     satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
-                )),
+                ),
             ),
         )
         .map(|(_, kind, _, date_code)| Mapper {
@@ -1008,7 +1010,7 @@ pub static SHARP_MBC1B1: NomParser<Mapper> = NomParser {
             delimited(
                 tag("S "),
                 year2_week2,
-                tuple((char(' '), digits(1), char(' '), uppers(1))),
+                (char(' '), digits(1), char(' '), uppers(1)),
             ),
         )
         .map(|(_, kind, _, date_code)| Mapper {
@@ -1036,12 +1038,12 @@ pub static SHARP_MBC2A: NomParser<Mapper> = NomParser {
             delimited(
                 tag("S "),
                 year2_week2,
-                tuple((
+                (
                     char(' '),
                     digits(1),
                     char(' '),
                     satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
-                )),
+                ),
             ),
         )
         .map(|(_, kind, _, date_code)| Mapper {
@@ -1065,7 +1067,7 @@ pub static SHARP_MBC3: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc3, tag("MBC3")),
             tag("LR385364"),
-            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+            terminated(year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,
@@ -1088,7 +1090,7 @@ pub static SHARP_MBC3A: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc3A, tag("MBC3 A")),
             tag("LR38536B"),
-            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+            terminated(year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,
@@ -1111,7 +1113,7 @@ pub static SHARP_MBC5: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc5, tag("MBC5")),
             tag("LZ9GB31"),
-            terminated(year2_week2, tuple((char(' '), uppers(1)))),
+            terminated(year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,

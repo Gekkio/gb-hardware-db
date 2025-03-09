@@ -8,7 +8,7 @@ use nom::{
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
     error::ParseError,
-    sequence::{terminated, tuple},
+    sequence::terminated,
     Parser,
 };
 
@@ -32,7 +32,7 @@ use super::{
 pub static FUJITSU_MB85R256: NomParser<GenericPart> = NomParser {
     name: "Fujitsu MB85R256",
     f: |input| {
-        tuple((
+        (
             tag("JAPAN "),
             recognize(tag("MB85R256").and(opt(one_of("AS")))),
             char(' '),
@@ -40,13 +40,13 @@ pub static FUJITSU_MB85R256: NomParser<GenericPart> = NomParser {
             char(' '),
             uppers(1).and(digits(2)),
             opt(nom::bytes::complete::tag(" E1")),
-        ))
-        .map(|(_, kind, _, date_code, _, _, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Fujitsu),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, date_code, _, _, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Fujitsu),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -59,27 +59,27 @@ pub static FUJITSU_MB85R256: NomParser<GenericPart> = NomParser {
 pub static FUJITSU_MB82D12160: NomParser<GenericPart> = NomParser {
     name: "Fujitsu MB82D12160",
     f: |input| {
-        tuple((
+        (
             tag("JAPAN "),
             tag("82D12160-10FN"),
             char(' '),
             year2_week2,
             char(' '),
             uppers(1).and(digits(2)).and(uppers(1)),
-        ))
-        .map(|(_, kind, _, date_code, _, _)| GenericPart {
-            kind: format!("MB{kind}"),
-            manufacturer: Some(Manufacturer::Fujitsu),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, date_code, _, _)| GenericPart {
+                kind: format!("MB{kind}"),
+                manufacturer: Some(Manufacturer::Fujitsu),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
 fn mask_rom<'a, E: ParseError<&'a str>>(
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         tag("JAPAN "),
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
@@ -92,17 +92,17 @@ fn mask_rom<'a, E: ParseError<&'a str>>(
         year2_week2,
         char(' '),
         uppers(1).and(digits(2)),
-    ))
-    .map(
-        move |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Fujitsu),
-            chip_type: None,
-            mask_code: None,
-            date_code: Some(date_code),
-        },
     )
+        .map(
+            move |(_, rom_id, _, _, _, _, _, _, _, date_code, _, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Fujitsu),
+                chip_type: None,
+                mask_code: None,
+                date_code: Some(date_code),
+            },
+        )
 }
 
 /// Fujitsu mask ROM (SOP-32, 5V, 2 Mibit / 256 KiB)
@@ -136,19 +136,19 @@ pub static FUJITSU_MASK_ROM_SOP_32_4_MIBIT: NomParser<GameMaskRom> = NomParser {
 pub static FUJITSU_SGB_ROM: NomParser<MaskRom> = NomParser {
     name: "Fujitsu SGB ROM",
     f: |input| {
-        tuple((
+        (
             terminated(tag("SYS-SGB-2"), tag(" © 1994 Nintendo ")),
             year2_week2,
             char(' '),
             uppers(1).and(digits(2)),
-        ))
-        .map(|(rom_id, date_code, _, _)| MaskRom {
-            rom_id: String::from(rom_id),
-            manufacturer: Some(Manufacturer::Fujitsu),
-            chip_type: None,
-            mask_code: None,
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(rom_id, date_code, _, _)| MaskRom {
+                rom_id: String::from(rom_id),
+                manufacturer: Some(Manufacturer::Fujitsu),
+                chip_type: None,
+                mask_code: None,
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };

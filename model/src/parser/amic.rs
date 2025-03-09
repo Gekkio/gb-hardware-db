@@ -6,7 +6,6 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    sequence::tuple,
     Parser as _,
 };
 
@@ -28,25 +27,25 @@ use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
 pub static AMIC_LP62S16128: NomParser<GenericPart> = NomParser {
     name: "AMIC LP62S16128",
     f: |input| {
-        tuple((
+        (
             tag("AMIC "),
-            recognize(tuple((
+            recognize((
                 tag("LP62S16128").and(opt(one_of("ABC"))).and(tag("W")),
                 char('-'),
                 tag("70"), // speed
                 tag("LL"), // power
                 tag("TF"),
-            ))),
+            )),
             char(' '),
             alnum_uppers(10),
             char(' '),
             year2_week2.and(uppers(1)),
-        ))
-        .map(|(_, kind, _, _, _, (date_code, _))| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Amic),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, _, _, (date_code, _))| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Amic),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };

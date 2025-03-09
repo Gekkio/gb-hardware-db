@@ -8,7 +8,6 @@ use nom::{
     character::streaming::{char, satisfy},
     combinator::{opt, recognize},
     error::ParseError,
-    sequence::tuple,
     IResult, Parser,
 };
 
@@ -26,24 +25,24 @@ use super::{
 pub static MACRONIX_MX29F008: NomParser<GenericPart> = NomParser {
     name: "Macronix MX29F008",
     f: |input| {
-        tuple((
-            tuple((
+        (
+            (
                 assembly_vendor_code,
                 date_code,
                 tag("12"), // digits 3 and 4 of "product body" (?)
-            )),
+            ),
             char(' '),
             tag("29F008TC-14"),
             char(' '),
             lot_code_old,
             tag(" TAIWAN"),
-        ))
-        .map(|((_, date_code, _), _, kind, _, _, _)| GenericPart {
-            kind: format!("MX{kind}"),
-            manufacturer: Some(Manufacturer::Macronix),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|((_, date_code, _), _, kind, _, _, _)| GenericPart {
+                kind: format!("MX{kind}"),
+                manufacturer: Some(Manufacturer::Macronix),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -59,24 +58,24 @@ pub static MACRONIX_MX29F008: NomParser<GenericPart> = NomParser {
 pub static MACRONIX_MX29L010: NomParser<GenericPart> = NomParser {
     name: "Macronix MX29L010",
     f: |input| {
-        tuple((
-            tuple((
+        (
+            (
                 assembly_vendor_code,
                 date_code,
                 tag("57"),     // digits 3 and 4 of "product body" (?)
                 opt(tag("G")), // green package?
-            )),
+            ),
             char(' '),
             alt((tag("MX29L010TC-15A1"), tag("MX29L010TC-15"))),
             char(' '),
             lot_code_new,
-        ))
-        .map(|((_, date_code, _, _), _, kind, _, _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Macronix),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|((_, date_code, _, _), _, kind, _, _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Macronix),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -84,8 +83,8 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     product_body: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         assembly_vendor_code,
         date_code,
         tag(product_body),
@@ -99,17 +98,17 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
         tag(rom_type.as_str()),
         char(' '),
         lot_code_new,
-    ))
-    .map(
-        move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Macronix),
-            chip_type: Some(String::from(kind)),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
     )
+        .map(
+            move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Macronix),
+                chip_type: Some(String::from(kind)),
+                mask_code: None,
+                date_code: Some(date_code),
+            },
+        )
 }
 
 /// Macronix MX23L8006 (TSOP-II-44, 3.3V, 1 MiB)
@@ -228,8 +227,8 @@ pub static MACRONIX_MX23L25607: NomParser<GameMaskRom> = NomParser {
 fn dmg_mx23c_old<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         assembly_vendor_code,
         date_code,
         tag("-M"),
@@ -242,25 +241,25 @@ fn dmg_mx23c_old<'a, E: ParseError<&'a str>>(
         char(' '),
         lot_code_old,
         uppers(1),
-    ))
-    .map(
-        move |(_, date_code, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Macronix),
-            chip_type: Some(String::from(kind)),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
     )
+        .map(
+            move |(_, date_code, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Macronix),
+                chip_type: Some(String::from(kind)),
+                mask_code: None,
+                date_code: Some(date_code),
+            },
+        )
 }
 
 fn gb_mx23c<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     product_body: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         assembly_vendor_code,
         date_code,
         tag(product_body),
@@ -270,22 +269,22 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
         tag(chip_type),
         char(' '),
         alt((dmg_rom_code(), cgb_rom_code())),
-        opt(tuple((char(' '), digits(2)))),
+        opt((char(' '), digits(2))),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
         lot_code_new,
-    ))
-    .map(
-        move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Macronix),
-            chip_type: Some(String::from(kind)),
-            mask_code: None,
-            date_code: Some(date_code),
-        },
     )
+        .map(
+            move |(_, date_code, _, _, _, _, kind, _, rom_id, _, _, _, _, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Macronix),
+                chip_type: Some(String::from(kind)),
+                mask_code: None,
+                date_code: Some(date_code),
+            },
+        )
 }
 
 /// Macronix MX23C4002 (SOP-32, 4.5-5.5V, 4 Mibit / 512 KiB)
@@ -414,11 +413,11 @@ fn date_code<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Par
 }
 
 fn lot_code_new<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, &'a str, E> {
-    recognize(tuple((
-        tuple((digits(1), alnum_uppers(1), digits(3), alnum_uppers(1))),
+    recognize((
+        (digits(1), alnum_uppers(1), digits(3), alnum_uppers(1)),
         opt(nom::bytes::complete::take(2_usize).and_then(alnum_uppers(2))),
-        opt(nom::bytes::complete::take(2_usize).and_then(tuple((alnum_uppers(1), digits(1))))),
-    )))
+        opt(nom::bytes::complete::take(2_usize).and_then((alnum_uppers(1), digits(1)))),
+    ))
     .parse(input)
 }
 

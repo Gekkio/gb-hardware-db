@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, combinator::recognize, sequence::tuple, Parser};
+use nom::{bytes::streaming::tag, combinator::recognize, Parser};
 
 use super::{
     for_nom::{alnum_uppers, digits, lines3, year2_week2},
@@ -21,7 +21,7 @@ pub static VICTRONIX_VN4464: NomParser<GenericPart> = NomParser {
         lines3(
             tag("Victronix"),
             recognize(tag("VN4464").and(tag("S-08LL"))),
-            tuple((year2_week2, digits(1), alnum_uppers(1), digits(3))),
+            (year2_week2, digits(1), alnum_uppers(1), digits(3)),
         )
         .map(|(_, kind, (date_code, _, _, _))| GenericPart {
             kind: String::from(kind),

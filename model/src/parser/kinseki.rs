@@ -3,10 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt,
-    bytes::streaming::tag,
-    character::streaming::char,
-    sequence::{delimited, tuple},
+    branch::alt, bytes::streaming::tag, character::streaming::char, sequence::delimited,
     Parser as _,
 };
 
@@ -25,13 +22,13 @@ pub static KINSEKI_4_MIHZ: NomParser<Crystal> = NomParser {
     f: |input| {
         lines2(
             tag("4194"),
-            tuple((
+            (
                 tag("KSS"),
                 alt((
                     delimited(char(' '), year1_month1_abc, uppers(1)),
                     year1_month1_abc,
                 )),
-            )),
+            ),
         )
         .map(|(_, (_, date_code))| Crystal {
             manufacturer: Some(Manufacturer::Kinseki),
@@ -52,13 +49,13 @@ pub static KINSEKI_8_MIHZ: NomParser<Crystal> = NomParser {
     f: |input| {
         lines2(
             tag("8388"),
-            tuple((
+            (
                 tag("KSS"),
                 alt((
                     delimited(char(' '), year1_month1_abc, uppers(1)),
                     year1_month1_abc,
                 )),
-            )),
+            ),
         )
         .map(|(_, (_, date_code))| Crystal {
             manufacturer: Some(Manufacturer::Kinseki),

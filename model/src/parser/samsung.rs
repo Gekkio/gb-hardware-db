@@ -8,7 +8,7 @@ use nom::{
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
     error::ParseError,
-    sequence::{preceded, separated_pair, tuple},
+    sequence::{preceded, separated_pair},
     Parser,
 };
 
@@ -22,16 +22,16 @@ fn gb_km23c_old<'a, E: ParseError<&'a str>>(
     package: Package,
     rom_type: GameRomType,
     unknown2: &'static str,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines3(
         preceded(
             tag("SEC "),
-            recognize(tuple((
+            recognize((
                 tag("KM23C"),
                 tag(chip_type),
                 opt(one_of("ABCD")),
                 tag(package.code()),
-            ))),
+            )),
         ),
         separated_pair(
             alt((dmg_rom_code(), cgb_rom_code())),
@@ -60,16 +60,16 @@ fn gb_km23c_new<'a, E: ParseError<&'a str>>(
     package: Package,
     rom_type: GameRomType,
     unknown2: &'static str,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines3(
         preceded(
             tag("SEC "),
-            recognize(tuple((
+            recognize((
                 tag("KM23C"),
                 tag(chip_type),
                 opt(one_of("ABCD")),
                 tag(package.code()),
-            ))),
+            )),
         ),
         separated_pair(
             alt((dmg_rom_code(), cgb_rom_code())),

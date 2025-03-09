@@ -8,7 +8,7 @@ use nom::{
     character::streaming::char,
     combinator::{consumed, value},
     error::ParseError,
-    sequence::{terminated, tuple},
+    sequence::terminated,
     Parser,
 };
 
@@ -31,7 +31,7 @@ pub static OKI_MASK_ROM_QFP_44_512_KIBIT: NomParser<GameMaskRom> = NomParser {
     name: "OKI mask ROM",
     f: |input| {
         let rom_type = GameRomType::B0;
-        tuple((
+        (
             dmg_rom_code(),
             tag(" OKI JAPAN "),
             tag(rom_type.as_str()),
@@ -41,16 +41,16 @@ pub static OKI_MASK_ROM_QFP_44_512_KIBIT: NomParser<GameMaskRom> = NomParser {
             alnum_uppers(2),
             char(' '),
             digits(2),
-        ))
-        .map(|(rom_id, _, _, _, _, _, _, _, _)| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Oki),
-            chip_type: None,
-            mask_code: None,
-            date_code: None,
-        })
-        .parse(input)
+        )
+            .map(|(rom_id, _, _, _, _, _, _, _, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: None,
+                mask_code: None,
+                date_code: None,
+            })
+            .parse(input)
     },
 };
 
@@ -58,26 +58,26 @@ fn gb<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         alt((dmg_rom_code(), cgb_rom_code())),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
         consumed(terminated(tag(chip_type), char('-').and(alnum_uppers(2)))),
         char(' '),
-        tuple((year1_week2, alnum_uppers(1), digits(2), alnum_uppers(1))),
-    ))
-    .map(
-        move |(rom_id, _, _, _, (mask_code, kind), _, (date_code, _, _, _))| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Oki),
-            chip_type: Some(format!("{prefix}{kind}")),
-            mask_code: Some(MaskCode::Oki(String::from(mask_code))),
-            date_code: Some(date_code),
-        },
+        (year1_week2, alnum_uppers(1), digits(2), alnum_uppers(1)),
     )
+        .map(
+            move |(rom_id, _, _, _, (mask_code, kind), _, (date_code, _, _, _))| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: Some(format!("{prefix}{kind}")),
+                mask_code: Some(MaskCode::Oki(String::from(mask_code))),
+                date_code: Some(date_code),
+            },
+        )
 }
 
 /// OKI MSM534011 (SOP-32, 5V, 4 Mibit / 512 KiB)
@@ -118,29 +118,29 @@ fn gba<'a, E: ParseError<&'a str>>(
     prefix: &'static str,
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
-    tuple((
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
+    (
         agb_rom_code(),
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
         consumed(terminated(tag(chip_type), tag("-0").and(alnum_uppers(2)))),
         char(' '),
-        tuple((
+        (
             year1_week2,
             satisfy_m_n_complete(4, 5, |c| c.is_ascii_uppercase() || c.is_ascii_digit()),
-        )),
-    ))
-    .map(
-        move |(rom_id, _, _, _, (mask_code, kind), _, (date_code, _))| GameMaskRom {
-            rom_id: String::from(rom_id),
-            rom_type,
-            manufacturer: Some(Manufacturer::Oki),
-            chip_type: Some(format!("{prefix}{kind}")),
-            mask_code: Some(MaskCode::Oki(String::from(mask_code))),
-            date_code: Some(date_code),
-        },
+        ),
     )
+        .map(
+            move |(rom_id, _, _, _, (mask_code, kind), _, (date_code, _))| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type,
+                manufacturer: Some(Manufacturer::Oki),
+                chip_type: Some(format!("{prefix}{kind}")),
+                mask_code: Some(MaskCode::Oki(String::from(mask_code))),
+                date_code: Some(date_code),
+            },
+        )
 }
 
 /// OKI MR26V3210 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
@@ -240,22 +240,22 @@ pub static OKI_MR27V12813: NomParser<GameMaskRom> = NomParser {
 pub static OKI_SGB2_ROM: NomParser<MaskRom> = NomParser {
     name: "OKI SGB2 ROM",
     f: |input| {
-        tuple((
+        (
             tag("SYS-SGB2-10"),
             tag(" © 1998 Nintendo "),
             consumed(value("MSM534011E", tag("M534011E-05"))),
             char(' '),
-            tuple((year1_week2, alnum_uppers(1), digits(2), alnum_uppers(1))),
-        ))
-        .map(
-            move |(rom_id, _, (mask_code, kind), _, (date_code, _, _, _))| MaskRom {
-                rom_id: String::from(rom_id),
-                manufacturer: Some(Manufacturer::Oki),
-                chip_type: Some(String::from(kind)),
-                mask_code: Some(MaskCode::Oki(String::from(mask_code))),
-                date_code: Some(date_code),
-            },
+            (year1_week2, alnum_uppers(1), digits(2), alnum_uppers(1)),
         )
-        .parse(input)
+            .map(
+                move |(rom_id, _, (mask_code, kind), _, (date_code, _, _, _))| MaskRom {
+                    rom_id: String::from(rom_id),
+                    manufacturer: Some(Manufacturer::Oki),
+                    chip_type: Some(String::from(kind)),
+                    mask_code: Some(MaskCode::Oki(String::from(mask_code))),
+                    date_code: Some(date_code),
+                },
+            )
+            .parse(input)
     },
 };

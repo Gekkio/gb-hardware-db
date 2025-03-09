@@ -3,11 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt,
-    bytes::streaming::tag,
-    combinator::opt,
-    error::ParseError,
-    sequence::{terminated, tuple},
+    branch::alt, bytes::streaming::tag, combinator::opt, error::ParseError, sequence::terminated,
     IResult, Parser as _,
 };
 
@@ -23,7 +19,7 @@ use super::{
 pub static KDS_32_KIHZ: NomParser<Crystal> = NomParser {
     name: "KDS 32 KiHz",
     f: |input| {
-        tuple((tag("KDS"), year1_month1_abc))
+        (tag("KDS"), year1_month1_abc)
             .map(|(_, date_code)| Crystal {
                 manufacturer: Some(Manufacturer::Kds),
                 frequency: Crystal::FREQ_32_KIHZ,
@@ -182,7 +178,7 @@ pub static KDS_D209: NomParser<Crystal> = NomParser {
 fn month1_abc_year1<'a, E: ParseError<&'a str>>(
     input: &'a str,
 ) -> IResult<&'a str, PartDateCode, E> {
-    tuple((month1_abc, year1))
+    (month1_abc, year1)
         .map(|(month, year)| PartDateCode::YearMonth { year, month })
         .parse(input)
 }

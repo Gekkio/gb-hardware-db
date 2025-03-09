@@ -7,7 +7,6 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    sequence::tuple,
     Parser as _,
 };
 
@@ -23,24 +22,24 @@ pub static LGS_GM76C256: NomParser<Ram> = NomParser {
     name: "LGS GM76C256",
     f: |input| {
         let package = Package::Sop;
-        tuple((
+        (
             tag("LGS "),
-            tuple((
+            (
                 recognize(tag("GM76C256").and(opt(one_of("ABC")))),
                 alt((tag("LL"), tag("L"))),             // power
                 tag(package.code()),                    // package
                 alt((tag("70"), tag("85"), tag("10"))), // speed
-            )),
+            ),
             char(' '),
             year2_week2,
             tag(" KOREA"),
-        ))
-        .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-            kind: format!("{kind}{power}{package}{speed}"),
-            manufacturer: Some(Manufacturer::Lgs),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
+                kind: format!("{kind}{power}{package}{speed}"),
+                manufacturer: Some(Manufacturer::Lgs),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -56,24 +55,24 @@ pub static HYUNDAI_GM76C256: NomParser<Ram> = NomParser {
     name: "Hyundai GM76C256",
     f: |input| {
         let package = Package::Sop;
-        tuple((
+        (
             tag("HYUNDAI "),
-            tuple((
+            (
                 recognize(tag("GM76C256").and(opt(one_of("ABC")))),
                 alt((tag("LL"), tag("L"))),             // power
                 tag(package.code()),                    // package
                 alt((tag("70"), tag("85"), tag("10"))), // speed
-            )),
+            ),
             char(' '),
             year2_week2,
             tag(" KOREA"),
-        ))
-        .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-            kind: format!("{kind}{power}{package}{speed}"),
-            manufacturer: Some(Manufacturer::Hyundai),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
+                kind: format!("{kind}{power}{package}{speed}"),
+                manufacturer: Some(Manufacturer::Hyundai),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -89,24 +88,24 @@ pub static HYUNDAI_GM76V256: NomParser<Ram> = NomParser {
     name: "Hyundai GM76V256",
     f: |input| {
         let package = Package::Sop;
-        tuple((
+        (
             tag("HYUNDAI "),
-            tuple((
+            (
                 recognize(tag("GM76V256").and(opt(one_of("ABC")))),
                 alt((tag("LL"), tag("L"))), // power
                 tag(package.code()),        // package
                 tag("10"),                  // speed
-            )),
+            ),
             char(' '),
             year2_week2,
             tag(" KOREA"),
-        ))
-        .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-            kind: format!("{kind}{power}{package}{speed}"),
-            manufacturer: Some(Manufacturer::Hyundai),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
+                kind: format!("{kind}{power}{package}{speed}"),
+                manufacturer: Some(Manufacturer::Hyundai),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 

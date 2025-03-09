@@ -7,7 +7,7 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::char,
     combinator::opt,
-    sequence::{preceded, separated_pair, tuple},
+    sequence::{preceded, separated_pair},
     Parser,
 };
 
@@ -30,13 +30,13 @@ pub static UNKNOWN_SGB_ROM: NomParser<MaskRom> = NomParser {
             lines3(
                 separated_pair(tag("SYS-SGB-2"), char(' '), tag("JAPAN")),
                 tag("© 1994 Nintendo"),
-                tuple((
+                (
                     alnum_uppers(5),
                     char(' '),
                     alnum_uppers(3),
                     char(' '),
                     uppers(3),
-                )),
+                ),
             )
             .map(|((rom_id, _), _, _)| MaskRom {
                 rom_id: String::from(rom_id),
@@ -70,17 +70,17 @@ pub static UNKNOWN_SGB_ROM: NomParser<MaskRom> = NomParser {
 pub static UNKNOWN_LCS5_EEPROM: NomParser<GenericPart> = NomParser {
     name: "Unknown LCS5 EEPROM",
     f: |input| {
-        tuple((
+        (
             tag("LCS5 "),
             year1_week2,
-            opt(tuple((nom::character::complete::char(' '), digits(2)))),
-        ))
-        .map(|(_, date_code, _)| GenericPart {
-            kind: "LC56".to_owned(),
-            manufacturer: None,
-            date_code: Some(date_code),
-        })
-        .parse(input)
+            opt((nom::character::complete::char(' '), digits(2))),
+        )
+            .map(|(_, date_code, _)| GenericPart {
+                kind: "LC56".to_owned(),
+                manufacturer: None,
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -108,7 +108,7 @@ pub static UNKNOWN_LC56_EEPROM: NomParser<GenericPart> = NomParser {
 pub static UNKNOWN_AGS_CHARGE_CONTROLLER: NomParser<GenericPart> = NomParser {
     name: "Unknown AGS charge controller",
     f: |input| {
-        lines2(tag("2253B"), tuple((digits(1), alnum_uppers(1), digits(2))))
+        lines2(tag("2253B"), (digits(1), alnum_uppers(1), digits(2)))
             .map(|(kind, _)| GenericPart {
                 kind: String::from(kind),
                 manufacturer: None,

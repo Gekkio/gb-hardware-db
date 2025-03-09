@@ -8,7 +8,7 @@ use nom::{
     character::streaming::{char, one_of},
     combinator::{opt, recognize, value},
     error::ParseError,
-    sequence::{separated_pair, tuple},
+    sequence::separated_pair,
     IResult, Parser,
 };
 
@@ -37,12 +37,12 @@ pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
             separated_pair(
                 date_code.and(process_code),
                 char(' '),
-                tuple((
+                (
                     tag("L"),  // power
                     tag("T"),  // package
                     tag("12"), // speed
                     tag("C"),  // temperature
-                )),
+                ),
             ),
         )
         .map(
@@ -70,12 +70,12 @@ pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             separated_pair(tag("hynix"), char(' '), date_code.and(process_code)),
-            tuple((
+            (
                 recognize(value("HY62WT08081", tag("HY62WT081")).and(opt(one_of("ABCDE")))),
                 alt((tag("L"), tag("D"))),           // power
                 alt((tag("50"), tag("70"))),         // speed
                 alt((tag("C"), tag("E"), tag("I"))), // temperature
-            )),
+            ),
             tag("KOREA"),
         )
         .map(|((_, (date_code, _)), (kind, power, speed, temp), _)| Ram {
@@ -90,7 +90,7 @@ pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
 fn ac23v<'a, E: ParseError<&'a str>>(
     chip_type: &'static str,
     rom_type: GameRomType,
-) -> impl Parser<&'a str, GameMaskRom, E> {
+) -> impl Parser<&'a str, Output = GameMaskRom, Error = E> {
     lines4(
         tag("HYNIX"),
         tag(chip_type),

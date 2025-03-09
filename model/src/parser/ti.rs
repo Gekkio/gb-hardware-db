@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, sequence::tuple, Parser as _};
+use nom::{bytes::streaming::tag, Parser as _};
 
 use super::{
     for_nom::{alnum_uppers, lines3, month1_123abc, year1},
@@ -22,7 +22,7 @@ pub static TI_SN74LV2416: NomParser<GenericPart> = NomParser {
     f: |input| {
         lines3(
             tag("LV2416"),
-            tuple((year1, month1_123abc, tag("M"))),
+            (year1, month1_123abc, tag("M")),
             tag("A").and(alnum_uppers(3)),
         )
         .map(|(_, (year, month, _), _)| GenericPart {

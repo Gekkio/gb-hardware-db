@@ -10,7 +10,7 @@ use nom::{
     },
     combinator::{map_opt, recognize},
     error::ParseError,
-    sequence::{preceded, tuple},
+    sequence::preceded,
     IResult, Parser,
 };
 
@@ -69,7 +69,7 @@ pub static SEIKO_S6403: NomParser<GenericPart> = NomParser {
     f: |input| {
         lines3(
             tag("S6403"),
-            tuple((one_of("AC"), char('U'), year1, alnum_uppers(1), digits(1))),
+            (one_of("AC"), char('U'), year1, alnum_uppers(1), digits(1)),
             lot_code,
         )
         .map(|(_, (revision, _, year, _, _), _)| GenericPart {

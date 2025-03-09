@@ -3,7 +3,8 @@
 // SPDX-License-Identifier: MIT
 
 use log::warn;
-use nom::{combinator::all_consuming, error::VerboseError, IResult, Parser as _};
+use nom::{combinator::all_consuming, IResult, Parser as _};
+use nom_language::error::VerboseError;
 use regex::{Captures, Regex, RegexBuilder};
 use stamp::{CgbStamp, DmgStamp};
 use std::str::FromStr;
@@ -206,35 +207,37 @@ mod for_nom {
         combinator::{map_opt, recognize},
         error::ParseError,
         multi::fold_many_m_n,
-        sequence::tuple,
         IResult, Parser,
     };
 
     use super::{PartDateCode, Year};
     use crate::time::{Month, Week};
 
-    pub fn dmg_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
-        recognize(tuple((
+    pub fn dmg_rom_code<'a, E: ParseError<&'a str>>(
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+        recognize((
             tag("DMG-"),
             satisfy_m_n(3, 4, |c| c.is_ascii_digit() || c.is_ascii_uppercase()),
             char('-'),
             digits(1),
-        )))
+        ))
     }
 
-    pub fn cgb_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
-        recognize(tuple((tag("CGB-"), alnum_uppers(4), char('-'), digits(1))))
+    pub fn cgb_rom_code<'a, E: ParseError<&'a str>>(
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+        recognize((tag("CGB-"), alnum_uppers(4), char('-'), digits(1)))
     }
 
-    pub fn agb_rom_code<'a, E: ParseError<&'a str>>() -> impl Parser<&'a str, &'a str, E> {
-        recognize(tuple((tag("AGB-"), alnum_uppers(4), char('-'), digits(1))))
+    pub fn agb_rom_code<'a, E: ParseError<&'a str>>(
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+        recognize((tag("AGB-"), alnum_uppers(4), char('-'), digits(1)))
     }
 
     pub fn satisfy_m_n<'a, E: ParseError<&'a str>>(
         min: usize,
         max: usize,
         f: impl Fn(char) -> bool,
-    ) -> impl Parser<&'a str, &'a str, E> {
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         recognize(fold_many_m_n(min, max, satisfy(f), || (), |_, _| ()))
     }
 
@@ -242,7 +245,7 @@ mod for_nom {
         min: usize,
         max: usize,
         f: impl Fn(char) -> bool,
-    ) -> impl Parser<&'a str, &'a str, E> {
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         recognize(fold_many_m_n(
             min,
             max,
@@ -254,21 +257,27 @@ mod for_nom {
 
     pub fn alnum_uppers<'a, E: ParseError<&'a str>>(
         count: usize,
-    ) -> impl Parser<&'a str, &'a str, E> {
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         satisfy_m_n(count, count, |c| {
             c.is_ascii_digit() || c.is_ascii_uppercase()
         })
     }
 
-    pub fn uppers<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+    pub fn uppers<'a, E: ParseError<&'a str>>(
+        count: usize,
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         satisfy_m_n(count, count, |c| c.is_ascii_uppercase())
     }
 
-    pub fn alphas<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+    pub fn alphas<'a, E: ParseError<&'a str>>(
+        count: usize,
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         satisfy_m_n(count, count, |c| c.is_ascii_alphabetic())
     }
 
-    pub fn digits<'a, E: ParseError<&'a str>>(count: usize) -> impl Parser<&'a str, &'a str, E> {
+    pub fn digits<'a, E: ParseError<&'a str>>(
+        count: usize,
+    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
         satisfy_m_n(count, count, |c| c.is_ascii_digit())
     }
 
@@ -296,7 +305,7 @@ mod for_nom {
     pub fn year1_week2<'a, E: ParseError<&'a str>>(
         input: &'a str,
     ) -> IResult<&'a str, PartDateCode, E> {
-        tuple((year1, week2))
+        (year1, week2)
             .map(|(year, week)| PartDateCode::YearWeek { year, week })
             .parse(input)
     }
@@ -304,7 +313,7 @@ mod for_nom {
     pub fn year2_week2<'a, E: ParseError<&'a str>>(
         input: &'a str,
     ) -> IResult<&'a str, PartDateCode, E> {
-        tuple((year2, week2))
+        (year2, week2)
             .map(|(year, week)| PartDateCode::YearWeek { year, week })
             .parse(input)
     }
@@ -312,7 +321,7 @@ mod for_nom {
     pub fn year1_month1_abc<'a, E: ParseError<&'a str>>(
         input: &'a str,
     ) -> IResult<&'a str, PartDateCode, E> {
-        tuple((year1, month1_abc))
+        (year1, month1_abc)
             .map(|(year, month)| PartDateCode::YearMonth { year, month })
             .parse(input)
     }
@@ -398,37 +407,37 @@ mod for_nom {
     }
 
     pub fn lines2<'a, O1, O2, E: ParseError<&'a str>>(
-        a: impl Parser<&'a str, O1, E>,
-        b: impl Parser<&'a str, O2, E>,
-    ) -> impl Parser<&'a str, (O1, O2), E> {
-        tuple((a, line_sep, b)).map(|(a, _, b)| (a, b))
+        a: impl Parser<&'a str, Output = O1, Error = E>,
+        b: impl Parser<&'a str, Output = O2, Error = E>,
+    ) -> impl Parser<&'a str, Output = (O1, O2), Error = E> {
+        (a, line_sep, b).map(|(a, _, b)| (a, b))
     }
 
     pub fn lines3<'a, O1, O2, O3, E: ParseError<&'a str>>(
-        a: impl Parser<&'a str, O1, E>,
-        b: impl Parser<&'a str, O2, E>,
-        c: impl Parser<&'a str, O3, E>,
-    ) -> impl Parser<&'a str, (O1, O2, O3), E> {
-        tuple((a, line_sep, b, line_sep, c)).map(|(a, _, b, _, c)| (a, b, c))
+        a: impl Parser<&'a str, Output = O1, Error = E>,
+        b: impl Parser<&'a str, Output = O2, Error = E>,
+        c: impl Parser<&'a str, Output = O3, Error = E>,
+    ) -> impl Parser<&'a str, Output = (O1, O2, O3), Error = E> {
+        (a, line_sep, b, line_sep, c).map(|(a, _, b, _, c)| (a, b, c))
     }
 
     pub fn lines4<'a, O1, O2, O3, O4, E: ParseError<&'a str>>(
-        a: impl Parser<&'a str, O1, E>,
-        b: impl Parser<&'a str, O2, E>,
-        c: impl Parser<&'a str, O3, E>,
-        d: impl Parser<&'a str, O4, E>,
-    ) -> impl Parser<&'a str, (O1, O2, O3, O4), E> {
-        tuple((a, line_sep, b, line_sep, c, line_sep, d)).map(|(a, _, b, _, c, _, d)| (a, b, c, d))
+        a: impl Parser<&'a str, Output = O1, Error = E>,
+        b: impl Parser<&'a str, Output = O2, Error = E>,
+        c: impl Parser<&'a str, Output = O3, Error = E>,
+        d: impl Parser<&'a str, Output = O4, Error = E>,
+    ) -> impl Parser<&'a str, Output = (O1, O2, O3, O4), Error = E> {
+        (a, line_sep, b, line_sep, c, line_sep, d).map(|(a, _, b, _, c, _, d)| (a, b, c, d))
     }
 
     pub fn lines5<'a, O1, O2, O3, O4, O5, E: ParseError<&'a str>>(
-        a: impl Parser<&'a str, O1, E>,
-        b: impl Parser<&'a str, O2, E>,
-        c: impl Parser<&'a str, O3, E>,
-        d: impl Parser<&'a str, O4, E>,
-        e: impl Parser<&'a str, O5, E>,
-    ) -> impl Parser<&'a str, (O1, O2, O3, O4, O5), E> {
-        tuple((a, line_sep, b, line_sep, c, line_sep, d, line_sep, e))
+        a: impl Parser<&'a str, Output = O1, Error = E>,
+        b: impl Parser<&'a str, Output = O2, Error = E>,
+        c: impl Parser<&'a str, Output = O3, Error = E>,
+        d: impl Parser<&'a str, Output = O4, Error = E>,
+        e: impl Parser<&'a str, Output = O5, Error = E>,
+    ) -> impl Parser<&'a str, Output = (O1, O2, O3, O4, O5), Error = E> {
+        (a, line_sep, b, line_sep, c, line_sep, d, line_sep, e)
             .map(|(a, _, b, _, c, _, d, _, e)| (a, b, c, d, e))
     }
 }

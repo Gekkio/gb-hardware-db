@@ -7,7 +7,6 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    sequence::tuple,
     Parser as _,
 };
 
@@ -29,32 +28,32 @@ use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
 pub static BSI_BS62LV256: NomParser<GenericPart> = NomParser {
     name: "BSI BS62LV256",
     f: |input| {
-        tuple((
+        (
             tag("BSI "),
-            recognize(tuple((
+            recognize((
                 tag("BS62LV256"),
                 tag("S"),                    // package
                 one_of("CI"),                // temperature
                 one_of("-GP"),               // material
                 alt((tag("55"), tag("70"))), // speed
-            ))),
+            )),
             char(' '),
-            tuple((
+            (
                 alt((tag("S2827"), tag("S2828"))),
                 opt(alt((tag("CA"), uppers(1)))),
                 digits(5),
                 opt(char('.').and(alnum_uppers(1)).and(opt(uppers(1)))),
-            )),
+            ),
             char(' '),
-            tuple((uppers(1), year2_week2, opt(digits(1)))),
+            (uppers(1), year2_week2, opt(digits(1))),
             tag(" TAIWAN"),
-        ))
-        .map(|(_, kind, _, _, _, (_, date_code, _), _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Bsi),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, _, _, (_, date_code, _), _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Bsi),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -71,27 +70,27 @@ pub static BSI_BS62LV256: NomParser<GenericPart> = NomParser {
 pub static BSI_BS616LV2018: NomParser<GenericPart> = NomParser {
     name: "BSI BS616LV2018",
     f: |input| {
-        tuple((
+        (
             tag("BSI "),
-            recognize(tuple((
+            recognize((
                 tag("BS616LV2018"),
                 tag("T"),      // package
                 one_of("CI"),  // temperature
                 one_of("-GP"), // material
                 tag("70"),     // speed
-            ))),
+            )),
             char(' '),
-            tuple((tag("S31686-2FY"), digits(5), tag(".1"))),
+            (tag("S31686-2FY"), digits(5), tag(".1")),
             char(' '),
-            tuple((uppers(1), year2_week2)),
+            (uppers(1), year2_week2),
             tag(" TAIWAN"),
-        ))
-        .map(|(_, kind, _, _, _, (_, date_code), _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Bsi),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, _, _, (_, date_code), _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Bsi),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 
@@ -109,26 +108,26 @@ pub static BSI_BS616LV2018: NomParser<GenericPart> = NomParser {
 pub static BSI_BS616LV2019: NomParser<GenericPart> = NomParser {
     name: "BSI BS616LV2019",
     f: |input| {
-        tuple((
+        (
             tag("BSI "),
-            recognize(tuple((
+            recognize((
                 tag("BS616LV2019"),
                 tag("T"),                    // package
                 one_of("CI"),                // temperature
                 one_of("-GP"),               // material
                 alt((tag("55"), tag("70"))), // speed
-            ))),
+            )),
             char(' '),
-            tuple((tag("S31687FZ"), digits(5), tag(".1"))),
+            (tag("S31687FZ"), digits(5), tag(".1")),
             char(' '),
-            tuple((uppers(1), year2_week2)),
+            (uppers(1), year2_week2),
             tag(" TAIWAN"),
-        ))
-        .map(|(_, kind, _, _, _, (_, date_code), _)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Bsi),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, kind, _, _, _, (_, date_code), _)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Bsi),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };

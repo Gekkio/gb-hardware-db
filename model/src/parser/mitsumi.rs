@@ -3,8 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt, bytes::streaming::tag, character::streaming::char, combinator::opt,
-    sequence::tuple, Parser as _,
+    branch::alt, bytes::streaming::tag, character::streaming::char, combinator::opt, Parser as _,
 };
 
 use super::{
@@ -23,7 +22,7 @@ use crate::parser::PartDateCode;
 pub static MITSUMI_MM1026A: NomParser<GenericPart> = NomParser {
     name: "Mitsumi MM1026A",
     f: |input| {
-        tuple((year1, alt((alnum_uppers(3), alnum_uppers(2))), tag(" 26A")))
+        (year1, alt((alnum_uppers(3), alnum_uppers(2))), tag(" 26A"))
             .map(|(year, _, _)| GenericPart {
                 kind: "MM1026A".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
@@ -42,7 +41,7 @@ pub static MITSUMI_MM1026A: NomParser<GenericPart> = NomParser {
 pub static MITSUMI_MM1134A: NomParser<GenericPart> = NomParser {
     name: "Mitsumi MM1134A",
     f: |input| {
-        tuple((year1_week2, tag(" 134A")))
+        (year1_week2, tag(" 134A"))
             .map(|(date_code, _)| GenericPart {
                 kind: "MM1134A".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
@@ -62,7 +61,7 @@ pub static MITSUMI_MM1134A: NomParser<GenericPart> = NomParser {
 pub static MITSUMI_MM1514X: NomParser<GenericPart> = NomParser {
     name: "Mitsumi MM1514X",
     f: |input| {
-        tuple((year1, alnum_uppers(2), tag(" 514X")))
+        (year1, alnum_uppers(2), tag(" 514X"))
             .map(|(year, _, _)| GenericPart {
                 kind: "MM1514X".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
@@ -81,7 +80,7 @@ pub static MITSUMI_MM1514X: NomParser<GenericPart> = NomParser {
 pub static MITSUMI_MM1581A: NomParser<GenericPart> = NomParser {
     name: "Mitsumi MM1581A",
     f: |input| {
-        tuple((year1_week2, tag(" 1581A")))
+        (year1_week2, tag(" 1581A"))
             .map(|(date_code, _)| GenericPart {
                 kind: "MM1581A".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
@@ -100,7 +99,7 @@ pub static MITSUMI_MM1581A: NomParser<GenericPart> = NomParser {
 pub static MITSUMI_MM1592F: NomParser<GenericPart> = NomParser {
     name: "Mitsumi MM1592F",
     f: |input| {
-        tuple((year1_week2, tag(" 592F")))
+        (year1_week2, tag(" 592F"))
             .map(|(date_code, _)| GenericPart {
                 kind: "MM1592F".to_owned(),
                 manufacturer: Some(Manufacturer::Mitsumi),
@@ -119,20 +118,20 @@ pub static MITSUMI_MM1592F: NomParser<GenericPart> = NomParser {
 pub static MITSUMI_PM: NomParser<GenericPart> = NomParser {
     name: "Mitsumi PM",
     f: |input| {
-        tuple((
+        (
             tag("MITSUMI JAPAN "),
             year1_week2,
             opt(char(' ')),
             uppers(1),
             char(' '),
             alt((tag("PM B3"), tag("PM B4"), tag("PM C"))),
-        ))
-        .map(|(_, date_code, _, _, _, kind)| GenericPart {
-            kind: String::from(kind),
-            manufacturer: Some(Manufacturer::Mitsumi),
-            date_code: Some(date_code),
-        })
-        .parse(input)
+        )
+            .map(|(_, date_code, _, _, _, kind)| GenericPart {
+                kind: String::from(kind),
+                manufacturer: Some(Manufacturer::Mitsumi),
+                date_code: Some(date_code),
+            })
+            .parse(input)
     },
 };
 

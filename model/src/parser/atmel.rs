@@ -6,7 +6,6 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::recognize,
-    sequence::tuple,
     Parser as _,
 };
 
@@ -24,11 +23,11 @@ pub static ATMEL_AT29LV512: NomParser<GenericPart> = NomParser {
     f: |input| {
         lines3(
             tag("AT29LV512"),
-            recognize(tuple((
+            recognize((
                 tag("15"),    // speed
                 char('T'),    // package
                 one_of("CI"), // grade
-            ))),
+            )),
             year2_week2,
         )
         .map(|(kind, attrs, date_code)| GenericPart {

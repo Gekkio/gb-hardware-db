@@ -7,7 +7,7 @@ use nom::{
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
     error::ParseError,
-    sequence::{separated_pair, tuple},
+    sequence::separated_pair,
     IResult, Parser as _,
 };
 
@@ -36,7 +36,7 @@ pub static SANYO_LE26FV10: NomParser<GenericPart> = NomParser {
             separated_pair(
                 tag("-10"), // speed
                 char(' '),
-                tuple((date_code, uppers(1), digits(1), alnum_uppers(1))),
+                (date_code, uppers(1), digits(1), alnum_uppers(1)),
             ),
         )
         .map(|(kind, (speed, (date_code, _, _, _)))| GenericPart {
@@ -60,13 +60,13 @@ pub static SANYO_LC35256: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             tag("SANYO"),
-            tuple((
+            (
                 recognize(tag("LC35256").and(opt(one_of("ABCDEF")))),
                 char('M'),
                 char('-'),
                 tag("70"),
                 alnum_uppers(1),
-            )),
+            ),
             separated_pair(tag("JAPAN"), char(' '), date_code.and(alnum_uppers(3))),
         )
         .map(
@@ -91,12 +91,12 @@ pub static SANYO_LC3564: NomParser<Ram> = NomParser {
     f: |input| {
         lines3(
             tag("SANYO"),
-            tuple((
+            (
                 recognize(tag("LC3564").and(opt(one_of("AB")))),
                 char('M'),
                 char('-'),
                 tag("70"),
-            )),
+            ),
             separated_pair(tag("JAPAN"), char(' '), date_code.and(alnum_uppers(3))),
         )
         .map(|(_, (kind, package, _, speed), (_, (date_code, _)))| Ram {

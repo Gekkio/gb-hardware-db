@@ -23,7 +23,7 @@
   "dump": {
     "tool": "GBFlash v1.2",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Chikyuu Kaihou Gun ZAS (Japan) (En).gb\n* File Size:       128.0 KiB (131072 bytes)\n* CRC32:           7bfd1cff\n* MD5:             a74aa804a3a6439303583e6c0b413b00\n* SHA-1:           2ff6d0242d845669445e3d97fffae5c5f7943cfd\n* SHA-256:         8b5f5f3f615136b83a5f8b60ba5cf1ba32048dd0a6ddfa127c1ad3a024c7de5b\n\n== General Information ==\n* Hardware:        GBFlash v1.2 – Firmware L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.27723-SP0\n* Baud Rate:       2000000\n* Dump Time:       2024-10-15T16:33:03-07:00\n* Time Elapsed:    0 seconds (481.90 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        128 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      ZAS\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x12)\n* ROM Checksum:    OK (0xA5DB)\n* ROM Size:        128 KiB (0x02)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Chikyuu Kaihou Gun ZAS (Japan) (En)\n* Region:          Japan\n* Language(s):     En\n* Game Code:       DMG-ZAA\n* ROM CRC32:       7bfd1cff\n* ROM Size:        128 KiB",
-    "sha256": "8b5f5f3f615136b83a5f8b60ba5cf1ba32048dd0a6ddfa127c1ad3a024c7de5b",
-    "date": "2024-10-15"
+    "date": "2024-10-15",
+    "sha256": "8b5f5f3f615136b83a5f8b60ba5cf1ba32048dd0a6ddfa127c1ad3a024c7de5b"
   }
 }

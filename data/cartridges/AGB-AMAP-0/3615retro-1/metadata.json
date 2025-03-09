@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Super Mario Advance (USA, Europe).gba\n* File Size:       4.00 MiB (4194304 bytes)\n* CRC32:           1e4c6d6a\n* MD5:             ff6b0c48065389b888c7a78731d4b58d\n* SHA-1:           f071d45d8f5cb05b48d7d2b804c6cb6a79ad96fb\n* SHA-256:         d29dec02caacbf449e2a93c6042258b0669542e102eb0e6fd0eb92a5411e0244\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-25T01:07:49+02:00\n* Time Elapsed:    28 seconds (142.61 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        4 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      SUPER MARIOA\n* Game Code:       AMAE\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x74)\n* Save Type:       4K or 64K EEPROM (EEPROM_V120)\n\n== Database Match ==\n* Game Name:       Super Mario Advance (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       AGB-AMAE\n* ROM CRC32:       1e4c6d6a\n* ROM Size:        4 MiB\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-10-25",
     "crc32": "1e4c6d6a",
     "md5": "ff6b0c48065389b888c7a78731d4b58d",
     "sha1": "f071d45d8f5cb05b48d7d2b804c6cb6a79ad96fb",
-    "sha256": "d29dec02caacbf449e2a93c6042258b0669542e102eb0e6fd0eb92a5411e0244",
-    "date": "2024-10-25"
+    "sha256": "d29dec02caacbf449e2a93c6042258b0669542e102eb0e6fd0eb92a5411e0244"
   }
 }

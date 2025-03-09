@@ -33,7 +33,7 @@
   "dump": {
     "tool": "GBxCart RW v1.3",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Shin Bokura no Taiyou - Gyakushuu no Sabata (Japan).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           af453162\n* MD5:             fbad88c14dcedefe6c70b06adcd0a0db\n* SHA-1:           2651c5e6875ac60abff734510d152166d211c87c\n* SHA-256:         0b170fc99def2ca5bdebbfd642327e135304adba1e3e0bfd5d66cdd298adb90f\n\n== General Information ==\n* Hardware:        GBxCart RW v1.3 – Firmware L1\n* Software:        FlashGBX v4.0.1\n* OS Platform:     Windows-10-10.0.22631-SP0\n* Baud Rate:       1000000\n* Dump Time:       2024-07-14T17:43:34+02:00\n* Time Elapsed:    2 minutes, 48 seconds (97.05 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Single\n\n== Parsed Data ==\n* Game Title:      BOKTAI3␀␀␀␀␀\n* Game Code:       U33J\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xEA)\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\n\n== Database Match ==\n* Game Name:       Shin Bokura no Taiyou - Gyakushuu no Sabata (Japan)\n* Region:          Japan\n* Language(s):     Ja\n* Game Code:       AGB-U33J\n* ROM CRC32:       af453162\n* ROM Size:        16 MiB\n* Save Type:       64K EEPROM (8 KiB)",
-    "sha256": "0b170fc99def2ca5bdebbfd642327e135304adba1e3e0bfd5d66cdd298adb90f",
-    "date": "2024-07-14"
+    "date": "2024-07-14",
+    "sha256": "0b170fc99def2ca5bdebbfd642327e135304adba1e3e0bfd5d66cdd298adb90f"
   }
 }

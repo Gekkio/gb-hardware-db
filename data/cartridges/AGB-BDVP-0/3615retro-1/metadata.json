@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Dragon Ball - Advanced Adventure (Europe) (En,Fr,De,Es,It).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           6c135820\n* MD5:             cb14df09ea41694532a9327510bb28c1\n* SHA-1:           e49ae836b14f84dc8cd817bf912fcdce82d8a587\n* SHA-256:         015ab2129d6f4315b92b32fa29d8cead7195a51951945d87fbcc6f07149811c5\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T23:21:41+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.21 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      DRAGONBALLAA\n* Game Code:       BDVP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x59)\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\n\n== Database Match ==\n* Game Name:       Dragon Ball - Advanced Adventure (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-BDVP\n* ROM CRC32:       6c135820\n* ROM Size:        16 MiB\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-10-22",
     "crc32": "6c135820",
     "md5": "cb14df09ea41694532a9327510bb28c1",
     "sha1": "e49ae836b14f84dc8cd817bf912fcdce82d8a587",
-    "sha256": "015ab2129d6f4315b92b32fa29d8cead7195a51951945d87fbcc6f07149811c5",
-    "date": "2024-10-22"
+    "sha256": "015ab2129d6f4315b92b32fa29d8cead7195a51951945d87fbcc6f07149811c5"
   }
 }

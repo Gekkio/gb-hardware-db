@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Tetris 2 (USA, Europe) (SGB Enhanced).sgb\n* File Size:       128.0 KiB (131072 bytes)\n* CRC32:           ea19a9d9\n* MD5:             0a2e27e279ee4faac326b0cf620b269b\n* SHA-1:           1f88be9dea864eaa74c3b5ce3488e61139818e8d\n* SHA-256:         2c3bc48a4ec9b6c640b83ce6524570f472db329d4a96d0b527b34abd42b7d695\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:42:03+02:00\n* Time Elapsed:    1 second (93.59 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        128 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      TETRIS2\n* Revision:        0\n* Super Game Boy:  Supported\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x3F)\n* ROM Checksum:    OK (0x1920)\n* ROM Size:        128 KiB (0x02)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Super Game Boy\n\n== Database Match ==\n* Game Name:       Tetris 2 (USA, Europe) (SGB Enhanced)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-EHX\n* ROM CRC32:       ea19a9d9\n* ROM Size:        128 KiB",
+    "date": "2024-10-24",
     "crc32": "ea19a9d9",
     "md5": "0a2e27e279ee4faac326b0cf620b269b",
     "sha1": "1f88be9dea864eaa74c3b5ce3488e61139818e8d",
-    "sha256": "2c3bc48a4ec9b6c640b83ce6524570f472db329d4a96d0b527b34abd42b7d695",
-    "date": "2024-10-24"
+    "sha256": "2c3bc48a4ec9b6c640b83ce6524570f472db329d4a96d0b527b34abd42b7d695"
   }
 }

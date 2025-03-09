@@ -27,7 +27,7 @@
   "dump": {
     "tool": "GBxCart RW v1.3",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Rockman EXE 4.5 - Real Operation (Japan).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           a646601b\n* MD5:             0f82bb24585c9ec64e99394c9d316315\n* SHA-1:           f89ef4ca8ec1823eb75fa184f2d0f9e66cc78a59\n* SHA-256:         588a77da006fb0dca0c8addbcc316d7bd4b1c3a42db24750bcfe17b170ac5ef8\n\n== General Information ==\n* Hardware:        GBxCart RW v1.3 – Firmware L1\n* Software:        FlashGBX v4.0.1\n* OS Platform:     Windows-10-10.0.22631-SP0\n* Baud Rate:       1000000\n* Dump Time:       2024-07-14T17:58:38+02:00\n* Time Elapsed:    1 minute, 24 seconds (97.04 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Single\n\n== Parsed Data ==\n* Game Title:      ROCKEXE4.5RO\n* Game Code:       BR4J\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x8E)\n* Save Type:       256K SRAM (SRAM_V113)\n\n== Database Match ==\n* Game Name:       Rockman EXE 4.5 - Real Operation (Japan)\n* Region:          Japan\n* Language(s):     Ja\n* Game Code:       AGB-BR4J\n* ROM CRC32:       a646601b\n* ROM Size:        8 MiB\n* Save Type:       512K FLASH (64 KiB)",
-    "sha256": "588a77da006fb0dca0c8addbcc316d7bd4b1c3a42db24750bcfe17b170ac5ef8",
-    "date": "2024-07-14"
+    "date": "2024-07-14",
+    "sha256": "588a77da006fb0dca0c8addbcc316d7bd4b1c3a42db24750bcfe17b170ac5ef8"
   }
 }

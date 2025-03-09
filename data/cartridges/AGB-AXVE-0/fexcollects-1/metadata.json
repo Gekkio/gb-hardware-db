@@ -27,7 +27,7 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Ruby Version (USA, Europe).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           f0815ee7\n* MD5:             53d1a2027ab49df34a689faa1fb14726\n* SHA-1:           f28b6ffc97847e94a6c21a63cacf633ee5c8df1e\n* SHA-256:         53d591215de2cab847d14fbcf8c516f0128cfa8556f1236065e0535aa5936d4e\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T12:35:12-06:00\n* Time Elapsed:    1 minute, 56 seconds (140.73 KiB/s)\n* Transfer Buffer: 2048 bytes\n* Retries:         2\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON RUBY\n* Game Code:       AXVE\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x41)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Ruby Version (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       AGB-AXVE\n* ROM CRC32:       f0815ee7\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
-    "sha256": "53d591215de2cab847d14fbcf8c516f0128cfa8556f1236065e0535aa5936d4e",
-    "date": "2024-05-26"
+    "date": "2024-05-26",
+    "sha256": "53d591215de2cab847d14fbcf8c516f0128cfa8556f1236065e0535aa5936d4e"
   }
 }

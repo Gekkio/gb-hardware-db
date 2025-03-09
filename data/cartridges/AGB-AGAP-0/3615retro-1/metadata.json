@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Gradius Advance (Europe).gba\n* File Size:       4.00 MiB (4194304 bytes)\n* CRC32:           3722bdfa\n* MD5:             1227eebff87a8b9d5e713e20cddcb468\n* SHA-1:           1f28db5ac70ae11b2f3414369d1be73accb36f3b\n* SHA-256:         1c97e01bd0a38a2c659dec73e5f263df4c8b49545065e1273e7eaec33650dbc1\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T23:32:50+02:00\n* Time Elapsed:    28 seconds (142.67 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        4 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      GRADIUSADVAN\n* Game Code:       AGAP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x4A)\n* Save Type:       4K or 64K EEPROM (EEPROM_V122)\n\n== Database Match ==\n* Game Name:       Gradius Advance (Europe)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       AGB-AGAP\n* ROM CRC32:       3722bdfa\n* ROM Size:        4 MiB\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-10-22",
     "crc32": "3722bdfa",
     "md5": "1227eebff87a8b9d5e713e20cddcb468",
     "sha1": "1f28db5ac70ae11b2f3414369d1be73accb36f3b",
-    "sha256": "1c97e01bd0a38a2c659dec73e5f263df4c8b49545065e1273e7eaec33650dbc1",
-    "date": "2024-10-22"
+    "sha256": "1c97e01bd0a38a2c659dec73e5f263df4c8b49545065e1273e7eaec33650dbc1"
   }
 }

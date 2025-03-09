@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Castlevania II - Belmont's Revenge (USA, Europe).gb\n* File Size:       128.0 KiB (131072 bytes)\n* CRC32:           8875c8fe\n* MD5:             7c65e9da405d2225d079f75e56276822\n* SHA-1:           696b9ad1e9cfb7112977c9a7c05cf64fe8423d8a\n* SHA-256:         17570ceec1b22153604622c4412d048dd8f7ccb4626daf9ddea96de8a062dbf2\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:16:42+02:00\n* Time Elapsed:    1 second (94.14 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        128 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      CASTLEVANIA2 BEL\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  Unknown (0x4C)\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xEF)\n* ROM Checksum:    OK (0x31E8)\n* ROM Size:        128 KiB (0x02)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Castlevania II - Belmont's Revenge (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-CWE\n* ROM CRC32:       8875c8fe\n* ROM Size:        128 KiB",
+    "date": "2024-10-24",
     "crc32": "8875c8fe",
     "md5": "7c65e9da405d2225d079f75e56276822",
     "sha1": "696b9ad1e9cfb7112977c9a7c05cf64fe8423d8a",
-    "sha256": "17570ceec1b22153604622c4412d048dd8f7ccb4626daf9ddea96de8a062dbf2",
-    "date": "2024-10-24"
+    "sha256": "17570ceec1b22153604622c4412d048dd8f7ccb4626daf9ddea96de8a062dbf2"
   }
 }

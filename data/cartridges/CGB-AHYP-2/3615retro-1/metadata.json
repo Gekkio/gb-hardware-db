@@ -29,10 +29,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Super Mario Bros. Deluxe (Europe) (Rev 2).gbc\n* File Size:       1.00 MiB (1048576 bytes)\n* CRC32:           62bbae83\n* MD5:             b5a71128227f5bc953fd55cb0025807f\n* SHA-1:           254f2254e9d54e2501e3e4ebe09491e03573a6a4\n* SHA-256:         c06af1a1c2a804e4169fd9bfd6eee7073545d88c97febc96c345dd10efd77547\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-25T02:00:37+02:00\n* Time Elapsed:    8 seconds (118.31 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        1 MiB\n* Mapper Type:     MBC5\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      MARIO DELUX\n* Game Code:       AHYE\n* Revision:        2\n* Super Game Boy:  No support\n* Game Boy Color:  Required\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x2D)\n* ROM Checksum:    OK (0x3C4A)\n* ROM Size:        1 MiB (0x05)\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Super Mario Bros. Deluxe (Europe) (Rev 2)\n* Region:          Europe\n* Language(s):     En\n* Revision:        Rev 2\n* Game Code:       CGB-AHYE\n* ROM CRC32:       62bbae83\n* ROM Size:        1 MiB",
+    "date": "2024-10-25",
     "crc32": "62bbae83",
     "md5": "b5a71128227f5bc953fd55cb0025807f",
     "sha1": "254f2254e9d54e2501e3e4ebe09491e03573a6a4",
-    "sha256": "c06af1a1c2a804e4169fd9bfd6eee7073545d88c97febc96c345dd10efd77547",
-    "date": "2024-10-25"
+    "sha256": "c06af1a1c2a804e4169fd9bfd6eee7073545d88c97febc96c345dd10efd77547"
   }
 }

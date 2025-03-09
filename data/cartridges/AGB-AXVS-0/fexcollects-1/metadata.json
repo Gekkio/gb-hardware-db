@@ -27,7 +27,7 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Edicion Rubi (Spain).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           eb0729cf\n* MD5:             e15eff9df4cdb078896e7ee894dc98f6\n* SHA-1:           1f49f7289253dcbfecbc4c5ba3e67aa0652ec83c\n* SHA-256:         b03c3d0230889a40615371bd616f02160dd1e33bb116659d72d98c27462c40d0\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T13:58:18-06:00\n* Time Elapsed:    2 minutes, 4 seconds (132.01 KiB/s)\n* Transfer Buffer: 256 bytes\n* Retries:         5\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON RUBY\n* Game Code:       AXVS\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x33)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Edicion Rubi (Spain)\n* Region:          Spain\n* Language(s):     Es\n* Game Code:       AGB-AXVS\n* ROM CRC32:       eb0729cf\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
-    "sha256": "b03c3d0230889a40615371bd616f02160dd1e33bb116659d72d98c27462c40d0",
-    "date": "2024-05-26"
+    "date": "2024-05-26",
+    "sha256": "b03c3d0230889a40615371bd616f02160dd1e33bb116659d72d98c27462c40d0"
   }
 }

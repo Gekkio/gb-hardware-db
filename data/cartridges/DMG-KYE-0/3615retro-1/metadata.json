@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Kirby's Dream Land (USA, Europe).gb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           40f25740\n* MD5:             a66e4918edcd042ec171a57fe3ce36c3\n* SHA-1:           90979baa1d0e24b41b5c304c5ddaf77450692d5a\n* SHA-256:         0f6dba94fae248d419083001c42c02a78be6bd3dff679c895517559e72c98d58\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T20:49:29+02:00\n* Time Elapsed:    2 seconds (106.02 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      KIRBY DREAM LAND\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  Unknown (0x44)\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x98)\n* ROM Checksum:    OK (0xADF9)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Kirby's Dream Land (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-KYE\n* ROM CRC32:       40f25740\n* ROM Size:        256 KiB",
+    "date": "2024-10-24",
     "crc32": "40f25740",
     "md5": "a66e4918edcd042ec171a57fe3ce36c3",
     "sha1": "90979baa1d0e24b41b5c304c5ddaf77450692d5a",
-    "sha256": "0f6dba94fae248d419083001c42c02a78be6bd3dff679c895517559e72c98d58",
-    "date": "2024-10-24"
+    "sha256": "0f6dba94fae248d419083001c42c02a78be6bd3dff679c895517559e72c98d58"
   }
 }

@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Kid Dracula (USA, Europe).gb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           f27294b7\n* MD5:             24a6b4457a511cc667e9ac25417401ab\n* SHA-1:           f186833a2ccec808210eb4ba669f08401f950e23\n* SHA-256:         b0a1019b6199c923a6a764c15e7bf6d1bb0bef8a042c383f3e3ead74ab171ede\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:17:06+02:00\n* Time Elapsed:    2 seconds (105.85 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      KID DRACULA\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x4A)\n* ROM Checksum:    OK (0xE64A)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Kid Dracula (USA, Europe)\n* Region:          USA, Europe\n* Language(s):     En\n* Game Code:       DMG-DFE\n* ROM CRC32:       f27294b7\n* ROM Size:        256 KiB",
+    "date": "2024-10-24",
     "crc32": "f27294b7",
     "md5": "24a6b4457a511cc667e9ac25417401ab",
     "sha1": "f186833a2ccec808210eb4ba669f08401f950e23",
-    "sha256": "b0a1019b6199c923a6a764c15e7bf6d1bb0bef8a042c383f3e3ead74ab171ede",
-    "date": "2024-10-24"
+    "sha256": "b0a1019b6199c923a6a764c15e7bf6d1bb0bef8a042c383f3e3ead74ab171ede"
   }
 }

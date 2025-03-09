@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Advance Wars 2 - Black Hole Rising (Europe) (En,Fr,De,Es,It).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           5a09aae6\n* MD5:             ad4cf738f97416827baf17d6c43576d7\n* SHA-1:           8f78398a33254ff2ba935b5bccfdcccce661684f\n* SHA-256:         e36e668b008396acb4d65ecb27ccc529cb067cd8c9867704a1e280b13565b88d\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-25T01:27:27+02:00\n* Time Elapsed:    57 seconds (143.39 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      ADVANCEWARS2\n* Game Code:       AW2P\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x75)\n* Save Type:       512K FLASH (FLASH_V126)\n* Save Flash Chip: SST 39VF512 (0xBFD4)\n\n== Database Match ==\n* Game Name:       Advance Wars 2 - Black Hole Rising (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-AW2P\n* ROM CRC32:       5a09aae6\n* ROM Size:        8 MiB\n* Save Type:       512K FLASH (64 KiB)",
+    "date": "2024-10-25",
     "crc32": "5a09aae6",
     "md5": "ad4cf738f97416827baf17d6c43576d7",
     "sha1": "8f78398a33254ff2ba935b5bccfdcccce661684f",
-    "sha256": "e36e668b008396acb4d65ecb27ccc529cb067cd8c9867704a1e280b13565b88d",
-    "date": "2024-10-25"
+    "sha256": "e36e668b008396acb4d65ecb27ccc529cb067cd8c9867704a1e280b13565b88d"
   }
 }

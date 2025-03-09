@@ -20,7 +20,7 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Barbie - The Princess and the Pauper (USA).gba\n* File Size:       4.00 MiB (4194304 bytes)\n* CRC32:           f508a7b7\n* MD5:             64082d14d8a4abe32fb8b062d9c0b9ed\n* SHA-1:           432ed848343ad3c66bcb3acf245cacbb829f5f9c\n* SHA-256:         24a4a99215f4bdc4885db53e4d7c4971454ceaee05373ff4a8d15b3110f32aa3\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-06-30T16:57:59-06:00\n* Time Elapsed:    28 seconds (144.87 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        4 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      BARBIE P&P␀␀\n* Game Code:       BAUE\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x2E)\n* Save Type:       None\n\n== Database Match ==\n* Game Name:       Barbie - The Princess and the Pauper (USA)\n* Region:          USA\n* Language(s):     En\n* Game Code:       AGB-BAUE\n* ROM CRC32:       f508a7b7\n* ROM Size:        4 MiB\n* Save Type:       None",
-    "sha256": "24a4a99215f4bdc4885db53e4d7c4971454ceaee05373ff4a8d15b3110f32aa3",
-    "date": "2024-06-30"
+    "date": "2024-06-30",
+    "sha256": "24a4a99215f4bdc4885db53e4d7c4971454ceaee05373ff4a8d15b3110f32aa3"
   }
 }

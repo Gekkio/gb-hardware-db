@@ -29,10 +29,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Yoshi's Universal Gravitation (Europe) (En,Fr,De,Es,It).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           05f4d0aa\n* MD5:             f9de621b65084bcdaff6e6b0cdc7c413\n* SHA-1:           045be1369964f141009f3701839ec0a8dccb25c1\n* SHA-256:         036017d870770c164bc65f5de7444f001991e827e09f785d6239f1466faebce7\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-22T12:31:58+02:00\n* Time Elapsed:    57 seconds (143.69 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      YOSHI'S U/G␀\n* Game Code:       KYGP\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0xC4)\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\n\n== Database Match ==\n* Game Name:       Yoshi's Universal Gravitation (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-KYGP\n* ROM CRC32:       05f4d0aa\n* ROM Size:        8 MiB\n* Save Type:       4K EEPROM (512 Bytes)",
+    "date": "2024-10-22",
     "crc32": "05f4d0aa",
     "md5": "f9de621b65084bcdaff6e6b0cdc7c413",
     "sha1": "045be1369964f141009f3701839ec0a8dccb25c1",
-    "sha256": "036017d870770c164bc65f5de7444f001991e827e09f785d6239f1466faebce7",
-    "date": "2024-10-22"
+    "sha256": "036017d870770c164bc65f5de7444f001991e827e09f785d6239f1466faebce7"
   }
 }

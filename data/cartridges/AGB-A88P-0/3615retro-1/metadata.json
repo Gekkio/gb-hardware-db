@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Mario & Luigi - Superstar Saga (Europe) (En,Fr,De,Es,It).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           170cc574\n* MD5:             3b50b9f9e13e271ead33ee5a234650a9\n* SHA-1:           fa2314c2fbe0db1ab17175f8be7cceb0ab084efc\n* SHA-256:         cc95f813a6721981cf7ea02f577c0c0591ad75d639a1b6a1473f40244ad280d0\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-25T01:08:31+02:00\n* Time Elapsed:    1 minute, 53 seconds (144.18 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      MARIO&LUIGIP\n* Game Code:       A88P\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x87)\n* Save Type:       4K or 64K EEPROM (EEPROM_V124)\n\n== Database Match ==\n* Game Name:       Mario & Luigi - Superstar Saga (Europe) (En,Fr,De,Es,It)\n* Region:          Europe\n* Language(s):     En,Fr,De,Es,It\n* Game Code:       AGB-A88P\n* ROM CRC32:       170cc574\n* ROM Size:        16 MiB\n* Save Type:       64K EEPROM (8 KiB)",
+    "date": "2024-10-25",
     "crc32": "170cc574",
     "md5": "3b50b9f9e13e271ead33ee5a234650a9",
     "sha1": "fa2314c2fbe0db1ab17175f8be7cceb0ab084efc",
-    "sha256": "cc95f813a6721981cf7ea02f577c0c0591ad75d639a1b6a1473f40244ad280d0",
-    "date": "2024-10-25"
+    "sha256": "cc95f813a6721981cf7ea02f577c0c0591ad75d639a1b6a1473f40244ad280d0"
   }
 }

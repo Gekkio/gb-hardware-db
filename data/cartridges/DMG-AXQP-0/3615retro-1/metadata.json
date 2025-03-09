@@ -29,10 +29,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon Trading Card Game (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible).gbc\n* File Size:       2.00 MiB (2097152 bytes)\n* CRC32:           4523376e\n* MD5:             4572f09b61a36e94762ff60cbe182834\n* SHA-1:           868e7b376e39f7d65a735538d90fbe6bbc99d198\n* SHA-256:         30f2ec540c48dcddef205cecb4d14c3941064d8454c2dcf498dff77c32f99aae\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-30T11:20:33+01:00\n* Time Elapsed:    17 seconds (120.47 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        2 MiB\n* Mapper Type:     MBC5\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      POKECARD\n* Game Code:       AXQP\n* Revision:        0\n* Super Game Boy:  Supported\n* Game Boy Color:  Supported\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x28)\n* ROM Checksum:    OK (0x5E22)\n* ROM Size:        2 MiB (0x06)\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Pokemon Trading Card Game (Europe) (En,Fr,De) (SGB Enhanced) (GB Compatible)\n* Region:          Europe\n* Language(s):     En,Fr,De\n* Game Code:       DMG-AXQP\n* ROM CRC32:       4523376e\n* ROM Size:        2 MiB",
+    "date": "2024-10-30",
     "crc32": "4523376e",
     "md5": "4572f09b61a36e94762ff60cbe182834",
     "sha1": "868e7b376e39f7d65a735538d90fbe6bbc99d198",
-    "sha256": "30f2ec540c48dcddef205cecb4d14c3941064d8454c2dcf498dff77c32f99aae",
-    "date": "2024-10-30"
+    "sha256": "30f2ec540c48dcddef205cecb4d14c3941064d8454c2dcf498dff77c32f99aae"
   }
 }

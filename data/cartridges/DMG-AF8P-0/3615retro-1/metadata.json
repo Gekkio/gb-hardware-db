@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Konami GB Collection Vol.4 (Europe) (GB Compatible).gbc\n* File Size:       1.00 MiB (1048576 bytes)\n* CRC32:           8800f1c9\n* MD5:             f3414d53473e2cc43347774cc5f40495\n* SHA-1:           4c0c9e9cba36bfe5588e2a2dc799d207afd1321e\n* SHA-256:         9c19f5d5e94ec9c2215d7d5505cfbb6d13b256143723c641a41b314ad19572b3\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-25T01:20:04+02:00\n* Time Elapsed:    8 seconds (118.26 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        1 MiB\n* Mapper Type:     MBC5\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      GB PACK 4\n* Game Code:       AF8P\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  Supported\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x75)\n* ROM Checksum:    OK (0xD21B)\n* ROM Size:        1 MiB (0x05)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC5 (0x19)\n* Target Platform: Game Boy Color\n\n== Database Match ==\n* Game Name:       Konami GB Collection Vol.4 (Europe) (GB Compatible)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       DMG-AF8P\n* ROM CRC32:       8800f1c9\n* ROM Size:        1 MiB",
+    "date": "2024-10-25",
     "crc32": "8800f1c9",
     "md5": "f3414d53473e2cc43347774cc5f40495",
     "sha1": "4c0c9e9cba36bfe5588e2a2dc799d207afd1321e",
-    "sha256": "9c19f5d5e94ec9c2215d7d5505cfbb6d13b256143723c641a41b314ad19572b3",
-    "date": "2024-10-25"
+    "sha256": "9c19f5d5e94ec9c2215d7d5505cfbb6d13b256143723c641a41b314ad19572b3"
   }
 }

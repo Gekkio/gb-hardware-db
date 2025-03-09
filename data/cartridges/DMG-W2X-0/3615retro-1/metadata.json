@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Mega Man II (Europe).gb\n* File Size:       256.0 KiB (262144 bytes)\n* CRC32:           5e90cb48\n* MD5:             b9cfee05797beb8ff7e259ee77eaf2fb\n* SHA-1:           d19993a4630e7f9450ff6469115f4095f6f29667\n* SHA-256:         6f0e9ddb449e170dab920fef98aa4a1b3d73ce00ebf6e74ca1bf331068384f5b\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-24T21:18:43+02:00\n* Time Elapsed:    2 seconds (105.52 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy\n* ROM Size:        256 KiB\n* Mapper Type:     MBC1\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     A15\n\n== Parsed Data ==\n* Game Title:      MEGA MAN 2\n* Revision:        0\n* Super Game Boy:  No support\n* Game Boy Color:  No support\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x79)\n* ROM Checksum:    OK (0x795C)\n* ROM Size:        256 KiB (0x03)\n* SRAM Size:       No SRAM (0x00)\n* Mapper Type:     MBC1 (0x01)\n* Target Platform: Game Boy\n\n== Database Match ==\n* Game Name:       Mega Man II (Europe)\n* Region:          Europe\n* Language(s):     En\n* Game Code:       DMG-W2X\n* ROM CRC32:       5e90cb48\n* ROM Size:        256 KiB",
+    "date": "2024-10-24",
     "crc32": "5e90cb48",
     "md5": "b9cfee05797beb8ff7e259ee77eaf2fb",
     "sha1": "d19993a4630e7f9450ff6469115f4095f6f29667",
-    "sha256": "6f0e9ddb449e170dab920fef98aa4a1b3d73ce00ebf6e74ca1bf331068384f5b",
-    "date": "2024-10-24"
+    "sha256": "6f0e9ddb449e170dab920fef98aa4a1b3d73ce00ebf6e74ca1bf331068384f5b"
   }
 }

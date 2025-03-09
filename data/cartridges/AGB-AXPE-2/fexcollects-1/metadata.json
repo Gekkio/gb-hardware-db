@@ -27,7 +27,7 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Sapphire Version (USA, Europe) (Rev 2).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           9cc4410e\n* MD5:             9bc2b765ca6997175fac51e6cdc29089\n* SHA-1:           89b45fb172e6b55d51fc0e61989775187f6fe63c\n* SHA-256:         02ca41513580a8b780989dee428df747b52a0b1a55bec617886b4059eb1152fb\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-07-02T18:05:54-06:00\n* Time Elapsed:    1 minute, 52 seconds (145.02 KiB/s)\n* Transfer Buffer: 8192 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON SAPP\n* Game Code:       AXPE\n* Revision:        2\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x53)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Sapphire Version (USA, Europe) (Rev 2)\n* Region:          USA, Europe\n* Language(s):     En\n* Revision:        Rev 2\n* Game Code:       AGB-AXPE\n* ROM CRC32:       9cc4410e\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
-    "sha256": "02ca41513580a8b780989dee428df747b52a0b1a55bec617886b4059eb1152fb",
-    "date": "2024-07-02"
+    "date": "2024-07-02",
+    "sha256": "02ca41513580a8b780989dee428df747b52a0b1a55bec617886b4059eb1152fb"
   }
 }

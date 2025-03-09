@@ -27,7 +27,7 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pocket Monsters - Ruby (Japan).gba\n* File Size:       8.00 MiB (8388608 bytes)\n* CRC32:           cee9471a\n* MD5:             27c9f37193977828f9808f3f76ff8c76\n* SHA-1:           5c5e546720300b99ae45d2aa35c646c8b8ff5c56\n* SHA-256:         e911caa1ffbf8704cd45bbe064ade40e24efa50dfdce82adf4b2899b5f733852\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L11\n* Software:        FlashGBX v3.37\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-05-26T11:52:11-06:00\n* Time Elapsed:    1 minute, 1 seconds (133.93 KiB/s)\n* Transfer Buffer: 1024 bytes\n* Retries:         3\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        8 MiB\n* Cartridge Type:  Generic ROM Cartridge\n\n== Parsed Data ==\n* Game Title:      POKEMON RUBY\n* Game Code:       AXVJ\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x3C)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pocket Monsters - Ruby (Japan)\n* Region:          Japan\n* Language(s):     Ja\n* Game Code:       AGB-AXVJ\n* ROM CRC32:       cee9471a\n* ROM Size:        8 MiB\n* Save Type:       1M FLASH (128 KiB)",
-    "sha256": "e911caa1ffbf8704cd45bbe064ade40e24efa50dfdce82adf4b2899b5f733852",
-    "date": "2024-05-26"
+    "date": "2024-05-26",
+    "sha256": "e911caa1ffbf8704cd45bbe064ade40e24efa50dfdce82adf4b2899b5f733852"
   }
 }

@@ -23,10 +23,10 @@
   "dump": {
     "tool": "GBxCart RW v1.4a/b/c",
     "log": "= FlashGBX Dump Report =\n\n== File Information ==\n* File Name:       Pokemon - Version Rouge Feu (France).gba\n* File Size:       16.00 MiB (16777216 bytes)\n* CRC32:           5dc668f6\n* MD5:             b8663b80eef5a1e9b41b683aa1234902\n* SHA-1:           fc663907256f06a3a09e2d6b967bc9af4919f111\n* SHA-256:         245866842349cedbe2a034c6d20438d26d18b627b3d0909d7cb795fc87d7675a\n\n== General Information ==\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L13\n* Software:        FlashGBX v4.2\n* OS Platform:     Windows-10-10.0.19045-SP0\n* Baud Rate:       1700000\n* Dump Time:       2024-10-20T00:58:31+02:00\n* Time Elapsed:    1 minute, 53 seconds (143.97 KiB/s)\n* Transfer Buffer: 4096 bytes\n* Retries:         0\n\n== Dumping Settings ==\n* Mode:            Game Boy Advance\n* ROM Size:        16 MiB\n* Cartridge Type:  Generic ROM Cartridge\n* Read Method:     Stream\n\n== Parsed Data ==\n* Game Title:      POKEMON FIRE\n* Game Code:       BPRF\n* Revision:        0\n* Nintendo Logo:   OK\n* Header Checksum: OK (0x67)\n* Save Type:       1M FLASH (FLASH1M_V103)\n* Save Flash Chip: Macronix MX29L010 (0xC209)\n\n== Database Match ==\n* Game Name:       Pokemon - Version Rouge Feu (France)\n* Region:          France\n* Language(s):     Fr\n* Game Code:       AGB-BPRF\n* ROM CRC32:       5dc668f6\n* ROM Size:        16 MiB\n* Save Type:       1M FLASH (128 KiB)",
+    "date": "2024-10-20",
     "crc32": "5dc668f6",
     "md5": "b8663b80eef5a1e9b41b683aa1234902",
     "sha1": "fc663907256f06a3a09e2d6b967bc9af4919f111",
-    "sha256": "245866842349cedbe2a034c6d20438d26d18b627b3d0909d7cb795fc87d7675a",
-    "date": "2024-10-20"
+    "sha256": "245866842349cedbe2a034c6d20438d26d18b627b3d0909d7cb795fc87d7675a"
   }
 }

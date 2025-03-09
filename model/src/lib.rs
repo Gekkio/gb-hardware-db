@@ -4,23 +4,35 @@
 
 use std::fmt;
 
+use serde::{Deserialize, Serialize};
+
 pub mod config;
 pub mod hash;
 pub mod input;
 pub mod parser;
 pub mod time;
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash, Deserialize, Serialize)]
 pub enum Console {
+    #[serde(rename = "dmg")]
     Dmg,
+    #[serde(rename = "sgb")]
     Sgb,
+    #[serde(rename = "mgb")]
     Mgb,
+    #[serde(rename = "mgl")]
     Mgl,
+    #[serde(rename = "sgb2")]
     Sgb2,
+    #[serde(rename = "cgb")]
     Cgb,
+    #[serde(rename = "agb")]
     Agb,
+    #[serde(rename = "ags")]
     Ags,
+    #[serde(rename = "gbs")]
     Gbs,
+    #[serde(rename = "oxy")]
     Oxy,
 }
 

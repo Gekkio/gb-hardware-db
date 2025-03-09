@@ -4,6 +4,7 @@
 
 use serde::{Deserialize, Serialize};
 use std::{fmt, ops::RangeInclusive};
+use strum::VariantArray;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 #[repr(transparent)]
@@ -33,7 +34,9 @@ impl fmt::Display for Week {
     }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
+#[derive(
+    Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize, VariantArray,
+)]
 #[repr(u8)]
 #[serde(into = "u8", try_from = "u8")]
 pub enum Month {

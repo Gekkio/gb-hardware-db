@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
+use strum::{EnumString, IntoStaticStr, VariantArray};
 
 use crate::{
     input::{is_not_outlier, LcdScreen, Part},
@@ -38,7 +39,18 @@ pub struct DmgShell {
     pub outlier: bool,
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    Eq,
+    PartialEq,
+    Deserialize,
+    Serialize,
+    VariantArray,
+    IntoStaticStr,
+    EnumString,
+)]
 pub enum DmgShellColor {
     OffWhite,
     DeepBlack,

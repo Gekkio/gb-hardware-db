@@ -32,10 +32,10 @@ pub fn minify(css: &str) -> Result<String, Error> {
         parse_string_input(css, None, ParserConfig::default(), &mut errors)
             .map_err(|err| anyhow!("{:?}", err))?;
     let mut css = String::new();
-    let mut gen = CodeGenerator::new(
+    let mut generator = CodeGenerator::new(
         BasicCssWriter::new(&mut css, None, BasicCssWriterConfig::default()),
         CodegenConfig { minify: true },
     );
-    gen.emit(&stylesheet)?;
+    generator.emit(&stylesheet)?;
     Ok(css)
 }

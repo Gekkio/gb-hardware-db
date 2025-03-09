@@ -16,7 +16,7 @@ filetime.workspace = true
 gbhwdb-model.workspace = true
 glob.workspace = true
 grass.workspace = true
-image.workspace = true
+image = { workspace = true, features = ["jpeg", "rayon"] }
 itertools.workspace = true
 lexical-sort.workspace = true
 log.workspace = true

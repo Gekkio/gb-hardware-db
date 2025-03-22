@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct SiteFooter;

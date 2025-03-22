@@ -17,15 +17,16 @@ use std::{
 use crate::{
     hash::{Crc32, Md5, Sha1, Sha256},
     parser::{
+        Crystal, GameMaskRom, GenericPart, LabelParser, Mapper, UnknownChip,
         agb_mask_rom_tsop_ii_44_3v3, analog, eeprom_sop_8_3v3, eeprom_tssop_8_5v,
         flash_tsop_i_32_3v3, flash_tsop_i_40_5v, fram_sop_28_3v3, gb_mask_rom_glop_top_28_5v,
         gb_mask_rom_qfp_44_5v, gb_mask_rom_sop_32_5v, gb_mask_rom_sop_44_5v,
         gb_mask_rom_tsop_i_32_5v, gb_mask_rom_tsop_ii_44_5v, hex_inverter, line_decoder, mapper,
-        rtc_crystal, rtc_sop_20, rtc_sop_8,
+        rtc_crystal, rtc_sop_8, rtc_sop_20,
         sram::{sram_sop_28_3v3, sram_sop_28_5v, sram_sop_32_5v, sram_tsop_i_28},
         supervisor_reset,
         tama::{tama5, tama6, tama7},
-        unknown_chip, Crystal, GameMaskRom, GenericPart, LabelParser, Mapper, UnknownChip,
+        unknown_chip,
     },
 };
 

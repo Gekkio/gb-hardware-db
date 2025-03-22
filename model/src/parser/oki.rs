@@ -3,21 +3,21 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{consumed, value},
     error::ParseError,
     sequence::terminated,
-    Parser,
 };
 
 use super::{
+    GameMaskRom, GameRomType, MaskCode, MaskRom,
     for_nom::{
         agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, satisfy_m_n_complete,
         year1_week2,
     },
-    GameMaskRom, GameRomType, MaskCode, MaskRom,
 };
 use crate::parser::{Manufacturer, NomParser};
 

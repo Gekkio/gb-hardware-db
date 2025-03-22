@@ -3,13 +3,13 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt, bytes::streaming::tag, character::streaming::char, sequence::delimited,
-    Parser as _,
+    Parser as _, branch::alt, bytes::streaming::tag, character::streaming::char,
+    sequence::delimited,
 };
 
 use super::{
-    for_nom::{lines2, uppers, year1_month1_abc},
     Crystal, Manufacturer, NomParser,
+    for_nom::{lines2, uppers, year1_month1_abc},
 };
 
 /// ```

@@ -4,7 +4,6 @@
 
 use serde::{Deserialize, Serialize};
 use std::{fmt, ops::RangeInclusive};
-use strum::VariantArray;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 #[repr(transparent)]
@@ -35,7 +34,18 @@ impl fmt::Display for Week {
 }
 
 #[derive(
-    Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize, VariantArray,
+    Copy,
+    Clone,
+    Debug,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Serialize,
+    Deserialize,
+    strum::VariantArray,
+    strum::EnumString,
+    strum::IntoStaticStr,
 )]
 #[repr(u8)]
 #[serde(into = "u8", try_from = "u8")]
@@ -83,7 +93,7 @@ impl TryFrom<u8> for Month {
 }
 
 impl Month {
-    pub fn name(&self) -> &'static str {
+    pub const fn name(&self) -> &'static str {
         match self {
             Month::January => "January",
             Month::February => "February",

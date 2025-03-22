@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{month2, year1, LabelParser, Year};
+use super::{LabelParser, Year, month2, year1};
 use crate::{
     macros::{multi_parser, single_parser},
     parser::year2,

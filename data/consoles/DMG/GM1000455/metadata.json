@@ -5,7 +5,6 @@
     "serial": "GM1000455"
   },
   "mainboard": {
-    "label": "DMG-CPU-07",
-    "u1": {}
+    "label": "DMG-CPU-07"
   }
 }

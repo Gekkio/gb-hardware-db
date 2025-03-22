@@ -4,8 +4,8 @@
 
 use anyhow::Error;
 use gbhwdb_model::{
-    config::cartridge::{BoardConfig, BoardPart, GamePlatform, PartRole},
     Console,
+    config::cartridge::{BoardConfig, BoardPart, GamePlatform, PartRole},
 };
 use itertools::Itertools;
 use lexical_sort::natural_lexical_cmp;
@@ -22,6 +22,7 @@ use std::{
 use time::OffsetDateTime;
 
 use crate::{
+    SiteData,
     legacy::LegacySubmission,
     template::{
         cartridge_page::CartridgePage,
@@ -39,7 +40,6 @@ use crate::{
         page,
         platform_cartridges::PlatformCartridges,
     },
-    SiteData,
 };
 
 static MAPPER_CFGS: OnceLock<Vec<MapperCfg>> = OnceLock::new();

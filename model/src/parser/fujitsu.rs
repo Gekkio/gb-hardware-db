@@ -3,23 +3,23 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     branch::alt,
     bytes::streaming::tag,
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
     error::ParseError,
     sequence::terminated,
-    Parser,
 };
 
 use crate::parser::{
-    for_nom::{digits, uppers, year2_week2},
     Manufacturer, NomParser,
+    for_nom::{digits, uppers, year2_week2},
 };
 
 use super::{
-    for_nom::{alnum_uppers, cgb_rom_code, dmg_rom_code},
     GameMaskRom, GameRomType, GenericPart, MaskRom,
+    for_nom::{alnum_uppers, cgb_rom_code, dmg_rom_code},
 };
 
 /// Fujitsu MB85R256 (SOP-28, 3.0-3.6V)

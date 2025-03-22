@@ -5,12 +5,12 @@
 use gbhwdb_model::config::cartridge::GamePlatform;
 use itertools::Itertools;
 use lexical_sort::natural_lexical_cmp;
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 use std::borrow::Cow;
 
 use crate::{
-    template::{listing_entry_cell::ListingEntryCell, Optional},
     LegacyCartridgeSubmission, Submissions,
+    template::{Optional, listing_entry_cell::ListingEntryCell},
 };
 
 pub struct ContributorCartridges<'a> {

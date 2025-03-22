@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year1, year2, LabelParser, Manufacturer, PartDateCode};
+use super::{LabelParser, Manufacturer, PartDateCode, week2, year1, year2};
 use crate::{
     macros::{multi_parser, single_parser},
     parser::sharp,

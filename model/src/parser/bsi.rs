@@ -3,18 +3,18 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    Parser as _,
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, uppers},
     GenericPart,
+    for_nom::{alnum_uppers, digits, uppers},
 };
-use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
+use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
 /// BSI BS62LV256 (SOP-28, 2.4V-5.5V)
 ///

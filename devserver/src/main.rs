@@ -3,9 +3,9 @@
 // SPDX-License-Identifier: MIT
 
 use axum::{
-    http::{header, HeaderValue},
-    routing::get_service,
     Router,
+    http::{HeaderValue, header},
+    routing::get_service,
 };
 use std::net::SocketAddr;
 use tower_http::{services::ServeDir, set_header::SetResponseHeaderLayer};

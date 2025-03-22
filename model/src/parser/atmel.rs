@@ -3,14 +3,14 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::recognize,
-    Parser as _,
 };
 
-use super::{for_nom::lines3, GenericPart};
-use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
+use super::{GenericPart, for_nom::lines3};
+use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
 /// Atmel AT29LV512 (TSOP-I-32, 3.0-3.6V)
 ///

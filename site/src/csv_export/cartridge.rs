@@ -5,7 +5,7 @@
 use gbhwdb_model::config::cartridge::PartDesignator;
 
 use crate::{
-    csv_export::{part, Builder, Field, ToCsv},
+    csv_export::{Builder, Field, ToCsv, part},
     legacy::cartridge::{LegacyBoard, LegacyMetadata},
 };
 

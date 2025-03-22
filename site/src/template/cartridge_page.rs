@@ -2,13 +2,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 use slug::slugify;
 use time::{format_description::FormatItem, macros::format_description};
 
 use crate::{
     legacy::{LegacyCartridgeSubmission, LegacyPhoto},
-    template::submission_part_table::{submission_part_table, SubmissionPart},
+    template::submission_part_table::{SubmissionPart, submission_part_table},
 };
 
 pub struct CartridgePage<'a> {

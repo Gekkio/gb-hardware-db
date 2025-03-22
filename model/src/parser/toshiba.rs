@@ -3,22 +3,22 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{recognize, value},
     error::ParseError,
     sequence::{delimited, separated_pair, terminated},
-    Parser,
 };
 
 use super::{
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
     for_nom::{
         cgb_rom_code, digits, dmg_rom_code, lines2, lines3, lines4, uppers, week2, year1,
         year2_week2,
     },
     sram::Ram,
-    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
 };
 
 /// Toshiba TC8521AM (SOP-20)

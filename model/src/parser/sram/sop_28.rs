@@ -5,7 +5,7 @@
 use super::Ram;
 use crate::{
     macros::single_parser,
-    parser::{week2, year1, year2, LabelParser, Manufacturer, PartDateCode},
+    parser::{LabelParser, Manufacturer, PartDateCode, week2, year1, year2},
 };
 
 /// Rohm BR62256F (SOP-28, 4.5-5.5V)

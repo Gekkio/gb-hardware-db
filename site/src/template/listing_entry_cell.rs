@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 use crate::legacy::{LegacyMetadata, LegacyPhotos, LegacySubmission};
 

@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 use crate::{
-    legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission},
+    legacy::{HasDateCode, LegacyDmgSubmission, console::LegacyDmgMetadata},
     template::{console_page::ConsolePage, submission_part_table::SubmissionPart},
 };
 
@@ -83,13 +83,13 @@ impl<'a> Render for DmgConsolePage<'a> {
                                 (page.render_photo(photo))
                             }
                         }
-                        @if let Some(board) = &m.jack_board {
+                        @if !m.jack_board.is_unknown() {
                             dl {
                                 dt { "Board type" }
-                                dd { (board.kind) }
-                                @if let Some(value) = &board.extra_label {
+                                dd { (m.jack_board.kind) }
+                                @if !m.jack_board.extra_label.is_empty() {
                                     dt { "Extra label" }
-                                    dd { (value) }
+                                    dd { (m.jack_board.extra_label) }
                                 }
                             }
                         }

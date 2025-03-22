@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, Parser as _};
+use nom::{Parser as _, bytes::streaming::tag};
 
 use super::{
-    for_nom::{alnum_uppers, digits, year1},
     GenericPart, Manufacturer, NomParser,
+    for_nom::{alnum_uppers, digits, year1},
 };
 use crate::parser::PartDateCode;
 

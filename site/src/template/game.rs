@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_model::config::cartridge::{GameConfig, GamePlatform, PartDesignator, PartRole};
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 use std::collections::BTreeSet;
 
 use crate::{

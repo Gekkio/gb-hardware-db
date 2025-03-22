@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 use crate::{
     legacy::{
-        console::{ChipInfo, LegacyConsoleMetadata},
         HasDateCode, LegacyPhotos, LegacySubmission,
+        console::{ChipInfo, LegacyConsoleMetadata},
     },
     template::listing_part::ListingPart,
     template::{listing_entry_cell::ListingEntryCell, listing_photos_cell::ListingPhotosCell},

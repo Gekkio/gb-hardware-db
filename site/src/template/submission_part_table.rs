@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup};
+use maud::{Markup, html};
 
 use crate::{process::part::ProcessedPart, template::Optional};
 

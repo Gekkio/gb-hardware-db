@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 use super::console_submission_list::ConsoleSubmissionList;
 use crate::{
-    legacy::{console::LegacyDmgMetadata, HasDateCode, LegacyDmgSubmission},
+    legacy::{HasDateCode, LegacyDmgSubmission, console::LegacyDmgMetadata},
     template::Optional,
 };
 
@@ -50,8 +50,8 @@ impl<'a> Render for DmgSubmissionList<'a> {
                 }),
                 Box::new(|m: &LegacyDmgMetadata| {
                     html! {
-                        @if let Some(board) = &m.jack_board {
-                            (board.kind.as_str())
+                        @if !m.jack_board.is_unknown() {
+                            (m.jack_board.kind.as_str())
                         }
                     }
                 }),

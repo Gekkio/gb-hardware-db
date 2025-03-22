@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use log::warn;
-use nom::{combinator::all_consuming, IResult, Parser as _};
+use nom::{IResult, Parser as _, combinator::all_consuming};
 use nom_language::error::VerboseError;
 use regex::{Captures, Regex, RegexBuilder};
 use stamp::{CgbStamp, DmgStamp};
@@ -201,20 +201,20 @@ fn year1(text: &str) -> Result<Year, String> {
 
 mod for_nom {
     use nom::{
+        IResult, Parser,
         branch::alt,
         bytes::streaming::{tag, take},
         character::streaming::{anychar, char, satisfy},
         combinator::{map_opt, recognize},
         error::ParseError,
         multi::fold_many_m_n,
-        IResult, Parser,
     };
 
     use super::{PartDateCode, Year};
     use crate::time::{Month, Week};
 
-    pub fn dmg_rom_code<'a, E: ParseError<&'a str>>(
-    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+    pub fn dmg_rom_code<'a, E: ParseError<&'a str>>()
+    -> impl Parser<&'a str, Output = &'a str, Error = E> {
         recognize((
             tag("DMG-"),
             satisfy_m_n(3, 4, |c| c.is_ascii_digit() || c.is_ascii_uppercase()),
@@ -223,13 +223,13 @@ mod for_nom {
         ))
     }
 
-    pub fn cgb_rom_code<'a, E: ParseError<&'a str>>(
-    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+    pub fn cgb_rom_code<'a, E: ParseError<&'a str>>()
+    -> impl Parser<&'a str, Output = &'a str, Error = E> {
         recognize((tag("CGB-"), alnum_uppers(4), char('-'), digits(1)))
     }
 
-    pub fn agb_rom_code<'a, E: ParseError<&'a str>>(
-    ) -> impl Parser<&'a str, Output = &'a str, Error = E> {
+    pub fn agb_rom_code<'a, E: ParseError<&'a str>>()
+    -> impl Parser<&'a str, Output = &'a str, Error = E> {
         recognize((tag("AGB-"), alnum_uppers(4), char('-'), digits(1)))
     }
 

@@ -3,17 +3,17 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    Parser as _,
 };
 
 use super::{
-    for_nom::{alnum_uppers, uppers},
     GenericPart,
+    for_nom::{alnum_uppers, uppers},
 };
-use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
+use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
 /// AMIC LP62S16128 (TSOP-I-48, 2.7-3.6V)
 ///

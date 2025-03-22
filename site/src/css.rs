@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::{anyhow, Error};
+use anyhow::{Error, anyhow};
 use std::path::Path;
-use swc_common::{input::StringInput, BytePos};
+use swc_common::{BytePos, input::StringInput};
 use swc_css::{
     ast::Stylesheet,
     codegen::{
-        writer::basic::{BasicCssWriter, BasicCssWriterConfig},
         CodeGenerator, CodegenConfig, Emit,
+        writer::basic::{BasicCssWriter, BasicCssWriterConfig},
     },
     parser::{parse_string_input, parser::ParserConfig},
 };

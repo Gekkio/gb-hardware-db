@@ -2,13 +2,15 @@
 //
 // SPDX-License-Identifier: MIT
 
+use gbhwdb_model::input::dmg::DmgJackBoard;
+
 use crate::{
-    csv_export::{part, Builder, Field, ToCsv},
-    legacy::console::{
-        LegacyDmgJackBoard, LegacyDmgLcdBoard, LegacyDmgMainboard, LegacyDmgMetadata,
-        LegacyDmgPowerBoard, LegacyLcdPanel,
-    },
     HasDateCode,
+    csv_export::{Builder, Field, ToCsv, part},
+    legacy::console::{
+        LegacyDmgLcdBoard, LegacyDmgMainboard, LegacyDmgMetadata, LegacyDmgPowerBoard,
+        LegacyLcdPanel,
+    },
 };
 
 impl ToCsv for LegacyDmgMetadata {
@@ -87,9 +89,15 @@ impl ToCsv for LegacyDmgMetadata {
             )
             .nest(
                 "jack_board",
-                |m| m.jack_board.as_ref(),
+                |m| {
+                    if m.jack_board.is_unknown() {
+                        None
+                    } else {
+                        Some(&m.jack_board)
+                    }
+                },
                 || {
-                    Builder::<LegacyDmgJackBoard>::new()
+                    Builder::<DmgJackBoard>::new()
                         .add("type", |b| (&b.kind).csv())
                         .add("extra_label", |b| (&b.extra_label).csv())
                 },

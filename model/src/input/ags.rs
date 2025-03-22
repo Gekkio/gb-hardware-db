@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    input::{is_not_outlier, Part},
+    input::{Part, is_not_outlier},
     time::Month,
 };
 
@@ -18,6 +18,33 @@ pub struct AgsConsole {
     pub index: Option<u16>,
     pub shell: AgsShell,
     pub mainboard: AgsMainboard,
+}
+
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Deserialize,
+    Serialize,
+    strum::VariantArray,
+    strum::EnumString,
+    strum::IntoStaticStr,
+)]
+pub enum AgsPhotoKind {
+    #[strum(serialize = "front")]
+    Front,
+    #[strum(serialize = "top")]
+    Top,
+    #[strum(serialize = "back")]
+    Back,
+    #[strum(serialize = "pcb_front")]
+    PcbFront,
+    #[strum(serialize = "pcb_back")]
+    PcbBack,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]

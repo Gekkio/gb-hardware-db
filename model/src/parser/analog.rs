@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, Parser as _};
+use nom::{Parser as _, bytes::streaming::tag};
 
 use super::{
-    for_nom::{digits, lines3, uppers, year2_week2},
     GenericPart, Manufacturer, NomParser,
+    for_nom::{digits, lines3, uppers, year2_week2},
 };
 
 /// ```

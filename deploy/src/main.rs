@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::{anyhow, Error};
+use anyhow::{Error, anyhow};
 use aws_config::BehaviorVersion;
 use aws_sdk_cloudfront::types::{InvalidationBatch, Paths};
 use aws_sdk_s3::primitives::ByteStream;

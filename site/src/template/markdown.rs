@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, PreEscaped, Render};
-use pulldown_cmark::{html::push_html, Parser};
+use maud::{Markup, PreEscaped, Render, html};
+use pulldown_cmark::{Parser, html::push_html};
 
 pub struct Markdown {
     html: String,

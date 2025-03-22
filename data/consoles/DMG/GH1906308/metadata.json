@@ -12,11 +12,7 @@
     "extra_label": "Rev 1",
     "u1": {
       "label": "B"
-    },
-    "u2": {},
-    "u3": {},
-    "u4": {},
-    "x1": {}
+    }
   },
   "lcd_board": {
     "label": "DMG-LCD-06",

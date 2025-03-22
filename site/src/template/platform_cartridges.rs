@@ -5,10 +5,10 @@
 use gbhwdb_model::config::cartridge::{GameConfig, GamePlatform};
 use itertools::Itertools;
 use lexical_sort::natural_lexical_cmp;
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 use std::{borrow::Cow, collections::BTreeMap};
 
-use crate::{legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg, LegacyPhotos};
+use crate::{LegacyPhotos, legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg};
 
 pub struct PlatformCartridges<'a> {
     pub platform: GamePlatform,

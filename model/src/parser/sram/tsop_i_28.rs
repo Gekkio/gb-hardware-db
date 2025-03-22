@@ -5,7 +5,7 @@
 use super::Ram;
 use crate::{
     macros::single_parser,
-    parser::{week2, year1, year2, LabelParser, Manufacturer, PartDateCode},
+    parser::{LabelParser, Manufacturer, PartDateCode, week2, year1, year2},
 };
 
 /// Sharp LH52256

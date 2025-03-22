@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
-use time::{macros::format_description, Date};
+use maud::{Markup, Render, html};
+use time::{Date, macros::format_description};
 
 use super::markdown::Markdown;
 

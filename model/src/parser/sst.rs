@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, Parser as _};
+use nom::{Parser as _, bytes::streaming::tag};
 
 use crate::parser::{
-    for_nom::{digits, year2_week2},
     Manufacturer, NomParser,
+    for_nom::{digits, year2_week2},
 };
 
-use super::{for_nom::lines3, GenericPart};
+use super::{GenericPart, for_nom::lines3};
 
 /// SST SST39VF512 (TSOP-I-32, 2.7-3.6V)
 ///

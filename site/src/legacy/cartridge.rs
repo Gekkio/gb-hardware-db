@@ -6,8 +6,8 @@ use gbhwdb_model::{config::cartridge::*, input::cartridge::*, parser::LabelParse
 use std::collections::HashMap;
 
 use crate::{
-    process::part::{ParsedPart, ProcessedPart},
     process::DateCode,
+    process::part::{ParsedPart, ProcessedPart},
 };
 
 #[derive(Clone, Debug)]
@@ -42,7 +42,8 @@ impl LegacyBoard {
                     parser: &dyn LabelParser<T>,
                 ) -> Option<(PartDesignator, ProcessedPart)> {
                     let submission_part = &board[designator];
-                    let label = submission_part.as_ref()?.label.as_ref()?;
+                    let label =
+                        Some(&submission_part.as_ref()?.label).filter(|label| !label.is_empty())?;
 
                     let parsed = parser
                         .parse(label)

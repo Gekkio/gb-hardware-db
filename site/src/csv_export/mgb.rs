@@ -3,9 +3,9 @@
 // SPDX-License-Identifier: MIT
 
 use crate::{
-    csv_export::{part, Builder, Field, ToCsv},
-    legacy::console::{LegacyLcdPanel, LegacyMgbMainboard, LegacyMgbMetadata},
     HasDateCode,
+    csv_export::{Builder, Field, ToCsv, part},
+    legacy::console::{LegacyLcdPanel, LegacyMgbMainboard, LegacyMgbMetadata},
 };
 
 impl ToCsv for LegacyMgbMetadata {

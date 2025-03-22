@@ -3,14 +3,14 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    branch::alt, bytes::streaming::tag, character::streaming::char, combinator::value,
-    error::ParseError, IResult, Parser,
+    IResult, Parser, branch::alt, bytes::streaming::tag, character::streaming::char,
+    combinator::value, error::ParseError,
 };
 
 use super::{
+    PartDateCode,
     for_nom::{uppers, year2_week2},
     sram::Ram,
-    PartDateCode,
 };
 use crate::parser::{Manufacturer, NomParser};
 

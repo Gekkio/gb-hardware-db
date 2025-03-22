@@ -3,17 +3,17 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    IResult, Parser,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::{char, satisfy},
     combinator::{opt, recognize},
     error::ParseError,
-    IResult, Parser,
 };
 
 use super::{
-    for_nom::{self, agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
     GameMaskRom, GameRomType, GenericPart, Manufacturer, NomParser, PartDateCode,
+    for_nom::{self, agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
 };
 
 /// Macronix MX29F008 (TSOP-I-40, 4.5-5.5V)

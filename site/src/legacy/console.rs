@@ -3,16 +3,16 @@
 // SPDX-License-Identifier: MIT
 
 use gbhwdb_model::{
-    input::{LcdChip, LcdScreen},
+    Console,
+    input::{LcdChip, LcdScreen, dmg::DmgJackBoard},
     parser::{LabelParser, Manufacturer},
     time::{Jun, Month, Week},
-    Console,
 };
 
 use crate::{
     legacy::{HasDateCode, LegacyMetadata, LegacyPhoto, LegacyPhotos, PhotoInfo, PhotoKind},
     process::part::ProcessedPart,
-    process::{to_full_year, DateCode},
+    process::{DateCode, to_full_year},
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, Default)]
@@ -204,7 +204,7 @@ pub struct LegacyDmgMetadata {
     pub mainboard: LegacyDmgMainboard,
     pub lcd_board: Option<LegacyDmgLcdBoard>,
     pub power_board: Option<LegacyDmgPowerBoard>,
-    pub jack_board: Option<LegacyDmgJackBoard>,
+    pub jack_board: DmgJackBoard,
 }
 
 impl HasDateCode for LegacyDmgMainboard {
@@ -328,12 +328,6 @@ impl HasDateCode for LegacyDmgPowerBoard {
             week: None,
         }
     }
-}
-
-#[derive(Clone, Debug, Default)]
-pub struct LegacyDmgJackBoard {
-    pub kind: String,
-    pub extra_label: Option<String>,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -1136,17 +1130,31 @@ impl HasDateCode for LegacyLcdPanel {
 }
 
 pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPart {
+    let label = &chip.label;
     let ribbon_label = &chip.ribbon_label;
-    if let Some(label) = &chip.label {
+    if label.is_empty() {
+        let label = if ribbon_label.is_empty() {
+            None
+        } else {
+            Some(ribbon_label.clone())
+        };
+        ProcessedPart {
+            kind: label.clone(),
+            label,
+            manufacturer: Some(Manufacturer::Sharp),
+            ..ProcessedPart::default()
+        }
+    } else {
         let chip = gbhwdb_model::parser::lcd_chip::lcd_chip()
-            .parse(label)
+            .parse(&label)
             .unwrap_or_else(|_| panic!("{}", label));
         ProcessedPart {
-            label: Some(match &ribbon_label {
-                Some(ribbon_label) => format!("{} {}", ribbon_label, label),
-                None => label.to_owned(),
+            label: Some(if ribbon_label.is_empty() {
+                label.clone()
+            } else {
+                format!("{} {}", ribbon_label, label)
             }),
-            kind: ribbon_label.clone(),
+            kind: Some(ribbon_label.clone()),
             manufacturer: Some(Manufacturer::Sharp),
             date_code: DateCode {
                 year: to_full_year(year_hint, chip.year),
@@ -1156,27 +1164,22 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPa
             },
             rom_id: None,
         }
-    } else {
-        ProcessedPart {
-            label: ribbon_label.clone(),
-            kind: ribbon_label.clone(),
-            manufacturer: Some(Manufacturer::Sharp),
-            ..ProcessedPart::default()
-        }
     }
 }
 
 pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option<LegacyLcdPanel> {
-    let column_driver = screen
-        .column_driver
-        .as_ref()
+    let column_driver = Some(&screen.column_driver)
+        .filter(|chip| !chip.is_unknown())
         .map(|chip| to_legacy_lcd_chip(year_hint, chip));
-    let row_driver = screen
-        .row_driver
-        .as_ref()
+    let row_driver = Some(&screen.row_driver)
+        .filter(|chip| !chip.is_unknown())
         .map(|chip| to_legacy_lcd_chip(year_hint, chip));
-    let label = screen.label.clone();
-    let screen = screen.label.as_ref().map(|label| {
+    let label = if screen.label.is_empty() {
+        None
+    } else {
+        Some(screen.label.clone())
+    };
+    let screen = label.as_ref().map(|label| {
         gbhwdb_model::parser::lcd_screen::lcd_screen()
             .parse(label)
             .unwrap_or_else(|_| panic!("{}", label))

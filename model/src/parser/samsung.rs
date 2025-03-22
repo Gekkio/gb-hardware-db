@@ -3,18 +3,18 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     branch::alt,
     bytes::streaming::tag,
     character::{complete::one_of, streaming::char},
     combinator::{opt, recognize},
     error::ParseError,
     sequence::{preceded, separated_pair},
-    Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, lines3, uppers},
     GameMaskRom, GameRomType, Manufacturer, NomParser,
+    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, lines3, uppers},
 };
 
 fn gb_km23c_old<'a, E: ParseError<&'a str>>(

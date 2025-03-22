@@ -3,14 +3,14 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
-    Parser as _,
 };
 
-use super::{for_nom::year2_week2, sram::Ram, Manufacturer, NomParser};
+use super::{Manufacturer, NomParser, for_nom::year2_week2, sram::Ram};
 
 /// LGS GM76C256 (SOP-28, 5V)
 ///

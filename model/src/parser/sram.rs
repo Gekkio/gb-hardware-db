@@ -6,8 +6,8 @@ use super::{LabelParser, Manufacturer};
 use crate::{
     macros::{multi_parser, single_parser},
     parser::{
-        amic, bsi, fujitsu, hynix, hyundai, lgs, nec, sanyo, st_micro, toshiba, victronix, week2,
-        winbond, year1, year2, GenericPart, PartDateCode,
+        GenericPart, PartDateCode, amic, bsi, fujitsu, hynix, hyundai, lgs, nec, sanyo, st_micro,
+        toshiba, victronix, week2, winbond, year1, year2,
     },
 };
 

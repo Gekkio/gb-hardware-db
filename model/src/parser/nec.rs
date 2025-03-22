@@ -3,20 +3,20 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    IResult, Parser,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{cond, consumed, recognize, value},
     error::ParseError,
     sequence::{delimited, preceded, terminated},
-    IResult, Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
     GameMaskRom, GameRomType, GenericPart, MaskCode, MaskRom, PartDateCode,
+    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
 };
-use crate::parser::{for_nom::year2_week2, Manufacturer, NomParser};
+use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
 /// NEC μPD442012A-X (TSOP-I-48)
 ///

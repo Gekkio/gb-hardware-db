@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    input::{is_not_outlier, LcdScreen, Part},
+    input::{LcdScreen, Part, is_not_outlier},
     time::{Jun, Month},
 };
 
@@ -18,6 +18,8 @@ pub struct MgbConsole {
     pub index: Option<u16>,
     pub shell: MgbShell,
     pub mainboard: MgbMainboard,
+    #[serde(default)]
+    #[serde(skip_serializing_if = "LcdScreen::is_unknown")]
     pub screen: LcdScreen,
 }
 

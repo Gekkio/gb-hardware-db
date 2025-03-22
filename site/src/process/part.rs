@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::{anyhow, Error};
+use anyhow::{Error, anyhow};
 use gbhwdb_model::{
     input::Part,
     parser::{self, LabelParser, Manufacturer, PartDateCode},
@@ -25,6 +25,22 @@ pub trait ParsedPart {
 
 pub fn map_part<T: ParsedPart, F: LabelParser<T>>(
     year_hint: Option<u16>,
+    part: &Part,
+    f: &F,
+) -> Option<ProcessedPart> {
+    if part.is_unknown() {
+        None
+    } else {
+        Some(
+            boxed_parser(f)(year_hint, part)
+                .unwrap()
+                .unwrap_or_default(),
+        )
+    }
+}
+
+pub fn map_optional_part<T: ParsedPart, F: LabelParser<T>>(
+    year_hint: Option<u16>,
     part: &Option<Part>,
     f: &F,
 ) -> Option<ProcessedPart> {
@@ -40,8 +56,8 @@ pub type BoxedParser<'a> =
 
 pub fn boxed_parser<T: ParsedPart, F: LabelParser<T>>(f: &F) -> BoxedParser<'_> {
     Box::new(|year_hint, part| {
-        part.label
-            .as_ref()
+        Some(&part.label)
+            .filter(|label| !label.is_empty())
             .map(|label| {
                 let part = f
                     .parse(label)

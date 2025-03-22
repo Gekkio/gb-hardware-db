@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::{config::cartridge::GamePlatform, Console};
-use maud::{html, Markup, Render};
+use gbhwdb_model::{Console, config::cartridge::GamePlatform};
+use maud::{Markup, Render, html};
 
 use crate::site::SiteSection;
 

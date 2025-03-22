@@ -3,22 +3,22 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    IResult, Parser as _,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::{opt, recognize},
     error::ParseError,
     sequence::separated_pair,
-    IResult, Parser as _,
 };
 
 use super::{
+    GenericPart,
     for_nom::{lines2, lines3},
     sram::Ram,
-    GenericPart,
 };
 use crate::parser::{
-    for_nom::{alnum_uppers, digits, month1_abc, uppers, year1},
     Manufacturer, NomParser, PartDateCode,
+    for_nom::{alnum_uppers, digits, month1_abc, uppers, year1},
 };
 
 /// Sanyo LE26FV10 (TSOP-I-32, 3.3V)

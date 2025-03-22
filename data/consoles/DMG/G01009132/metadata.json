@@ -29,7 +29,6 @@
     "label": "DMG-LCD-01",
     "stamp": "903-22",
     "circled_letters": "Z",
-    "chip": {},
     "screen": {
       "column_driver": {
         "label": "902"

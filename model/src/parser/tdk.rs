@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, Parser};
+use nom::{Parser, bytes::streaming::tag};
 
 use super::{
-    for_nom::{alphas, lines3, uppers},
     GenericPart, Manufacturer, NomParser,
+    for_nom::{alphas, lines3, uppers},
 };
 
 /// TDK ZJY-M4A

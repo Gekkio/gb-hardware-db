@@ -3,19 +3,19 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::opt,
     sequence::{preceded, separated_pair},
-    Parser,
 };
 
 use super::{
+    Crystal, GenericPart, MaskRom, NomParser, PartDateCode,
     for_nom::{
         alnum_uppers, digits, lines2, lines3, lines4, uppers, year1, year1_week2, year2_week2,
     },
-    Crystal, GenericPart, MaskRom, NomParser, PartDateCode,
 };
 
 /// ```

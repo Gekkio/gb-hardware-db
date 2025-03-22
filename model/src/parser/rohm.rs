@@ -3,17 +3,17 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     branch::alt,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
     combinator::recognize,
     sequence::preceded,
-    Parser as _,
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, lines2, month1_123abc, year1, year1_week2},
     GenericPart, Manufacturer, NomParser, PartDateCode,
+    for_nom::{alnum_uppers, digits, lines2, month1_123abc, year1, year1_week2},
 };
 
 /// ROHM ??9853 EEPROM (SOP-8)

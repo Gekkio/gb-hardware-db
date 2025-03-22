@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{bytes::streaming::tag, combinator::recognize, Parser};
+use nom::{Parser, bytes::streaming::tag, combinator::recognize};
 
 use super::{
-    for_nom::{alnum_uppers, digits, lines3, year2_week2},
     GenericPart, Manufacturer, NomParser,
+    for_nom::{alnum_uppers, digits, lines3, year2_week2},
 };
 
 /// Victronix VN4464 (SOP-28, 5V)

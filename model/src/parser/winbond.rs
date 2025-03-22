@@ -3,17 +3,17 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{recognize, value},
     error::ParseError,
-    Parser,
 };
 
 use super::{
+    Manufacturer, NomParser,
     for_nom::{alnum_uppers, digits, lines3, uppers, year1_week2},
     sram::Ram,
-    Manufacturer, NomParser,
 };
 
 /// Winbond W24257 (4.5-5.5V)

@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    input::{is_not_outlier, Part},
+    input::{Part, is_not_outlier},
     time::{Jun, Month},
 };
 

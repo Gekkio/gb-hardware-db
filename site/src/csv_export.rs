@@ -5,7 +5,7 @@
 use anyhow::Error;
 use std::{borrow::Cow, io, marker::PhantomData};
 
-use crate::{legacy::LegacySubmission, process::part::ProcessedPart, process::DateCode};
+use crate::{legacy::LegacySubmission, process::DateCode, process::part::ProcessedPart};
 
 mod agb;
 mod ags;

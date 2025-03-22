@@ -7,11 +7,11 @@ use std::{ops::Index, str};
 use time::Date;
 
 use crate::{
+    ParseError,
     config::cartridge::PartDesignator,
     hash::{Crc32, Md5, Sha1, Sha256},
-    input::{is_not_outlier, Part},
+    input::{Part, is_not_outlier},
     time::Month,
-    ParseError,
 };
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -110,8 +110,8 @@ pub struct CartridgeDump {
 impl std::error::Error for ParseError {}
 
 mod date_format {
-    use serde::{de::Visitor, Deserializer, Serializer};
-    use time::{format_description::FormatItem, macros::format_description, Date};
+    use serde::{Deserializer, Serializer, de::Visitor};
+    use time::{Date, format_description::FormatItem, macros::format_description};
 
     static DATE_FORMAT: &[FormatItem] = format_description!("[year]-[month]-[day]");
 
@@ -218,32 +218,32 @@ fn test_deserialize() {
                 year: Some(1999),
                 month: Some(Month::November),
                 u1: Some(Part {
-                    label: Some("U1".to_owned()),
+                    label: "U1".to_owned(),
                     outlier: true
                 }),
                 u2: Some(Part {
-                    label: Some("U2".to_owned()),
+                    label: "U2".to_owned(),
                     outlier: false
                 }),
                 u3: Some(Part {
-                    label: Some("U3".to_owned()),
+                    label: "U3".to_owned(),
                     outlier: false
                 }),
                 u4: Some(Part {
-                    label: Some("U4".to_owned()),
+                    label: "U4".to_owned(),
                     outlier: false
                 }),
                 u5: Some(Part {
-                    label: Some("U5".to_owned()),
+                    label: "U5".to_owned(),
                     outlier: false
                 }),
                 u6: None,
                 u7: Some(Part {
-                    label: None,
+                    label: "".to_owned(),
                     outlier: false
                 }),
                 x1: Some(Part {
-                    label: Some("KDS".to_owned()),
+                    label: "KDS".to_owned(),
                     outlier: false,
                 }),
                 outlier: true

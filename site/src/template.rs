@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, PreEscaped, Render, DOCTYPE};
+use maud::{DOCTYPE, Markup, PreEscaped, Render, html};
 
 use crate::{
     site::SiteSection,

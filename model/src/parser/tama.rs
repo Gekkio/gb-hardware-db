@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-use super::{week2, year2, GameMaskRom, GenericPart, LabelParser};
+use super::{GameMaskRom, GenericPart, LabelParser, week2, year2};
 use crate::{
     macros::single_parser,
-    parser::{mapper::MapperChip, GameRomType, Mapper, PartDateCode},
+    parser::{GameRomType, Mapper, PartDateCode, mapper::MapperChip},
 };
 
 /// TAMA5

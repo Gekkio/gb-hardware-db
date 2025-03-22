@@ -2,16 +2,16 @@
 //
 // SPDX-License-Identifier: MIT
 
-use maud::{html, Markup, Render};
+use maud::{Markup, Render, html};
 
 use crate::{
     legacy::{
-        console::LegacyConsoleMetadata, HasDateCode, LegacyPhoto, LegacyPhotos, LegacySubmission,
-        PhotoInfo, PhotoKind,
+        HasDateCode, LegacyPhoto, LegacyPhotos, LegacySubmission, PhotoInfo, PhotoKind,
+        console::LegacyConsoleMetadata,
     },
     template::{
-        submission_part_table::{submission_part_table, SubmissionPart},
         Optional,
+        submission_part_table::{SubmissionPart, submission_part_table},
     },
 };
 

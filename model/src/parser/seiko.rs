@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    IResult, Parser,
     bytes::streaming::tag,
     character::{
         complete::one_of,
@@ -11,12 +12,11 @@ use nom::{
     combinator::{map_opt, recognize},
     error::ParseError,
     sequence::preceded,
-    IResult, Parser,
 };
 
 use super::{
-    for_nom::{alnum_uppers, digits, lines3, month1_123xyz},
     GenericPart, Manufacturer, NomParser, PartDateCode, Year,
+    for_nom::{alnum_uppers, digits, lines3, month1_123xyz},
 };
 
 /// Seiko S-3511A (SOP-8)

@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-use nom::{character::complete::one_of, combinator::opt, sequence::terminated, Parser as _};
+use nom::{Parser as _, character::complete::one_of, combinator::opt, sequence::terminated};
 
 use super::{
-    for_nom::{month2, satisfy_m_n_complete, week2, year1},
     NomParser, Year,
+    for_nom::{month2, satisfy_m_n_complete, week2, year1},
 };
 use crate::time::{Month, Week};
 

@@ -3,16 +3,16 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
+    Parser as _,
     bytes::streaming::tag,
     character::streaming::char,
     combinator::{opt, recognize},
     sequence::{preceded, separated_pair},
-    Parser as _,
 };
 
 use super::{
-    for_nom::{alnum_uppers, lines4, uppers, year1_week2},
     GenericPart,
+    for_nom::{alnum_uppers, lines4, uppers, year1_week2},
 };
 use crate::parser::{Manufacturer, NomParser};
 

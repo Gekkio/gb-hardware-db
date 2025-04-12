@@ -43,6 +43,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * max-m
 * MelonGx
 * Miyako
+* Operratic
 * org
 * pokechu22
 * pyroesp

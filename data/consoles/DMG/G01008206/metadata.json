@@ -1,0 +1,43 @@
+{
+  "slug": "G01008206",
+  "contributor": "Operratic",
+  "shell": {
+    "color": "OffWhite",
+    "serial": "G01008206"
+  },
+  "mainboard": {
+    "label": "DMG-CPU-01",
+    "stamp": "903-22",
+    "u1": {
+      "label": "DMG-CPU LR35902 8907 D"
+    },
+    "u2": {
+      "label": "LH5164LN-10 SHARP JAPAN 8846 3 D"
+    },
+    "u3": {
+      "label": "LH5164LN-10 SHARP JAPAN 8847 1 D"
+    },
+    "x1": {
+      "label": "D419A9"
+    }
+  },
+  "lcd_board": {
+    "label": "DMG-LCD-01",
+    "stamp": "903-22",
+    "screen": {
+      "column_driver": {
+        "label": "902"
+      },
+      "row_driver": {
+        "label": "902"
+      }
+    }
+  },
+  "power_board": {
+    "kind": "A1",
+    "year": 1989
+  },
+  "jack_board": {
+    "kind": "DMG JACK 01"
+  }
+}

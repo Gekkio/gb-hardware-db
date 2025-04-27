@@ -3,22 +3,21 @@
 // SPDX-License-Identifier: MIT
 
 use nom::{
-    Parser,
+    IResult, Parser,
     branch::alt,
-    bytes::streaming::tag,
+    bytes::streaming::{tag, take},
     character::{complete::one_of, streaming::char},
-    combinator::{consumed, opt, recognize, value},
+    combinator::{consumed, map_opt, opt, recognize, value},
     error::ParseError,
     sequence::{delimited, separated_pair, terminated},
 };
 
 use super::{
     GameMaskRom, GameRomType, GenericPart, Manufacturer, Mapper, MapperChip, MaskCode, MaskRom,
-    NomParser, PartDateCode,
+    NomParser, PartDateCode, Year,
     for_nom::{
         alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, lines5,
         satisfy_m_n_complete, uppers, week2, year1, year1_month2, year1_week2, year2_month2,
-        year2_week2,
     },
 };
 
@@ -104,7 +103,7 @@ fn ir3<'a, E: ParseError<&'a str>>(
     lines3(
         tag(prefix),
         recognize(tag(kind).and(package(pkg))),
-        separated_pair(year2_week2, char(' '), alphas(1)),
+        separated_pair(sharp_year2_week2, char(' '), alphas(1)),
     )
     .map(|(_, kind, (date_code, _))| GenericPart {
         kind: String::from(kind),
@@ -121,7 +120,7 @@ fn ir3_old<'a, E: ParseError<&'a str>>(
         tag(prefix),
         tag(kind),
         separated_pair(
-            year2_week2,
+            sharp_year2_week2,
             char(' '),
             alphas(1).and(opt(nom::character::complete::satisfy(|c| {
                 c.is_ascii_uppercase()
@@ -168,7 +167,7 @@ pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<GameMaskRom> = NomPar
             char(' '),
             dmg_rom_code(),
             char(' '),
-            year2_week2,
+            sharp_year2_week2,
             digits(1),
         )
             .map(|(_, _, rom_id, _, date_code, _)| GameMaskRom {
@@ -192,7 +191,13 @@ fn lh53_ancient<'a, E: ParseError<&'a str>>(
         dmg_rom_code(),
         tag("SHARP"),
         tag("JAPAN"),
-        (year2_week2, char(' '), alphas(1), char(' '), char(unknown)),
+        (
+            sharp_year2_week2,
+            char(' '),
+            alphas(1),
+            char(' '),
+            char(unknown),
+        ),
     )
     .map(move |(rom_id, _, _, (date_code, _, _, _, _))| GameMaskRom {
         rom_id: String::from(rom_id),
@@ -212,7 +217,7 @@ fn lh53_old<'a, E: ParseError<&'a str>>(
         dmg_rom_code(),
         tag("SHARP"),
         separated_pair(tag("JAPAN"), char(' '), tag(rom_type.as_str())),
-        separated_pair(year2_week2, char(' '), alphas(1)),
+        separated_pair(sharp_year2_week2, char(' '), alphas(1)),
     )
     .map(move |(rom_id, _, _, (date_code, _))| GameMaskRom {
         rom_id: String::from(rom_id),
@@ -236,7 +241,7 @@ fn lh53_new<'a, E: ParseError<&'a str>>(
             consumed(terminated(model, alnum_uppers(2))),
         ),
         separated_pair(tag("JAPAN"), char(' '), tag(rom_type.as_str())),
-        separated_pair(year2_week2, char(' '), alphas(1)),
+        separated_pair(sharp_year2_week2, char(' '), alphas(1)),
     )
     .map(
         move |(rom_id, (_, (mask_code, kind)), _, (date_code, _))| GameMaskRom {
@@ -483,7 +488,7 @@ fn sgb_rom<'a, E: ParseError<&'a str>>(
         tag(rom_id),
         tag("© 1994 Nintendo"),
         model,
-        separated_pair(year2_week2, char(' '), uppers(1)),
+        separated_pair(sharp_year2_week2, char(' '), uppers(1)),
     )
     .map(|(rom_id, _, (mask_code, kind), (date_code, _))| MaskRom {
         rom_id: String::from(rom_id),
@@ -536,7 +541,7 @@ pub static SHARP_SGB2_ROM: NomParser<MaskRom> = NomParser {
             tag("© 1998 Nintendo"),
             tag("SYS-SGB2-10"),
             consumed(value(Some("LH534R00B"), tag("LH5S4R").and(tag("Y4")))),
-            separated_pair(year2_week2, char(' '), uppers(1)),
+            separated_pair(sharp_year2_week2, char(' '), uppers(1)),
         )
         .map(|(_, rom_id, (mask_code, kind), (date_code, _))| MaskRom {
             rom_id: String::from(rom_id),
@@ -557,7 +562,7 @@ fn cic<'a, E: ParseError<&'a str>>(
         recognize(tag(model).and(opt(one_of("AB")))),
         tag(copyright),
         tag("Nintendo"),
-        separated_pair(year2_week2, char(' '), alphas(1)),
+        separated_pair(sharp_year2_week2, char(' '), alphas(1)),
     )
     .map(|(kind, _, _, (date_code, _))| GenericPart {
         kind: String::from(kind),
@@ -600,7 +605,7 @@ pub static SHARP_LR35902: NomParser<GenericPart> = NomParser {
         lines3(
             tag("DMG-CPU"),
             tag("LR35902"),
-            separated_pair(year2_week2, char(' '), uppers(1)),
+            separated_pair(sharp_year2_week2, char(' '), uppers(1)),
         )
         .map(|(kind, _, (date_code, _))| GenericPart {
             kind: String::from(kind),
@@ -633,7 +638,7 @@ pub static SHARP_DMG_CPU: NomParser<GenericPart> = NomParser {
             tag("© 1989 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
             ),
@@ -685,7 +690,7 @@ pub static SHARP_SGB_CPU: NomParser<GenericPart> = NomParser {
             tag("Ⓜ 1989 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 digits(1)
                     .and(opt(nom::character::complete::char(' ')))
@@ -715,7 +720,7 @@ pub static SHARP_CPU_MGB: NomParser<GenericPart> = NomParser {
             tag("Ⓜ © 1996 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
             ),
@@ -744,7 +749,7 @@ pub static SHARP_CPU_SGB2: NomParser<GenericPart> = NomParser {
             tag("© 1997 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 digits(1)
                     .and(opt(nom::character::complete::char(' ')))
@@ -784,7 +789,7 @@ pub static SHARP_CPU_CGB: NomParser<GenericPart> = NomParser {
             tag("Ⓜ © 1998 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
             ),
@@ -812,7 +817,7 @@ pub static SHARP_CPU_CGB_E: NomParser<GenericPart> = NomParser {
             tag("Ⓜ © 2000 Nintendo"),
             tag("JAPAN"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_uppercase()),
             ),
@@ -842,7 +847,7 @@ pub static SHARP_CPU_AGB: NomParser<GenericPart> = NomParser {
             tag("Ⓜ © 2000 Nintendo"),
             tag("JAPAN ARM"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_alphabetic()),
             ),
@@ -871,7 +876,7 @@ pub static SHARP_CPU_AGB_B: NomParser<GenericPart> = NomParser {
             tag("Ⓜ © 2002 Nintendo"),
             tag("JAPAN ARM"),
             separated_pair(
-                year2_week2,
+                sharp_year2_week2,
                 char(' '),
                 satisfy_m_n_complete(1, 2, |c| c.is_ascii_alphabetic()),
             ),
@@ -895,7 +900,7 @@ pub static SHARP_CPU_AGB_E: NomParser<GenericPart> = NomParser {
     name: "Sharp CPU AGB E",
     f: |input| {
         lines5(
-            terminated(year2_week2, tag(" 2m")),
+            terminated(sharp_year2_week2, tag(" 2m")),
             tag("CPU AGB E"),
             tag("Ⓜ © 2004"),
             tag("Nintendo"),
@@ -923,7 +928,7 @@ pub static SHARP_MBC1: NomParser<Mapper> = NomParser {
             tag("DMG"),
             value(MapperChip::Mbc1, tag("MBC1")),
             tag("Nintendo"),
-            delimited(tag("S "), year2_week2, char(' ').and(uppers(1))),
+            delimited(tag("S "), sharp_year2_week2, char(' ').and(uppers(1))),
         )
         .map(|(_, kind, _, date_code)| Mapper {
             kind,
@@ -949,7 +954,7 @@ pub static SHARP_MBC1A: NomParser<Mapper> = NomParser {
             tag("Nintendo"),
             delimited(
                 tag("S "),
-                year2_week2,
+                sharp_year2_week2,
                 (char(' '), digits(1), char(' '), uppers(1)),
             ),
         )
@@ -977,7 +982,7 @@ pub static SHARP_MBC1B: NomParser<Mapper> = NomParser {
             tag("Nintendo"),
             delimited(
                 tag("S "),
-                year2_week2,
+                sharp_year2_week2,
                 (
                     char(' '),
                     digits(1),
@@ -1010,7 +1015,7 @@ pub static SHARP_MBC1B1: NomParser<Mapper> = NomParser {
             tag("Nintendo"),
             delimited(
                 tag("S "),
-                year2_week2,
+                sharp_year2_week2,
                 (char(' '), digits(1), char(' '), uppers(1)),
             ),
         )
@@ -1038,7 +1043,7 @@ pub static SHARP_MBC2A: NomParser<Mapper> = NomParser {
             tag("Nintendo"),
             delimited(
                 tag("S "),
-                year2_week2,
+                sharp_year2_week2,
                 (
                     char(' '),
                     digits(1),
@@ -1068,7 +1073,7 @@ pub static SHARP_MBC3: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc3, tag("MBC3")),
             tag("LR385364"),
-            terminated(year2_week2, (char(' '), uppers(1))),
+            terminated(sharp_year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,
@@ -1091,7 +1096,7 @@ pub static SHARP_MBC3A: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc3A, tag("MBC3 A")),
             tag("LR38536B"),
-            terminated(year2_week2, (char(' '), uppers(1))),
+            terminated(sharp_year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,
@@ -1114,7 +1119,7 @@ pub static SHARP_MBC5: NomParser<Mapper> = NomParser {
         lines3(
             value(MapperChip::Mbc5, tag("MBC5")),
             tag("LZ9GB31"),
-            terminated(year2_week2, (char(' '), uppers(1))),
+            terminated(sharp_year2_week2, (char(' '), uppers(1))),
         )
         .map(|(kind, _, date_code)| Mapper {
             kind,
@@ -1223,7 +1228,7 @@ fn lh51_52_alt<'a, E: ParseError<&'a str>>(
     lines3(
         tag(kind),
         tag("SHARP"),
-        delimited(tag("A"), year2_week2, (tag(" "), suffix)),
+        delimited(tag("A"), sharp_year2_week2, (tag(" "), suffix)),
     )
     .map(|(kind, _, date_code)| GenericPart {
         kind: String::from(kind),
@@ -1240,7 +1245,7 @@ fn lh51_52<'a, E: ParseError<&'a str>>(
         tag(kind),
         tag("SHARP"),
         tag("JAPAN"),
-        terminated(year2_week2, (tag(" "), suffix)),
+        terminated(sharp_year2_week2, (tag(" "), suffix)),
     )
     .map(|(kind, _, _, date_code)| GenericPart {
         kind: String::from(kind),
@@ -1437,3 +1442,24 @@ pub static SHARP_LH5164AN: NomParser<GenericPart> = NomParser {
         .parse(input)
     },
 };
+
+fn sharp_year2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
+    map_opt(take(2_usize), |text| match text {
+        "AA" => Some(Year::Full(2000)),
+        "AL" => Some(Year::Full(2001)),
+        _ => match u16::from_str_radix(text, 10) {
+            Ok(value @ 0..=87) => Some(Year::Full(value + 2000)),
+            Ok(value @ 88..=99) => Some(Year::Full(value + 1900)),
+            _ => None,
+        },
+    })
+    .parse(input)
+}
+
+fn sharp_year2_week2<'a, E: ParseError<&'a str>>(
+    input: &'a str,
+) -> IResult<&'a str, PartDateCode, E> {
+    (sharp_year2, week2)
+        .map(|(year, week)| PartDateCode::YearWeek { year, week })
+        .parse(input)
+}

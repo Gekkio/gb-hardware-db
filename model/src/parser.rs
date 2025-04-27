@@ -273,14 +273,10 @@ mod for_nom {
     }
 
     pub fn year2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
-        map_opt(take(2_usize), |text| match text {
-            "AA" => Some(Year::Full(2000)),
-            "AL" => Some(Year::Full(2001)),
-            _ => match u16::from_str_radix(text, 10) {
-                Ok(value @ 0..=87) => Some(Year::Full(value + 2000)),
-                Ok(value @ 88..=99) => Some(Year::Full(value + 1900)),
-                _ => None,
-            },
+        map_opt(take(2_usize), |text| match u16::from_str_radix(text, 10) {
+            Ok(value @ 0..=87) => Some(Year::Full(value + 2000)),
+            Ok(value @ 88..=99) => Some(Year::Full(value + 1900)),
+            _ => None,
         })
         .parse(input)
     }

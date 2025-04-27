@@ -8,19 +8,18 @@ use nom::{
 };
 
 use super::{
-    PartDateCode,
+    GenericPart, PartDateCode,
     for_nom::{uppers, year2_week2},
-    sram::Ram,
 };
 use crate::parser::{Manufacturer, NomParser};
 
-/// Hyundai HY628100 (SOP-32, 4.5-5.5V)
+/// Hyundai HY628100 SRAM (SOP-32, 4.5-5.5V, 1024 Kibit / 128 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::hyundai::HYUNDAI_HY628100.parse("HYUNDAI KOREA HY628100B 0041A LLG-70").is_ok());
 /// ```
-pub static HYUNDAI_HY628100: NomParser<Ram> = NomParser {
+pub static HYUNDAI_HY628100: NomParser<GenericPart> = NomParser {
     name: "Hyundai HY628100",
     f: |input| {
         (
@@ -37,7 +36,7 @@ pub static HYUNDAI_HY628100: NomParser<Ram> = NomParser {
             ),
         )
             .map(
-                |(_, kind, _, (date_code, _), _, (power, package, _, speed))| Ram {
+                |(_, kind, _, (date_code, _), _, (power, package, _, speed))| GenericPart {
                     kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
                     manufacturer: Some(Manufacturer::Hyundai),
                     date_code: Some(date_code),
@@ -47,14 +46,14 @@ pub static HYUNDAI_HY628100: NomParser<Ram> = NomParser {
     },
 };
 
-/// Hyundai HY6264 (SOP-28, 4.5-5.5V)
+/// Hyundai HY6264 SRAM (SOP-28, 4.5-5.5V, 64 Kibit / 8 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::hyundai::HYUNDAI_HY6264.parse("HYUNDAI HY6264ALLJ-10 9327B KOREA").is_ok());
 /// assert!(parser::hyundai::HYUNDAI_HY6264.parse("HY6264A LLJ-10 9902B KOREA").is_ok());
 /// ```
-pub static HYUNDAI_HY6264: NomParser<Ram> = NomParser {
+pub static HYUNDAI_HY6264: NomParser<GenericPart> = NomParser {
     name: "Hyundai HY6264",
     f: |input| {
         // 1992-1994
@@ -72,7 +71,7 @@ pub static HYUNDAI_HY6264: NomParser<Ram> = NomParser {
             tag(" KOREA"),
         )
             .map(
-                |(_, (kind, power, package, _, speed), _, (date_code, _), _)| Ram {
+                |(_, (kind, power, package, _, speed), _, (date_code, _), _)| GenericPart {
                     kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
                     manufacturer: Some(Manufacturer::Hyundai),
                     date_code: Some(date_code),
@@ -93,7 +92,7 @@ pub static HYUNDAI_HY6264: NomParser<Ram> = NomParser {
             tag(" KOREA"),
         )
             .map(
-                |(kind, _, (power, package, _, speed), _, (date_code, _), _)| Ram {
+                |(kind, _, (power, package, _, speed), _, (date_code, _), _)| GenericPart {
                     kind: format!("{kind}{power}{package}-{speed}", package = package.code()),
                     manufacturer: Some(Manufacturer::Hyundai),
                     date_code: Some(date_code),

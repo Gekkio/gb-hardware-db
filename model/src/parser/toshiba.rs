@@ -13,15 +13,15 @@ use nom::{
 };
 
 use super::{
-    GameMaskRom, GameRomType, GenericPart, Manufacturer, MaskRom, NomParser, PartDateCode,
+    GameMaskRom, GameRomType, GenericPart, Manufacturer, Mapper, MapperChip, MaskRom, NomParser,
+    PartDateCode,
     for_nom::{
         cgb_rom_code, digits, dmg_rom_code, lines2, lines3, lines4, uppers, week2, year1,
         year2_week2,
     },
-    sram::Ram,
 };
 
-/// Toshiba TC8521AM (SOP-20)
+/// Toshiba TC8521AM RTC (SOP-20)
 ///
 /// Source:
 ///   "TOSHIBA TC8521AP, TC8521AM (Real Time Clock II)"
@@ -49,7 +49,7 @@ fn toshiba_tc8521a<'a, E: ParseError<&'a str>>(
     })
 }
 
-/// Toshiba TC7W139F
+/// Toshiba TC7W139F line decoder
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -74,7 +74,7 @@ pub static TOSHIBA_TC7W139F: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Toshiba TC74LVX04FT
+/// Toshiba TC74LVX04FT hex inverter
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -166,13 +166,16 @@ pub static TOSHIBA_TC534000: NomParser<GameMaskRom> = NomParser {
     },
 };
 
-/// Toshiba TC55V200 (TSOP-I-48, 2.7-3.6V)
+/// Toshiba TC55V200 SRAM (TSOP-I-48, 2.7-3.6V, 2 Mibit / 256 KiB / 128x16)
+///
+/// Source:
+///     "TC55V200FT/TR/UB-70,-85,-10 - 131,072-WORD BY 16-BIT FULL CMOS STATIC RAM"
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::toshiba::TOSHIBA_TC55V200.parse("K13529 JAPAN 0106 MAD TC55V200 FT-70").is_ok());
 /// ```
-pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
+pub static TOSHIBA_TC55V200: NomParser<GenericPart> = NomParser {
     name: "Toshiba TC55V200",
     f: |input| {
         lines4(
@@ -181,11 +184,13 @@ pub static TOSHIBA_TC55V200: NomParser<Ram> = NomParser {
             tag("TC55V200"),
             tag("FT-").and(alt((tag("70"), tag("85"), tag("10")))),
         )
-        .map(|(_, (_, _, date_code, _, _), kind, (_, speed))| Ram {
-            kind: format!("{kind}FT-{speed}"),
-            manufacturer: Some(Manufacturer::Toshiba),
-            date_code: Some(date_code),
-        })
+        .map(
+            |(_, (_, _, date_code, _, _), kind, (_, speed))| GenericPart {
+                kind: format!("{kind}FT-{speed}"),
+                manufacturer: Some(Manufacturer::Toshiba),
+                date_code: Some(date_code),
+            },
+        )
         .parse(input)
     },
 };
@@ -231,3 +236,47 @@ impl Package {
         }
     }
 }
+
+/// Toshiba TAMA5
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::toshiba::TOSHIBA_TAMA5.parse("TAMA5 9726 EAD1").is_ok());
+/// ```
+pub static TOSHIBA_TAMA5: NomParser<Mapper> = NomParser {
+    name: "Toshiba TAMA5",
+    f: |input| {
+        lines2(
+            tag("TAMA5"),
+            terminated(year2_week2, tag(" EA").and(uppers(1)).and(tag("1"))),
+        )
+        .map(|(_, date_code)| Mapper {
+            kind: MapperChip::Tama5,
+            manufacturer: Some(Manufacturer::Toshiba),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Toshiba TAMA6
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::toshiba::TOSHIBA_TAMA6.parse("TAMA6 JAPAN 47C243M FV61 9751H").is_ok());
+/// ```
+pub static TOSHIBA_TAMA6: NomParser<GenericPart> = NomParser {
+    name: "Toshiba TAMA6",
+    f: |input| {
+        lines2(
+            tag("TAMA6 JAPAN"),
+            delimited(tag("47C243M FV61 "), year2_week2, tag("H")),
+        )
+        .map(|(_, date_code)| GenericPart {
+            kind: "TAMA6".to_owned(),
+            manufacturer: Some(Manufacturer::Toshiba),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};

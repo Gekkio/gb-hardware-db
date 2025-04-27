@@ -14,10 +14,11 @@ use nom::{
 
 use super::{
     GameMaskRom, GameRomType, GenericPart, Manufacturer, Mapper, MapperChip, MaskCode, MaskRom,
-    NomParser,
+    NomParser, PartDateCode,
     for_nom::{
         alnum_uppers, alphas, cgb_rom_code, digits, dmg_rom_code, lines3, lines4, lines5,
-        satisfy_m_n_complete, uppers, year2_week2,
+        satisfy_m_n_complete, uppers, week2, year1, year1_month2, year1_week2, year2_month2,
+        year2_week2,
     },
 };
 
@@ -909,7 +910,7 @@ pub static SHARP_CPU_AGB_E: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Sharp MBC1
+/// Sharp MBC1 (SOP-24)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -933,7 +934,7 @@ pub static SHARP_MBC1: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC1A
+/// Sharp MBC1A (SOP-24)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -961,7 +962,7 @@ pub static SHARP_MBC1A: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC1B
+/// Sharp MBC1B (SOP-24)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -994,7 +995,7 @@ pub static SHARP_MBC1B: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC1B1
+/// Sharp MBC1B1 (SOP-24)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -1022,7 +1023,7 @@ pub static SHARP_MBC1B1: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC2A
+/// Sharp MBC2A (SOP-28)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -1055,7 +1056,7 @@ pub static SHARP_MBC2A: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC3
+/// Sharp MBC3 (QFP-32)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -1078,7 +1079,7 @@ pub static SHARP_MBC3: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC3A
+/// Sharp MBC3A (QFP-32)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -1101,7 +1102,7 @@ pub static SHARP_MBC3A: NomParser<Mapper> = NomParser {
     },
 };
 
-/// Sharp MBC5
+/// Sharp MBC5 (QFP-32)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -1120,6 +1121,319 @@ pub static SHARP_MBC5: NomParser<Mapper> = NomParser {
             manufacturer: Some(Manufacturer::Sharp),
             date_code: Some(date_code),
         })
+        .parse(input)
+    },
+};
+
+/// Sharp LCD Chip (old)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LCD_CHIP_OLD.parse("110").is_ok());
+/// ```
+pub static SHARP_LCD_CHIP_OLD: NomParser<PartDateCode> = NomParser {
+    name: "Sharp LCD Chip (old)",
+    f: |input| year1_month2.parse(input),
+};
+
+/// Sharp LCD Chip (new)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LCD_CHIP_NEW.parse("5341").is_ok());
+/// ```
+pub static SHARP_LCD_CHIP_NEW: NomParser<PartDateCode> = NomParser {
+    name: "Sharp LCD Chip (new)",
+    f: |input| terminated(year1_week2, digits(1)).parse(input),
+};
+
+/// Sharp LCD Screen
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("S890220").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("AH900327").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("N AE900724").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("AE900404").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("A890407").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("N1 AH910720").is_ok());
+/// assert!(parser::sharp::SHARP_LCD_SCREEN.parse("890808").is_ok());
+/// ```
+pub static SHARP_LCD_SCREEN: NomParser<PartDateCode> = NomParser {
+    name: "Sharp LCD Screen",
+    f: |input| {
+        delimited(
+            alt([
+                tag("ST"),
+                tag("AH"),
+                tag("SY"),
+                tag("AE"),
+                tag("AH"),
+                tag("N AE"),
+                tag("N AH"),
+                tag("N1 AH"),
+                tag("N2AH"),
+                tag("N23S"),
+                tag("EP"),
+                tag("S"),
+                tag("A"),
+                tag(""),
+            ])
+            .and(opt(tag(" "))),
+            year2_month2,
+            digits(2),
+        )
+        .parse(input)
+    },
+};
+
+/// Sharp LH51D256T (TSOP-I-28, 3.3V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH51D256T.parse("LH51D256T-Z5 SHARP Y007 5 J").is_ok());
+/// assert!(parser::sharp::SHARP_LH51D256T.parse("LH51D256T-Z7 SHARP Y0 50 3 J").is_ok());
+/// ```
+pub static SHARP_LH51D256T: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH51D256T",
+    f: |input| {
+        lines3(
+            recognize((tag("LH51D256T-Z"), one_of("57"))),
+            tag("SHARP"),
+            delimited(
+                alt((tag("AY"), tag("Y"))),
+                (year1, opt(tag(" ")), week2)
+                    .map(|(year, _, week)| PartDateCode::YearWeek { year, week }),
+                (tag(" "), digits(1), tag(" J")),
+            ),
+        )
+        .map(|(kind, _, date_code)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Sharp),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+fn lh51_52_alt<'a, E: ParseError<&'a str>>(
+    kind: &'static str,
+    suffix: impl Parser<&'a str, Output = &'a str, Error = E>,
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
+    lines3(
+        tag(kind),
+        tag("SHARP"),
+        delimited(tag("A"), year2_week2, (tag(" "), suffix)),
+    )
+    .map(|(kind, _, date_code)| GenericPart {
+        kind: String::from(kind),
+        manufacturer: Some(Manufacturer::Sharp),
+        date_code: Some(date_code),
+    })
+}
+
+fn lh51_52<'a, E: ParseError<&'a str>>(
+    kind: &'static str,
+    suffix: impl Parser<&'a str, Output = &'a str, Error = E>,
+) -> impl Parser<&'a str, Output = GenericPart, Error = E> {
+    lines4(
+        tag(kind),
+        tag("SHARP"),
+        tag("JAPAN"),
+        terminated(year2_week2, (tag(" "), suffix)),
+    )
+    .map(|(kind, _, _, date_code)| GenericPart {
+        kind: String::from(kind),
+        manufacturer: Some(Manufacturer::Sharp),
+        date_code: Some(date_code),
+    })
+}
+
+/// Sharp LH52CV256JT (TSOP-I-28, 3.3V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52CV256JT.parse("LH52CV256JT-10LL SHARP JAPAN 9814 7 SA").is_ok());
+/// ```
+pub static SHARP_LH52CV256JT: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52CV256JT",
+    f: |input| {
+        lh51_52(
+            "LH52CV256JT-10LL",
+            recognize((digits(1), tag(" "), uppers(2))),
+        )
+        .parse(input)
+    },
+};
+
+/// Sharp LH52256CVT (TSOP-I-28, 2.7-5.5V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52256CVT.parse("LH52256CVT SHARP JAPAN 9933 3 SO").is_ok());
+/// ```
+pub static SHARP_LH52256CVT: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52256CVT",
+    f: |input| lh51_52("LH52256CVT", recognize((digits(1), tag(" "), uppers(2)))).parse(input),
+};
+
+/// Sharp LH52256CVN (SOP-28, 2.7-5.5V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52256CVN.parse("LH52256CVN SHARP JAPAN 9944 5 SO").is_ok());
+/// ```
+pub static SHARP_LH52256CVN: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52256CVN",
+    f: |input| lh51_52("LH52256CVN", recognize((digits(1), tag(" "), uppers(2)))).parse(input),
+};
+
+/// Sharp LH52256CT (TSOP-I-28, 5V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52256CT.parse("LH52256CT-10LL SHARP JAPAN 9842 7 SS").is_ok());
+/// ```
+pub static SHARP_LH52256CT: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52256CT",
+    f: |input| {
+        lh51_52(
+            "LH52256CT-10LL",
+            recognize((digits(1), tag(" "), uppers(2))),
+        )
+        .parse(input)
+    },
+};
+
+/// Sharp LH52256CN (SOP-28, 5V, 256 Kibit / 32 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52256CN.parse("LH52256CN-10LL SHARP JAPAN 0036 5 SO").is_ok());
+/// assert!(parser::sharp::SHARP_LH52256CN.parse("LH52256CN-10LL SHARP A9802 3 EC").is_ok());
+/// ```
+pub static SHARP_LH52256CN: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52256CN",
+    f: |input| {
+        alt((
+            lh51_52(
+                "LH52256CN-10LL",
+                recognize((digits(1), tag(" "), uppers(2))),
+            ),
+            lh51_52_alt(
+                "LH52256CN-10LL",
+                recognize((digits(1), tag(" "), uppers(2))),
+            ),
+        ))
+        .parse(input)
+    },
+};
+
+/// Sharp LH52A64N (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH52A64N.parse("LH52A64N-L SHARP JAPAN 9817 1 Y").is_ok());
+/// ```
+pub static SHARP_LH52A64N: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH52A64N",
+    f: |input| lh51_52("LH52A64N-L", recognize((digits(1), tag(" "), uppers(1)))).parse(input),
+};
+
+/// Sharp LH5264TN (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5264TN.parse("LH5264TN-L SHARP JAPAN 8937 3 Y").is_ok());
+/// ```
+pub static SHARP_LH5264TN: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5264TN",
+    f: |input| lh51_52("LH5264TN-L", recognize((digits(1), tag(" "), uppers(1)))).parse(input),
+};
+
+/// Sharp LH5264N4 (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5264N4.parse("LH5264N4 SHARP JAPAN 8922 1 Y").is_ok());
+/// ```
+pub static SHARP_LH5264N4: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5264N4",
+    f: |input| lh51_52("LH5264N4", recognize((digits(1), tag(" "), uppers(1)))).parse(input),
+};
+
+/// Sharp LH5164N (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5164N.parse("LH5164N-10L SHARP JAPAN 9043 1 DA").is_ok());
+/// assert!(parser::sharp::SHARP_LH5164N.parse("LH5164LN-10 SHARP JAPAN 8848 3 D").is_ok());
+/// ```
+pub static SHARP_LH5164N: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5164N",
+    f: |input| {
+        alt((
+            lh51_52("LH5164N-10L", recognize((digits(1), tag(" "), uppers(2)))),
+            lh51_52("LH5164LN-10", recognize((digits(1), tag(" "), uppers(1)))),
+        ))
+        .parse(input)
+    },
+};
+
+/// Sharp LH5168N (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5168N.parse("LH5168N-10L SHARP JAPAN 9818 1 CG").is_ok());
+/// ```
+pub static SHARP_LH5168N: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5168N",
+    f: |input| lh51_52("LH5168N-10L", recognize((digits(1), tag(" "), uppers(2)))).parse(input),
+};
+
+/// Sharp LH5168NF (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5168NF.parse("LH5168NFA-10L SHARP JAPAN 9103 3 SA").is_ok());
+/// assert!(parser::sharp::SHARP_LH5168NF.parse("LH5168NFB-10L SHARP JAPAN 9147 DC").is_ok());
+/// ```
+pub static SHARP_LH5168NF: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5168NF",
+    f: |input| {
+        alt((
+            lh51_52("LH5168NFA-10L", recognize((digits(1), tag(" "), uppers(2)))),
+            lh51_52("LH5168NFB-10L", recognize(uppers(2))),
+        ))
+        .parse(input)
+    },
+};
+
+/// Sharp LH5160N (SOP-28, 4.5-5.5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5160N.parse("LH5160N-10L SHARP JAPAN 9007 5 DA").is_ok());
+/// ```
+pub static SHARP_LH5160N: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5160N",
+    f: |input| lh51_52("LH5160N-10L", recognize((digits(1), tag(" "), uppers(2)))).parse(input),
+};
+
+/// Sharp LH5164AN (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5164AN.parse("LH5164AN-10L SHARP JAPAN 9933 3 EB").is_ok());
+/// assert!(parser::sharp::SHARP_LH5164AN.parse("LH5164AN-10L SHARP A9846 7 CB").is_ok());
+/// ```
+pub static SHARP_LH5164AN: NomParser<GenericPart> = NomParser {
+    name: "Sharp LH5164AN",
+    f: |input| {
+        alt((
+            lh51_52("LH5164AN-10L", recognize((digits(1), tag(" "), uppers(2)))),
+            lh51_52_alt("LH5164AN-10L", recognize((digits(1), tag(" "), uppers(2)))),
+        ))
         .parse(input)
     },
 };

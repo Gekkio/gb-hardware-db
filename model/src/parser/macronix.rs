@@ -16,7 +16,7 @@ use super::{
     for_nom::{self, agb_rom_code, alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
 };
 
-/// Macronix MX29F008 (TSOP-I-40, 4.5-5.5V)
+/// Macronix MX29F008 flash (TSOP-I-40, 4.5-5.5V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -46,7 +46,7 @@ pub static MACRONIX_MX29F008: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Macronix MX29L010 (TSOP-I-32, 3.3V)
+/// Macronix MX29L010 flash (TSOP-I-32, 3.3V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -111,7 +111,7 @@ fn agb_mx23l<'a, E: ParseError<&'a str>>(
         )
 }
 
-/// Macronix MX23L8006 (TSOP-II-44, 3.3V, 1 MiB)
+/// Macronix MX23L8006 AGB mask ROM (TSOP-II-44, 3.3V, 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -122,7 +122,7 @@ pub static MACRONIX_MX23L8006: NomParser<GameMaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L8006-12B", "21", GameRomType::F2).parse(input),
 };
 
-/// Macronix MX23L3206 (TSOP-II-44, 3.3V, 4 MiB)
+/// Macronix MX23L3206 AGB mask ROM (TSOP-II-44, 3.3V, 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -134,7 +134,7 @@ pub static MACRONIX_MX23L3206: NomParser<GameMaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L3206-12B", "21", GameRomType::H2).parse(input),
 };
 
-/// Macronix MX23L3406 (TSOP-II-44, 3.3V, 8 MiB)
+/// Macronix MX23L3406 AGB mask ROM (TSOP-II-44, 3.3V, 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -145,7 +145,7 @@ pub static MACRONIX_MX23L3406: NomParser<GameMaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L3406-12C", "46", GameRomType::I2).parse(input),
 };
 
-/// Macronix MX23L6406 (TSOP-II-44, 3.3V, 8 MiB)
+/// Macronix MX23L6406 AGB mask ROM (TSOP-II-44, 3.3V, 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -164,7 +164,7 @@ pub static MACRONIX_MX23L6406: NomParser<GameMaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23L6407 (TSOP-II-44, 3.3V, 8 MiB)
+/// Macronix MX23L6407 AGB mask ROM (TSOP-II-44, 3.3V, 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -182,7 +182,7 @@ pub static MACRONIX_MX23L6407: NomParser<GameMaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23L12806 (TSOP-II-44, 3.3V, 16 MiB)
+/// Macronix MX23L12806 AGB mask ROM (TSOP-II-44, 3.3V, 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -194,7 +194,7 @@ pub static MACRONIX_MX23L12806: NomParser<GameMaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L12806-12C", "38", GameRomType::J2).parse(input),
 };
 
-/// Macronix MX23L12807 (TSOP-II-44, 3.3V, 16 MiB)
+/// Macronix MX23L12807 AGB mask ROM (TSOP-II-44, 3.3V, 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -206,7 +206,7 @@ pub static MACRONIX_MX23L12807: NomParser<GameMaskRom> = NomParser {
     f: |input| agb_mx23l("MX23L12807-12C", "58", GameRomType::J2).parse(input),
 };
 
-/// Macronix MX23L25607 (TSOP-II-44, 3.3V, 32 MiB)
+/// Macronix MX23L25607 AGB mask ROM (TSOP-II-44, 3.3V, 32 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -287,7 +287,7 @@ fn gb_mx23c<'a, E: ParseError<&'a str>>(
         )
 }
 
-/// Macronix MX23C4002 (SOP-32, 4.5-5.5V, 4 Mibit / 512 KiB)
+/// Macronix MX23C4002 mask ROM (SOP-32, 4.5-5.5V, 4 Mibit / 512 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -305,7 +305,7 @@ pub static MACRONIX_MX23C4002: NomParser<GameMaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23C8003 (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
+/// Macronix MX23C8003 mask ROM (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -316,7 +316,7 @@ pub static MACRONIX_MX23C8003: NomParser<GameMaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8003-20", "49", GameRomType::F1).parse(input),
 };
 
-/// Macronix MX23C8005 (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
+/// Macronix MX23C8005 mask ROM (SOP-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -327,7 +327,7 @@ pub static MACRONIX_MX23C8005: NomParser<GameMaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8005-12", "49", GameRomType::F1).parse(input),
 };
 
-/// Macronix MX23C8006 (TSOP-I-32, 4.5-5.5V, 8 Mibit / 1 MiB)
+/// Macronix MX23C8006 mask ROM (TSOP-I-32, 4.5-5.5V, 8 Mibit / 1 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -338,7 +338,7 @@ pub static MACRONIX_MX23C8006: NomParser<GameMaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C8006-12", "49", GameRomType::F).parse(input),
 };
 
-/// Macronix MX23C1603 (TSOP-II-44, 4.5-5.5V, 16 Mibit / 2 MiB)
+/// Macronix MX23C1603 mask ROM (TSOP-II-44, 4.5-5.5V, 16 Mibit / 2 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -357,7 +357,7 @@ pub static MACRONIX_MX23C1603: NomParser<GameMaskRom> = NomParser {
     },
 };
 
-/// Macronix MX23C1605 (SOP-44, 4.5-5.5V, 16 Mibit / 2 MiB)
+/// Macronix MX23C1605 mask ROM (SOP-44, 4.5-5.5V, 16 Mibit / 2 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -368,7 +368,7 @@ pub static MACRONIX_MX23C1605: NomParser<GameMaskRom> = NomParser {
     f: |input| gb_mx23c("MX23C1605-12A", "19", GameRomType::G1).parse(input),
 };
 
-/// Macronix MX23C3203 (TSOP-II-44, 4.5-5.5V, 32 Mibit / 4 MiB)
+/// Macronix MX23C3203 mask ROM (TSOP-II-44, 4.5-5.5V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

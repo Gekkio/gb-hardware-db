@@ -10,7 +10,7 @@ use super::{
 };
 use crate::parser::PartDateCode;
 
-/// Mitsubishi M62021P
+/// Mitsubishi M62021P supervisor
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

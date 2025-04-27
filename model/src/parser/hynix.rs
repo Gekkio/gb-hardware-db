@@ -13,13 +13,12 @@ use nom::{
 };
 
 use super::{
-    GameMaskRom, GameRomType, PartDateCode,
+    GameMaskRom, GameRomType, GenericPart, PartDateCode,
     for_nom::{agb_rom_code, digits, lines3, lines4, uppers, year2_week2},
-    sram::Ram,
 };
 use crate::parser::{Manufacturer, NomParser};
 
-/// Hynix HY62LF16206 (TSOP-I-48, 2.3-2.7V)
+/// Hynix HY62LF16206 SRAM (TSOP-I-48, 2.3-2.7V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// Source:
 ///   "hynix HY62LF16206A-LT12C 128kx16bit full CMOS SRAM"
@@ -28,7 +27,7 @@ use crate::parser::{Manufacturer, NomParser};
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::hynix::HYNIX_HY62LF16206.parse("Hynix KOREA HY62LF16206A 0223A LT12C").is_ok());
 /// ```
-pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
+pub static HYNIX_HY62LF16206: NomParser<GenericPart> = NomParser {
     name: "Hynix HY62LF16206",
     f: |input| {
         lines3(
@@ -46,7 +45,7 @@ pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
             ),
         )
         .map(
-            |(_, kind, ((date_code, _), (power, package, speed, temp)))| Ram {
+            |(_, kind, ((date_code, _), (power, package, speed, temp)))| GenericPart {
                 kind: format!("{kind}-{power}{package}{speed}{temp}"),
                 manufacturer: Some(Manufacturer::Hynix),
                 date_code: Some(date_code),
@@ -56,7 +55,7 @@ pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
     },
 };
 
-/// Hynix HY62WT08081 (SOP-28, 2.7-5.5V)
+/// Hynix HY62WT08081 SRAM (SOP-28, 2.7-5.5V, 256 Kibit / 32 KiB)
 ///
 /// Source:
 ///   "hynix HY62WT08081E Series 32Kx8bit CMOS SRAM"
@@ -65,7 +64,7 @@ pub static HYNIX_HY62LF16206: NomParser<Ram> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::hynix::HYNIX_HY62WT08081.parse("hynix 0231A HY62WT081ED70C KOREA").is_ok());
 /// ```
-pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
+pub static HYNIX_HY62WT08081: NomParser<GenericPart> = NomParser {
     name: "Hynix HY62WT08081",
     f: |input| {
         lines3(
@@ -78,11 +77,13 @@ pub static HYNIX_HY62WT08081: NomParser<Ram> = NomParser {
             ),
             tag("KOREA"),
         )
-        .map(|((_, (date_code, _)), (kind, power, speed, temp), _)| Ram {
-            kind: format!("{kind}{power}{speed}{temp}"),
-            manufacturer: Some(Manufacturer::Hynix),
-            date_code: Some(date_code),
-        })
+        .map(
+            |((_, (date_code, _)), (kind, power, speed, temp), _)| GenericPart {
+                kind: format!("{kind}{power}{speed}{temp}"),
+                manufacturer: Some(Manufacturer::Hynix),
+                date_code: Some(date_code),
+            },
+        )
         .parse(input)
     },
 };
@@ -107,7 +108,7 @@ fn ac23v<'a, E: ParseError<&'a str>>(
     })
 }
 
-/// Hynix AC23V32101 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
+/// Hynix AC23V32101 AGB mask ROM (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -118,7 +119,7 @@ pub static HYNIX_AC23V32101: NomParser<GameMaskRom> = NomParser {
     f: |input| ac23v("AC23V32101", GameRomType::H2).parse(input),
 };
 
-/// Hynix AC23V64101 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
+/// Hynix AC23V64101 AGB mask ROM (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -129,7 +130,7 @@ pub static HYNIX_AC23V64101: NomParser<GameMaskRom> = NomParser {
     f: |input| ac23v("AC23V64101", GameRomType::I2).parse(input),
 };
 
-/// Hynix AC23V128111 (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
+/// Hynix AC23V128111 AGB mask ROM (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

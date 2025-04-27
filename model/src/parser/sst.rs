@@ -11,7 +11,7 @@ use crate::parser::{
 
 use super::{GenericPart, for_nom::lines3};
 
-/// SST SST39VF512 (TSOP-I-32, 2.7-3.6V)
+/// SST SST39VF512 flash (TSOP-I-32, 2.7-3.6V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

@@ -11,8 +11,10 @@ use gbhwdb_model::{
 
 use crate::{
     legacy::{HasDateCode, LegacyMetadata, LegacyPhoto, LegacyPhotos, PhotoInfo, PhotoKind},
-    process::part::ProcessedPart,
-    process::{DateCode, to_full_year},
+    process::{
+        DateCode,
+        part::{ProcessedPart, loose_datecode},
+    },
 };
 
 #[derive(Clone, Debug, PartialEq, Eq, Default)]
@@ -1112,20 +1114,14 @@ impl HasDateCode for LegacyOxyMainboard {
 #[derive(Clone, Debug, Default)]
 pub struct LegacyLcdPanel {
     pub label: Option<String>,
-    pub year: Option<u16>,
-    pub month: Option<Month>,
+    pub date_code: DateCode,
     pub column_driver: Option<ProcessedPart>,
     pub row_driver: Option<ProcessedPart>,
 }
 
 impl HasDateCode for LegacyLcdPanel {
     fn date_code(&self) -> DateCode {
-        DateCode {
-            year: self.year,
-            month: self.month,
-            jun: None,
-            week: None,
-        }
+        self.date_code
     }
 }
 
@@ -1145,7 +1141,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPa
             ..ProcessedPart::default()
         }
     } else {
-        let chip = gbhwdb_model::parser::lcd_chip::lcd_chip()
+        let date_code = gbhwdb_model::parser::lcd_chip()
             .parse(&label)
             .unwrap_or_else(|_| panic!("{}", label));
         ProcessedPart {
@@ -1156,12 +1152,7 @@ pub fn to_legacy_lcd_chip(year_hint: Option<u16>, chip: &LcdChip) -> ProcessedPa
             }),
             kind: Some(ribbon_label.clone()),
             manufacturer: Some(Manufacturer::Sharp),
-            date_code: DateCode {
-                year: to_full_year(year_hint, chip.year),
-                week: chip.week,
-                month: chip.month,
-                jun: None,
-            },
+            date_code: loose_datecode(year_hint, Some(date_code)),
             rom_id: None,
         }
     }
@@ -1179,17 +1170,14 @@ pub fn to_legacy_lcd_panel(year_hint: Option<u16>, screen: &LcdScreen) -> Option
     } else {
         Some(screen.label.clone())
     };
-    let screen = label.as_ref().map(|label| {
-        gbhwdb_model::parser::lcd_screen::lcd_screen()
+    let date_code = label.as_ref().map(|label| {
+        gbhwdb_model::parser::lcd_screen()
             .parse(label)
             .unwrap_or_else(|_| panic!("{}", label))
     });
     Some(LegacyLcdPanel {
         label,
-        year: screen
-            .as_ref()
-            .and_then(|screen| to_full_year(year_hint, screen.year)),
-        month: screen.as_ref().and_then(|screen| screen.month),
+        date_code: loose_datecode(year_hint, date_code),
         column_driver,
         row_driver,
     })

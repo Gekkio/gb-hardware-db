@@ -5,50 +5,43 @@
 use log::warn;
 use nom::{IResult, Parser as _, combinator::all_consuming};
 use nom_language::error::VerboseError;
-use regex::{Captures, Regex, RegexBuilder};
 use stamp::{CgbStamp, DmgStamp};
-use std::str::FromStr;
 
 use crate::{
-    macros::{multi_parser, single_parser},
+    macros::multi_parser,
     time::{Month, Week},
-};
-
-pub use self::{
-    lcd_chip::LcdChip,
-    lcd_screen::LcdScreen,
-    mapper::{Mapper, MapperChip},
 };
 
 pub mod amic;
 pub mod analog;
 pub mod atmel;
 pub mod bsi;
+pub mod crosslink;
 pub mod fujitsu;
+pub mod hudson;
 pub mod hynix;
 pub mod hyundai;
 pub mod kds;
 pub mod kinseki;
-pub mod lcd_chip;
-pub mod lcd_screen;
 pub mod lgs;
+pub mod lsi_logic;
 pub mod macronix;
 pub mod magnachip;
-pub mod mapper;
 pub mod mitsubishi;
 pub mod mitsumi;
+pub mod mosel_vitelic;
+pub mod motorola;
 pub mod nec;
 pub mod oki;
+pub mod panasonic;
 pub mod rohm;
 pub mod samsung;
 pub mod sanyo;
 pub mod seiko;
 pub mod sharp;
-pub mod sram;
 pub mod sst;
 pub mod st_micro;
 pub mod stamp;
-pub mod tama;
 pub mod tdk;
 pub mod ti;
 pub mod toshiba;
@@ -189,16 +182,6 @@ pub enum Year {
     Partial(u8),
 }
 
-fn year1(text: &str) -> Result<Year, String> {
-    if text.len() != 1 {
-        return Err(format!("Invalid 1-digit year: {}", text));
-    }
-    match u8::from_str(text) {
-        Ok(value) => Ok(Year::Partial(value)),
-        _ => Err(format!("Invalid 1-digit year: {}", text)),
-    }
-}
-
 mod for_nom {
     use nom::{
         IResult, Parser,
@@ -310,11 +293,35 @@ mod for_nom {
             .parse(input)
     }
 
+    pub fn year1_month2<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, PartDateCode, E> {
+        (year1, month2)
+            .map(|(year, month)| PartDateCode::YearMonth { year, month })
+            .parse(input)
+    }
+
     pub fn year2_week2<'a, E: ParseError<&'a str>>(
         input: &'a str,
     ) -> IResult<&'a str, PartDateCode, E> {
         (year2, week2)
             .map(|(year, week)| PartDateCode::YearWeek { year, week })
+            .parse(input)
+    }
+
+    pub fn year2_month2<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, PartDateCode, E> {
+        (year2, month2)
+            .map(|(year, month)| PartDateCode::YearMonth { year, month })
+            .parse(input)
+    }
+
+    pub fn year1_month1_123abc<'a, E: ParseError<&'a str>>(
+        input: &'a str,
+    ) -> IResult<&'a str, PartDateCode, E> {
+        (year1, month1_123abc)
+            .map(|(year, month)| PartDateCode::YearMonth { year, month })
             .parse(input)
     }
 
@@ -442,71 +449,8 @@ mod for_nom {
     }
 }
 
-fn year2(text: &str) -> Result<Year, String> {
-    if text.len() != 2 {
-        return Err(format!("Invalid 2-digit year: {}", text));
-    }
-    if text == "AL" {
-        return Ok(Year::Full(2000));
-    }
-    if text == "AA" {
-        return Ok(Year::Full(2001));
-    }
-    match u16::from_str(text) {
-        Ok(value @ 0..=87) => Ok(Year::Full(value + 2000)),
-        Ok(value @ 88..=99) => Ok(Year::Full(value + 1900)),
-        _ => Err(format!("Invalid 2-digit year: {}", text)),
-    }
-}
-
-fn week2(text: &str) -> Result<Week, String> {
-    if text.len() != 2 {
-        return Err(format!("Invalid 2-digit week: {}", text));
-    }
-    u8::from_str(text)
-        .ok()
-        .and_then(|v| Week::try_from(v).ok())
-        .ok_or_else(|| format!("Invalid 2-digit week: {}", text))
-}
-
-fn month2(text: &str) -> Result<Month, String> {
-    if text.len() != 2 {
-        return Err(format!("Invalid 2-digit month: {}", text));
-    }
-    u8::from_str(text)
-        .ok()
-        .and_then(|v| Month::try_from(v).ok())
-        .ok_or_else(|| format!("Invalid 2-digit month: {}", text))
-}
-
 pub trait LabelParser<T>: Send + Sync {
     fn parse(&self, label: &str) -> Result<T, String>;
-}
-
-#[derive(Clone)]
-pub struct RegexParser<T> {
-    regex: Regex,
-    f: fn(Captures) -> Result<T, String>,
-}
-
-impl<T> LabelParser<T> for RegexParser<T> {
-    fn parse(&self, label: &str) -> Result<T, String> {
-        if let Some(captures) = self.regex.captures(label) {
-            (self.f)(captures)
-        } else {
-            Err(format!("no match for {label}"))
-        }
-    }
-}
-
-impl<T> RegexParser<T> {
-    pub fn compile(regex: &str, f: fn(Captures) -> Result<T, String>) -> RegexParser<T> {
-        let regex = RegexBuilder::new(regex)
-            .ignore_whitespace(true)
-            .build()
-            .expect("Failed to compile regex");
-        RegexParser { regex, f }
-    }
 }
 
 pub struct NomParser<T> {
@@ -552,9 +496,10 @@ impl<T> LabelParser<T> for MultiParser<T> {
 #[derive(Copy, Clone, Debug)]
 pub struct UnknownChip;
 
-pub fn unknown_chip() -> &'static impl LabelParser<UnknownChip> {
-    single_parser!(UnknownChip, r#"^.*$"#, move |_| Ok(UnknownChip))
-}
+pub static UNKNOWN_CHIP: NomParser<UnknownChip> = NomParser {
+    name: "Unknown Chip",
+    f: |_| Ok(("", UnknownChip)),
+};
 
 pub fn mgb_amp() -> &'static impl LabelParser<GenericPart> {
     multi_parser!(GenericPart, &sharp::SHARP_IR3R53, &sharp::SHARP_IR3R56)
@@ -990,5 +935,284 @@ pub fn eeprom_tssop_8_5v() -> &'static impl LabelParser<GenericPart> {
         GenericPart,
         &unknown::UNKNOWN_LCS5_EEPROM,
         &unknown::UNKNOWN_LC56_EEPROM
+    )
+}
+
+pub fn lcd_chip() -> &'static impl LabelParser<PartDateCode> {
+    multi_parser!(
+        PartDateCode,
+        &sharp::SHARP_LCD_CHIP_OLD,
+        &sharp::SHARP_LCD_CHIP_NEW
+    )
+}
+
+pub fn lcd_screen() -> &'static impl LabelParser<PartDateCode> {
+    multi_parser!(
+        PartDateCode,
+        &sharp::SHARP_LCD_SCREEN,
+        &unknown::UNKNOWN_LCD_SCREEN
+    )
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum MapperChip {
+    Mbc1,
+    Mbc1A,
+    Mbc1B,
+    Mbc1B1,
+    Mbc2,
+    Mbc2A,
+    Mbc3,
+    Mbc3A,
+    Mbc3B,
+    Mbc30,
+    Mbc5,
+    Mbc6,
+    Mbc7,
+    Huc1,
+    Huc1A,
+    Huc3,
+    Mmm01,
+    Tama5,
+}
+
+impl MapperChip {
+    pub const fn display_name(&self) -> &'static str {
+        match self {
+            MapperChip::Mbc1 => "MBC1",
+            MapperChip::Mbc1A => "MBC1A",
+            MapperChip::Mbc1B => "MBC1B",
+            MapperChip::Mbc1B1 => "MBC1B1",
+            MapperChip::Mbc2 => "MBC2",
+            MapperChip::Mbc2A => "MBC2A",
+            MapperChip::Mbc3 => "MBC3",
+            MapperChip::Mbc3A => "MBC3A",
+            MapperChip::Mbc3B => "MBC3B",
+            MapperChip::Mbc30 => "MBC30",
+            MapperChip::Mbc5 => "MBC5",
+            MapperChip::Mbc6 => "MBC6",
+            MapperChip::Mbc7 => "MBC7",
+            MapperChip::Mmm01 => "MMM01",
+            MapperChip::Huc3 => "HuC-3",
+            MapperChip::Huc1 => "HuC-1",
+            MapperChip::Huc1A => "HuC-1A",
+            MapperChip::Tama5 => "TAMA5",
+        }
+    }
+    pub const fn mapper_type(&self) -> MapperType {
+        match self {
+            MapperChip::Mbc1 => MapperType::Mbc1,
+            MapperChip::Mbc1A => MapperType::Mbc1,
+            MapperChip::Mbc1B => MapperType::Mbc1,
+            MapperChip::Mbc1B1 => MapperType::Mbc1,
+            MapperChip::Mbc2 => MapperType::Mbc2,
+            MapperChip::Mbc2A => MapperType::Mbc2,
+            MapperChip::Mbc3 => MapperType::Mbc3,
+            MapperChip::Mbc3A => MapperType::Mbc3,
+            MapperChip::Mbc3B => MapperType::Mbc3,
+            MapperChip::Mbc30 => MapperType::Mbc30,
+            MapperChip::Mbc5 => MapperType::Mbc5,
+            MapperChip::Mbc6 => MapperType::Mbc6,
+            MapperChip::Mbc7 => MapperType::Mbc7,
+            MapperChip::Huc1 => MapperType::Huc1,
+            MapperChip::Huc1A => MapperType::Huc1,
+            MapperChip::Huc3 => MapperType::Huc3,
+            MapperChip::Mmm01 => MapperType::Mmm01,
+            MapperChip::Tama5 => MapperType::Tama5,
+        }
+    }
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum MapperType {
+    Mbc1,
+    Mbc2,
+    Mbc3,
+    Mbc30,
+    Mbc5,
+    Mbc6,
+    Mbc7,
+    Huc1,
+    Huc3,
+    Mmm01,
+    Tama5,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Mapper {
+    pub kind: MapperChip,
+    pub manufacturer: Option<Manufacturer>,
+    pub date_code: Option<PartDateCode>,
+}
+
+pub fn mbc1_sop24() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        &sharp::SHARP_MBC1,
+        &sharp::SHARP_MBC1A,
+        &sharp::SHARP_MBC1B,
+        &sharp::SHARP_MBC1B1,
+        &nec::NEC_MBC1B,
+        &panasonic::PANASONIC_MBC1B,
+        &motorola::MOTOROLA_MBC1B,
+        &unknown::UNKNOWN_MBC1B,
+    )
+}
+
+pub fn mbc2_sop28() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        &nec::NEC_MBC2A,
+        &panasonic::PANASONIC_MBC2A,
+        &sharp::SHARP_MBC2A,
+    )
+}
+
+pub fn mbc3_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        &panasonic::PANASONIC_MBC3A,
+        &panasonic::PANASONIC_MBC3B,
+        &rohm::ROHM_MBC3,
+        &rohm::ROHM_MBC3A,
+        &rohm::ROHM_MBC3B,
+        &sharp::SHARP_MBC3,
+        &sharp::SHARP_MBC3A,
+    )
+}
+
+pub fn mbc30_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &panasonic::PANASONIC_MBC30, &rohm::ROHM_MBC30,)
+}
+
+pub fn mbc5_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(
+        Mapper,
+        &panasonic::PANASONIC_MBC5,
+        &rohm::ROHM_MBC5,
+        &sharp::SHARP_MBC5,
+        &ti::TI_MBC5,
+    )
+}
+
+pub fn mbc6_qfp64() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &nec::NEC_MBC6,)
+}
+
+pub fn mbc7_qfp56() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &rohm::ROHM_MBC7,)
+}
+
+pub fn mmm01_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &unknown::UNKNOWN_MMM01,)
+}
+
+pub fn huc1_qfp32() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &hudson::HUDSON_HUC1, &hudson::HUDSON_HUC1A,)
+}
+
+pub fn huc3_qfp48() -> &'static impl LabelParser<Mapper> {
+    multi_parser!(Mapper, &hudson::HUDSON_HUC3,)
+}
+
+pub fn sram_sop_28_5v() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 256 Kibit / 32 KiB
+        &bsi::BSI_BS62LV256,
+        &hynix::HYNIX_HY62WT08081,
+        &lgs::HYUNDAI_GM76C256,
+        &lgs::LGS_GM76C256,
+        &lsi_logic::LSI_LOGIC_LH52B256N,
+        &mosel_vitelic::MOSEL_VITELIC_LH52B256N,
+        &rohm::ROHM_BR62256F,
+        &sanyo::SANYO_LC35256,
+        &sharp::SHARP_LH52256CN,
+        &sharp::SHARP_LH52256CVN,
+        &winbond::WINBOND_W24257S,
+        &winbond::WINBOND_W24258S,
+        // 64 Kibit / 8 KiB
+        &crosslink::CROSSLINK_LH5268AN,
+        &crosslink::CROSSLINK_LH52A64N,
+        &hyundai::HYUNDAI_HY6264,
+        &lsi_logic::LSI_LOGIC_LH5168N,
+        &lsi_logic::LSI_LOGIC_LH5264N4T,
+        &lsi_logic::LSI_LOGIC_LH5264TN,
+        &lsi_logic::LSI_LOGIC_LH52A64N,
+        &mosel_vitelic::MOSEL_VITELIC_LH5168N,
+        &mosel_vitelic::MOSEL_VITELIC_LH5268AN,
+        &mosel_vitelic::MOSEL_VITELIC_LH52A64N,
+        &rohm::ROHM_BR6265BF,
+        &rohm::ROHM_XLJ6265AF,
+        &rohm::ROHM_XLJ6265BF,
+        &sanyo::SANYO_LC3564,
+        &sharp::SHARP_LH5160N,
+        &sharp::SHARP_LH5164AN,
+        &sharp::SHARP_LH5164N,
+        &sharp::SHARP_LH5168N,
+        &sharp::SHARP_LH5168NF,
+        &sharp::SHARP_LH5264N4,
+        &sharp::SHARP_LH5264TN,
+        &sharp::SHARP_LH52A64N,
+        &victronix::VICTRONIX_VN4464,
+        &winbond::WINBOND_W2465S,
+    )
+}
+
+pub fn sram_sop_28_3v3() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 64 Kibit / 8 KiB
+        &sanyo::SANYO_LC3564,
+        // 256 Kibit / 32 KiB
+        &bsi::BSI_BS62LV256,
+        &hynix::HYNIX_HY62WT08081,
+        &lgs::HYUNDAI_GM76V256,
+        &sanyo::SANYO_LC35256,
+        &sharp::SHARP_LH52256CVN,
+        &winbond::WINBOND_W24258S,
+    )
+}
+
+pub fn sram_sop_32_5v() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 1 Mibit / 128 KiB
+        &hyundai::HYUNDAI_HY628100,
+    )
+}
+
+pub fn sram_tsop_i_28_3v3() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 256 Kibit / 32 KiB
+        &sharp::SHARP_LH51D256T,
+        &sharp::SHARP_LH52CV256JT,
+        &sharp::SHARP_LH52256CVT,
+    )
+}
+
+pub fn sram_tsop_i_28_5v() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 256 Kibit / 32 KiB
+        &sharp::SHARP_LH52256CT,
+        &sharp::SHARP_LH52256CVT
+    )
+}
+
+pub fn sram_tsop_i_48() -> &'static impl LabelParser<GenericPart> {
+    multi_parser!(
+        GenericPart,
+        // 2 Mibit / 256 KiB / 128x16
+        &nec::NEC_UPD442012A_X,
+        &nec::NEC_UPD442012L_X,
+        &fujitsu::FUJITSU_MB82D12160,
+        &hynix::HYNIX_HY62LF16206,
+        &st_micro::ST_MICRO_M68AS128,
+        &amic::AMIC_LP62S16128,
+        &bsi::BSI_BS616LV2018,
+        &bsi::BSI_BS616LV2019,
+        &toshiba::TOSHIBA_TC55V200
     )
 }

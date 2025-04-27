@@ -9,7 +9,7 @@ use super::{
     for_nom::{alnum_uppers, digits, lines3, year2_week2},
 };
 
-/// Victronix VN4464 (SOP-28, 5V)
+/// Victronix VN4464 SRAM (SOP-28, 5V, 64 Kibit / 8 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

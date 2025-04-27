@@ -10,15 +10,15 @@ use nom::{
     combinator::{opt, recognize},
 };
 
-use super::{Manufacturer, NomParser, for_nom::year2_week2, sram::Ram};
+use super::{GenericPart, Manufacturer, NomParser, for_nom::year2_week2};
 
-/// LGS GM76C256 (SOP-28, 5V)
+/// LGS GM76C256 SRAM (SOP-28, 5V, 256 Kibit / 32 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::lgs::LGS_GM76C256.parse("LGS GM76C256CLLFW70 0047 KOREA").is_ok());
 /// ```
-pub static LGS_GM76C256: NomParser<Ram> = NomParser {
+pub static LGS_GM76C256: NomParser<GenericPart> = NomParser {
     name: "LGS GM76C256",
     f: |input| {
         let package = Package::Sop;
@@ -34,16 +34,18 @@ pub static LGS_GM76C256: NomParser<Ram> = NomParser {
             year2_week2,
             tag(" KOREA"),
         )
-            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-                kind: format!("{kind}{power}{package}{speed}"),
-                manufacturer: Some(Manufacturer::Lgs),
-                date_code: Some(date_code),
-            })
+            .map(
+                |(_, (kind, power, package, speed), _, date_code, _)| GenericPart {
+                    kind: format!("{kind}{power}{package}{speed}"),
+                    manufacturer: Some(Manufacturer::Lgs),
+                    date_code: Some(date_code),
+                },
+            )
             .parse(input)
     },
 };
 
-/// Hyundai GM76C256 (SOP-28, 5V)
+/// Hyundai GM76C256 SRAM (SOP-28, 5V, 256 Kibit / 32 KiB)
 ///
 /// Originally by LGS, acquired by Hyundai
 ///
@@ -51,7 +53,7 @@ pub static LGS_GM76C256: NomParser<Ram> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::lgs::HYUNDAI_GM76C256.parse("HYUNDAI GM76C256CLLFW70 0047 KOREA").is_ok());
 /// ```
-pub static HYUNDAI_GM76C256: NomParser<Ram> = NomParser {
+pub static HYUNDAI_GM76C256: NomParser<GenericPart> = NomParser {
     name: "Hyundai GM76C256",
     f: |input| {
         let package = Package::Sop;
@@ -67,16 +69,18 @@ pub static HYUNDAI_GM76C256: NomParser<Ram> = NomParser {
             year2_week2,
             tag(" KOREA"),
         )
-            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-                kind: format!("{kind}{power}{package}{speed}"),
-                manufacturer: Some(Manufacturer::Hyundai),
-                date_code: Some(date_code),
-            })
+            .map(
+                |(_, (kind, power, package, speed), _, date_code, _)| GenericPart {
+                    kind: format!("{kind}{power}{package}{speed}"),
+                    manufacturer: Some(Manufacturer::Hyundai),
+                    date_code: Some(date_code),
+                },
+            )
             .parse(input)
     },
 };
 
-/// Hyundai GM76V256 (SOP-28, 2.5-3.6V)
+/// Hyundai GM76V256 SRAM (SOP-28, 2.5-3.6V, 256 Kibit / 32 KiB)
 ///
 /// Originally by LGS, acquired by Hyundai
 ///
@@ -84,7 +88,7 @@ pub static HYUNDAI_GM76C256: NomParser<Ram> = NomParser {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::lgs::HYUNDAI_GM76V256.parse("HYUNDAI GM76V256CLLFW10 0115 KOREA").is_ok());
 /// ```
-pub static HYUNDAI_GM76V256: NomParser<Ram> = NomParser {
+pub static HYUNDAI_GM76V256: NomParser<GenericPart> = NomParser {
     name: "Hyundai GM76V256",
     f: |input| {
         let package = Package::Sop;
@@ -100,11 +104,13 @@ pub static HYUNDAI_GM76V256: NomParser<Ram> = NomParser {
             year2_week2,
             tag(" KOREA"),
         )
-            .map(|(_, (kind, power, package, speed), _, date_code, _)| Ram {
-                kind: format!("{kind}{power}{package}{speed}"),
-                manufacturer: Some(Manufacturer::Hyundai),
-                date_code: Some(date_code),
-            })
+            .map(
+                |(_, (kind, power, package, speed), _, date_code, _)| GenericPart {
+                    kind: format!("{kind}{power}{package}{speed}"),
+                    manufacturer: Some(Manufacturer::Hyundai),
+                    date_code: Some(date_code),
+                },
+            )
             .parse(input)
     },
 };

@@ -13,12 +13,12 @@ use nom::{
 };
 
 use super::{
-    GameMaskRom, GameRomType, GenericPart, MaskCode, MaskRom, PartDateCode,
-    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, uppers},
+    GameMaskRom, GameRomType, GenericPart, Mapper, MapperChip, MaskCode, MaskRom, PartDateCode,
+    for_nom::{alnum_uppers, cgb_rom_code, digits, dmg_rom_code, lines3, uppers},
 };
 use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
-/// NEC μPD442012A-X (TSOP-I-48)
+/// NEC μPD442012A-X SRAM (TSOP-I-48, 2.7-3.6V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// Source:
 ///   "NEC data sheet - MOS integrated circuit μPD442012A-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
@@ -55,7 +55,7 @@ pub static NEC_UPD442012A_X: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// NEC μPD442012L-X (TSOP-I-48)
+/// NEC μPD442012L-X SRAM (TSOP-I-48, 2.7-3.6V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// Source:
 ///   "NEC data sheet - MOS integrated circuit μPD442012L-X - 2M-bit CMOS static RAM 128k-word by 16-bit extended temperature operation"
@@ -472,3 +472,69 @@ impl Package {
         }
     }
 }
+
+/// NEC MBC1B (SOP-24)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B N 9019BA012").is_ok());
+/// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B N9542B3004").is_ok());
+/// ```
+pub static NEC_MBC1B: NomParser<Mapper> = NomParser {
+    name: "NEC MBC1B",
+    f: |input| {
+        lines3(
+            tag("Nintendo"),
+            preceded(tag("DMG "), tag("MBC1B")),
+            preceded(tag("N ").or(tag("N")), date_and_lot_code),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc1B,
+            manufacturer: Some(Manufacturer::Nec),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// NEC MBC2A (SOP-28)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::nec::NEC_MBC2A.parse("Nintendo DMG MBC2A N 9011CA005").is_ok());
+/// ```
+pub static NEC_MBC2A: NomParser<Mapper> = NomParser {
+    name: "NEC MBC2A",
+    f: |input| {
+        lines3(
+            tag("Nintendo"),
+            preceded(tag("DMG "), tag("MBC2A")),
+            preceded(tag("N "), date_and_lot_code),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc2A,
+            manufacturer: Some(Manufacturer::Nec),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// NEC MBC6 (QFP-64)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::nec::NEC_MBC6.parse("Nintendo MBC6 0103XP014").is_ok());
+/// ```
+pub static NEC_MBC6: NomParser<Mapper> = NomParser {
+    name: "NEC MBC6",
+    f: |input| {
+        lines3(tag("Nintendo"), tag("MBC6"), date_and_lot_code)
+            .map(|(_, _, date_code)| Mapper {
+                kind: MapperChip::Mbc6,
+                manufacturer: Some(Manufacturer::Nec),
+                date_code: Some(date_code),
+            })
+            .parse(input)
+    },
+};

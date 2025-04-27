@@ -16,7 +16,7 @@ use super::{
 };
 use crate::parser::{Manufacturer, NomParser};
 
-/// STMicro M68AS128 (TSOP-I-48)
+/// STMicro M68AS128 SRAM (TSOP-I-48, 3.3V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

@@ -7,13 +7,13 @@ use nom::{
     branch::alt,
     bytes::streaming::tag,
     character::streaming::{char, one_of},
-    combinator::recognize,
-    sequence::preceded,
+    combinator::{opt, recognize},
+    sequence::{preceded, terminated},
 };
 
 use super::{
-    GenericPart, Manufacturer, NomParser, PartDateCode,
-    for_nom::{alnum_uppers, digits, lines2, month1_123abc, year1, year1_week2},
+    GenericPart, Manufacturer, Mapper, MapperChip, NomParser, PartDateCode,
+    for_nom::{alnum_uppers, digits, lines2, lines3, month1_123abc, year1, year1_week2},
 };
 
 /// ROHM ??9853 EEPROM (SOP-8)
@@ -55,7 +55,7 @@ pub static ROHM_9854: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// ROHM BA6129
+/// ROHM BA6129 supervisor
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -81,7 +81,7 @@ pub static ROHM_BA6129: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// ROHM BA6735
+/// ROHM BA6735 supervisor
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -194,5 +194,244 @@ pub static ROHM_ICD2_R: NomParser<GenericPart> = NomParser {
                 date_code: Some(date_code),
             })
             .parse(input)
+    },
+};
+
+/// ROHM MBC3 (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC3.parse("MBC3 BU3631K 802 127").is_ok());
+/// ```
+pub static ROHM_MBC3: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC3",
+    f: |input| {
+        lines3(
+            tag("MBC3"),
+            tag("BU3631K"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc3,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM MBC3A (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC3A.parse("MBC-3 A BU3632K 004 H64").is_ok());
+/// ```
+pub static ROHM_MBC3A: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC3A",
+    f: |input| {
+        lines3(
+            tag("MBC-3 A"),
+            tag("BU3632K"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc3A,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM MBC3B (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC3B.parse("MBC-3 B BU3634K 135 H48").is_ok());
+/// ```
+pub static ROHM_MBC3B: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC3B",
+    f: |input| {
+        lines3(
+            tag("MBC-3 B"),
+            tag("BU3634K"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc3B,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM MBC30 (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC30.parse("MBC-30 BU3633AK 046 175").is_ok());
+/// ```
+pub static ROHM_MBC30: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC30",
+    f: |input| {
+        lines3(
+            tag("MBC-30"),
+            tag("BU3633AK"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc30,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM MBC5 (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC5.parse("MBC5 BU3650K 229 H51").is_ok());
+/// assert!(parser::rohm::ROHM_MBC5.parse("MBC-5 BU3650K 049 186").is_ok());
+/// ```
+pub static ROHM_MBC5: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC5",
+    f: |input| {
+        lines3(
+            tag("MBC5").or(tag("MBC-5")),
+            tag("BU3650K"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc5,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM MBC7 (QFP-56)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_MBC7.parse("MBC-7 BU3667KS 041 170").is_ok());
+/// ```
+pub static ROHM_MBC7: NomParser<Mapper> = NomParser {
+    name: "ROHM MBC7",
+    f: |input| {
+        lines3(
+            tag("MBC-7"),
+            tag("BU3667KS"),
+            terminated(year1_week2, (tag(" "), alnum_uppers(1), digits(2))),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc7,
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM BR62256F (SOP-28, 4.5-5.5V)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_BR62256F.parse("BR62256F-70LL 817 126").is_ok());
+/// assert!(parser::rohm::ROHM_BR62256F.parse("BR62256F-70LL 845 131A").is_ok());
+/// assert!(parser::rohm::ROHM_BR62256F.parse("BR62256F-70LL 031 150NA").is_ok());
+/// ```
+pub static ROHM_BR62256F: NomParser<GenericPart> = NomParser {
+    name: "ROHM BR62256F",
+    f: |input| {
+        lines2(
+            tag("BR62256F-70LL"),
+            terminated(
+                year1_week2,
+                (
+                    tag(" "),
+                    digits(3),
+                    opt(alt((
+                        nom::bytes::complete::tag("NA"),
+                        nom::bytes::complete::tag("A"),
+                    ))),
+                ),
+            ),
+        )
+        .map(|(kind, date_code)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM BR6265BF (SOP-28, 4.5-5.5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_BR6265BF.parse("BR6265BF-10SL 737 189N").is_ok());
+/// ```
+pub static ROHM_BR6265BF: NomParser<GenericPart> = NomParser {
+    name: "ROHM BR6265BF",
+    f: |input| {
+        lines2(
+            tag("BR6265BF-10SL"),
+            terminated(year1_week2, (tag(" "), digits(3), tag("N"))),
+        )
+        .map(|(kind, date_code)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM XLJ6265AF (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_XLJ6265AF.parse("XLJ6265AF-10SL 437 159").is_ok());
+/// ```
+pub static ROHM_XLJ6265AF: NomParser<GenericPart> = NomParser {
+    name: "ROHM XLJ6265AF",
+    f: |input| {
+        lines2(
+            tag("XLJ6265AF-10SL"),
+            terminated(year1_week2, (tag(" "), digits(3))),
+        )
+        .map(|(kind, date_code)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// ROHM XLJ6265BF (SOP-28, 5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::rohm::ROHM_XLJ6265BF.parse("XLJ6265BF-10SL 640 171N").is_ok());
+/// ```
+pub static ROHM_XLJ6265BF: NomParser<GenericPart> = NomParser {
+    name: "ROHM XLJ6265BF",
+    f: |input| {
+        lines2(
+            tag("XLJ6265BF-10SL"),
+            terminated(year1_week2, (tag(" "), digits(3), tag("N"))),
+        )
+        .map(|(kind, date_code)| GenericPart {
+            kind: String::from(kind),
+            manufacturer: Some(Manufacturer::Rohm),
+            date_code: Some(date_code),
+        })
+        .parse(input)
     },
 };

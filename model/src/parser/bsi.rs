@@ -16,7 +16,10 @@ use super::{
 };
 use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
-/// BSI BS62LV256 (SOP-28, 2.4V-5.5V)
+/// BSI BS62LV256 SRAM (SOP-28, 2.4V-5.5V, 256 Kibit / 32 KiB)
+///
+/// Source:
+///     "BSI BS62LV256 - Very Low Power CMOS SRAM 32K x 8 bit"
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -28,11 +31,12 @@ use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 pub static BSI_BS62LV256: NomParser<GenericPart> = NomParser {
     name: "BSI BS62LV256",
     f: |input| {
+        let package = Package::Sop28;
         (
             tag("BSI "),
             recognize((
                 tag("BS62LV256"),
-                tag("S"),                    // package
+                tag(package.code()),
                 one_of("CI"),                // temperature
                 one_of("-GP"),               // material
                 alt((tag("55"), tag("70"))), // speed
@@ -57,7 +61,7 @@ pub static BSI_BS62LV256: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// BSI BS616LV2018 (TSOP-I-48, 2.4-3.6V)
+/// BSI BS616LV2018 SRAM (TSOP-I-48, 2.4-3.6V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// Source:
 ///   "BSI BS616LV2018 - Very Low Power/Voltage CMOS SRAM 128k x 16 bit"
@@ -70,11 +74,12 @@ pub static BSI_BS62LV256: NomParser<GenericPart> = NomParser {
 pub static BSI_BS616LV2018: NomParser<GenericPart> = NomParser {
     name: "BSI BS616LV2018",
     f: |input| {
+        let package = Package::TsopI48;
         (
             tag("BSI "),
             recognize((
                 tag("BS616LV2018"),
-                tag("T"),      // package
+                tag(package.code()),
                 one_of("CI"),  // temperature
                 one_of("-GP"), // material
                 tag("70"),     // speed
@@ -94,7 +99,7 @@ pub static BSI_BS616LV2018: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// BSI BS616LV2019 (TSOP-I-48, 2.4-3.6V)
+/// BSI BS616LV2019 SRAM (TSOP-I-48, 2.4-3.6V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// Source:
 ///   "BSI BS616LV2019 - Very Low Power CMOS SRAM 128k x 16 bit"
@@ -108,11 +113,12 @@ pub static BSI_BS616LV2018: NomParser<GenericPart> = NomParser {
 pub static BSI_BS616LV2019: NomParser<GenericPart> = NomParser {
     name: "BSI BS616LV2019",
     f: |input| {
+        let package = Package::TsopI48;
         (
             tag("BSI "),
             recognize((
                 tag("BS616LV2019"),
-                tag("T"),                    // package
+                tag(package.code()),
                 one_of("CI"),                // temperature
                 one_of("-GP"),               // material
                 alt((tag("55"), tag("70"))), // speed
@@ -131,3 +137,17 @@ pub static BSI_BS616LV2019: NomParser<GenericPart> = NomParser {
             .parse(input)
     },
 };
+
+enum Package {
+    Sop28,
+    TsopI48,
+}
+
+impl Package {
+    pub const fn code(&self) -> &'static str {
+        match self {
+            Package::Sop28 => "S",
+            Package::TsopI48 => "T",
+        }
+    }
+}

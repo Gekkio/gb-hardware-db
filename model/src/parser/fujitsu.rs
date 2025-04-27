@@ -22,7 +22,7 @@ use super::{
     for_nom::{alnum_uppers, cgb_rom_code, dmg_rom_code},
 };
 
-/// Fujitsu MB85R256 (SOP-28, 3.0-3.6V)
+/// Fujitsu MB85R256 FRAM (SOP-28, 3.0-3.6V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -50,7 +50,7 @@ pub static FUJITSU_MB85R256: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Fujitsu MB82D12160 (TSOP-I-48)
+/// Fujitsu MB82D12160 SRAM (TSOP-I-48, 3.3V, 2 Mibit / 256 KiB / 128x16)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

@@ -19,7 +19,7 @@ use super::{
     for_nom::{alnum_uppers, digits, lines3, month1_123xyz},
 };
 
-/// Seiko S-3511A (SOP-8)
+/// Seiko S-3511A RTC (SOP-8)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -39,7 +39,7 @@ pub static SEIKO_S3511A: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Seiko S-3516AE (SOP-8)
+/// Seiko S-3516AE RTC (SOP-8)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

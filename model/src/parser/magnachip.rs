@@ -37,7 +37,7 @@ fn ac23v<'a, E: ParseError<&'a str>>(
     })
 }
 
-/// Magnachip AC23V32101 (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
+/// Magnachip AC23V32101 AGB mask ROM (TSOP-II-44, 3.3V, 32 Mibit / 4 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -48,7 +48,7 @@ pub static MAGNACHIP_AC23V32101: NomParser<GameMaskRom> = NomParser {
     f: |input| ac23v("AC23V32101", GameRomType::H2).parse(input),
 };
 
-/// Magnachip AC23V64101 (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
+/// Magnachip AC23V64101 AGB mask ROM (TSOP-II-44, 3.3V, 64 Mibit / 8 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -59,7 +59,7 @@ pub static MAGNACHIP_AC23V64101: NomParser<GameMaskRom> = NomParser {
     f: |input| ac23v("AC23V64101", GameRomType::I2).parse(input),
 };
 
-/// Magnachip AC23V128111 (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
+/// Magnachip AC23V128111 AGB mask ROM (TSOP-II-44, 3.3V, 128 Mibit / 16 MiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

@@ -8,13 +8,15 @@ use nom::{
     bytes::streaming::tag,
     character::streaming::char,
     combinator::opt,
-    sequence::{preceded, separated_pair},
+    sequence::{delimited, preceded, separated_pair, terminated},
 };
 
 use super::{
-    Crystal, GenericPart, MaskRom, NomParser, PartDateCode,
+    Crystal, GameMaskRom, GameRomType, GenericPart, Mapper, MapperChip, MaskRom, NomParser,
+    PartDateCode,
     for_nom::{
-        alnum_uppers, digits, lines2, lines3, lines4, uppers, year1, year1_week2, year2_week2,
+        alnum_uppers, digits, lines2, lines3, lines4, uppers, year1, year1_month2, year1_week2,
+        year2_week2,
     },
 };
 
@@ -213,4 +215,87 @@ pub static UNKNOWN_OXY_U5: NomParser<GenericPart> = NomParser {
         })
         .parse(input)
     },
+};
+
+/// Unknown MBC1B (SOP-24)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::unknown::UNKNOWN_MBC1B.parse("Nintendo DMG MBC1B 8940AJ").is_ok());
+/// ```
+pub static UNKNOWN_MBC1B: NomParser<Mapper> = NomParser {
+    name: "Unknown MBC1B",
+    f: |input| {
+        lines3(
+            tag("Nintendo"),
+            tag("DMG MBC1B"),
+            terminated(year2_week2, tag("AJ")),
+        )
+        .map(|(_, _, date_code)| Mapper {
+            kind: MapperChip::Mbc1B,
+            manufacturer: None,
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Unknown MMM01 (QFP-32)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::unknown::UNKNOWN_MMM01.parse("MMM01 645 113").is_ok());
+/// ```
+pub static UNKNOWN_MMM01: NomParser<Mapper> = NomParser {
+    name: "Unknown MMM01",
+    f: |input| {
+        lines2(
+            tag("MMM01"),
+            terminated(year1_week2, tag(" ").and(digits(3))),
+        )
+        .map(|(_, date_code)| Mapper {
+            kind: MapperChip::Mmm01,
+            manufacturer: None,
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Unknown TAMA7
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::unknown::UNKNOWN_TAMA7.parse("TAMA7 B9748 43913A TAIWAN").is_ok());
+/// ```
+pub static UNKNOWN_TAMA7: NomParser<GameMaskRom> = NomParser {
+    name: "Unknown TAMA7",
+    f: |input| {
+        lines4(
+            tag("TAMA7"),
+            preceded(uppers(1), year2_week2),
+            digits(5).and(uppers(1)),
+            tag("TAIWAN"),
+        )
+        .map(|(_, date_code, _, _)| GameMaskRom {
+            rom_id: String::from("DMG-AOMJ-0"),
+            rom_type: GameRomType::E1,
+            manufacturer: None,
+            chip_type: None,
+            mask_code: None,
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Unknown LCD Screen
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::unknown::UNKNOWN_LCD_SCREEN.parse("T61102S T61104").is_ok());
+/// ```
+pub static UNKNOWN_LCD_SCREEN: NomParser<PartDateCode> = NomParser {
+    name: "Unknown LCD Screen",
+    f: |input| delimited(tag("T61102S T"), year1_month2, digits(2)).parse(input),
 };

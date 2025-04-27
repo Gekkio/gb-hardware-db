@@ -110,15 +110,6 @@ impl fmt::Display for ParseError {
 
 #[macro_use]
 pub(crate) mod macros {
-    macro_rules! single_parser {
-        ($t:ty, $re:literal, $f:expr $(,)?) => {{
-            static PARSER: std::sync::OnceLock<crate::parser::RegexParser<$t>> =
-                std::sync::OnceLock::new();
-            PARSER.get_or_init(|| crate::parser::RegexParser::compile($re, $f))
-        }};
-    }
-    pub(crate) use single_parser;
-
     macro_rules! multi_parser {
         ($t:ty, $($m:expr),* $(,)?) => {{
             static PARSERS: std::sync::OnceLock<Vec<&'static dyn crate::parser::LabelParser<$t>>> =

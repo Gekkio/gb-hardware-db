@@ -12,7 +12,7 @@ use super::{
 };
 use crate::parser::PartDateCode;
 
-/// Mitsumi MM1026A
+/// Mitsumi MM1026A supervisor
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -32,7 +32,7 @@ pub static MITSUMI_MM1026A: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Mitsumi MM1134A
+/// Mitsumi MM1134A supervisor
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

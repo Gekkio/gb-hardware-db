@@ -12,7 +12,7 @@ use nom::{
 use super::{GenericPart, for_nom::lines3};
 use crate::parser::{Manufacturer, NomParser, for_nom::year2_week2};
 
-/// Atmel AT29LV512 (TSOP-I-32, 3.0-3.6V)
+/// Atmel AT29LV512 flash (TSOP-I-32, 3.0-3.6V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};

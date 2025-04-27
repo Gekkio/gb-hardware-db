@@ -80,7 +80,7 @@ impl ParsedPart for parser::Crystal {
     }
 }
 
-fn loose_datecode(year_hint: Option<u16>, date_code: Option<PartDateCode>) -> DateCode {
+pub fn loose_datecode(year_hint: Option<u16>, date_code: Option<PartDateCode>) -> DateCode {
     match date_code {
         Some(PartDateCode::Year { year }) => DateCode::loose_year_week(year_hint, Some(year), None),
         Some(PartDateCode::YearMonth { year, month }) => {

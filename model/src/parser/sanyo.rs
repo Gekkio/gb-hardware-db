@@ -14,14 +14,13 @@ use nom::{
 use super::{
     GenericPart,
     for_nom::{lines2, lines3},
-    sram::Ram,
 };
 use crate::parser::{
     Manufacturer, NomParser, PartDateCode,
     for_nom::{alnum_uppers, digits, month1_abc, uppers, year1},
 };
 
-/// Sanyo LE26FV10 (TSOP-I-32, 3.3V)
+/// Sanyo LE26FV10 flash (TSOP-I-32, 3.3V)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
@@ -48,14 +47,14 @@ pub static SANYO_LE26FV10: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Sanyo LC35256 (SOP-28, 2.7-5.5V)
+/// Sanyo LC35256 SRAM (SOP-28, 2.7-5.5V, 256 Kibit / 32 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sanyo::SANYO_LC35256.parse("SANYO LC35256DM-70W JAPAN 0EUPG").is_ok());
 /// assert!(parser::sanyo::SANYO_LC35256.parse("SANYO LC35256FM-70U JAPAN 0LK5G").is_ok());
 /// ```
-pub static SANYO_LC35256: NomParser<Ram> = NomParser {
+pub static SANYO_LC35256: NomParser<GenericPart> = NomParser {
     name: "Sanyo LC35256",
     f: |input| {
         lines3(
@@ -70,7 +69,7 @@ pub static SANYO_LC35256: NomParser<Ram> = NomParser {
             separated_pair(tag("JAPAN"), char(' '), date_code.and(alnum_uppers(3))),
         )
         .map(
-            |(_, (kind, package, _, speed, _), (_, (date_code, _)))| Ram {
+            |(_, (kind, package, _, speed, _), (_, (date_code, _)))| GenericPart {
                 kind: format!("{kind}{package}-{speed}"),
                 manufacturer: Some(Manufacturer::Sanyo),
                 date_code: Some(date_code),
@@ -80,13 +79,13 @@ pub static SANYO_LC35256: NomParser<Ram> = NomParser {
     },
 };
 
-/// Sanyo LC3564 (SOP-28, 2.7-5.5V)
+/// Sanyo LC3564 SRAM (SOP-28, 2.7-5.5V, 64 Kibit / 8 KiB)
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sanyo::SANYO_LC3564.parse("SANYO LC3564BM-70 JAPAN 9MUBG").is_ok());
 /// ```
-pub static SANYO_LC3564: NomParser<Ram> = NomParser {
+pub static SANYO_LC3564: NomParser<GenericPart> = NomParser {
     name: "Sanyo LC3564",
     f: |input| {
         lines3(
@@ -99,11 +98,13 @@ pub static SANYO_LC3564: NomParser<Ram> = NomParser {
             ),
             separated_pair(tag("JAPAN"), char(' '), date_code.and(alnum_uppers(3))),
         )
-        .map(|(_, (kind, package, _, speed), (_, (date_code, _)))| Ram {
-            kind: format!("{kind}{package}-{speed}"),
-            manufacturer: Some(Manufacturer::Sanyo),
-            date_code: Some(date_code),
-        })
+        .map(
+            |(_, (kind, package, _, speed), (_, (date_code, _)))| GenericPart {
+                kind: format!("{kind}{package}-{speed}"),
+                manufacturer: Some(Manufacturer::Sanyo),
+                date_code: Some(date_code),
+            },
+        )
         .parse(input)
     },
 };

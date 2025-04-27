@@ -1,0 +1,26 @@
+{
+  "code": "AGB-AXVF-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AXVF-FRA",
+    "stamp": "19"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "O-5",
+    "year": 2003,
+    "month": 5,
+    "u1": {
+      "label": "E032158-M MX23L12807-12C AGB-AXVF-0 J2 2H458704"
+    },
+    "u2": {
+      "label": "E030557 MX29L010TC-15A1 1E7918"
+    },
+    "u3": {
+      "label": "S3511 AV32 0082"
+    }
+  }
+}

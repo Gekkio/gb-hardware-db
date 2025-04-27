@@ -453,6 +453,7 @@ pub fn sram_sop_28_5v() -> &'static impl LabelParser<Ram> {
         &winbond::WINBOND_W24258,
         &winbond::WINBOND_W2465,
         sop_28::sharp_lh52256(),
+        sop_28::sharp_lh52256cv(),
         lsi_logic_lh5168(),
         lsi_logic_lh52b256(),
         mosel_vitelic_lh5168(),

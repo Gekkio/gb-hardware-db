@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AZLF-1",
+  "slug": "kurodo-2",
+  "contributor": "Kurodo",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AZLF-FRA",
+    "stamp": "00A"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "A",
+    "panel_position": "1",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AZLF-1 S LH538WRZ JAPAN F1 0010 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AL03 A"
+    },
+    "u3": {
+      "label": "LH52256CVN SHARP JAPAN 9944 5 SO"
+    },
+    "u4": {
+      "label": "004 134A"
+    }
+  }
+}

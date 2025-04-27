@@ -121,3 +121,30 @@ pub fn sharp_lh52256() -> &'static impl LabelParser<Ram> {
         },
     )
 }
+
+/// Sharp LH52256CV
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sram::sop_28::sharp_lh52256().parse("LH52256CVN SHARP JAPAN 9944 5 SO").is_ok());
+/// ```
+pub fn sharp_lh52256cv() -> &'static impl LabelParser<Ram> {
+    single_parser!(
+        Ram,
+        r#"^(?<kind>LH52256CV)(?<package>N)\ SHARP\ JAPAN\ (?<year>[0-9]{2})(?<week>[0-9]{2})\ [0-9]\ [A-Z]{2}$"#,
+        move |c| {
+            Ok(Ram {
+                kind: format!(
+                    "{kind}{package}",
+                    kind = &c["kind"],
+                    package = &c["package"],
+                ),
+                manufacturer: Some(Manufacturer::Sharp),
+                date_code: Some(PartDateCode::YearWeek {
+                    year: year2(&c["year"])?,
+                    week: week2(&c["week"])?,
+                }),
+            })
+        },
+    )
+}

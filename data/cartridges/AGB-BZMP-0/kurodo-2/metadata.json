@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BZMP-0",
+  "slug": "kurodo-2",
+  "contributor": "Kurodo",
+  "index": 2,
+  "shell": {
+    "code": "AGB-BZMP-EUR",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-1",
+    "year": 2004,
+    "month": 8,
+    "u1": {
+      "label": "S044138-M MX23L12806-12C AGB-BZMP-0 J2 2L047100"
+    },
+    "u2": {
+      "label": "9854 4R72W"
+    }
+  }
+}

@@ -39,18 +39,6 @@ pub fn map_part<T: ParsedPart, F: LabelParser<T>>(
     }
 }
 
-pub fn map_optional_part<T: ParsedPart, F: LabelParser<T>>(
-    year_hint: Option<u16>,
-    part: &Option<Part>,
-    f: &F,
-) -> Option<ProcessedPart> {
-    part.as_ref().map(|part| {
-        boxed_parser(f)(year_hint, part)
-            .unwrap()
-            .unwrap_or_default()
-    })
-}
-
 pub type BoxedParser<'a> =
     Box<dyn Fn(Option<u16>, &Part) -> Result<Option<ProcessedPart>, Error> + 'a>;
 

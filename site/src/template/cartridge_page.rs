@@ -162,10 +162,10 @@ impl<'a> Render for CartridgePage<'a> {
                                     }
                                 }
                             }
-                            @if let Some(log) = &dump.log {
+                            @if !dump.log.is_empty() {
                                 dt { "Dump log" }
                                 dd {
-                                    pre.page-cartridge__dump-log { (log) }
+                                    pre.page-cartridge__dump-log { (dump.log) }
                                 }
                             }
                         }

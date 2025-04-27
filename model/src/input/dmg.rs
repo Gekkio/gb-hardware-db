@@ -6,12 +6,13 @@ use serde::{Deserialize, Serialize};
 use strum::{EnumString, IntoStaticStr, VariantArray};
 
 use crate::{
+    SubmissionIdentifier, SubmissionMetadata,
     input::{LcdScreen, Part, is_not_outlier},
     time::Month,
 };
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
-// #[serde(deny_unknown_fields)]
+#[serde(deny_unknown_fields)]
 pub struct DmgConsole {
     pub slug: String,
     pub contributor: String,
@@ -19,15 +20,42 @@ pub struct DmgConsole {
     pub index: Option<u16>,
     pub shell: DmgShell,
     pub mainboard: DmgMainboard,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "DmgLcdBoard::is_unknown")]
+    #[serde(skip_serializing_if = "DmgLcdBoard::is_unknown", default)]
     pub lcd_board: DmgLcdBoard,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "DmgPowerBoard::is_unknown")]
+    #[serde(skip_serializing_if = "DmgPowerBoard::is_unknown", default)]
     pub power_board: DmgPowerBoard,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "DmgJackBoard::is_unknown")]
+    #[serde(skip_serializing_if = "DmgJackBoard::is_unknown", default)]
     pub jack_board: DmgJackBoard,
+}
+
+impl SubmissionMetadata for DmgConsole {
+    type PhotoKind = DmgPhotoKind;
+
+    fn contributor(&self) -> &str {
+        &self.contributor
+    }
+
+    fn slug(&self) -> &str {
+        &self.slug
+    }
+
+    fn identifier(&self) -> SubmissionIdentifier {
+        SubmissionIdentifier::new(&self.shell.serial, self.index)
+    }
+
+    fn set_contributor(&mut self, contributor: &str) {
+        self.contributor = contributor.to_string();
+    }
+
+    fn update_identifier(&mut self, contributor_slug: &str, index: u16) {
+        if self.shell.serial.is_empty() {
+            self.slug = format!("{}-{}", contributor_slug, index);
+            self.index = Some(index as u16);
+        } else {
+            self.slug = self.shell.serial.clone();
+            self.index = None;
+        }
+    }
 }
 
 #[derive(
@@ -72,11 +100,9 @@ pub enum DmgPhotoKind {
 pub struct DmgShell {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<DmgShellColor>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub serial: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -107,32 +133,23 @@ pub enum DmgShellColor {
 #[serde(deny_unknown_fields)]
 pub struct DmgMainboard {
     pub label: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub stamp: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub circled_letters: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub extra_label: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub u1: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub u2: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub u3: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub u4: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub x1: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -140,27 +157,21 @@ pub struct DmgMainboard {
 #[serde(deny_unknown_fields)]
 pub struct DmgLcdBoard {
     pub label: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub stamp: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub circled_letters: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub extra_label: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "Part::is_unknown")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub chip: Part,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "LcdScreen::is_unknown")]
+    #[serde(skip_serializing_if = "LcdScreen::is_unknown", default)]
     pub screen: LcdScreen,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -178,8 +189,7 @@ pub struct DmgPowerBoard {
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -193,11 +203,9 @@ impl DmgPowerBoard {
 #[serde(deny_unknown_fields)]
 pub struct DmgJackBoard {
     pub kind: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "String::is_empty")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     pub extra_label: String,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 

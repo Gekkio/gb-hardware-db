@@ -132,3 +132,29 @@ pub(crate) mod macros {
     }
     pub(crate) use multi_parser;
 }
+
+pub trait SubmissionMetadata {
+    type PhotoKind;
+
+    fn contributor(&self) -> &str;
+    fn slug(&self) -> &str;
+    fn identifier(&self) -> SubmissionIdentifier;
+
+    fn set_contributor(&mut self, contributor: &str);
+    fn update_identifier(&mut self, contributor_slug: &str, index: u16);
+}
+
+pub enum SubmissionIdentifier<'a> {
+    Serial(&'a str),
+    Index(u16),
+}
+
+impl<'a> SubmissionIdentifier<'a> {
+    pub fn new(serial: &'a str, index: Option<u16>) -> Self {
+        if serial.is_empty() {
+            Self::Index(index.unwrap_or(1))
+        } else {
+            Self::Serial(serial)
+        }
+    }
+}

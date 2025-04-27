@@ -6,7 +6,7 @@ use anyhow::{Context as _, Error};
 use csv_export::{ToCsv, write_submission_csv};
 use filetime::{FileTime, set_file_mtime};
 use gbhwdb_model::{
-    Console,
+    Console, SubmissionIdentifier, SubmissionMetadata,
     config::cartridge::*,
     input::cartridge::*,
     parser::{self, LabelParser},
@@ -347,8 +347,8 @@ fn read_cartridge_submissions(
         let board = LegacyBoard::new(cartridge.board, board_cfg);
         let metadata = LegacyMetadata {
             cfg: cfg.clone(),
-            code: cartridge.shell.code,
-            stamp: cartridge.shell.stamp,
+            code: Some(cartridge.shell.code).filter(|code| !code.is_empty()),
+            stamp: Some(cartridge.shell.stamp).filter(|stamp| !stamp.is_empty()),
             board,
             dump: cartridge.dump,
         };
@@ -392,7 +392,7 @@ fn read_cartridge_submissions(
 fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
     use gbhwdb_model::input::dmg::*;
     use legacy::console::*;
-    use process::part::{ProcessedPart, map_optional_part};
+    use process::part::ProcessedPart;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/DMG").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -470,11 +470,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             let lcd_board = Some(&console.lcd_board)
                 .filter(|board| !board.is_unknown())
                 .map(|board| {
-                    let regulator = map_optional_part(
-                        year_hint,
-                        &Some(board.chip.clone()).filter(|part| !part.is_unknown()),
-                        parser::dmg_reg(),
-                    );
+                    let regulator = map_part(year_hint, &board.chip, parser::dmg_reg());
                     let lcd_panel = Some(&board.screen)
                         .filter(|screen| !screen.is_unknown())
                         .and_then(|screen| to_legacy_lcd_panel(year_hint, screen));
@@ -537,7 +533,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
                 mainboard,
                 lcd_board,
                 power_board,
-                jack_board: console.jack_board,
+                jack_board: console.jack_board.clone(),
             };
 
             let has_outliers = console.shell.outlier
@@ -560,11 +556,7 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "dmg".to_string(),
-                title: if console.shell.serial.is_empty() {
-                    format!("Unit #{}", console.index.unwrap())
-                } else {
-                    console.shell.serial.clone()
-                },
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: Some(
                     (match (console.shell.serial.is_empty(), has_outliers) {
@@ -588,7 +580,6 @@ fn read_dmg_submissions() -> Result<Vec<LegacyDmgSubmission>, Error> {
 fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
     use gbhwdb_model::input::sgb::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     let walker = WalkDir::new("data/consoles/SGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -603,24 +594,28 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu = map_optional_part(year_hint, &console.mainboard.u1, parser::sgb_soc_qfp_80());
-            let icd2 = map_optional_part(year_hint, &console.mainboard.u2, parser::icd2());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::sgb_soc_qfp_80());
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
                 parser::sram::sram_sop_28_5v(),
             );
-            let video_ram = map_optional_part(
+            let video_ram = map_part(
                 year_hint,
                 &console.mainboard.u4,
                 parser::sram::sram_sop_28_5v(),
             );
-            let rom = map_optional_part(year_hint, &console.mainboard.u5, parser::sgb_rom());
-            let cic = map_optional_part(year_hint, &console.mainboard.u6, parser::cic());
+            let rom = map_part(year_hint, &console.mainboard.u5, parser::sgb_rom());
+            let cic = map_part(year_hint, &console.mainboard.u6, parser::cic());
             let mainboard = LegacySgbMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                letter_at_top_right: console.mainboard.letter_at_top_right.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                letter_at_top_right: Some(&console.mainboard.letter_at_top_right)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -632,7 +627,9 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             };
 
             let metadata = LegacySgbMetadata {
-                stamp: console.shell.stamp.clone(),
+                stamp: Some(&console.shell.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 mainboard,
             };
 
@@ -644,7 +641,7 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "sgb".to_string(),
-                title: format!("Unit #{}", console.index),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -660,7 +657,6 @@ fn read_sgb_submissions() -> Result<Vec<LegacySgbSubmission>, Error> {
 fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
     use gbhwdb_model::input::mgb::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/MGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -674,26 +670,31 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_optional_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram::sram_sop_28_5v(),
             );
-            let amplifier = map_optional_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
-            let regulator = map_optional_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
             let mainboard = LegacyMgbMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 jun: console.mainboard.jun,
@@ -705,15 +706,19 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             };
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
-            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::dmg_stamp()
-                    .parse(stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
-            });
+            let stamp = Some(&console.mainboard.stamp)
+                .filter(|stamp| !stamp.is_empty())
+                .map(|stamp| {
+                    gbhwdb_model::parser::dmg_stamp()
+                        .parse(stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
 
             let metadata = LegacyMgbMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 year: stamp
                     .as_ref()
                     .and_then(|stamp| to_full_year(year_hint, stamp.year)),
@@ -730,11 +735,7 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "mgb".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -750,7 +751,6 @@ fn read_mgb_submissions() -> Result<Vec<LegacyMgbSubmission>, Error> {
 fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
     use gbhwdb_model::input::mgl::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/MGL").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -764,27 +764,32 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year;
-            let cpu = map_optional_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::mgb_soc_qfp_80());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram::sram_sop_28_5v(),
             );
-            let amplifier = map_optional_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
-            let regulator = map_optional_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
-            let t1 = map_optional_part(year_hint, &console.mainboard.t1, parser::mgl_transformer());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::dmg_reg());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::mgb_crystal());
+            let t1 = map_part(year_hint, &console.mainboard.t1, parser::mgl_transformer());
             let mainboard = LegacyMglMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 jun: console.mainboard.jun,
@@ -797,15 +802,19 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             };
             let lcd_panel = to_legacy_lcd_panel(year_hint, &console.screen);
 
-            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp()
-                    .parse(stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
-            });
+            let stamp = Some(&console.mainboard.stamp)
+                .filter(|stamp| !stamp.is_empty())
+                .map(|stamp| {
+                    gbhwdb_model::parser::cgb_stamp()
+                        .parse(stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
 
             let metadata = LegacyMglMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 year: stamp
                     .as_ref()
                     .and_then(|stamp| to_full_year(year_hint, stamp.year)),
@@ -822,11 +831,7 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "mgl".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -842,7 +847,6 @@ fn read_mgl_submissions() -> Result<Vec<LegacyMglSubmission>, Error> {
 fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
     use gbhwdb_model::input::sgb2::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     let walker = WalkDir::new("data/consoles/SGB2").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -857,23 +861,25 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             );
 
             let year_hint = console.mainboard.year;
-            let cpu =
-                map_optional_part(year_hint, &console.mainboard.u1, parser::sgb2_soc_qfp_80());
-            let icd2 = map_optional_part(year_hint, &console.mainboard.u2, parser::icd2());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::sgb2_soc_qfp_80());
+            let icd2 = map_part(year_hint, &console.mainboard.u2, parser::icd2());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
                 parser::sram::sram_sop_28_5v(),
             );
-            let rom = map_optional_part(year_hint, &console.mainboard.u4, parser::sgb2_rom());
-            let cic = map_optional_part(year_hint, &console.mainboard.u5, parser::cic());
-            let coil = map_optional_part(year_hint, &console.mainboard.coil1, parser::sgb2_coil());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.xtal1, parser::sgb2_crystal());
+            let rom = map_part(year_hint, &console.mainboard.u4, parser::sgb2_rom());
+            let cic = map_part(year_hint, &console.mainboard.u5, parser::cic());
+            let coil = map_part(year_hint, &console.mainboard.coil1, parser::sgb2_coil());
+            let crystal = map_part(year_hint, &console.mainboard.xtal1, parser::sgb2_crystal());
             let mainboard = LegacySgb2Mainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                letter_at_top_right: console.mainboard.letter_at_top_right.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                letter_at_top_right: Some(&console.mainboard.letter_at_top_right)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -886,7 +892,9 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             };
 
             let metadata = LegacySgb2Metadata {
-                stamp: console.shell.stamp.clone(),
+                stamp: Some(&console.shell.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 mainboard,
             };
 
@@ -898,7 +906,7 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "sgb2".to_string(),
-                title: format!("Unit #{}", console.index),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -914,7 +922,6 @@ fn read_sgb2_submissions() -> Result<Vec<LegacySgb2Submission>, Error> {
 fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
     use gbhwdb_model::input::cgb::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/CGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -928,37 +935,42 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year.or(Some(1998));
             let cpu = match console.mainboard.label.as_str() {
-                "CGB-CPU-06" => map_optional_part(
+                "CGB-CPU-06" => map_part(
                     year_hint,
                     &console.mainboard.u1,
                     parser::cgb_soc_qfp_128_new(),
                 ),
-                _ => map_optional_part(
+                _ => map_part(
                     year_hint,
                     &console.mainboard.u1,
                     parser::cgb_soc_qfp_128_old(),
                 ),
             };
-            let work_ram = map_optional_part(
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram::sram_tsop_i_28(),
             );
-            let amplifier = map_optional_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
-            let regulator = map_optional_part(year_hint, &console.mainboard.u4, parser::cgb_reg());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.x1, parser::cgb_crystal());
+            let amplifier = map_part(year_hint, &console.mainboard.u3, parser::mgb_amp());
+            let regulator = map_part(year_hint, &console.mainboard.u4, parser::cgb_reg());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::cgb_crystal());
             let mainboard = LegacyCgbMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 jun: console.mainboard.jun,
@@ -969,29 +981,30 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
                 crystal,
             };
 
-            let (old_stamp, new_stamp) = match &console.mainboard.stamp {
-                Some(stamp) => {
-                    if stamp.starts_with(&['6', '7', '8', '9'][..]) {
-                        (
-                            Some(
-                                gbhwdb_model::parser::dmg_stamp()
-                                    .parse(stamp)
-                                    .unwrap_or_else(|_| panic!("{}", stamp)),
-                            ),
-                            None,
-                        )
-                    } else {
-                        (
-                            None,
-                            Some(
-                                gbhwdb_model::parser::cgb_stamp()
-                                    .parse(stamp)
-                                    .unwrap_or_else(|_| panic!("{}", stamp)),
-                            ),
-                        )
-                    }
-                }
-                None => (None, None),
+            let (old_stamp, new_stamp) = if console
+                .mainboard
+                .stamp
+                .starts_with(&['6', '7', '8', '9'][..])
+            {
+                (
+                    Some(
+                        gbhwdb_model::parser::dmg_stamp()
+                            .parse(&console.mainboard.stamp)
+                            .unwrap_or_else(|_| panic!("{}", console.mainboard.stamp)),
+                    ),
+                    None,
+                )
+            } else if !console.mainboard.stamp.is_empty() {
+                (
+                    None,
+                    Some(
+                        gbhwdb_model::parser::cgb_stamp()
+                            .parse(&console.mainboard.stamp)
+                            .unwrap_or_else(|_| panic!("{}", console.mainboard.stamp)),
+                    ),
+                )
+            } else {
+                (None, None)
             };
             let stamp_year = new_stamp
                 .as_ref()
@@ -1000,7 +1013,9 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
 
             let metadata = LegacyCgbMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 year: to_full_year(year_hint, stamp_year),
                 month: old_stamp.as_ref().and_then(|stamp| stamp.month),
                 week: new_stamp.as_ref().and_then(|stamp| stamp.week),
@@ -1015,11 +1030,7 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "cgb".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1035,7 +1046,6 @@ fn read_cgb_submissions() -> Result<Vec<LegacyCgbSubmission>, Error> {
 fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
     use gbhwdb_model::input::agb::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/AGB").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -1049,28 +1059,32 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year.or(Some(2001));
-            let cpu =
-                map_optional_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_128());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_128());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram::sram_tsop_i_48(),
             );
-            let regulator = map_optional_part(year_hint, &console.mainboard.u3, parser::agb_reg());
-            let u4 = map_optional_part(year_hint, &console.mainboard.u4, parser::agb_pmic());
-            let amplifier = map_optional_part(year_hint, &console.mainboard.u6, parser::agb_amp());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.x1, parser::agb_crystal());
+            let regulator = map_part(year_hint, &console.mainboard.u3, parser::agb_reg());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::agb_pmic());
+            let amplifier = map_part(year_hint, &console.mainboard.u6, parser::agb_amp());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::agb_crystal());
             let mainboard = LegacyAgbMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -1081,15 +1095,19 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
                 u4,
             };
 
-            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp()
-                    .parse(stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
-            });
+            let stamp = Some(&console.mainboard.stamp)
+                .filter(|stamp| !stamp.is_empty())
+                .map(|stamp| {
+                    gbhwdb_model::parser::cgb_stamp()
+                        .parse(stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
 
             let metadata = LegacyAgbMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 year: stamp
                     .as_ref()
                     .and_then(|stamp| to_full_year(year_hint, stamp.year)),
@@ -1105,11 +1123,7 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "agb".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1125,7 +1139,6 @@ fn read_agb_submissions() -> Result<Vec<LegacyAgbSubmission>, Error> {
 fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
     use gbhwdb_model::input::ags::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     let walker = WalkDir::new("data/consoles/AGS").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -1138,14 +1151,13 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu =
-                map_optional_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_156());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_qfp_156());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u2,
                 parser::sram::sram_tsop_i_48(),
@@ -1153,19 +1165,24 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             let amplifier = match console.mainboard.label.as_str() {
                 // FIXME: Not really an amplifier
                 "C/AGS-CPU-30" | "C/AGT-CPU-01" => {
-                    map_optional_part(year_hint, &console.mainboard.u3, parser::ags_pmic_new())
+                    map_part(year_hint, &console.mainboard.u3, parser::ags_pmic_new())
                 }
-                _ => map_optional_part(year_hint, &console.mainboard.u3, parser::agb_amp()),
+                _ => map_part(year_hint, &console.mainboard.u3, parser::agb_amp()),
             };
-            let u4 = map_optional_part(year_hint, &console.mainboard.u4, parser::ags_pmic_old());
-            let u5 = map_optional_part(year_hint, &console.mainboard.u5, parser::ags_charge_ctrl());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.x1, parser::ags_crystal());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::ags_pmic_old());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::ags_charge_ctrl());
+            let crystal = map_part(year_hint, &console.mainboard.x1, parser::ags_crystal());
             let mainboard = LegacyAgsMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -1178,7 +1195,9 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
 
             let metadata = LegacyAgsMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 mainboard,
             };
 
@@ -1191,11 +1210,7 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "ags".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1211,7 +1226,6 @@ fn read_ags_submissions() -> Result<Vec<LegacyAgsSubmission>, Error> {
 fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
     use gbhwdb_model::input::gbs::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     use process::to_full_year;
     let walker = WalkDir::new("data/consoles/GBS").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
@@ -1227,25 +1241,33 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             );
 
             let year_hint = console.mainboard.year.or(Some(2003));
-            let cpu =
-                map_optional_part(year_hint, &console.mainboard.u2, parser::agb_soc_qfp_128());
-            let work_ram = map_optional_part(
+            let cpu = map_part(year_hint, &console.mainboard.u2, parser::agb_soc_qfp_128());
+            let work_ram = map_part(
                 year_hint,
                 &console.mainboard.u3,
                 parser::sram::sram_tsop_i_48(),
             );
-            let u4 = map_optional_part(year_hint, &console.mainboard.u4, parser::gbs_dol());
-            let u5 = map_optional_part(year_hint, &console.mainboard.u5, parser::gbs_reg());
-            let u6 = map_optional_part(year_hint, &console.mainboard.u6, parser::gbs_reg());
-            let crystal =
-                map_optional_part(year_hint, &console.mainboard.y1, parser::gbs_crystal());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::gbs_dol());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::gbs_reg());
+            let u6 = map_part(year_hint, &console.mainboard.u6, parser::gbs_reg());
+            let crystal = map_part(year_hint, &console.mainboard.y1, parser::gbs_crystal());
             let mainboard = LegacyGbsMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
-                number_pair: console.mainboard.number_pair.clone(),
-                stamp: console.mainboard.stamp.clone(),
-                stamp_front: console.mainboard.stamp_front.clone(),
-                stamp_back: console.mainboard.stamp_back.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
+                number_pair: Some(&console.mainboard.number_pair)
+                    .filter(|pair| !pair.is_empty())
+                    .cloned(),
+                stamp: Some(&console.mainboard.stamp)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
+                stamp_front: Some(&console.mainboard.stamp_front)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
+                stamp_back: Some(&console.mainboard.stamp_back)
+                    .filter(|stamp| !stamp.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -1256,15 +1278,19 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
                 u6,
             };
 
-            let stamp = console.mainboard.stamp.as_ref().map(|stamp| {
-                gbhwdb_model::parser::cgb_stamp()
-                    .parse(stamp)
-                    .unwrap_or_else(|_| panic!("{}", stamp))
-            });
+            let stamp = Some(&console.mainboard.stamp)
+                .filter(|stamp| !stamp.is_empty())
+                .map(|stamp| {
+                    gbhwdb_model::parser::cgb_stamp()
+                        .parse(stamp)
+                        .unwrap_or_else(|_| panic!("{}", stamp))
+                });
 
             let metadata = LegacyGbsMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 year: stamp
                     .as_ref()
                     .and_then(|stamp| to_full_year(year_hint, stamp.year)),
@@ -1280,7 +1306,7 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "gbs".to_string(),
-                title: format!("Unit #{}", console.index),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1296,7 +1322,6 @@ fn read_gbs_submissions() -> Result<Vec<LegacyGbsSubmission>, Error> {
 fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     use gbhwdb_model::input::oxy::*;
     use legacy::console::*;
-    use process::part::map_optional_part;
     let walker = WalkDir::new("data/consoles/OXY").min_depth(2).max_depth(2);
     let mut submissions = Vec::new();
     for entry in walker.into_iter().filter_entry(is_metadata_file) {
@@ -1309,18 +1334,20 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
                 Some(console.slug.as_str()),
                 root.file_name().and_then(|name| name.to_str())
             );
-            if let Some(serial) = &console.shell.serial {
-                assert_eq!(&console.slug, serial);
+            if !console.shell.serial.is_empty() {
+                assert_eq!(console.slug, console.shell.serial);
             }
 
             let year_hint = console.mainboard.year.or(Some(2005));
-            let cpu = map_optional_part(year_hint, &console.mainboard.u1, parser::agb_soc_bga());
-            let u2 = map_optional_part(year_hint, &console.mainboard.u2, parser::oxy_pmic());
-            let u4 = map_optional_part(year_hint, &console.mainboard.u4, parser::oxy_u4());
-            let u5 = map_optional_part(year_hint, &console.mainboard.u5, parser::oxy_u5());
+            let cpu = map_part(year_hint, &console.mainboard.u1, parser::agb_soc_bga());
+            let u2 = map_part(year_hint, &console.mainboard.u2, parser::oxy_pmic());
+            let u4 = map_part(year_hint, &console.mainboard.u4, parser::oxy_u4());
+            let u5 = map_part(year_hint, &console.mainboard.u5, parser::oxy_u5());
             let mainboard = LegacyOxyMainboard {
                 kind: console.mainboard.label.clone(),
-                circled_letters: console.mainboard.circled_letters.clone(),
+                circled_letters: Some(&console.mainboard.circled_letters)
+                    .filter(|letters| !letters.is_empty())
+                    .cloned(),
                 year: console.mainboard.year,
                 month: console.mainboard.month,
                 cpu,
@@ -1331,7 +1358,9 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
 
             let metadata = LegacyOxyMetadata {
                 color: console.shell.color.map(|c| format!("{:?}", c)),
-                release_code: console.shell.release_code.clone(),
+                release_code: Some(&console.shell.release_code)
+                    .filter(|code| !code.is_empty())
+                    .cloned(),
                 mainboard,
             };
 
@@ -1343,11 +1372,7 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
             };
             submissions.push(LegacySubmission {
                 code: "oxy".to_string(),
-                title: console
-                    .shell
-                    .serial
-                    .clone()
-                    .unwrap_or_else(|| format!("Unit #{}", console.index.unwrap())),
+                title: console_title(&console),
                 slug: console.slug,
                 sort_group: None,
                 contributor: console.contributor,
@@ -1358,6 +1383,13 @@ fn read_oxy_submissions() -> Result<Vec<LegacyOxySubmission>, Error> {
     }
     submissions.sort_by_key(|submission| (submission.sort_group.clone(), submission.slug.clone()));
     Ok(submissions)
+}
+
+fn console_title(submission: &impl SubmissionMetadata) -> String {
+    match submission.identifier() {
+        SubmissionIdentifier::Serial(serial) => serial.to_string(),
+        SubmissionIdentifier::Index(index) => format!("Unit #{}", index),
+    }
 }
 
 fn copy_static_files() -> Result<(), Error> {

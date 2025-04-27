@@ -7,7 +7,7 @@ use std::{ops::Index, str};
 use time::Date;
 
 use crate::{
-    ParseError,
+    ParseError, SubmissionIdentifier, SubmissionMetadata,
     config::cartridge::PartDesignator,
     hash::{Crc32, Md5, Sha1, Sha256},
     input::{Part, is_not_outlier},
@@ -27,15 +27,64 @@ pub struct Cartridge {
     pub dump: Option<CartridgeDump>,
 }
 
+impl SubmissionMetadata for Cartridge {
+    type PhotoKind = CartridgePhotoKind;
+
+    fn contributor(&self) -> &str {
+        &self.contributor
+    }
+
+    fn slug(&self) -> &str {
+        &self.slug
+    }
+
+    fn identifier(&self) -> SubmissionIdentifier {
+        SubmissionIdentifier::Index(self.index)
+    }
+
+    fn set_contributor(&mut self, contributor: &str) {
+        self.contributor = contributor.to_string();
+    }
+
+    fn update_identifier(&mut self, contributor_slug: &str, index: u16) {
+        self.slug = format!("{}-{}", contributor_slug, index);
+        self.index = index;
+    }
+}
+
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    PartialEq,
+    Eq,
+    PartialOrd,
+    Ord,
+    Deserialize,
+    Serialize,
+    strum::VariantArray,
+    strum::EnumString,
+    strum::IntoStaticStr,
+)]
+pub enum CartridgePhotoKind {
+    #[strum(serialize = "front")]
+    Front,
+    #[strum(serialize = "pcb_front")]
+    PcbFront,
+    #[strum(serialize = "pcb_back")]
+    PcbBack,
+    #[strum(serialize = "without_battery")]
+    WithoutBattery,
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CartridgeShell {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stamp: Option<String>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub code: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub stamp: String,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -43,37 +92,36 @@ pub struct CartridgeShell {
 #[serde(deny_unknown_fields)]
 pub struct CartridgeBoard {
     pub label: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub circled_letters: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub panel_position: Option<String>,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub circled_letters: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub panel_position: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u5: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u6: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u7: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<Part>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u1: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u2: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u3: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u4: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u5: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u6: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u7: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub x1: Part,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
 impl Index<PartDesignator> for CartridgeBoard {
-    type Output = Option<Part>;
+    type Output = Part;
 
     fn index(&self, index: PartDesignator) -> &Self::Output {
         match index {
@@ -93,8 +141,8 @@ impl Index<PartDesignator> for CartridgeBoard {
 #[serde(deny_unknown_fields)]
 pub struct CartridgeDump {
     pub tool: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub log: Option<String>,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub log: String,
     #[serde(with = "date_format")]
     pub date: Date,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -207,50 +255,47 @@ fn test_deserialize() {
             contributor: "dude".to_owned(),
             index: 1,
             shell: CartridgeShell {
-                code: Some("DMG-123".to_owned()),
-                stamp: Some("00A".to_owned()),
+                code: "DMG-123".to_owned(),
+                stamp: "00A".to_owned(),
                 outlier: true
             },
             board: CartridgeBoard {
                 label: "ASDF".to_owned(),
-                circled_letters: Some("M".to_owned()),
-                panel_position: Some("5".to_owned()),
+                circled_letters: "M".to_owned(),
+                panel_position: "5".to_owned(),
                 year: Some(1999),
                 month: Some(Month::November),
-                u1: Some(Part {
+                u1: Part {
                     label: "U1".to_owned(),
                     outlier: true
-                }),
-                u2: Some(Part {
+                },
+                u2: Part {
                     label: "U2".to_owned(),
                     outlier: false
-                }),
-                u3: Some(Part {
+                },
+                u3: Part {
                     label: "U3".to_owned(),
                     outlier: false
-                }),
-                u4: Some(Part {
+                },
+                u4: Part {
                     label: "U4".to_owned(),
                     outlier: false
-                }),
-                u5: Some(Part {
+                },
+                u5: Part {
                     label: "U5".to_owned(),
                     outlier: false
-                }),
-                u6: None,
-                u7: Some(Part {
-                    label: "".to_owned(),
-                    outlier: false
-                }),
-                x1: Some(Part {
+                },
+                u6: Part::default(),
+                u7: Part::default(),
+                x1: Part {
                     label: "KDS".to_owned(),
                     outlier: false,
-                }),
+                },
                 outlier: true
             },
             dump: Some(CartridgeDump {
                 tool: "MeGa DumPer".to_owned(),
-                log: Some("Did the thing".to_owned()),
+                log: "Did the thing".to_owned(),
                 date: Date::from_calendar_date(1999, time::Month::January, 1).unwrap(),
                 crc32: None,
                 md5: None,
@@ -289,24 +334,24 @@ fn test_deserialize_minimal() {
             contributor: "dude".to_owned(),
             index: 1,
             shell: CartridgeShell {
-                code: None,
-                stamp: None,
+                code: "".to_owned(),
+                stamp: "".to_owned(),
                 outlier: false,
             },
             board: CartridgeBoard {
                 label: "ASDF".to_owned(),
-                circled_letters: None,
-                panel_position: None,
+                circled_letters: "".to_owned(),
+                panel_position: "".to_owned(),
                 year: None,
                 month: None,
-                u1: None,
-                u2: None,
-                u3: None,
-                u4: None,
-                u5: None,
-                u6: None,
-                u7: None,
-                x1: None,
+                u1: Part::default(),
+                u2: Part::default(),
+                u3: Part::default(),
+                u4: Part::default(),
+                u5: Part::default(),
+                u6: Part::default(),
+                u7: Part::default(),
+                x1: Part::default(),
                 outlier: false
             },
             dump: None,

@@ -4,7 +4,9 @@
 
 use serde::{Deserialize, Serialize};
 
+use super::DefaultPhotoKind;
 use crate::{
+    SubmissionIdentifier, SubmissionMetadata,
     input::{Part, is_not_outlier},
     time::Month,
 };
@@ -20,17 +22,48 @@ pub struct AgbConsole {
     pub mainboard: AgbMainboard,
 }
 
+pub type AgbPhotoKind = DefaultPhotoKind;
+
+impl SubmissionMetadata for AgbConsole {
+    type PhotoKind = AgbPhotoKind;
+
+    fn contributor(&self) -> &str {
+        &self.contributor
+    }
+
+    fn slug(&self) -> &str {
+        &self.slug
+    }
+
+    fn identifier(&self) -> SubmissionIdentifier {
+        SubmissionIdentifier::new(&self.shell.serial, self.index)
+    }
+
+    fn set_contributor(&mut self, contributor: &str) {
+        self.contributor = contributor.to_string();
+    }
+
+    fn update_identifier(&mut self, contributor_slug: &str, index: u16) {
+        if self.shell.serial.is_empty() {
+            self.slug = format!("{}-{}", contributor_slug, index);
+            self.index = Some(index as u16);
+        } else {
+            self.slug = self.shell.serial.clone();
+            self.index = None;
+        }
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct AgbShell {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<AgbShellColor>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub serial: Option<String>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub release_code: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub serial: String,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -50,29 +83,28 @@ pub enum AgbShellColor {
 #[serde(deny_unknown_fields)]
 pub struct AgbMainboard {
     pub label: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub number_pair: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub stamp: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub circled_letters: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u6: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<Part>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u1: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u2: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u3: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u4: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u6: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub x1: Part,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }

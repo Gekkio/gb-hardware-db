@@ -94,7 +94,7 @@ impl LcdScreen {
     strum::EnumString,
     strum::IntoStaticStr,
 )]
-pub enum PhotoKind {
+pub enum DefaultPhotoKind {
     #[strum(serialize = "front")]
     Front,
     #[strum(serialize = "back")]

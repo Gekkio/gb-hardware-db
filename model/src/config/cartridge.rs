@@ -827,7 +827,7 @@ impl PartDesignator {
         PartDesignator::U7,
         PartDesignator::X1,
     ];
-    pub fn as_str(&self) -> &'static str {
+    pub const fn as_str(&self) -> &'static str {
         match self {
             PartDesignator::U1 => "U1",
             PartDesignator::U2 => "U2",

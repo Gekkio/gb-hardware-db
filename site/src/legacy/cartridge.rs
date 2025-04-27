@@ -42,8 +42,7 @@ impl LegacyBoard {
                     parser: &dyn LabelParser<T>,
                 ) -> Option<(PartDesignator, ProcessedPart)> {
                     let submission_part = &board[designator];
-                    let label =
-                        Some(&submission_part.as_ref()?.label).filter(|label| !label.is_empty())?;
+                    let label = Some(&submission_part.label).filter(|label| !label.is_empty())?;
 
                     let parsed = parser
                         .parse(label)
@@ -71,8 +70,8 @@ impl LegacyBoard {
         LegacyBoard {
             cfg,
             kind: board.label,
-            circled_letters: board.circled_letters,
-            panel_position: board.panel_position,
+            circled_letters: Some(board.circled_letters).filter(|letters| !letters.is_empty()),
+            panel_position: Some(board.panel_position).filter(|position| !position.is_empty()),
             date_code: DateCode::year_month(board.year, board.month),
             parts,
         }

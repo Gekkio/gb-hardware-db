@@ -4,7 +4,9 @@
 
 use serde::{Deserialize, Serialize};
 
+use super::DefaultPhotoKind;
 use crate::{
+    SubmissionIdentifier, SubmissionMetadata,
     input::{LcdScreen, Part, is_not_outlier},
     time::{Jun, Month},
 };
@@ -18,9 +20,40 @@ pub struct MglConsole {
     pub index: Option<u16>,
     pub shell: MglShell,
     pub mainboard: MglMainboard,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "LcdScreen::is_unknown")]
+    #[serde(skip_serializing_if = "LcdScreen::is_unknown", default)]
     pub screen: LcdScreen,
+}
+
+pub type MglPhotoKind = DefaultPhotoKind;
+
+impl SubmissionMetadata for MglConsole {
+    type PhotoKind = MglPhotoKind;
+
+    fn contributor(&self) -> &str {
+        &self.contributor
+    }
+
+    fn slug(&self) -> &str {
+        &self.slug
+    }
+
+    fn identifier(&self) -> SubmissionIdentifier {
+        SubmissionIdentifier::new(&self.shell.serial, self.index)
+    }
+
+    fn set_contributor(&mut self, contributor: &str) {
+        self.contributor = contributor.to_string();
+    }
+
+    fn update_identifier(&mut self, contributor_slug: &str, index: u16) {
+        if self.shell.serial.is_empty() {
+            self.slug = format!("{}-{}", contributor_slug, index);
+            self.index = Some(index as u16);
+        } else {
+            self.slug = self.shell.serial.clone();
+            self.index = None;
+        }
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
@@ -28,12 +61,11 @@ pub struct MglConsole {
 pub struct MglShell {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub color: Option<MglShellColor>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub release_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub serial: Option<String>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub release_code: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub serial: String,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
 
@@ -47,31 +79,30 @@ pub enum MglShellColor {
 #[serde(deny_unknown_fields)]
 pub struct MglMainboard {
     pub label: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub number_pair: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub stamp: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub circled_letters: Option<String>,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub number_pair: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub stamp: String,
+    #[serde(skip_serializing_if = "String::is_empty", default)]
+    pub circled_letters: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<u16>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<Month>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub jun: Option<Jun>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u1: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u2: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u3: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub u4: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub x1: Option<Part>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub t1: Option<Part>,
-    #[serde(default)]
-    #[serde(skip_serializing_if = "is_not_outlier")]
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u1: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u2: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u3: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub u4: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub x1: Part,
+    #[serde(skip_serializing_if = "Part::is_unknown", default)]
+    pub t1: Part,
+    #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }

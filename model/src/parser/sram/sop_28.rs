@@ -126,7 +126,7 @@ pub fn sharp_lh52256() -> &'static impl LabelParser<Ram> {
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::sram::sop_28::sharp_lh52256().parse("LH52256CVN SHARP JAPAN 9944 5 SO").is_ok());
+/// assert!(parser::sram::sop_28::sharp_lh52256cv().parse("LH52256CVN SHARP JAPAN 9944 5 SO").is_ok());
 /// ```
 pub fn sharp_lh52256cv() -> &'static impl LabelParser<Ram> {
     single_parser!(

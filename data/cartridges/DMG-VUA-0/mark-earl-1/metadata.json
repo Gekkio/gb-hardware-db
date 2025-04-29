@@ -1,0 +1,20 @@
+{
+  "code": "DMG-VUA-0",
+  "slug": "mark-earl-1",
+  "contributor": "Mark Earl",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VU-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1991,
+    "month": 3,
+    "u1": {
+      "label": "DMG-VUA-0 SHARP JAPAN A0 9114 D"
+    }
+  }
+}

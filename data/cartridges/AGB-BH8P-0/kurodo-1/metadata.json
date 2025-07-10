@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BH8P-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BH8P-EUR",
+    "stamp": "11 E3"
+  },
+  "board": {
+    "label": "AGB-E24-01",
+    "circled_letters": "I",
+    "panel_position": "B-1",
+    "year": 2005,
+    "month": 9,
+    "u1": {
+      "label": "E054953-MG MX23L25607-12D2 AGB-BH8P-0 K2 2N496501"
+    },
+    "u2": {
+      "label": "9853 5A62"
+    }
+  }
+}

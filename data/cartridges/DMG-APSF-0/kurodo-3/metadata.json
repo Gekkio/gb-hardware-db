@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSF-0",
+  "slug": "kurodo-3",
+  "contributor": "Kurodo",
+  "index": 3,
+  "shell": {
+    "code": "DMG-APSF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 2000,
+    "month": 6,
+    "u1": {
+      "label": "DMG-APSF-0 F1 M538011E-G9 0285402"
+    },
+    "u2": {
+      "label": "MBC5 P-1 022U6M"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0019 KOREA"
+    },
+    "u4": {
+      "label": "022 134A"
+    }
+  }
+}

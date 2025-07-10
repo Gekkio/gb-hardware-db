@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BNWP-0",
+  "slug": "kurodo-1",
+  "contributor": "Kurodo",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BNWP-EUR",
+    "stamp": "E3"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "MB",
+    "panel_position": "Q-1",
+    "year": 2005,
+    "month": 9,
+    "u1": {
+      "label": "B054046-MG MX23L6406-12C AGB-BNWP-0 I2 2N056300"
+    },
+    "u2": {
+      "label": "9853 5927"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "CGB-AZ7P-0",
+  "slug": "kurodo-2",
+  "contributor": "Kurodo",
+  "index": 2,
+  "shell": {
+    "code": "CGB-AZ7P-EUR",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "CM",
+    "panel_position": "4",
+    "year": 2002,
+    "month": 1,
+    "u1": {
+      "label": "S020804-M MX23C1603-12A CGB-AZ7P-0 G2 1D2593A2"
+    },
+    "u2": {
+      "label": "MBC5 P-2 147U4M"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 147 180N"
+    },
+    "u4": {
+      "label": "6735 1A78"
+    }
+  }
+}

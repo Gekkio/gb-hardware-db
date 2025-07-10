@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AAUF-0",
+  "slug": "kurodo-2",
+  "contributor": "Kurodo",
+  "index": 2,
+  "shell": {
+    "code": "DMG-AAUF-FRA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "MB",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 1,
+    "u1": {
+      "label": "M010604-M MX23C1603-12A DMG-AAUF-0 G2 1C6981A3"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 105 H58"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0051 KOREA"
+    },
+    "u4": {
+      "label": "051 134A"
+    }
+  }
+}

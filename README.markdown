@@ -12,10 +12,10 @@ Site source code for https://gbhwdb.gekkio.fi
 
 * 3615Retro (https://github.com/3615Retro)
 * Alex G
+* beckybecky125
 * Ben Black
 * Bruno Bertuga
 * Comrade Claire
-* creeps
 * curbsideaudio
 * davidslv
 * Der Gespenster

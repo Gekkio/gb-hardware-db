@@ -1,0 +1,31 @@
+{
+  "code": "DMG-APAE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APAE-USA-1",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "DMG-APAE-0 F1 M538011E-I3 1145442"
+    },
+    "u2": {
+      "label": "MBC3 A LR38536B 9843 A"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 107 100NA"
+    },
+    "u4": {
+      "label": "6735 1223"
+    },
+    "x1": {
+    }
+  }
+}

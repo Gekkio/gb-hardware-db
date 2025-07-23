@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::config::cartridge::PartDesignator;
+use gbhwdb_model::{config::cartridge::PartDesignator, input::cartridge::CartridgeDump};
 
 use crate::{
     csv_export::{Builder, Field, ToCsv, part},
@@ -33,5 +33,14 @@ impl ToCsv for LegacyMetadata {
             .nest("u6", |m| m.board.parts.get(&PartDesignator::U6), part)
             .nest("u7", |m| m.board.parts.get(&PartDesignator::U7), part)
             .nest("x1", |m| m.board.parts.get(&PartDesignator::X1), part)
+            .nest("dump", |m| m.dump.as_ref(), dump)
     }
+}
+
+fn dump() -> Builder<CartridgeDump> {
+    Builder::<CartridgeDump>::new()
+        .add("crc32", |c| (&c.crc32).csv())
+        .add("md5", |c| (&c.md5).csv())
+        .add("sha1", |c| (&c.sha1).csv())
+        .add("sha256", |c| (&c.sha256).csv())
 }

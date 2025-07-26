@@ -12,6 +12,7 @@ use crate::{
 impl ToCsv for LegacyMetadata {
     fn csv_builder() -> Builder<Self> {
         Builder::<Self>::new()
+            .add("game_name", |m| (&m.cfg.name).csv())
             .add("code", |m| (&m.code).csv())
             .add("stamp", |m| (&m.stamp).csv())
             .nest(

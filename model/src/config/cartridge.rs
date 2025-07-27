@@ -866,7 +866,7 @@ impl PartRole {
     }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, strum::VariantArray)]
 pub enum PartDesignator {
     U1,
     U2,
@@ -879,7 +879,7 @@ pub enum PartDesignator {
 }
 
 impl PartDesignator {
-    const ALL: [PartDesignator; 8] = [
+    pub const ALL: [PartDesignator; 8] = [
         PartDesignator::U1,
         PartDesignator::U2,
         PartDesignator::U3,
@@ -899,6 +899,18 @@ impl PartDesignator {
             PartDesignator::U6 => "U6",
             PartDesignator::U7 => "U7",
             PartDesignator::X1 => "X1",
+        }
+    }
+    pub const fn as_lower_str(&self) -> &'static str {
+        match self {
+            PartDesignator::U1 => "u1",
+            PartDesignator::U2 => "u2",
+            PartDesignator::U3 => "u3",
+            PartDesignator::U4 => "u4",
+            PartDesignator::U5 => "u5",
+            PartDesignator::U6 => "u6",
+            PartDesignator::U7 => "u7",
+            PartDesignator::X1 => "x1",
         }
     }
 }

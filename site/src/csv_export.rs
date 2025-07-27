@@ -97,7 +97,7 @@ where
 }
 
 pub struct Builder<T> {
-    fields: Vec<(String, Box<dyn Fn(&T) -> Cow<str>>)>,
+    fields: Vec<(Cow<'static, str>, Box<dyn Fn(&T) -> Cow<str>>)>,
     _phantom: PhantomData<T>,
 }
 
@@ -108,13 +108,13 @@ impl<T> Builder<T> {
             _phantom: PhantomData,
         }
     }
-    pub fn add<FN>(mut self, name: &'static str, f: FN) -> Self
+    pub fn add<FN>(mut self, name: impl Into<Cow<'static, str>>, f: FN) -> Self
     where
         FN: 'static,
         for<'a> FN: Fn(&'a T) -> Cow<'a, str>,
     {
         self.fields
-            .push((name.to_owned(), Box::new(move |value| f(value))));
+            .push((name.into(), Box::new(move |value| f(value))));
         self
     }
     pub fn add_date_code<FN>(self, f: FN) -> Self
@@ -135,7 +135,7 @@ impl<T> Builder<T> {
         })
     }
     pub fn fields(&self) -> impl Iterator<Item = &str> + '_ {
-        self.fields.iter().map(|(name, _)| name.as_str())
+        self.fields.iter().map(|(name, _)| &**name)
     }
     pub fn nest<N, G, F>(mut self, prefix: &'static str, g: G, f: F) -> Self
     where
@@ -146,7 +146,7 @@ impl<T> Builder<T> {
         for (name, getter) in f().fields {
             let name = match prefix {
                 "" => name,
-                _ => format!("{prefix}_{name}"),
+                _ => Cow::from(format!("{prefix}_{name}")),
             };
             let g = g.clone();
             let getter: Box<dyn Fn(&T) -> Cow<str>> = Box::new(move |value| match g(value) {

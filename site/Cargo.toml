@@ -27,6 +27,7 @@ serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
 simplelog.workspace = true
 slug.workspace = true
+strum.workspace = true
 swc_common = { workspace = true, features = ["sourcemap"] }
 swc_css = { workspace = true, features = ["minifier"] }
 time = { workspace = true, features = ["formatting", "macros", "local-offset"] }

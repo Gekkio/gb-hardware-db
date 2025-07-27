@@ -1349,6 +1349,7 @@ dependencies = [
  "serde_json",
  "simplelog",
  "slug",
+ "strum",
  "swc_common",
  "swc_css",
  "time",

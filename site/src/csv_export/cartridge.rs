@@ -2,16 +2,18 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::{config::cartridge::PartDesignator, input::cartridge::CartridgeDump};
+use std::borrow::Cow;
+use strum::VariantArray;
 
 use crate::{
     csv_export::{Builder, Field, ToCsv, part},
     legacy::cartridge::{LegacyBoard, LegacyMetadata},
 };
+use gbhwdb_model::{config::cartridge::PartDesignator, input::cartridge::CartridgeDump};
 
 impl ToCsv for LegacyMetadata {
     fn csv_builder() -> Builder<Self> {
-        Builder::<Self>::new()
+        let mut builder = Builder::<Self>::new()
             .add("game_name", |m| (&m.cfg.name).csv())
             .add("code", |m| (&m.code).csv())
             .add("stamp", |m| (&m.stamp).csv())
@@ -25,15 +27,22 @@ impl ToCsv for LegacyMetadata {
                         .add("panel_position", |m| (&m.panel_position).csv())
                         .add_date_code(|m| m.date_code)
                 },
+            );
+        for &designator in PartDesignator::VARIANTS {
+            builder = builder.add(format!("{}_role", designator.as_lower_str()), move |m| {
+                m.board
+                    .cfg
+                    .part(designator)
+                    .map(|part| Cow::from(part.role().display()))
+                    .unwrap_or_default()
+            });
+            builder = builder.nest(
+                designator.as_lower_str(),
+                move |m| m.board.parts.get(&designator),
+                part,
             )
-            .nest("u1", |m| m.board.parts.get(&PartDesignator::U1), part)
-            .nest("u2", |m| m.board.parts.get(&PartDesignator::U2), part)
-            .nest("u3", |m| m.board.parts.get(&PartDesignator::U3), part)
-            .nest("u4", |m| m.board.parts.get(&PartDesignator::U4), part)
-            .nest("u5", |m| m.board.parts.get(&PartDesignator::U5), part)
-            .nest("u6", |m| m.board.parts.get(&PartDesignator::U6), part)
-            .nest("u7", |m| m.board.parts.get(&PartDesignator::U7), part)
-            .nest("x1", |m| m.board.parts.get(&PartDesignator::X1), part)
+        }
+        builder
             .nest("battery", |m| m.board.battery.as_ref(), part)
             .nest("dump", |m| m.dump.as_ref(), dump)
     }

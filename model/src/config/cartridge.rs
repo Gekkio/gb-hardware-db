@@ -541,7 +541,6 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 26A
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgTfdn => match designator {
@@ -553,7 +552,6 @@ impl BoardConfig {
                 D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
                 // SOP-8 1134A
                 D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
-                D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
             BoardConfig::DmgUedt => match designator {

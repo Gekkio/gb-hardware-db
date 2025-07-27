@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BM5E-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BM5E-USA",
+    "stamp": "08"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "Y",
+    "panel_position": "5",
+    "year": 2002,
+    "month": 8,
+    "u1": {
+      "label": "CGB-BM5E-0 F1 M538011E-3L 2375410"
+    },
+    "u2": {
+      "label": "1CA8F4T MBC5 2417"
+    }
+  }
+}

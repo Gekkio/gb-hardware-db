@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BPVP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BPVP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "panel_position": "6",
+    "year": 2000,
+    "month": 10,
+    "u1": {
+      "label": "S004149-M MX23C8005-12 CGB-BPVP-0 F1 1C3070A1"
+    },
+    "u2": {
+      "label": "MBC5 P 039U1M"
+    }
+  }
+}

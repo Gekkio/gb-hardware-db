@@ -1,0 +1,23 @@
+{
+  "code": "DMG-F4E-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-F4-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1995,
+    "month": 3,
+    "u1": {
+      "label": "STANDARD MICRO DMG-F4E-0 C1 23C1001EAGW-J72 9512E9002"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'29"
+    }
+  }
+}

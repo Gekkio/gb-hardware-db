@@ -1,0 +1,30 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "gekkio-3",
+  "contributor": "gekkio",
+  "index": 3,
+  "shell": {
+    "code": "DMG-F1-SCN",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1991,
+    "month": 6,
+    "u1": {
+      "label": "DMG-F1A-1 S LH5308PS JAPAN C1 9126 E"
+    },
+    "u2": {
+      "label": "DMG MBC2-A Nintendo P 1'59"
+    },
+    "u3": {
+      "label": "165 26A"
+    },
+    "battery": {
+      "label": "91-06",
+      "manufacturer": "Maxell"
+    }
+  }
+}

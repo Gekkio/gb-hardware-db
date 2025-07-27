@@ -1,0 +1,33 @@
+{
+  "code": "CGB-BY3F-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BY3F-FRA-1",
+    "stamp": "15"
+  },
+  "board": {
+    "label": "DMG-A08-10",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 2003,
+    "month": 7,
+    "u1": {
+      "label": "S033423-M MX23C3203-12A2 CGB-BY3F-0 H2 2G518100B0"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 244 H19"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 317 137N"
+    },
+    "u4": {
+      "label": "6735 2932"
+    },
+    "battery": {
+      "label": "02-11",
+      "manufacturer": "Maxell"
+    }
+  }
+}

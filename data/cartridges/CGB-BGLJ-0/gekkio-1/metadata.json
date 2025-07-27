@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "112 134A"
+    },
+    "battery": {
+      "label": "01-06",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

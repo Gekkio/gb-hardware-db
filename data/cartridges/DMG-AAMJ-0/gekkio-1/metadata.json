@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6129A 8215"
+    },
+    "battery": {
+      "label": "98-02",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

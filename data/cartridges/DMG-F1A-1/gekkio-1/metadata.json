@@ -20,6 +20,10 @@
     },
     "u3": {
       "label": "6129A 8R42"
+    },
+    "battery": {
+      "label": "98-08",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

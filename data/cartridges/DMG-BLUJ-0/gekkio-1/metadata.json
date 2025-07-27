@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "043 134A"
+    },
+    "battery": {
+      "label": "01-01",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

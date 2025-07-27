@@ -21,6 +21,10 @@
     },
     "u3": {
       "label": "6129 3443"
+    },
+    "battery": {
+      "label": "93-01",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

@@ -2,13 +2,13 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::{config::cartridge::*, input::cartridge::*, parser::LabelParser};
-use std::collections::HashMap;
-
+use crate::process::part::loose_datecode;
 use crate::{
     process::DateCode,
     process::part::{ParsedPart, ProcessedPart},
 };
+use gbhwdb_model::{config::cartridge::*, input::cartridge::*, parser, parser::LabelParser};
+use std::collections::HashMap;
 
 #[derive(Clone, Debug)]
 pub struct LegacyMetadata {
@@ -29,6 +29,7 @@ pub struct LegacyBoard {
     pub panel_position: Option<String>,
     pub date_code: DateCode,
     pub parts: HashMap<PartDesignator, ProcessedPart>,
+    pub battery: Option<ProcessedPart>,
 }
 
 impl LegacyBoard {
@@ -74,6 +75,26 @@ impl LegacyBoard {
             panel_position: Some(board.panel_position).filter(|position| !position.is_empty()),
             date_code: DateCode::year_month(board.year, board.month),
             parts,
+            battery: cfg.battery_type().map(|kind| {
+                let label = Some(&board.battery.label).filter(|label| !label.is_empty());
+                ProcessedPart {
+                    kind: Some(match kind {
+                        BatteryType::Cr1616 => String::from("CR1616"),
+                        BatteryType::Cr2025 => String::from("CR2025"),
+                    }),
+                    label: label.cloned(),
+                    manufacturer: board.battery.manufacturer,
+                    date_code: loose_datecode(
+                        board.year,
+                        label.as_ref().map(|label| {
+                            parser::battery()
+                                .parse(&label)
+                                .unwrap_or_else(|_| panic!("Failed to parse battery label:{label}"))
+                        }),
+                    ),
+                    rom_id: None,
+                }
+            }),
         }
     }
     pub fn mapper(&self) -> Option<&ProcessedPart> {

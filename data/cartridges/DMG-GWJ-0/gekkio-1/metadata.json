@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "135 26A"
+    },
+    "battery": {
+      "label": "91-05",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

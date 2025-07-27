@@ -21,6 +21,10 @@
     },
     "u3": {
       "label": "015 26A"
+    },
+    "battery": {
+      "label": "90-02",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

@@ -41,11 +41,19 @@ impl<'a> Render for CartridgePage<'a> {
         let metadata = &self.submission.metadata;
         let photos = &self.submission.photos;
         let board = &metadata.board;
-        let parts = board.cfg.parts().map(|(designator, part)| SubmissionPart {
-            designator: designator.as_str(),
-            label: part.role().display(),
-            part: board.parts.get(&designator),
-        });
+        let parts = board
+            .cfg
+            .parts()
+            .map(|(designator, part)| SubmissionPart {
+                designator: designator.as_str(),
+                label: part.role().display(),
+                part: board.parts.get(&designator),
+            })
+            .chain(board.battery.as_ref().map(|battery| SubmissionPart {
+                designator: "",
+                label: "Battery",
+                part: Some(battery),
+            }));
         let contributor_url = format!(
             "/cartridges/contributors/{contributor}.html",
             contributor = slugify(&self.submission.contributor)

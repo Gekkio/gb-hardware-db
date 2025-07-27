@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6129 3C86"
+    },
+    "battery": {
+      "label": "93-12",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

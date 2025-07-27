@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6129A 7574"
+    },
+    "battery": {
+      "label": "97-05",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

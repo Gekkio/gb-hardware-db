@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6129A 7727"
+    },
+    "battery": {
+      "label": "97-07",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

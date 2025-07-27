@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6735 9860"
+    },
+    "battery": {
+      "label": "00-01",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

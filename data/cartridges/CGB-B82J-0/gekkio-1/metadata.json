@@ -30,6 +30,10 @@
     },
     "u6": {
       "label": "7W139 0J"
+    },
+    "battery": {
+      "label": "00-01",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

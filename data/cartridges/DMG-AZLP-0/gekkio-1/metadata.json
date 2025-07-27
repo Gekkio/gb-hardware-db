@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6735 8B02"
+    },
+    "battery": {
+      "label": "98-11",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

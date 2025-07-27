@@ -27,6 +27,9 @@
     },
     "x1": {
       "label": "KDS0M"
+    },
+    "battery": {
+      "label": "01-01"
     }
   },
   "dump": {

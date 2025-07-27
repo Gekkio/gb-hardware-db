@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "6735 2885"
+    },
+    "battery": {
+      "label": "02-08",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

@@ -3,10 +3,14 @@
 // SPDX-License-Identifier: MIT
 
 use log::warn;
+use nom::bytes::streaming::tag;
+use nom::sequence::separated_pair;
 use nom::{IResult, Parser as _, combinator::all_consuming};
 use nom_language::error::VerboseError;
+use serde::{Deserialize, Serialize};
 use stamp::{CgbStamp, DmgStamp};
 
+use crate::parser::for_nom::{month2, year2};
 use crate::{
     macros::multi_parser,
     time::{Month, Week},
@@ -91,7 +95,18 @@ impl Crystal {
     }
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    Eq,
+    PartialEq,
+    Deserialize,
+    Serialize,
+    strum::VariantArray,
+    strum::IntoStaticStr,
+    strum::EnumString,
+)]
 pub enum Manufacturer {
     Amic,
     Analog,
@@ -110,6 +125,7 @@ pub enum Manufacturer {
     Macronix,
     Magnachip,
     Mani,
+    Maxell,
     Mitsubishi,
     Mitsumi,
     MoselVitelic,
@@ -123,6 +139,7 @@ pub enum Manufacturer {
     Seiko,
     Sharp,
     Smsc,
+    Sony,
     Sst,
     StMicro,
     Tdk,
@@ -152,6 +169,7 @@ impl Manufacturer {
             Manufacturer::Macronix => "Macronix",
             Manufacturer::Magnachip => "Magnachip",
             Manufacturer::Mani => "Mani Ltd.",
+            Manufacturer::Maxell => "Maxell",
             Manufacturer::Mitsubishi => "Mitsubishi",
             Manufacturer::Mitsumi => "Mitsumi",
             Manufacturer::MoselVitelic => "Mosel-Vitelic",
@@ -165,6 +183,7 @@ impl Manufacturer {
             Manufacturer::Seiko => "Seiko Instruments Inc.",
             Manufacturer::Sharp => "Sharp",
             Manufacturer::Smsc => "Standard Microsystems Corporation",
+            Manufacturer::Sony => "Sony",
             Manufacturer::Sst => "SST",
             Manufacturer::StMicro => "STMicroelectronics",
             Manufacturer::Tdk => "TDK",
@@ -1211,4 +1230,16 @@ pub fn sram_tsop_i_48() -> &'static impl LabelParser<GenericPart> {
         &bsi::BSI_BS616LV2019,
         &toshiba::TOSHIBA_TC55V200
     )
+}
+
+pub fn battery() -> &'static impl LabelParser<PartDateCode> {
+    static BATTERY: NomParser<PartDateCode> = NomParser {
+        name: "CRxxxx battery",
+        f: |input| {
+            separated_pair(year2, tag("-"), month2)
+                .map(|(year, month)| PartDateCode::YearMonth { year, month })
+                .parse(input)
+        },
+    };
+    &BATTERY
 }

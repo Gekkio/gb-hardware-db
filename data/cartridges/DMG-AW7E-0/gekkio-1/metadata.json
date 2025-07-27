@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "743 26A"
+    },
+    "battery": {
+      "label": "97-11",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

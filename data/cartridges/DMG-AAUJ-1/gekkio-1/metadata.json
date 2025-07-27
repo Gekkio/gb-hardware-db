@@ -27,6 +27,9 @@
     },
     "x1": {
       "label": "KDS9H"
+    },
+    "battery": {
+      "label": "99-10"
     }
   },
   "dump": {

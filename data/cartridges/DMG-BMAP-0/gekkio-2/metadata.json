@@ -27,6 +27,10 @@
     },
     "x1": {
       "label": "32K0Z"
+    },
+    "battery": {
+      "label": "00-12",
+      "manufacturer": "Panasonic"
     }
   },
   "dump": {

@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "749 26A"
+    },
+    "battery": {
+      "label": "98-06",
+      "manufacturer": "Maxell"
     }
   },
   "dump": {

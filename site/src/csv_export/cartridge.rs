@@ -34,6 +34,7 @@ impl ToCsv for LegacyMetadata {
             .nest("u6", |m| m.board.parts.get(&PartDesignator::U6), part)
             .nest("u7", |m| m.board.parts.get(&PartDesignator::U7), part)
             .nest("x1", |m| m.board.parts.get(&PartDesignator::X1), part)
+            .nest("battery", |m| m.board.battery.as_ref(), part)
             .nest("dump", |m| m.dump.as_ref(), dump)
     }
 }

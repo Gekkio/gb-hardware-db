@@ -27,6 +27,9 @@
     },
     "x1": {
       "label": "KDS7C"
+    },
+    "battery": {
+      "label": "98-02"
     }
   },
   "dump": {

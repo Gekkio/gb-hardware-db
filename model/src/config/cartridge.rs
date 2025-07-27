@@ -91,6 +91,12 @@ impl fmt::Display for GamePlatform {
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum BatteryType {
+    Cr1616,
+    Cr2025,
+}
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum BoardConfig {
     AgbArc,
     AgbE01,
@@ -633,6 +639,64 @@ impl BoardConfig {
             let part = self.part(designator)?;
             Some((designator, part))
         })
+    }
+    pub fn battery_type(&self) -> Option<BatteryType> {
+        match self {
+            BoardConfig::AgbArc => None,
+            BoardConfig::AgbE01 => None,
+            BoardConfig::AgbE02 => None,
+            BoardConfig::AgbE03 => None,
+            BoardConfig::AgbE05 => Some(BatteryType::Cr1616),
+            BoardConfig::AgbE06 => Some(BatteryType::Cr1616),
+            BoardConfig::AgbE11 => None,
+            BoardConfig::AgbE12 => None,
+            BoardConfig::AgbE18 => Some(BatteryType::Cr1616),
+            BoardConfig::AgbE24 => None,
+            BoardConfig::AgbY11 => None,
+            BoardConfig::Tama => None,
+            BoardConfig::Aaac => None,
+            BoardConfig::CgbA32 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA02 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA03 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA04 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA06 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA07 => None,
+            BoardConfig::DmgA08 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA09 => None,
+            BoardConfig::DmgA11 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA14 => Some(BatteryType::Cr2025),
+            BoardConfig::DmgA15 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA16 => Some(BatteryType::Cr2025),
+            BoardConfig::DmgA18 => None,
+            BoardConfig::DmgA40 => None,
+            BoardConfig::DmgA47 => None,
+            BoardConfig::DmgAaa => None,
+            BoardConfig::DmgBba => None,
+            BoardConfig::DmgBca => None,
+            BoardConfig::DmgBean => None,
+            BoardConfig::DmgBfan => None,
+            BoardConfig::DmgDecn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgDedn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgDgcu => Some(BatteryType::Cr1616),
+            BoardConfig::DmgGdan => Some(BatteryType::Cr1616),
+            BoardConfig::DmgKecn => Some(BatteryType::Cr2025),
+            BoardConfig::DmgKfcn => Some(BatteryType::Cr2025),
+            BoardConfig::DmgKfdn => Some(BatteryType::Cr2025),
+            BoardConfig::DmgKgdu => Some(BatteryType::Cr2025),
+            BoardConfig::DmgLfdn => Some(BatteryType::Cr2025),
+            BoardConfig::DmgMBfan => None,
+            BoardConfig::DmgMcDfcn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgMcSfcn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgMheu => Some(BatteryType::Cr2025),
+            BoardConfig::DmgTedn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgTfdn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgUedt => Some(BatteryType::Cr2025),
+            BoardConfig::DmgUfdt => Some(BatteryType::Cr2025),
+            BoardConfig::DmgUgdu => Some(BatteryType::Cr2025),
+            BoardConfig::DmgZ02 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgZ03 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgZ04 => Some(BatteryType::Cr1616),
+        }
     }
 }
 

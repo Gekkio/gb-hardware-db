@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 use std::{ops::Index, str};
 use time::Date;
 
+use crate::parser::Manufacturer;
 use crate::{
     ParseError, SubmissionIdentifier, SubmissionMetadata,
     config::cartridge::PartDesignator,
@@ -116,6 +117,8 @@ pub struct CartridgeBoard {
     pub u7: Part,
     #[serde(skip_serializing_if = "Part::is_unknown", default)]
     pub x1: Part,
+    #[serde(skip_serializing_if = "CartridgeBattery::is_unknown", default)]
+    pub battery: CartridgeBattery,
     #[serde(skip_serializing_if = "is_not_outlier", default)]
     pub outlier: bool,
 }
@@ -134,6 +137,26 @@ impl Index<PartDesignator> for CartridgeBoard {
             PartDesignator::U7 => &self.u7,
             PartDesignator::X1 => &self.x1,
         }
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Default, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct CartridgeBattery {
+    #[serde(default)]
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub label: String,
+    #[serde(default)]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub manufacturer: Option<Manufacturer>,
+    #[serde(default)]
+    #[serde(skip_serializing_if = "is_not_outlier")]
+    pub outlier: bool,
+}
+
+impl CartridgeBattery {
+    pub fn is_unknown(&self) -> bool {
+        self == &CartridgeBattery::default()
     }
 }
 
@@ -236,6 +259,10 @@ fn test_deserialize() {
                 "x1": {
                     "label": "KDS"
                 },
+                "battery": {
+                    "manufacturer": "Panasonic",
+                    "label": "98-11"
+                },
                 "outlier": true
             },
             "dump": {
@@ -289,6 +316,11 @@ fn test_deserialize() {
                 u7: Part::default(),
                 x1: Part {
                     label: "KDS".to_owned(),
+                    outlier: false,
+                },
+                battery: CartridgeBattery {
+                    manufacturer: Some(Manufacturer::Panasonic),
+                    label: "98-11".to_owned(),
                     outlier: false,
                 },
                 outlier: true
@@ -352,6 +384,7 @@ fn test_deserialize_minimal() {
                 u6: Part::default(),
                 u7: Part::default(),
                 x1: Part::default(),
+                battery: CartridgeBattery::default(),
                 outlier: false
             },
             dump: None,

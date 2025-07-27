@@ -24,6 +24,10 @@
     },
     "u4": {
       "label": "642 26A"
+    },
+    "battery": {
+      "label": "96-10",
+      "manufacturer": "Panasonic"
     }
   }
 }

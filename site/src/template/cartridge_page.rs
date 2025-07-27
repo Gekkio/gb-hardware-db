@@ -104,6 +104,12 @@ impl<'a> Render for CartridgePage<'a> {
                         dd { (value) }
                     }
                 }
+                @if let Some(extra) = &photos.extra {
+                    h3 { "Extra photos" }
+                    div.page-cartridge__photo {
+                        (self.render_photo(extra))
+                    }
+                }
                 h3 { "Parts" }
                 (submission_part_table(parts))
                 @if let Some(dump) = &metadata.dump {

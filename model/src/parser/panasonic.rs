@@ -11,7 +11,7 @@ use nom::{
 
 use super::{
     Manufacturer, Mapper, MapperChip, NomParser, PartDateCode,
-    for_nom::{alnum_uppers, digits, lines3, lines4, uppers, year1, year1_week2},
+    for_nom::{digits, lines3, lines4, month1_123ond, uppers, year1, year1_week2},
 };
 
 /// Panasonic MBC1B (SOP-24)
@@ -146,8 +146,9 @@ pub static PANASONIC_MBC5: NomParser<Mapper> = NomParser {
 
 fn date_code_sop<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, PartDateCode, E> {
     terminated(
-        year1.map(|year| PartDateCode::Year { year }),
-        (tag("'"), alnum_uppers(1), digits(1)),
+        (year1, tag("'"), month1_123ond)
+            .map(|(year, _, month)| PartDateCode::YearMonth { year, month }),
+        digits(1),
     )
     .parse(input)
 }

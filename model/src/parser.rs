@@ -406,6 +406,26 @@ mod for_nom {
         .parse(input)
     }
 
+    pub fn month1_123ond<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Month, E> {
+        map_opt(take(1_usize), |text| match text {
+            "1" => Some(Month::January),
+            "2" => Some(Month::February),
+            "3" => Some(Month::March),
+            "4" => Some(Month::April),
+            "5" => Some(Month::May),
+            "6" => Some(Month::June),
+            "7" => Some(Month::July),
+            "8" => Some(Month::August),
+            "9" => Some(Month::September),
+            "O" => Some(Month::October),
+            "0" => Some(Month::October), // backwards-compatibility
+            "N" => Some(Month::November),
+            "D" => Some(Month::December),
+            _ => None,
+        })
+        .parse(input)
+    }
+
     pub fn week2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Week, E> {
         map_opt(take(2_usize), |text| {
             u8::from_str_radix(text, 10)

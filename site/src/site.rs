@@ -295,6 +295,7 @@ pub fn build_site() -> Site {
                     PartRole::Mapper,
                     PartRole::Ram,
                     PartRole::SupervisorReset,
+                    PartRole::Flash,
                 ],
                 match_fn: Box::new(|_, part| {
                     part.and_then(|part| part.kind.as_ref())

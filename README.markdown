@@ -21,6 +21,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Der Gespenster
 * Duo (http://gameboy.mongenel.com)
 * EchelonPrime
+* Elemental Code
 * endrift
 * FexCollects
 * FIX94

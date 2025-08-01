@@ -1,0 +1,19 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "elemental-code-1",
+  "contributor": "Elemental Code",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TR-USA"
+  },
+  "board": {
+    "label": "DMG-AAA-02",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1990,
+    "month": 1,
+    "u1": {
+      "label": "DMG-TRA-1 SHARP JAPAN A0 9004 D"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-CIE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-CI-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "6",
+    "year": 1993,
+    "month": 1,
+    "u1": {
+      "label": "DMG-CIE-0 S LH5308YZ JAPAN C1 9309 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9301BR"
+    }
+  }
+}

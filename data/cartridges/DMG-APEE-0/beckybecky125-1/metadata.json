@@ -1,0 +1,32 @@
+{
+  "code": "DMG-APEE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEE-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1999,
+    "month": 4,
+    "u1": {
+      "label": "DMG-APEE-0 S LH538WN9 JAPAN F1 9915 D"
+    },
+    "u2": {
+      "label": "MBC3 A P-2 846U2E"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9848 KOREA"
+    },
+    "u4": {
+      "label": "849 134A"
+    },
+    "battery": {
+      "label": "98-12"
+    }
+  }
+}

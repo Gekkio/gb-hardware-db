@@ -1,0 +1,23 @@
+{
+  "code": "DMG-SPE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-SP-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1994,
+    "month": 8,
+    "u1": {
+      "label": "DMG-SPE-0 S LH534MNG JAPAN E1 9437 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9431 7 A"
+    }
+  }
+}

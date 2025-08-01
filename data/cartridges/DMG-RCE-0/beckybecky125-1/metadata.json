@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RCE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RC-USA-1",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "1",
+    "year": 1998,
+    "month": 3,
+    "u1": {
+      "label": "DMG-RCE-0 S LH531HHT JAPAN C1 9816 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9747 5 A"
+    }
+  }
+}

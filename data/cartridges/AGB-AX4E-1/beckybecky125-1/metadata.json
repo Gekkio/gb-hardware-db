@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AX4E-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AX4E-USA",
+    "stamp": "15A E4"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "I-2",
+    "year": 2007,
+    "month": 1,
+    "u1": {
+      "label": "S070821-MG MX23L3206-12B AGB-AX4E-1 H2 2T037700"
+    },
+    "u2": {
+      "label": "E064957G MX29L010TC-15A1 1H5572"
+    }
+  }
+}

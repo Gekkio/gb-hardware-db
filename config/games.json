@@ -1101,7 +1101,7 @@
   },
   "AGB-A4WJ-0": {
     "name": "Gachasute! Dino Device 2 - Phoenix (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "67e21bfe",
     "md5": "533268ac99bc27456dda1fc423c56911",
     "sha1": "a209ab6e216a1054961bb25c26aef79c749e2d67",
@@ -5499,6 +5499,15 @@
     "platform": "gba",
     "no_intro_id": "0095"
   },
+  "AGB-AFTP-0": {
+    "name": "F-14 Tomcat (USA, Europe)",
+    "rom_verified": false,
+    "crc32": "1428fe1c",
+    "md5": "399e38ffba58fccf07950791fae00539",
+    "sha1": "cb7918076abe28ddb29c420a3bbba617915f2de8",
+    "platform": "gba",
+    "no_intro_id": "0095"
+  },
   "AGB-AFUJ-0": {
     "name": "Youkaidou (Japan)",
     "rom_verified": false,
@@ -7350,7 +7359,7 @@
     "no_intro_id": "1057"
   },
   "AGB-AJME-0": {
-    "name": "Jonny Moseley Mad Trix (USA, Europe) (En,Fr,De,Es,It)",
+    "name": "Jonny Moseley Mad Trix (USA) (En,Fr,De,Es,It)",
     "rom_verified": true,
     "crc32": "96488632",
     "md5": "08a64ac42e0ac926269fd2c469f7c074",
@@ -8211,7 +8220,7 @@
   },
   "AGB-ALDE-0": {
     "name": "Lady Sia (USA) (En,Fr,De,Es,It,Nl)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "139e95bd",
     "md5": "94b847814fee8e4e5d9fdbf1d3d25107",
     "sha1": "5d5a209a16e6b5548dc1d1a0375de8f024dfe6c3",
@@ -9551,7 +9560,7 @@
   },
   "AGB-ANRE-0": {
     "name": "Cartoon Network Speedway (USA)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "066a2705",
     "md5": "b3f65540eea88983c63e454b34d3028e",
     "sha1": "26afa157c527dcaa5a4fa0eccc772426156320d8",
@@ -9610,7 +9619,7 @@
     "no_intro_id": "0807"
   },
   "AGB-ANXE-0": {
-    "name": "Ninja Five-0 (USA)",
+    "name": "Ninja Five-O (USA)",
     "rom_verified": false,
     "crc32": "eb3954c6",
     "md5": "04244f72a9b8f17ee33e0b5bff2b8b1f",
@@ -11751,7 +11760,7 @@
   },
   "AGB-ASOJ-1": {
     "name": "Sonic Advance (Japan) (En,Ja) (Rev 1)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "85957a24",
     "md5": "9e02f1c9f26f40905d43188b2bd2d98e",
     "sha1": "f43faca5d8df354a63471aebfea3be125e797e51",
@@ -13061,7 +13070,7 @@
   },
   "AGB-AVSX-0": {
     "name": "Sword of Mana (Europe) (Fr,De)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "5ee17ed1",
     "md5": "1fb4a4b0891ed489183ba487e2f9046e",
     "sha1": "7f7055642417d4526f63f49c21cd40a9df24a11d",
@@ -14481,7 +14490,7 @@
   },
   "AGB-AY5J-0": {
     "name": "Yu-Gi-Oh! Duel Monsters 5 Expert 1 (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "f3041e7e",
     "md5": "31dd0e7efd461e004cfa6bad8e7b0e57",
     "sha1": "dc25f733cee913afdf187ec03df30909fe28b03c",
@@ -14621,7 +14630,7 @@
   },
   "AGB-AYDJ-0": {
     "name": "Yu-Gi-Oh! - Dungeon Dice Monsters (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "51b35e87",
     "md5": "72f072d0e26a9e3d12b6107598cbaf69",
     "sha1": "a0ad0cbff3d74bb3e234abcff866994ea602c43a",
@@ -15041,7 +15050,7 @@
   },
   "AGB-AZFP-0": {
     "name": "Need for Speed - Porsche Unleashed (Europe) (En,Fr,De,Es,It)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "1b6b8f88",
     "md5": "c6a927c20fbb7b5b1570f9e6c804b54b",
     "sha1": "01191bf203a21cc7e91ebc8ffa4c167625ede952",
@@ -15750,7 +15759,7 @@
     "no_intro_id": "1855"
   },
   "AGB-B2SJ-0": {
-    "name": "Cinnamon Game Series 2 - Yume no Daibouken (Japan)",
+    "name": "Cinnamon - Yume no Daibouken (Japan)",
     "rom_verified": false,
     "crc32": "5a2cada1",
     "md5": "6c923128bbe3baf6b242f58b8b1e4154",
@@ -16320,7 +16329,7 @@
     "no_intro_id": "1777"
   },
   "AGB-B43J-0": {
-    "name": "Cinnamon Game Series 3 - Fuwafuwa Daisakusen (Japan)",
+    "name": "Cinnamon - Fuwafuwa Daisakusen (Japan)",
     "rom_verified": false,
     "crc32": "a1cba145",
     "md5": "634c9f8f862ef0c5d3c7702db2fb252b",
@@ -20861,7 +20870,7 @@
   },
   "AGB-BGYJ-1": {
     "name": "Konjiki no Gashbell!! - Unare! Yuujou no Zakeru 2 (Japan) (Rev 1)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "f40e19a9",
     "md5": "08934127e26fa137f2f03d3cce3953e7",
     "sha1": "a8a68c714497c8ba68ba47636d8156182a5c3b7c",
@@ -21091,7 +21100,7 @@
   },
   "AGB-BH8E-0": {
     "name": "Harry Potter and the Goblet of Fire (USA, Europe) (En,Fr,De,Es,It,Nl,Da)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "052708d7",
     "md5": "33d83aec45345690ffe48ad9ed7a4ff8",
     "sha1": "05cb9e9fb38e18e6e9b547168efedb25343d5ad0",
@@ -21101,7 +21110,7 @@
   },
   "AGB-BH8P-0": {
     "name": "Harry Potter and the Goblet of Fire (USA, Europe) (En,Fr,De,Es,It,Nl,Da)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "052708d7",
     "md5": "33d83aec45345690ffe48ad9ed7a4ff8",
     "sha1": "05cb9e9fb38e18e6e9b547168efedb25343d5ad0",
@@ -24881,7 +24890,7 @@
   },
   "AGB-BPEF-0": {
     "name": "Pokemon - Version Emeraude (France)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "a3fdccb1",
     "md5": "2c00e335288a96650e34785b5e2a7588",
     "sha1": "ca666651374d89ca439007bed54d839eb7bd14d0",
@@ -29591,7 +29600,7 @@
   },
   "AGB-BZXE-0": {
     "name": "SpongeBob's Atlantis SquarePantis (USA)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "190b1653",
     "md5": "6cf0014cf59609e976d4a82b01db90be",
     "sha1": "24596f49fb46cf5e3624450f599df670acc72967",
@@ -30941,7 +30950,7 @@
   },
   "CGB-AG5J-0": {
     "name": "Jisedai Begoma Battle Beyblade (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "9c56977e",
     "md5": "e1836b1ec913a6bfa1e02fc250727fa9",
     "sha1": "fc2af4ebd10ca20158d231089a8378f6c4641329",
@@ -32891,7 +32900,7 @@
   },
   "CGB-B32J-0": {
     "name": "Medarot 3 - Kabuto Version (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "e655632c",
     "md5": "cbc55f3bb98f8c0443917ae477e56e51",
     "sha1": "5478069c840b5b13e2413771f35fdc844d1974f1",
@@ -32901,7 +32910,7 @@
   },
   "CGB-B33J-0": {
     "name": "Medarot 3 - Kuwagata Version (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "bc617834",
     "md5": "dabfbdc9aba5f2edc21f884c52881e0d",
     "sha1": "5207698702d206046dd105b07e0c0bbdbc6ed39c",
@@ -33071,7 +33080,7 @@
   },
   "CGB-B4MJ-0": {
     "name": "Medarot 4 - Kabuto Version (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "c192a368",
     "md5": "c5effc311c2248d6de58b487e729406b",
     "sha1": "a62a00ee6095b3dcdf347fbb7c536b51976a109f",
@@ -33081,7 +33090,7 @@
   },
   "CGB-B4NJ-0": {
     "name": "Medarot 4 - Kuwagata Version (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "6a29b9d8",
     "md5": "7e9f03dcbf376fb935553684d6c7d8f5",
     "sha1": "10b3e69d19897fd233915e3949d02be71af0e521",
@@ -33211,7 +33220,7 @@
   },
   "CGB-B5MJ-0": {
     "name": "Medarot 5 - Susutake Mura no Tenkousei - Kabuto (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "a3c1756e",
     "md5": "6cc1cfbd1fc01b948e03f507c530260d",
     "sha1": "7f52ecb2a057d99b0448d82e3b5263eb92c2396c",
@@ -33221,7 +33230,7 @@
   },
   "CGB-B5NJ-0": {
     "name": "Medarot 5 - Susutake Mura no Tenkousei - Kuwagata (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "014083a8",
     "md5": "11893f422bcfe26e22889a0fcdf61547",
     "sha1": "3fcc292449da992f04c61d9117f3d5cc1bef446f",
@@ -33281,7 +33290,7 @@
   },
   "CGB-B7KJ-0": {
     "name": "Kinniku Banzuke GB 3 - Shinseiki Survival Retsuden! (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "e2f6253e",
     "md5": "c0b8edc2ccefc3ed95cf68c84a813609",
     "sha1": "2e5d5adcdbedf45c6ebda0f90ccfa787a24c24d0",
@@ -33861,7 +33870,7 @@
   },
   "CGB-BB3J-0": {
     "name": "Bakuten Shoot Beyblade (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "bc306ea4",
     "md5": "50f6fe2488600b1b80b8dea0aeeac2e1",
     "sha1": "68d41bca8d2ac8e9a6855460b15e6045acd341a1",
@@ -38120,7 +38129,7 @@
     "no_intro_id": "1022"
   },
   "CGB-BRJJ-0": {
-    "name": "Sakura Taisen GB - Geki Hana Gumi Nyuutai! (Japan)",
+    "name": "Sakura Taisen GB - Geki Hanagumi Nyuutai! (Japan)",
     "rom_verified": false,
     "crc32": "ef503d50",
     "md5": "70883b45a97984cb033c2b95028bef65",
@@ -38511,7 +38520,7 @@
   },
   "CGB-BSGX-0": {
     "name": "Sabrina - The Animated Series - Zapped! (Europe) (En,Fr,De)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "818f3af6",
     "md5": "cb689dc8d4e95fe9d190f6f5ad1d0ed4",
     "sha1": "d2e207a07ffa7cd0cc5b168c95ad409cd3df3fa3",
@@ -40181,7 +40190,7 @@
   },
   "CGB-BYTI-0": {
     "name": "Pokemon - Versione Cristallo (Italy)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "d45ac039",
     "md5": "7c513823f65b92a75e29067745839cc8",
     "sha1": "6cee05e5b95beeae74b8365ad18ec4a07a8c4af8",
@@ -40701,7 +40710,7 @@
   },
   "DMG-A2MJ-0": {
     "name": "Medarot 2 - Kabuto Version (Japan) (SGB Enhanced) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "bf6bd446",
     "md5": "c0fd19d90d3d876cc321074239c7334e",
     "sha1": "01adf621d6e2cbfec46306d69882fc2eb3d92de5",
@@ -41001,7 +41010,7 @@
   },
   "DMG-A4MJ-0": {
     "name": "Medarot - Parts Collection 2 (Japan) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "89f94482",
     "md5": "e1c096f4953421f7fedb767adb675ec7",
     "sha1": "edd74afbfca5e3d3366fb231c4bedd80fcf8a81e",
@@ -41201,7 +41210,7 @@
   },
   "DMG-A7CJ-0": {
     "name": "Medarot 2 - Parts Collection (Japan) (SGB Enhanced) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "159673db",
     "md5": "5f797c8c175237b9ef0d9a6888a4a239",
     "sha1": "62e6e2800025918a0df9ceb31418dcbfe9e64289",
@@ -41941,7 +41950,7 @@
   },
   "DMG-AB3J-0": {
     "name": "Bomberman GB 3 (Japan) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "f658b7a7",
     "md5": "3addab2611566ab072fc996f8a81b224",
     "sha1": "98a6327639833e1a6696e4acc5ca162388d5f6e1",
@@ -46281,7 +46290,7 @@
   },
   "DMG-AMPJ-0": {
     "name": "Medarot - Parts Collection (Japan) (SGB Enhanced)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "f4cab596",
     "md5": "a83d745ae8806a04d4a9e3c241f8c8cb",
     "sha1": "eec1245abb1d97cd2df976fdf179c924a4efa720",
@@ -50291,7 +50300,7 @@
   },
   "DMG-AYCJ-0": {
     "name": "Yu-Gi-Oh! - Monster Capsule GB (Japan) (SGB Enhanced) (GB Compatible)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "1371e872",
     "md5": "b980da92693762bd3a7a4791fe08766e",
     "sha1": "4ed5607dd83ebe7975c492b08d36870f8dd6e302",
@@ -54080,7 +54089,7 @@
     "no_intro_id": "0894"
   },
   "DMG-FUA-0": {
-    "name": "Funny Field (Japan)",
+    "name": "Funny Field (Japan) (En)",
     "rom_verified": false,
     "crc32": "bfd87aa4",
     "md5": "87f730d486bdc4685bcc6e91a7124c35",
@@ -59251,7 +59260,7 @@
   },
   "DMG-S9J-0": {
     "name": "Soldam (Japan)",
-    "rom_verified": false,
+    "rom_verified": true,
     "crc32": "7c5aec86",
     "md5": "e64c49a5280da30eceabdc3ed3852a88",
     "sha1": "b50a35a605baefba743819c2f0f3a494eaec4e11",

@@ -1,0 +1,20 @@
+{
+  "code": "AGB-BICD-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BICD-NOE",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "AGB-E01-40",
+    "circled_letters": "K",
+    "panel_position": "E-2",
+    "year": 2004,
+    "month": 9,
+    "u1": {
+      "label": "M044146-M MX23L6406-12C AGB-BICD-0 I2 2L054100"
+    }
+  }
+}

@@ -43,6 +43,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Mark Earl
 * max-m
 * MelonGx
+* Missingno_force
 * Miyako
 * Operratic
 * org

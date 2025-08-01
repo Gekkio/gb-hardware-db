@@ -1,0 +1,26 @@
+{
+  "code": "AGB-BPEE-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPEE-USA",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "E-5",
+    "year": 2004,
+    "month": 11,
+    "u1": {
+      "label": "M050958-MG MX23L12807-12C AGB-BPEE-0 J2 2L673900"
+    },
+    "u2": {
+      "label": "E044257G MX29L010TC-15A1 1G1128"
+    },
+    "u3": {
+      "label": "S3511 AVDX 4394"
+    }
+  }
+}

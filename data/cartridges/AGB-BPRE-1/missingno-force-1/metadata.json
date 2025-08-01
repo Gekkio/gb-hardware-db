@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BPRE-1",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPRE-USA",
+    "stamp": "00A E4"
+  },
+  "board": {
+    "label": "AGB-E02-30",
+    "circled_letters": "I",
+    "panel_position": "K-2",
+    "year": 2006,
+    "month": 5,
+    "u1": {
+      "label": "S063138-MG MX23L12806-12C AGB-BPRE-1 J2 2N323400"
+    },
+    "u2": {
+      "label": "B063357G MX29L010TC-15A1 1H4065"
+    }
+  }
+}

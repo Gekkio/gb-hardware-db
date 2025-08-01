@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AN8P-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AN8P-EUR",
+    "stamp": "11 E3"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "GB",
+    "panel_position": "M-2",
+    "year": 2005,
+    "month": 10,
+    "u1": {
+      "label": "M060638-MG MX23L12806-12C AGB-AN8P-0 J2 2N297200"
+    },
+    "u2": {
+      "label": "9854 5V12W"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BMXP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BMXP-EUR",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "AGB-E11-10",
+    "circled_letters": "I",
+    "panel_position": "C-2",
+    "year": 2004,
+    "month": 2,
+    "u1": {
+      "label": "HYNIX AC23V64101 AGB-BMXP-0 I2 ZBR3404"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256A 0349 M35"
+    }
+  }
+}

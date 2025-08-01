@@ -1,0 +1,23 @@
+{
+  "code": "AGB-AYDP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AYDP-EUR",
+    "stamp": "07"
+  },
+  "board": {
+    "label": "AGB-E02-20",
+    "circled_letters": "I",
+    "panel_position": "K-5",
+    "year": 2003,
+    "month": 10,
+    "u1": {
+      "label": "S034046-M MX23L6406-12C AGB-AYDP-0 I2 2I083000"
+    },
+    "u2": {
+      "label": "39VF512 70-4C-WH 0329095-D"
+    }
+  }
+}

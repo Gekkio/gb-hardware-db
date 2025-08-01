@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BZ6E-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BZ6E-USA",
+    "stamp": "15 E4"
+  },
+  "board": {
+    "label": "AGB-Y11-02",
+    "circled_letters": "I",
+    "panel_position": "C-2",
+    "year": 2006,
+    "month": 10,
+    "u1": {
+      "label": "B064746-MG MX23L6406-12C AGB-BZ6E-0 I2 2T430300A1"
+    },
+    "u2": {
+      "label": "JAPAN MB85R256S 0644 M49 E1"
+    }
+  }
+}

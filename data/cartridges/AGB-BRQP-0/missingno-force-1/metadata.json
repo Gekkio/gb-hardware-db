@@ -1,0 +1,20 @@
+{
+  "code": "AGB-BRQP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BRQP-UKV",
+    "stamp": "19 E3"
+  },
+  "board": {
+    "label": "AGB-E01-41",
+    "circled_letters": "A",
+    "panel_position": "M-6",
+    "year": 2005,
+    "month": 10,
+    "u1": {
+      "label": "AGB-BRQP-0 H2 R26V3211F-07U 601ABA8J"
+    }
+  }
+}

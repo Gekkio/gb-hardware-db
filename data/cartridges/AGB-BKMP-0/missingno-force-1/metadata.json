@@ -1,0 +1,23 @@
+{
+  "code": "AGB-BKMP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BKMP-EUR",
+    "stamp": "15 E4"
+  },
+  "board": {
+    "label": "AGB-E03-21",
+    "circled_letters": "I",
+    "panel_position": "H-1",
+    "year": 2007,
+    "month": 6,
+    "u1": {
+      "label": "AGB-BKMP-0 I2 R27V6416M-0KD 7295BAWJ"
+    },
+    "u2": {
+      "label": "9853 7558"
+    }
+  }
+}

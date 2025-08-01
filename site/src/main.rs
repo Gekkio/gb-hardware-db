@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::{Context as _, Error};
+use anyhow::{Context as _, Error, anyhow};
 use csv_export::{ToCsv, write_submission_csv};
 use filetime::{FileTime, set_file_mtime};
 use gbhwdb_model::{
@@ -295,7 +295,9 @@ fn read_cartridge_submissions(
             Some(cartridge.slug.as_str()),
             root.file_name().and_then(|name| name.to_str())
         );
-        let cfg = cfgs.get(&cartridge.code).unwrap();
+        let cfg = cfgs
+            .get(&cartridge.code)
+            .ok_or_else(|| anyhow!("Unknown ROM code: {}", cartridge.code))?;
 
         let board_cfg = BoardConfig::from_label(&cartridge.board.label)
             .unwrap_or_else(|| panic!("Failed to find config for board {}", cartridge.board.label));

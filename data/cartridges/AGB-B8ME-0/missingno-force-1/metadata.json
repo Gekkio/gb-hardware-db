@@ -1,0 +1,23 @@
+{
+  "code": "AGB-B8ME-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-B8ME-USA",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "AGB-E03-20",
+    "circled_letters": "CS",
+    "panel_position": "A-1",
+    "year": 2004,
+    "month": 12,
+    "u1": {
+      "label": "S050646-MG MX23L6406-12C AGB-B8ME-0 I2 2K266100"
+    },
+    "u2": {
+      "label": "9854 4U04W"
+    }
+  }
+}

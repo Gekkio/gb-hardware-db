@@ -1,0 +1,20 @@
+{
+  "code": "AGB-AFTP-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-AFTP-UKV",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "AGB-E01-10",
+    "circled_letters": "MB",
+    "panel_position": "M-2",
+    "year": 2001,
+    "month": 11,
+    "u1": {
+      "label": "S015221-M MX23L3206-12B AGB-AFTP-0 H2 2E469700"
+    }
+  }
+}

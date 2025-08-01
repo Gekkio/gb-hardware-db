@@ -1,0 +1,26 @@
+{
+  "code": "AGB-BPED-0",
+  "slug": "missingno-force-1",
+  "contributor": "Missingno_force",
+  "index": 1,
+  "shell": {
+    "code": "AGB-BPED-NOE",
+    "stamp": "10 E3"
+  },
+  "board": {
+    "label": "AGB-E05-01",
+    "circled_letters": "I",
+    "panel_position": "C-2",
+    "year": 2005,
+    "month": 9,
+    "u1": {
+      "label": "E054158-MG MX23L12807-12C AGB-BPED-0 J2 2M985201"
+    },
+    "u2": {
+      "label": "E053757G MX29L010TC-15A1 1G4296"
+    },
+    "u3": {
+      "label": "S3511 AVE9 2229"
+    }
+  }
+}

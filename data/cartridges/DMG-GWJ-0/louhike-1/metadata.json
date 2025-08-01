@@ -1,0 +1,32 @@
+{
+  "code": "DMG-GWJ-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GWJ",
+    "stamp": "03"
+  },
+  "board": {
+    "label": "DMG-DECN-01",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1991,
+    "month": 4,
+    "u1": {
+      "label": "TOSHIBA 9114EAI TC532000BF DMG-GWJ-0 D1 J542 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9114 1 A"
+    },
+    "u3": {
+      "label": "LH5168NFA-10L SHARP JAPAN 9049 3 SA"
+    },
+    "u4": {
+      "label": "145 26A"
+    },
+    "battery": {
+      "label": "91-05"
+    }
+  }
+}

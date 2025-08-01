@@ -1,0 +1,23 @@
+{
+  "code": "DMG-KYJ-1",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KYJ",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "4",
+    "year": 1995,
+    "month": 11,
+    "u1": {
+      "label": "DMG-KYJ-1 S LH532MND JAPAN D1 9614 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9545 5 A"
+    }
+  }
+}

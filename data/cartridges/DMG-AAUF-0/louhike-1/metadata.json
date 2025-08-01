@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AAUF-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUF-FRA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 2000,
+    "month": 12,
+    "u1": {
+      "label": "E010219-M MX23C1603-12A DMG-AAUF-0 G2 2D519002"
+    },
+    "u2": {
+      "label": "MBC3 B P-2 037U2E"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 049 165NA"
+    },
+    "u4": {
+      "label": "6735 0C87"
+    },
+    "battery": {
+      "label": "00-12"
+    }
+  }
+}

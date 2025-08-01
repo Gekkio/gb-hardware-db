@@ -1,0 +1,23 @@
+{
+  "code": "DMG-SSA-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-SSA",
+    "stamp": "05"
+  },
+  "board": {
+    "label": "DMG-BBA-02",
+    "circled_letters": "B",
+    "panel_position": "2",
+    "year": 1990,
+    "month": 1,
+    "u1": {
+      "label": "DMG-SSA-0 SHARP JAPAN B0 9004 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 9'01"
+    }
+  }
+}

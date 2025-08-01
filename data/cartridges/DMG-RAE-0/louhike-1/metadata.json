@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RAE-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RA-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "6",
+    "year": 1991,
+    "month": 6,
+    "u1": {
+      "label": "NEC JAPAN DMG-RAE-0 C1 UPD23C1001EGW-J09 9126E9016"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 1'65"
+    }
+  }
+}

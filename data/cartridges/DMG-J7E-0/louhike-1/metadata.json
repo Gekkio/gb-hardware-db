@@ -1,0 +1,23 @@
+{
+  "code": "DMG-J7E-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-J7-FRA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "5",
+    "year": 1994,
+    "month": 3,
+    "u1": {
+      "label": "Ⓜ AT&T JAPAN DMG-J7E-0 C1 23C1001EAGW-K67 9423E9007"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 4'58"
+    }
+  }
+}

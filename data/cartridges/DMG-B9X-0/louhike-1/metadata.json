@@ -1,0 +1,20 @@
+{
+  "code": "DMG-B9X-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-B9-NOE",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-AAA-03",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1996,
+    "month": 5,
+    "u1": {
+      "label": "DMG-B9X-0 S LH5359V3 JAPAN A0 9623 D"
+    }
+  }
+}

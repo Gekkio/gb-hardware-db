@@ -39,6 +39,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Kurodo
 * l0k1
 * Lance Kindle
+* Louhike
 * mattcurrie
 * Mark Earl
 * max-m

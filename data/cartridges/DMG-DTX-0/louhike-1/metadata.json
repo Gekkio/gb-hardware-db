@@ -1,0 +1,23 @@
+{
+  "code": "DMG-DTX-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-DT-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "panel_position": "6",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-DTX-0 S LH5317VH JAPAN B1 9830 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'52"
+    }
+  }
+}

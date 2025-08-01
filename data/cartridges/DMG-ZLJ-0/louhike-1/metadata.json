@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ZLJ-0",
+  "slug": "louhike-1",
+  "contributor": "Louhike",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZLJ",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "B",
+    "panel_position": "2",
+    "year": 1993,
+    "month": 3,
+    "u1": {
+      "label": "DMG-ZLJ-0 S LH534MN6 JAPAN E1 9321 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 3'18"
+    },
+    "u3": {
+      "label": "HYUNDAI HY6264ALLJ-10 9310A KOREA"
+    },
+    "u4": {
+      "label": "325 26A"
+    }
+  }
+}

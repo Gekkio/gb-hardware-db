@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MCE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MC-USA-1",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "2",
+    "year": 1998,
+    "month": 2,
+    "u1": {
+      "label": "DMG-MCE-0 S LH531HEP JAPAN C1 9810 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9752 7 A"
+    }
+  }
+}

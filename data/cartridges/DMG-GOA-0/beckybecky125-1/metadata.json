@@ -1,0 +1,26 @@
+{
+  "code": "DMG-GOA-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-GO-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-GDAN-10",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1997,
+    "month": 12,
+    "u1": {
+      "label": "DMG-GOA-0 S LH531H2L JAPAN C1 9750 E"
+    },
+    "u2": {
+      "label": "DMG MBC2A Nintendo S 9746 3 AB"
+    },
+    "u3": {
+      "label": "742 26A"
+    }
+  }
+}

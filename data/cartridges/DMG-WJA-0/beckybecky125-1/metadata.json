@@ -1,0 +1,29 @@
+{
+  "code": "DMG-WJA-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WJ-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "panel_position": "5",
+    "year": 1997,
+    "month": 4,
+    "u1": {
+      "label": "J9719-M MX23C4002-20 DMG-WJA-0 E1 42820A"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9717 9 A"
+    },
+    "u3": {
+      "label": "LH5268ANA-10PLL MOSEL-VITELIC JAPAN N527 02 BC"
+    },
+    "u4": {
+      "label": "6129A 7472"
+    }
+  }
+}

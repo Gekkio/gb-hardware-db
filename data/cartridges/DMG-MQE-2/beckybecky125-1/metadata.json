@@ -1,0 +1,29 @@
+{
+  "code": "DMG-MQE-2",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MQ-USA-1",
+    "stamp": "20B"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "K",
+    "panel_position": "6",
+    "year": 1998,
+    "month": 3,
+    "u1": {
+      "label": "DMG-MQE-2 E1 N-4001EJGW-J08 9822E7026"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9816 5 A"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 814 136N"
+    },
+    "u4": {
+      "label": "746 26A"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ATEA-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ATEA-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-20",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1999,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ATEA-0 S LH5S4MVT JAPAN E1 0003 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 9'13"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 003 170N"
+    },
+    "u4": {
+      "label": "6735 9C40"
+    }
+  }
+}

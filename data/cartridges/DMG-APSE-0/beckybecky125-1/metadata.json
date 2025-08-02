@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APSE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APSE-USA-1",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1999,
+    "month": 11,
+    "u1": {
+      "label": "DMG-APSE-0 F1 N-8001EJGW-K04 9949K7048"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9947 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9906 3 SO"
+    },
+    "u4": {
+      "label": "943 134A"
+    }
+  }
+}

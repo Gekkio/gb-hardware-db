@@ -1,0 +1,20 @@
+{
+  "code": "DMG-VUA-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-VU-USA-2",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-AAA-10",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9835 D"
+    }
+  }
+}

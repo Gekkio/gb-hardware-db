@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ML-USA-1",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "panel_position": "1",
+    "year": 1997,
+    "month": 1,
+    "u1": {
+      "label": "DMG-MLA-1 S LH531720 JAPAN B1 9726 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9726 3 A"
+    }
+  }
+}

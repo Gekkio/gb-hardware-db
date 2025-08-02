@@ -1,0 +1,29 @@
+{
+  "code": "DMG-QDA-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-QD-USA",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "5",
+    "year": 1995,
+    "month": 6,
+    "u1": {
+      "label": "DMG-QDA-1 S LH534M09 JAPAN E1 9535 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9535 3 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9525B KOREA"
+    },
+    "u4": {
+      "label": "524 26A"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "code": "DMG-AWA-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-AAA-01",
+    "circled_letters": "B",
+    "panel_position": "1",
+    "year": 1989,
+    "month": 8,
+    "u1": {
+      "label": "DMG-AWA-0 SHARP JAPAN A0 8938 D"
+    }
+  }
+}

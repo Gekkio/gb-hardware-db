@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A3ME-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A3ME-USA",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "panel_position": "5",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "TOSHIBA 9545EAI TC534000DF DMG-A3ME-0 E1 N087 JAPAN"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9544 3 A"
+    }
+  }
+}

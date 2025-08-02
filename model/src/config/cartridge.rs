@@ -2,18 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::Error;
-use serde::{Deserialize, Serialize};
-use serde_json;
-use std::{
-    collections::{BTreeMap, HashMap},
-    fmt,
-    fs::File,
-    io::{BufReader, BufWriter},
-    path::Path,
-    sync::OnceLock,
-};
-
 use crate::{
     hash::{Crc32, Md5, Sha1, Sha256},
     parser::{
@@ -26,6 +14,17 @@ use crate::{
         mbc30_qfp32, mmm01_qfp32, rtc_crystal, rtc_sop_8, rtc_sop_20, sram_sop_28_3v3,
         sram_sop_28_5v, sram_sop_32_5v, sram_tsop_i_28_5v, supervisor_reset, toshiba, unknown,
     },
+};
+use anyhow::Error;
+use serde::{Deserialize, Serialize};
+use serde_json;
+use std::{
+    collections::{BTreeMap, HashMap},
+    fmt,
+    fs::File,
+    io::{BufReader, BufWriter},
+    path::Path,
+    sync::OnceLock,
 };
 
 #[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]

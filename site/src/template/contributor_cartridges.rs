@@ -8,6 +8,7 @@ use lexical_sort::natural_lexical_cmp;
 use maud::{Markup, Render, html};
 use std::borrow::Cow;
 
+use crate::site::game_name_cmp;
 use crate::{
     LegacyCartridgeSubmission, Submissions,
     site::board_kind_link,
@@ -29,7 +30,7 @@ impl<'a> Render for ContributorCartridges<'a> {
 
         for submissions in by_platform.values_mut() {
             submissions.sort_unstable_by(|a, b| {
-                natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                game_name_cmp(&a.metadata.cfg, &b.metadata.cfg)
                     .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
             });
         }

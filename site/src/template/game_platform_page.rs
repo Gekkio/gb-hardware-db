@@ -4,10 +4,10 @@
 
 use gbhwdb_model::config::cartridge::{GameConfig, GamePlatform};
 use itertools::Itertools;
-use lexical_sort::natural_lexical_cmp;
 use maud::{Markup, Render, html};
 use std::{borrow::Cow, collections::BTreeMap};
 
+use crate::site::game_name_cmp;
 use crate::{
     LegacyPhotos, legacy::LegacyCartridgeSubmission, site::board_kind_link,
     template::mapper_page::MapperCfg,
@@ -33,7 +33,7 @@ impl<'a> Render for GamePlatformPage<'a> {
                 per_game.push((cfg, group));
             }
         }
-        per_game.sort_unstable_by(|(a, _), (b, _)| natural_lexical_cmp(&a.name, &b.name));
+        per_game.sort_unstable_by(|(a, _), (b, _)| game_name_cmp(a, b));
         let toggle_js = "\
 var shouldHide = event.currentTarget.innerText.includes('Show only');
 event.currentTarget.innerHTML = (shouldHide)
@@ -124,8 +124,8 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         .filter(|s| s.photos.front().is_some())
         .collect::<Vec<_>>();
     html! {
-        tr.empty[submissions.len() == 0] {
-            td.submission-list-item {
+        tr .submission-list-item .empty[submissions.len() == 0] {
+            td {
                 @if submissions.len() > 0 {
                     a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } {
                         div.submission-list-item__photos {
@@ -145,7 +145,7 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
                     (cfg.name)
                 }
             }
-            td {
+            td.submission-list-item__rom-id {
                 @if submissions.len() > 0 {
                     a href={ "/cartridges/" (cfg.rom_id) } { (cfg.rom_id) }
                 } @else {

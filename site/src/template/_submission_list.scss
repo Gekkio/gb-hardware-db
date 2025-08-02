@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2017-2025 Joonas Javanainen <joonas.javanainen@gmail.com>
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+@import '../common';
+
+.submission-list-item__rom-id {
+  white-space: nowrap;
+}
+.submission-list-item__photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+
+  > img {
+    flex: 0 1 auto;
+    height: 100%;
+  }
+}

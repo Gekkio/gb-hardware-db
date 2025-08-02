@@ -2,25 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-use anyhow::Error;
-use gbhwdb_model::{
-    Console,
-    config::cartridge::{BoardConfig, BoardPart, GamePlatform, PartRole},
-};
-use itertools::Itertools;
-use lexical_sort::natural_lexical_cmp;
-use log::error;
-use maud::{Markup, Render, html};
-use slug::slugify;
-use std::{
-    borrow::Cow,
-    collections::HashMap,
-    fs::{self, create_dir_all},
-    path::{Path, PathBuf},
-    sync::OnceLock,
-};
-use time::OffsetDateTime;
-
 use crate::template::cartridge_board_page::CartridgeBoardPage;
 use crate::{
     SiteData,
@@ -42,6 +23,26 @@ use crate::{
         page,
     },
 };
+use anyhow::Error;
+use gbhwdb_model::config::cartridge::GameConfig;
+use gbhwdb_model::{
+    Console,
+    config::cartridge::{BoardConfig, BoardPart, GamePlatform, PartRole},
+};
+use itertools::Itertools;
+use lexical_sort::natural_lexical_cmp;
+use log::error;
+use maud::{Markup, Render, html};
+use slug::slugify;
+use std::{
+    borrow::Cow,
+    cmp,
+    collections::HashMap,
+    fs::{self, create_dir_all},
+    path::{Path, PathBuf},
+    sync::OnceLock,
+};
+use time::OffsetDateTime;
 
 static MAPPER_CFGS: OnceLock<Vec<MapperCfg>> = OnceLock::new();
 
@@ -512,7 +513,7 @@ pub fn build_site() -> Site {
                 let cfg = &mapper_cfgs[cfg_idx];
                 let submissions = group
                     .sorted_unstable_by(|a, b| {
-                        natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                        game_name_cmp(&a.metadata.cfg, &b.metadata.cfg)
                             .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
                             .then_with(|| natural_lexical_cmp(&a.contributor, &b.contributor))
                             .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
@@ -545,7 +546,7 @@ pub fn build_site() -> Site {
             .map(|(cfg, group)| {
                 let submissions = group
                     .sorted_unstable_by(|a, b| {
-                        natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                        game_name_cmp(&a.metadata.cfg, &b.metadata.cfg)
                             .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
                             .then_with(|| natural_lexical_cmp(&a.contributor, &b.contributor))
                             .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
@@ -727,4 +728,15 @@ pub fn board_kind_link(board: &LegacyBoard) -> Markup {
         a href={ "/cartridges/" (board.cfg.label()) ".html" } { (board.cfg.label()) }
         (board.kind.strip_prefix(&board.cfg.label()).unwrap_or(&board.kind))
     }
+}
+
+pub fn game_name_cmp(a: &GameConfig, b: &GameConfig) -> cmp::Ordering {
+    fn simplified_name(cfg: &GameConfig) -> &str {
+        cfg.name
+            .split_once('(')
+            .map(|(name, _)| name)
+            .unwrap_or(&cfg.name)
+    }
+    natural_lexical_cmp(simplified_name(&a), simplified_name(&b))
+        .then_with(|| natural_lexical_cmp(&a.rom_id, &b.rom_id))
 }

@@ -72,8 +72,8 @@ fn render_submission(cfg: &BoardConfig, submission: &LegacyCartridgeSubmission) 
         tr {
             (ListingEntryCell {
                 url_prefix: "/cartridges",
-                primary_text: &submission.title,
-                secondary_texts: &[&submission.contributor],
+                primary_text: &submission.contributor,
+                secondary_texts: &[&submission.title],
                 submission,
             })
             td {

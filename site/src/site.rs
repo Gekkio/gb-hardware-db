@@ -14,7 +14,7 @@ use crate::{
         contributor_cartridges::ContributorCartridges,
         dmg_console_page::DmgConsolePage,
         dmg_submission_list::DmgSubmissionList,
-        game_page::CartridgesByGame,
+        game_page::GamePage,
         game_platform_page::GamePlatformPage,
         home::Home,
         mapper_page::{MapperCfg, MapperPage},
@@ -34,6 +34,7 @@ use lexical_sort::natural_lexical_cmp;
 use log::error;
 use maud::{Markup, Render, html};
 use slug::slugify;
+use std::collections::HashSet;
 use std::{
     borrow::Cow,
     cmp,
@@ -448,12 +449,35 @@ pub fn build_site() -> Site {
                     Cow::Owned(cfg.rom_id.clone()),
                     Cow::Borrowed("index"),
                 ]);
+                let mut variants = HashSet::new();
+                let mut todo = vec![&cfg];
+                while let Some(cfg) = todo.pop() {
+                    variants.insert(cfg);
+                    for other in data.cfgs.values() {
+                        if cfg.is_variant_of(other) && !variants.contains(other) {
+                            todo.push(other);
+                        }
+                    }
+                }
+                let variants = variants
+                    .into_iter()
+                    .sorted_unstable_by(|a, b| game_name_cmp(a, b))
+                    .map(|cfg| {
+                        let has_submissions = data
+                            .submissions
+                            .cartridges
+                            .iter()
+                            .any(|s| s.metadata.cfg.rom_id == cfg.rom_id);
+                        (cfg, has_submissions)
+                    })
+                    .collect::<Vec<_>>();
                 let page = Page {
                     title: Cow::Owned(cfg.name.clone()),
                     section: SiteSection::Cartridges(Some(cfg.platform)),
-                    content: CartridgesByGame {
+                    content: GamePage {
                         cfg: &cfg,
                         submissions,
+                        variants: &variants,
                     }
                     .render(),
                 };

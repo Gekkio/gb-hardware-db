@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: 2017-2025 Joonas Javanainen <joonas.javanainen@gmail.com>
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+.game-page {
+  &__variants {
+    margin: 0;
+    padding: 0 1em;
+    list-style: none;
+  }
+  &__variant {
+    margin: 0;
+    padding: 0;
+    &--selected {
+      font-weight: bold;
+      font-style: italic;
+    }
+  }
+}

@@ -21,7 +21,7 @@ fn parse_hash<const N: usize>(text: &str) -> Option<[u8; N]> {
 
 macro_rules! impl_hash {
     (pub struct $name:ident([u8; $n:expr]), $algo:expr) => {
-        #[derive(Copy, Clone, Debug, PartialEq, Eq)]
+        #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
         pub struct $name([u8; $n]);
 
         impl $name {

@@ -16,12 +16,13 @@ use crate::{
 };
 
 #[derive(Clone, Debug)]
-pub struct CartridgesByGame<'a> {
+pub struct GamePage<'a> {
     pub cfg: &'a GameConfig,
     pub submissions: Vec<&'a LegacyCartridgeSubmission>,
+    pub variants: &'a [(&'a GameConfig, bool)],
 }
 
-impl<'a> Render for CartridgesByGame<'a> {
+impl<'a> Render for GamePage<'a> {
     fn render(&self) -> Markup {
         let parts = self
             .submissions
@@ -48,11 +49,29 @@ impl<'a> Render for CartridgesByGame<'a> {
             ))
         };
         html! {
-            article {
+            article.game-page {
                 h2 { (self.cfg.name) }
                 @if let Some(href) = no_intro_href {
                     a.external href=(href) {
                         "Game entry in No-Intro Dat-o-Matic"
+                    }
+                }
+                @if self.variants.len() > 1 {
+                    h3 { "Variants" }
+                    ul.game-page__variants {
+                        @for &(variant, link) in self.variants {
+                            li.game-page__variant .game-page__variant--selected[variant.rom_id == self.cfg.rom_id] {
+                                @if link {
+                                    a href={ "/cartridges/" (variant.rom_id) } {
+                                        div { (variant.name) }
+                                        div { (variant.rom_id) }
+                                    }
+                                } @else {
+                                    div { (variant.name) }
+                                    div { (variant.rom_id) }
+                                }
+                            }
+                        }
                     }
                 }
                 table {

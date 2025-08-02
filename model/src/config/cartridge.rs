@@ -27,7 +27,7 @@ use std::{
     sync::OnceLock,
 };
 
-#[derive(Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Hash, Deserialize, Serialize)]
 pub struct GameConfig {
     #[serde(skip, default)]
     pub rom_id: String,
@@ -43,6 +43,18 @@ pub struct GameConfig {
     pub sha256: Option<Sha256>,
     pub platform: GamePlatform,
     pub no_intro_id: String,
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub no_intro_clone_of: String,
+}
+
+impl GameConfig {
+    pub fn is_variant_of(&self, other: &GameConfig) -> bool {
+        let is_no_intro_clone = !self.no_intro_id.is_empty()
+            && !other.no_intro_id.is_empty()
+            && (self.no_intro_id == other.no_intro_clone_of
+                || other.no_intro_id == self.no_intro_clone_of);
+        self.platform == other.platform && (self.name == other.name || is_no_intro_clone)
+    }
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Hash, Deserialize, Serialize)]

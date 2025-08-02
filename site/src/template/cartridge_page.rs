@@ -8,6 +8,7 @@ use time::{format_description::FormatItem, macros::format_description};
 
 use crate::{
     legacy::{LegacyCartridgeSubmission, LegacyPhoto},
+    site::board_kind_link,
     template::submission_part_table::{SubmissionPart, submission_part_table},
 };
 
@@ -93,7 +94,7 @@ impl<'a> Render for CartridgePage<'a> {
                 }
                 dl {
                     dt { "Board type" }
-                    dd { (board.kind) }
+                    dd { (board_kind_link(board)) }
                     @if let Some(date) = board.date_code.calendar() {
                         dt { "Manufacture date" }
                         dd { (date) }

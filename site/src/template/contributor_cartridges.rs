@@ -10,6 +10,7 @@ use std::borrow::Cow;
 
 use crate::{
     LegacyCartridgeSubmission, Submissions,
+    site::board_kind_link,
     template::{Optional, listing_entry_cell::ListingEntryCell},
 };
 
@@ -82,7 +83,7 @@ fn render_submission(submission: &LegacyCartridgeSubmission, show_mapper: bool) 
             td { a href={ "/cartridges/" (submission.metadata.cfg.rom_id) } { (submission.metadata.cfg.rom_id) } }
             td { (Optional(submission.metadata.board.date_code.year.as_ref())) }
             td { (Optional(submission.metadata.code.as_ref())) }
-            td { (submission.metadata.board.kind) }
+            td { (board_kind_link(&submission.metadata.board)) }
             @if show_mapper {
                 td { (Optional(mapper)) }
             }

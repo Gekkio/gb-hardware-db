@@ -8,7 +8,10 @@ use lexical_sort::natural_lexical_cmp;
 use maud::{Markup, Render, html};
 use std::{borrow::Cow, collections::BTreeMap};
 
-use crate::{LegacyPhotos, legacy::LegacyCartridgeSubmission, template::mapper_page::MapperCfg};
+use crate::{
+    LegacyPhotos, legacy::LegacyCartridgeSubmission, site::board_kind_link,
+    template::mapper_page::MapperCfg,
+};
 
 pub struct GamePlatformPage<'a> {
     pub platform: GamePlatform,
@@ -106,7 +109,10 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
         .filter_map(|submission| submission.metadata.code.as_deref().map(Cow::Borrowed));
     let board_types = submissions
         .iter()
-        .map(|submission| Cow::Borrowed(submission.metadata.board.kind.as_ref()));
+        .unique_by(|&&s| &s.metadata.board.kind)
+        .sorted_by_key(|&&s| &s.metadata.board.kind)
+        .map(|&s| board_kind_link(&s.metadata.board));
+
     let mappers = submissions.iter().filter_map(|submission| {
         let board = &submission.metadata.board;
         board
@@ -148,7 +154,12 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
             }
             td { (multiline(years)) }
             td { (multiline(releases)) }
-            td { (multiline(board_types)) }
+            td {
+                @for board_type in board_types {
+                    (board_type)
+                    br;
+                }
+            }
             @if cfg.platform.has_mappers() {
                 td { (multiline(mappers)) }
             }

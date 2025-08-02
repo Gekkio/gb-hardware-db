@@ -10,7 +10,7 @@ use gbhwdb_model::{
 use itertools::Itertools;
 use lexical_sort::natural_lexical_cmp;
 use log::error;
-use maud::{Markup, Render};
+use maud::{Markup, Render, html};
 use slug::slugify;
 use std::{
     borrow::Cow,
@@ -21,9 +21,10 @@ use std::{
 };
 use time::OffsetDateTime;
 
+use crate::template::cartridge_board_page::CartridgeBoardPage;
 use crate::{
     SiteData,
-    legacy::LegacySubmission,
+    legacy::{LegacySubmission, cartridge::LegacyBoard},
     template::{
         cartridge_page::CartridgePage,
         cartridges::Cartridges,
@@ -533,6 +534,40 @@ pub fn build_site() -> Site {
             .collect()
     }));
     site.page_sets.push(Box::new(move |data| {
+        data.submissions
+            .cartridges
+            .iter()
+            .sorted_by_key(|submission| submission.metadata.board.cfg.label())
+            .chunk_by(|submission| &submission.metadata.board.cfg)
+            .into_iter()
+            .map(|(cfg, group)| {
+                let submissions = group
+                    .sorted_unstable_by(|a, b| {
+                        natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
+                            .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
+                    })
+                    .chunk_by(|&s| &s.code);
+
+                let submissions = submissions
+                    .into_iter()
+                    .filter_map(|(code, chunk)| {
+                        Some((data.cfgs.get(code)?, chunk.collect::<Vec<_>>()))
+                    })
+                    .collect::<Vec<_>>();
+                let path = SitePath(vec![
+                    Cow::Borrowed("cartridges"),
+                    Cow::Borrowed(cfg.label()),
+                ]);
+                let page = Page {
+                    title: Cow::Borrowed(cfg.label()),
+                    section: SiteSection::Cartridges(None),
+                    content: CartridgeBoardPage { cfg, submissions }.render(),
+                };
+                (path, page)
+            })
+            .collect()
+    }));
+    site.page_sets.push(Box::new(move |data| {
         let mut result = Vec::new();
 
         for (contributor, submissions) in data.submissions.by_contributor() {
@@ -681,4 +716,11 @@ impl SubmissionCounts {
 pub enum SiteSection {
     Consoles(Option<Console>),
     Cartridges(Option<GamePlatform>),
+}
+
+pub fn board_kind_link(board: &LegacyBoard) -> Markup {
+    html! {
+        a href={ "/cartridges/" (board.cfg.label()) ".html" } { (board.cfg.label()) }
+        (board.kind.strip_prefix(&board.cfg.label()).unwrap_or(&board.kind))
+    }
 }

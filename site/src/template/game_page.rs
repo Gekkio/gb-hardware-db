@@ -8,9 +8,9 @@ use std::collections::BTreeSet;
 
 use crate::{
     legacy::LegacyCartridgeSubmission,
-    template::Optional,
+    site::board_kind_link,
     template::{
-        listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
+        Optional, listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
         listing_photos_cell::ListingPhotosCell,
     },
 };
@@ -100,7 +100,7 @@ fn render_submission(
                 }
             }
             td {
-                div { (board.kind) }
+                div { (board_kind_link(board)) }
                 div { (Optional(board.date_code.calendar())) }
             }
             @for &(designator, role) in parts {

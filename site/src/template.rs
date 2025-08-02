@@ -9,6 +9,7 @@ use crate::{
     template::{site_footer::SiteFooter, site_header::SiteHeader},
 };
 
+pub mod cartridge_board_page;
 pub mod cartridge_page;
 pub mod cartridges;
 pub mod console_page;

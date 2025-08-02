@@ -88,10 +88,9 @@ fn render_submission(
         tr {
             (ListingEntryCell {
                 url_prefix: "/cartridges",
-                primary_text: &submission.title,
-                secondary_texts: &[],
+                primary_text: &submission.contributor,
+                secondary_texts: &[&submission.title],
                 submission,
-                show_contributor: true,
             })
             td {
                 div { (Optional(metadata.code.as_ref())) }

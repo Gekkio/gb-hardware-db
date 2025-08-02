@@ -97,9 +97,8 @@ impl<'a, M: LegacyConsoleMetadata, P: LegacyPhotos> Render for Submission<'a, M,
                 (ListingEntryCell {
                     url_prefix: "/consoles",
                     primary_text: &self.submission.title,
-                    secondary_texts: &[],
+                    secondary_texts: &[&self.submission.contributor],
                     submission: self.submission,
-                    show_contributor: true,
                 })
                 @if self.render_console_column {
                     td {

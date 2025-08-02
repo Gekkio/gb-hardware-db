@@ -11,7 +11,6 @@ pub struct ListingEntryCell<'a, M, P> {
     pub primary_text: &'a str,
     pub secondary_texts: &'a [&'a str],
     pub submission: &'a LegacySubmission<M, P>,
-    pub show_contributor: bool,
 }
 
 impl<'a, M, P> Render for ListingEntryCell<'a, M, P>
@@ -44,9 +43,6 @@ where
                         div.listing-entry-cell__primary { (self.primary_text) }
                         @for text in self.secondary_texts {
                             aside { (text) }
-                        }
-                        @if self.show_contributor {
-                            aside.listing-entry-cell__contributor { (self.submission.contributor) }
                         }
                     }
                 }

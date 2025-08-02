@@ -78,7 +78,6 @@ fn render_submission(submission: &LegacyCartridgeSubmission, show_mapper: bool) 
                 primary_text: &submission.metadata.cfg.name,
                 secondary_texts: &[&submission.title],
                 submission,
-                show_contributor: false,
             })
             td { a href={ "/cartridges/" (submission.metadata.cfg.rom_id) } { (submission.metadata.cfg.rom_id) } }
             td { (Optional(submission.metadata.board.date_code.year.as_ref())) }

@@ -514,6 +514,8 @@ pub fn build_site() -> Site {
                     .sorted_unstable_by(|a, b| {
                         natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
                             .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
+                            .then_with(|| natural_lexical_cmp(&a.contributor, &b.contributor))
+                            .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
                     })
                     .chunk_by(|&s| &s.code);
 
@@ -545,6 +547,8 @@ pub fn build_site() -> Site {
                     .sorted_unstable_by(|a, b| {
                         natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
                             .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
+                            .then_with(|| natural_lexical_cmp(&a.contributor, &b.contributor))
+                            .then_with(|| natural_lexical_cmp(&a.slug, &b.slug))
                     })
                     .chunk_by(|&s| &s.code);
 

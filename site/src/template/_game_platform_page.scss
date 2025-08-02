@@ -13,4 +13,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
+
+  > img {
+    flex: 0 1 auto;
+    height: 100%;
+  }
 }

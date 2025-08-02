@@ -79,7 +79,7 @@ fn render_submission(submission: &LegacyCartridgeSubmission, show_mapper: bool) 
                 submission,
                 show_contributor: false,
             })
-            td { (submission.metadata.cfg.rom_id) }
+            td { a href={ "/cartridges/" (submission.metadata.cfg.rom_id) } { (submission.metadata.cfg.rom_id) } }
             td { (Optional(submission.metadata.board.date_code.year.as_ref())) }
             td { (Optional(submission.metadata.code.as_ref())) }
             td { (submission.metadata.board.kind) }

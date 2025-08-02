@@ -5,9 +5,10 @@
  */
 
 @import 'common';
+@import 'template/game_platform_page';
 @import 'template/listing_entry_cell';
 @import 'template/listing_part';
-@import 'template/mapper_listing';
+@import 'template/mapper_page';
 @import 'template/site_footer';
 @import 'template/site_header';
 @import 'template/submission_part';
@@ -24,6 +25,15 @@ body {
   font-family: 'Lato', sans-serif;
   color: #000;
   background-color: $main-color-1;
+}
+
+a {
+  text-decoration: underline dotted #000;
+
+  &.external::before {
+    content: "🔗 ";
+    display: inline-block;
+  }
 }
 
 .site-main {
@@ -59,9 +69,13 @@ th {
   text-align: left;
 }
 thead > tr,
-tbody.divider > tr {
+thead > tr > th {
   color: #fff;
   background-color: $main-color-3;
+}
+thead > tr > th {
+  position: sticky;
+  top: -1px;
 }
 tbody > tr:nth-child(even of :not([hidden])) {
   background-color: #f0f0f0;

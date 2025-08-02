@@ -2,15 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
-use gbhwdb_model::config::cartridge::{BoardConfig, PartRole};
+use gbhwdb_model::config::cartridge::{BoardConfig, GameConfig, PartRole};
 use maud::{Markup, Render, html};
 
 use crate::{
     legacy::LegacyCartridgeSubmission,
     process::part::ProcessedPart,
-    template::Optional,
     template::{
-        listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
+        Optional, listing_entry_cell::ListingEntryCell, listing_part::ListingPart,
         listing_photos_cell::ListingPhotosCell,
     },
 };
@@ -22,19 +21,19 @@ pub struct MapperCfg {
     pub match_fn: Box<dyn Fn(BoardConfig, Option<&ProcessedPart>) -> bool + Send + Sync>,
 }
 
-pub struct Mapper<'a> {
+pub struct MapperPage<'a> {
     pub cfg: &'a MapperCfg,
-    pub submissions: Vec<&'a LegacyCartridgeSubmission>,
+    pub submissions: Vec<(&'a GameConfig, Vec<&'a LegacyCartridgeSubmission>)>,
 }
 
-impl<'a> Render for Mapper<'a> {
+impl<'a> Render for MapperPage<'a> {
     fn render(&self) -> Markup {
         html! {
-            article {
+            article.mapper-page {
                 h2 { "Cartridges by mapper: " (self.cfg.name) }
-                table.mapper-listing {
+                table {
                     colgroup {
-                        col.mapper-listing__first-column;
+                        col;
                         col;
                         col;
                         @for _ in self.cfg.parts {
@@ -44,18 +43,28 @@ impl<'a> Render for Mapper<'a> {
                     }
                     thead {
                         tr {
-                            th { "Entry" }
-                            th { "Release" }
-                            th { "Board" }
+                            th scope="col" { "Entry" }
+                            th scope="col" { "Release" }
+                            th scope="col" { "Board" }
                             @for role in self.cfg.parts {
-                                th { (role.display()) }
+                                th scope="col" { (role.display()) }
                             }
-                            th { "Photos" }
+                            th scope="col" { "Photos" }
                         }
                     }
-                    tbody {
-                        @for submission in &self.submissions {
-                            (render_submission(self.cfg, submission))
+                    @for (game, chunk) in &self.submissions {
+                        tbody.mapper-page__game {
+                            tr.mapper-page__game-header {
+                                th colspan=(self.cfg.parts.len() + 4) scope="rowgroup" {
+                                    a href={ ("/cartridges/") (game.rom_id) } {
+                                        div.mapper-page__game-name { (game.name) }
+                                        aside { (game.rom_id) }
+                                    }
+                                }
+                            }
+                            @for submission in chunk {
+                                (render_submission(self.cfg, submission))
+                            }
                         }
                     }
                 }
@@ -71,13 +80,16 @@ fn render_submission(cfg: &MapperCfg, submission: &LegacyCartridgeSubmission) ->
         tr {
             (ListingEntryCell {
                 url_prefix: "/cartridges",
-                primary_text: &submission.metadata.cfg.name,
-                secondary_texts: &[&submission.code, &submission.title],
+                primary_text: &submission.title,
+                secondary_texts: &[],
                 submission,
                 show_contributor: true,
             })
             td {
-                (Optional(metadata.code.as_ref()))
+                div { (Optional(metadata.code.as_ref())) }
+                @if let Some(stamp) = &metadata.stamp {
+                    div { "Stamp: " (stamp) }
+                }
             }
             td {
                 div { (board.kind) }

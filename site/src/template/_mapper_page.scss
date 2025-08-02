@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-.mapper-listing {
-  &__first-column {
-    width: 30%;
+.mapper-page {
+  &__game + &__game {
+    border-top: 1px dashed #aaa;
+  }
+  &__game-name {
+    font-size: 16px;
   }
 }

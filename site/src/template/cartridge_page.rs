@@ -60,7 +60,10 @@ impl<'a> Render for CartridgePage<'a> {
         );
         html! {
             article.page-cartridge {
-                h2 { (metadata.cfg.name) ": " (self.submission.title) " [" a href=(contributor_url) { (self.submission.contributor) } "]" }
+                h2 {
+                    a href={ "/cartridges/" (metadata.cfg.rom_id) } { (metadata.cfg.name) }
+                    ": " (self.submission.title) " [" a href=(contributor_url) { (self.submission.contributor) } "]"
+                }
                 div.page-cartridge__photo {
                     @if let Some(photo) = &photos.front {
                         (self.render_photo(photo))

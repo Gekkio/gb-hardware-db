@@ -32,13 +32,13 @@ use crate::{
         contributor_cartridges::ContributorCartridges,
         dmg_console_page::DmgConsolePage,
         dmg_submission_list::DmgSubmissionList,
-        game::Game,
+        game_page::CartridgesByGame,
+        game_platform_page::GamePlatformPage,
         home::Home,
-        mapper::{Mapper, MapperCfg},
+        mapper_page::{MapperCfg, MapperPage},
         markdown::Markdown,
         markdown_page::MarkdownPage,
         page,
-        platform_cartridges::PlatformCartridges,
     },
 };
 
@@ -396,7 +396,7 @@ pub fn build_site() -> Site {
         Ok(Page {
             title: "Game Boy cartridges".into(),
             section: SiteSection::Cartridges(Some(GamePlatform::Gb)),
-            content: PlatformCartridges {
+            content: GamePlatformPage {
                 platform: GamePlatform::Gb,
                 mapper_cfgs,
                 cfgs: &data.cfgs,
@@ -409,7 +409,7 @@ pub fn build_site() -> Site {
         Ok(Page {
             title: "Game Boy Color cartridges".into(),
             section: SiteSection::Cartridges(Some(GamePlatform::Gbc)),
-            content: PlatformCartridges {
+            content: GamePlatformPage {
                 platform: GamePlatform::Gbc,
                 mapper_cfgs,
                 cfgs: &data.cfgs,
@@ -422,7 +422,7 @@ pub fn build_site() -> Site {
         Ok(Page {
             title: "Game Boy Advance cartridges".into(),
             section: SiteSection::Cartridges(Some(GamePlatform::Gba)),
-            content: PlatformCartridges {
+            content: GamePlatformPage {
                 platform: GamePlatform::Gba,
                 mapper_cfgs,
                 cfgs: &data.cfgs,
@@ -449,7 +449,7 @@ pub fn build_site() -> Site {
                 let page = Page {
                     title: Cow::Owned(cfg.name.clone()),
                     section: SiteSection::Cartridges(Some(cfg.platform)),
-                    content: Game {
+                    content: CartridgesByGame {
                         cfg: &cfg,
                         submissions,
                     }
@@ -514,12 +514,19 @@ pub fn build_site() -> Site {
                         natural_lexical_cmp(&a.metadata.cfg.name, &b.metadata.cfg.name)
                             .then_with(|| a.sort_group.as_ref().cmp(&b.sort_group.as_ref()))
                     })
+                    .chunk_by(|&s| &s.code);
+
+                let submissions = submissions
+                    .into_iter()
+                    .filter_map(|(code, chunk)| {
+                        Some((data.cfgs.get(code)?, chunk.collect::<Vec<_>>()))
+                    })
                     .collect::<Vec<_>>();
                 let path = SitePath(vec![Cow::Borrowed("cartridges"), Cow::Borrowed(cfg.id)]);
                 let page = Page {
                     title: Cow::Borrowed(cfg.name),
                     section: SiteSection::Cartridges(None),
-                    content: Mapper { cfg, submissions }.render(),
+                    content: MapperPage { cfg, submissions }.render(),
                 };
                 (path, page)
             })

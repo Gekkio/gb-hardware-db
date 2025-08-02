@@ -16,12 +16,12 @@ use crate::{
 };
 
 #[derive(Clone, Debug)]
-pub struct Game<'a> {
+pub struct CartridgesByGame<'a> {
     pub cfg: &'a GameConfig,
     pub submissions: Vec<&'a LegacyCartridgeSubmission>,
 }
 
-impl<'a> Render for Game<'a> {
+impl<'a> Render for CartridgesByGame<'a> {
     fn render(&self) -> Markup {
         let parts = self
             .submissions
@@ -51,23 +51,20 @@ impl<'a> Render for Game<'a> {
             article {
                 h2 { (self.cfg.name) }
                 @if let Some(href) = no_intro_href {
-                    span {
-                        "🔗 "
-                        a href=(href) {
-                            "Game entry in No-Intro Dat-o-Matic"
-                        }
+                    a.external href=(href) {
+                        "Game entry in No-Intro Dat-o-Matic"
                     }
                 }
                 table {
                     thead {
                         tr {
-                            th { "Entry" }
-                            th { "Release" }
-                            th { "Board" }
+                            th scope="col" { "Entry" }
+                            th scope="col" { "Release" }
+                            th scope="col" { "Board" }
                             @for (designator, role) in &parts {
-                                th { (role.display()) " (" (designator.as_str()) ")" }
+                                th scope="col" { (role.display()) " (" (designator.as_str()) ")" }
                             }
-                            th {"Photos" }
+                            th scope="col" {"Photos" }
                         }
                     }
                     tbody {
@@ -96,7 +93,12 @@ fn render_submission(
                 submission,
                 show_contributor: true,
             })
-            td { (Optional(metadata.code.as_ref())) }
+            td {
+                div { (Optional(metadata.code.as_ref())) }
+                @if let Some(stamp) = &metadata.stamp {
+                    div { "Stamp: " (stamp) }
+                }
+            }
             td {
                 div { (board.kind) }
                 div { (Optional(board.date_code.calendar())) }

@@ -8,16 +8,16 @@ use lexical_sort::natural_lexical_cmp;
 use maud::{Markup, Render, html};
 use std::{borrow::Cow, collections::BTreeMap};
 
-use crate::{LegacyPhotos, legacy::LegacyCartridgeSubmission, template::mapper::MapperCfg};
+use crate::{LegacyPhotos, legacy::LegacyCartridgeSubmission, template::mapper_page::MapperCfg};
 
-pub struct PlatformCartridges<'a> {
+pub struct GamePlatformPage<'a> {
     pub platform: GamePlatform,
     pub mapper_cfgs: &'a [MapperCfg],
     pub cfgs: &'a BTreeMap<String, GameConfig>,
     pub submissions: &'a [LegacyCartridgeSubmission],
 }
 
-impl<'a> Render for PlatformCartridges<'a> {
+impl<'a> Render for GamePlatformPage<'a> {
     fn render(&self) -> Markup {
         let mut per_game = Vec::new();
         for (code, cfg) in self.cfgs {
@@ -56,18 +56,29 @@ document.querySelectorAll('tr.empty').forEach((m) => {
                 button.jsonly onclick=( toggle_js ) hidden {
                     "Show only games with submissions"
                 }
-                table {
+                table.game-platform-page {
+                    colgroup {
+                        col;
+                        col;
+                        col;
+                        col;
+                        col;
+                        @if self.platform.has_mappers() {
+                            col;
+                        }
+                        col;
+                    }
                     thead {
                         tr {
-                            th { "Title" }
-                            th { "ROM ID" }
-                            th { "Year(s)" }
-                            th { "Release(s)" }
-                            th { "Board type(s)" }
+                            th scope="col" { "Title" }
+                            th scope="col" { "ROM ID" }
+                            th scope="col" { "Year(s)" }
+                            th scope="col" { "Release(s)" }
+                            th scope="col" { "Board type(s)" }
                             @if self.platform.has_mappers() {
-                                th { "Mapper(s)" }
+                                th scope="col" { "Mapper(s)" }
                             }
-                            th { "Submissions" }
+                            th scope="col" { "Submissions" }
                         }
                     }
                     tbody {
@@ -105,24 +116,22 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
     let photo_submissions = submissions
         .into_iter()
         .filter(|s| s.photos.front().is_some())
-        .take(1)
         .collect::<Vec<_>>();
     html! {
         tr.empty[submissions.len() == 0] {
             td.submission-list-item {
                 @if submissions.len() > 0 {
                     a.submission-list-item__link href={ "/cartridges/" (cfg.rom_id) } {
-                        @for submission in &photo_submissions {
-                            @let code = &submission.code;
-                            @let slug = &submission.slug;
-                            img
-                                src=(format!("/static/{code}/{slug}_thumbnail_80.jpg"))
-                                srcSet=(format!("/static/{code}/{slug}_thumbnail_50.jpg 50w, /static/{code}/{slug}_thumbnail_80.jpg 80w"))
-                                sizes="(min-width: 1000px) 80px, 50px"
-                                role="presentation";
-                        }
-                        @if photo_submissions.len() > 0 {
-                            br;
+                        div.submission-list-item__photos {
+                            @for submission in &photo_submissions {
+                                @let code = &submission.code;
+                                @let slug = &submission.slug;
+                                img
+                                    src=(format!("/static/{code}/{slug}_thumbnail_80.jpg"))
+                                    srcSet=(format!("/static/{code}/{slug}_thumbnail_50.jpg 50w, /static/{code}/{slug}_thumbnail_80.jpg 80w"))
+                                    sizes="(min-width: 1000px) 80px, 50px"
+                                    role="presentation";
+                            }
                         }
                         (cfg.name)
                     }
@@ -130,7 +139,13 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
                     (cfg.name)
                 }
             }
-            td { (cfg.rom_id) }
+            td {
+                @if submissions.len() > 0 {
+                    a href={ "/cartridges/" (cfg.rom_id) } { (cfg.rom_id) }
+                } @else {
+                    (cfg.rom_id)
+                }
+            }
             td { (multiline(years)) }
             td { (multiline(releases)) }
             td { (multiline(board_types)) }

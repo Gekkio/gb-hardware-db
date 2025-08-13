@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
+use strum::{EnumString, IntoStaticStr, VariantArray};
 
 use crate::{
     SubmissionIdentifier, SubmissionMetadata,
@@ -91,7 +92,18 @@ pub struct AgsShell {
     pub outlier: bool,
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    Eq,
+    PartialEq,
+    Deserialize,
+    Serialize,
+    VariantArray,
+    IntoStaticStr,
+    EnumString,
+)]
 pub enum AgsShellColor {
     Cobalt,
     Platinum,

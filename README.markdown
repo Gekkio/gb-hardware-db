@@ -49,6 +49,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * Miyako
 * Operratic
 * org
+* Perigeee
 * pokechu22
 * pyroesp
 * Red Vázquez

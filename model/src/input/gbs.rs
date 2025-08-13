@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 use serde::{Deserialize, Serialize};
+use strum::{EnumString, IntoStaticStr, VariantArray};
 
 use super::DefaultPhotoKind;
 use crate::{
@@ -59,7 +60,18 @@ pub struct GbsShell {
     pub outlier: bool,
 }
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq, Deserialize, Serialize)]
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    Eq,
+    PartialEq,
+    Deserialize,
+    Serialize,
+    VariantArray,
+    IntoStaticStr,
+    EnumString,
+)]
 pub enum GbsShellColor {
     Indigo,
     Black,

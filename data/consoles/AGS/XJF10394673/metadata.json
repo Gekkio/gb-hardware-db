@@ -1,0 +1,34 @@
+{
+  "slug": "XJF10394673",
+  "contributor": "Perigeee",
+  "shell": {
+    "color": "Cobalt",
+    "release_code": "C/AGS-JPN",
+    "serial": "XJF10394673"
+  },
+  "mainboard": {
+    "label": "C/AGS-CPU-11",
+    "number_pair": "1-4",
+    "stamp": "2746001",
+    "circled_letters": "FB",
+    "year": 2003,
+    "u1": {
+      "label": "CPU AGB B Ⓜ © 2002 Nintendo JAPAN ARM 0421 mB"
+    },
+    "u2": {
+      "label": "M68AS128 DL70N6 AANGM F6 TWN 8B 415"
+    },
+    "u3": {
+      "label": "AMP AGB IR3R60N 0422 N"
+    },
+    "u4": {
+      "label": "S6403 CU4D3 1973"
+    },
+    "u5": {
+      "label": "421 1581A"
+    },
+    "x1": {
+      "label": "4194 KSS 4FF"
+    }
+  }
+}

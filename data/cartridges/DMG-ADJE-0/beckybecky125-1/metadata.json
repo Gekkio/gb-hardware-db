@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ADJE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ADJE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-02",
+    "circled_letters": "RB",
+    "panel_position": "1",
+    "year": 1995,
+    "month": 8,
+    "u1": {
+      "label": "DMG-ADJE-0 S LH531HP2 JAPAN C1 9537 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9535 1 A"
+    }
+  }
+}

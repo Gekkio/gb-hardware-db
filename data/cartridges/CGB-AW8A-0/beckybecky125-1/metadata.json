@@ -1,0 +1,32 @@
+{
+  "code": "CGB-AW8A-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AW8A-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 2000,
+    "month": 4,
+    "u1": {
+      "label": "SEC KM23C16120DT CGB-AW8A-0 G2 K3N5C318GD"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 014 H94"
+    },
+    "u3": {
+      "label": "SANYO LC35256FM-70U JAPAN 0CU1G"
+    },
+    "u4": {
+      "label": "008 134A"
+    },
+    "battery": {
+      "label": "00-04"
+    }
+  }
+}

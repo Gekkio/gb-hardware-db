@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ZLE-2",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZL-USA-3",
+    "stamp": "00B"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "panel_position": "6",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-ZLE-2 E1 N-4001EJGW-J59 9834E7013"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9831 1 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9824B KOREA"
+    },
+    "u4": {
+      "label": "6129A 8R42"
+    },
+    "battery": {
+      "label": "98-05"
+    }
+  }
+}

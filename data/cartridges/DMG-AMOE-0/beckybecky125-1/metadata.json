@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AMOE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AMOE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "Y",
+    "panel_position": "4",
+    "year": 1996,
+    "month": 12,
+    "u1": {
+      "label": "DMG-AMOE-0 E1 N-4001EJGW-J58 9650K7009"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9649 3 A"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 646 107N"
+    },
+    "u4": {
+      "label": "6129A 6C29"
+    },
+    "battery": {
+      "label": "96-11"
+    }
+  }
+}

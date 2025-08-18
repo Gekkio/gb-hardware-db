@@ -1,0 +1,31 @@
+{
+  "code": "DMG-NYJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-NYJ"
+  },
+  "board": {
+    "label": "DMG-DECN-01",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1990,
+    "month": 10,
+    "u1": {
+      "label": "DMG-NYJ-0 S LH5308P9 JAPAN C1 9046 E"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9026BA005"
+    },
+    "u3": {
+      "label": "LH5168NF-10L SHARP JAPAN 9039 5 S"
+    },
+    "u4": {
+      "label": "0J5 26A"
+    },
+    "battery": {
+      "label": "90-10"
+    }
+  }
+}

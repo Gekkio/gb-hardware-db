@@ -182,6 +182,35 @@ pub static SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT: NomParser<GameMaskRom> = NomPar
     },
 };
 
+/// Sharp unknown mask ROM (glop top, 512 Kibit / 64 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_MASK_ROM_GLOP_TOP_28_512_KIBIT.parse("LR0G1701 DMG-YOJ-0 92051").is_ok());
+/// ```
+pub static SHARP_MASK_ROM_GLOP_TOP_28_512_KIBIT: NomParser<GameMaskRom> = NomParser {
+    name: "Sharp mask ROM",
+    f: |input| {
+        (
+            tag("LR0G1701"),
+            char(' '),
+            dmg_rom_code(),
+            char(' '),
+            sharp_year2_week2,
+            digits(1),
+        )
+            .map(|(_, _, rom_id, _, date_code, _)| GameMaskRom {
+                rom_id: String::from(rom_id),
+                rom_type: GameRomType::GlopTop,
+                manufacturer: Some(Manufacturer::Sharp),
+                chip_type: None,
+                mask_code: None,
+                date_code: Some(date_code),
+            })
+            .parse(input)
+    },
+};
+
 fn lh53_ancient<'a, E: ParseError<&'a str>>(
     kind: Option<&'static str>,
     rom_type: GameRomType,
@@ -1400,6 +1429,7 @@ pub static SHARP_LH5168N: NomParser<GenericPart> = NomParser {
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::sharp::SHARP_LH5168NF.parse("LH5168NF-10L SHARP JAPAN 9039 5 S").is_ok());
 /// assert!(parser::sharp::SHARP_LH5168NF.parse("LH5168NFA-10L SHARP JAPAN 9103 3 SA").is_ok());
 /// assert!(parser::sharp::SHARP_LH5168NF.parse("LH5168NFB-10L SHARP JAPAN 9147 DC").is_ok());
 /// ```
@@ -1407,6 +1437,7 @@ pub static SHARP_LH5168NF: NomParser<GenericPart> = NomParser {
     name: "Sharp LH5168NF",
     f: |input| {
         alt((
+            lh51_52("LH5168NF-10L", recognize((digits(1), tag(" "), uppers(1)))),
             lh51_52("LH5168NFA-10L", recognize((digits(1), tag(" "), uppers(2)))),
             lh51_52("LH5168NFB-10L", recognize(uppers(2))),
         ))

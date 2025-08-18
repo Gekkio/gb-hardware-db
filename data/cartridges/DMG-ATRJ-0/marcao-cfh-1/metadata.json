@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ATRJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ATRJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "Y",
+    "panel_position": "6",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-ATRJ-0 D1 N-2001EUGW-J17 9649K7001"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9648 7 A"
+    },
+    "u3": {
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N647 03 BC"
+    },
+    "u4": {
+      "label": "6129A 6C29"
+    },
+    "battery": {
+      "label": "96-11"
+    }
+  }
+}

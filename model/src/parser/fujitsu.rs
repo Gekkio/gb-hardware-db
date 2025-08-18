@@ -85,7 +85,7 @@ fn mask_rom<'a, E: ParseError<&'a str>>(
         char(' '),
         tag(rom_type.as_str()),
         char(' '),
-        digits(1).and(uppers(1)).and(alnum_uppers(1)), // mask_code?
+        digits(1).and(alnum_uppers(1)).and(alnum_uppers(1)), // mask_code?
         char(' '),
         tag("AK"),
         char(' '),
@@ -121,6 +121,7 @@ pub static FUJITSU_MASK_ROM_SOP_32_2_MIBIT: NomParser<GameMaskRom> = NomParser {
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT.parse("JAPAN DMG-WJA-0 E1 3NH AK 9401 R17").is_ok());
+/// assert!(parser::fujitsu::FUJITSU_MASK_ROM_SOP_32_4_MIBIT.parse("JAPAN DMG-ZLJ-0 E1 58T AK 9321 R25").is_ok());
 /// ```
 pub static FUJITSU_MASK_ROM_SOP_32_4_MIBIT: NomParser<GameMaskRom> = NomParser {
     name: "Fujitsu mask ROM",

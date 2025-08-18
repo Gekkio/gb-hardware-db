@@ -1,0 +1,29 @@
+{
+  "code": "DMG-HDJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-HDJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-GDAN-02",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 1991,
+    "month": 4,
+    "u1": {
+      "label": "DMG-HDJ-0 C1 N-1001EGW-J44 9116E9023"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9113CA008"
+    },
+    "u3": {
+      "label": "145 26A"
+    },
+    "battery": {
+      "label": "91-05"
+    }
+  }
+}

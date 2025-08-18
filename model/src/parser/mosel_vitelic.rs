@@ -22,13 +22,14 @@ use super::{
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::mosel_vitelic::MOSEL_VITELIC_LH52B256N.parse("LH52B256NA-10PLL MOSEL-VITELIC JAPAN N643 0T BB").is_ok());
+/// assert!(parser::mosel_vitelic::MOSEL_VITELIC_LH52B256N.parse("LH52B256NB-10PLL MOSEL-VITELIC JAPAN N539 0W BA").is_ok());
 /// assert!(parser::mosel_vitelic::MOSEL_VITELIC_LH52B256N.parse("LH52B256NZ-10PLL MOSEL-VITELIC JAPAN N636 06 CB").is_ok());
 /// ```
 pub static MOSEL_VITELIC_LH52B256N: NomParser<GenericPart> = NomParser {
     name: "Mosel-Vitelic LH52B256N",
     f: |input| {
         lines4(
-            recognize((tag("LH52B256N"), one_of("AZ"), tag("-10PLL"))),
+            recognize((tag("LH52B256N"), one_of("ABZ"), tag("-10PLL"))),
             tag("MOSEL-VITELIC"),
             tag("JAPAN"),
             delimited(

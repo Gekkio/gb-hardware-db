@@ -10,8 +10,8 @@ use crate::{
         flash_tsop_i_32_3v3, flash_tsop_i_40_5v, fram_sop_28_3v3, gb_mask_rom_glop_top_28_5v,
         gb_mask_rom_qfp_44_5v, gb_mask_rom_sop_32_5v, gb_mask_rom_sop_44_5v,
         gb_mask_rom_tsop_i_32_5v, gb_mask_rom_tsop_ii_44_5v, hex_inverter, huc1_qfp32, huc3_qfp48,
-        line_decoder, mbc1_sop24, mbc2_sop28, mbc3_qfp32, mbc5_qfp32, mbc6_qfp64, mbc7_qfp56,
-        mbc30_qfp32, mmm01_qfp32, rtc_crystal, rtc_sop_8, rtc_sop_20, sram_sop_28_3v3,
+        line_decoder, mbc1_glop_top, mbc1_sop24, mbc2_sop28, mbc3_qfp32, mbc5_qfp32, mbc6_qfp64,
+        mbc7_qfp56, mbc30_qfp32, mmm01_qfp32, rtc_crystal, rtc_sop_8, rtc_sop_20, sram_sop_28_3v3,
         sram_sop_28_5v, sram_sop_32_5v, sram_tsop_i_28_5v, supervisor_reset, toshiba, unknown,
     },
 };
@@ -122,6 +122,7 @@ pub enum BoardConfig {
     AgbY11,
     Tama,
     Aaac,
+    Bbac,
     CgbA32,
     DmgA02,
     DmgA03,
@@ -268,6 +269,13 @@ impl BoardConfig {
             BoardConfig::Aaac => match designator {
                 // glop top ROM, 28 pads
                 D::U1 => Some(BoardPart::Rom(gb_mask_rom_glop_top_28_5v())),
+                _ => None,
+            },
+            BoardConfig::Bbac => match designator {
+                // glop top ROM, 28 pads
+                D::U1 => Some(BoardPart::Rom(gb_mask_rom_glop_top_28_5v())),
+                // glop top MBC1B
+                D::U2 => Some(BoardPart::Mapper(mbc1_glop_top())),
                 _ => None,
             },
             BoardConfig::CgbA32 => match designator {
@@ -664,6 +672,7 @@ impl BoardConfig {
             BoardConfig::AgbY11 => None,
             BoardConfig::Tama => None,
             BoardConfig::Aaac => None,
+            BoardConfig::Bbac => None,
             BoardConfig::CgbA32 => Some(BatteryType::Cr1616),
             BoardConfig::DmgA02 => Some(BatteryType::Cr1616),
             BoardConfig::DmgA03 => Some(BatteryType::Cr1616),
@@ -722,6 +731,7 @@ impl BoardConfig {
             BoardConfig::AgbY11 => "AGB-Y11",
             BoardConfig::Tama => "0200309E4",
             BoardConfig::Aaac => "AAAC",
+            BoardConfig::Bbac => "BBAC",
             BoardConfig::CgbA32 => "CGB-A32",
             BoardConfig::DmgA02 => "DMG-A02",
             BoardConfig::DmgA03 => "DMG-A03",
@@ -818,6 +828,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("AGB-Y11", BoardConfig::AgbY11);
     m.insert("0200309E4-01", BoardConfig::Tama);
     m.insert("AAAC S", BoardConfig::Aaac);
+    m.insert("BBAC S", BoardConfig::Bbac);
     m.insert("CGB-A32", BoardConfig::CgbA32);
     m.insert("DMG-A02", BoardConfig::DmgA02);
     m.insert("DMG-A03", BoardConfig::DmgA03);

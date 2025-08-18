@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AYLJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYLJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "panel_position": "3",
+    "year": 1996,
+    "month": 10,
+    "u1": {
+      "label": "S9642-M MX23C4002-20 DMG-AYLJ-0 E1 42219K"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9641 7 A"
+    }
+  }
+}

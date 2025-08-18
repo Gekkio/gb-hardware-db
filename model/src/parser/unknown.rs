@@ -217,29 +217,6 @@ pub static UNKNOWN_OXY_U5: NomParser<GenericPart> = NomParser {
     },
 };
 
-/// Unknown MBC1B (SOP-24)
-///
-/// ```
-/// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::unknown::UNKNOWN_MBC1B.parse("Nintendo DMG MBC1B 8940AJ").is_ok());
-/// ```
-pub static UNKNOWN_MBC1B: NomParser<Mapper> = NomParser {
-    name: "Unknown MBC1B",
-    f: |input| {
-        lines3(
-            tag("Nintendo"),
-            tag("DMG MBC1B"),
-            terminated(year2_week2, tag("AJ")),
-        )
-        .map(|(_, _, date_code)| Mapper {
-            kind: MapperChip::Mbc1B,
-            manufacturer: None,
-            date_code: Some(date_code),
-        })
-        .parse(input)
-    },
-};
-
 /// Unknown MMM01 (QFP-32)
 ///
 /// ```

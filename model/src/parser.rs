@@ -4,6 +4,7 @@
 
 use log::warn;
 use nom::bytes::streaming::tag;
+use nom::combinator::fail;
 use nom::sequence::separated_pair;
 use nom::{IResult, Parser as _, combinator::all_consuming};
 use nom_language::error::VerboseError;
@@ -890,7 +891,11 @@ pub fn agb_mask_rom_tsop_ii_44_3v3() -> &'static impl LabelParser<GameMaskRom> {
 }
 
 pub fn gb_mask_rom_glop_top_28_5v() -> &'static impl LabelParser<GameMaskRom> {
-    &sharp::SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT
+    multi_parser!(
+        GameMaskRom,
+        &sharp::SHARP_MASK_ROM_GLOP_TOP_28_256_KIBIT,
+        &sharp::SHARP_MASK_ROM_GLOP_TOP_28_512_KIBIT
+    )
 }
 
 pub fn gb_mask_rom_sop_32_5v() -> &'static impl LabelParser<GameMaskRom> {
@@ -1080,6 +1085,17 @@ pub struct Mapper {
     pub date_code: Option<PartDateCode>,
 }
 
+pub fn mbc1_glop_top() -> &'static impl LabelParser<Mapper> {
+    static MBC1_GLOP_TOP: NomParser<Mapper> = NomParser {
+        name: "MBC1 glop top",
+        f: |input| {
+            // No label -> can't parse anything
+            fail().parse(input)
+        },
+    };
+    &MBC1_GLOP_TOP
+}
+
 pub fn mbc1_sop24() -> &'static impl LabelParser<Mapper> {
     multi_parser!(
         Mapper,
@@ -1090,7 +1106,6 @@ pub fn mbc1_sop24() -> &'static impl LabelParser<Mapper> {
         &nec::NEC_MBC1B,
         &panasonic::PANASONIC_MBC1B,
         &motorola::MOTOROLA_MBC1B,
-        &unknown::UNKNOWN_MBC1B,
     )
 }
 

@@ -1,0 +1,22 @@
+{
+  "code": "DMG-AS2J-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AS2J-JPN"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1995,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AS2J-0 S LH534MNV JAPAN E1 9506 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9423BA011"
+    }
+  }
+}

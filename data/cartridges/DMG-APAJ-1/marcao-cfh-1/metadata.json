@@ -1,0 +1,31 @@
+{
+  "code": "DMG-APAJ-1",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APAJ-JPN"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1997,
+    "month": 2,
+    "u1": {
+      "label": "DMG-APAJ-1 E1 N-4001EJGW-J45 9705K7046"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'D5"
+    },
+    "u3": {
+      "label": "LH52B256NB-10PLL MOSEL-VITELIC JAPAN N539 0W BA"
+    },
+    "u4": {
+      "label": "6129A 7194"
+    },
+    "battery": {
+      "label": "96-11"
+    }
+  }
+}

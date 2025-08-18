@@ -1,0 +1,22 @@
+{
+  "code": "DMG-KUJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KUJ"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1990,
+    "month": 11,
+    "u1": {
+      "label": "DMG-KUJ-0 C1 N-1001EGW-J19 9044E9011"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9022BA036"
+    }
+  }
+}

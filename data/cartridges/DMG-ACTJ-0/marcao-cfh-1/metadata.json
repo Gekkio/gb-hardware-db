@@ -1,0 +1,23 @@
+{
+  "code": "DMG-ACTJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ACTJ-JPN",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "Y",
+    "panel_position": "2",
+    "year": 1995,
+    "month": 7,
+    "u1": {
+      "label": "DMG-ACTJ-0 S LH534MYJ JAPAN E1 9532 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9531 7 A"
+    }
+  }
+}

@@ -479,6 +479,8 @@ impl Package {
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B N 9019BA012").is_ok());
 /// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B N9542B3004").is_ok());
+/// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B N9004AD").is_ok());
+/// assert!(parser::nec::NEC_MBC1B.parse("Nintendo DMG MBC1B 8940AJ").is_ok());
 /// ```
 pub static NEC_MBC1B: NomParser<Mapper> = NomParser {
     name: "NEC MBC1B",
@@ -486,7 +488,11 @@ pub static NEC_MBC1B: NomParser<Mapper> = NomParser {
         lines3(
             tag("Nintendo"),
             preceded(tag("DMG "), tag("MBC1B")),
-            preceded(tag("N ").or(tag("N")), date_and_lot_code),
+            alt((
+                terminated(year2_week2, uppers(2)),
+                delimited(tag("N"), year2_week2, uppers(2)),
+                preceded(tag("N ").or(tag("N")), date_and_lot_code),
+            )),
         )
         .map(|(_, _, date_code)| Mapper {
             kind: MapperChip::Mbc1B,

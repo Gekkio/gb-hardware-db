@@ -1,0 +1,28 @@
+{
+  "code": "DMG-AEDJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AEDJ-JPN"
+  },
+  "board": {
+    "label": "DMG-A08-01",
+    "circled_letters": "MB",
+    "panel_position": "5",
+    "year": 1999,
+    "month": 11,
+    "u1": {
+      "label": "DMG-AEDJ-0 G2 N-16019WG5-M18 9946K7002"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9942 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9948 5 EB"
+    },
+    "u4": {
+      "label": "944 134A"
+    }
+  }
+}

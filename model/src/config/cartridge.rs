@@ -944,7 +944,9 @@ impl PartRole {
     }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, strum::VariantArray)]
+#[derive(
+    Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, strum::VariantArray, strum::EnumString,
+)]
 pub enum PartDesignator {
     U1,
     U2,

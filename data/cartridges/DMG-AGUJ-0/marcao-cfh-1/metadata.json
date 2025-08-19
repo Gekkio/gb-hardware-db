@@ -1,0 +1,31 @@
+{
+  "code": "DMG-AGUJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AGUJ-JPN"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "S985049-M MX23C8003-20 DMG-AGUJ-0 F1 1A3235A1"
+    },
+    "u2": {
+      "label": "MBC5 P-1 850U2L"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9847 7 CB"
+    },
+    "u4": {
+      "label": "849 134A"
+    },
+    "battery": {
+      "label": "98-11"
+    }
+  }
+}

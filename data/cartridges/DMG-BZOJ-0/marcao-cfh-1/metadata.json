@@ -1,0 +1,32 @@
+{
+  "code": "DMG-BZOJ-0",
+  "slug": "marcao-cfh-1",
+  "contributor": "marcao_cfh",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BZOJ-JPN",
+    "stamp": "01"
+  },
+  "board": {
+    "label": "DMG-A03-10",
+    "circled_letters": "CM",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 9,
+    "u1": {
+      "label": "S022023-M MX23C3203-12A2 DMG-BZOJ-0 H2 2D877900"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 206 H76"
+    },
+    "u3": {
+      "label": "hynix 0210A HY62WT081ED70C KOREA"
+    },
+    "u4": {
+      "label": "6735 1B01"
+    },
+    "battery": {
+      "label": "01-11"
+    }
+  }
+}

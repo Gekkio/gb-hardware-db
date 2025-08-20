@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AKGE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKGE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "K",
+    "panel_position": "1",
+    "year": 1997,
+    "month": 12,
+    "u1": {
+      "label": "DMG-AKGE-0 S LH5S4MNP JAPAN E1 9815 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'19"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9814 5 EB"
+    },
+    "u4": {
+      "label": "6129A 8274"
+    },
+    "battery": {
+      "label": "97-12"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ECJ-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ECJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1992,
+    "month": 5,
+    "u1": {
+      "label": "JAPAN DMG-ECJ-0 D1 2N2 AK 9220 R05"
+    },
+    "u2": {
+      "label": "DMG MBC2-A Nintendo P 2'13"
+    },
+    "u3": {
+      "label": "1L51 26A"
+    },
+    "battery": {
+      "label": "92-02"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "code": "DMG-W2E-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-W2-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "6",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-W2E-0 S LH532MN7 JAPAN D1 9750 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'N5"
+    }
+  }
+}

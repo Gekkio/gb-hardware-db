@@ -26,7 +26,8 @@
       "label": "943 134A"
     },
     "battery": {
-      "label": "99-11"
+      "label": "99-11",
+      "manufacturer": "Panasonic"
     }
   }
 }

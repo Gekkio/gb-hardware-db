@@ -1,0 +1,23 @@
+{
+  "code": "DMG-RWE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-RW-USA-1",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1996,
+    "month": 7,
+    "u1": {
+      "label": "DMG-RWE-0 S LH532MVP JAPAN D1 9630 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'69"
+    }
+  }
+}

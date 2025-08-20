@@ -26,7 +26,8 @@
       "label": "008 134A"
     },
     "battery": {
-      "label": "00-04"
+      "label": "00-04",
+      "manufacturer": "Maxell"
     }
   }
 }

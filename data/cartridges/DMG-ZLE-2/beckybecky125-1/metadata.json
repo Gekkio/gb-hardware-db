@@ -26,7 +26,8 @@
       "label": "6129A 8R42"
     },
     "battery": {
-      "label": "98-05"
+      "label": "98-05",
+      "manufacturer": "Sony"
     }
   }
 }

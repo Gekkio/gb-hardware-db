@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AKXE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKXE-USA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-DECN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "1",
+    "year": 1996,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AKXE-0 S LH534MWG JAPAN E1 9612 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'22"
+    },
+    "u3": {
+      "label": "XLJ6265BF-10SL 609 167N"
+    },
+    "u4": {
+      "label": "607 26A"
+    },
+    "battery": {
+      "label": "96-02"
+    }
+  }
+}

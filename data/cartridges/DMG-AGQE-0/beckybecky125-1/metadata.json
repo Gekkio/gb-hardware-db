@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AGQE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AGQE-USA",
+    "stamp": "09"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "MB",
+    "panel_position": "2",
+    "year": 1999,
+    "month": 10,
+    "u1": {
+      "label": "C994349-M MX23C8003-20 DMG-AGQE-0 F1 1B1927A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 940 H83"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9945 1 EB"
+    },
+    "u4": {
+      "label": "6735 9998"
+    },
+    "battery": {
+      "label": "99-10"
+    }
+  }
+}

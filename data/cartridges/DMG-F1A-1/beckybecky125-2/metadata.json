@@ -1,0 +1,29 @@
+{
+  "code": "DMG-F1A-1",
+  "slug": "beckybecky125-2",
+  "contributor": "beckybecky125",
+  "index": 2,
+  "shell": {
+    "code": "DMG-F1-USA",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "DMG-GDAN-03",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1991,
+    "month": 6,
+    "u1": {
+      "label": "DMG-F1A-1 C1 N-1001EAGW-J02 9138K9003"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC2A N 9130CA018"
+    },
+    "u3": {
+      "label": "1951 26A"
+    },
+    "battery": {
+      "label": "91-09"
+    }
+  }
+}

@@ -269,7 +269,11 @@ fn lh53_new<'a, E: ParseError<&'a str>>(
             char(' '),
             consumed(terminated(model, alnum_uppers(2))),
         ),
-        separated_pair(tag("JAPAN"), char(' '), tag(rom_type.as_str())),
+        separated_pair(
+            tag("JAPAN"),
+            char(' '),
+            tag(rom_type.as_str()).and(opt(tag(" SP"))),
+        ),
         separated_pair(sharp_year2_week2, char(' '), alphas(1)),
     )
     .map(
@@ -503,10 +507,17 @@ pub static SHARP_LH5316XXX: NomParser<GameMaskRom> = NomParser {
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_LH5332XXX.parse("CGB-AYQE-0 S LHMN5MTF JAPAN H2 0010 D").is_ok());
+/// assert!(parser::sharp::SHARP_LH5332XXX.parse("DMG-AYKJ-0 S LH5S5WT1 JAPAN H2 SP 9926 D").is_ok());
 /// ```
 pub static SHARP_LH5332XXX: NomParser<GameMaskRom> = NomParser {
     name: "Sharp LH5332???",
-    f: |input| lh53_new(value(None, tag("LHMN5M")), GameRomType::H2).parse(input),
+    f: |input| {
+        lh53_new(
+            value(None, alt((tag("LHMN5M"), tag("LH5S5W")))),
+            GameRomType::H2,
+        )
+        .parse(input)
+    },
 };
 
 fn sgb_rom<'a, E: ParseError<&'a str>>(

@@ -164,6 +164,7 @@ pub enum BoardConfig {
     DmgUedt,
     DmgUfdt,
     DmgUgdu,
+    DmgZ01,
     DmgZ02,
     DmgZ03,
     DmgZ04,
@@ -641,6 +642,19 @@ impl BoardConfig {
                 D::X1 => Some(BoardPart::Crystal(rtc_crystal())),
                 _ => None,
             },
+            BoardConfig::DmgZ01 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => Some(BoardPart::Rom(gb_mask_rom_tsop_ii_44_5v())),
+                // QFP-32 MBC5
+                D::U2 => Some(BoardPart::Mapper(mbc5_qfp32())),
+                // SOP-28 RAM
+                D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
+                // SOP-8 MM1134A
+                D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
+                // SSOP-8
+                D::U5 => Some(BoardPart::LineDecoder(line_decoder())),
+                _ => None,
+            },
             BoardConfig::DmgZ02 => match designator {
                 // SOP-32 ROM
                 D::U1 => Some(BoardPart::Rom(gb_mask_rom_sop_32_5v())),
@@ -740,6 +754,7 @@ impl BoardConfig {
             BoardConfig::DmgUedt => Some(BatteryType::Cr2025),
             BoardConfig::DmgUfdt => Some(BatteryType::Cr2025),
             BoardConfig::DmgUgdu => Some(BatteryType::Cr2025),
+            BoardConfig::DmgZ01 => Some(BatteryType::Cr1616),
             BoardConfig::DmgZ02 => Some(BatteryType::Cr1616),
             BoardConfig::DmgZ03 => Some(BatteryType::Cr1616),
             BoardConfig::DmgZ04 => Some(BatteryType::Cr1616),
@@ -802,6 +817,7 @@ impl BoardConfig {
             BoardConfig::DmgUedt => "DMG-UEDT",
             BoardConfig::DmgUfdt => "DMG-UFDT",
             BoardConfig::DmgUgdu => "DMG-UGDU",
+            BoardConfig::DmgZ01 => "DMG-Z01",
             BoardConfig::DmgZ02 => "DMG-Z02",
             BoardConfig::DmgZ03 => "DMG-Z03",
             BoardConfig::DmgZ04 => "DMG-Z04",
@@ -904,6 +920,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("DMG-UEDT", BoardConfig::DmgUedt);
     m.insert("DMG-UFDT", BoardConfig::DmgUfdt);
     m.insert("DMG-UGDU", BoardConfig::DmgUgdu);
+    m.insert("DMG-Z01", BoardConfig::DmgZ01);
     m.insert("DMG-Z02", BoardConfig::DmgZ02);
     m.insert("DMG-Z03", BoardConfig::DmgZ03);
     m.insert("DMG-Z04", BoardConfig::DmgZ04);

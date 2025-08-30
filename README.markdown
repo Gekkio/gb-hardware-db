@@ -49,6 +49,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * MelonGx
 * Missingno_force
 * Miyako
+* olDirdey
 * Operratic
 * org
 * Perigeee

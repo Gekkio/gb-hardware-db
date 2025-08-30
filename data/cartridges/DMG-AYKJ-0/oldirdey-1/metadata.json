@@ -1,0 +1,28 @@
+{
+  "code": "DMG-AYKJ-0",
+  "slug": "oldirdey-1",
+  "contributor": "olDirdey",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AYKJ-JPN"
+  },
+  "board": {
+    "label": "DMG-Z01-01",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1999,
+    "month": 6,
+    "u1": {
+      "label": "DMG-AYKJ-0 S LH5S5WT1 JAPAN H2 SP 9926 D"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP A9846 1 CB"
+    },
+    "u4": {
+      "label": "915 134A"
+    },
+    "u5": {
+      "label": "7W139 9F"
+    }
+  }
+}

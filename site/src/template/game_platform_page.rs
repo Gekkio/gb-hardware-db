@@ -136,6 +136,7 @@ fn render_game(cfg: &GameConfig, submissions: &[&LegacyCartridgeSubmission]) -> 
                                     src=(format!("/static/{code}/{slug}_thumbnail_80.jpg"))
                                     srcSet=(format!("/static/{code}/{slug}_thumbnail_50.jpg 50w, /static/{code}/{slug}_thumbnail_80.jpg 80w"))
                                     sizes="(min-width: 1000px) 80px, 50px"
+                                    loading="lazy"
                                     role="presentation";
                             }
                         }

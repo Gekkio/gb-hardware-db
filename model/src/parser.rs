@@ -913,7 +913,7 @@ pub fn gb_mask_rom_sop_32_5v() -> &'static impl LabelParser<GameMaskRom> {
         &macronix::MACRONIX_MX23C8003,
         &macronix::MACRONIX_MX23C8005,
         &oki::OKI_MSM534011,
-        &oki::OKI_MSM538011,
+        &oki::OKI_MSM538011_SOP_32,
         &nec::NEC_UPD23C1001E,
         &nec::NEC_UPD23C2001E,
         &nec::NEC_UPD23C4001E,
@@ -940,6 +940,7 @@ pub fn gb_mask_rom_tsop_i_32_5v() -> &'static impl LabelParser<GameMaskRom> {
         GameMaskRom,
         &sharp::SHARP_LH534XXXS,
         &sharp::SHARP_LH538XXXS,
+        &oki::OKI_MSM538011_TSOP_I_32,
         &macronix::MACRONIX_MX23C8006,
     )
 }

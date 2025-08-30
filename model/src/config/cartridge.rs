@@ -131,7 +131,9 @@ pub enum BoardConfig {
     DmgA07,
     DmgA08,
     DmgA09,
+    DmgA10,
     DmgA11,
+    DmgA12,
     DmgA14,
     DmgA15,
     DmgA16,
@@ -145,6 +147,7 @@ pub enum BoardConfig {
     DmgBfan,
     DmgDecn,
     DmgDedn,
+    DmgDfcn,
     DmgDgcu,
     DmgGdan,
     DmgKecn,
@@ -350,7 +353,27 @@ impl BoardConfig {
                 D::U2 => Some(BoardPart::Mapper(mbc5_qfp32())),
                 _ => None,
             },
+            BoardConfig::DmgA10 => match designator {
+                // TSOP-I-32 ROM
+                D::U1 => Some(BoardPart::Rom(gb_mask_rom_tsop_i_32_5v())),
+                // QFP-32 MBC5
+                D::U2 => Some(BoardPart::Mapper(mbc5_qfp32())),
+                // MOT1 => motor
+                _ => None,
+            },
             BoardConfig::DmgA11 => match designator {
+                // TSOP-II-44 ROM
+                D::U1 => Some(BoardPart::Rom(gb_mask_rom_tsop_ii_44_5v())),
+                // QFP-32 MBC5
+                D::U2 => Some(BoardPart::Mapper(mbc5_qfp32())),
+                // SOP-28 RAM
+                D::U3 => Some(BoardPart::Ram(sram_sop_28_5v())),
+                // SOP-8 MM1134A
+                D::U4 => Some(BoardPart::SupervisorReset(supervisor_reset())),
+                // MOT1 => motor
+                _ => None,
+            },
+            BoardConfig::DmgA12 => match designator {
                 // TSOP-II-44 ROM
                 D::U1 => Some(BoardPart::Rom(gb_mask_rom_tsop_ii_44_5v())),
                 // QFP-32 MBC5
@@ -448,7 +471,10 @@ impl BoardConfig {
                 D::U2 => Some(BoardPart::Mapper(mbc1_sop24())),
                 _ => None,
             },
-            BoardConfig::DmgDecn | BoardConfig::DmgDedn | BoardConfig::DmgMcDfcn => {
+            BoardConfig::DmgDecn
+            | BoardConfig::DmgDfcn
+            | BoardConfig::DmgDedn
+            | BoardConfig::DmgMcDfcn => {
                 match designator {
                     // SOP-32 ROM
                     D::U1 => Some(BoardPart::Rom(gb_mask_rom_sop_32_5v())),
@@ -681,7 +707,9 @@ impl BoardConfig {
             BoardConfig::DmgA07 => None,
             BoardConfig::DmgA08 => Some(BatteryType::Cr1616),
             BoardConfig::DmgA09 => None,
+            BoardConfig::DmgA10 => None,
             BoardConfig::DmgA11 => Some(BatteryType::Cr1616),
+            BoardConfig::DmgA12 => Some(BatteryType::Cr1616),
             BoardConfig::DmgA14 => Some(BatteryType::Cr2025),
             BoardConfig::DmgA15 => Some(BatteryType::Cr1616),
             BoardConfig::DmgA16 => Some(BatteryType::Cr2025),
@@ -695,6 +723,7 @@ impl BoardConfig {
             BoardConfig::DmgBfan => None,
             BoardConfig::DmgDecn => Some(BatteryType::Cr1616),
             BoardConfig::DmgDedn => Some(BatteryType::Cr1616),
+            BoardConfig::DmgDfcn => Some(BatteryType::Cr1616),
             BoardConfig::DmgDgcu => Some(BatteryType::Cr1616),
             BoardConfig::DmgGdan => Some(BatteryType::Cr1616),
             BoardConfig::DmgKecn => Some(BatteryType::Cr2025),
@@ -740,7 +769,9 @@ impl BoardConfig {
             BoardConfig::DmgA07 => "DMG-A07",
             BoardConfig::DmgA08 => "DMG-A08",
             BoardConfig::DmgA09 => "DMG-A09",
+            BoardConfig::DmgA10 => "DMG-A10",
             BoardConfig::DmgA11 => "DMG-A11",
+            BoardConfig::DmgA12 => "DMG-A12",
             BoardConfig::DmgA14 => "DMG-A14",
             BoardConfig::DmgA15 => "DMG-A15",
             BoardConfig::DmgA16 => "DMG-A16",
@@ -754,6 +785,7 @@ impl BoardConfig {
             BoardConfig::DmgBfan => "DMG-BFAN",
             BoardConfig::DmgDecn => "DMG-DECN",
             BoardConfig::DmgDedn => "DMG-DEDN",
+            BoardConfig::DmgDfcn => "DMG-DFCN",
             BoardConfig::DmgDgcu => "DMG-DGCU",
             BoardConfig::DmgGdan => "DMG-GDAN",
             BoardConfig::DmgKecn => "DMG-KECN",
@@ -837,7 +869,9 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("DMG-A07", BoardConfig::DmgA07);
     m.insert("DMG-A08", BoardConfig::DmgA08);
     m.insert("DMG-A09", BoardConfig::DmgA09);
+    m.insert("DMG-A10", BoardConfig::DmgA10);
     m.insert("DMG-A11", BoardConfig::DmgA11);
+    m.insert("DMG-A12", BoardConfig::DmgA12);
     m.insert("DMG-A14", BoardConfig::DmgA14);
     m.insert("DMG-A15", BoardConfig::DmgA15);
     m.insert("DMG-A16", BoardConfig::DmgA16);
@@ -853,6 +887,7 @@ fn create_map() -> HashMap<&'static str, BoardConfig> {
     m.insert("DMG-DECN", BoardConfig::DmgDecn);
     m.insert("DMG-DECN(K)", BoardConfig::DmgDecn);
     m.insert("DMG-DEDN", BoardConfig::DmgDedn);
+    m.insert("DMG-DFCN", BoardConfig::DmgDfcn);
     m.insert("DMG-DGCU", BoardConfig::DmgDgcu);
     m.insert("DMG-GDAN", BoardConfig::DmgGdan);
     m.insert("DMG-KECN", BoardConfig::DmgKecn);

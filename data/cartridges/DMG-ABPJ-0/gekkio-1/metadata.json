@@ -1,0 +1,33 @@
+{
+  "code": "DMG-ABPJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ABPJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DFCN-01",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1996,
+    "month": 12,
+    "u1": {
+      "label": "DMG-ABPJ-0 S LH538MN7 JAPAN F1 9650 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9648 5 A"
+    },
+    "u3": {
+      "label": "LH5268ANF-10PLL MOSEL-VITELIC JAPAN N647 01 BC"
+    },
+    "u4": {
+      "label": "646 26A"
+    },
+    "battery": {
+      "label": "96-11",
+      "manufacturer": "Maxell"
+    }
+  }
+}

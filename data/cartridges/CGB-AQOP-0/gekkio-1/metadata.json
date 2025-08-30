@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AQOP-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AQOP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A09-01",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "CGB-AQOP-0 S LH537MYR JAPAN G2 0009 D"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AK50 A"
+    }
+  }
+}

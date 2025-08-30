@@ -1141,6 +1141,7 @@ pub static SHARP_MBC3A: NomParser<Mapper> = NomParser {
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
 /// assert!(parser::sharp::SHARP_MBC5.parse("MBC5 LZ9GB31 AL23 A").is_ok());
+/// assert!(parser::sharp::SHARP_MBC5.parse("MBC5 LZ9GB31 AK50 A").is_ok());
 /// ```
 pub static SHARP_MBC5: NomParser<Mapper> = NomParser {
     name: "Sharp MBC5",
@@ -1477,6 +1478,7 @@ pub static SHARP_LH5164AN: NomParser<GenericPart> = NomParser {
 fn sharp_year2<'a, E: ParseError<&'a str>>(input: &'a str) -> IResult<&'a str, Year, E> {
     map_opt(take(2_usize), |text| match text {
         "AA" => Some(Year::Full(2000)),
+        "AK" => Some(Year::Full(2000)),
         "AL" => Some(Year::Full(2001)),
         _ => match u16::from_str_radix(text, 10) {
             Ok(value @ 0..=87) => Some(Year::Full(value + 2000)),

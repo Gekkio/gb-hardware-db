@@ -95,12 +95,23 @@ pub static OKI_MSM534011: NomParser<GameMaskRom> = NomParser {
 ///
 /// ```
 /// use gbhwdb_model::parser::{self, LabelParser};
-/// assert!(parser::oki::OKI_MSM538011.parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
-/// assert!(parser::oki::OKI_MSM538011.parse("CGB-BJWP-0 F1 M538011E-4D 0475408").is_ok());
+/// assert!(parser::oki::OKI_MSM538011_SOP_32.parse("DMG-AM6J-0 F1 M538011E-36 9085401").is_ok());
+/// assert!(parser::oki::OKI_MSM538011_SOP_32.parse("CGB-BJWP-0 F1 M538011E-4D 0475408").is_ok());
 /// ```
-pub static OKI_MSM538011: NomParser<GameMaskRom> = NomParser {
+pub static OKI_MSM538011_SOP_32: NomParser<GameMaskRom> = NomParser {
     name: "OKI MSM538011",
     f: |input| gb("MS", "M538011E", GameRomType::F1).parse(input),
+};
+
+/// OKI MSM538011 (TSOP-I-32, 5V, 8 Mibit / 1 MiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::oki::OKI_MSM538011_TSOP_I_32.parse("CGB-VGRJ-0 F M538011E-42 9125401").is_ok());
+/// ```
+pub static OKI_MSM538011_TSOP_I_32: NomParser<GameMaskRom> = NomParser {
+    name: "OKI MSM538011",
+    f: |input| gb("MS", "M538011E", GameRomType::F).parse(input),
 };
 
 /// OKI MR531614 (TSOP-II-44, 5V, 16 Mibit / 2 MiB)

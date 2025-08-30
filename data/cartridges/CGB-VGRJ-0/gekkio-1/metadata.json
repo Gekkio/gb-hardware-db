@@ -1,0 +1,23 @@
+{
+  "code": "CGB-VGRJ-0",
+  "slug": "gekkio-1",
+  "contributor": "gekkio",
+  "index": 1,
+  "shell": {
+    "code": "CGB-VGRJ-JPN",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-A10-01",
+    "circled_letters": "I",
+    "panel_position": "3",
+    "year": 1999,
+    "month": 3,
+    "u1": {
+      "label": "CGB-VGRJ-0 F M538011E-42 9125401"
+    },
+    "u2": {
+      "label": "MBC5 P-1 905U6L"
+    }
+  }
+}

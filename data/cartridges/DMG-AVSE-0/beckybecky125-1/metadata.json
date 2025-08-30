@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AVSE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AVSE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1995,
+    "month": 10,
+    "u1": {
+      "label": "DMG-AVSE-0 S LH534MW2 JAPAN E1 9546 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'00"
+    },
+    "u3": {
+      "label": "Victronix VN4464S-08LL 95283B034"
+    },
+    "u4": {
+      "label": "535 26A"
+    },
+    "battery": {
+      "label": "95-07"
+    }
+  }
+}

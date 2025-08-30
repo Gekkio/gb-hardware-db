@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AW2E-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AW2E-USA",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-LFDN-01",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1998,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AW2E-0 S LH538MNC JAPAN F1 9803 E"
+    },
+    "u2": {
+      "label": "MBC3 BU3631K 752 177"
+    },
+    "u3": {
+      "label": "LGS GM76C256CLLFW70 9744 KOREA"
+    },
+    "u4": {
+      "label": "6129A 8171"
+    },
+    "battery": {
+      "label": "97-12"
+    }
+  }
+}

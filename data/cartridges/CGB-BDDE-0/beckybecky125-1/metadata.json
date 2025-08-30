@@ -1,0 +1,32 @@
+{
+  "code": "CGB-BDDE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BDDE-USA",
+    "stamp": "15"
+  },
+  "board": {
+    "label": "DMG-Z03-10",
+    "circled_letters": "I",
+    "panel_position": "5",
+    "year": 2000,
+    "month": 9,
+    "u1": {
+      "label": "M003595-M MX23C3203-12A2 CGB-BDDE-0 H2 1R2147A2"
+    },
+    "u2": {
+      "label": "08CEJHT MBC5 2417"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 038 167NA"
+    },
+    "u4": {
+      "label": "6735 0919"
+    },
+    "battery": {
+      "label": "00-08"
+    }
+  }
+}

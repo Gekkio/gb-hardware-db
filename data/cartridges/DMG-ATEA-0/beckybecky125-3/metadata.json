@@ -1,0 +1,32 @@
+{
+  "code": "DMG-ATEA-0",
+  "slug": "beckybecky125-3",
+  "contributor": "beckybecky125",
+  "index": 3,
+  "shell": {
+    "code": "DMG-ATEA-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-DECN-10",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1998,
+    "month": 8,
+    "u1": {
+      "label": "SEC KM23C4000DG DMG-ATEA-0 E1 KF5304U"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9838 3 A"
+    },
+    "u3": {
+      "label": "LH5164AN-10L SHARP JAPAN 9820 1 DB"
+    },
+    "u4": {
+      "label": "6129A 8911"
+    },
+    "battery": {
+      "label": "98-09"
+    }
+  }
+}

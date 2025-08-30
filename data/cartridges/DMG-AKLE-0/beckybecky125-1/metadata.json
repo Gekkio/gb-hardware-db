@@ -1,0 +1,23 @@
+{
+  "code": "DMG-AKLE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AKLE-USA",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1995,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AKLE-0 S LH534MYP JAPAN E1 9539 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 5'90"
+    }
+  }
+}

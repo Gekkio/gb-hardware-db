@@ -1,0 +1,33 @@
+{
+  "code": "DMG-AP2J-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AP2J-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1996,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AP2J-0 S LH534MVD JAPAN E1 9639 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9636 5 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9628B KOREA"
+    },
+    "u4": {
+      "label": "634 26A"
+    },
+    "battery": {
+      "label": "96-08",
+      "manufacturer": "Maxell"
+    }
+  }
+}

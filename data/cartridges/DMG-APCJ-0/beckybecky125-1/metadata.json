@@ -1,0 +1,32 @@
+{
+  "code": "DMG-APCJ-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APCJ-JPN",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "Ca",
+    "panel_position": "2",
+    "year": 1995,
+    "month": 5,
+    "u1": {
+      "label": "DMG-APCJ-0 D1 N-2001EGW-J84 9521X9008"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9515 3 A"
+    },
+    "u3": {
+      "label": "HY6264A LLJ-10 9509B KOREA"
+    },
+    "u4": {
+      "label": "512 26A"
+    },
+    "battery": {
+      "label": "95-02"
+    }
+  }
+}

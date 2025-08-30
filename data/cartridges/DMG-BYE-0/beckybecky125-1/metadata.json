@@ -1,0 +1,23 @@
+{
+  "code": "DMG-BYE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BY-USA-1",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "1",
+    "year": 1996,
+    "month": 6,
+    "u1": {
+      "label": "DMG-BYE-0 S LH531HHE JAPAN C1 9632 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 6'71"
+    }
+  }
+}

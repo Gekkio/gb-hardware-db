@@ -1,0 +1,23 @@
+{
+  "code": "DMG-KYJ-1",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KYJ",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN(K)-02",
+    "circled_letters": "Hs",
+    "panel_position": "3",
+    "year": 1996,
+    "month": 8,
+    "u1": {
+      "label": "DMG-KYJ-1 S LH532MND JAPAN D1 9643 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9644 5 A"
+    }
+  }
+}

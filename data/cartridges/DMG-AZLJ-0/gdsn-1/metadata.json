@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AZLJ-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AZLJ-JPN",
+    "stamp": "00"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "K",
+    "panel_position": "1",
+    "year": 1998,
+    "month": 10,
+    "u1": {
+      "label": "S984849-M MX23C8005-12 DMG-AZLJ-0 F1 23754ZA1"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 9840 A"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9842 3 SO"
+    },
+    "u4": {
+      "label": "846 134A"
+    },
+    "battery": {
+      "label": "98-11"
+    }
+  }
+}

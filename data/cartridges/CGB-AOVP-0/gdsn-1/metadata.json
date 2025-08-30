@@ -1,0 +1,23 @@
+{
+  "code": "CGB-AOVP-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AOVP-EUR",
+    "stamp": "13"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "K",
+    "panel_position": "6",
+    "year": 2000,
+    "month": 2,
+    "u1": {
+      "label": "C001149-M MX23C8005-12 CGB-AOVP-0 F1 1B5780A1"
+    },
+    "u2": {
+      "label": "MBC5 LZ9GB31 AK52 A"
+    }
+  }
+}

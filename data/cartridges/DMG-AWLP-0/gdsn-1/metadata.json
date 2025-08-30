@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AWLP-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AWLP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-A03-01",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2000,
+    "month": 7,
+    "u1": {
+      "label": "M003404-M MX23C1603-12A DMG-AWLP-0 G2 1B9151A1"
+    },
+    "u2": {
+      "label": "MBC-5 BU3650K 031 H64"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0031 KOREA"
+    },
+    "u4": {
+      "label": "6735 0734"
+    },
+    "battery": {
+      "label": "00-07"
+    }
+  }
+}

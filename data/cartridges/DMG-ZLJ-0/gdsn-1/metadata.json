@@ -1,0 +1,29 @@
+{
+  "code": "DMG-ZLJ-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ZLJ",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "I",
+    "panel_position": "1",
+    "year": 1993,
+    "month": 5,
+    "u1": {
+      "label": "JAPAN DMG-ZLJ-0 E1 58T AK 9321 R32"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9212 3 A"
+    },
+    "u3": {
+      "label": "LH5168NFB-10TL LSI LOGIC JAPAN D306 5 BD"
+    },
+    "u4": {
+      "label": "6129 3197"
+    }
+  }
+}

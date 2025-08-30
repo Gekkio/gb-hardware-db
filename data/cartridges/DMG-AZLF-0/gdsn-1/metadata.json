@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AZLF-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AZLF-FRA",
+    "stamp": "34"
+  },
+  "board": {
+    "label": "DMG-A02-01",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1998,
+    "month": 12,
+    "u1": {
+      "label": "DMG-AZLF-0 S LH538WYF JAPAN F1 9853 E"
+    },
+    "u2": {
+      "label": "MBC5 P-1 850U5L"
+    },
+    "u3": {
+      "label": "BR62256F-70LL 844 100A"
+    },
+    "u4": {
+      "label": "849 134A"
+    },
+    "battery": {
+      "label": "98-12"
+    }
+  }
+}

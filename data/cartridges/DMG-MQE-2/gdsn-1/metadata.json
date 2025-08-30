@@ -1,0 +1,32 @@
+{
+  "code": "DMG-MQE-2",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-MQ-FAH",
+    "stamp": "22B"
+  },
+  "board": {
+    "label": "DMG-DECN-02",
+    "circled_letters": "B",
+    "panel_position": "6",
+    "year": 1993,
+    "month": 5,
+    "u1": {
+      "label": "DMG-MQE-2 S LH534MN3 JAPAN E1 9323 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 3'31"
+    },
+    "u3": {
+      "label": "Panasonic JAPAN MN4464S-08LL 93205B035"
+    },
+    "u4": {
+      "label": "325 26A"
+    },
+    "battery": {
+      "label": "93-02"
+    }
+  }
+}

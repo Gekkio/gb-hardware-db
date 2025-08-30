@@ -1205,6 +1205,7 @@ pub fn sram_sop_28_5v() -> &'static impl LabelParser<GenericPart> {
         &sharp::SHARP_LH5264N4,
         &sharp::SHARP_LH5264TN,
         &sharp::SHARP_LH52A64N,
+        &panasonic::PANASONIC_MN4464,
         &victronix::VICTRONIX_VN4464,
         &winbond::WINBOND_W2465S,
     )

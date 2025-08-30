@@ -26,6 +26,7 @@ Site source code for https://gbhwdb.gekkio.fi
 * FexCollects
 * FIX94
 * fwwwn
+* gdsn
 * gekkio (https://gekkio.fi)
 * HDR
 * @hej.luxom

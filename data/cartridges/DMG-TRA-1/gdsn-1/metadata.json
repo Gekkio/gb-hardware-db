@@ -1,0 +1,17 @@
+{
+  "code": "DMG-TRA-1",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-TR-FAH",
+    "stamp": "23A"
+  },
+  "board": {
+    "label": "AAAC S",
+    "panel_position": "2",
+    "u1": {
+      "label": "LR0G150 DMG-TRA-1 91461"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APAJ-1",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APAJ-JPN",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-DEDN-10",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1997,
+    "month": 8,
+    "u1": {
+      "label": "DMG-APAJ-1 E1 N-4001EJGW-J45 9732K7053"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'75"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 9730 5 SC"
+    },
+    "u4": {
+      "label": "6129A 7829"
+    }
+  }
+}

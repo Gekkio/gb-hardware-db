@@ -1,0 +1,32 @@
+{
+  "code": "CGB-AZ8J-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "CGB-AZ8J-JPN",
+    "stamp": "41"
+  },
+  "board": {
+    "label": "DMG-A06-01",
+    "circled_letters": "MB",
+    "panel_position": "5",
+    "year": 2001,
+    "month": 1,
+    "u1": {
+      "label": "CGB-AZ8J-0 F1 M538011E-1U 1065453"
+    },
+    "u2": {
+      "label": "MBC5 P-2 050U2M"
+    },
+    "u3": {
+      "label": "BR6265BF-10SL 103 117N"
+    },
+    "u4": {
+      "label": "6735 0B03"
+    },
+    "battery": {
+      "label": "00-12"
+    }
+  }
+}

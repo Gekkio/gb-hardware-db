@@ -5,8 +5,14 @@
 use nom::{
     IResult, Parser as _,
     bytes::streaming::tag,
+    combinator::recognize,
     error::ParseError,
     sequence::{preceded, terminated},
+};
+
+use crate::parser::{
+    GenericPart,
+    for_nom::{alnum_uppers, year2_week2},
 };
 
 use super::{
@@ -137,6 +143,29 @@ pub static PANASONIC_MBC5: NomParser<Mapper> = NomParser {
         )
         .map(|(_, _, date_code)| Mapper {
             kind: MapperChip::Mbc5,
+            manufacturer: Some(Manufacturer::Panasonic),
+            date_code: Some(date_code),
+        })
+        .parse(input)
+    },
+};
+
+/// Panasonic MN4464 SRAM (SOP-28, 4.5-5.5V, 64 Kibit / 8 KiB)
+///
+/// ```
+/// use gbhwdb_model::parser::{self, LabelParser};
+/// assert!(parser::panasonic::PANASONIC_MN4464.parse("Panasonic JAPAN MN4464S-08LL 93205B035").is_ok());
+/// ```
+pub static PANASONIC_MN4464: NomParser<GenericPart> = NomParser {
+    name: "Panasonic MN4464",
+    f: |input| {
+        lines3(
+            tag("Panasonic JAPAN"),
+            recognize(tag("MN4464").and(tag("S-08LL"))),
+            (year2_week2, digits(1), alnum_uppers(1), digits(3)),
+        )
+        .map(|(_, kind, (date_code, _, _, _))| GenericPart {
+            kind: String::from(kind),
             manufacturer: Some(Manufacturer::Panasonic),
             date_code: Some(date_code),
         })

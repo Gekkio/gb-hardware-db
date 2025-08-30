@@ -1,0 +1,29 @@
+{
+  "code": "DMG-AAUJ-1",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUJ-JPN",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 2000,
+    "month": 1,
+    "u1": {
+      "label": "DMG-AAUJ-1 S LHMN8JN2 JAPAN F1 0007 D"
+    },
+    "u2": {
+      "label": "MBC-3 A BU3632K 951 H58"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 0002 KOREA"
+    },
+    "u4": {
+      "label": "6735 0123"
+    }
+  }
+}

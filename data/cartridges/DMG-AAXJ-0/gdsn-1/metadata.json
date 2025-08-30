@@ -1,0 +1,32 @@
+{
+  "code": "DMG-AAXJ-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAXJ-JPN",
+    "stamp": "12"
+  },
+  "board": {
+    "label": "DMG-KFDN-10",
+    "circled_letters": "I",
+    "panel_position": "6",
+    "year": 1999,
+    "month": 9,
+    "u1": {
+      "label": "DMG-AAXJ-0 S LH538WPJ JAPAN F1 9945 D"
+    },
+    "u2": {
+      "label": "MBC-3 A BU3632K 919 H54"
+    },
+    "u3": {
+      "label": "HYUNDAI GM76C256CLLFW70 9938 KOREA"
+    },
+    "u4": {
+      "label": "6735 9948"
+    },
+    "x1": {
+      "label": "32K95"
+    }
+  }
+}

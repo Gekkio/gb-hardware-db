@@ -1,0 +1,23 @@
+{
+  "code": "DMG-A8SP-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-A8SP-EUR",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "4",
+    "year": 1997,
+    "month": 11,
+    "u1": {
+      "label": "DMG-A8SP-0 S LH5S4MW7 JAPAN E1 9751 D"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 7'N7"
+    }
+  }
+}

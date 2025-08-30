@@ -1,0 +1,23 @@
+{
+  "code": "DMG-KYE-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-KY-FAH",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "1",
+    "year": 1993,
+    "month": 11,
+    "u1": {
+      "label": "DMG-KYE-0 S LH532MN6 JAPAN D1 9351 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9342BA041"
+    }
+  }
+}

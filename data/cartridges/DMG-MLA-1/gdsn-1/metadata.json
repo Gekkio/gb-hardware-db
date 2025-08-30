@@ -1,0 +1,23 @@
+{
+  "code": "DMG-MLA-1",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-ML-FAH",
+    "stamp": "09A"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "B",
+    "panel_position": "2",
+    "year": 1991,
+    "month": 9,
+    "u1": {
+      "label": "DMG-MLA-1 S LH5314B2 JAPAN B1 9136 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo S 9122 3 A"
+    }
+  }
+}

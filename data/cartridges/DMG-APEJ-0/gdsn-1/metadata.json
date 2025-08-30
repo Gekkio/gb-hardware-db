@@ -1,0 +1,29 @@
+{
+  "code": "DMG-APEJ-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-APEJ-JPN",
+    "stamp": "22"
+  },
+  "board": {
+    "label": "DMG-DEDN-01",
+    "circled_letters": "I",
+    "panel_position": "4",
+    "year": 1996,
+    "month": 11,
+    "u1": {
+      "label": "DMG-APEJ-0 S LH534MVS JAPAN E1 9646 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9645 1 A"
+    },
+    "u3": {
+      "label": "LH52B256NA-10PLL MOSEL-VITELIC JAPAN N643 0K BB"
+    },
+    "u4": {
+      "label": "643 26A"
+    }
+  }
+}

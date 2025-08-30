@@ -1,0 +1,31 @@
+{
+  "code": "DMG-AAUF-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "DMG-AAUF-FRA"
+  },
+  "board": {
+    "label": "DMG-KGDU-10",
+    "circled_letters": "K",
+    "panel_position": "1",
+    "year": 2001,
+    "month": 1,
+    "u1": {
+      "label": "M010604-M MX23C1603-12A DMG-AAUF-0 G2 1C7195A1"
+    },
+    "u2": {
+      "label": "MBC-3 B BU3634K 103 H55"
+    },
+    "u3": {
+      "label": "LH52256CN-10LL SHARP JAPAN 0043 7 SO"
+    },
+    "u4": {
+      "label": "6735 0C04"
+    },
+    "x1": {
+      "label": "KDS0M"
+    }
+  }
+}

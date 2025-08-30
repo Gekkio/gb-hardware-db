@@ -1,0 +1,23 @@
+{
+  "code": "CGB-BT9P-0",
+  "slug": "gdsn-1",
+  "contributor": "gdsn",
+  "index": 1,
+  "shell": {
+    "code": "CGB-BT9P-FRA",
+    "stamp": "11"
+  },
+  "board": {
+    "label": "DMG-A07-01",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 2001,
+    "month": 4,
+    "u1": {
+      "label": "M011849-M MX23C8005-12 CGB-BT9P-0 F1 1D0757A2"
+    },
+    "u2": {
+      "label": "MBC5 P-2 052U1M"
+    }
+  }
+}

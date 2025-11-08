@@ -30386,6 +30386,17 @@
     "no_intro_id": "1396",
     "no_intro_clone_of": "2105"
   },
+  "AGB-BYUE-0": {
+    "name": "Yggdra Union - We'll Never Fight Alone (USA)",
+    "rom_verified": false,
+    "crc32": "84b5666c",
+    "md5": "1d651567d1a5a91c93983c5b9af79421",
+    "sha1": "75697060a9c262fd00552ddd06faec82fc310282",
+    "sha256": "ab8d2dc566aa009871e4824a9cbf46e13b41da35dd5a173f24701bfce16e86b6",
+    "platform": "gba",
+    "no_intro_id": "2567",
+    "no_intro_clone_of": "2776"
+  },
   "AGB-BYUJ-0": {
     "name": "Yggdra Union (Japan)",
     "rom_verified": false,
@@ -30396,6 +30407,16 @@
     "platform": "gba",
     "no_intro_id": "2318",
     "no_intro_clone_of": "2776"
+  },
+  "AGB-BYUP-0": {
+    "name": "Yggdra Union - We'll Never Fight Alone (Europe)",
+    "rom_verified": false,
+    "crc32": "2931d6a8",
+    "md5": "85853646ee8ed8269a442a13bffc6e0d",
+    "sha1": "7b65074cb5d75d8f12692a21e2be77fa963f10e2",
+    "sha256": "a8516f4d298b0667b6e052e48b1fc5beb7a6e5c6c94d1cbc9d73903c2bb23446",
+    "platform": "gba",
+    "no_intro_id": "2776"
   },
   "AGB-BYVE-0": {
     "name": "Yu-Gi-Oh! Double Pack 2 (USA) (En,Fr,De,Es,It)",

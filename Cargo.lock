@@ -1314,7 +1314,7 @@ dependencies = [
  "simplelog",
  "slug",
  "strum",
- "swc_common",
+ "swc_common 18.0.0",
  "swc_css",
  "time",
  "urlencoding",
@@ -3185,9 +3185,9 @@ dependencies = [
 
 [[package]]
 name = "swc_common"
-version = "17.0.0"
+version = "17.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "77d9476c82da5448b227042b1e695fbe0456e7d749567e0d4ec7ac128f1e019d"
+checksum = "259b675d633a26d24efe3802a9d88858c918e6e8f062d3222d3aa02d56a2cf4c"
 dependencies = [
  "anyhow",
  "ast_node",
@@ -3196,6 +3196,31 @@ dependencies = [
  "either",
  "from_variant",
  "new_debug_unreachable",
+ "num-bigint",
+ "once_cell",
+ "rustc-hash",
+ "serde",
+ "siphasher 0.3.11",
+ "swc_atoms",
+ "swc_eq_ignore_macros",
+ "swc_visit",
+ "tracing",
+ "unicode-width",
+ "url",
+]
+
+[[package]]
+name = "swc_common"
+version = "18.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cd86b909e39cba2b3d9ab898d3fb3a912e3b9b809919394fca6fbf1ab970a8b8"
+dependencies = [
+ "anyhow",
+ "ast_node",
+ "better_scoped_tls",
+ "bytes-str",
+ "either",
+ "from_variant",
  "num-bigint",
  "once_cell",
  "rustc-hash",
@@ -3233,7 +3258,7 @@ dependencies = [
  "is-macro",
  "string_enum",
  "swc_atoms",
- "swc_common",
+ "swc_common 17.0.1",
 ]
 
 [[package]]
@@ -3247,7 +3272,7 @@ dependencies = [
  "rustc-hash",
  "serde",
  "swc_atoms",
- "swc_common",
+ "swc_common 17.0.1",
  "swc_css_ast",
  "swc_css_codegen_macros",
  "swc_css_utils",
@@ -3272,7 +3297,7 @@ dependencies = [
  "rustc-hash",
  "serde",
  "swc_atoms",
- "swc_common",
+ "swc_common 17.0.1",
  "swc_css_ast",
  "swc_css_utils",
  "swc_css_visit",
@@ -3287,7 +3312,7 @@ dependencies = [
  "lexical",
  "serde",
  "swc_atoms",
- "swc_common",
+ "swc_common 17.0.1",
  "swc_css_ast",
 ]
 
@@ -3314,7 +3339,7 @@ checksum = "7c526593c83c35842c56dc7365a8a46e042a246ae097abf13972c3b95032f614"
 dependencies = [
  "serde",
  "swc_atoms",
- "swc_common",
+ "swc_common 17.0.1",
  "swc_css_ast",
  "swc_visit",
 ]

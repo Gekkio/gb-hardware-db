@@ -28,5 +28,14 @@
     "battery": {
       "label": "97-10"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Metroid II - Return of Samus (World).gb\r\n* File Size:       256.0 KiB (262144 bytes)\r\n* CRC32:           dee05370\r\n* MD5:             9639948ad274fa15281f549e5f9c4d87\r\n* SHA-1:           74a2fad86b9a4c013149b1e214bc4600efb1066d\r\n* SHA-256:         3080bcc2eb9965de463f5f4e02f0dabbb13b060e1654a18da8b50948c10af4a6\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:59:21-08:00\r\n* Time Elapsed:    2 seconds (88.32 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        256 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      METROID2\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x97)\r\n* ROM Checksum:    OK (0x581F)\r\n* ROM Size:        256 KiB (0x03)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Metroid II - Return of Samus (World)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-MEA\r\n* ROM CRC32:       dee05370\r\n* ROM Size:        256 KiB",
+    "date": "2026-01-20",
+    "crc32": "dee05370",
+    "md5": "9639948ad274fa15281f549e5f9c4d87",
+    "sha1": "74a2fad86b9a4c013149b1e214bc4600efb1066d",
+    "sha256": "3080bcc2eb9965de463f5f4e02f0dabbb13b060e1654a18da8b50948c10af4a6"
   }
 }

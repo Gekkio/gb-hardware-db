@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 5'90"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Killer Instinct (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           ac793b54\r\n* MD5:             ba8628a70339843c2ee8a294b840e8d6\r\n* SHA-1:           65ae38588abc0e699b244b0854f698ddf72c7b46\r\n* SHA-256:         4a091956a579de541aa2eef831e6d0c07d8324255cff7cc889c8ed9b70847769\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:43:42-08:00\r\n* Time Elapsed:    5 seconds (88.52 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      KILLERINSTINCT95\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  Unknown (0x35)\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xAD)\r\n* ROM Checksum:    OK (0xB21B)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Killer Instinct (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-AKLE\r\n* ROM CRC32:       ac793b54\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "ac793b54",
+    "md5": "ba8628a70339843c2ee8a294b840e8d6",
+    "sha1": "65ae38588abc0e699b244b0854f698ddf72c7b46",
+    "sha256": "4a091956a579de541aa2eef831e6d0c07d8324255cff7cc889c8ed9b70847769"
   }
 }

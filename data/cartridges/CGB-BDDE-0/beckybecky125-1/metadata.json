@@ -28,5 +28,14 @@
     "battery": {
       "label": "00-08"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Donkey Kong Country (USA, Europe) (En,Fr,De,Es,It).gbc\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           b1743477\r\n* MD5:             dc94079146ee90d7dd7d72280a3faad5\r\n* SHA-1:           32522dfce902d564e69348541348afc054307f65\r\n* SHA-256:         e22324dfd7884a593d265bc3776af6d06c9cf049a060ac7d05613c5303672fca\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:36:30-08:00\r\n* Time Elapsed:    45 seconds (89.74 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        4 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      DK COUNTRY\r\n* Game Code:       BDDE\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x7C)\r\n* ROM Checksum:    OK (0xD439)\r\n* ROM Size:        4 MiB (0x07)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Donkey Kong Country (USA, Europe) (En,Fr,De,Es,It)\r\n* Region:          USA, Europe\r\n* Language(s):     En,Fr,De,Es,It\r\n* Game Code:       CGB-BDDE\r\n* ROM CRC32:       b1743477\r\n* ROM Size:        4 MiB",
+    "date": "2026-01-20",
+    "crc32": "b1743477",
+    "md5": "dc94079146ee90d7dd7d72280a3faad5",
+    "sha1": "32522dfce902d564e69348541348afc054307f65",
+    "sha256": "e22324dfd7884a593d265bc3776af6d06c9cf049a060ac7d05613c5303672fca"
   }
 }

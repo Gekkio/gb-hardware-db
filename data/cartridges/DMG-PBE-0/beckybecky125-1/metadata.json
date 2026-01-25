@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 7'D9"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Pinball - Revenge of the 'Gator (USA, Europe).gb\r\n* File Size:       64.0 KiB (65536 bytes)\r\n* CRC32:           79804305\r\n* MD5:             113d8f894df6b8c3641b2ba1fe60c250\r\n* SHA-1:           493834db1c3c7859086a1c570a4bf5e5f6dd332b\r\n* SHA-256:         d84a2382b358d83a0891d40b2de65494f060d8be1a048d5aa8721282218b04b6\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T13:14:01-08:00\r\n* Time Elapsed:    0 seconds (74.90 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        64 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      PINBALL\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x2C)\r\n* ROM Checksum:    OK (0xDD73)\r\n* ROM Size:        64 KiB (0x01)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Pinball - Revenge of the 'Gator (USA, Europe)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-PBE\r\n* ROM CRC32:       79804305\r\n* ROM Size:        64 KiB",
+    "date": "2026-01-20",
+    "crc32": "79804305",
+    "md5": "113d8f894df6b8c3641b2ba1fe60c250",
+    "sha1": "493834db1c3c7859086a1c570a4bf5e5f6dd332b",
+    "sha256": "d84a2382b358d83a0891d40b2de65494f060d8be1a048d5aa8721282218b04b6"
   }
 }

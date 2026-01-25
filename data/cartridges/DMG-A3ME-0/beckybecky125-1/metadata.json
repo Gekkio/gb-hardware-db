@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1B1 Nintendo S 9544 3 A"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Mortal Kombat 3 (USA, Europe).gb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           bf9c65fb\r\n* MD5:             c19d61e31d6aebc12abf80d628a7bd09\r\n* SHA-1:           b43626e2f20fa865783892ab8a012aa86e1dcee2\r\n* SHA-256:         6c2733c0a57bbfe5075bec42e0735c685c934780db45b33f899f62dfea549f69\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:54:22-08:00\r\n* Time Elapsed:    5 seconds (88.67 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      MORTAL KOMBAT 3 \r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Unknown (0x20)\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x15)\r\n* ROM Checksum:    OK (0x9BBC)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Mortal Kombat 3 (USA, Europe)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-A3ME\r\n* ROM CRC32:       bf9c65fb\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "bf9c65fb",
+    "md5": "c19d61e31d6aebc12abf80d628a7bd09",
+    "sha1": "b43626e2f20fa865783892ab8a012aa86e1dcee2",
+    "sha256": "6c2733c0a57bbfe5075bec42e0735c685c934780db45b33f899f62dfea549f69"
   }
 }

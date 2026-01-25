@@ -28,5 +28,14 @@
     "battery": {
       "label": "95-02"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Mario no Picross (Japan) (SGB Enhanced).sgb\r\n* File Size:       256.0 KiB (262144 bytes)\r\n* CRC32:           17533700\r\n* MD5:             defe3559ef5e8d69ca95289edb6f9f6e\r\n* SHA-1:           6b72cbff3e224299eff6f79e0110a477b8f840c2\r\n* SHA-256:         eb13fba45c077e52b6947d53cd36ff2fa2f79be39004681dc8f3b4bd93743173\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:59:56-08:00\r\n* Time Elapsed:    2 seconds (87.61 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        256 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      MARIO'S PICROSS\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x13)\r\n* ROM Checksum:    OK (0xA6EA)\r\n* ROM Size:        256 KiB (0x03)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Mario no Picross (Japan) (SGB Enhanced)\r\n* Region:          Japan\r\n* Language(s):     Ja\r\n* Game Code:       DMG-APCJ\r\n* ROM CRC32:       17533700\r\n* ROM Size:        256 KiB",
+    "date": "2026-01-20",
+    "crc32": "17533700",
+    "md5": "defe3559ef5e8d69ca95289edb6f9f6e",
+    "sha1": "6b72cbff3e224299eff6f79e0110a477b8f840c2",
+    "sha256": "eb13fba45c077e52b6947d53cd36ff2fa2f79be39004681dc8f3b4bd93743173"
   }
 }

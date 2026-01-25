@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1B1 Nintendo S 9747 5 A"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Super R.C. Pro-Am (USA, Europe).gb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           7960f33f\r\n* MD5:             9ba2999ef3ecf9e27ac6c88e995c9d7a\r\n* SHA-1:           37c0a74532ed283f56e940bb5c38e757a0eee6e0\r\n* SHA-256:         e1517cc2d44bbcde58ea547cc4a777b475b1ddd0770fe231e2c3c5331cf0d19e\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:40:29-08:00\r\n* Time Elapsed:    1 second (87.03 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      SUPER RC PRO-AM\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xD2)\r\n* ROM Checksum:    OK (0xFEA0)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Super R.C. Pro-Am (USA, Europe)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-RCE\r\n* ROM CRC32:       7960f33f\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "7960f33f",
+    "md5": "9ba2999ef3ecf9e27ac6c88e995c9d7a",
+    "sha1": "37c0a74532ed283f56e940bb5c38e757a0eee6e0",
+    "sha256": "e1517cc2d44bbcde58ea547cc4a777b475b1ddd0770fe231e2c3c5331cf0d19e"
   }
 }

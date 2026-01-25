@@ -28,5 +28,14 @@
     "battery": {
       "label": "98-09"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tetris DX (World) (SGB Enhanced) (GB Compatible) 3.gbc\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           69989152\r\n* MD5:             65973d7a1446346294f8ca9d2d1b7e66\r\n* SHA-1:           7183bcb54dd35f3a07d8fe63339b768f13b8168d\r\n* SHA-256:         d349dc93423c6abcd775d3b6a8797df715a44a42ec837afb21bf17ae43b40a9e\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T13:25:33-08:00\r\n* Time Elapsed:    6 seconds (81.04 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TETRIS DX\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  Supported\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x30)\r\n* ROM Checksum:    OK (0xC800)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Tetris DX (World) (SGB Enhanced) (GB Compatible)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-ATEA\r\n* ROM CRC32:       69989152\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "69989152",
+    "md5": "65973d7a1446346294f8ca9d2d1b7e66",
+    "sha1": "7183bcb54dd35f3a07d8fe63339b768f13b8168d",
+    "sha256": "d349dc93423c6abcd775d3b6a8797df715a44a42ec837afb21bf17ae43b40a9e"
   }
 }

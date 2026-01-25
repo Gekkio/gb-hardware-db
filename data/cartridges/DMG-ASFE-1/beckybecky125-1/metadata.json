@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 8'58"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced).sgb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           54a0aaa3\r\n* MD5:             2cf83df10495ad163c88698c6c44f1ef\r\n* SHA-1:           3b6ecf34043c0bcf2ac279eaf30b9d1b0d941e91\r\n* SHA-256:         8730c69cb2aa82260ac07257e0e29d61f598de2f8fa3e65da1d694790fa5db16\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:58:01-08:00\r\n* Time Elapsed:    5 seconds (88.10 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      STREET FIGHTER 2\r\n* Revision:        1\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  Unknown (0x32)\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xF7)\r\n* ROM Checksum:    OK (0x78C5)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Street Fighter II (USA, Europe) (Rev 1) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Revision:        Rev 1\r\n* Game Code:       DMG-ASFE\r\n* ROM CRC32:       54a0aaa3\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "54a0aaa3",
+    "md5": "2cf83df10495ad163c88698c6c44f1ef",
+    "sha1": "3b6ecf34043c0bcf2ac279eaf30b9d1b0d941e91",
+    "sha256": "8730c69cb2aa82260ac07257e0e29d61f598de2f8fa3e65da1d694790fa5db16"
   }
 }

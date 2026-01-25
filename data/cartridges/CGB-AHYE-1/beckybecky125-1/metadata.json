@@ -28,5 +28,14 @@
     "battery": {
       "label": "01-07"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Super Mario Bros. Deluxe (USA, Europe) (Rev 1).gbc\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           90ab047b\r\n* MD5:             1fd75c2b798c04acd4b99ad2f1006280\r\n* SHA-1:           07295cd60ae44183ebecb013930727e0404169d5\r\n* SHA-256:         db81dd4acbd0c7a3b9004f169ee278450c764c842ae777abd28073fbedf4078b\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:09:01-08:00\r\n* Time Elapsed:    12 seconds (82.15 KiB/s)\r\n* Transfer Buffer: 2048 bytes\r\n* Retries:         2\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      MARIO DELUX\r\n* Game Code:       AHYE\r\n* Revision:        1\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x2E)\r\n* ROM Checksum:    OK (0xEFB4)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Super Mario Bros. Deluxe (USA, Europe) (Rev 1)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Revision:        Rev 1\r\n* Game Code:       CGB-AHYE\r\n* ROM CRC32:       90ab047b\r\n* ROM Size:        1 MiB",
+    "date": "2026-01-20",
+    "crc32": "90ab047b",
+    "md5": "1fd75c2b798c04acd4b99ad2f1006280",
+    "sha1": "07295cd60ae44183ebecb013930727e0404169d5",
+    "sha256": "db81dd4acbd0c7a3b9004f169ee278450c764c842ae777abd28073fbedf4078b"
   }
 }

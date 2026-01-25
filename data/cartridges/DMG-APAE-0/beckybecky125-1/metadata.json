@@ -28,5 +28,14 @@
     "battery": {
       "label": "01-01"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Pokemon - Red Version (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       1.00 MiB (1048576 bytes)\r\n* CRC32:           9f7fdd53\r\n* MD5:             3d45c1ee9abd5738df46d2bdda8b57dc\r\n* SHA-1:           ea9bcae617fdf159b045185467ae58b2e4a48b9a\r\n* SHA-256:         5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:21:34-08:00\r\n* Time Elapsed:    15 seconds (66.79 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         4\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        1 MiB\r\n* Mapper Type:     MBC3\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      POKEMON RED\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x20)\r\n* ROM Checksum:    OK (0x91E6)\r\n* ROM Size:        1 MiB (0x05)\r\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\r\n* Mapper Type:     MBC3+SRAM+BATTERY (0x13)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Pokemon - Red Version (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-APAE\r\n* ROM CRC32:       9f7fdd53\r\n* ROM Size:        1 MiB",
+    "date": "2026-01-20",
+    "crc32": "9f7fdd53",
+    "md5": "3d45c1ee9abd5738df46d2bdda8b57dc",
+    "sha1": "ea9bcae617fdf159b045185467ae58b2e4a48b9a",
+    "sha256": "5ca7ba01642a3b27b0cc0b5349b52792795b62d3ed977e98a09390659af96b7b"
   }
 }

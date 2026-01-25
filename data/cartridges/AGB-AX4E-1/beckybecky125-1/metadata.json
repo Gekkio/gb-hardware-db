@@ -19,5 +19,14 @@
     "u2": {
       "label": "E064957G MX29L010TC-15A1 1H5572"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1).gba\r\n* File Size:       4.00 MiB (4194304 bytes)\r\n* CRC32:           88dab27f\r\n* MD5:             605286b3aedeffba70bf46b834b120b1\r\n* SHA-1:           532f3307021637474b6dd37da059ca360f612337\r\n* SHA-256:         53ec98fc672d94e3962ba854805ce5005e07e10a4c7ed4e7dbec7a2ca7846562\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T13:46:54-08:00\r\n* Time Elapsed:    38 seconds (105.32 KiB/s)\r\n* Transfer Buffer: 2048 bytes\r\n* Retries:         5\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy Advance\r\n* ROM Size:        4 MiB\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     Stream\r\n\r\n== Parsed Data ==\r\n* Game Title:      SUPER MARIOD\r\n* Game Code:       AX4E\r\n* Revision:        1\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x72)\r\n* Save Type:       1M FLASH (FLASH1M_V102)\r\n* Save Flash Chip: Macronix MX29L010 (0xC209)\r\n\r\n== Database Match ==\r\n* Game Name:       Super Mario Advance 4 - Super Mario Bros. 3 (USA, Australia) (Rev 1)\r\n* Region:          USA, Australia\r\n* Language(s):     En\r\n* Revision:        Rev 1\r\n* Game Code:       AGB-AX4E\r\n* ROM CRC32:       88dab27f\r\n* ROM Size:        4 MiB\r\n* Save Type:       1M FLASH (128 KiB)",
+    "date": "2026-01-20",
+    "crc32": "88dab27f",
+    "md5": "605286b3aedeffba70bf46b834b120b1",
+    "sha1": "532f3307021637474b6dd37da059ca360f612337",
+    "sha256": "53ec98fc672d94e3962ba854805ce5005e07e10a4c7ed4e7dbec7a2ca7846562"
   }
 }

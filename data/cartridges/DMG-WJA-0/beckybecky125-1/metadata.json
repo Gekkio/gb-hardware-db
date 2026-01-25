@@ -28,5 +28,14 @@
     "battery": {
       "label": "97-04"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Wario Land - Super Mario Land 3 (World).gb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           40be3889\r\n* MD5:             d9d957771484ef846d4e8d241f6f2815\r\n* SHA-1:           ae65800302438e37a99e623a71d1c954d73c843e\r\n* SHA-256:         ac1682f17abcf590311a233289ee325214c2d71ab3a5aa175004002d85075e56\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:11:31-08:00\r\n* Time Elapsed:    6 seconds (82.23 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      SUPERMARIOLAND3\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x84)\r\n* ROM Checksum:    OK (0xF4A5)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Wario Land - Super Mario Land 3 (World)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-WJA\r\n* ROM CRC32:       40be3889\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "40be3889",
+    "md5": "d9d957771484ef846d4e8d241f6f2815",
+    "sha1": "ae65800302438e37a99e623a71d1c954d73c843e",
+    "sha256": "ac1682f17abcf590311a233289ee325214c2d71ab3a5aa175004002d85075e56"
   }
 }

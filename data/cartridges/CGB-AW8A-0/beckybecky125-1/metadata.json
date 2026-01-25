@@ -29,5 +29,14 @@
       "label": "00-04",
       "manufacturer": "Maxell"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Wario Land 3 (World) (En,Ja).gbc\r\n* File Size:       2.00 MiB (2097152 bytes)\r\n* CRC32:           480d0259\r\n* MD5:             16bb3fb83e8cbbf2c4c510b9f50cf4ee\r\n* SHA-1:           bb7877309834441fd03adb7fa65738e5d5b2d7ba\r\n* SHA-256:         b625ed03e7553cc29ebc4203d919838312fc9f9f85915f5d2eddfe14aec77406\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:09:55-08:00\r\n* Time Elapsed:    17 seconds (116.20 KiB/s)\r\n* Transfer Buffer: 2048 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        2 MiB\r\n* Mapper Type:     MBC5\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      WARIOLAND3\r\n* Game Code:       AW8A\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Required\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x89)\r\n* ROM Checksum:    OK (0x7633)\r\n* ROM Size:        2 MiB (0x06)\r\n* SRAM Size:       256K SRAM (32 KiB) (0x03)\r\n* Mapper Type:     MBC5+SRAM+BATTERY (0x1B)\r\n* Target Platform: Game Boy Color\r\n\r\n== Database Match ==\r\n* Game Name:       Wario Land 3 (World) (En,Ja)\r\n* Region:          World\r\n* Language(s):     En,Ja\r\n* Game Code:       CGB-AW8A\r\n* ROM CRC32:       480d0259\r\n* ROM Size:        2 MiB",
+    "date": "2026-01-20",
+    "crc32": "480d0259",
+    "md5": "16bb3fb83e8cbbf2c4c510b9f50cf4ee",
+    "sha1": "bb7877309834441fd03adb7fa65738e5d5b2d7ba",
+    "sha256": "b625ed03e7553cc29ebc4203d919838312fc9f9f85915f5d2eddfe14aec77406"
   }
 }

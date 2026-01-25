@@ -28,5 +28,14 @@
     "battery": {
       "label": "95-06"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Kirby's Dream Land 2 (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           8dc07c35\r\n* MD5:             ddb5bfae32b0ca39cf8ab6c46880126c\r\n* SHA-1:           8a2898ffa17e25f43793f40c88421d840d372d3c\r\n* SHA-256:         08ddc36709d551b6c2b768e8280e0213ebe89a5088b34e1cc6c0e14977b8e312\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:15:34-08:00\r\n* Time Elapsed:    9 seconds (53.08 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         3\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      KIRBY2\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x93)\r\n* ROM Checksum:    OK (0xDC99)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Kirby's Dream Land 2 (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-AKBE\r\n* ROM CRC32:       8dc07c35\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "8dc07c35",
+    "md5": "ddb5bfae32b0ca39cf8ab6c46880126c",
+    "sha1": "8a2898ffa17e25f43793f40c88421d840d372d3c",
+    "sha256": "08ddc36709d551b6c2b768e8280e0213ebe89a5088b34e1cc6c0e14977b8e312"
   }
 }

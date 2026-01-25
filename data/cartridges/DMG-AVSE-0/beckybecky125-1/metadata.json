@@ -28,5 +28,14 @@
     "battery": {
       "label": "95-07"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Vegas Stakes (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           c8be05d8\r\n* MD5:             f597728869d7ca129f507e723d17bca1\r\n* SHA-1:           93cdf04a473dcfd7f8f4fb06cc0af857d16d00f2\r\n* SHA-256:         b94143f91edb0c2f4dee7d13448715cd910204e5fdc680d1c2fe3a72be1e3f1c\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T13:17:07-08:00\r\n* Time Elapsed:    6 seconds (80.59 KiB/s)\r\n* Transfer Buffer: 2048 bytes\r\n* Retries:         1\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      VEGAS STAKES\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xE5)\r\n* ROM Checksum:    OK (0x6198)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Vegas Stakes (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-AVSE\r\n* ROM CRC32:       c8be05d8\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "c8be05d8",
+    "md5": "f597728869d7ca129f507e723d17bca1",
+    "sha1": "93cdf04a473dcfd7f8f4fb06cc0af857d16d00f2",
+    "sha256": "b94143f91edb0c2f4dee7d13448715cd910204e5fdc680d1c2fe3a72be1e3f1c"
   }
 }

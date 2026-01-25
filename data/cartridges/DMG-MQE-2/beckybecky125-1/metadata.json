@@ -28,5 +28,14 @@
     "battery": {
       "label": "98-02"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Super Mario Land 2 - 6 Golden Coins (USA, Europe) (Rev 2).gb\r\n* File Size:       512.0 KiB (524288 bytes)\r\n* CRC32:           635a9112\r\n* MD5:             4bd6e929ec716a5c7fe7dc684860d551\r\n* SHA-1:           d11d94fa3c36b9f72e925070b66bb4f16d31001e\r\n* SHA-256:         42045a1642f77b568534ab85b9db93c8a33d2b95c38ae84c987f497e8d52f97f\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:12:50-08:00\r\n* Time Elapsed:    4 seconds (110.01 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        512 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      MARIOLAND2\r\n* Revision:        2\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x11)\r\n* ROM Checksum:    OK (0xFAEE)\r\n* ROM Size:        512 KiB (0x04)\r\n* SRAM Size:       64K SRAM (8 KiB) (0x02)\r\n* Mapper Type:     MBC1+SRAM+BATTERY (0x03)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Super Mario Land 2 - 6 Golden Coins (USA, Europe) (Rev 2)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Revision:        Rev 2\r\n* Game Code:       DMG-MQE\r\n* ROM CRC32:       635a9112\r\n* ROM Size:        512 KiB",
+    "date": "2026-01-20",
+    "crc32": "635a9112",
+    "md5": "4bd6e929ec716a5c7fe7dc684860d551",
+    "sha1": "d11d94fa3c36b9f72e925070b66bb4f16d31001e",
+    "sha256": "42045a1642f77b568534ab85b9db93c8a33d2b95c38ae84c987f497e8d52f97f"
   }
 }

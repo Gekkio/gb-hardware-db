@@ -16,5 +16,14 @@
     "u1": {
       "label": "DMG-TNA-0 SHARP JAPAN A0 9814 D"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Tennis (World).gb\r\n* File Size:       32.0 KiB (32768 bytes)\r\n* CRC32:           5009215f\r\n* MD5:             7d621dcbbce12b73574c42f40deec275\r\n* SHA-1:           ec45a932fb3fc21394fef5e27e7fe9eccd0c7f70\r\n* SHA-256:         cdcb6ba23ea2c32a2af47abb267d8bd065a8bc10777b435de6a9be421e5bf919\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:50:52-08:00\r\n* Time Elapsed:    0 seconds (84.90 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        32 KiB\r\n* Mapper Type:     None\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      TENNIS\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x15)\r\n* ROM Checksum:    OK (0x3FAB)\r\n* ROM Size:        32 KiB (0x00)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     None (0x00)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Tennis (World)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-TNA\r\n* ROM CRC32:       5009215f\r\n* ROM Size:        32 KiB",
+    "date": "2026-01-20",
+    "crc32": "5009215f",
+    "md5": "7d621dcbbce12b73574c42f40deec275",
+    "sha1": "ec45a932fb3fc21394fef5e27e7fe9eccd0c7f70",
+    "sha256": "cdcb6ba23ea2c32a2af47abb267d8bd065a8bc10777b435de6a9be421e5bf919"
   }
 }

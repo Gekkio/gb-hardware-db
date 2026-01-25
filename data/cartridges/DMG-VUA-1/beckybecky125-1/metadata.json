@@ -16,5 +16,14 @@
     "u1": {
       "label": "DMG-VUA-1 S LH5359RF JAPAN A0 9835 D"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Dr. Mario (World) (Rev 1).gb\r\n* File Size:       32.0 KiB (32768 bytes)\r\n* CRC32:           f0225dd0\r\n* MD5:             921bdff008475aa2c5344e1a0d110910\r\n* SHA-1:           d31d67d0682515c7c85deaa1752b02231150e5bf\r\n* SHA-256:         507939ba5a53506d0ee52abb0eb6749f497c492e8be79eb106010020b50065bd\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:10:56-08:00\r\n* Time Elapsed:    0 seconds (56.58 KiB/s)\r\n* Transfer Buffer: 2048 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        32 KiB\r\n* Mapper Type:     None\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      DR.MARIO\r\n* Revision:        1\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xA9)\r\n* ROM Checksum:    OK (0xB946)\r\n* ROM Size:        32 KiB (0x00)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     None (0x00)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Dr. Mario (World) (Rev 1)\r\n* Region:          World\r\n* Language(s):     En\r\n* Revision:        Rev 1\r\n* Game Code:       DMG-VUA\r\n* ROM CRC32:       f0225dd0\r\n* ROM Size:        32 KiB",
+    "date": "2026-01-20",
+    "crc32": "f0225dd0",
+    "md5": "921bdff008475aa2c5344e1a0d110910",
+    "sha1": "d31d67d0682515c7c85deaa1752b02231150e5bf",
+    "sha256": "507939ba5a53506d0ee52abb0eb6749f497c492e8be79eb106010020b50065bd"
   }
 }

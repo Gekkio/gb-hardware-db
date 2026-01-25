@@ -25,5 +25,14 @@
     "battery": {
       "label": "97-11"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Golf (World).gb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           6ed10383\r\n* MD5:             6175a5ef55a1998944267e75d8ebf79d\r\n* SHA-1:           2acee1a14ba611e73b0b7d6bce170107213fcc0c\r\n* SHA-256:         896d9ffbdfe35c802cdcb66b5a6ce84a4ad6bc356c85067904883944a621cbb4\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:29:02-08:00\r\n* Time Elapsed:    1 second (94.34 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     0x05\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      GOLF\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xB6)\r\n* ROM Checksum:    OK (0xE804)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC2+SRAM+BATTERY (0x06)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Golf (World)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-GOA\r\n* ROM CRC32:       6ed10383\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "6ed10383",
+    "md5": "6175a5ef55a1998944267e75d8ebf79d",
+    "sha1": "2acee1a14ba611e73b0b7d6bce170107213fcc0c",
+    "sha256": "896d9ffbdfe35c802cdcb66b5a6ce84a4ad6bc356c85067904883944a621cbb4"
   }
 }

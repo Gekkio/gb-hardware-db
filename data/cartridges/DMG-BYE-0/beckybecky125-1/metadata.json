@@ -19,5 +19,14 @@
     "u2": {
       "label": "DMG MBC1-B Nintendo P 6'71"
     }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Bugs Bunny Crazy Castle 2, The (USA).gb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           a973e604\r\n* MD5:             8963803e642dbfbe4f5f3bc5a567785d\r\n* SHA-1:           1e4c8c8fe8b6c34f76cd0da876442f14299da725\r\n* SHA-256:         cf1a8d9c9d4fc9e58740f6e008e5280ff2831c099aecab642e64e5195c0ad0bc\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:30:15-08:00\r\n* Time Elapsed:    1 second (91.80 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      BUGSCRAZYCASTLE2\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  Unknown (0x32)\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x79)\r\n* ROM Checksum:    OK (0x2665)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Bugs Bunny Crazy Castle 2, The (USA)\r\n* Region:          USA\r\n* Language(s):     En\r\n* Game Code:       DMG-BYE\r\n* ROM CRC32:       a973e604\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "a973e604",
+    "md5": "8963803e642dbfbe4f5f3bc5a567785d",
+    "sha1": "1e4c8c8fe8b6c34f76cd0da876442f14299da725",
+    "sha256": "cf1a8d9c9d4fc9e58740f6e008e5280ff2831c099aecab642e64e5195c0ad0bc"
   }
 }

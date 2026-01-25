@@ -1,0 +1,32 @@
+{
+  "code": "DMG-UFX-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-UF-USA",
+    "stamp": "22A"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "Y",
+    "panel_position": "5",
+    "year": 1997,
+    "month": 10,
+    "u1": {
+      "label": "DMG-UFX-1 S LH531HYZ JAPAN C1 9835 E"
+    },
+    "u2": {
+      "label": "DMG MBC1-B Nintendo P 8'52"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Smurfs, The (USA, Europe) (En,Fr,De) (Rev 1) (SGB Enhanced).sgb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           8b5bcde7\r\n* MD5:             a574e5f7119b31e5112221c3a0ada813\r\n* SHA-1:           a0d6a85331fb034f68f05629a5ff85e13adab205\r\n* SHA-256:         5d9c9ce079923b92034c7c2d172b5abfad9ec37332102cb247ea849393db9a99\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:59:04-08:00\r\n* Time Elapsed:    1 second (87.18 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      SMURFS\r\n* Revision:        1\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x65)\r\n* ROM Checksum:    OK (0xA9DC)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Smurfs, The (USA, Europe) (En,Fr,De) (Rev 1) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En,Fr,De\r\n* Revision:        Rev 1\r\n* Game Code:       DMG-UFX\r\n* ROM CRC32:       8b5bcde7\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "8b5bcde7",
+    "md5": "a574e5f7119b31e5112221c3a0ada813",
+    "sha1": "a0d6a85331fb034f68f05629a5ff85e13adab205",
+    "sha256": "5d9c9ce079923b92034c7c2d172b5abfad9ec37332102cb247ea849393db9a99"
+  }
+}

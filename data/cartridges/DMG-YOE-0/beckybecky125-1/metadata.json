@@ -1,0 +1,32 @@
+{
+  "code": "DMG-YOE-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-YO-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-02",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1992,
+    "month": 10,
+    "u1": {
+      "label": "DMG-YOE-0 S LH5314DS JAPAN B1 9242 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B Nintendo J9234BR"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Yoshi (USA).gb\r\n* File Size:       64.0 KiB (65536 bytes)\r\n* CRC32:           f2f4bcca\r\n* MD5:             a8804c8514619cc918960c2008ed65d1\r\n* SHA-1:           1b6e41c2270ce67e6fe15cc4977ef2debdd6e6ce\r\n* SHA-256:         a41d3ab34e91fccdf6b4e3a203dbf606d1097b702039fdf2f252cb18c4c9f925\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:28:24-08:00\r\n* Time Elapsed:    0 seconds (75.72 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        64 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      YOSSY NO TAMAGO\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xA6)\r\n* ROM Checksum:    OK (0xEE0B)\r\n* ROM Size:        64 KiB (0x01)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Yoshi (USA)\r\n* Region:          USA\r\n* Language(s):     En\r\n* Game Code:       DMG-YOE\r\n* ROM CRC32:       f2f4bcca\r\n* ROM Size:        64 KiB",
+    "date": "2026-01-20",
+    "crc32": "f2f4bcca",
+    "md5": "a8804c8514619cc918960c2008ed65d1",
+    "sha1": "1b6e41c2270ce67e6fe15cc4977ef2debdd6e6ce",
+    "sha256": "a41d3ab34e91fccdf6b4e3a203dbf606d1097b702039fdf2f252cb18c4c9f925"
+  }
+}

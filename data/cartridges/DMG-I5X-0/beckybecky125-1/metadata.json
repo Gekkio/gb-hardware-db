@@ -1,0 +1,32 @@
+{
+  "code": "DMG-I5X-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-I5-USA",
+    "stamp": "20"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "K",
+    "panel_position": "2",
+    "year": 1998,
+    "month": 3,
+    "u1": {
+      "label": "DMG-I5X-0 S LH531HPE JAPAN C1 9814 D"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9749 5 A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Mickey Mouse - Magic Wands! (USA, Europe) (SGB Enhanced).sgb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           f0482567\r\n* MD5:             38b65d28ac0bd619f5dee5a45d5fc542\r\n* SHA-1:           90a181ee7d42941bce3b425077d6570da0e2fb2c\r\n* SHA-256:         bc14dac53de625535cc2825efa3d2399bf0c8c661f8a9417c4b97414a630cd0e\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1000000\r\n* Dump Time:       2026-01-20T14:50:14-08:00\r\n* Time Elapsed:    1 second (86.79 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      MICKEY MOUSE\r\n* Revision:        0\r\n* Super Game Boy:  Supported\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xC5)\r\n* ROM Checksum:    OK (0x5464)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Super Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Mickey Mouse - Magic Wands! (USA, Europe) (SGB Enhanced)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Game Code:       DMG-I5X\r\n* ROM CRC32:       f0482567\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "f0482567",
+    "md5": "38b65d28ac0bd619f5dee5a45d5fc542",
+    "sha1": "90a181ee7d42941bce3b425077d6570da0e2fb2c",
+    "sha256": "bc14dac53de625535cc2825efa3d2399bf0c8c661f8a9417c4b97414a630cd0e"
+  }
+}

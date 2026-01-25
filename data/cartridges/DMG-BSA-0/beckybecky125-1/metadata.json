@@ -1,0 +1,32 @@
+{
+  "code": "DMG-BSA-0",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-BS-USA",
+    "stamp": "23"
+  },
+  "board": {
+    "label": "DMG-BEAN-01",
+    "circled_letters": "T",
+    "panel_position": "2",
+    "year": 1990,
+    "month": 8,
+    "u1": {
+      "label": "DMG-BSA-0 S LH5314B0 JAPAN B1 9032 D"
+    },
+    "u2": {
+      "label": "Nintendo DMG MBC1B N 9030BA025"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Baseball (World).gb\r\n* File Size:       64.0 KiB (65536 bytes)\r\n* CRC32:           6eea2526\r\n* MD5:             e7bcb3f5534c8363f855ba92d83cb2d9\r\n* SHA-1:           bb613ed8d492d49db35370bec38d9f2515dc24c9\r\n* SHA-256:         debc4ac9d7587166f4754d99955c8ed8c5ae014bb10e91764fe9e632cdbcb3fc\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:34:10-08:00\r\n* Time Elapsed:    0 seconds (75.95 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        64 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      BASEBALL\r\n* Revision:        0\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0xAE)\r\n* ROM Checksum:    OK (0x3890)\r\n* ROM Size:        64 KiB (0x01)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Baseball (World)\r\n* Region:          World\r\n* Language(s):     En\r\n* Game Code:       DMG-BSA\r\n* ROM CRC32:       6eea2526\r\n* ROM Size:        64 KiB",
+    "date": "2026-01-20",
+    "crc32": "6eea2526",
+    "md5": "e7bcb3f5534c8363f855ba92d83cb2d9",
+    "sha1": "bb613ed8d492d49db35370bec38d9f2515dc24c9",
+    "sha256": "debc4ac9d7587166f4754d99955c8ed8c5ae014bb10e91764fe9e632cdbcb3fc"
+  }
+}

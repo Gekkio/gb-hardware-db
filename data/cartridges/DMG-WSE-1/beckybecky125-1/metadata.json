@@ -1,0 +1,32 @@
+{
+  "code": "DMG-WSE-1",
+  "slug": "beckybecky125-1",
+  "contributor": "beckybecky125",
+  "index": 1,
+  "shell": {
+    "code": "DMG-WS-USA-1",
+    "stamp": "20A"
+  },
+  "board": {
+    "label": "DMG-BEAN-10",
+    "circled_letters": "I",
+    "panel_position": "2",
+    "year": 1997,
+    "month": 2,
+    "u1": {
+      "label": "DMG-WSE-1 S LH531HFE JAPAN C1 9707 E"
+    },
+    "u2": {
+      "label": "DMG MBC1B1 Nintendo S 9652 3 A"
+    }
+  },
+  "dump": {
+    "tool": "GBxCart RW v1.4a/b/c",
+    "log": "= FlashGBX Dump Report =\r\n\r\n== File Information ==\r\n* File Name:       Star Wars (USA, Europe) (Rev 1).gb\r\n* File Size:       128.0 KiB (131072 bytes)\r\n* CRC32:           5d8deb5b\r\n* MD5:             cb1dce08c78c509a876c494d6333f45c\r\n* SHA-1:           f6563f526fc786c8666d75dfba9e6d42d787ea89\r\n* SHA-256:         748207e8ee61d86eba84a3ff49b618a1e11c0c3f8ad64dff2f12f3a00f5dd69a\r\n\r\n== General Information ==\r\n* Hardware:        GBxCart RW v1.4a/b/c – Firmware R42+L14\r\n* Software:        FlashGBX v4.5\r\n* OS Platform:     Windows-10-10.0.26100-SP0\r\n* Baud Rate:       1500000\r\n* Dump Time:       2026-01-20T14:18:05-08:00\r\n* Time Elapsed:    1 second (92.45 KiB/s)\r\n* Transfer Buffer: 4096 bytes\r\n* Retries:         0\r\n\r\n== Dumping Settings ==\r\n* Mode:            Game Boy\r\n* ROM Size:        128 KiB\r\n* Mapper Type:     MBC1\r\n* Cartridge Type:  Generic ROM Cartridge\r\n* Read Method:     A15\r\n\r\n== Parsed Data ==\r\n* Game Title:      STAR WARS-NOA\r\n* Revision:        1\r\n* Super Game Boy:  No support\r\n* Game Boy Color:  No support\r\n* Nintendo Logo:   OK\r\n* Header Checksum: OK (0x3F)\r\n* ROM Checksum:    OK (0x35A0)\r\n* ROM Size:        128 KiB (0x02)\r\n* SRAM Size:       No SRAM (0x00)\r\n* Mapper Type:     MBC1 (0x01)\r\n* Target Platform: Game Boy\r\n\r\n== Database Match ==\r\n* Game Name:       Star Wars (USA, Europe) (Rev 1)\r\n* Region:          USA, Europe\r\n* Language(s):     En\r\n* Revision:        Rev 1\r\n* Game Code:       DMG-WSX\r\n* ROM CRC32:       5d8deb5b\r\n* ROM Size:        128 KiB",
+    "date": "2026-01-20",
+    "crc32": "5d8deb5b",
+    "md5": "cb1dce08c78c509a876c494d6333f45c",
+    "sha1": "f6563f526fc786c8666d75dfba9e6d42d787ea89",
+    "sha256": "748207e8ee61d86eba84a3ff49b618a1e11c0c3f8ad64dff2f12f3a00f5dd69a"
+  }
+}

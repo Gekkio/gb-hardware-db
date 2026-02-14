@@ -4,7 +4,6 @@
 
 use anyhow::{Error, anyhow};
 use aws_config::BehaviorVersion;
-use aws_sdk_cloudfront::types::{InvalidationBatch, Paths};
 use aws_sdk_s3::primitives::ByteStream;
 use base64::Engine;
 use log::{debug, info};
@@ -154,9 +153,8 @@ async fn main() -> Result<(), Error> {
         ColorChoice::Auto,
     );
 
-    let bucket = std::env::var("GBHWDB_BUCKET")?;
-    let distribution = std::env::var("GBHWDB_DISTRIBUTION")?;
-    let invalidation_ref = std::env::var("GBHWDB_INVALIDATION_REF")?;
+    let bucket = std::env::var("S3_BUCKET")?;
+    let endpoint = std::env::var("S3_ENDPOINT")?;
     let mime_map = MIME_MAPPING.iter().copied().collect::<HashMap<_, _>>();
 
     let build_dir = Path::new("build");
@@ -167,9 +165,12 @@ async fn main() -> Result<(), Error> {
     let local_files = spawn_blocking(move || scan_local_files(build_dir)).await??;
     info!("Scanned {} local files", local_files.len());
 
-    let config = aws_config::load_defaults(BehaviorVersion::latest()).await;
+    let config = aws_config::load_defaults(BehaviorVersion::latest())
+        .await
+        .into_builder()
+        .endpoint_url(endpoint)
+        .build();
     let s3 = aws_sdk_s3::Client::new(&config);
-    let cloudfront = aws_sdk_cloudfront::Client::new(&config);
 
     info!("Scanning remote files...");
     let remote_files = scan_remote_files(&s3, &bucket).await?;
@@ -247,19 +248,6 @@ async fn main() -> Result<(), Error> {
             .send()
             .await?;
     }
-
-    info!("Triggering invalidation...");
-    cloudfront
-        .create_invalidation()
-        .distribution_id(distribution)
-        .invalidation_batch(
-            InvalidationBatch::builder()
-                .paths(Paths::builder().quantity(1).items("/*").build()?)
-                .caller_reference(invalidation_ref)
-                .build()?,
-        )
-        .send()
-        .await?;
 
     info!("Site deployment complete");
     Ok(())

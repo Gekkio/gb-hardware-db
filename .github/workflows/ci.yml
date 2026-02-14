@@ -42,17 +42,12 @@ jobs:
         run: cargo test --all --release
       - name: Run site generation
         run: cargo run --release --bin gbhwdb-site
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        if: github.ref == 'refs/heads/master' && github.repository == 'Gekkio/gb-hardware-db'
-        with:
-          aws-region: eu-west-1
-          role-to-assume: arn:aws:iam::570943329925:role/github-gb-hardware-db
-          role-session-name: Github-Actions
       - name: Run site deployment
         if: github.ref == 'refs/heads/master' && github.repository == 'Gekkio/gb-hardware-db'
         run: target/release/gbhwdb-deploy
         env:
-          GBHWDB_BUCKET: ${{ secrets.GBHWDB_BUCKET }}
-          GBHWDB_INVALIDATION_REF: ${{ github.sha }}
-          GBHWDB_DISTRIBUTION: ${{ secrets.GBHWDB_DISTRIBUTION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
